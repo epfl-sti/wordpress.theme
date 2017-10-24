@@ -21,35 +21,44 @@ $sidebar_pos = get_theme_mod( 'understrap_sidebar_position' );
 
 	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
 
-		<div class="row">
+		<?php if ( esc_attr($container) == "container-fluid" ) : ?>
+		<div class="offset-md-1 col-md-10">
+		<?php endif; ?>
 
-			<!-- Do the left sidebar check -->
-			<?php get_template_part( 'global-templates/left-sidebar-check', 'none' ); ?>
+			<div class="row">
 
-			<main class="site-main" id="main">
 
-				<?php while ( have_posts() ) : the_post(); ?>
+				<!-- Do the left sidebar check -->
+				<?php get_template_part( 'global-templates/left-sidebar-check', 'none' ); ?>
 
-					<?php get_template_part( 'loop-templates/content', 'page' ); ?>
+				<main class="site-main" id="main">
 
-					<?php
-					// If comments are open or we have at least one comment, load up the comment template.
-					if ( comments_open() || get_comments_number() ) :
-						comments_template();
-					endif;
-					?>
+					<?php while ( have_posts() ) : the_post(); ?>
 
-				<?php endwhile; // end of the loop. ?>
+						<?php get_template_part( 'loop-templates/content', 'page' ); ?>
 
-			</main><!-- #main -->
+						<?php
+						// If comments are open or we have at least one comment, load up the comment template.
+						if ( comments_open() || get_comments_number() ) :
+							comments_template();
+						endif;
+						?>
 
-		</div><!-- #primary -->
+					<?php endwhile; // end of the loop. ?>
 
-		<!-- Do the right sidebar check -->
-		<?php if ( 'right' === $sidebar_pos || 'both' === $sidebar_pos ) : ?>
+				</main><!-- #main -->
 
-			<?php get_sidebar( 'right' ); ?>
+			</div><!-- #primary -->
 
+			<!-- Do the right sidebar check -->
+			<?php if ( 'right' === $sidebar_pos || 'both' === $sidebar_pos ) : ?>
+
+				<?php get_sidebar( 'right' ); ?>
+
+			<?php endif; ?>
+
+		<?php if ( esc_attr($container) == "container-fluid" ) : ?>
+		</div>
 		<?php endif; ?>
 
 	</div><!-- .row -->
