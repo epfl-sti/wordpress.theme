@@ -33,57 +33,53 @@ $container = get_theme_mod( 'understrap_container_type' );
 		<a class="skip-link screen-reader-text sr-only" href="#content"><?php esc_html_e( 'Skip to content',
 		'understrap' ); ?></a>
 
-		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-
-		<?php if ( 'container' == $container ) : ?>
-        <div class="container">
-        <?php endif; ?>
-
+        <!-- Ugly hard coded menu -->
+        <nav>
             <!-- Ugly hard coded menu -->
             <div class="menu-container">
                 <div class="menu">
-					<ul>
+                    <ul>
                         <li><a href="#">Home</a></li>
                         <li><a href="http://marioloncarek.com">About</a>
                             <ul>
                                 <li><a href="http://marioloncarek.com">School</a>
-                                        <ul>
-                                                <li><a href="http://marioloncarek.com">Lidership</a></li>
-                                                <li><a href="#">History</a></li>
-                                                <li><a href="#">Locations</a></li>
-                                                <li><a href="#">Careers</a></li>
-                                        </ul>
+                                    <ul>
+                                        <li><a href="http://marioloncarek.com">Lidership</a></li>
+                                        <li><a href="#">History</a></li>
+                                        <li><a href="#">Locations</a></li>
+                                        <li><a href="#">Careers</a></li>
+                                    </ul>
                                 </li>
                                 <li><a href="#">Study</a>
-                                        <ul>
-                                                <li><a href="#">Undergraduate</a></li>
-                                                <li><a href="#">Masters</a></li>
-                                                <li><a href="#">International</a></li>
-                                                <li><a href="#">Online</a></li>
-                                        </ul>
+                                    <ul>
+                                        <li><a href="#">Undergraduate</a></li>
+                                        <li><a href="#">Masters</a></li>
+                                        <li><a href="#">International</a></li>
+                                        <li><a href="#">Online</a></li>
+                                    </ul>
                                 </li>
                                 <li><a href="#">Research</a>
-                                        <ul>
-                                                <li><a href="#">Undergraduate research</a></li>
-                                                <li><a href="#">Masters research</a></li>
-                                                <li><a href="#">Funding</a></li>
-                                        </ul>
+                                    <ul>
+                                        <li><a href="#">Undergraduate research</a></li>
+                                        <li><a href="#">Masters research</a></li>
+                                        <li><a href="#">Funding</a></li>
+                                    </ul>
                                 </li>
                                 <li><a href="#">Something</a>
-                                        <ul>
-                                                <li><a href="#">Sub something</a></li>
-                                                <li><a href="#">Sub something</a></li>
-                                                <li><a href="#">Sub something</a></li>
-                                                <li><a href="#">Sub something</a></li>
-                                        </ul>
+                                    <ul>
+                                        <li><a href="#">Sub something</a></li>
+                                        <li><a href="#">Sub something</a></li>
+                                        <li><a href="#">Sub something</a></li>
+                                        <li><a href="#">Sub something</a></li>
+                                    </ul>
                                 </li>
                             </ul>
                         </li>
                         <li><a href="http://marioloncarek.com">News</a>
                             <ul>
-                                    <li><a href="http://marioloncarek.com">Today</a></li>
-                                    <li><a href="#">Calendar</a></li>
-                                    <li><a href="#">Sport</a></li>
+                                <li><a href="http://marioloncarek.com">Today</a></li>
+                                <li><a href="#">Calendar</a></li>
+                                <li><a href="#">Sport</a></li>
                             </ul>
                         </li>
                         <li><a href="http://marioloncarek.com">Contact</a>
@@ -106,19 +102,27 @@ $container = get_theme_mod( 'understrap_container_type' );
                                 </li>
                                 <li><a href="#">Study</a>
                                     <ul>
-                                            <li><a href="#">Undergraduate</a></li>
-                                            <li><a href="#">Masters</a></li>
-                                            <li><a href="#">International</a></li>
-                                            <li><a href="#">Online</a></li>
+                                        <li><a href="#">Undergraduate</a></li>
+                                        <li><a href="#">Masters</a></li>
+                                        <li><a href="#">International</a></li>
+                                        <li><a href="#">Online</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Empty sub</a></li>
                             </ul>
                         </li>
-					</ul>
-			    </div>
+                    </ul>
+                </div>
             </div>
-					<!-- End ugly hard coded menu -->
+            <!-- End ugly hard coded menu -->
+        </nav>
+        <!-- End ugly hard coded menu -->
+
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+
+		<?php if ( 'container' == $container ) : ?>
+        <div class="container">
+        <?php endif; ?>
 
 					<!-- Your site title as branding in the menu -->
 					<?php if ( ! has_custom_logo() ) { ?>
