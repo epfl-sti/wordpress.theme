@@ -51,7 +51,17 @@ $container = get_theme_mod( 'understrap_container_type' );
 
 </div><!-- #page we need this extra closing tag here -->
 
+
+
 <?php wp_footer(); ?>
+
+<!-- Custom -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.0/jquery.min.js"><\/script>')
+</script>
+<script src="wp-content/themes/understrap/js/megamenu.js"></script>
+<!-- end custom -->
 
 </body>
 

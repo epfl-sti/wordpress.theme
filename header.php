@@ -20,10 +20,105 @@ $container = get_theme_mod( 'understrap_container_type' );
 	<meta name="apple-mobile-web-app-title" content="<?php bloginfo( 'name' ); ?> - <?php bloginfo( 'description' ); ?>">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+
+    <!-- Custom -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+    <link rel="stylesheet" href="wp-content/themes/understrap/css/ionicons.min.css">
+    <link rel="stylesheet" href="wp-content/themes/understrap/css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
+    <!-- JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script>
+        window.Modernizr || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"><\/script>')
+    </script>
+    <!-- end custom -->
+
 	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
+
+<!-- Ugly hard coded menu -->
+<div class="menu-container">
+    <div class="menu">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="http://marioloncarek.com">About</a>
+                <ul>
+                    <li><a href="http://marioloncarek.com">School</a>
+                        <ul>
+                            <li><a href="http://marioloncarek.com">Lidership</a></li>
+                            <li><a href="#">History</a></li>
+                            <li><a href="#">Locations</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Study</a>
+                        <ul>
+                            <li><a href="#">Undergraduate</a></li>
+                            <li><a href="#">Masters</a></li>
+                            <li><a href="#">International</a></li>
+                            <li><a href="#">Online</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Research</a>
+                        <ul>
+                            <li><a href="#">Undergraduate research</a></li>
+                            <li><a href="#">Masters research</a></li>
+                            <li><a href="#">Funding</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Something</a>
+                        <ul>
+                            <li><a href="#">Sub something</a></li>
+                            <li><a href="#">Sub something</a></li>
+                            <li><a href="#">Sub something</a></li>
+                            <li><a href="#">Sub something</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="http://marioloncarek.com">News</a>
+                <ul>
+                    <li><a href="http://marioloncarek.com">Today</a></li>
+                    <li><a href="#">Calendar</a></li>
+                    <li><a href="#">Sport</a></li>
+                </ul>
+            </li>
+            <li><a href="http://marioloncarek.com">Contact</a>
+                <ul>
+                    <li><a href="#">School</a>
+                        <ul>
+                            <li><a href="#">Lidership</a></li>
+                            <li><a href="#">History</a></li>
+                            <li><a href="#">Locations</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Study</a>
+                        <ul>
+                            <li><a href="#">Undergraduate</a></li>
+                            <li><a href="#">Masters</a></li>
+                            <li><a href="#">International</a></li>
+                            <li><a href="#">Online</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Study</a>
+                        <ul>
+                            <li><a href="#">Undergraduate</a></li>
+                            <li><a href="#">Masters</a></li>
+                            <li><a href="#">International</a></li>
+                            <li><a href="#">Online</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Empty sub</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- End ugly hard coded menu -->
 
 <div class="hfeed site" id="page">
 
@@ -33,90 +128,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 		<a class="skip-link screen-reader-text sr-only" href="#content"><?php esc_html_e( 'Skip to content',
 		'understrap' ); ?></a>
 
-        <!-- Ugly hard coded menu -->
-        <nav>
-            <!-- Ugly hard coded menu -->
-            <div class="menu-container">
-                <div class="menu">
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="http://marioloncarek.com">About</a>
-                            <ul>
-                                <li><a href="http://marioloncarek.com">School</a>
-                                    <ul>
-                                        <li><a href="http://marioloncarek.com">Lidership</a></li>
-                                        <li><a href="#">History</a></li>
-                                        <li><a href="#">Locations</a></li>
-                                        <li><a href="#">Careers</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Study</a>
-                                    <ul>
-                                        <li><a href="#">Undergraduate</a></li>
-                                        <li><a href="#">Masters</a></li>
-                                        <li><a href="#">International</a></li>
-                                        <li><a href="#">Online</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Research</a>
-                                    <ul>
-                                        <li><a href="#">Undergraduate research</a></li>
-                                        <li><a href="#">Masters research</a></li>
-                                        <li><a href="#">Funding</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Something</a>
-                                    <ul>
-                                        <li><a href="#">Sub something</a></li>
-                                        <li><a href="#">Sub something</a></li>
-                                        <li><a href="#">Sub something</a></li>
-                                        <li><a href="#">Sub something</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="http://marioloncarek.com">News</a>
-                            <ul>
-                                <li><a href="http://marioloncarek.com">Today</a></li>
-                                <li><a href="#">Calendar</a></li>
-                                <li><a href="#">Sport</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="http://marioloncarek.com">Contact</a>
-                            <ul>
-                                <li><a href="#">School</a>
-                                    <ul>
-                                        <li><a href="#">Lidership</a></li>
-                                        <li><a href="#">History</a></li>
-                                        <li><a href="#">Locations</a></li>
-                                        <li><a href="#">Careers</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Study</a>
-                                    <ul>
-                                        <li><a href="#">Undergraduate</a></li>
-                                        <li><a href="#">Masters</a></li>
-                                        <li><a href="#">International</a></li>
-                                        <li><a href="#">Online</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Study</a>
-                                    <ul>
-                                        <li><a href="#">Undergraduate</a></li>
-                                        <li><a href="#">Masters</a></li>
-                                        <li><a href="#">International</a></li>
-                                        <li><a href="#">Online</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Empty sub</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- End ugly hard coded menu -->
-        </nav>
-        <!-- End ugly hard coded menu -->
+
 
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 
