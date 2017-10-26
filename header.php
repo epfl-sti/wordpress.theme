@@ -25,7 +25,7 @@ $container = get_theme_mod( 'understrap_container_type' );
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
     <link rel="stylesheet" href="wp-content/themes/understrap/css/ionicons.min.css">
-    <link rel="stylesheet" href="wp-content/themes/understrap/css/style.css">
+    <link rel="stylesheet" href="wp-content/themes/understrap/css/megamenu.css">
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
     <!-- JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
