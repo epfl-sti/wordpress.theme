@@ -90,7 +90,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                 <ul>
                     <li><a href="#">School</a>
                         <ul>
-                            <li><a href="#">Lidership</a></li>
+                            <li><img src="wp-content/themes/understrap/img/header.jpg" /> </li>
                             <li><a href="#">History</a></li>
                             <li><a href="#">Locations</a></li>
                             <li><a href="#">Careers</a></li>
