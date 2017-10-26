@@ -36,8 +36,89 @@ $container = get_theme_mod( 'understrap_container_type' );
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 
 		<?php if ( 'container' == $container ) : ?>
-			<div class="container">
-		<?php endif; ?>
+        <div class="container">
+        <?php endif; ?>
+
+            <!-- Ugly hard coded menu -->
+            <div class="menu-container">
+                <div class="menu">
+					<ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="http://marioloncarek.com">About</a>
+                            <ul>
+                                <li><a href="http://marioloncarek.com">School</a>
+                                        <ul>
+                                                <li><a href="http://marioloncarek.com">Lidership</a></li>
+                                                <li><a href="#">History</a></li>
+                                                <li><a href="#">Locations</a></li>
+                                                <li><a href="#">Careers</a></li>
+                                        </ul>
+                                </li>
+                                <li><a href="#">Study</a>
+                                        <ul>
+                                                <li><a href="#">Undergraduate</a></li>
+                                                <li><a href="#">Masters</a></li>
+                                                <li><a href="#">International</a></li>
+                                                <li><a href="#">Online</a></li>
+                                        </ul>
+                                </li>
+                                <li><a href="#">Research</a>
+                                        <ul>
+                                                <li><a href="#">Undergraduate research</a></li>
+                                                <li><a href="#">Masters research</a></li>
+                                                <li><a href="#">Funding</a></li>
+                                        </ul>
+                                </li>
+                                <li><a href="#">Something</a>
+                                        <ul>
+                                                <li><a href="#">Sub something</a></li>
+                                                <li><a href="#">Sub something</a></li>
+                                                <li><a href="#">Sub something</a></li>
+                                                <li><a href="#">Sub something</a></li>
+                                        </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="http://marioloncarek.com">News</a>
+                            <ul>
+                                    <li><a href="http://marioloncarek.com">Today</a></li>
+                                    <li><a href="#">Calendar</a></li>
+                                    <li><a href="#">Sport</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="http://marioloncarek.com">Contact</a>
+                            <ul>
+                                <li><a href="#">School</a>
+                                    <ul>
+                                        <li><a href="#">Lidership</a></li>
+                                        <li><a href="#">History</a></li>
+                                        <li><a href="#">Locations</a></li>
+                                        <li><a href="#">Careers</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Study</a>
+                                    <ul>
+                                        <li><a href="#">Undergraduate</a></li>
+                                        <li><a href="#">Masters</a></li>
+                                        <li><a href="#">International</a></li>
+                                        <li><a href="#">Online</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Study</a>
+                                    <ul>
+                                            <li><a href="#">Undergraduate</a></li>
+                                            <li><a href="#">Masters</a></li>
+                                            <li><a href="#">International</a></li>
+                                            <li><a href="#">Online</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Empty sub</a></li>
+                            </ul>
+                        </li>
+					</ul>
+			    </div>
+            </div>
+					<!-- End ugly hard coded menu -->
 
 					<!-- Your site title as branding in the menu -->
 					<?php if ( ! has_custom_logo() ) { ?>
@@ -45,14 +126,14 @@ $container = get_theme_mod( 'understrap_container_type' );
 						<?php if ( is_front_page() && is_home() ) : ?>
 
 							<h1 class="navbar-brand mb-0"><a rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
-							
+
 						<?php else : ?>
 
 							<a class="navbar-brand" rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><?php bloginfo( 'name' ); ?></a>
-						
+
 						<?php endif; ?>
-						
-					
+
+
 					<?php } else {
 						the_custom_logo();
 					} ?><!-- end custom logo -->
