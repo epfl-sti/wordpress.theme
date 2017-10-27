@@ -60,7 +60,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 <script>
     window.jQuery || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.0/jquery.min.js"><\/script>')
 </script>
-<script src="wp-content/themes/understrap/js/megamenu.js"></script>
+<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/megamenu.js"></script>
 <!-- end custom -->
 
 </body>
