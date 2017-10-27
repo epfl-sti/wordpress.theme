@@ -69,7 +69,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                             <li><a href="#">Funding</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Something</a>
+                    <li><a href="#">Something Else</a>
                         <ul>
                             <li><a href="#">Sub something</a></li>
                             <li><a href="#">Sub something</a></li>
