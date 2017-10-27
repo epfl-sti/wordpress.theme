@@ -24,8 +24,8 @@ $container = get_theme_mod( 'understrap_container_type' );
     <!-- Custom -->
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
-    <link rel="stylesheet" href="wp-content/themes/understrap/css/ionicons.min.css">
-    <link rel="stylesheet" href="wp-content/themes/understrap/css/megamenu.css">
+    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/ionicons.min.css">
+    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/megamenu.css">
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
     <!-- JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
@@ -90,7 +90,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                 <ul>
                     <li><a href="#">School</a>
                         <ul>
-                            <li><img src="wp-content/themes/understrap/img/header.jpg" /> </li>
+                            <li><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/header.jpg" /> </li>
                             <li><a href="#">History</a></li>
                             <li><a href="#">Locations</a></li>
                             <li><a href="#">Careers</a></li>
