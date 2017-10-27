@@ -24,5 +24,9 @@ error_log("is_home() is " + is_home());
 
 <p>This is the home page you are looking for.</p>
 
+<?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?id=researchvideo&lang=eng&thunderbird=researchvideo");
+
+?>
+
 <?php get_footer(); ?>
 
