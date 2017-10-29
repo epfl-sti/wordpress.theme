@@ -15,3 +15,6 @@ npm-debug.log
 /vendor/
 
 package-lock.json
+
+# Created by "npm postinstall"
+js/jquery.*
