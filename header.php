@@ -28,10 +28,7 @@ $container = get_theme_mod( 'understrap_container_type' );
     <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/megamenu.css">
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
     <!-- JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-    <script>
-        window.Modernizr || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"><\/script>')
-    </script>
+    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/modernizr.js"></script>
     <!-- end custom -->
 
 	<?php wp_head(); ?>

@@ -44,6 +44,7 @@ var browserSync = require('browser-sync').create();
 var del = require('del');
 var cleanCSS = require('gulp-clean-css');
 var gulpSequence = require('gulp-sequence');
+var modernizr = require('gulp-modernizr');
 
 
 // Run:
@@ -218,6 +219,7 @@ gulp.task('scripts', ['copy-assets'], function() {
 // Deleting any file inside the /src folder
 gulp.task('clean-source', function () {
   return del(['src/**/*', 'css/normalize.css', 'js/jquery.*',
+              'js/modernizr.*',
              'css/theme.*']);
 });
 
@@ -285,5 +287,11 @@ gulp.task('clean-dist-product', function () {
   return del(['dist-product/**/*',]);
 });
 
+gulp.task('modernizr', ['copy-assets', 'scripts'], function() {
+  gulp.src(['./js/*.js', '!js/modernizr*'])
+    .pipe(modernizr())
+    .pipe(gulp.dest("js/"))
+});
+
 // The default rule: build everything once, then stop
-gulp.task('default', ['copy-assets', 'scripts', 'styles'])
+gulp.task('default', ['copy-assets', 'scripts', 'styles', 'modernizr'])

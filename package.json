@@ -39,6 +39,7 @@
     "gulp-ignore": "^2.0.2",
     "gulp-imagemin": "^3.4.0",
     "gulp-merge": "^0.1.1",
+    "gulp-modernizr": "^1.0.0-alpha",
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-rimraf": "^0.2.1",

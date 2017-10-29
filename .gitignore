@@ -22,6 +22,7 @@ css/bootstrap*
 js/jquery.*
 js/popper.*
 js/theme.*
+js/modernizr.*
 css/theme.*
 fonts/FontAwesome.otf
 fonts/fontawesome-webfont.*
