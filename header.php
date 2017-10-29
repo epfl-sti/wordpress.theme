@@ -23,7 +23,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 
     <!-- Custom -->
     <!-- CSS -->
-    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/normalize.min.css">
+    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/normalize.css">
     <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/ionicons.min.css">
     <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/megamenu.css">
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
