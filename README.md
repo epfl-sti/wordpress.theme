@@ -90,7 +90,7 @@ Some basics about the Sass and CSS files that come with UnderStrap:
 ### Running
 To work and compile your Sass files on the fly start:
 
-- `$ gulp watch`
+- `$ ./node_modules/gulp/bin/gulp.js watch`
 
 Or, to run with Browser-Sync:
 
@@ -101,7 +101,7 @@ var browserSyncOptions = {
     notify: false
 };
 ```
-- then run: `$ gulp watch-bs`
+- then run: `$ ./node_modules/gulp/bin/gulp.js watch-bs`
 
 ## How to Use the Build-In Widget Slider
 

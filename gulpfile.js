@@ -2,7 +2,8 @@
 var basePaths = {
     js: './js/',
     node: './node_modules/',
-    dev: './src/'
+    dev: './src/',
+    css: './css/'
 };
 
 
@@ -43,6 +44,7 @@ var browserSync = require('browser-sync').create();
 var del = require('del');
 var cleanCSS = require('gulp-clean-css');
 var gulpSequence = require('gulp-sequence');
+var modernizr = require('gulp-modernizr');
 
 
 // Run:
@@ -174,7 +176,7 @@ gulp.task('cleancss', function() {
     .pipe(rimraf());
 });
 
-gulp.task('styles', function(callback){ gulpSequence('sass', 'minify-css')(callback) });
+gulp.task('styles', ['copy-assets'], function(callback){ gulpSequence('sass', 'minify-css')(callback) });
  
 
 // Run:
@@ -194,7 +196,7 @@ gulp.task('watch-bs', ['browser-sync', 'watch', 'scripts'], function () { });
 // Run: 
 // gulp scripts. 
 // Uglifies and concat all JS files into one
-gulp.task('scripts', function() {
+gulp.task('scripts', ['copy-assets'], function() {
     var scripts = [
 
         // Start - All BS4 stuff
@@ -216,43 +218,34 @@ gulp.task('scripts', function() {
 
 // Deleting any file inside the /src folder
 gulp.task('clean-source', function () {
-  return del(['src/**/*',]);
+  return del(['src/**/*', 'css/normalize.css', 'js/jquery.*',
+              'js/modernizr.*',
+             'css/theme.*']);
 });
 
 // Run:
 // gulp copy-assets.
-// Copy all needed dependency assets files from bower_component assets to themes /js, /scss and /fonts folder. Run this task after bower install or bower update
+// Copy all needed dependency assets files from node_modules assets to themes /js, /scss and /fonts folder. Run this task after npm install
 
-////////////////// All Bootstrap SASS  Assets /////////////////////////
-gulp.task('copy-assets', ['clean-source'], function() {
+////////////////// Copy pre-built assets /////////////////////////
+gulp.task('copy-assets', function() {
 
-////////////////// All Bootstrap 4 Assets /////////////////////////
-// Copy all JS files
+// Copy all Bootstrap JS files
 
     var stream = gulp.src(basePaths.node + 'bootstrap/dist/js/**/*.js')
        .pipe(gulp.dest(basePaths.dev + '/js/bootstrap4'));
   
-// Copy all Bootstrap SCSS files
-    gulp.src(basePaths.node + 'bootstrap/scss/**/*.scss')
-       .pipe(gulp.dest(basePaths.dev + '/sass/bootstrap4'));
-
-////////////////// End Bootstrap 4 Assets /////////////////////////
-
 // Copy all Font Awesome Fonts
     gulp.src(basePaths.node + 'font-awesome/fonts/**/*.{ttf,woff,woff2,eof,svg}')
         .pipe(gulp.dest('./fonts'));
-
-// Copy all Font Awesome SCSS files
-    gulp.src(basePaths.node + 'font-awesome/scss/*.scss')
-        .pipe(gulp.dest(basePaths.dev + '/sass/fontawesome'));
 
 // Copy jQuery
     gulp.src(basePaths.node + 'jquery/dist/*.js')
         .pipe(gulp.dest(basePaths.js));
 
-// _s SCSS files
-    gulp.src(basePaths.node + 'undescores-for-npm/sass/**/*.scss')
-        .pipe(gulp.dest(basePaths.dev + '/sass/underscores'));
+// Copy Normalize
+    gulp.src(basePaths.node + 'normalize.css/*.css')
+        .pipe(gulp.dest(basePaths.css));
 
 // _s JS files
     gulp.src(basePaths.node + 'undescores-for-npm/js/*.js')
@@ -293,3 +286,12 @@ gulp.task('dist-product', ['clean-dist-product'], function() {
 gulp.task('clean-dist-product', function () {
   return del(['dist-product/**/*',]);
 });
+
+gulp.task('modernizr', ['copy-assets', 'scripts'], function() {
+  gulp.src(['./js/*.js', '!js/modernizr*'])
+    .pipe(modernizr())
+    .pipe(gulp.dest("js/"))
+});
+
+// The default rule: build everything once, then stop
+gulp.task('default', ['copy-assets', 'scripts', 'styles', 'modernizr'])

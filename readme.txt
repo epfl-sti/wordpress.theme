@@ -186,12 +186,12 @@ Some basics about the Sass and CSS files that come with UnderStrap:
 ### Installing Dependencies
 - Make sure you have installed Node.js and Browser-Sync* (* optional, if you wanna use it) on your computer globally
 - Then open your terminal and browse to the location of your UnderStrap copy
-- Run: `$ npm install` and then: `$ gulp copy-assets`
+- Run: `$ npm install` and then: `$ ./node_modules/gulp/bin/gulp.js`
 
 ### Running
 To work and compile your Sass files on the fly start:
 
-- `$ gulp watch`
+- `$ ./node_modules/gulp/bin/gulp.js watch`
 
 Or, to run with Browser-Sync:
 
@@ -202,7 +202,7 @@ var browserSyncOptions = {
     notify: false
 };
 ```
-- then run: `$ gulp watch-bs`
+- then run: `$ ./node_modules/gulp/bin/gulp.js watch-bs`
 
 ## How to Use the Build-In Widget Slider
 
