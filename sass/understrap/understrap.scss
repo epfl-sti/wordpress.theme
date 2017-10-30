@@ -116,3 +116,10 @@ a.skip-link {
       color: $navbar-dark-active-color;
     }
 }
+
+// TODO: Dead code? We no longer have / want breadcrumbs showing on the home page
+.navbar .container, .navbar .container-fluid {
+   font-size:12px;
+   color:black;
+}
+

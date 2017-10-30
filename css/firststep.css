@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'Junction Regular';
+    src: url('../css/Junction-regular.woff');
+}
+
+@font-face {
+    font-family: 'Open Sans Regular';
+    src: url('../css/OpenSans-regular.woff');
+}
+
+a.mylink{ font: 18pt 'Open Sans Regular',sans-serif;  
+	color: black; 
+	position: relative;
+	top: 30px;
+} 
+a:visited.mylink{ text-decoration: none; 
+	color: black; }	 
+a:hover.mylink{ text-decoration: none; 
+	color: #444; } 
+
+
+a.mynavbar{ font: 12pt verdana,'Open Sans Regular',sans-serif;  
+	color: black; 
+	position: relative;
+	top: 30px;
+} 
+a:visited.mynavbar{ text-decoration: none; 
+	color: black; }	 
+a:hover.mynavbar{ text-decoration: none; 
+	color: #444; } 
+
+
