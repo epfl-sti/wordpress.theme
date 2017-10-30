@@ -21,10 +21,14 @@ error_log("is_front_page() is " + is_front_page());
 error_log("is_home() is " + is_home());
 
 ?>
+<br><br><br>
+<img width=100% src="<?php echo get_stylesheet_directory_uri(); ?>/img/LacourTeam.jpg">
 
-<p>This is the home page you are looking for.</p>
+<div 
 
-<?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?id=researchvideo&lang=eng&thunderbird=researchvideo");
+
+
+<?php //echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?id=researchvideo&lang=eng&thunderbird=researchvideo");
 
 ?>
 
