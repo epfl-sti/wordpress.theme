@@ -21,10 +21,9 @@ error_log("is_front_page() is " + is_front_page());
 error_log("is_home() is " + is_home());
 
 ?>
-<br><br><br>
 <img width=100% src="<?php echo get_stylesheet_directory_uri(); ?>/img/LacourTeam.jpg">
 
-<div 
+<div>
 
 
 
@@ -33,4 +32,3 @@ error_log("is_home() is " + is_home());
 ?>
 
 <?php get_footer(); ?>
-
