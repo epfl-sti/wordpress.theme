@@ -19,6 +19,7 @@ npm-debug.log
 /src/
 css/normalize.css
 css/bootstrap*
+js/core.js
 js/jquery.*
 js/popper.*
 js/theme.*

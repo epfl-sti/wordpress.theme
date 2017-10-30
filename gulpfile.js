@@ -218,7 +218,7 @@ gulp.task('scripts', ['copy-assets'], function() {
 
 // Deleting any file inside the /src folder
 gulp.task('clean-source', function () {
-  return del(['src/**/*', 'css/normalize.css', 'js/jquery.*',
+  return del(['src/**/*', 'css/normalize.css', 'js/core.*', 'js/jquery.*',
               'js/modernizr.*',
              'css/theme.*']);
 });
