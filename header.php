@@ -45,7 +45,7 @@ $container = get_theme_mod( 'understrap_container_type' );
     <div class="menu">
         <a href=https://www.epfl.ch><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.svg" width=180 style="float:left; margin: 10px" /> </a>
         <ul>
-            <li><a class="mylink" style="font-size: 22pt; top: 41px; padding-bottom: 46px" href="#">School of Engineering</a>
+            <li><a class="mylink" style="font-size: 22pt; top: 31px; padding-bottom: 46px" href="#">School of Engineering</a>
                 <ul>
                     <li><a href="#">News</a>
                         <ul>

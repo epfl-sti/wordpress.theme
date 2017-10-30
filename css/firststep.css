@@ -11,31 +11,44 @@
 .containernews {
  height: 60px;
  position: relative;
- top: -80px; 
- padding: 0px 0px 0px 25px
+ top: -120px; 
+ padding: 0px 0px 0px 45px
 }
 
-a.titlelink:active, 
-a.titlelink:link, 
-a.titlelink:visited {
- color: white; 
- text-decoration: none;
+a.titlelink {
+ color: white !important; 
+ text-decoration: none !important;
  background-image: none;
  border-bottom: none;
  font-family: 'Open Sans Regular',sans-serif;
- font-size: 24px;
+ font-size: 5vw;
 }
 
-a.subtitlelink:active,
-a.subtitlelink:link,
-a.subtitlelink:visited {
- font-size: 18px;
+a.subtitlelink {
+ font-size: 3vw;
+}
+
+@media screen and (max-width: 500px) {
+  a.titlelink {
+    font-size: 2em;
+  }
+  a.subtitlelink {
+    font-size: 1em;
+  }
+}
+@media screen and (min-width: 1500px) {
+  a.titlelink {
+    font-size: 6em;
+  }
+  a.subtitlelink {
+    font-size: 3em;
+  }
 }
 
 a.mylink{ font: 18pt 'Open Sans Regular',sans-serif;  
 	color: black; 
 	position: relative;
-	top: 45px;
+	top: 35px;
 } 
 a:visited.mylink{ text-decoration: none; 
 	color: black; }	 
