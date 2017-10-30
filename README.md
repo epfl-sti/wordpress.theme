@@ -1,21 +1,26 @@
-Travis build: [![Build Status](https://travis-ci.org/holger1411/epflsti.svg?branch=master)](https://travis-ci.org/holger1411/epflsti) | Start talking: [![Gitter](https://img.shields.io/gitter/room/holger1411/epflsti.svg?maxAge=2592000?style=flat-square)](https://gitter.im/holger1411/epflsti)
-
-#### See: [Official Demo](https://sti.epfl.ch/epflsti) | Read: [Official Docs Page](https://epflsti.github.io/)
 
 # EPFL STI WordPress Theme Framework
 
-Website: [https://sti.epfl.ch](https://sti.epfl.ch)
+---
 
-Child Theme Project: [https://github.com/holger1411/epflsti-child](https://github.com/holger1411/epflsti-child)
+Travis build: [![Build Status](https://travis-ci.org/holger1411/understrap.svg?branch=master)](https://travis-ci.org/holger1411/understrap) | Start talking: [![Gitter](https://img.shields.io/gitter/room/holger1411/understrap.svg?maxAge=2592000?style=flat-square)](https://gitter.im/holger1411/understrap)
+
+#### See: [Official Demo](https://understrap.com/understrap) | Read: [Official Docs Page](https://understrap.github.io/)
+
+# UnderStrap WordPress Theme Framework
+
+Website: [https://understrap.com](https://understrap.com)
+
+Child Theme Project: [https://github.com/holger1411/understrap-child](https://github.com/holger1411/understrap-child)
 
 ## About
 
 I’m a huge fan of Underscores, Bootstrap, and Sass. Why not combine these into a solid WordPress Theme Framework?
-That’s what EPFL STI is.
-You can use it as starter theme and build your own theme on top of it. Or you use it as parent theme and create your own child theme for EPFL STI.
+That’s what UnderStrap is.
+You can use it as starter theme and build your own theme on top of it. Or you use it as parent theme and create your own child theme for UnderStrap.
 
 ## License
-EPFL STI is released under the terms of the GPL version 2 or (at your option) any later version.
+UnderStrap is released under the terms of the GPL version 2 or (at your option) any later version.
 
 http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
 
@@ -32,7 +37,7 @@ See [changelog](CHANGELOG.md)
 - Jetpack ready.
 - WooCommerce support.
 - Contact Form 7 support.
-- [Child Theme](https://github.com/holger1411/epflsti-child) ready.
+- [Child Theme](https://github.com/holger1411/understrap-child) ready.
 - Translation ready.
 
 ## Starter Theme + HTML Framework = WordPress Theme Framework
@@ -42,13 +47,13 @@ Why not add a well known and supported layout framework to have a solid, clean a
 
 ## Confused by All the CSS and Sass Files?
 
-Some basics about the Sass and CSS files that come with EPFL STI:
+Some basics about the Sass and CSS files that come with UnderStrap:
 - The theme itself uses the `/style.css`file just to identify the theme inside of WordPress. The file is not loaded by the theme and does not include any styles.
 - The `/css/theme.css` and its minified little brother `/css/theme.min.css` file(s) provides all styles. It is composed of five different SCSS sets and one variable file at `/sass/theme.scss`:
 
-                  - 1 "theme/theme_variables";  // <--------- Add your variables into this file. Also add variables to overwrite Bootstrap or EPFL STI variables here
+                  - 1 "theme/theme_variables";  // <--------- Add your variables into this file. Also add variables to overwrite Bootstrap or UnderStrap variables here
                   - 2 "../src/bootstrap-sass/assets/stylesheets/bootstrap";  // <--------- All the Bootstrap stuff - Don´t edit this!
-                  - 3 "epflsti/epflsti"; // <--------- Some basic WordPress stylings and needed styles to combine Boostrap and Underscores
+                  - 3 "understrap/understrap"; // <--------- Some basic WordPress stylings and needed styles to combine Boostrap and Underscores
                   - 4 "../src/fontawesome/scss/font-awesome"; // <--------- Font Awesome Icon styles
 
                   // Any additional imported files //
@@ -60,23 +65,23 @@ Some basics about the Sass and CSS files that come with EPFL STI:
 ## Installation
 
 ### Classic install
-- Download the epflsti folder from GitHub or from [https://sti.epfl.ch](https://sti.epfl.ch)
-- IMPORTANT: If you download it from GitHub make sure you rename the "epflsti-master.zip" file just to "epflsti.zip" or you might have problems using child themes !!
+- Download the understrap folder from GitHub or from [https://understrap.com](https://understrap.com)
+- IMPORTANT: If you download it from GitHub make sure you rename the "understrap-master.zip" file just to "understrap.zip" or you might have problems using child themes !!
 - Upload it into your WordPress installation subfolder here: `/wp-content/themes/`
 - Login to your WordPress backend
 - Go to Appearance → Themes
-- Activate the EPFL STI theme
+- Activate the UnderStrap theme
 
 ### npm install
 - Open your terminal
-- Change to the directory where you want to add EPFL STI
-- Type `npm install epflsti`
+- Change to the directory where you want to add UnderStrap
+- Type `npm install understrap`
 
 ### WordPress.org install
 - Open your WordPress backend
 - Click on "Appearance -> Themes"
 - Hit the "Add new" button
-- Search for "EPFL STI"
+- Search for "UnderStrap"
 - Hit the "install" button
 - Activate the theme
 
@@ -84,13 +89,13 @@ Some basics about the Sass and CSS files that come with EPFL STI:
 
 ### Installing Dependencies
 - Make sure you have installed Node.js and Browser-Sync* (* optional, if you wanna use it) on your computer globally
-- Then open your terminal and browse to the location of your EPFL STI copy
+- Then open your terminal and browse to the location of your UnderStrap copy
 - Run: `$ npm install`
 
 ### Running
 To work and compile your Sass files on the fly start:
 
-- `$ ./node_modules/gulp/bin/gulp.js watch`
+- `$ gulp watch`
 
 Or, to run with Browser-Sync:
 
@@ -101,7 +106,7 @@ var browserSyncOptions = {
     notify: false
 };
 ```
-- then run: `$ ./node_modules/gulp/bin/gulp.js watch-bs`
+- then run: `$ gulp watch-bs`
 
 ## How to Use the Build-In Widget Slider
 

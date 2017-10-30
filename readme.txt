@@ -1,22 +1,27 @@
 
-Start talking: [![Gitter](https://img.shields.io/gitter/room/holger1411/epflsti.svg?maxAge=2592000?style=flat-square)](https://gitter.im/holger1411/epflsti)
+
+# EPFL STI WordPress Theme Framework
+
+---
+
+Start talking: [![Gitter](https://img.shields.io/gitter/room/holger1411/understrap.svg?maxAge=2592000?style=flat-square)](https://gitter.im/holger1411/understrap)
 
 ## About
 
 I’m a huge fan of Underscores, Bootstrap, and Sass. Why not combine these into a solid WordPress Theme Framework?
-That’s what EPFL STI is. 
-You can use it as starter theme and build your own theme on top of it. Or you use it as parent theme and create your own child theme for EPFL STI.
+That’s what UnderStrap is.
+You can use it as starter theme and build your own theme on top of it. Or you use it as parent theme and create your own child theme for UnderStrap.
 
-At the moment, EPFL STI is in a very early stage. But if you want, feel free to use it for your own WordPress theme!
+At the moment, UnderStrap is in a very early stage. But if you want, feel free to use it for your own WordPress theme!
 
-# EPFL STI WordPress Theme Framework
+# UnderStrap WordPress Theme Framework
 
-Website: [http://sti.epfl.ch](http://sti.epfl.ch)
+Website: [http://understrap.com](http://understrap.com)
 
-Child Theme Project: [https://github.com/holger1411/epflsti-child](https://github.com/holger1411/epflsti-child)
+Child Theme Project: [https://github.com/holger1411/understrap-child](https://github.com/holger1411/understrap-child)
 
 ## License
-EPFL STI is released under the terms of the GPL version 2 or (at your option) any later version.
+UnderStrap is released under the terms of the GPL version 2 or (at your option) any later version.
 
 http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
 
@@ -29,7 +34,7 @@ http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
                   - Fixing problem with empty folders after "gulp dist" - Thx @alwizo
                   - Fixed custom logo function typo - Thx @willgorham
 
-                  
+
             - ** 0.4.8 Oct. 10th 2016 **
                   - Removing Bower and replace the dependency managment with npm
                   - Update to Bootstrap 4 Alpha 4
@@ -54,7 +59,7 @@ http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
             - ** 0.4.5 Jun. 20th 2016 **
                   - Adding right sanitizing function for customizer
                   - Fixing some escaping problems
-                  - Removing "add script" customizer function 
+                  - Removing "add script" customizer function
                   - Calling all sidebars with "get_sidebar"
                   - Load hero area on index.php conditionally
                   - Remove unused code, files and dependencies
@@ -147,7 +152,7 @@ http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
 - Comes with extra slider script by [Owl Carousel](http://www.owlcarousel.owlgraphic.com/) (v2.1.4)
 - Jetpack ready.
 - WooCommerce support.
-- [Child Theme](https://github.com/holger1411/epflsti-child) ready.
+- [Child Theme](https://github.com/holger1411/understrap-child) ready.
 - Translation ready.
 
 ## Starter Theme + HTML Framework = WordPress Theme Framework
@@ -157,13 +162,13 @@ Why not add a well known and supported layout framework to have a solid, clean a
 
 ## Confused by All the CSS and Sass Files?
 
-Some basics about the Sass and CSS files that come with EPFL STI:
+Some basics about the Sass and CSS files that come with UnderStrap:
 - The theme itself uses the `/style.css`file just to identify the theme inside of WordPress. The file is not loaded by the theme and does not include any styles.
 - The `/css/theme.css` and it´s minified little brother `/css/theme.min.css` file(s) provides all styles. It is composed of five different SCSS sets and one variable file at `/sass/theme.scss`:
 
-                  - 1 "theme/theme_variables";  // <--------- Add your variables into this file. Also add variables to overwrite Bootstrap or EPFL STI variables here
+                  - 1 "theme/theme_variables";  // <--------- Add your variables into this file. Also add variables to overwrite Bootstrap or UnderStrap variables here
                   - 2 "../src/bootstrap-sass/assets/stylesheets/bootstrap";  // <--------- All the Bootstrap stuff - Don´t edit this!
-                  - 3 "epflsti/epflsti"; // <--------- Some basic WordPress stylings and needed styles to combine Boostrap and Underscores
+                  - 3 "understrap/understrap"; // <--------- Some basic WordPress stylings and needed styles to combine Boostrap and Underscores
                   - 4 "../src/fontawesome/scss/font-awesome"; // <--------- Font Awesome Icon styles
 
                   // Any additional imported files //
@@ -174,24 +179,24 @@ Some basics about the Sass and CSS files that come with EPFL STI:
 
 ## Installation
 
-- Download the epflsti folder from GitHub or from sti.epfl.ch
-- IMPORTANT: If you download it from GitHub make sure you rename the "epflsti-master.zip" file just to "epflsti.zip" or you might have problems using child themes !!
+- Download the understrap folder from GitHub or from understrap.com
+- IMPORTANT: If you download it from GitHub make sure you rename the "understrap-master.zip" file just to "understrap.zip" or you might have problems using child themes !!
 - Upload it into your WordPress installation subfolder here: `/wp-content/themes/`
 - Login to your WordPress backend
 - Go to Appearance → Themes
-- Activate the EPFL STI theme
+- Activate the UnderStrap theme
 
 ## Developing With npm, Gulp and SASS and [Browser Sync][1]
 
 ### Installing Dependencies
 - Make sure you have installed Node.js and Browser-Sync* (* optional, if you wanna use it) on your computer globally
-- Then open your terminal and browse to the location of your EPFL STI copy
-- Run: `$ npm install` and then: `$ ./node_modules/gulp/bin/gulp.js`
+- Then open your terminal and browse to the location of your UnderStrap copy
+- Run: `$ npm install` and then: `$ gulp copy-assets`
 
 ### Running
 To work and compile your Sass files on the fly start:
 
-- `$ ./node_modules/gulp/bin/gulp.js watch`
+- `$ gulp watch`
 
 Or, to run with Browser-Sync:
 
@@ -202,7 +207,7 @@ var browserSyncOptions = {
     notify: false
 };
 ```
-- then run: `$ ./node_modules/gulp/bin/gulp.js watch-bs`
+- then run: `$ gulp watch-bs`
 
 ## How to Use the Build-In Widget Slider
 
