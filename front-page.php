@@ -22,15 +22,22 @@ error_log("is_home() is " + is_home());
 
 ?>
 <br><br><br>
-<img width=100% src="<?php echo get_stylesheet_directory_uri(); ?>/img/LacourTeam.jpg">
-
-<div 
+<div style="position:relative; top:-80px">
 
 
+ <img width=100% src="<?php echo get_stylesheet_directory_uri(); ?>/img/LacourTeam.jpg">
 
-<?php //echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?id=researchvideo&lang=eng&thunderbird=researchvideo");
+ <div style="height:0px;">
+  <div id=containernews class=containernews>
+   <a class="titlelink" href=#>A long-term implant to restore walking</a><br>
+   <a class="titlelink subtitlelink" href=#>Prof. Stéphanie Lacour of the Institute of Bioengineering</a><br>
+  </div>
+ </div>
+
+<?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?id=researchvideo&lang=eng&thunderbird=researchvideo");
 
 ?>
 
+</div>
 <?php get_footer(); ?>
 

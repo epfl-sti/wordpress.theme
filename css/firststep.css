@@ -8,10 +8,34 @@
     src: url('../css/OpenSans-regular.woff');
 }
 
+.containernews {
+ height: 60px;
+ position: relative;
+ top: -80px; 
+ padding: 0px 0px 0px 25px
+}
+
+a.titlelink:active, 
+a.titlelink:link, 
+a.titlelink:visited {
+ color: white; 
+ text-decoration: none;
+ background-image: none;
+ border-bottom: none;
+ font-family: 'Open Sans Regular',sans-serif;
+ font-size: 24px;
+}
+
+a.subtitlelink:active,
+a.subtitlelink:link,
+a.subtitlelink:visited {
+ font-size: 18px;
+}
+
 a.mylink{ font: 18pt 'Open Sans Regular',sans-serif;  
 	color: black; 
 	position: relative;
-	top: 30px;
+	top: 45px;
 } 
 a:visited.mylink{ text-decoration: none; 
 	color: black; }	 
