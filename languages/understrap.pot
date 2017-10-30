@@ -1,7 +1,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: understrap\n"
+"Project-Id-Version: epflsti\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/theme/_s\n"
 "POT-Creation-Date: 2016-12-20 05:10+0000\n"
 "POT-Revision-Date: Mon Jul 04 2016 09:13:18 GMT+0200 (CEST)\n"
@@ -144,13 +144,13 @@ msgstr ""
 msgid "Search &hellip;"
 msgstr ""
 
-#: loop-templates/content-card.php:43 loop-templates/content-page.php:25 
-#: loop-templates/content.php:37 loop-templates/content-single.php:31 
+#: loop-templates/content-card.php:43 loop-templates/content-page.php:25
+#: loop-templates/content.php:37 loop-templates/content-single.php:31
 #: loop-templates/content-verticalpage.php:28
 msgid "Pages:"
 msgstr ""
 
-#: loop-templates/content-page.php:34 
+#: loop-templates/content-page.php:34
 #: loop-templates/content-verticalpage.php:37
 msgid "Edit"
 msgstr ""
@@ -430,7 +430,7 @@ msgstr ""
 msgid "Return To Shop"
 msgstr ""
 
-#: woocommerce/cart/cart.php:36 woocommerce/cart/cart.php:79 
+#: woocommerce/cart/cart.php:36 woocommerce/cart/cart.php:79
 #: woocommerce/checkout/form-pay.php:29
 msgid "Product"
 msgstr ""
@@ -443,7 +443,7 @@ msgstr ""
 msgid "Quantity"
 msgstr ""
 
-#: woocommerce/cart/cart.php:39 woocommerce/cart/cart.php:120 
+#: woocommerce/cart/cart.php:39 woocommerce/cart/cart.php:120
 #: woocommerce/myaccount/my-orders.php:16
 msgid "Total"
 msgstr ""
@@ -513,19 +513,19 @@ msgstr ""
 msgid "Click here to enter your code"
 msgstr ""
 
-#: woocommerce/global/form-login.php:35 
+#: woocommerce/global/form-login.php:35
 #: woocommerce/myaccount/form-lost-password.php:30
 msgid "Username or email"
 msgstr ""
 
-#: woocommerce/global/form-login.php:39 
-#: woocommerce/myaccount/form-login.php:48 
+#: woocommerce/global/form-login.php:39
+#: woocommerce/myaccount/form-login.php:48
 #: woocommerce/myaccount/form-login.php:98
 msgid "Password"
 msgstr ""
 
-#: woocommerce/global/form-login.php:48 
-#: woocommerce/myaccount/form-login.php:37 
+#: woocommerce/global/form-login.php:48
+#: woocommerce/myaccount/form-login.php:37
 #: woocommerce/myaccount/form-login.php:56
 msgid "Login"
 msgstr ""
@@ -557,7 +557,7 @@ msgstr ""
 msgid "Username or email address"
 msgstr ""
 
-#: woocommerce/myaccount/form-login.php:75 
+#: woocommerce/myaccount/form-login.php:75
 #: woocommerce/myaccount/form-login.php:112
 msgid "Register"
 msgstr ""
@@ -566,7 +566,7 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: woocommerce/myaccount/form-login.php:91 
+#: woocommerce/myaccount/form-login.php:91
 #: woocommerce/myaccount/form-edit-account.php:40
 msgid "Email address"
 msgstr ""
@@ -737,7 +737,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Name of the theme
-msgid "UnderStrap"
+msgid "EPFL STI"
 msgstr ""
 
 #. Description of the theme
@@ -748,11 +748,11 @@ msgid ""
 "support, built-in widget slider and much more you need for basic websites. "
 "IMPORTANT: All developer dependencies are not bundled with this install file."
 " Just download the .zip, extract it and run \"npm install\" and \"gulp copy-"
-"assets\" inside the extracted /understrap folder."
+"assets\" inside the extracted /epflsti folder."
 msgstr ""
 
 #. Theme URI of the theme
-msgid "http://understrap.com"
+msgid "http://sti.epfl.ch"
 msgstr ""
 
 #. Author of the theme

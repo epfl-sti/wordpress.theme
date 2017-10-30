@@ -4,10 +4,10 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package understrap
+ * @package epflsti
  */
 
-if ( ! function_exists( 'understrap_body_classes' ) ) {
+if ( ! function_exists( 'epflsti_body_classes' ) ) {
 	/**
 	 * Adds custom classes to the array of body classes.
 	 *
@@ -15,7 +15,7 @@ if ( ! function_exists( 'understrap_body_classes' ) ) {
 	 *
 	 * @return array
 	 */
-	function understrap_body_classes( $classes ) {
+	function epflsti_body_classes( $classes ) {
 		// Adds a class of group-blog to blogs with more than 1 published author.
 		if ( is_multi_author() ) {
 			$classes[] = 'group-blog';
@@ -28,7 +28,7 @@ if ( ! function_exists( 'understrap_body_classes' ) ) {
 		return $classes;
 	}
 }
-add_filter( 'body_class', 'understrap_body_classes' );
+add_filter( 'body_class', 'epflsti_body_classes' );
 
 // Removes tag class from the body_class array to avoid Bootstrap markup styling issues.
 add_filter( 'body_class', 'adjust_body_class' );
@@ -78,9 +78,9 @@ if ( ! function_exists( 'change_logo_class' ) ) {
 /**
  * Display navigation to next/previous post when applicable.
  */
-if ( ! function_exists( 'understrap_post_nav' ) ) :
+if ( ! function_exists( 'epflsti_post_nav' ) ) :
 
-	function understrap_post_nav() {
+	function epflsti_post_nav() {
 		// Don't print empty markup if there's nowhere to navigate.
 		$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 		$next     = get_adjacent_post( false, '', false );
@@ -90,15 +90,15 @@ if ( ! function_exists( 'understrap_post_nav' ) ) :
 		}
 		?>
 				<nav class="container navigation post-navigation">
-					<h2 class="sr-only"><?php _e( 'Post navigation', 'understrap' ); ?></h2>
+					<h2 class="sr-only"><?php _e( 'Post navigation', 'epflsti' ); ?></h2>
 					<div class="row nav-links justify-content-between">
 						<?php
 
 							if ( get_previous_post_link() ) {
-								previous_post_link( '<span class="nav-previous">%link</span>', _x( '<i class="fa fa-angle-left"></i>&nbsp;%title', 'Previous post link', 'understrap' ) );
+								previous_post_link( '<span class="nav-previous">%link</span>', _x( '<i class="fa fa-angle-left"></i>&nbsp;%title', 'Previous post link', 'epflsti' ) );
 							}
 							if ( get_next_post_link() ) {
-								next_post_link( '<span class="nav-next">%link</span>',     _x( '%title&nbsp;<i class="fa fa-angle-right"></i>', 'Next post link', 'understrap' ) );
+								next_post_link( '<span class="nav-next">%link</span>',     _x( '%title&nbsp;<i class="fa fa-angle-right"></i>', 'Next post link', 'epflsti' ) );
 							}
 						?>
 					</div><!-- .nav-links -->

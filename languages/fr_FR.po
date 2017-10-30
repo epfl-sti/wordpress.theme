@@ -1,10 +1,10 @@
 # Loco Gettext template
 msgid ""
 msgstr ""
-"Project-Id-Version: understrap\n"
+"Project-Id-Version: epflsti\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/theme/_s\n"
 "POT-Creation-Date: 2016-12-20 18:30+0100\n"
-"PO-Revision-Date: 2016-12-21 11:31+0100\n"
+"PO-Revision-Date: 2017-10-30 22:05+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -14,7 +14,7 @@ msgstr ""
 "POT-Revision-Date: Mon Jul 04 2016 09:13:18 GMT+0200 (CEST)\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;"
 "__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
 "_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
@@ -228,7 +228,7 @@ msgstr "par %s"
 msgid ", "
 msgstr ","
 
-# dans une catégorie 
+# dans une catégorie
 #: inc/template-tags.php:53
 #, php-format
 msgid "Posted in %1$s"
@@ -756,8 +756,8 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Name of the theme
-msgid "UnderStrap"
-msgstr "UnderStrap"
+msgid "EPFL STI"
+msgstr "EPFL STI"
 
 #. Description of the theme
 msgid ""
@@ -767,7 +767,7 @@ msgid ""
 "support, built-in widget slider and much more you need for basic websites. "
 "IMPORTANT: All developer dependencies are not bundled with this install "
 "file. Just download the .zip, extract it and run \"npm install\" and \"gulp "
-"copy-assets\" inside the extracted /understrap folder."
+"copy-assets\" inside the extracted /epflsti folder."
 msgstr ""
 "Une combinaison du thème _s d'Automattic et de Bootstrap 4. Un excellent "
 "point de départ pour votre prochain projet de thème et de site Web de "
@@ -776,11 +776,11 @@ msgstr ""
 "vous avez besoin pour votre site. IMPORTANT: les dépendances des "
 "développeurs ne sont pas livrées avec ce fichier d'installation. Il suffit "
 "de télécharger le fichier .zip, de l'extraire et d'exécuter \"npm install\" "
-"et \"gulp copy-assets\" dans le dossier extract / understrap."
+"et \"gulp copy-assets\" dans le dossier extract / epflsti."
 
 #. Theme URI of the theme
-msgid "http://understrap.com"
-msgstr "http://understrap.com"
+msgid "http://sti.epfl.ch"
+msgstr "http://sti.epfl.ch"
 
 #. Author of the theme
 msgid "Holger Koenemann"

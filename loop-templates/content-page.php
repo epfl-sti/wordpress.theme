@@ -2,7 +2,7 @@
 /**
  * Partial template for content in page.php
  *
- * @package understrap
+ * @package epflsti
  */
 
 ?>
@@ -22,7 +22,7 @@
 
 		<?php
 		wp_link_pages( array(
-			'before' => '<div class="page-links">' . __( 'Pages:', 'understrap' ),
+			'before' => '<div class="page-links">' . __( 'Pages:', 'epflsti' ),
 			'after'  => '</div>',
 		) );
 		?>
@@ -31,7 +31,7 @@
 
 	<footer class="entry-footer">
 
-		<?php edit_post_link( __( 'Edit', 'understrap' ), '<span class="edit-link">', '</span>' ); ?>
+		<?php edit_post_link( __( 'Edit', 'epflsti' ), '<span class="edit-link">', '</span>' ); ?>
 
 	</footer><!-- .entry-footer -->
 

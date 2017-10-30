@@ -2,7 +2,7 @@
 /**
  * Understrap modify editor
  *
- * @package understrap
+ * @package epflsti
  */
 
 /**
@@ -14,17 +14,17 @@ function wpdocs_theme_add_editor_styles() {
 add_action( 'admin_init', 'wpdocs_theme_add_editor_styles' );
 
 // Add TinyMCE style formats.
-add_filter( 'mce_buttons_2', 'understrap_tiny_mce_style_formats' );
+add_filter( 'mce_buttons_2', 'epflsti_tiny_mce_style_formats' );
 
-function understrap_tiny_mce_style_formats( $styles ) {
+function epflsti_tiny_mce_style_formats( $styles ) {
 
     array_unshift( $styles, 'styleselect' );
     return $styles;
 }
 
-add_filter( 'tiny_mce_before_init', 'understrap_tiny_mce_before_init' );
+add_filter( 'tiny_mce_before_init', 'epflsti_tiny_mce_before_init' );
 
-function understrap_tiny_mce_before_init( $settings ) {
+function epflsti_tiny_mce_before_init( $settings ) {
 
   $style_formats = array(
       array(

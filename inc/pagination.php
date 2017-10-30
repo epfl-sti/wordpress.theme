@@ -2,7 +2,7 @@
 /**
  * Pagination layout.
  *
- * @package understrap
+ * @package epflsti
  */
 
 /**
@@ -10,8 +10,8 @@
  * Credits to http://www.wpbeginner.com/wp-themes/how-to-add-numeric-pagination-in-your-wordpress-theme/
  */
 
-if ( ! function_exists( 'understrap_pagination' ) ) :
-function understrap_pagination() {
+if ( ! function_exists( 'epflsti_pagination' ) ) :
+function epflsti_pagination() {
 	if ( is_singular() ) {
 		return;
 	}

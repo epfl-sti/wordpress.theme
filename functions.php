@@ -2,7 +2,7 @@
 /**
  * Understrap functions and definitions
  *
- * @package understrap
+ * @package epflsti
  */
 
 /**

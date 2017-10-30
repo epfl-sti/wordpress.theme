@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: understrap\n"
+"Project-Id-Version: epflsti\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-23 08:05+0000\n"
 "PO-Revision-Date: 2016-11-23 20:11+0000\n"
@@ -249,13 +249,13 @@ msgstr "Bewerk"
 
 #. Name of the theme
 #: loco:58356fd352e1a1670d8b459b
-msgid "UnderStrap"
-msgstr "UnderStrap"
+msgid "EPFL STI"
+msgstr "EPFL STI"
 
 #. Theme URI of the theme
 #: loco:58356fd352e1a1670d8b459c
-msgid "http://understrap.com"
-msgstr "http://understrap.com"
+msgid "http://sti.epfl.ch"
+msgstr "http://sti.epfl.ch"
 
 #. Description of the theme
 #: loco:58356fd352e1a1670d8b459d
