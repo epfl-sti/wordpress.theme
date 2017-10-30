@@ -42,7 +42,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
     <div class="menu">
         <a href=https://www.epfl.ch><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.svg" width=180 style="float:left; margin: 10px" /> </a>
         <ul>
-            <li><a class="mylink" style="font-size: 22pt; top: 20px" href="#">School of Engineering</a>
+            <li><a class="mylink" style="font-size: 22pt; top: 20px;text-decoration: none;" href="#"><acronym title="School of Engineering" style="text-decoration: none;"">STI</acronym></a>
                 <ul>
                     <li><a href="">Faculty</a>
                         <ul>
@@ -109,7 +109,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
                 </ul>
             </li>
             <li><a href="#" class=mylink>Research</a>
-                
+
                 <ul>
                     <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/research.png" /></div></li> </ul> </li>
                     <li><a href="#">Our Institutes</a>
@@ -193,5 +193,3 @@ $container = get_theme_mod( 'epflsti_container_type' );
                 </nav><!-- .site-navigation -->
 
         </div><!-- .wrapper-navbar end -->
-
-
