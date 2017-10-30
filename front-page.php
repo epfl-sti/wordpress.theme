@@ -34,9 +34,44 @@ error_log("is_home() is " + is_home());
   </div>
  </div>
 
-<?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?id=researchvideo&lang=eng&thunderbird=researchvideo");
-
-?>
+<div class="flex-container">
+ <div>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=news&lang=eng&thunderbird=researchvideo"); ?>
+ </div>
+ <div>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=researchvideo&lang=eng&thunderbird=researchvideo"); ?>
+ </div>
+ <div>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=inthenews&lang=eng&thunderbird=researchvideo"); ?>
+ </div>
+ <div>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=testimonials&lang=eng&thunderbird=researchvideo"); ?>
+ </div>
+ <div>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=campus&lang=eng&thunderbird=researchvideo"); ?>
+ </div>
+ <div>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=appointments&lang=eng&thunderbird=researchvideo"); ?>
+ </div>
+ <div>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=whatis&lang=eng&thunderbird=researchvideo"); ?>
+ </div>
+ <div>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=research&lang=eng&thunderbird=researchvideo"); ?>
+ </div>
+ <div>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=seminar&lang=eng&thunderbird=researchvideo"); ?>
+ </div>
+ <div>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=placement&lang=eng&thunderbird=researchvideo"); ?>
+ </div>
+ <div>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=masters&lang=eng&thunderbird=researchvideo"); ?>
+ </div>
+ <div>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=contact&lang=eng&thunderbird=researchvideo"); ?>
+ </div>
+</div>
 
 </div>
 <?php get_footer(); ?>
