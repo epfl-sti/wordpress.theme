@@ -33,16 +33,10 @@ error_log("is_home() is " + is_home());
 </style>
 
 <div class="news">
-  <?php for ($i=0; $i < 20; $i++) { ?>
-    <div class="card" style="width: 20rem; margin: 10px">
-      <img class="card-img-top" src="https://placehold.it/500x400" alt="Card image cap">
-      <div class="card-body">
-        <h4 class="card-title">EPFL</h4>
-        <p class="card-text">This is the new #<?php echo $i?></p>
-        <a href="#" class="btn btn-primary">Read more</a>
-      </div>
-    </div>
-  <?php } ?>
+  <?php
+  $atts = array('tmpl' => 'bootstrap-card', 'number' => 20);
+  epfl_actu_wp_shortcode($atts);
+  ?>
 </div>
 
 
