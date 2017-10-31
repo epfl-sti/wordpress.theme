@@ -1,3 +1,8 @@
+
+# EPFL STI WordPress Theme Framework
+
+---
+
 Travis build: [![Build Status](https://travis-ci.org/holger1411/understrap.svg?branch=master)](https://travis-ci.org/holger1411/understrap) | Start talking: [![Gitter](https://img.shields.io/gitter/room/holger1411/understrap.svg?maxAge=2592000?style=flat-square)](https://gitter.im/holger1411/understrap)
 
 #### See: [Official Demo](https://understrap.com/understrap) | Read: [Official Docs Page](https://understrap.github.io/)
@@ -90,7 +95,7 @@ Some basics about the Sass and CSS files that come with UnderStrap:
 ### Running
 To work and compile your Sass files on the fly start:
 
-- `$ ./node_modules/gulp/bin/gulp.js watch`
+- `$ gulp watch`
 
 Or, to run with Browser-Sync:
 
@@ -101,7 +106,7 @@ var browserSyncOptions = {
     notify: false
 };
 ```
-- then run: `$ ./node_modules/gulp/bin/gulp.js watch-bs`
+- then run: `$ gulp watch-bs`
 
 ## How to Use the Build-In Widget Slider
 

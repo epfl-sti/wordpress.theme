@@ -4,10 +4,10 @@
  *
  * Displays all of the <head> section and everything up till <div id="content">
  *
- * @package understrap
+ * @package epflsti
  */
 
-$container = get_theme_mod( 'understrap_container_type' );
+$container = get_theme_mod( 'epflsti_container_type' );
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -40,9 +40,16 @@ $container = get_theme_mod( 'understrap_container_type' );
 <!-- Ugly hard coded menu -->
 <div class="menu-container">
     <div class="menu">
-        <a href=https://www.epfl.ch><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.svg" width=180 style="float:left; margin: 10px" /> </a>
+        <a href=https://www.epfl.ch>
+            <!-- Your site title as branding in the menu -->
+            <?php if ( ! has_custom_logo() ) { ?>
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.svg" width=180 style="float:left; margin: 10px" />
+            <?php } else {
+                    the_custom_logo();
+            } ?><!-- end custom logo -->
+        </a>
         <ul>
-            <li><a class="mylink" style="font-size: 22pt; top: 20px" href="#">School of Engineering</a>
+            <li><a class="mylink" style="font-size: 22pt; top: 20px;text-decoration: none;" href="<?php echo esc_url( home_url( '/' ) ); ?>"><acronym title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" style="text-decoration: none;"><?php bloginfo( 'name' ); ?></acronym></a>
                 <ul>
                     <li><a href="">Faculty</a>
                         <ul>
@@ -109,7 +116,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                 </ul>
             </li>
             <li><a href="#" class=mylink>Research</a>
-                
+
                 <ul>
                     <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/research.png" /></div></li> </ul> </li>
                     <li><a href="#">Our Institutes</a>
@@ -125,7 +132,15 @@ $container = get_theme_mod( 'understrap_container_type' );
             </li>
             <li><a href="#" class=mylink>Innovation</a>
                 <ul>
-                    <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/innovation.png" /></div></li> </ul> </li>
+                    <li>
+                        <ul>
+                            <li>
+                                <div style="float:left">
+                                    <img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/innovation.png" />
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
                     <li><a href="#">Patents</a></li>
                     <li><a href="#">Master Projects in Industry</a></li>
                     <li><a href="#">Features</a></li>
@@ -135,63 +150,3 @@ $container = get_theme_mod( 'understrap_container_type' );
     </div>
 </div>
 <!-- End ugly hard coded menu -->
-
-<div class="hfeed site" id="page">
-
-        <!-- ******************* The Navbar Area ******************* -->
-        <div class="wrapper-fluid wrapper-navbar" id="wrapper-navbar">
-
-                <a class="skip-link screen-reader-text sr-only" href="#content"><?php esc_html_e( 'Skip to content',
-                'understrap' ); ?></a>
-
-
-
-                <nav class="navbar navbar-expand-md">
-
-                <?php if ( 'container' == $container ) : ?>
-        <div class="container">
-        <?php endif; ?>
-
-                                        <!-- Your site title as branding in the menu -->
-                                        <?php if ( ! has_custom_logo() ) { ?>
-
-                                                <?php if ( is_front_page() && is_home() ) : ?>
-
-                                                        <h1 class="navbar-brand mb-0"><a style="color:black" rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
-
-                                                <?php else : ?>
-
-                                                        <!---a class="navbar-brand" rel="home" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><?php bloginfo( 'name' ); ?></a--->
-
-                                                <?php endif; ?>
-
-
-                                        <?php } else {
-                                                the_custom_logo();
-                                        } ?><!-- end custom logo -->
-
-                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                                        <span class="navbar-toggler-icon"></span>
-                                </button>
-
-                                <!-- The WordPress Menu goes here -->
-                                <?php wp_nav_menu(
-                                        array(
-                                                'theme_location'  => 'primary',
-                                                'container_class' => 'collapse navbar-collapse',
-                                                'container_id'    => 'navbarNavDropdown',
-                                                'menu_class'      => 'navbar-nav',
-                                                'fallback_cb'     => '',
-                                                'menu_id'         => 'main-menu',
-                                                'walker'          => new WP_Bootstrap_Navwalker(),
-                                        )
-                                ); ?>
-                        <?php if ( 'container' == $container ) : ?>
-                        </div><!-- .container -->
-                        <?php endif; ?>
-
-                </nav><!-- .site-navigation -->
-
-        </div><!-- .wrapper-navbar end -->
-
-

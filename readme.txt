@@ -1,10 +1,15 @@
 
+
+# EPFL STI WordPress Theme Framework
+
+---
+
 Start talking: [![Gitter](https://img.shields.io/gitter/room/holger1411/understrap.svg?maxAge=2592000?style=flat-square)](https://gitter.im/holger1411/understrap)
 
 ## About
 
 I’m a huge fan of Underscores, Bootstrap, and Sass. Why not combine these into a solid WordPress Theme Framework?
-That’s what UnderStrap is. 
+That’s what UnderStrap is.
 You can use it as starter theme and build your own theme on top of it. Or you use it as parent theme and create your own child theme for UnderStrap.
 
 At the moment, UnderStrap is in a very early stage. But if you want, feel free to use it for your own WordPress theme!
@@ -29,7 +34,7 @@ http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
                   - Fixing problem with empty folders after "gulp dist" - Thx @alwizo
                   - Fixed custom logo function typo - Thx @willgorham
 
-                  
+
             - ** 0.4.8 Oct. 10th 2016 **
                   - Removing Bower and replace the dependency managment with npm
                   - Update to Bootstrap 4 Alpha 4
@@ -54,7 +59,7 @@ http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
             - ** 0.4.5 Jun. 20th 2016 **
                   - Adding right sanitizing function for customizer
                   - Fixing some escaping problems
-                  - Removing "add script" customizer function 
+                  - Removing "add script" customizer function
                   - Calling all sidebars with "get_sidebar"
                   - Load hero area on index.php conditionally
                   - Remove unused code, files and dependencies
@@ -186,12 +191,12 @@ Some basics about the Sass and CSS files that come with UnderStrap:
 ### Installing Dependencies
 - Make sure you have installed Node.js and Browser-Sync* (* optional, if you wanna use it) on your computer globally
 - Then open your terminal and browse to the location of your UnderStrap copy
-- Run: `$ npm install` and then: `$ ./node_modules/gulp/bin/gulp.js`
+- Run: `$ npm install` and then: `$ gulp copy-assets`
 
 ### Running
 To work and compile your Sass files on the fly start:
 
-- `$ ./node_modules/gulp/bin/gulp.js watch`
+- `$ gulp watch`
 
 Or, to run with Browser-Sync:
 
@@ -202,7 +207,7 @@ var browserSyncOptions = {
     notify: false
 };
 ```
-- then run: `$ ./node_modules/gulp/bin/gulp.js watch-bs`
+- then run: `$ gulp watch-bs`
 
 ## How to Use the Build-In Widget Slider
 

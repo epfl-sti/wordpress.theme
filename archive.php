@@ -4,15 +4,15 @@
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package understrap
+ * @package epflsti
  */
 
 get_header();
 ?>
 
 <?php
-$container   = get_theme_mod( 'understrap_container_type' );
-$sidebar_pos = get_theme_mod( 'understrap_sidebar_position' );
+$container   = get_theme_mod( 'epflsti_container_type' );
+$sidebar_pos = get_theme_mod( 'epflsti_sidebar_position' );
 ?>
 
 <div class="wrapper" id="archive-wrapper">
@@ -59,7 +59,7 @@ $sidebar_pos = get_theme_mod( 'understrap_sidebar_position' );
 			</main><!-- #main -->
 
 			<!-- The pagination component -->
-			<?php understrap_pagination(); ?>
+			<?php epflsti_pagination(); ?>
 
 		</div><!-- #primary -->
 

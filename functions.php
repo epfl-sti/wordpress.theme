@@ -2,7 +2,7 @@
 /**
  * Understrap functions and definitions
  *
- * @package understrap
+ * @package epflsti
  */
 
 /**
@@ -76,3 +76,8 @@ require get_template_directory() . '/inc/editor.php';
  * Work with EPFL environment.
  */
 require get_template_directory() . '/inc/epfl.php';
+
+/**
+ * Enable shortcodes in text widgets.
+ */
+add_filter('widget_text','do_shortcode');

@@ -7,13 +7,13 @@
  * and that other 'pages' on your WordPress site will use a
  * different template.
  *
- * @package understrap
+ * @package epflsti
  */
 
 get_header();
 
-$container   = get_theme_mod( 'understrap_container_type' );
-$sidebar_pos = get_theme_mod( 'understrap_sidebar_position' );
+$container   = get_theme_mod( 'epflsti_container_type' );
+$sidebar_pos = get_theme_mod( 'epflsti_sidebar_position' );
 
 ## You can look at the output of error_log with the following command:
 # docker exec -it jahia2wp_httpd_1 tail  -fsrv/test/logs/error_log
@@ -21,10 +21,9 @@ error_log("is_front_page() is " + is_front_page());
 error_log("is_home() is " + is_home());
 
 ?>
-<br><br><br>
 <img width=100% src="<?php echo get_stylesheet_directory_uri(); ?>/img/LacourTeam.jpg">
 
-<div 
+<div>
 
 
 
@@ -33,4 +32,3 @@ error_log("is_home() is " + is_home());
 ?>
 
 <?php get_footer(); ?>
-

@@ -2,7 +2,7 @@
 /**
  * Inspired by Simon Bradburys cleanup.php fromb4st theme https://github.com/SimonPadbury/b4st
  *
- * @package understrap
+ * @package epflsti
  */
 
 if ( ! function_exists( 'no_generator' ) ) {
