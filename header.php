@@ -43,9 +43,9 @@ $container = get_theme_mod( 'understrap_container_type' );
 <!-- Ugly hard coded menu -->
 <div class="menu-container">
     <div class="menu">
-        <a href=https://www.epfl.ch><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.svg" width=180 style="float:left; margin: 10px" /> </a>
         <ul>
-            <li><a class="mylink" style="font-size: 22pt; top: 31px; padding-bottom: 46px" href="#">School of Engineering</a>
+        <li style="position:relative;top:-55px; left: -2px; padding: 20px 0px 20px 0px"><a href=https://www.epfl.ch><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.svg" width=200 style="float:left; margin: 1px" /> </a></li>
+            <li><a class="mylink" style="font-size: 22pt; top: 28px; padding-bottom: 46px" href="#">School of Engineering</a>
                 <ul>
                     <li><a href="#">News</a>
                         <ul>
@@ -79,7 +79,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                             <li><a href="#">Lausanne</a></li>
                         </ul>
                     </li>
-                    <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.jpg" /></div></li>
+                    <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti<?php echo rand(1,4); ?>.jpg" /></div></li>
                     <li><a href="#">Administration</a>
                         <ul>
                             <li><a href="#">Faculty Direction</a></li>
@@ -95,7 +95,7 @@ $container = get_theme_mod( 'understrap_container_type' );
             </li>
             <li><a href="#" class=mylink>Teaching</a>
                 <ul>
-                    <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/education.png" /></div></li> </ul> </li>
+                    <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/education<?php echo rand(1,2); ?>.jpg" /></div></li> </ul> </li>
                     <li><a href="#">Bachelor</a>
                         <ul>
                     	    <li><a href="#">Semester Projects</a></li>
@@ -111,6 +111,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 			<ul>
                     	    <li><a href="#">Doctoral Programs</a></li>
 		            <li></li>
+		            <li></li>
 			</ul>
                     </li>
                     <li><a href="#">Testimonials</a></li>
@@ -119,7 +120,7 @@ $container = get_theme_mod( 'understrap_container_type' );
             <li><a href="#" class=mylink>Research</a>
                 
                 <ul>
-                    <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/research.png" /></div></li> </ul> </li>
+                    <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/research<?php echo rand(1,2); ?>.jpg" /></div></li> </ul> </li>
 
                     <li><a href="">Faculty</a>
                         <ul>
@@ -145,7 +146,7 @@ $container = get_theme_mod( 'understrap_container_type' );
             </li>
             <li><a href="#" class=mylink>Innovation</a>
                 <ul>
-                    <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/innovation.png" /></div></li> </ul> </li>
+                    <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/innovation<?php echo rand(1,2); ?>.jpg" /></div></li> </ul> </li>
 			
                     <li><a href="#">Technology Transfer</a>
 			<ul>

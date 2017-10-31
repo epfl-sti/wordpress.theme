@@ -22,7 +22,7 @@ error_log("is_home() is " + is_home());
 
 ?>
 <br><br><br>
-<div style="position:relative; top:-80px">
+<div style="position:relative; top:-125px">
 
 
  <img width=100% src="<?php echo get_stylesheet_directory_uri(); ?>/img/LacourTeam.jpg">
@@ -36,40 +36,40 @@ error_log("is_home() is " + is_home());
 
 <div class="flex-container">
  <div>
-  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=news&lang=eng&thunderbird=researchvideo"); ?>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=news&lang=eng"); ?>
  </div>
  <div>
-  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=researchvideo&lang=eng&thunderbird=researchvideo"); ?>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=researchvideo&lang=eng"); ?>
  </div>
  <div>
-  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=inthenews&lang=eng&thunderbird=researchvideo"); ?>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=inthenews&lang=eng"); ?>
  </div>
  <div>
-  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=testimonials&lang=eng&thunderbird=researchvideo"); ?>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=testimonials&lang=eng"); ?>
  </div>
  <div>
-  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=campus&lang=eng&thunderbird=researchvideo"); ?>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=campus&lang=eng"); ?>
  </div>
  <div>
-  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=appointments&lang=eng&thunderbird=researchvideo"); ?>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=appointments&lang=eng"); ?>
  </div>
  <div>
-  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=whatis&lang=eng&thunderbird=researchvideo"); ?>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=whatis&lang=eng"); ?>
  </div>
  <div>
-  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=research&lang=eng&thunderbird=researchvideo"); ?>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=research&lang=eng"); ?>
  </div>
  <div>
-  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=seminar&lang=eng&thunderbird=researchvideo"); ?>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=seminar&lang=eng"); ?>
  </div>
  <div>
-  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=placement&lang=eng&thunderbird=researchvideo"); ?>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=placement&lang=eng"); ?>
  </div>
  <div>
-  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=masters&lang=eng&thunderbird=researchvideo"); ?>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=masters&lang=eng"); ?>
  </div>
  <div>
-  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=contact&lang=eng&thunderbird=researchvideo"); ?>
+  <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=contact&lang=eng"); ?>
  </div>
 </div>
 

@@ -49,22 +49,22 @@ a.subtitlelink {
 }
 @media screen and (min-width: 680px) {
   a.titlelink {
-    font-size: 2.2em;
+    font-size: 2.1em;
   }
   a.subtitlelink {
-    font-size: 1.8em;
+    font-size: 1.5em;
   }
 }
 
 a.mylink{ font: 18pt 'Open Sans Regular',sans-serif;  
-	color: black; 
+	color: #555; 
 	position: relative;
 	top: 35px;
 } 
 a:visited.mylink{ text-decoration: none; 
-	color: black; }	 
+	color: #555; }	 
 a:hover.mylink{ text-decoration: none; 
-	color: #444; } 
+	color: #888; } 
 
 
 a.mynavbar{ font: 12pt verdana,'Open Sans Regular',sans-serif;  
@@ -73,8 +73,8 @@ a.mynavbar{ font: 12pt verdana,'Open Sans Regular',sans-serif;
 	top: 30px;
 } 
 a:visited.mynavbar{ text-decoration: none; 
-	color: black; }	 
+	color: #555; }	 
 a:hover.mynavbar{ text-decoration: none; 
-	color: #444; } 
+	color: #888; } 
 
 
