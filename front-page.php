@@ -28,18 +28,19 @@ error_log("is_home() is " + is_home());
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-around;
   }
 </style>
 
 <div class="news">
   <?php for ($i=0; $i < 20; $i++) { ?>
-    <div class="card" style="width: 20rem;">
-    <img class="card-img-top" src="https://placehold.it/500x400" alt="Card image cap">
-    <div class="card-body">
-      <h4 class="card-title">EPFL</h4>
-      <p class="card-text">This is the new #<?php echo $i?></p>
-      <a href="#" class="btn btn-primary">Read more</a>
-    </div>
+    <div class="card" style="width: 20rem; margin: 10px">
+      <img class="card-img-top" src="https://placehold.it/500x400" alt="Card image cap">
+      <div class="card-body">
+        <h4 class="card-title">EPFL</h4>
+        <p class="card-text">This is the new #<?php echo $i?></p>
+        <a href="#" class="btn btn-primary">Read more</a>
+      </div>
     </div>
   <?php } ?>
 </div>
