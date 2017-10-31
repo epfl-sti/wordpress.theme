@@ -9,12 +9,12 @@
 
 @font-face {
     font-family: 'Junction Regular';
-    src: url('../css/Junction-regular.woff');
+    src: url('../fonts/junction-regular.woff');
 }
 
 @font-face {
     font-family: 'Open Sans Regular';
-    src: url('../css/OpenSans-regular.woff');
+    src: url('../fonts/OpenSans-regular.woff');
 }
 
 /* ––––––––––––––––––––––––––––––––––––––––––––––––––
