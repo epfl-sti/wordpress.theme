@@ -15,6 +15,10 @@ npm-debug.log
 
 /vendor/
 
+js/core.js
+
+package-lock.json
+
 # Created by Gulp
 /src/
 css/normalize.css

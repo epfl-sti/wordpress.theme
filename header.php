@@ -109,7 +109,7 @@ $container = get_theme_mod( 'understrap_container_type' );
                 </ul>
             </li>
             <li><a href="#" class=mylink>Research</a>
-                
+
                 <ul>
                     <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/research.png" /></div></li> </ul> </li>
                     <li><a href="#">Our Institutes</a>
@@ -137,7 +137,7 @@ $container = get_theme_mod( 'understrap_container_type' );
 <!-- End ugly hard coded menu -->
 
 <div class="hfeed site" id="page">
-
+        <?php /*
         <!-- ******************* The Navbar Area ******************* -->
         <div class="wrapper-fluid wrapper-navbar" id="wrapper-navbar">
 
@@ -192,6 +192,4 @@ $container = get_theme_mod( 'understrap_container_type' );
 
                 </nav><!-- .site-navigation -->
 
-        </div><!-- .wrapper-navbar end -->
-
-
+        </div><!-- .wrapper-navbar end --> */ ?>
