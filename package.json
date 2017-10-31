@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "gulp",
+    "watch": "gulp watch",
+    "watch-bs": "gulp watch-bs",
     "distclean": "gulp clean-source && rm -rf node_modules"
   },
   "engines": {
