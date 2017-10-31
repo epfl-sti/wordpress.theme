@@ -14,4 +14,15 @@ function curl_get( $url ) {
   return $output;
 }
 
+function html_body( $html ) {
+    $d = new DOMDocument;
+    $d->loadHTML($html);
+    $body = $d->getElementsByTagName('body')->item(0);
+    $ret = "";
+    foreach ($body->childNodes as $childNode) {
+        $ret .= $d->saveHTML($childNode);
+    }
+    return $ret;
+}
+
 ?>
