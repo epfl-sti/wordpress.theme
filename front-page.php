@@ -34,41 +34,41 @@ error_log("is_home() is " + is_home());
   </div>
  </div>
 
-<div class="flex-container">
- <div>
+<div class="row">
+ <div class="col-sm">
   <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=news&lang=eng"); ?>
  </div>
- <div>
+ <div class="col-sm">
   <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=researchvideo&lang=eng"); ?>
  </div>
- <div>
+ <div class="col-sm">
   <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=inthenews&lang=eng"); ?>
  </div>
- <div>
+ <div class="col-sm">
   <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=testimonials&lang=eng"); ?>
  </div>
- <div>
+ <div class="col-sm">
   <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=campus&lang=eng"); ?>
- </div>
- <div>
+ </div class="col-sm">
+ <div class="col-sm">
   <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=appointments&lang=eng"); ?>
  </div>
- <div>
+ <div class="col-sm">
   <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=whatis&lang=eng"); ?>
- </div>
- <div>
+ </div class="col-sm">
+ <div class="col-sm">
   <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=research&lang=eng"); ?>
  </div>
- <div>
+ <div class="col-sm">
   <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=seminar&lang=eng"); ?>
  </div>
- <div>
+ <div class="col-sm">
   <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=placement&lang=eng"); ?>
  </div>
- <div>
+ <div class="col-sm">
   <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=masters&lang=eng"); ?>
  </div>
- <div>
+ <div class="col-sm">
   <?php echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&id=contact&lang=eng"); ?>
  </div>
 </div>
