@@ -49,9 +49,9 @@ $container = get_theme_mod( 'epflsti_container_type' );
                     the_custom_logo();
             } ?><!-- end custom logo -->
             </a>
-	    
+	   <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><acronym title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" style="text-decoration: none;"><?php bloginfo( 'name' ); ?></acronym></a> 
         <ul>
-            <li><a class="mylink" style="font-size: 22pt; top: 28px; padding-bottom: 46px" href="<?php echo esc_url( home_url( '/' ) ); ?>"><acronym title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" style="text-decoration: none;"><?php bloginfo( 'name' ); ?></acronym></a>
+            <li><a class="mylink" href="#">About</a>
                 <ul>
                     <li><a href="#">News</a>
                         <ul>
