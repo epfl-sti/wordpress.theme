@@ -31,7 +31,7 @@ error_log("is_home() is " + is_home());
  }
 </style>
 
-<div style="position:relative; top:-53px">
+<div>
 
 
  <img width=100% src="<?php echo get_stylesheet_directory_uri(); ?>/img/LacourTeam.jpg">
