@@ -97,7 +97,6 @@ Screen style's
     width: 100%;
     list-style: none;
     padding: 0;
-    position: relative;
     /* IF .menu position=relative -> ul = container width, ELSE ul = 100% width */
     box-sizing: border-box;
 }
