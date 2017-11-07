@@ -59,6 +59,8 @@ Screen style's
     width: 100%;
     margin: 0 auto;
     background: #fff;
+    position: relative;
+    top: 20px;
 }
 
 .menu-mobile {
@@ -119,12 +121,12 @@ Screen style's
 
 .menu > ul > li a {
     text-decoration: none;
-    padding: 1.5em 3em;
+    padding: 30px 20px 53px 20px;
     display: block;
 }
 
 .menu > ul > li:hover {
-    background: #aaa;
+    background: #ddd;
 }
 
 .menu > ul > li > ul {
@@ -160,11 +162,15 @@ Screen style's
 }
 
 .menu > ul > li > ul > li a {
-    color: #000;
+    color: #333;
     padding: .2em 0;
     width: 95%;
     display: block;
     border-bottom: 1px solid #ccc;
+}
+
+.menu > ul > li > ul > li a:hover {
+    color: #888;
 }
 
 .menu > ul > li > ul > li > ul {

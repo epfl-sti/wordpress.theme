@@ -40,25 +40,30 @@ $container = get_theme_mod( 'epflsti_container_type' );
 <!-- Ugly hard coded menu -->
 <div class="menu-container">
     <div class="menu">
-        <a href=https://www.epfl.ch>
-            <!-- Your site title as branding in the menu -->
+
+        <ul>
+            <li style="position:relative;top:-55px; left: -2px; padding: 20px 0px 20px 0px">
+            <a href="https://www.epfl.ch">
+            <!-- Your site logo -->
             <?php if ( ! has_custom_logo() ) { ?>
                 <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.svg" width=180 style="float:left; margin: 10px" />
             <?php } else {
                     the_custom_logo();
             } ?><!-- end custom logo -->
-        </a>
-        <ul>
-            <li><a class="mylink" style="font-size: 22pt; top: 20px;text-decoration: none;" href="<?php echo esc_url( home_url( '/' ) ); ?>"><acronym title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" style="text-decoration: none;"><?php bloginfo( 'name' ); ?></acronym></a>
+            </a>
+        </li>
+            <li><a class="mylink" style="font-size: 22pt; top: 28px; padding-bottom: 46px" href="<?php echo esc_url( home_url( '/' ) ); ?>"><acronym title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" style="text-decoration: none;"><?php bloginfo( 'name' ); ?></acronym></a>
                 <ul>
-                    <li><a href="">Faculty</a>
+                    <li><a href="#">News</a>
                         <ul>
-                            <li><a href="#">Open Faculty Positions</a></li>
-                            <li><a href="#">Faculty Announcements</a></li>
-                            <li><a href="#">Emeriti Professors</a></li>
-                            <li><a href="#">Honrary and Inaugural Lectures</a></li>
-                            <li><a href="#">Funding Sources</a></li>
-                            <li><a href="#">Faculty Affairs</a></li>
+                            <li><a href="#">STI in the News</a></li>
+                            <li><a href="#">News Archives</a></li>
+                            <li></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Seminars</a>
+                        <ul>
+                            <li><a href="#">Events for Future Students</a></li>
                         </ul>
                     </li>
                     <li><a href="#">Centres</a>
@@ -68,17 +73,6 @@ $container = get_theme_mod( 'epflsti_container_type' );
                             <li><a href="#">Platforms and Services</a></li>
                             <li><a href="#">Centres in the News</a></li>
                             <li><a href="#">Centres Events</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">News</a>
-                        <ul>
-                            <li><a href="#">News Archives</a></li>
-                            <li></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Seminars</a>
-                        <ul>
-                            <li><a href="#">Events for Future Students</a></li>
                             <li></li>
                         </ul>
                     </li>
@@ -92,6 +86,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
                             <li><a href="#">Lausanne</a></li>
                         </ul>
                     </li>
+                    <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti<?php echo rand(1,4); ?>.jpg" /></div></li>
                     <li><a href="#">Administration</a>
                         <ul>
                             <li><a href="#">Faculty Direction</a></li>
@@ -107,18 +102,44 @@ $container = get_theme_mod( 'epflsti_container_type' );
             </li>
             <li><a href="#" class=mylink>Teaching</a>
                 <ul>
-                    <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/education.png" /></div></li> </ul> </li>
-                    <li><a href="#">Bachelor</a></li>
-                    <li><a href="#">Master</a></li>
-                    <li><a href="#">PhD</a></li>
-                    <li><a href="#">Projects</a></li>
+                    <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/education<?php echo rand(1,2); ?>.jpg" /></div></li> </ul> </li>
+                    <li><a href="#">Bachelor</a>
+                        <ul>
+                    	    <li><a href="#">Semester Projects</a></li>
+			</ul>
+                    </li>
+                    <li><a href="#">Master</a>
+			<ul>
+                    	    <li><a href="#">Master Projects</a></li>
+                    	    <li><a href="#">Placements in Industry</a></li>
+			</ul>
+		    </li>
+                    <li><a href="#">PhD</a>
+			<ul>
+                    	    <li><a href="#">Doctoral Programs</a></li>
+		            <li></li>
+		            <li></li>
+			</ul>
+                    </li>
                     <li><a href="#">Testimonials</a></li>
                 </ul>
             </li>
             <li><a href="#" class=mylink>Research</a>
 
                 <ul>
-                    <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/research.png" /></div></li> </ul> </li>
+                    <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/research<?php echo rand(1,2); ?>.jpg" /></div></li> </ul> </li>
+
+                    <li><a href="">Faculty</a>
+                        <ul>
+                            <li><a href="#">Open Faculty Positions</a></li>
+                            <li><a href="#">Faculty Announcements</a></li>
+                            <li><a href="#">Emeriti Professors</a></li>
+                            <li><a href="#">Honrary and Inaugural Lectures</a></li>
+                            <li><a href="#">Funding Sources</a></li>
+                            <li><a href="#">Faculty Affairs</a></li>
+                        </ul>
+                    </li>
+
                     <li><a href="#">Our Institutes</a>
                      <ul>
                       <li><a href="#">Bioengineering</a></li>
@@ -136,7 +157,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
                         <ul>
                             <li>
                                 <div style="float:left">
-                                    <img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/innovation.png" />
+                                    <img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/innovation<?php echo rand(1,2); ?>.jpg" />
                                 </div>
                             </li>
                         </ul>
@@ -144,6 +165,31 @@ $container = get_theme_mod( 'epflsti_container_type' );
                     <li><a href="#">Patents</a></li>
                     <li><a href="#">Master Projects in Industry</a></li>
                     <li><a href="#">Features</a></li>
+                    <li> <ul> <li><div style="float:left"></div></li> </ul> </li>
+			
+                    <li><a href="#">Technology Transfer</a>
+			<ul>
+                    	    <li><a href="#">Features</a></li>
+			    <li><a href="#">Patents</a></li>
+			</ul>
+		    </li>
+                    <li><a href="#">Master Projects in Industry</a>
+			<ul>
+ 				<li><a href="#">Definition</a></li>
+ 				<li><a href="#">Participating sections</a></li>
+ 				<li><a href="#">Financial Support to Industry</a></li>
+ 				<li><a href="#">Submit a project</a></li>
+ 				<li><a href="#">Master Placements Archive</a></li>
+			</ul>
+		    </li>
+		    <li><a href="#">Industry Day</a>
+			<ul>
+			<li><a href="#">2017 Event Pictures</a></li>
+				<li><a href="#">Filmed Talks 2017</a></li>
+				<li><a href="#">2017 Program</a></li>
+				<li><a href="#">2016 archive</a></li>
+			</ul>
+		    </li>
                 </ul>
             </li>
         </ul>

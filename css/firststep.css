@@ -1,3 +1,9 @@
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 @font-face {
     font-family: 'Junction Regular';
     src: url('../css/Junction-regular.woff');
@@ -8,15 +14,57 @@
     src: url('../fonts/OpenSans-regular.woff');
 }
 
+@font-face {
+    font-family: 'Gotham Narrow Bold';
+    src: url('../css/GothamNarrow-Bold.woff');
+}
+
+.containernews {
+ height: 60px;
+ position: relative;
+ top: -120px; 
+ padding: 0px 0px 0px 45px
+}
+
+a.titlelink {
+ color: white !important; 
+ text-decoration: none !important;
+ background-image: none;
+ border-bottom: none;
+ font-family: 'Open Sans Regular',sans-serif;
+ font-size: 5vw;
+}
+
+a.subtitlelink {
+ font-size: 3vw;
+}
+
+@media screen and (max-width: 500px) {
+  a.titlelink {
+    font-size: 1.4em;
+  }
+  a.subtitlelink {
+    font-size: .8em;
+  }
+}
+@media screen and (min-width: 680px) {
+  a.titlelink {
+    font-size: 2.1em;
+  }
+  a.subtitlelink {
+    font-size: 1.5em;
+  }
+}
+
 a.mylink{ font: 18pt 'Open Sans Regular',sans-serif;  
-	color: black; 
+	color: #555; 
 	position: relative;
-	top: 30px;
+	top: 35px;
 } 
 a:visited.mylink{ text-decoration: none; 
-	color: black; }	 
+	color: #555; }	 
 a:hover.mylink{ text-decoration: none; 
-	color: #444; } 
+	color: #888; } 
 
 
 a.mynavbar{ font: 12pt verdana,'Open Sans Regular',sans-serif;  
@@ -25,8 +73,8 @@ a.mynavbar{ font: 12pt verdana,'Open Sans Regular',sans-serif;
 	top: 30px;
 } 
 a:visited.mynavbar{ text-decoration: none; 
-	color: black; }	 
+	color: #555; }	 
 a:hover.mynavbar{ text-decoration: none; 
-	color: #444; } 
+	color: #888; } 
 
 
