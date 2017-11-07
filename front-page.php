@@ -21,10 +21,25 @@ error_log("is_front_page() is " + is_front_page());
 error_log("is_home() is " + is_home());
 
 ?>
+<style>
+ div.news {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: space-around;
+ }
+</style>
+
 <img width=100% src="<?php echo get_stylesheet_directory_uri(); ?>/img/LacourTeam.jpg">
 
-<div class="from-stisrv13">
-<?php echo html_body(curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?id=researchvideo&lang=eng&thunderbird=researchvideo")); ?>
+<div class="news">
+  <?php
+  echo html_body(curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?id=researchvideo&lang=eng&thunderbird=researchvideo"));
+
+  $atts = array('tmpl' => 'bootstrap-card', 'number' => 20);
+  echo epfl_actu_wp_shortcode($atts);
+  ?>
+</div>
 
 <!-- end transclusion -->
 
