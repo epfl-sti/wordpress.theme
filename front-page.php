@@ -21,8 +21,7 @@ error_log("is_front_page() is " + is_front_page());
 error_log("is_home() is " + is_home());
 
 ?>
-<br><br><br>
-<div style="position:relative; top:-125px">
+<div style="position:relative; top:-53px">
 
 
  <img width=100% src="<?php echo get_stylesheet_directory_uri(); ?>/img/LacourTeam.jpg">
