@@ -35,7 +35,7 @@ error_log("is_home() is " + is_home());
 <div class="news">
   <?php
   $atts = array('tmpl' => 'bootstrap-card', 'number' => 20);
-  epfl_actu_wp_shortcode($atts);
+  echo epfl_actu_wp_shortcode($atts);
   ?>
 </div>
 
