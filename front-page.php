@@ -46,11 +46,15 @@ error_log("is_home() is " + is_home());
 
  <div class="news">
    <?php
-   $atts = array('tmpl' => 'bootstrap-card', 'number' => 20);
-   epfl_actu_wp_shortcode($atts);
+   $atts = array('tmpl' => 'bootstrap-card', 'number' => 14);
+   echo epfl_actu_wp_shortcode($atts);
+
+   $newsids = ["news", "researchvideo", "inthenews", "testimonials", "campus", "appointments", "whatis", "research", "placement", "masters"];
+   foreach ($newsids as $newsid) {
+    	$newshtml = curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=" . $newsid);
+        echo "<div>$newshtml</div>";
+   }
    ?>
  </div>
-
-</div>
 <?php get_footer(); ?>
 
