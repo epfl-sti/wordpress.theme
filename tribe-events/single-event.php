@@ -22,8 +22,6 @@ $event_id = get_the_ID();
 
 ?>
 
-DOMQ WAZ ZERE
-
 <div id="tribe-events-content" class="tribe-events-single">
 
 	<p class="tribe-events-back">
