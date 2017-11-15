@@ -199,7 +199,8 @@ gulp.task('watch-bs', ['browser-sync', 'watch', 'scripts'], function () { });
 gulp.task('scripts', ['copy-assets'], function() {
     var scripts = [
         basePaths.node + 'bootstrap/dist/js/bootstrap.js',
-        basePaths.dev + 'js/megamenu.js'
+        basePaths.dev  + 'js/megamenu.js',
+        basePaths.dev  + 'js/carousel.js'
     ];
   return merge2(
       gulp.src(scripts)
@@ -232,6 +233,9 @@ gulp.task('copy-assets', function() {
             .pipe(gulp.dest('./fonts')),
 
         gulp.src(basePaths.node + 'jquery/dist/*.js')
+            .pipe(gulp.dest(basePaths.js)),
+
+        gulp.src(basePaths.node + 'jquery-touchswipe/jquery.touchSwipe*.js')
             .pipe(gulp.dest(basePaths.js)),
 
         gulp.src(basePaths.node + 'normalize.css/*.css')

@@ -51,6 +51,7 @@
     "gulp-uglify": "^3.0.0",
     "gulp-watch": "^4.3.11",
     "jquery": "3.2.1",
+    "jquery-touchswipe": "^1.6.15",
     "merge2": "^1.2.0",
     "normalize.css": "^7.0.0",
     "popper.js": "^1.12.6",

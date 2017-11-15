@@ -108,7 +108,9 @@ justify-content: space-around;
 }
 </style>
 <script>
-    jQuery( ".carousel-item" ).first().addClass( "active" );
+    jQuery(function() {
+        window.frontpage_init();
+    });
 </script>
 
 
