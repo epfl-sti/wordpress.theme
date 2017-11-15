@@ -53,20 +53,18 @@ justify-content: space-around;
                         </div>
                     </div>
                 </div>
-            </div>
-
+            </div><!-- .carousel-item -->
         </div>
-    </div>
-
-     <a class="carousel-control-prev" href="#sti-homecarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-     </a>
-     <a class="carousel-control-next" href="#sti-homecarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div><!-- .carousel -->
+        <a class="sti-carousel-button prev" href="#sti-homecarousel" role="button" data-slide="prev">
+           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+           <span class="sr-only">Previous</span>
+        </a>
+        <a class="sti-carousel-button next" href="#sti-homecarousel" role="button" data-slide="next">
+           <span class="carousel-control-next-icon" aria-hidden="true"></span>
+           <span class="sr-only">Next</span>
+        </a>
+    </div><!-- .sti-homecarousel -->
+</div>
 
 <style>
 #containernews {
