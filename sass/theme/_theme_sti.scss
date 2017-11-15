@@ -1,12 +1,11 @@
 // This is an empty scss file for your custom styles - Please add your super duper awesome mega design styles here
 a.sti_menu_link {
   font: 18pt 'Open Sans Regular',sans-serif;
-  color: #555;
-  position: relative;
-  top: 35px;
-}
-a:visited.sti_menu_link {
   text-decoration: none;
+  color: #555;
+}
+
+a:visited.sti_menu_link {
   color: #555;
 }
 a:hover.sti_menu_link {
@@ -25,4 +24,9 @@ a:hover.sti_menu_link {
 
 .sti-carousel-button.prev {
     left: 0px;
+}
+
+ul.sti-megamenu a.sti_menu_link {
+  position: relative;
+  top: 35px;
 }

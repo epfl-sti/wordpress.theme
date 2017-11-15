@@ -50,12 +50,12 @@ $container = get_theme_mod( 'epflsti_container_type' );
             the_custom_logo();
         } ?><!-- end custom logo -->
         </a>
-        <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+        <a class="sti_menu_link"  href="<?php echo esc_url( home_url( '/' ) ); ?>">
             <acronym title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" style="text-decoration: none;">
                 <?php bloginfo( 'name' ); ?>
             </acronym>
         </a>
-        <ul>
+        <ul class="sti-megamenu">
             <li>
                 <a href="#" class="sti_menu_link">About</a>
                 <ul>
