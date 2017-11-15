@@ -44,17 +44,17 @@ $container = get_theme_mod( 'epflsti_container_type' );
         <a href="https://www.epfl.ch">
         <?php
         if (! has_custom_logo()) {  ?>
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.svg" width=180 style="float:left; margin: 10px" />
+            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/STI-logo.jpg" width="300" style="float:left; margin: 10px" />
         <?php
         } else {
             the_custom_logo();
         } ?><!-- end custom logo -->
         </a>
-        <a class="sti_menu_link"  href="<?php echo esc_url( home_url( '/' ) ); ?>">
+        <!-- <a class="sti_menu_link"  href="<?php echo esc_url( home_url( '/' ) ); ?>">
             <acronym title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" style="text-decoration: none;">
                 <?php bloginfo( 'name' ); ?>
             </acronym>
-        </a>
+        </a> -->
         <ul class="sti-megamenu">
             <li>
                 <a href="#" class="sti_menu_link">About</a>
