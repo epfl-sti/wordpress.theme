@@ -21,7 +21,6 @@ npm-debug.log
 /vendor/
 
 # Created by Gulp
-/src/
 css/normalize.css
 css/bootstrap*
 js/core.js

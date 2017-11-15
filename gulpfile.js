@@ -198,28 +198,24 @@ gulp.task('watch-bs', ['browser-sync', 'watch', 'scripts'], function () { });
 // Uglifies and concat all JS files into one
 gulp.task('scripts', ['copy-assets'], function() {
     var scripts = [
-
-        // Start - All BS4 stuff
-        basePaths.dev + 'js/bootstrap4/bootstrap.js',
-
-        // End - All BS4 stuff
-
-        basePaths.dev + 'js/skip-link-focus-fix.js'
+        basePaths.node + 'bootstrap/dist/js/bootstrap.js',
+        basePaths.dev + 'js/megamenu.js'
     ];
-  gulp.src(scripts)
-    .pipe(concat('theme.min.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('./js/'));
+  return merge2(
+      gulp.src(scripts)
+          .pipe(concat('theme.min.js'))
+          .pipe(uglify())
+          .pipe(gulp.dest('./js/')),
 
-  gulp.src(scripts)
-    .pipe(concat('theme.js'))
-    .pipe(gulp.dest('./js/'));
+      gulp.src(scripts)
+          .pipe(concat('theme.js'))
+          .pipe(gulp.dest('./js/')));
 });
 
-// Deleting any file inside the /src folder
+// Deleting any built or copied files
 gulp.task('clean-source', function () {
-  return del(['src/**/*', 'css/normalize.css', 'js/core.*', 'js/jquery.*',
-              'js/modernizr.*',
+  return del(['css/normalize.css', 'js/core.*', 'js/jquery.*',
+              'js/modernizr.*', 'js/theme.js', 'js/theme.min.js',
              'css/theme.*']);
 });
 
@@ -228,36 +224,24 @@ gulp.task('clean-source', function () {
 // Copy all needed dependency assets files from node_modules assets to themes /js, /scss and /fonts folder. Run this task after npm install
 
 ////////////////// Copy pre-built assets /////////////////////////
+// Copy to serving directories all assets that are invoked by either
+// header.php, footer.php or inc/enqueue.php
 gulp.task('copy-assets', function() {
+    return merge2(
+        gulp.src(basePaths.node + 'font-awesome/fonts/**/*.{ttf,woff,woff2,eof,svg}')
+            .pipe(gulp.dest('./fonts')),
 
-// Copy all Bootstrap JS files
+        gulp.src(basePaths.node + 'jquery/dist/*.js')
+            .pipe(gulp.dest(basePaths.js)),
 
-    var stream = gulp.src(basePaths.node + 'bootstrap/dist/js/**/*.js')
-       .pipe(gulp.dest(basePaths.dev + '/js/bootstrap4'));
-  
-// Copy all Font Awesome Fonts
-    gulp.src(basePaths.node + 'font-awesome/fonts/**/*.{ttf,woff,woff2,eof,svg}')
-        .pipe(gulp.dest('./fonts'));
+        gulp.src(basePaths.node + 'normalize.css/*.css')
+            .pipe(gulp.dest(basePaths.css)),
 
-// Copy jQuery
-    gulp.src(basePaths.node + 'jquery/dist/*.js')
-        .pipe(gulp.dest(basePaths.js));
-
-// Copy Normalize
-    gulp.src(basePaths.node + 'normalize.css/*.css')
-        .pipe(gulp.dest(basePaths.css));
-
-// _s JS files
-    gulp.src(basePaths.node + 'undescores-for-npm/js/*.js')
-        .pipe(gulp.dest(basePaths.dev + '/js'));
-
-// Copy Popper JS files
-    gulp.src(basePaths.node + 'popper.js/dist/umd/popper.min.js')
-        .pipe(gulp.dest(basePaths.js));
-        
-    gulp.src(basePaths.node + 'popper.js/dist/umd/popper.js')
-        .pipe(gulp.dest(basePaths.js));
-    return stream;
+        gulp.src(basePaths.node + 'popper.js/dist/umd/popper.min.js')
+            .pipe(gulp.dest(basePaths.js)),
+        gulp.src(basePaths.node + 'popper.js/dist/umd/popper.js')
+            .pipe(gulp.dest(basePaths.js))
+    );
 });
 
 
