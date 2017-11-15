@@ -2,3 +2,21 @@
 .sti_red {
   color: theme-color("danger");
 }
+
+.sti_menu_ul {
+  margin-bottom: 20px;
+}
+a.sti_menu_link {
+  font: 18pt 'Open Sans Regular',sans-serif;
+  color: #555;
+  position: relative;
+  top: 35px;
+}
+a:visited.sti_menu_link {
+  text-decoration: none;
+  color: #555;
+}
+a:hover.sti_menu_link {
+  text-decoration: none;
+  color: #888;
+}
