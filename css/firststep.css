@@ -56,17 +56,6 @@ a.subtitlelink {
   }
 }
 
-a.mylink{ font: 18pt 'Open Sans Regular',sans-serif;  
-	color: #555; 
-	position: relative;
-	top: 35px;
-} 
-a:visited.mylink{ text-decoration: none; 
-	color: #555; }	 
-a:hover.mylink{ text-decoration: none; 
-	color: #888; } 
-
-
 a.mynavbar{ font: 12pt verdana,'Open Sans Regular',sans-serif;  
 	color: black; 
 	position: relative;
