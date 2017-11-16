@@ -132,7 +132,7 @@ gulp.task('watch', function () {
 gulp.task('imagemin', function(){
     gulp.src('img/src/**')
     .pipe(imagemin())
-    .pipe(gulp.dest('img'))
+    .pipe(gulp.dest('img/mini'))
 });
 
 
