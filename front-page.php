@@ -21,29 +21,41 @@ error_log("is_front_page() is " + is_front_page());
 error_log("is_home() is " + is_home());
 
 ?>
-<<<<<<< HEAD
-<style>
- div.news {
-   display: flex;
-   flex-direction: row;
-   flex-wrap: wrap;
-   justify-content: space-around;
- }
-</style>
 
 <div>
 
+ <div class=div-wrapper id=containerwave style="background-image:url('<?php echo get_stylesheet_directory_uri(); ?>/img/LacourTeam.jpg');">
+  <img src=<?php echo get_stylesheet_directory_uri(); ?>/img/waving.png>
+ </div>
 
- <img width=100% src="<?php echo get_stylesheet_directory_uri(); ?>/img/LacourTeam.jpg">
-
- <div style="height:0px;">
-  <div id=containernews class=containernews>
+ <div class="pixelman">
+  <div id=containercalendar>
+   <table cellpadding=16 style="background-image:url('https://stisrv13.epfl.ch/proposals/darkpixel.png');"><td>
+   <table>
+    <tr>
+     <td>
+      <a href=#>
+       <img src=<?php echo get_stylesheet_directory_uri(); ?>/img/src/upcoming_events.png><br><br>
+      </a> 
+     </td>
+    </tr>
+    <tr>
+     <td width=280 style="background-color:#fff; padding: 8px;">
+      Events
+     </td>
+    </tr>
+   </table>
+   </td></table>
+  </div>
+ </div>
+</div>
+ <div class="pixelman">
+  <div id=containernews>
    <a class="titlelink" href=#>A long-term implant to restore walking</a><br>
    <a class="titlelink subtitlelink" href=#>Prof. Stéphanie Lacour of the Institute of Bioengineering</a><br>
   </div>
  </div>
-
-
+</div>
 <div class="news">
   <?php
     $atts = array('tmpl' => 'bootstrap-card', 'number' => 14);
@@ -51,7 +63,7 @@ error_log("is_home() is " + is_home());
 
     $newsids = ["news", "researchvideo", "inthenews", "testimonials", "campus", "appointments", "whatis", "research", "placement", "masters"];
     foreach ($newsids as $newsid) {
-    	$newshtml = curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=" . $newsid);
+//    	$newshtml = curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=" . $newsid);
         echo "<div>$newshtml</div>";
     }
 

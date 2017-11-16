@@ -6,7 +6,7 @@
 
 @font-face {
     font-family: 'Junction Regular';
-    src: url('../css/Junction-regular.woff');
+    src: url('../fonts/Junction-regular.woff');
 }
 
 @font-face {
@@ -16,14 +16,56 @@
 
 @font-face {
     font-family: 'Gotham Narrow Bold';
-    src: url('../css/GothamNarrow-Bold.woff');
+    src: url('../fonts/GothamNarrow-Bold.woff');
 }
 
-.containernews {
+.pixelman {
+ height:0px;
+}
+
+#mobile_header {
+ text-decoration: none;
+}
+
+div.news {
+ display: flex;
+ flex-direction: row;
+ flex-wrap: wrap;
+ justify-content: space-around;
+}
+
+#epfl_logo {
+ display: block; 
+ float:left;
+ width: 17%;
+ max-width:184px;
+ min-width:140px;
+ margin: 15px 0 0 10px;
+}
+
+#sti_logo {
+ display: block; 
+ float:left;
+ width: 23%;
+ max-width:249px;
+ min-width:190px;
+ margin: 15px 16px 0 0;
+}
+
+#containercalendar {
+ height: 60px;
+ position: absolute;
+ right: 60px; 
+ top: 240px; 
+ z-index: 4;
+}
+
+#containernews {
  height: 60px;
  position: relative;
  top: -120px; 
- padding: 0px 0px 0px 45px
+ padding: 0px 0px 0px 45px;
+ z-index: 3;
 }
 
 a.titlelink {
@@ -38,43 +80,69 @@ a.titlelink {
 a.subtitlelink {
  font-size: 3vw;
 }
-
-@media screen and (max-width: 500px) {
-  a.titlelink {
-    font-size: 1.4em;
-  }
-  a.subtitlelink {
-    font-size: .8em;
-  }
-}
-@media screen and (min-width: 680px) {
-  a.titlelink {
-    font-size: 2.1em;
-  }
-  a.subtitlelink {
-    font-size: 1.5em;
-  }
+#containerwave {
+  position: relative;
+  top: 0px; 
+  z-index: 2;
+  background-position: center top; 
+  width:100%; 
+  background-size: cover;
 }
 
-a.mylink{ font: 18pt 'Open Sans Regular',sans-serif;  
+a.mylink{ 
+	font: 18pt 'Open Sans Regular',sans-serif;  
 	color: #555; 
 	position: relative;
-	top: 35px;
 } 
-a:visited.mylink{ text-decoration: none; 
-	color: #555; }	 
-a:hover.mylink{ text-decoration: none; 
-	color: #888; } 
-
-
-a.mynavbar{ font: 12pt verdana,'Open Sans Regular',sans-serif;  
-	color: black; 
-	position: relative;
-	top: 30px;
+a:visited.mylink { 
+	text-decoration: none; 
+	color: #555; 
+}	 
+a:hover.mylink { 
+	text-decoration: none; 
+	color: #888; 
 } 
-a:visited.mynavbar{ text-decoration: none; 
-	color: #555; }	 
-a:hover.mynavbar{ text-decoration: none; 
-	color: #888; } 
 
+@media screen and (max-width: 959px) {
+ a.titlelink {
+   font-size: 1.4em;
+ }
+ a.subtitlelink {
+   font-size: .8em;
+ }
+ #containerwave {
+  height: 450px; 
+ }
+ #containercalendar {
+  visibility: hidden;
+ }
+ a.mylink {
+  top: 5px;
+ }
+}
+@media screen and (min-width: 959px) {
+ a.titlelink {
+  font-size: 1.8em;
+ }
+ a.subtitlelink {
+  font-size: 1.3em;
+ }
+ #containerwave {
+  height: 600px; 
+ }
+ a.mylink {
+  top: 45px;
+ }
+}
+.div-wrapper {
+    position: relative;
+    height: 300px;
+    width: 300px;
+}
+
+.div-wrapper img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
 
