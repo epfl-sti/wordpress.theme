@@ -7,6 +7,7 @@
     "postinstall": "gulp",
     "watch": "gulp watch",
     "watch-bs": "gulp watch-bs",
+    "start": "gulp watch-bs",
     "distclean": "gulp clean-source && rm -rf node_modules"
   },
   "engines": {
@@ -55,6 +56,7 @@
     "merge2": "^1.2.0",
     "normalize.css": "^7.0.0",
     "popper.js": "^1.12.6",
-    "run-sequence": "^2.2.0"
+    "run-sequence": "^2.2.0",
+    "yargs": "^10.0.3"
   }
 }
