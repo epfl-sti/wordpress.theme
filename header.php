@@ -40,24 +40,20 @@ $container = get_theme_mod( 'epflsti_container_type' );
 <!-- Ugly hard coded menu -->
 <div class="menu-container">
     <div class="menu">
-        <!-- Your site logo -->
-        <a href="https://www.epfl.ch">
-        <?php
-        if (! has_custom_logo()) {  ?>
-            <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.svg" width=180 style="float:left; margin: 10px" />
-        <?php
-        } else {
-            the_custom_logo();
-        } ?><!-- end custom logo -->
-        </a>
-        <a class="sti_menu_link"  href="<?php echo esc_url( home_url( '/' ) ); ?>">
-            <acronym title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" style="text-decoration: none;">
-                <?php bloginfo( 'name' ); ?>
-            </acronym>
-        </a>
-        <ul class="sti-megamenu">
-            <li>
-                <a href="#" class="sti_menu_link">About</a>
+
+            <!-- Your site logo -->
+            
+            <?php if ( ! has_custom_logo() ) { ?>
+               <a href="https://www.epfl.ch"> <img id=epfl_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a>
+               <a href="<?php echo esc_url( home_url( '/' ) ); ?>"> <img id=sti_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.gif" /></a>
+            <?php } else {
+                    the_custom_logo();
+            } ?><!-- end custom logo -->
+	   <!---a href="<?php echo esc_url( home_url( '/' ) ); ?>"><acronym title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" style="text-decoration: none;"><?php bloginfo( 'name' ); ?></acronym></a---> 
+
+      <ul>
+            <li><a class="sti_menu_link" href="#">The School</a>
+
                 <ul>
                     <li>
                         <a href="#">News</a>
