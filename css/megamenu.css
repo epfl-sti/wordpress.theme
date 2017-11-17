@@ -6,17 +6,6 @@
 - Author web site: http://marioloncarek.com
 */
 
-
-@font-face {
-    font-family: 'Junction Regular';
-    src: url('../fonts/junction-regular.woff');
-}
-
-@font-face {
-    font-family: 'Open Sans Regular';
-    src: url('../fonts/OpenSans-regular.woff');
-}
-
 /* ––––––––––––––––––––––––––––––––––––––––––––––––––
 Body - not related to megamenu
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -118,7 +107,7 @@ Screen style's
 
 .menu > ul > li a {
     text-decoration: none;
-    padding: 30px 20px 53px 20px;
+    padding: 30px 13px 53px 13px;
     display: block;
 }
 
@@ -217,7 +206,7 @@ Screen style's
 
 
 /* ––––––––––––––––––––––––––––––––––––––––––––––––––
-Mobile style's
+Mobile styles
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 @media only screen and (max-width: 959px) {
@@ -226,9 +215,11 @@ Mobile style's
     }
     .menu-mobile {
         display: block;
+        padding: 36px;
     }
     .menu-dropdown-icon:before {
         display: block;
+        background: #ddd;
     }
     .menu > ul {
         display: none;

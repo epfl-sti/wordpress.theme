@@ -64,6 +64,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
                         <ul>
                             <li><a href="#">STI in the News</a></li>
                             <li><a href="#">News Archives</a></li>
+                            <li></li>
                         </ul>
                     </li>
                     <li>
@@ -80,6 +81,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
                             <li><a href="#">Platforms and Services</a></li>
                             <li><a href="#">Centres in the News</a></li>
                             <li><a href="#">Centres Events</a></li>
+                            <li></li>
                         </ul>
                     </li>
                     <li>
