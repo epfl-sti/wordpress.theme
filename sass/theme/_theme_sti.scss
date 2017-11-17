@@ -4,6 +4,14 @@ a.sti_menu_link {
   font: 18pt 'Open Sans Regular',sans-serif;
   text-decoration: none;
   color: #555;
+
+  position: relative;
+  @media screen and (max-width: $megamenu-small) {
+    top: 5px;
+  }
+  @media screen and (min-width: $megamenu-small) {
+    top: 45px;
+  }
 }
 
 a:visited.sti_menu_link {
