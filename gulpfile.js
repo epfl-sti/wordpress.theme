@@ -1,29 +1,3 @@
-// Defining base paths
-var basePaths = {
-    js: './js/',
-    node: './node_modules/',
-    dev: './src/',
-    css: './css/'
-};
-
-
-// browser-sync watched files
-// automatically reloads the page when files changed
-var browserSyncWatchFiles = [
-    './css/*.min.css',
-    './js/*.min.js',
-    './**/*.php'
-];
-
-
-// browser-sync options
-// see: https://www.browsersync.io/docs/options/
-var browserSyncOptions = {
-    proxy: "localhost/wordpress/",
-    notify: false
-};
-
-
 // Defining requirements
 var gulp = require('gulp');
 var plumber = require('gulp-plumber');
@@ -45,7 +19,32 @@ var del = require('del');
 var cleanCSS = require('gulp-clean-css');
 var gulpSequence = require('gulp-sequence');
 var modernizr = require('gulp-modernizr');
+var argv = require("yargs").argv;
 
+// Defining base paths
+var basePaths = {
+    js: './js/',
+    node: './node_modules/',
+    dev: './src/',
+    css: './css/'
+};
+
+
+// browser-sync watched files
+// automatically reloads the page when files changed
+var browserSyncWatchFiles = [
+    './css/*.min.css',
+    './js/*.min.js',
+    './**/*.php'
+];
+
+
+// browser-sync options
+// see: https://www.browsersync.io/docs/options/
+var browserSyncOptions = {
+    proxy: (argv.url || "https://localhost/sti/"),
+    notify: false
+};
 
 // Run:
 // gulp sass + cssnano + rename
@@ -133,7 +132,7 @@ gulp.task('watch', function () {
 gulp.task('imagemin', function(){
     gulp.src('img/src/**')
     .pipe(imagemin())
-    .pipe(gulp.dest('img'))
+    .pipe(gulp.dest('img/mini'))
 });
 
 

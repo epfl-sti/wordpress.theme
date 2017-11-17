@@ -23,11 +23,12 @@ npm-debug.log
 # Created by Gulp
 css/normalize.css
 css/bootstrap*
+css/theme.*
 js/core.js
 js/jquery.*
 js/popper.*
 js/theme.*
 js/modernizr.*
-css/theme.*
 fonts/FontAwesome.otf
 fonts/fontawesome-webfont.*
+img/mini/
