@@ -1,0 +1,38 @@
+$megamenu-small: 959px;  // This is the hard-coded value from megamenu.css
+
+a.sti_menu_link {
+  font: 18pt 'Open Sans Regular',sans-serif;
+  text-decoration: none;
+  color: #555;
+}
+
+a:visited.sti_menu_link {
+  color: #555;
+}
+a:hover.sti_menu_link {
+  text-decoration: none;
+  color: #888;
+}
+
+.sti-carousel-button {
+    position: absolute;
+    top: 0px;
+    background-color: red;
+
+    @media screen and (max-width: $megamenu-small) {
+       visibility: hidden;
+    }
+}
+
+.sti-carousel-button.next {
+    right: 0px;
+}
+
+.sti-carousel-button.prev {
+    left: 0px;
+}
+
+ul.sti-megamenu a.sti_menu_link {
+  position: relative;
+  top: 35px;
+}

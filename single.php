@@ -21,9 +21,12 @@ $sidebar_pos = get_theme_mod( 'epflsti_sidebar_position' );
 
 			<main class="site-main" id="main">
 
-				<?php while ( have_posts() ) : the_post(); ?>
-
-					<?php get_template_part( 'loop-templates/content', 'single' ); ?>
+				<?php while ( have_posts() ) :
+                         the_post();
+                         $single_post_template_name = 'single-' . get_post_type();
+                         $has_typespecific_loop_template = locate_template("loop-templates/content-${single_post_template_name}.php");
+                         get_template_part( 'loop-templates/content', $has_typespecific_loop_template ? $single_post_template_name : 'single');
+                ?>
 
 						<?php epflsti_post_nav(); ?>
 

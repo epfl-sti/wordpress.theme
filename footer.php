@@ -61,9 +61,6 @@ $container = get_theme_mod( 'epflsti_container_type' );
 
 <?php wp_footer(); ?>
 
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/jquery.min.js"></script>
-<script src="<?php echo get_stylesheet_directory_uri(); ?>/js/megamenu.js"></script>
-
 </body>
 
 </html>
