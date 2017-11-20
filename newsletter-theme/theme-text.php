@@ -3,18 +3,19 @@
 if (!defined('ABSPATH'))
     exit;
 
-require_once(dirname(__FILE__) . '/inc/get_newsletter_posts.php');
-
-$posts = get_newsletter_posts($theme_options);
+require_once(dirname(__FILE__) . '/inc/newsletter_items.php');
 
 ?><?php echo $theme_options['theme_opening_text']; ?>
 
 * <?php echo $theme_options['theme_title']; ?>
 
+<?php foreach (EPFL\STI\Theme\get_newsletter_categories($theme_options) as $cat): ?>
+
+=== <?php echo $cat->title(); ?>
 
 <?php
 global $post;
-foreach ($posts as $post) {
+foreach ($cat->posts() as $post):
     // Setup the post (WordPress requirement)
     setup_postdata($post);
 ?>
@@ -23,7 +24,8 @@ foreach ($posts as $post) {
 <?php the_permalink(); ?>
 
 
-<?php } ?>
+<?php endforeach;  # posts ?>
+<?php endforeach;  # categories ?>
 
 
 <?php echo $theme_options['theme_footer_text']; ?>
