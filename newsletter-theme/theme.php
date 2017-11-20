@@ -14,6 +14,11 @@ $posts = get_newsletter_posts($theme_options);
     </head>
 
     <body>
+	<style>
+	   .newsletter-title {
+background-color:#fff; font-size: 22px; font-family: Tahoma, Verdana, sans-serif; border-left:1px solid #039; border-right:1px solid #039; border-top: 1px solid #039; border-bottom: 0px solid #eee; color: #029; padding:4px; border-top-right-radius:4px;border-top-left-radius: 4px;
+	   }
+	</style>
         <table bgcolor="#038" width="100%" cellpadding="1" cellspacing="0" border="0">
             <tr>
                 <td align="center">
