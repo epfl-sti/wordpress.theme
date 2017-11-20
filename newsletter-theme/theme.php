@@ -18,7 +18,15 @@ require_once(dirname(__FILE__) . '/inc/newsletter_items.php');
     <body>
 	<style>
 	   .newsletter-title {
-background-color:#fff; font-size: 22px; font-family: Tahoma, Verdana, sans-serif; border-left:1px solid #039; border-right:1px solid #039; border-top: 1px solid #039; border-bottom: 0px solid #eee; color: #029; padding:4px; border-top-right-radius:4px;border-top-left-radius: 4px;
+ background-color:#fff;
+ font-size: 22px;
+ font-family: Tahoma, Verdana, sans-serif;
+ border-left:1px solid #000;
+ border-right:1px solid #000;
+ border-top: 1px solid #000;
+ border-bottom: 0px solid #eee;
+ color: #000;
+ padding:4px;
 	   }
 	</style>
         <table bgcolor="#fff" width="100%" cellpadding="4" cellspacing="0" border="0">
