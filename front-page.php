@@ -14,15 +14,6 @@ get_header();
 
 ?>
 
-<style>
-   div.news {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
- }
-</style>
-
 <div>
     <div class="pixelman">
         <div id="containercalendar">
@@ -94,48 +85,6 @@ get_header();
     </div>
 </div>
 
-
-<style>
-#containernews {
-    height: 60px;
-    position: relative;
-    top: -120px;
-    padding: 0px 0px 0px 45px;
-    z-index: 3;
-}
-
-#containerwave {
-    position: relative;
-    top: 0px;
-    z-index: 2;
-    background-position: center top;
-    width:100%;
-    background-size: cover;
-}
-
-@media screen and (max-width: 780px) {
-    #containerwave {
-        height: 450px;
-    }
-}
-@media screen and (min-width: 680px) {
-    #containerwave {
-        height: 600px;
-    }
-}
-
-.div-wrapper {
-    position: relative;
-    height: 300px;
-    width: 300px;
-}
-
-.div-wrapper img {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-}
-</style>
 <script>
     jQuery(function() {
         window.frontpage_init();

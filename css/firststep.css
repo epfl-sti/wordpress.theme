@@ -1,9 +1,3 @@
-.flex-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
 @font-face {
   font-family: 'Junction Regular';
   src: url('../fonts/Junction-regular.woff');
@@ -17,6 +11,18 @@
 @font-face {
   font-family: 'Gotham Narrow Bold';
   src: url('../fonts/GothamNarrow-Bold.woff');
+}
+
+.div-wrapper {
+    position: relative;
+    height: 300px;
+    width: 300px;
+}
+
+.div-wrapper img {
+    position: absolute;
+    left: 0;
+    bottom: 0;
 }
 
 .pixelman {
@@ -74,19 +80,17 @@ a.titlelink {
   background-image: none;
   border-bottom: none;
   font-family: 'Open Sans Regular', sans-serif;
-  font-size: 5vw;
 }
 
-a.subtitlelink {
-  font-size: 3vw;
-}
-
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 680px) {
   a.titlelink {
-    font-size: 1.4em;
+    font-size: 5vw;
   }
   a.subtitlelink {
-    font-size: .8em;
+    font-size: 4vw;
+  }
+  #containercalendar {
+   visibility: hidden;
   }
 }
 
@@ -99,36 +103,22 @@ a.subtitlelink {
   }
 }
 
-a.mylink {
-  font: 18pt 'Open Sans Regular', sans-serif;
-  color: #555;
-  position: relative;
-  top: 35px;
+#containerwave {
+    position: relative;
+    top: 0px;
+    z-index: 2;
+    background-position: center top;
+    width:100%;
+    background-size: cover;
 }
 
-a:visited.mylink {
-  text-decoration: none;
-  color: #555;
+@media screen and (max-width: 780px) {
+    #containerwave {
+        height: 450px;
+    }
 }
-
-a:hover.mylink {
-  text-decoration: none;
-  color: #888;
-}
-
-a.mynavbar {
-  font: 12pt verdana, 'Open Sans Regular', sans-serif;
-  color: black;
-  position: relative;
-  top: 30px;
-}
-
-a:visited.mynavbar {
-  text-decoration: none;
-  color: #555;
-}
-
-a:hover.mynavbar {
-  text-decoration: none;
-  color: #888;
+@media screen and (min-width: 680px) {
+    #containerwave {
+        height: 600px;
+    }
 }
