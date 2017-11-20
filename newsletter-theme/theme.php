@@ -28,7 +28,7 @@ background-color:#fff; font-size: 22px; font-family: Tahoma, Verdana, sans-serif
                                 <img src=/sti/wp-content/themes/epfl-sti/newsletter-theme/banner.gif>
                             </td>
                         </tr>
-			<tr><td style="background-color:#fff; font-size: px; font-family: Tahoma, Verdana, sans-serif; border-left:1px solid #039; border-right:1px solid #039; border-top: 1px solid #039; border-bottom: 0px solid #eee; color: #029; padding:4px; border-top-right-radius:4px;border-top-left-radius: 4px;">News <div style='display:block; float:right'>24th November, 2017</div></td></tr>
+			<tr><td class="newsletter-title">News <div style='display:block; float:right'>24th November, 2017</div></td></tr>
                         <tr>
                             <td style="font-size: 14px; color: #666">
                             </td>
