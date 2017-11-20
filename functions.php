@@ -2,6 +2,11 @@
 /**
  * Understrap functions and definitions
  *
+ * As explained in
+ * https://codex.wordpress.org/Functions_File_Explained, functions.php
+ * (not index.php) is the main entry point of a theme. All global
+ * setup should happen here or from one of the files required below.
+ *
  * @package epflsti
  */
 
@@ -76,6 +81,11 @@ require get_template_directory() . '/inc/editor.php';
  * Work with EPFL environment.
  */
 require get_template_directory() . '/inc/epfl.php';
+
+/**
+ * Newsletter theme.
+ */
+require get_template_directory() . '/newsletter-theme/hook.php';
 
 /**
  * Enable shortcodes in text widgets.
