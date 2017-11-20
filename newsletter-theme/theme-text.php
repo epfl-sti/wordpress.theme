@@ -1,31 +1,11 @@
 <?php
-global $newsletter; // Newsletter object
-global $post; // Current post managed by WordPress
 
 if (!defined('ABSPATH'))
     exit;
 
-// This file is included inside a function so it inherit all the local variables.
+require_once(dirname(__FILE__) . '/inc/get_newsletter_posts.php');
 
-// Since a theme has it's own options, it must check if there is new content to send
-// out.
-// Inside $theme_options['last_time'] there is the time stamps of the last run
-// to be used to decide if we need to stop or not.
-
-$filters = array();
-
-$filters['posts_per_page'] = (int)$theme_options['max_posts'];
-if ($filters['posts_per_page'] == 0) $filters['posts_per_page'] = 10;
-
-// This theme has an option with categories to be included.
-if (is_array($theme_options['categories'])) {
-    $filters['cat'] = implode(',', $theme_options['categories']);
-}
-
-$posts = get_posts($filters);
-
-// Retrieve the posts asking them to WordPress
-$posts = get_posts($filters);
+$posts = get_newsletter_posts($theme_options);
 
 ?><?php echo $theme_options['theme_opening_text']; ?>
 
@@ -33,6 +13,7 @@ $posts = get_posts($filters);
 
 
 <?php
+global $post;
 foreach ($posts as $post) {
     // Setup the post (WordPress requirement)
     setup_postdata($post);

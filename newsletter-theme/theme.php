@@ -1,43 +1,11 @@
 <?php
-global $newsletter; // Newsletter object
-global $post; // Current post managed by WordPress
 
 if (!defined('ABSPATH'))
     exit;
 
-/*
- * Some variabled are prepared by Newsletter Plus and are available inside the theme,
- * for example the theme options used to build the email body as configured by blog
- * owner.
- *
- * $theme_options - is an associative array with theme options: every option starts
- * with "theme_" as required. See the theme-options.php file for details.
- * Inside that array there are the autmated email options as well, if needed.
- * A special value can be present in theme_options and is the "last_run" which indicates
- * when th automated email has been composed last time. Is should be used to find if
- * there are now posts or not.
- *
- * $is_test - if true it means we are composing an email for test purpose.
- */
+require_once(dirname(__FILE__) . '/inc/get_newsletter_posts.php');
 
-
-// This array will be passed to WordPress to extract the posts
-$filters = array();
-
-// Maximum number of post to retrieve
-$filters['posts_per_page'] = (int) $theme_options['theme_max_posts'];
-if ($filters['posts_per_page'] == 0)
-    $filters['posts_per_page'] = 10;
-
-
-// Include only posts from specified categories. Do not filter per category is no
-// one category has been selected.
-if (is_array($theme_options['theme_categories'])) {
-    $filters['cat'] = implode(',', $theme_options['theme_categories']);
-}
-
-// Retrieve the posts asking them to WordPress
-$posts = get_posts($filters);
+$posts = get_newsletter_posts($theme_options);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -62,6 +30,7 @@ $posts = get_posts($filters);
 			</tr>
                         <?php
                         // Do not use &post, it leads to problems...
+                        global $post;
                         foreach ($posts as $post) {
 
                             // Setup the post (WordPress requirement)
