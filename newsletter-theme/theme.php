@@ -19,16 +19,16 @@ $posts = get_newsletter_posts($theme_options);
 background-color:#fff; font-size: 22px; font-family: Tahoma, Verdana, sans-serif; border-left:1px solid #039; border-right:1px solid #039; border-top: 1px solid #039; border-bottom: 0px solid #eee; color: #029; padding:4px; border-top-right-radius:4px;border-top-left-radius: 4px;
 	   }
 	</style>
-        <table bgcolor="#038" width="100%" cellpadding="1" cellspacing="0" border="0">
+        <table bgcolor="#fff" width="100%" cellpadding="4" cellspacing="0" border="0">
             <tr>
                 <td align="center">
-                    <table width="500" bgcolor="#ffffff" align="center" cellspacing="10" cellpadding="0" style="border: 1px solid #666;">
+                    <table width="500" bgcolor="#ffffff" align="center" cellspacing="10" cellpadding="0" style="border: 1px solid red;">
                         <tr>
                             <td>
                                 <img src=/sti/wp-content/themes/epfl-sti/newsletter-theme/banner.gif>
                             </td>
                         </tr>
-			<tr><td class="newsletter-title">News <div style='display:block; float:right'>24th November, 2017</div></td></tr>
+			<tr><td class="newsletter-title">News <div style='display:block; float:right'>November 2017</div></td></tr>
                         <tr>
                             <td style="font-size: 14px; color: #666">
                             </td>
