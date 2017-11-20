@@ -46,25 +46,20 @@ $posts = get_posts($filters);
     </head>
 
     <body>
-        <table bgcolor="#c0c0c0" width="100%" cellpadding="20" cellspacing="0" border="0">
+        <table bgcolor="#038" width="100%" cellpadding="1" cellspacing="0" border="0">
             <tr>
                 <td align="center">
                     <table width="500" bgcolor="#ffffff" align="center" cellspacing="10" cellpadding="0" style="border: 1px solid #666;">
                         <tr>
-                            <td style="font-size: 30px">
-                                <i><?php echo get_option('blogname'); ?></i>
+                            <td>
+                                <img src=/sti/wp-content/themes/epfl-sti/newsletter-theme/banner.gif>
                             </td>
                         </tr>
-                        <tr>
-                            <td style="border-top: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 12px; color: #999">
-                                <br />NEWSLETTER<br /><br />
-                            </td>
-                        </tr>
+			<tr><td style="background-color:#fff; font-size: px; font-family: Tahoma, Verdana, sans-serif; border-left:1px solid #039; border-right:1px solid #039; border-top: 1px solid #039; border-bottom: 0px solid #eee; color: #029; padding:4px; border-top-right-radius:4px;border-top-left-radius: 4px;">News <div style='display:block; float:right'>24th November, 2017</div></td></tr>
                         <tr>
                             <td style="font-size: 14px; color: #666">
-                                <p>Dear {name}, here an update from <?php echo get_option('blogname'); ?>.</p>
                             </td>
-                        </tr>
+			</tr>
                         <?php
                         // Do not use &post, it leads to problems...
                         foreach ($posts as $post) {
@@ -81,11 +76,11 @@ $posts = get_posts($filters);
                             $image = nt_post_image(get_the_ID());
                             ?>
                             <tr>
-                                <td style="font-size: 14px; color: #666">
+                                <td style="font-size: 14px; color: #666; font-family:Tahoma,Verdana,sans-serif">
                                     <?php if ($image != null) { ?>
-                                        <img src="<?php echo $image; ?>" alt="picture" align="left"/>
+                                        <img hspace=8 src="<?php echo $image; ?>" alt="picture" align="left"/>
                                     <?php } ?>
-                                    <p><a target="_tab" href="<?php echo get_permalink(); ?>" style="font-size: 16px; color: #000; text-decoration: none"><?php the_title(); ?></a></p>
+                                    <p><a target="_tab" href="<?php echo get_permalink(); ?>" style="font-size: 16px; color: #000; text-decoration: none;font-family:Tahoma,Verdana,sans-serif"><?php the_title(); ?></a></p>
 
                                     <?php the_excerpt(); ?>
                                 </td>
@@ -95,14 +90,15 @@ $posts = get_posts($filters);
                         ?>
                         <?php if (!isset($theme_options['theme_social_disable'])) { ?> 
                             <tr>
-                                <td  style="font-family: Arial; font-size: 12px">
+                                <td  style="font-family: Tahoma,Verdana,sans-serif; font-size: 12px">
                                     <?php include WP_PLUGIN_DIR . '/newsletter/emails/themes/default/social.php'; ?>
                                 </td>
                             </tr>
                         <?php } ?>
                         <tr>
-                            <td style="border-top: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 12px; color: #999">
-                                You received this email because you subscribed for it as {email}. If you'd like, you can <a target="_tab" href="{unsubscription_url}">unsubscribe</a>.
+                            <td style="border-top: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 12px; color: #999; font-family:Tahoma, Verdana, sans-serif;">
+                                <p>Dear {name}, this is the <?php echo get_option('blogname'); ?> newsletter.</p>
+                                You received this email because you subscribed for it as {email}. You can unsubscribe by clicking <a target="_tab" href="{unsubscription_url}">here</a>.
                             </td>
                         </tr>
                     </table>
