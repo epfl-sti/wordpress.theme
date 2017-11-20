@@ -3,9 +3,11 @@
 if (!defined('ABSPATH'))
     exit;
 
-require_once(dirname(__FILE__) . '/inc/get_newsletter_posts.php');
+require_once(dirname(__FILE__) . '/inc/newsletter_items.php');
 
-$posts = get_newsletter_posts($theme_options);
+// <table>s everywhere is the way to go - Not sure how ancient versions of Outlook
+// like HTML5 stuff. At any rate, the <head> is basically ignored.
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -28,15 +30,16 @@ background-color:#fff; font-size: 22px; font-family: Tahoma, Verdana, sans-serif
                                 <img src=/sti/wp-content/themes/epfl-sti/newsletter-theme/banner.gif>
                             </td>
                         </tr>
-			<tr><td class="newsletter-title">News <div style='display:block; float:right'>24th November, 2017</div></td></tr>
+                        <?php foreach (EPFL\STI\Theme\get_newsletter_categories($theme_options) as $cat): ?>
+                        <tr><td class="newsletter-title"><?php echo $cat->title(); ?><div style='display:block; float:right'>24th November, 2017</div></td></tr>
                         <tr>
                             <td style="font-size: 14px; color: #666">
                             </td>
-			</tr>
+                        </tr>
                         <?php
                         // Do not use &post, it leads to problems...
                         global $post;
-                        foreach ($posts as $post) {
+                        foreach ($cat->posts() as $post):
 
                             // Setup the post (WordPress requirement)
                             setup_postdata($post);
@@ -59,9 +62,8 @@ background-color:#fff; font-size: 22px; font-family: Tahoma, Verdana, sans-serif
                                     <?php the_excerpt(); ?>
                                 </td>
                             </tr>
-                            <?php
-                        }
-                        ?>
+                        <?php endforeach; # posts ?>
+                        <?php endforeach; # categories ?>
                         <?php if (!isset($theme_options['theme_social_disable'])) { ?> 
                             <tr>
                                 <td  style="font-family: Tahoma,Verdana,sans-serif; font-size: 12px">
