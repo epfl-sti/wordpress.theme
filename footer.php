@@ -14,6 +14,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
 <?php get_sidebar( 'footerfull' ); ?>
 
 <div class="wrapper" id="wrapper-footer">
+<div class="wrapper sti-footer" id="wrapper-footer">
 
 	<div class="<?php echo esc_attr( $container ); ?>">
 
