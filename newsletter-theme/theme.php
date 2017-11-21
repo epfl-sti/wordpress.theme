@@ -4,7 +4,7 @@ if (!defined('ABSPATH'))
     exit;
 
 require_once(dirname(__FILE__) . '/inc/newsletter.php');
-use function EPFL\STI\Theme\get_newsletter_categories;
+use function EPFL\STI\Theme\{get_newsletter_categories, img_tag_data_base64};
 
 // <table>s everywhere is the way to go - Not sure how ancient versions of Outlook
 // like HTML5 stuff. At any rate, the <head> is basically ignored.
@@ -32,7 +32,7 @@ use function EPFL\STI\Theme\get_newsletter_categories;
                     <table width="500" bgcolor="#ffffff" align="center" cellspacing="10" cellpadding="0" style="border: 1px solid red;">
                         <tr>
                             <td>
-                                <img src=/sti/wp-content/themes/epfl-sti/newsletter-theme/banner.gif>
+                                <?php echo img_tag_data_base64(dirname(__FILE__) . "/banner.gif"); ?>
                             </td>
                         </tr>
                         <?php foreach (get_newsletter_categories($theme_options) as $cat): ?>

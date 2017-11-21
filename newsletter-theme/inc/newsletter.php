@@ -64,3 +64,17 @@ class FacultyNewsCategory extends PostCategory
 {
     function title () { return ___("Faculty positions") ; }
 }
+
+function img_data_base64 ($path) {
+    $imageData = base64_encode(file_get_contents($path));
+    return 'data: '.mime_content_type($path).';base64,'.$imageData;
+}
+
+function img_tag_data_base64 ($path, $attributes = array()) {
+    $attributes['src'] = img_data_base64($path);
+    return '<img '. implode(' ',
+                              array_map(function ($k, $v) {
+                                  return $k .'="'. htmlspecialchars($v) .'"';
+                              }, array_keys($attributes), $attributes))
+                    .' />';
+}
