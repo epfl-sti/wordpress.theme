@@ -12,8 +12,9 @@
 
 get_header();
 
-use function EPFL\STI\{get_events_from_memento,
-                       curl_get};
+use function EPFL\STI\{ get_events_from_memento,
+                        get_news_from_actu,
+                        curl_get };
 
 ?>
 
@@ -129,17 +130,36 @@ $( "tr.slider-event-row" )
     });
 </script>
 
-<div class="news">
+  <!-- Begin EPFL news -->
+  <div class="news epfl-news">
   <?php
-    $atts = array('tmpl' => 'bootstrap-card', 'number' => 14);
-    echo epfl_actu_wp_shortcode($atts);
+    // Fetch news from actu web service
+    $epfl_news = get_news_from_actu();
+    foreach ($epfl_news as $new) {
+  ?>
+      <div class="card epfl-new-card">
+        <img class="card-img-top epfl-new-card-img" src="<?php echo $new->news_large_thumbnail_absolute_url; // news_visual_absolute_url ?>" title="<?php echo $new->title; ?>" />
+        <div class="card-body epfl-new-card-body">
+          <a href="<?php echo $new->absolute_slug; ?>" target="_blank" class="epfl-new-card-link">
+            <h4 class="card-title epfl-new-card-title">
+              <?php echo $new->title; ?>
+            </h4>
+          </a>
+        </div>
+      </div>
+    <?php
+    }
+    ?>
+    </div>
+    <!-- End EPFL news -->
 
-    $newsids = ["news", "researchvideo", "inthenews", "testimonials", "campus", "appointments", "whatis", "research", "placement", "masters"];
-    foreach ($newsids as $newsid) {
+  <div class="news news-stisrv13">
+    <?php
+      $newsids = ["news", "researchvideo", "inthenews", "testimonials", "campus", "appointments", "whatis", "research", "placement", "masters"];
+      foreach ($newsids as $newsid) {
         $newshtml = curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=" . $newsid);
         echo "<div class=\"sti_news_html\">$newshtml</div>";
-    }
-
-  ?>
-</div>
+      }
+    ?>
+  </div>
 <?php get_footer(); ?>
