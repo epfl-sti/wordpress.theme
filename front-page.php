@@ -28,7 +28,7 @@ get_header();
                             </td>
                         </tr>
                         <?php
-                          $events = get_events($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?format=json', $limit=4);
+                          $events = get_memento_events($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?format=json', $limit=4);
                           foreach ($events as $event) {
                              $event_day = date("d", strtotime($event->event_start_date));
                              $event_month = strtoupper(date("M", strtotime($event->event_start_date)));

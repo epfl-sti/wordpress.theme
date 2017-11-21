@@ -30,7 +30,7 @@ function html_body($html)
 /* Retrieve events from the Memento REST api */
 // Note: idk what's the "published" entry, but it would be nicer to be sure
 //       to only fetch those one.
-function get_events($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?format=json', $limit=4)
+function get_memento_events($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?format=json', $limit=4)
 {
   $data = curl_get($url . '&limit=' . $limit);
   $data = json_decode($data);
