@@ -5,7 +5,7 @@ namespace EPFL\STI\Theme;
 if (!defined('ABSPATH'))
     exit;
 
-require_once(dirname(dirname(dirname(__FILE__))) . '/inc/i18n.php');
+require_once(dirname(dirname(dirname(__FILE__))) . '/inc/i18n.php');  // For ___()
 
 function get_newsletter_categories ($theme_options)
 {
