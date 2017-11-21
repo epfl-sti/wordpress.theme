@@ -19,27 +19,62 @@ get_header();
         <div id="containercalendar">
             <table cellpadding="16" style="background-image:url('https://stisrv13.epfl.ch/proposals/darkpixel.png');">
                 <td>
-                    <table>
+                    <table class="slider-event-table">
                         <tr>
                             <td>
                                 <a href="#">
                                     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/upcoming_events.png" />
-                                    <br />
-                                    <br />
                                 </a>
                             </td>
                         </tr>
-                        <tr>
-                            <td width="280" style="background-color:#fff; padding: 8px;">
-                                Events
-                            </td>
-                        </tr>
+                        <?php
+                          $events = get_events($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?format=json', $limit=4);
+                          foreach ($events as $event) {
+                             $event_day = date("d", strtotime($event->event_start_date));
+                             $event_month = strtoupper(date("M", strtotime($event->event_start_date)));
+                        ?>
+                            <tr class="slider-event-row" data-link="<?php echo $event->absolute_slug; ?>">
+                                <td class="slider-event-cell">
+                                    <div class="slider-event-date">
+                                       <span class="slider-event-date-day">
+                                          <?php echo $event_day; ?>
+                                       </span>
+                                       <span class="slider-event-date-month">
+                                          <?php echo $event_month; ?>
+                                       </span>
+                                    </div>
+                                    <div class="slider-event-title">
+                                       <?php echo $event->title; ?><br />
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php
+                          }
+                         ?>
                     </table>
                 </td>
             </table>
         </div>
     </div>
 </div>
+<script>
+// For the events in the slider
+$( "div.slider-event-date" )
+  .mouseenter(function() {
+    $( this ).css( { backgroundColor: "#55576A", color: "#FA2400", "font-weight": "bold" })
+    $( this ).parent().css({ "border-right": "1px solid #FA2400" });
+  })
+  .mouseleave(function() {
+    $( this ).css( { backgroundColor: "#fff", color: "#000", "font-weight": "normal" })
+    $( this ).parent().css({ "border-right": "1px solid #fff" });
+
+  });
+$( "tr.slider-event-row" )
+  .click(function() {
+    window.location = $( this ).data("link");
+    return true;
+   });
+</script>
 <div class="div-wrapper" id="containerwave" style="">
    <div class="pixelman">
       <div id="sti-homecarousel" class="carousel slide" data-ride="carousel">
