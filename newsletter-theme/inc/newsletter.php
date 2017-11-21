@@ -65,6 +65,22 @@ class FacultyNewsCategory extends PostCategory
     function title () { return ___("Faculty positions") ; }
 }
 
+/**
+ * @return the absolute path to this image's thumbnail version
+ */
+function get_thumb_path( $imagedata ) {
+    if ( empty($imagedata) ||
+         empty($imagedata['sizes']) ||
+         empty($imagedata['sizes']['thumbnail']) ||
+         empty($imagedata['sizes']['thumbnail']['file'])) {
+        return null;
+    }
+	$image_lives_in_this_subdir = dirname($imagedata['file']);
+    $thumb_basename = $imagedata['sizes']['thumbnail']['file'];
+    return sprintf("%s/uploads/%s/%s",
+    WP_CONTENT_DIR, $image_lives_in_this_subdir, $thumb_basename);
+}
+
 function img_data_base64 ($path) {
     $imageData = base64_encode(file_get_contents($path));
     return 'data: '.mime_content_type($path).';base64,'.$imageData;
