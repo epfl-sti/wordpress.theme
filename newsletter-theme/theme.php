@@ -40,10 +40,6 @@ use function EPFL\STI\Theme\{get_newsletter_categories,
                         </tr>
                         <?php foreach (get_newsletter_categories($theme_options) as $cat): ?>
 			<tr><td class="newsletter-title"><?php echo $cat->title(); ?><div style='display:block; float:right'>November 2017</div></td></tr>
-                        <tr>
-                            <td style="font-size: 14px; color: #666">
-                            </td>
-                        </tr>
                         <?php
                         // Do not use &post, it leads to problems...
                         global $post;
