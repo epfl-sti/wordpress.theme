@@ -3,10 +3,16 @@
 if (!defined('ABSPATH'))
     exit;
 
-require_once(dirname(__FILE__) . '/inc/newsletter_items.php');
+require_once(dirname(__FILE__) . '/inc/newsletter.php');
+use function EPFL\STI\Theme\{get_newsletter_categories,
+                             get_thumb_path,
+                             img_data_base64,
+                             img_tag_data_base64};
 
 // <table>s everywhere is the way to go - Not sure how ancient versions of Outlook
 // like HTML5 stuff. At any rate, the <head> is basically ignored.
+
+$date = "November 2017";
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -31,15 +37,15 @@ require_once(dirname(__FILE__) . '/inc/newsletter_items.php');
                     <table width="500" bgcolor="#ffffff" align="center" cellspacing="10" cellpadding="0" style="border: 1px solid red;">
                         <tr>
                             <td>
-                                <img src=/sti/wp-content/themes/epfl-sti/newsletter-theme/banner.gif>
+                                <?php echo img_tag_data_base64(dirname(__FILE__) . "/banner.gif"); ?>
                             </td>
                         </tr>
-                        <?php foreach (EPFL\STI\Theme\get_newsletter_categories($theme_options) as $cat): ?>
-			<tr><td class="newsletter-title"><?php echo $cat->title(); ?><div style='display:block; float:right'>November 2017</div></td></tr>
-                        <tr>
-                            <td style="font-size: 14px; color: #666">
-                            </td>
-                        </tr>
+                        <?php $index = 0;
+                              foreach (get_newsletter_categories($theme_options) as $cat):
+                                  $index = $index + 1;
+                        ?>
+			<tr><td class="newsletter-title"><?php echo $cat->title(); ?>
+                                             <?php if ($date && (1 == $index)) { ?><div style='display:block; float:right'>November 2017</div><?php } ?></td></tr>
                         <?php
                         // Do not use &post, it leads to problems...
                         global $post;
@@ -53,14 +59,14 @@ require_once(dirname(__FILE__) . '/inc/newsletter_items.php');
                             if (empty($theme_options['subject']))
                                 $theme_options['subject'] = $post->post_title;
 
-                            // Extract a thumbnail, return null if no thumb can be found
-                            $image = nt_post_image(get_the_ID());
                             ?>
                             <tr>
                                 <td style="font-size: 14px; color: #666; font-family:Tahoma,Verdana,sans-serif">
-                                    <?php if ($image != null) { ?>
-                                        <img hspace=8 src="<?php echo $image; ?>" alt="picture" align="left"/>
-                                    <?php } ?>
+                                   <?php
+                                       $image_path = get_thumb_path(wp_get_attachment_metadata(get_post_thumbnail_id(get_the_id())));
+                                       if ($image_path): ?>
+                                        <img hspace="8" src="<?php echo img_data_base64($image_path); ?>" alt="picture" align="left"/>
+                                    <?php endif; ?>
                                     <p><a target="_tab" href="<?php echo get_permalink(); ?>" style="font-size: 16px; color: #000; text-decoration: none;font-family:Tahoma,Verdana,sans-serif"><?php the_title(); ?></a></p>
 
                                     <?php the_excerpt(); ?>

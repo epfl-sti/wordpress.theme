@@ -3,13 +3,14 @@
 if (!defined('ABSPATH'))
     exit;
 
-require_once(dirname(__FILE__) . '/inc/newsletter_items.php');
+require_once(dirname(__FILE__) . '/inc/newsletter.php');
+use function EPFL\STI\Theme\get_newsletter_categories;
 
 ?><?php echo $theme_options['theme_opening_text']; ?>
 
 * <?php echo $theme_options['theme_title']; ?>
 
-<?php foreach (EPFL\STI\Theme\get_newsletter_categories($theme_options) as $cat): ?>
+<?php foreach (get_newsletter_categories($theme_options) as $cat): ?>
 
 === <?php echo $cat->title(); ?>
 
