@@ -14,6 +14,9 @@ get_header();
 
 use function EPFL\STI\{get_events_from_memento,
                        curl_get};
+use function EPFL\STI\{ get_events_from_memento,
+                        get_news_from_actu,
+                        curl_get };
 
 ?>
 
@@ -138,6 +141,21 @@ $( "tr.slider-event-row" )
     foreach ($newsids as $newsid) {
         $newshtml = curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=" . $newsid);
         echo "<div class=\"sti_news_html\">$newshtml</div>";
+    // Fetch news from actu web service
+    $epfl_news = get_news_from_actu();
+    foreach ($epfl_news as $new) {
+  ?>
+      <div class="card epfl-new-card" style="width: 20rem; margin: 10px">
+        <img class="card-img-top epfl-new-card-img" src="<?php echo $new->news_large_thumbnail_absolute_url; // news_visual_absolute_url ?>" title="<?php echo $new->title; ?>" />
+        <div class="card-body epfl-new-card-body">
+          <a href="<?php echo $new->absolute_slug; ?>" target="_blank" class="epfl-new-card-link">
+            <h4 class="card-title epfl-new-card-title">
+              <?php echo $new->title; ?>
+            </h4>
+          </a>
+        </div>
+      </div>
+  <?php
     }
 
   ?>
