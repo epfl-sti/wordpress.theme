@@ -3,6 +3,8 @@
  * EPFL-specific functions
  */
 
+namespace EPFL\STI;
+
 function curl_get($url)
 {
   $ch = curl_init($url);
@@ -15,22 +17,10 @@ function curl_get($url)
   return $output;
 }
 
-function html_body($html)
-{
-  $d = new DOMDocument;
-  $d->loadHTML($html);
-  $body = $d->getElementsByTagName('body')->item(0);
-  $ret = "";
-  foreach ($body->childNodes as $childNode) {
-    $ret .= $d->saveHTML($childNode);
-  }
-  return $ret;
-}
-
 /* Retrieve events from the Memento REST api */
 // Note: idk what's the "published" entry, but it would be nicer to be sure
 //       to only fetch those one.
-function get_events($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?format=json', $limit=4)
+function get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?format=json', $limit=4)
 {
   $data = curl_get($url . '&limit=' . $limit);
   $data = json_decode($data);
