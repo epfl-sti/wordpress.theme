@@ -137,21 +137,21 @@ $( "tr.slider-event-row" )
     $epfl_news = get_news_from_actu();
     foreach ($epfl_news as $new) {
   ?>
-      <div class="card epfl-new-card">
-        <img class="card-img-top epfl-new-card-img" src="<?php echo $new->news_large_thumbnail_absolute_url; // news_visual_absolute_url ?>" title="<?php echo $new->title; ?>" />
-        <div class="card-body epfl-new-card-body">
-          <a href="<?php echo $new->absolute_slug; ?>" target="_blank" class="epfl-new-card-link">
-            <h4 class="card-title epfl-new-card-title">
-              <?php echo $new->title; ?>
-            </h4>
-          </a>
-        </div>
+    <div class="card epfl-new-card">
+      <img class="card-img-top epfl-new-card-img" src="<?php echo $new->news_large_thumbnail_absolute_url; // news_visual_absolute_url ?>" title="<?php echo $new->title; ?>" />
+      <div class="card-body epfl-new-card-body">
+        <a href="<?php echo $new->absolute_slug; ?>" target="_blank" class="epfl-new-card-link">
+          <h4 class="card-title epfl-new-card-title">
+            <?php echo $new->title; ?>
+          </h4>
+        </a>
       </div>
+    </div>
     <?php
     }
     ?>
-    </div>
-    <!-- End EPFL news -->
+  </div>
+  <!-- End EPFL news -->
 
   <div class="news news-stisrv13">
     <?php
