@@ -19,12 +19,8 @@ require_once(dirname(__FILE__) . '/inc/newsletter_items.php');
 	<style>
 	   .newsletter-title {
  background-color:#fff;
- font-size: 22px;
+ font-size: 28px;
  font-family: Tahoma, Verdana, sans-serif;
- border-left:1px solid #000;
- border-right:1px solid #000;
- border-top: 1px solid #000;
- border-bottom: 0px solid #eee;
  color: #000;
  padding:4px;
 	   }
