@@ -12,6 +12,8 @@ use function EPFL\STI\Theme\{get_newsletter_categories,
 // <table>s everywhere is the way to go - Not sure how ancient versions of Outlook
 // like HTML5 stuff. At any rate, the <head> is basically ignored.
 
+$date = "November 2017";
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -38,8 +40,12 @@ use function EPFL\STI\Theme\{get_newsletter_categories,
                                 <?php echo img_tag_data_base64(dirname(__FILE__) . "/banner.gif"); ?>
                             </td>
                         </tr>
-                        <?php foreach (get_newsletter_categories($theme_options) as $cat): ?>
-			<tr><td class="newsletter-title"><?php echo $cat->title(); ?><div style='display:block; float:right'>November 2017</div></td></tr>
+                        <?php $index = 0;
+                              foreach (get_newsletter_categories($theme_options) as $cat):
+                                  $index = $index + 1;
+                        ?>
+			<tr><td class="newsletter-title"><?php echo $cat->title(); ?>
+                                             <?php if ($date && (1 == $index)) { ?><div style='display:block; float:right'>November 2017</div><?php } ?></td></tr>
                         <?php
                         // Do not use &post, it leads to problems...
                         global $post;
