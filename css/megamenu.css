@@ -215,7 +215,7 @@ Mobile styles
     }
     .menu-mobile {
         display: block;
-        padding: 36px;
+        padding: 16px;
     }
     .menu-dropdown-icon:before {
         display: block;
