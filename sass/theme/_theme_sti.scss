@@ -99,6 +99,43 @@ ul.sti-megamenu a.sti_menu_link {
 .epfl-new-card-title {}
 
 /* -------------------------------
+          STI Shortcut Menu
+   ---------------------------- */
+/* https://codepen.io/anon/pen/zLxBo */
+.sti-shortcut-menu {
+  background-color: #D30017;
+  height: 170px;
+}
+.sti-shortcut-menu-flex {
+  list-style: none;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+.sti-link-box{
+  background: #AE0014;
+  padding: 5px;
+  width: 200px;
+  height: 150px;
+  margin: 10px;
+  line-height: 150px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-align: center;
+}
+.sti-link-box-a {
+  color: white;
+  font-weight: bolder;
+}
+
+
+/* -------------------------------
           STI Theme footer
    ---------------------------- */
 .sti-footer {
