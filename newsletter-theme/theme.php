@@ -22,19 +22,10 @@ $date = "November 2017";
     </head>
 
     <body>
-	<style>
-	   .newsletter-title {
- background-color:#fff;
- font-size: 28px;
- font-family: Tahoma, Verdana, sans-serif;
- color: #000;
- padding:4px;
-	   }
-	</style>
         <table bgcolor="#fff" width="100%" cellpadding="4" cellspacing="0" border="0">
             <tr>
                 <td align="center">
-                    <table width="500" bgcolor="#ffffff" align="center" cellspacing="10" cellpadding="0" style="border: 1px solid red;">
+                    <table width="500" bgcolor="#d5e2ff" align="center" cellspacing="10" cellpadding="0" style="border: 1px solid black;">
                         <tr>
                             <td>
                                 <?php echo img_tag_data_base64(dirname(__FILE__) . "/banner.gif"); ?>
@@ -44,8 +35,8 @@ $date = "November 2017";
                               foreach (get_newsletter_categories($theme_options) as $cat):
                                   $index = $index + 1;
                         ?>
-			<tr><td class="newsletter-title"><?php echo $cat->title(); ?>
-                                             <?php if ($date && (1 == $index)) { ?><div style='display:block; float:right'>November 2017</div><?php } ?></td></tr>
+			<tr><td class="newsletter-title" style="background-color:#039; font-size: 20px; font-family: Verdana, sans-serif; color: #feea45; padding:4px;"><?php echo $cat->title(); ?>
+                                             <?php if ($date && (1 == $index)) { ?><div style='display:block; float:right'>November 2017 <span style="color:#fff"> - #1</span></div><?php } ?></td></tr>
                         <?php
                         // Do not use &post, it leads to problems...
                         global $post;
@@ -61,13 +52,13 @@ $date = "November 2017";
 
                             ?>
                             <tr>
-                                <td style="font-size: 14px; color: #666; font-family:Tahoma,Verdana,sans-serif">
+                                <td style="padding: 6px; background-color:#fff; font-size: 14px; color: #666; font-family:Tahoma,Verdana,sans-serif">
                                    <?php
                                        $image_path = get_thumb_path(wp_get_attachment_metadata(get_post_thumbnail_id(get_the_id())));
                                        if ($image_path): ?>
                                         <img hspace="8" src="<?php echo img_data_base64($image_path); ?>" alt="picture" align="left"/>
                                     <?php endif; ?>
-                                    <p><a target="_tab" href="<?php echo get_permalink(); ?>" style="font-size: 16px; color: #000; text-decoration: none;font-family:Tahoma,Verdana,sans-serif"><?php the_title(); ?></a></p>
+                                    <p style="padding: 0px; margin: 0px;"><a target="_tab" href="<?php echo get_permalink(); ?>" style="font-size: 16px; color: #000; text-decoration: none;font-family:Tahoma,Verdana,sans-serif"><?php the_title(); ?></a></p>
 
                                     <?php the_excerpt(); ?>
                                 </td>
@@ -83,7 +74,7 @@ $date = "November 2017";
                         <?php } ?>
                         <tr>
                             <td style="border-top: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 12px; color: #999; font-family:Tahoma, Verdana, sans-serif;">
-                                <p>Dear {name}, this is the <?php echo get_option('blogname'); ?> newsletter.</p>
+                                <p style="padding: 0px; margin: 0px;">Dear {name}, this is the <?php echo get_option('blogname'); ?> newsletter.</p>
                                 You received this email because you subscribed for it as {email}. You can unsubscribe by clicking <a target="_tab" href="{unsubscription_url}">here</a>.
                             </td>
                         </tr>
