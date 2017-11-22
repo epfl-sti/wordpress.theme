@@ -113,42 +113,40 @@ $container = get_theme_mod( 'epflsti_container_type' );
                     </li>
                 </ul>
             </li>
-            <li><a href="#" class="sti_menu_link">Education</a>
+            <li><a href="#" class="sti_menu_link">Teaching</a>
                 <ul>
                     <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/education<?php echo rand(1,2); ?>.jpg" /></div></li> </ul> </li>
                     <li>Bachelor
                         <ul>
-                    	    <li><a href="#">Bachelor of Science in Engineering</a></li>
-                    	    <li><a href="#">Semester Projects</a></li>
+                            <li><a href="#">Bachelor of Science in Engineering</a></li>
+                            <li><a href="#">Semester Projects</a></li>
                         </ul>
                     </li>
                     <li>Master
                         <ul>
-                    	    <li><a href="#">Master of Science</a></li>
-                    	    <li><a href="#">Master Projects</a></li>
-                    	    <li><a href="#">Placements in Industry</a></li>
+                            <li><a href="#">Master of Science</a></li>
+                            <li><a href="#">Master Projects</a></li>
+                            <li><a href="#">Placements in Industry</a></li>
                         </ul>
                     </li>
                     <li>PhD
-			<ul>
-                    	    <li><a href="#">Doctoral Programs</a></li>
-                    	    <li><a href="#">Doctoral Portal</a></li>
-		            <li></li>
-		            <li></li>
-			</ul>
+                        <ul>
+                            <li><a href="#">Doctoral Programs</a></li>
+                            <li><a href="#">Doctoral Portal</a></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
                     </li>
                     <li>Testimonials
-			<ul>
-                    	    <li><a href="#">Doctoral Programs</a></li>
-			</ul>
-		    </li>
+                        <ul>
+                            <li><a href="#">Doctoral Programs</a></li>
+                       </ul>
+                    </li>
                 </ul>
             </li>
             <li><a href="#" class="sti_menu_link">Research</a>
-
                 <ul>
                     <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/research<?php echo rand(1,2); ?>.jpg" /></div></li> </ul> </li>
-
                     <li>Faculty
                         <ul>
                             <li><a href="#">Faculty Members</a></li>
@@ -185,42 +183,41 @@ $container = get_theme_mod( 'epflsti_container_type' );
                     </li>
                     <li>Technology Transfer
                         <ul>
-                    	    <li><a href="#">School of Engineering and Industry</a></li>
-                    	    <li><a href="#">Features</a></li>
+                            <li><a href="#">School of Engineering and Industry</a></li>
+                            <li><a href="#">Features</a></li>
                             <li></li>
-			</ul>
-		    </li>
+                        </ul>
+                    </li>
                     <li>Master Projects in Industry
-                     <ul>
-			<li><a href="#">Master Projects</a></li>
-                       <li><a href="#">Definition</a></li>
-                       <li><a href="#">Participating sections</a></li>
-                       <li><a href="#">Financial Support to Industry</a></li>
-                       <li><a href="#">Submit a Project</a></li>
-                       <li><a href="#">Master Placements Archive</a></li>
-                       <li><a href="#">Features</a></li>
-			<li></li>
-                     </ul>
-		    </li>
-
-		    <li>Industry Day
-			<ul>
-				<li><a href="#">STI Industry Day</a></li>
-				<li><a href="#">2017 Event Pictures</a></li>
-				<li><a href="#">Filmed Talks 2017</a></li>
-				<li><a href="#">2017 Program</a></li>
-				<li><a href="#">2016 archive</a></li>
-			<li></li>
-
-			</ul>
-		    </li>
+                        <ul>
+                            <li><a href="#">Master Projects</a></li>
+                            <li><a href="#">Definition</a></li>
+                            <li><a href="#">Participating sections</a></li>
+                            <li><a href="#">Financial Support to Industry</a></li>
+                            <li><a href="#">Submit a Project</a></li>
+                            <li><a href="#">Master Placements Archive</a></li>
+                            <li><a href="#">Features</a></li>
+                            <li></li>
+                        </ul>
+                    </li>
+                    <li>Industry Day
+                        <ul>
+                            <li><a href="#">STI Industry Day</a></li>
+                            <li><a href="#">2017 Event Pictures</a></li>
+                            <li><a href="#">Filmed Talks 2017</a></li>
+                            <li><a href="#">2017 Program</a></li>
+                            <li><a href="#">2016 archive</a></li>
+                            <li></li>
+                        </ul>
+                    </li>
                     <li>Patents
-                       <ul><li><a href="#">Patents database</a></li></ul>
-  		    </li>
+                        <ul>
+                            <li><a href="#">Patents database</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
         </ul>
-
     </div>
 </div>
 <!-- End ugly hard coded menu -->
