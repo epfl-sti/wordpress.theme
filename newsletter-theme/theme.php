@@ -23,18 +23,22 @@ $date = "November 2017";
 
     <body>
 	<style>
-	   .newsletter-title {
+.newsletter-title {
  background-color:#039;
  font-size: 20px;
  font-family: Verdana, sans-serif;
  color: #feea45;
  padding:4px;
-	   }
+}
+p {
+ padding: 0px;
+ margin: 0px;
+}
 	</style>
         <table bgcolor="#fff" width="100%" cellpadding="4" cellspacing="0" border="0">
             <tr>
                 <td align="center">
-                    <table width="500" bgcolor="#fdfceb" align="center" cellspacing="10" cellpadding="0" style="border: 1px solid black;">
+                    <table width="500" bgcolor="#d5e2ff" align="center" cellspacing="10" cellpadding="0" style="border: 1px solid black;">
                         <tr>
                             <td>
                                 <?php echo img_tag_data_base64(dirname(__FILE__) . "/banner.gif"); ?>
@@ -45,7 +49,7 @@ $date = "November 2017";
                                   $index = $index + 1;
                         ?>
 			<tr><td class="newsletter-title"><?php echo $cat->title(); ?>
-                                             <?php if ($date && (1 == $index)) { ?><div style='display:block; float:right'>November 2017 / Vol #1</div><?php } ?></td></tr>
+                                             <?php if ($date && (1 == $index)) { ?><div style='display:block; float:right'>November 2017 <span style="color:#fff"> - #1</span></div><?php } ?></td></tr>
                         <?php
                         // Do not use &post, it leads to problems...
                         global $post;
@@ -61,7 +65,7 @@ $date = "November 2017";
 
                             ?>
                             <tr>
-                                <td style="font-size: 14px; color: #666; font-family:Tahoma,Verdana,sans-serif">
+                                <td style="padding: 6px; background-color:#fff; font-size: 14px; color: #666; font-family:Tahoma,Verdana,sans-serif">
                                    <?php
                                        $image_path = get_thumb_path(wp_get_attachment_metadata(get_post_thumbnail_id(get_the_id())));
                                        if ($image_path): ?>
