@@ -28,8 +28,7 @@ function get_events_from_memento($url='https://memento.epfl.ch/api/jahia/memento
   return $data;
 }
 
-/* Fix https://github.com/epfl-sti/wordpress.theme/issues/9 */
-// Change from https://actu.epfl.ch/feeds/rss/STI/en/ to http://actu.epfl.ch/api/jahia/channels/enac/news/fr/?format=json
+// To adapt to your school, change from https://actu.epfl.ch/feeds/rss/STI/en/ to e.g. http://actu.epfl.ch/api/jahia/channels/enac/news/fr/?format=json
 function get_news_from_actu($url='https://actu.epfl.ch/api/jahia/channels/sti/news/en/?format=json', $limit=4)
 {
   $data = curl_get($url . '&limit=' . $limit);
