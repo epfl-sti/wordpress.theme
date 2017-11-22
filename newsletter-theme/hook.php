@@ -43,14 +43,14 @@ class EPFLSTINewsletterThemes extends NewsletterThemes {
         if (empty($data['type'])) {
             $data['type'] = 'standard';
         }
-        $data["screenshot"] = $this->get_theme_url() . "/screenshot.png";
+        $data["screenshot"] = $this->get_theme_url(false) . "/screenshot.png";
 
         return array("epfl-sti" => $data);
     }
     function get_file_path($theme, $file) {
         return dirname(__FILE__) . "/" . $file;
     }
-    function get_theme_url() {
+    function get_theme_url($unused_theme) {
         return get_theme_root_uri() . "/" . $this->_get_theme_basename() . "/newsletter-theme";
     }
     function _get_theme_basename() {
