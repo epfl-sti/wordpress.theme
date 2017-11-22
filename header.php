@@ -116,6 +116,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
                 </ul>
             </li>
             <li><a href="#" class="sti_menu_link">Teaching</a>
+            <li><a href="#" class="sti_menu_link">Education</a>
                 <ul>
                     <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/education<?php echo rand(1,2); ?>.jpg" /></div></li> </ul> </li>
                     <li>Bachelor
