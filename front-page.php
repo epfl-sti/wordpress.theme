@@ -32,7 +32,7 @@ use function EPFL\STI\{ get_events_from_memento,
                             </td>
                         </tr>
                         <?php
-                          $events = get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?format=json', $limit=4);
+                          $events = get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=4);
                           foreach ($events as $event) {
                              $event_day = date("d", strtotime($event->event_start_date));
                              $event_month = strtoupper(date("M", strtotime($event->event_start_date)));
@@ -48,7 +48,15 @@ use function EPFL\STI\{ get_events_from_memento,
                                        </span>
                                     </div>
                                     <div class="slider-event-title">
-                                       <?php echo $event->title; ?><br />
+                                       <?php
+                                       $max_len = 63;
+                                       $s = $event->title;
+                                       if (strlen($event->title) > $max_len) {
+                                         $offset = ($max_len - 3) - strlen($event->title);
+                                         $s = substr($event->title, 0, strrpos($event->title, ' ', $offset)) . '…';
+                                       };
+                                       echo $s;
+                                       ?><br />
                                     </div>
                                 </td>
                             </tr>
