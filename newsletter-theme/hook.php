@@ -43,7 +43,7 @@ class EPFLSTINewsletterThemes extends NewsletterThemes {
         if (empty($data['type'])) {
             $data['type'] = 'standard';
         }
-        $data["screenshot"] = $this->get_theme_url(null) . "/screenshot.png";
+        $data["screenshot"] = $this->get_theme_url(false) . "/screenshot.png";
 
         return array("epfl-sti" => $data);
     }
