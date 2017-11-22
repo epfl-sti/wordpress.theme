@@ -22,19 +22,6 @@ $date = "November 2017";
     </head>
 
     <body>
-	<style>
-.newsletter-title {
- background-color:#039;
- font-size: 20px;
- font-family: Verdana, sans-serif;
- color: #feea45;
- padding:4px;
-}
-p {
- padding: 0px;
- margin: 0px;
-}
-	</style>
         <table bgcolor="#fff" width="100%" cellpadding="4" cellspacing="0" border="0">
             <tr>
                 <td align="center">
@@ -48,7 +35,7 @@ p {
                               foreach (get_newsletter_categories($theme_options) as $cat):
                                   $index = $index + 1;
                         ?>
-			<tr><td class="newsletter-title"><?php echo $cat->title(); ?>
+			<tr><td class="newsletter-title" style="background-color:#039; font-size: 20px; font-family: Verdana, sans-serif; color: #feea45; padding:4px;"><?php echo $cat->title(); ?>
                                              <?php if ($date && (1 == $index)) { ?><div style='display:block; float:right'>November 2017 <span style="color:#fff"> - #1</span></div><?php } ?></td></tr>
                         <?php
                         // Do not use &post, it leads to problems...
@@ -71,7 +58,7 @@ p {
                                        if ($image_path): ?>
                                         <img hspace="8" src="<?php echo img_data_base64($image_path); ?>" alt="picture" align="left"/>
                                     <?php endif; ?>
-                                    <p><a target="_tab" href="<?php echo get_permalink(); ?>" style="font-size: 16px; color: #000; text-decoration: none;font-family:Tahoma,Verdana,sans-serif"><?php the_title(); ?></a></p>
+                                    <p style="padding: 0px; margin: 0px;"><a target="_tab" href="<?php echo get_permalink(); ?>" style="font-size: 16px; color: #000; text-decoration: none;font-family:Tahoma,Verdana,sans-serif"><?php the_title(); ?></a></p>
 
                                     <?php the_excerpt(); ?>
                                 </td>
@@ -87,7 +74,7 @@ p {
                         <?php } ?>
                         <tr>
                             <td style="border-top: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 12px; color: #999; font-family:Tahoma, Verdana, sans-serif;">
-                                <p>Dear {name}, this is the <?php echo get_option('blogname'); ?> newsletter.</p>
+                                <p style="padding: 0px; margin: 0px;">Dear {name}, this is the <?php echo get_option('blogname'); ?> newsletter.</p>
                                 You received this email because you subscribed for it as {email}. You can unsubscribe by clicking <a target="_tab" href="{unsubscription_url}">here</a>.
                             </td>
                         </tr>
