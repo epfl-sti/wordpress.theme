@@ -50,7 +50,7 @@ class EPFLSTINewsletterThemes extends NewsletterThemes {
     function get_file_path($theme, $file) {
         return dirname(__FILE__) . "/" . $file;
     }
-    function get_theme_url($theme) {
+    function get_theme_url() {
         return get_theme_root_uri() . "/" . $this->_get_theme_basename() . "/newsletter-theme";
     }
     function _get_theme_basename() {
