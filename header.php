@@ -42,14 +42,12 @@ $container = get_theme_mod( 'epflsti_container_type' );
     <div class="menu">
 
             <!-- Your site logo -->
-            
             <?php if ( ! has_custom_logo() ) { ?>
                <a href="https://www.epfl.ch"> <img id=epfl_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a>
                <a href="<?php echo esc_url( home_url( '/' ) ); ?>"> <img id=sti_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.gif" /></a>
             <?php } else {
                     the_custom_logo();
             } ?><!-- end custom logo -->
-	   <!---a href="<?php echo esc_url( home_url( '/' ) ); ?>"><acronym title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" style="text-decoration: none;"><?php bloginfo( 'name' ); ?></acronym></a---> 
 
       <ul>
             <li><a class="sti_menu_link" href="#">The School</a>
@@ -111,26 +109,26 @@ $container = get_theme_mod( 'epflsti_container_type' );
                     <li>Contact
                         <ul>
                             <li><a href="#">Contact Us</a></li>
-			</ul>
+                        </ul>
                     </li>
                 </ul>
             </li>
-            <li><a href="#" class="sti_menu_link">Teaching</a>
+            <li><a href="#" class="sti_menu_link">Education</a>
                 <ul>
                     <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/education<?php echo rand(1,2); ?>.jpg" /></div></li> </ul> </li>
                     <li>Bachelor
                         <ul>
                     	    <li><a href="#">Bachelor of Science in Engineering</a></li>
                     	    <li><a href="#">Semester Projects</a></li>
-			</ul>
+                        </ul>
                     </li>
                     <li>Master
-			<ul>
+                        <ul>
                     	    <li><a href="#">Master of Science</a></li>
                     	    <li><a href="#">Master Projects</a></li>
                     	    <li><a href="#">Placements in Industry</a></li>
-			</ul>
-		    </li>
+                        </ul>
+                    </li>
                     <li>PhD
 			<ul>
                     	    <li><a href="#">Doctoral Programs</a></li>
@@ -186,10 +184,10 @@ $container = get_theme_mod( 'epflsti_container_type' );
                         </ul>
                     </li>
                     <li>Technology Transfer
-			<ul>
+                        <ul>
                     	    <li><a href="#">School of Engineering and Industry</a></li>
                     	    <li><a href="#">Features</a></li>
-			    <li></li>
+                            <li></li>
 			</ul>
 		    </li>
                     <li>Master Projects in Industry
@@ -204,7 +202,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
 			<li></li>
                      </ul>
 		    </li>
-			
+
 		    <li>Industry Day
 			<ul>
 				<li><a href="#">STI Industry Day</a></li>
@@ -222,7 +220,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
                 </ul>
             </li>
         </ul>
-        
+
     </div>
 </div>
 <!-- End ugly hard coded menu -->
