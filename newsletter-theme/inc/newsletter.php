@@ -1,6 +1,6 @@
 <?php
 
-namespace EPFL\STI\Theme;
+namespace EPFL\STI\Newsletter;
 
 if (!defined('ABSPATH'))
     exit;
@@ -68,7 +68,7 @@ class FacultyNewsCategory extends PostCategory
 /**
  * @return the absolute path to this image's thumbnail version
  */
-function get_thumb_path( $imagedata ) {
+function get_thumb_relpath( $imagedata ) {
     if ( empty($imagedata) ||
          empty($imagedata['sizes']) ||
          empty($imagedata['sizes']['thumbnail']) ||
@@ -77,20 +77,6 @@ function get_thumb_path( $imagedata ) {
     }
 	$image_lives_in_this_subdir = dirname($imagedata['file']);
     $thumb_basename = $imagedata['sizes']['thumbnail']['file'];
-    return sprintf("%s/uploads/%s/%s",
-    WP_CONTENT_DIR, $image_lives_in_this_subdir, $thumb_basename);
-}
-
-function img_data_base64 ($path) {
-    $imageData = base64_encode(file_get_contents($path));
-    return 'data: '.mime_content_type($path).';base64,'.$imageData;
-}
-
-function img_tag_data_base64 ($path, $attributes = array()) {
-    $attributes['src'] = img_data_base64($path);
-    return '<img '. implode(' ',
-                              array_map(function ($k, $v) {
-                                  return $k .'="'. htmlspecialchars($v) .'"';
-                              }, array_keys($attributes), $attributes))
-                    .' />';
+    return sprintf("wp-content/uploads/%s/%s",
+    $image_lives_in_this_subdir, $thumb_basename);
 }
