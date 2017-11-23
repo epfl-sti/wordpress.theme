@@ -1,13 +1,11 @@
 <?php
 
+namespace EPFL\STI\Newsletter;
+
 if (!defined('ABSPATH'))
     exit;
 
 require_once(dirname(__FILE__) . '/inc/newsletter.php');
-use function EPFL\STI\Theme\{get_newsletter_categories,
-                             get_thumb_path,
-                             img_data_base64,
-                             img_tag_data_base64};
 
 // <table>s everywhere is the way to go - Not sure how ancient versions of Outlook
 // like HTML5 stuff. At any rate, the <head> is basically ignored.

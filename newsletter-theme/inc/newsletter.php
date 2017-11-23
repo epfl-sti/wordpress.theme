@@ -1,6 +1,6 @@
 <?php
 
-namespace EPFL\STI\Theme;
+namespace EPFL\STI\Newsletter;
 
 if (!defined('ABSPATH'))
     exit;

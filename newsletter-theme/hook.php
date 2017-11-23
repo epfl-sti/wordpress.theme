@@ -1,5 +1,10 @@
 <?php
 
+namespace EPFL\STI\Newsletter;
+use \Newsletter;
+use \NewsletterThemes;
+use \NewsletterEmails;
+
 /**
  * Hooking logic for the EPFL-STI newsletter theme
  *
