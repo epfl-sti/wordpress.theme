@@ -7,8 +7,25 @@ if (!defined('ABSPATH'))
 
 require_once(dirname(__FILE__) . '/inc/newsletter.php');
 
+function css()
+{ ?>
+<style type="text/css">
+.newsletter-title {
+ background-color:#039;
+ font-size: 20px;
+ font-family: Verdana, sans-serif;
+ color: #feea45;
+ padding:4px;
+}
+p {
+ padding: 0px;
+ margin: 0px;
+}
+</style>
+<?php }
+
 // <table>s everywhere is the way to go - Not sure how ancient versions of Outlook
-// like HTML5 stuff. At any rate, the <head> is basically ignored.
+// like HTML5 stuff.
 
 $date = "November 2017";
 
@@ -17,6 +34,7 @@ $date = "November 2017";
 <html>
     <head>
         <title></title>
+        <?php css(); ?>
     </head>
 
     <body>
@@ -33,7 +51,7 @@ $date = "November 2017";
                               foreach (get_newsletter_categories($theme_options) as $cat):
                                   $index = $index + 1;
                         ?>
-			<tr><td class="newsletter-title" style="background-color:#039; font-size: 20px; font-family: Verdana, sans-serif; color: #feea45; padding:4px;"><?php echo $cat->title(); ?>
+			<tr><td class="newsletter-title"><?php echo $cat->title(); ?>
                                              <?php if ($date && (1 == $index)) { ?><div style='display:block; float:right'>November 2017 <span style="color:#fff"> - #1</span></div><?php } ?></td></tr>
                         <?php
                         // Do not use &post, it leads to problems...
@@ -56,7 +74,7 @@ $date = "November 2017";
                                        if ($image_path): ?>
                                         <img hspace="8" src="<?php echo img_data_base64($image_path); ?>" alt="picture" align="left"/>
                                     <?php endif; ?>
-                                    <p style="padding: 0px; margin: 0px;"><a target="_tab" href="<?php echo get_permalink(); ?>" style="font-size: 16px; color: #000; text-decoration: none;font-family:Tahoma,Verdana,sans-serif"><?php the_title(); ?></a></p>
+                                    <p><a target="_tab" href="<?php echo get_permalink(); ?>" style="font-size: 16px; color: #000; text-decoration: none;font-family:Tahoma,Verdana,sans-serif"><?php the_title(); ?></a></p>
 
                                     <?php the_excerpt(); ?>
                                 </td>
@@ -72,7 +90,7 @@ $date = "November 2017";
                         <?php } ?>
                         <tr>
                             <td style="border-top: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 12px; color: #999; font-family:Tahoma, Verdana, sans-serif;">
-                                <p style="padding: 0px; margin: 0px;">Dear {name}, this is the <?php echo get_option('blogname'); ?> newsletter.</p>
+                                <p>Dear {name}, this is the <?php echo get_option('blogname'); ?> newsletter.</p>
                                 You received this email because you subscribed for it as {email}. You can unsubscribe by clicking <a target="_tab" href="{unsubscription_url}">here</a>.
                             </td>
                         </tr>
