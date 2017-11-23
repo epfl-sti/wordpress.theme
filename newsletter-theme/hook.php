@@ -25,6 +25,10 @@ if (! file_exists($newsletter_plugin_entrypoint)) {
 }
 require_once($newsletter_plugin_entrypoint);
 require_once("$newsletter_plugin_dir/emails/emails.php");
+require_once(dirname(__FILE__) . "/inc/newsletter.php");
+
+require_once(dirname(dirname(__FILE__)) . "/inc/epfl.php");
+use function \EPFL\STI\get_theme_absolute_uri;
 
 /**
  * Like the newsletter plugin's NewsletterThemes, except that there is
@@ -56,10 +60,7 @@ class EPFLSTINewsletterThemes extends NewsletterThemes {
         return dirname(__FILE__) . "/" . $file;
     }
     function get_theme_url($unused_theme) {
-        return get_theme_root_uri() . "/" . $this->_get_theme_basename() . "/newsletter-theme";
-    }
-    function _get_theme_basename() {
-        return basename(dirname(dirname(__FILE__)));
+        return get_theme_absolute_uri() . "/newsletter-theme";
     }
 }
 

@@ -5,6 +5,9 @@ namespace EPFL\STI\Newsletter;
 if (!defined('ABSPATH'))
     exit;
 
+require_once(dirname(dirname(__FILE__)) . "/inc/epfl.php");
+use function \EPFL\STI\get_theme_relative_uri;
+
 require_once(dirname(__FILE__) . '/inc/newsletter.php');
 
 function css()
@@ -44,7 +47,7 @@ $date = "November 2017";
                     <table width="500" bgcolor="#d5e2ff" align="center" cellspacing="10" cellpadding="0" style="border: 1px solid black;">
                         <tr>
                             <td>
-                                <?php echo img_tag_data_base64(dirname(__FILE__) . "/banner.gif"); ?>
+                                <img src="<?php echo get_theme_relative_uri() . "/newsletter-theme/banner.gif"; ?>"/>
                             </td>
                         </tr>
                         <?php $index = 0;
@@ -70,9 +73,9 @@ $date = "November 2017";
                             <tr>
                                 <td style="padding: 6px; background-color:#fff; font-size: 14px; color: #666; font-family:Tahoma,Verdana,sans-serif">
                                    <?php
-                                       $image_path = get_thumb_path(wp_get_attachment_metadata(get_post_thumbnail_id(get_the_id())));
+                                       $image_path = get_thumb_relpath(wp_get_attachment_metadata(get_post_thumbnail_id(get_the_id())));
                                        if ($image_path): ?>
-                                        <img hspace="8" src="<?php echo img_data_base64($image_path); ?>" alt="picture" align="left"/>
+                                        <img hspace="8" src="<?php echo $image_path; ?>" alt="picture" align="left"/>
                                     <?php endif; ?>
                                     <p><a target="_tab" href="<?php echo get_permalink(); ?>" style="font-size: 16px; color: #000; text-decoration: none;font-family:Tahoma,Verdana,sans-serif"><?php the_title(); ?></a></p>
 
