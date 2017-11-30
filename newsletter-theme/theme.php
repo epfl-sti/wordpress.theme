@@ -20,6 +20,10 @@ function css()
  color: #feea45;
  padding:4px;
 }
+<?php # https://stackoverflow.com/a/18721938/435004 ?>
+td > img {
+    vertical-align: top;
+}
 p {
  padding: 0px;
  margin: 0px;
@@ -55,7 +59,7 @@ $date = "Vol. 1, No. 1, November 2017";
                                   <td align=right style="padding: 0px 8px 0px 0px; margin: 0px; font: bold 9px verdana; background-color:white;"><?php echo $date; ?></td>
 				 </tr>
 				 <tr>
-                                  <td><img src="<?php echo get_theme_relative_uri() . "/newsletter-theme/outrider.gif"; ?>"/></td>
+                                  <td><img src="<?php echo get_theme_relative_uri() . "/newsletter-theme/outrider.gif"; ?>" style="display: block;"/></td>
 				 </tr>
 				</table> 
 
