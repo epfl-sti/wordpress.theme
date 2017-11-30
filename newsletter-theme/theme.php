@@ -30,7 +30,7 @@ p {
 // <table>s everywhere is the way to go - Not sure how ancient versions of Outlook
 // like HTML5 stuff.
 
-$date = "November 2017";
+$date = "Vol. 1, No. 1, November 2017";
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -41,21 +41,35 @@ $date = "November 2017";
     </head>
 
     <body>
-        <table bgcolor="#fff" width="100%" cellpadding="4" cellspacing="0" border="0">
+        <table bgcolor="white" width="100%" cellpadding="4" cellspacing="0" border="0">
             <tr>
                 <td align="center">
-                    <table width="500" bgcolor="#d5e2ff" align="center" cellspacing="10" cellpadding="0" style="border: 1px solid black;">
+                    <table width="500" bgcolor="#d6d6d6" align="center" cellspacing="10" cellpadding="0">
                         <tr>
                             <td>
-                                <img src="<?php echo get_theme_relative_uri() . "/newsletter-theme/banner.gif"; ?>"/>
+				<table cellpadding=0 cellspacing=0 border=0>
+				 <tr>
+                                  <td><img src="<?php echo get_theme_relative_uri() . "/newsletter-theme/banner.gif"; ?>"/></td>
+				 </tr>
+				 <tr>
+                                  <td align=right style="padding: 0px 8px 0px 0px; margin: 0px; font: bold 9px verdana; background-color:white;"><?php echo $date; ?></td>
+				 </tr>
+				 <tr>
+                                  <td><img src="<?php echo get_theme_relative_uri() . "/newsletter-theme/outrider.gif"; ?>"/></td>
+				 </tr>
+				</table> 
+
                             </td>
                         </tr>
+			<tr>
+				<td>
+					<img src="<?php echo get_theme_relative_uri() . "/newsletter-theme/feature.png"; ?>"/></td>
+				</td>
+			</tr>
                         <?php $index = 0;
                               foreach (get_newsletter_categories($theme_options) as $cat):
                                   $index = $index + 1;
                         ?>
-			<tr><td class="newsletter-title"><?php echo $cat->title(); ?>
-                                             <?php if ($date && (1 == $index)) { ?><div style='display:block; float:right'>November 2017 <span style="color:#fff"> - #1</span></div><?php } ?></td></tr>
                         <?php
                         // Do not use &post, it leads to problems...
                         global $post;
