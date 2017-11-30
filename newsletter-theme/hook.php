@@ -89,8 +89,6 @@ class EPFLSTIMailer
 
     function mail($to, $subject, $message, $headers = null, $enqueue = false)
     {
-        file_put_contents(dirname(__FILE__)."/msg.dump", var_export($message, true)); // XXX DEBUG
-
         $phpmailer = $this->phpmailer();
         $phpmailer->ClearAddresses();      // $phpmailer might be re-used
         $phpmailer->AddAddress($to);
@@ -146,6 +144,26 @@ class EPFLSTIMailer
      */
     function massage_html ($html) {
          $doc = new \DOMDocument();
+
+         // Unless told otherwise, DOMDocument::loadHTML() assumes
+         // iso-8859-1 (https://stackoverflow.com/a/8218649/435004).
+         // Again, rather than trusting the HTML editors to preserve a
+         // <meta charset="UTF-8"> at the beginning of the string,
+         // inject or update an XML prolog to clue DOMDocument in.
+         $xml_prolog = array();
+         preg_match("/^(<\?xml.*?\?>)/s", trim($html), $xml_prolog);
+         $html = preg_replace("/^(<\?xml.*?\?>)/s", "", trim($html));
+         if (! $xml_prolog[0]) {
+             $html = '<?xml encoding="utf-8" ?>' . $html;
+         } elseif (preg_match("/encoding=/i", $xml_prolog[0])) {
+             // Straight out disbelieve it.
+             $html = preg_replace("/encoding=['\"].*?['\"]/i",
+                                  "encoding=\"utf-8\"", $xml_prolog) . $html;
+         } else {
+             $html = preg_replace('/\?>$', $xml_prolog,
+                                  "encoding=\"utf-8\"?>") . $html;
+         }
+
          @$doc->loadHTML($html);
          $base = get_home_url();
          if (! preg_match('/\/$/', $base)) {
