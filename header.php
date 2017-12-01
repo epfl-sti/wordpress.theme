@@ -23,13 +23,11 @@ $container = get_theme_mod( 'epflsti_container_type' );
 
     <!-- Custom -->
     <!-- CSS -->
-    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/normalize.css">
-    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/ionicons.min.css">
+    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/normalize.css">
+    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/ionicons.min.css">
     <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/megamenu.css">
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
     <link href='<?php echo get_stylesheet_directory_uri(); ?>/css/firststep.css' rel='stylesheet' type='text/css'>
-    <!-- JS -->
-    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/modernizr.js"></script>
     <!-- end custom -->
 
     <?php wp_head(); ?>
