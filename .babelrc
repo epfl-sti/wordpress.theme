@@ -1,0 +1,10 @@
+{
+  // See http://2ality.com/2017/02/babel-preset-env.html
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ["> 5%", "ie >= 8"]
+      }
+    }]
+  ]
+}
