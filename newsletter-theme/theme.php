@@ -78,21 +78,30 @@ $date = "Vol. 1, No. 1, November 2017";
 		       	function redtitle($name) {
 			 return "<tr> <td style='font-family:verdana,sans-serif; background-color: #c50813; color:white; padding: 4px 0px 4px 8px; '>$name</td> </tr>";
 		       	} 
+                        function format_date($day,$month) {
+			       return "<table cellpadding=0 cellspacing=0 border=0 style='border:3px solid #aaa; background-color:#eee;'><td style='width: 36px; padding:0px 5px 0px 5px' align=center><span style='font-size:20px;'>$day</span><br><span style='font-weight: normal; color:#c50813; vertical-align:top;'><sup>$month</span></td></table>";
+		        }
+			function format_event($title,$day,$month,$link,$place,$outlink) {
+			       $datebox=format_date($day,$month);
+			       return "<a href=$link><table><tr><td style='font-size:14px; width:100%; padding: 0px 0px 10px 0px;' colspan=2>$title</td></tr><tr><td style='padding: 0px 0px 10px 0px;' width=50 align=left valign=top>$datebox</td><td style='font-size:12px;' align=right>$place<br>$outlink</td></tr><tr height=2><td colspan=2 height=2 style='background-color:#c50813; height:2px;'></td></tr></table></a>";
+		        }
+			function format_media($article,$link,$source,$date) {
+			       return "<a href=#><table><tr><td style='font-size:14px; width:100%; padding: 0px 0px 10px 0px;'>$article</td></tr><tr><td style='font-size:10px;' align=right>$source, $date</td></tr><tr height=2><td colspan=2 height=2 style='background-color:#c50813; height:2px;'></td></tr></table></a>";
+		        }
 			$whitebg="style='background-color:white;'";
-			$opentable="<table width=100% cellpadding=0 cellspacing=0 border=0>";
+			$opentable="<table width=100% cellpadding=8 cellspacing=0 border=0>";
 		       	$righthand_column=$opentable;
 			$righthand_column.=redtitle("EVENTS");
 			$righthand_column.="
 			 <tr>
-			  <td $whitebg>phew
+			  <td $whitebg>".format_event('Autonomous cars, intelligent cars','27','nov','#','EPFL Wallis','Add to calendar')." </td>
+			 </tr>
+			 <tr>
+			  <td $whitebg>".format_event('Cutting diamonds to make optical components','28','nov','#','Forum Rolex','Add to calendar')."
 			  </td>
 			 </tr>
 			 <tr>
-			  <td $whitebg>event
-			  </td>
-			 </tr>
-			 <tr>
-			  <td $whitebg>more
+			  <td $whitebg align=right><a href=#><table><td style='font-size:12px;'>More...</td></table></a> 
 			  </td>
 			 </tr>
 			</table>
@@ -101,20 +110,15 @@ $date = "Vol. 1, No. 1, November 2017";
 		       $righthand_column.=redtitle("IN THE MEDIA");
 		       $righthand_column.="
 			 <tr>
-			  <td $whitebg>phew
+			  <td $whitebg>".format_media('BBC feature Prof. Floreano&apos;s work on bio-inspired flight','#','BBC','14th November, 2017')."
 			  </td>
 			 </tr>
 			 <tr>
-			  <td $whitebg>event
-			  </td>
-			 </tr>
-			 <tr>
-			  <td $whitebg>more
+			  <td $whitebg>".format_media('National Radio covers the two European projects to be led by Tobias Kippenberg','#','RTS','20th November, 2017')."
 			  </td>
 			 </tr>
 			</table>
 		       ";
-
 		       $index = 0;
 		       $count = 0;
                        foreach (get_newsletter_categories($theme_options) as $cat):
@@ -180,9 +184,18 @@ $date = "Vol. 1, No. 1, November 2017";
                             </tr>
                         <?php } ?>
                         <tr>
-                            <td colspan=2 style="border-top: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 12px; color: #999; font-family:Tahoma, Verdana, sans-serif;">
-                                <p>Dear {name}, this is the <?php echo get_option('blogname'); ?> newsletter.</p>
-                                You received this email because you subscribed for it as {email}. You can unsubscribe by clicking <a target="_tab" href="{unsubscription_url}">here</a>.
+			    <td colspan=2>
+			  	<table cellpadding=0 cellspacing=0 border=0 width=100%>
+			         <tr> <td style='height:10px; background-color: #c50813; width:100%'></td> </tr>
+				 <tr>
+				  <td style="background-color:white;font-size:10px; font-family:verdana,sans-serif;padding: 5px;" align=center>
+                                   School of Engineering, &Eacute;cole Polytechnique F&eacute;d&eacute;rale de Lausanne (EPFL), Switzerland<br>
+				You can access previous versions of the newsletter here
+<br>
+Unsubscribe by clicking <a target="_tab" href="{unsubscription_url}">here</a>
+				 </td>
+				 </tr>
+			        </table>
                             </td>
                         </tr>
                     </table>
