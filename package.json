@@ -29,17 +29,30 @@
   },
   "homepage": "https://sti.epfl.ch",
   "dependencies": {
+    "axios": "^0.17.1",
     "bootstrap": "4.0.0-beta.2",
     "ionicons": "^3.0.0",
     "jquery": "3.2.1",
     "jquery-touchswipe": "^1.6.15",
     "normalize.css": "^7.0.0",
-    "popper.js": "^1.13.0"
+    "popper.js": "^1.13.0",
+    "vue": "^2.5.9",
+    "vue-axios": "^2.0.2",
+    "vue-router": "^3.0.1",
+    "vuedraggable": "^2.15.0",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.33",
+    "@babel/preset-env": "^7.0.0-beta.33",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babelify": "^8.0.0",
     "browser-sync": "^2.21.0",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
+    "gulp-bro": "^1.0.2",
     "gulp-clean-css": "^3.9.0",
     "gulp-clone": "^1.0.0",
     "gulp-concat": "^2.6.1",
@@ -55,6 +68,7 @@
     "gulp-uglify": "^3.0.0",
     "gulp-watch": "^4.3.11",
     "lazypipe": "^1.0.1",
+    "vueify": "^9.4.1",
     "yargs": "^10.0.3"
   }
 }

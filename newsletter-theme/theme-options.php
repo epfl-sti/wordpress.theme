@@ -27,6 +27,8 @@ $theme_defaults = array(
 $controls->merge_defaults($theme_defaults);
 ?>
 
+<div id="vuenewslettercomposer">
+</div>
 <table class="form-table">
     <tr valign="top">
         <th>Max new posts to include</th>

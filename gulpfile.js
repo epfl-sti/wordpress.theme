@@ -12,6 +12,9 @@ const through2 = require("through2");
 const sass = require('gulp-sass');
 const imagemin = require('gulp-imagemin');
 const sourcemaps = require('gulp-sourcemaps');
+const bro = require('gulp-bro');
+const babelify = require('babelify');
+const vueify = require('vueify');
 const cleanCSS = require('gulp-clean-css');
 const modernizr = require('gulp-modernizr');
 const uglify = require('gulp-uglify');
@@ -52,7 +55,8 @@ if (argv.browser) {
 // gulp all
 // gulp
 // The default rule: build everything once, then stop
-gulp.task('default', ['copy-assets', 'imagemin', 'scripts', 'sass'])
+gulp.task('default', ['copy-assets', 'imagemin',
+                      'scripts', 'admin-scripts', 'sass'])
 gulp.task('all', ['default'])
 
 // Run:
@@ -61,6 +65,8 @@ gulp.task('all', ['default'])
 gulp.task('watch', ['default'], function () {
     gulp.watch('./sass/**/*', ['sass']);
     gulp.watch(['js/**/*.js'], ['scripts']);
+    gulp.watch(['newsletter-theme/**/*.js', 'newsletter-theme/**/*.vue'],
+               ['admin-scripts']);
     gulp.watch('./img/src/**', ['imagemin'])
 });
 
@@ -105,7 +111,7 @@ gulp.task('imagemin', function(){
 
 // Run: 
 // gulp scripts
-// Concat all JS files (incl. compiled Vue files) into assets/theme{,.min}.js
+// Concat all JS files into assets/theme{,.min}.js
 gulp.task('scripts', function() {
     return gulp.src([
         'node_modules/popper.js/dist/umd/popper.js',  // Bootstrap dependency, must come before it
@@ -113,6 +119,28 @@ gulp.task('scripts', function() {
         'js/**/*.js'
     ])
         .pipe(bundleJS('theme.js'))
+        .pipe(assetsDest())  // Save un-minified, then continue
+        .pipe(uglifyJS({suffix: '.min'}))
+        .pipe(assetsDest());
+});
+
+// Run:
+// gulp admin-scripts
+// Concat all JS files for the admin pages into assets/admin-theme{,.min}.js
+gulp.task('admin-scripts', function() {
+    return gulp.src([
+        './newsletter-theme/*.vue',
+        './newsletter-theme/*.js'
+    ])
+        .pipe(bro({
+            "transform": [
+                'vueify',
+                'babelify', // See options in .babelrc
+                // TODO: produce an uglified version for prod
+                // (see https://github.com/ngryman/gulp-bro)
+            ]
+        }))
+        .pipe(bundleJS('newsletter-admin.js'))
         .pipe(assetsDest())  // Save un-minified, then continue
         .pipe(uglifyJS({suffix: '.min'}))
         .pipe(assetsDest());
