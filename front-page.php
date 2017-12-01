@@ -132,12 +132,6 @@ $( "tr.slider-event-row" )
     </div>
 </div>
 
-<script>
-    jQuery(function() {
-        window.frontpage_init();
-    });
-</script>
-
   <!-- Begin EPFL news -->
   <div class="news epfl-news">
   <?php
