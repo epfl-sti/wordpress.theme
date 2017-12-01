@@ -1,5 +1,10 @@
 <?php
 
+/*
+Theme Name: EPFL STI
+Description: Newsletter theme for the School of Engineering
+*/
+
 namespace EPFL\STI\Newsletter;
 
 if (!defined('ABSPATH'))
