@@ -76,7 +76,7 @@ $date = "Vol. 1, No. 1, November 2017";
 			</tr>
                        <?php 
 		       	function redtitle($name) {
-			 return "<tr> <td style='background-color: #c50813; color:white; padding: 4px 0px 4px 8px; '>$name</td> </tr>";
+			 return "<tr> <td style='font-family:verdana,sans-serif; background-color: #c50813; color:white; padding: 4px 0px 4px 8px; '>$name</td> </tr>";
 		       	} 
 			$whitebg="style='background-color:white;'";
 			$opentable="<table width=100% cellpadding=0 cellspacing=0 border=0>";
@@ -121,7 +121,9 @@ $date = "Vol. 1, No. 1, November 2017";
                                   $index = $index + 1;
                         // Do not use &post, it leads to problems...
                         global $post;
-                        foreach ($cat->posts() as $post):
+		        foreach ($cat->posts() as $post):
+
+			 if ($count<5) { // for layout purposes, temporary
 
                          // Setup the post (WordPress requirement)
                          setup_postdata($post);
@@ -129,8 +131,10 @@ $date = "Vol. 1, No. 1, November 2017";
                          // The theme can "suggest" a subject replacing the one configured, for example. In this case
                          // the theme, is there is no subject, suggest the first post title.
                          if (empty($theme_options['subject'])) $theme_options['subject'] = $post->post_title;
-			 if ($count<1) {
-			  $colspan="colspan=2"; #first article only
+			 if (($count<1)||($count>3)){
+			  if ($count<1) {
+				 $colspan="colspan=2"; #first article only
+		   	  }
 			  $rowstyle="' style='font-size: 18px; color: #000; text-decoration: none;font-family:Tahoma,Verdana,sans-serif'>";
 			  $imagesize="width:250px";
   			 }
@@ -138,6 +142,10 @@ $date = "Vol. 1, No. 1, November 2017";
 			  $colspan="colspan=1";	
 			  $rowstyle="' style='font-size: 14px; color: #000; text-decoration: none;font-family:Tahoma,Verdana,sans-serif'>";
 			  $imagesize="";
+			 }
+			 if ($count>3) {
+			  echo "<tr><td><table cellpadding=0 cellspacing=0 border=0>";
+			  echo redtitle("OPEN POSITIONS");
 			 }
                          echo "<tr> <td width=450 $colspan style='padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; color: #666; font-family:Tahoma,Verdana,sans-serif'>";
                          $image_path = get_thumb_relpath(wp_get_attachment_metadata(get_post_thumbnail_id(get_the_id())));
@@ -154,8 +162,14 @@ $date = "Vol. 1, No. 1, November 2017";
                          if ($count === 1) { 
 			  echo "<td rowspan=4 valign=top style='padding: 0px; background-color:#d6d6d6; font-size: 14px; color: #666; font-family:Tahoma,Verdana,sans-serif'>$righthand_column</td>";
 			 }
-		 	 echo " </tr>";
+			 echo " </tr>";
+			 if ($count>3) {
+			  echo "</table></td></tr>";
+			 }
 			 $count++; 
+
+			 } // for layout purposes, temporary
+
                         endforeach; # posts 
                        endforeach; # categories 
                          if (!isset($theme_options['theme_social_disable'])) { ?> 
