@@ -31,6 +31,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "bootstrap": "4.0.0-beta.2",
+    "core-js": "^2.5.1",
     "font-awesome": "^4.7.0",
     "ionicons": "^3.0.0",
     "jquery": "3.2.1",

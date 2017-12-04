@@ -27,3 +27,12 @@ add_action("load-admin_page_newsletter_emails_new", function() {
                        "0.1.0" );
     wp_enqueue_script($script_slug);
 });
+
+/* Hook up core.js (gives us e.g. a working "".endsWith() in IE) very
+ * early in the page loading: */
+add_action("admin_print_scripts-admin_page_newsletter_emails_new",
+           function () {
+               printf('<script type="text/javascript" src="%s"></script>',
+                      get_theme_file_uri("/assets/core.min.js"));
+           },
+           -1000);  // Very early
