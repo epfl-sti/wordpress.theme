@@ -1,9 +1,4 @@
-window.frontpage_init = function frontpage_init() {
-    carousel_init();
-}
-
-function carousel_init() {
-    var $ = jQuery;
+jQuery(function carousel_init($) {
     $( ".carousel-item" ).first().addClass( "active" );
     // https://codepen.io/andrearufo/pen/rVWpyE
     $("#sti-homecarousel").swipe({
@@ -15,4 +10,4 @@ function carousel_init() {
         },
         allowPageScroll:"vertical"
     });
-}
+});
