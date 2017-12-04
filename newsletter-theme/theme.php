@@ -39,7 +39,7 @@ p {
 // <table>s everywhere is the way to go - Not sure how ancient versions of Outlook
 // like HTML5 stuff.
 
-$date = "Vol. 1, No. 1, November 2017";
+$date = "Vol. 1, No. 1, December 2017";
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -58,7 +58,7 @@ $date = "Vol. 1, No. 1, November 2017";
                             <td colspan=2>
 				<table cellpadding=0 cellspacing=0 border=0>
 				 <tr>
-                                  <td><img src="<?php echo get_theme_relative_uri() . "/newsletter-theme/banner.gif"; ?>"/></td>
+                                  <td><a href=http://sti.epfl.ch><img src="<?php echo get_theme_relative_uri() . "/newsletter-theme/banner.gif"; ?>"/></a></td>
 				 </tr>
 				 <tr>
                                   <td align=right style="padding: 0px 8px 0px 0px; margin: 0px; font: bold 9px verdana; background-color:white;"><?php echo $date; ?></td>
@@ -94,10 +94,10 @@ $date = "Vol. 1, No. 1, November 2017";
 			$righthand_column.=redtitle("EVENTS");
 			$righthand_column.="
 			 <tr>
-			  <td $whitebg>".format_event('Autonomous cars, intelligent cars','27','nov','#','EPFL Wallis','#calendarlink')." </td>
+			  <td $whitebg>".format_event('Towards next-generation membranes for energy-efficient molecular separation','7','dec','http://sti.epfl.ch/page-42995.html#httpsmementoepflchimage10622122x122jpg','EPFL Wallis (Sion)','https://stisrv13.epfl.ch/outlink.php?enddate=20171207T113000&datestring=20171207T103000&speaker=Prof.%20Kumar%20AgrawalLaboratory%20of%20advanced%20separationsEPFL%20Valais,%20Sion&title=Towards%20the%20next-generation%20membranes%20for%20energy-efficient%20molecular%20separation&room=Zeuzier,%20I17%204%20K2')." </td>
 			 </tr>
 			 <tr>
-			  <td $whitebg>".format_event('Cutting diamonds to make optical components','28','nov','#','Forum Rolex','Add to calendar')."
+			  <td $whitebg>".format_event('What impact can integrated photonics have on data center architecture?','8','dec','http://sti.epfl.ch/page-42995.html#httpsmementoepflchimage10667122x122jpg','BC 420','https://stisrv13.epfl.ch/outlink.php?enddate=20171208T120000&datestring=20171208T110000&speaker=S%E9bastien%20Rumley,%20Research%20Scientist%20in%20the%20Lightwave%20Research%20Laboratory,%20Columbia%20University,%20New%20York&title=What%20impact%20can%20Integrated%20Photonics%20have%20on%20data%20center%20architecture?&room=BC%20420')."
 			  </td>
 			 </tr>
 			 <tr>
@@ -110,15 +110,15 @@ $date = "Vol. 1, No. 1, November 2017";
 		       $righthand_column.=redtitle("IN THE MEDIA");
 		       $righthand_column.="
 			 <tr>
-			  <td $whitebg>".format_media('BBC feature Prof. Floreano&apos;s work on bio-inspired flight','#','BBC','14th November, 2017')."
+			  <td $whitebg>".format_media('Sylvie Roke makes waves with her work on 3D imaging of surface chemistry','https://www.eurekalert.org/pub_releases/2017-07/epfd-3io071917.php','Science News','September 2017')."
 			  </td>
 			 </tr>
 			 <tr>
-			  <td $whitebg>".format_media('National Radio covers the two European projects to be led by Tobias Kippenberg','#','RTS','20th November, 2017')."
+			  <td $whitebg>".format_media('Elison Matioli make groundbreaking use of slanted tri-gate structures','http://www.semiconductor-today.com/news_items/2017/aug/epf_230817.shtml','Semiconductor Today','August, 2017')."
 			  </td>
 			 </tr>
 			 <tr>
-			  <td $whitebg align=right><table><td><a href='https://sti.epfl.ch/seminars'  style='font-size:12px; text-decoration:none; color:#000'>More...</a></td></table>
+			  <td $whitebg align=right><table><td><a href='https://sti.epfl.ch/news'  style='font-size:12px; text-decoration:none; color:#000'>More...</a></td></table>
 			  </td>
 			 </tr>
 			</table>
