@@ -32,7 +32,9 @@ use function EPFL\STI\{ get_events_from_memento,
                             </td>
                         </tr>
                         <?php
-                          $events = get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=4);
+                          $url='https://memento.epfl.ch/api/jahia/mementos/sti/events/' . substr(get_locale(),0,2) . '/?category=CONF&format=json';
+                          echo "<!-- MEMENTO URL = " . $url . "  -->";
+                          $events = get_events_from_memento($url, $limit=4);
                           foreach ($events as $event) {
                              $event_day = date("d", strtotime($event->event_start_date));
                              $event_month = strtoupper(date("M", strtotime($event->event_start_date)));
