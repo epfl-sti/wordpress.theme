@@ -26,7 +26,7 @@ function css()
  padding:4px;
 }
 <?php # https://stackoverflow.com/a/18721938/435004 ?>
-td > img {
+td > img, td > a > img {
     vertical-align: top;
 }
 p {
