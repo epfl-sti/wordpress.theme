@@ -130,6 +130,7 @@ gulp.task('admin-scripts', function() {
 // Copy all needed dependency assets files from node_modules to assets/
 gulp.task('copy-assets', function() {
     var npm_goodies = [
+        'core-js/client/core.min.js*',
         'font-awesome/fonts/**/*.{ttf,woff,woff2,eof,svg}',
         'jquery/dist/*.js',
         'jquery-touchswipe/jquery.touchSwipe*.js',
