@@ -159,9 +159,10 @@ $( "tr.slider-event-row" )
 
   <div class="news news-stisrv13">
     <?php
+      $stisrv13lang = (substr(get_locale(),0,2) == 'fr') ? 'fra' : 'eng';
       $newsids = ["news", "researchvideo", "inthenews", "testimonials", "campus", "appointments", "whatis", "research", "placement", "masters"];
       foreach ($newsids as $newsid) {
-        $newshtml = curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=" . $newsid);
+        $newshtml = curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=" . $stisrv13lang . "&id=" . $newsid);
         echo "<div class=\"sti_news_html\">$newshtml</div>";
       }
     ?>
