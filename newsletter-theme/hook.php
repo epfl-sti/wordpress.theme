@@ -36,3 +36,34 @@ add_action("admin_print_scripts-admin_page_newsletter_emails_new",
                       get_theme_file_uri("/assets/core.min.js"));
            },
            -1000);  // Very early
+
+/**
+ * Custom AJAX services for the Vue applet
+ */
+class AJAXNewsletter
+{
+    const SLUG = "epfl_sti_newsletter";
+    const METHODS = ["search", "set", "addten"];
+
+    static function hook ()
+    {
+        foreach (self::METHODS as $method) {
+            add_action(
+                sprintf("wp_ajax_%s_%s", self::SLUG, $method),
+                function() use ($method) {
+                   $json_response = call_user_func(
+                       array(get_called_class(), "ajax_" . $method));
+                   echo json_encode($json_response);
+                    wp_die();  // That's the way WP AJAX rolls
+                });
+        }
+    }
+
+    static function ajax_addten () {
+        global $wpdb; // this is how you get access to the database
+        $value = $_POST['number'];
+        return array("number" => $value + 10);
+    }
+}
+
+AJAXNewsletter::hook();
