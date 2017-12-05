@@ -14,7 +14,7 @@ function get_newsletter_categories ($theme_options)
         new NewsCategory($theme_options),
         new EventsCategory($theme_options),
         new FacultyNewsCategory($theme_options)
-        );
+    );
 }
 
 class PostCategory
