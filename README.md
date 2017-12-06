@@ -1,7 +1,7 @@
 
 # EPFL STI WordPress Theme Framework
 
-Based on [UnderStrap](https://understrap.com) — Bootstrap 4, jQuery, child-theme-friendly, Jetpack a WooCommerce, i18n.
+Based on [UnderStrap](https://understrap.com) — Bootstrap 4, jQuery, child-theme-friendly, Jetpack, WooCommerce, i18n.
 
 
 ## License

@@ -166,7 +166,6 @@ function pipeLog(formatter) {
  * of Modernizr.
  *
  * Pipe the return of this function to a pipeline that produces JS files.
- *
  */
 function bundleJS(destination_filename) {
     const cloneSink = clone.sink();
@@ -180,6 +179,14 @@ function bundleJS(destination_filename) {
         ();
 }
 
+/**
+ * @returns A DuplexStream that uglifies JS files found in it, and drops
+ *          the other files (does not forward them).
+ *
+ * "debugger" statements are kept, so that one may do development out
+ * of the uglified files - Thereby minimizing the likelihood of problems
+ * that only exist in production code.
+ */
 function uglifyJS(rename_opts) {
     const cloneSink = clone.sink();
     return lazypipe()
