@@ -117,19 +117,20 @@ gulp.task('scripts', function() {
 // Concat all JS files for the admin pages into assets/admin-theme{,.min}.js
 gulp.task('admin-scripts', function() {
     return gulp.src([
-        './newsletter-theme/*.vue',
-        './newsletter-theme/*.js'
+        // Source just the entry point; Browserify will chase dependencies
+        // by itself
+        './newsletter-theme/composer.js'
     ])
         .pipe(bro({
+            "debug": true,  // Produce a sourcemap
             "transform": [
                 'vueify',
-                'babelify', // See options in .babelrc
-                // TODO: produce an uglified version for prod
-                // (see https://github.com/ngryman/gulp-bro)
+                'babelify', // With options from .babelrc
             ]
         }))
-        .pipe(bundleJS('newsletter-admin.js'))
-        .pipe(assetsDest())  // Save un-minified, then continue
+        .pipe(rename("newsletter-admin.js"))
+        .pipe(assetsDest())  // Save non-minified, then continue
+        .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(uglifyJS({suffix: '.min'}))
         .pipe(assetsDest());
 });
