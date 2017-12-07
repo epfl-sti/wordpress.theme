@@ -163,7 +163,8 @@ Screen style's
 
 @media screen and (max-width: 990px) {
   .menu > ul > li a {
-      top: 5px; 
+   top: 5px; 
+   background-image: none;
   } 
 }
 @media screen and (min-width: 990px) {

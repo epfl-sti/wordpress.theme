@@ -133,7 +133,26 @@ $( "tr.slider-event-row" )
         </div><!-- .sti-homecarousel -->
     </div>
 </div>
-
+<center>
+ <div class=frontrow>
+  <div class=frontrowheader>
+   RESEARCH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <span class=frontrowred>NEWS</a>
+  </div>
+  <div class=frontrowheader>
+   SCHOOL OF
+   <span class=frontrowred>ENGINEERING</a>
+  </div>
+  <div class=frontrowheader>
+   INSTITUTES
+   <span class=frontrowred>&amp;&nbsp;CENTRES</a>
+  </div>
+  <div class=frontrowheader>
+   UPCOMING
+   <span class=frontrowred>EVENTS</a>
+  </div>
+ </div>
+</center>
   <!-- Begin EPFL news -->
   <div class="news epfl-news">
   <?php

@@ -13,6 +13,30 @@
   src: url('../fonts/GothamNarrow-Bold.woff');
 }
 
+.frontrow {
+ text-align: left;
+ display: inline-block;
+ margin-top: 20px;
+}
+
+.frontrowheader {
+ float:left;
+ display: inline;
+ clear: none;
+ width: 270px;
+ height: 90px;
+ background-color: #272727;
+ font: 24px 'Open Sans Regular';
+ color: #fff;
+ padding: 12px 5px 0px 45px
+}
+
+.frontrowred {
+ color: #cc161d;
+ position: relative;
+ top: -6px;
+}
+
 .div-wrapper {
     position: relative;
     height: 300px;
