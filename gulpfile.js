@@ -26,6 +26,10 @@ var browserSyncOptions = {
     notify: false
 };
 
+if (argv.browser) {
+    browserSyncOptions.browser = argv.browser;
+}
+
 // Run any of:
 // gulp default
 // gulp all
