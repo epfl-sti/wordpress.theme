@@ -42,14 +42,14 @@ $container = get_theme_mod( 'epflsti_container_type' );
 
             <!-- Your site logo -->
             <?php if ( ! has_custom_logo() ) { ?>
-               <a href="https://www.epfl.ch"> <img id=epfl_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a>
-               <a href="<?php echo esc_url( home_url( '/' ) ); ?>"> <img id=sti_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.gif" /></a>
+	       <a href="https://www.epfl.ch"> <img width=174 id=epfl_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a>	
+               <a href="<?php echo esc_url( home_url( '/' ) ); ?>"> <img id=sti_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.png" /></a>
             <?php } else {
                     the_custom_logo();
             } ?><!-- end custom logo -->
 
       <ul>
-            <li><a class="sti_menu_link" href="#">The School</a>
+            <li><a class="sti_menu_link" href="#">THE SCHOOL</a>
 
                 <ul>
                     <li>News
@@ -112,7 +112,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
                     </li>
                 </ul>
             </li>
-            <li><a href="#" class="sti_menu_link">Education</a>
+            <li><a href="#" class="sti_menu_link">EDUCATION</a>
                 <ul>
                     <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/education<?php echo rand(1,2); ?>.jpg" /></div></li> </ul> </li>
                     <li>Bachelor
@@ -143,7 +143,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
 		    </li>
                 </ul>
             </li>
-            <li><a href="#" class="sti_menu_link">Research</a>
+            <li><a href="#" class="sti_menu_link">RESEARCH</a>
                 <ul>
                     <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/research<?php echo rand(1,2); ?>.jpg" /></div></li> </ul> </li>
                     <li>Faculty
@@ -169,7 +169,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
                     </li>
                 </ul>
             </li>
-            <li><a href="#" class="sti_menu_link">Innovation</a>
+            <li><a href="#" class="sti_menu_link">INNOVATION</a>
                 <ul>
                     <li>
                         <ul>
