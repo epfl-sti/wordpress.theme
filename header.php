@@ -48,6 +48,8 @@ $container = get_theme_mod( 'epflsti_container_type' );
                     the_custom_logo();
             } ?><!-- end custom logo -->
 
+	<div class=language><a href='french'>FR&nbsp;&nbsp;/</a>&nbsp;&nbsp;EN</div>
+
       <ul>
             <li><a class="sti_menu_link" href="#">THE SCHOOL</a>
 

@@ -20,7 +20,7 @@ use function EPFL\STI\{ get_events_from_memento,
 
 <div>
     <div class="pixelman">
-        <div id="containercalendar">
+        <div style='display:none;' id="containercalendar">
             <table cellpadding="16" style="background-image:url('https://stisrv13.epfl.ch/proposals/darkpixel.png');">
                 <td>
                     <table class="slider-event-table">
@@ -102,7 +102,7 @@ $( "tr.slider-event-row" )
                       <div class="pixelman">
                           <div id="containernews">
                               <a class="titlelink" href="http://sti.epfl.ch/page-108381.html#anchor2019">Early career award in photonics </a><br>
-                              <a class="titlelink subtitlelink" href="http://sti.epfl.ch/page-108381.html#anchor2019">Prof. Camille Brès has received the Early Career Women/Entrepreneur award in Photonics</a><br>
+                              <a class="titlelink subtitlelink" href="http://sti.epfl.ch/page-108381.html#anchor2019"></a><br>
                           </div>
                       </div>
                   </div>
@@ -116,7 +116,7 @@ $( "tr.slider-event-row" )
                       <div class="pixelman">
                           <div id="containernews">
                               <a class="titlelink" href="#">A long-term implant to restore walking</a><br>
-                              <a class="titlelink subtitlelink" href="#">Prof. Stéphanie Lacour of the Institute of Bioengineering</a><br>
+                              <a class="titlelink subtitlelink" href="#"></a><br>
                           </div>
                       </div>
                   </div>

@@ -85,6 +85,23 @@ Screen style's
     color: #333;
 }
 
+.language {
+ position: absolute;
+ right: 20px;
+ top: 60px;
+ color:#cb161d;
+ z-index:100;
+}
+
+.language > a {
+ color:#333;
+}
+
+.language > a:hover {
+ color:#333;
+ text-decoration:none;
+}
+
 .menu > ul {
     margin: 0 auto;
     width: 100%;
@@ -144,12 +161,12 @@ Screen style's
     box-sizing: border-box;
 }
 
-@media screen and (max-width: 959px) {
+@media screen and (max-width: 990px) {
   .menu > ul > li a {
       top: 5px; 
   } 
 }
-@media screen and (min-width: 959px) {
+@media screen and (min-width: 990px) {
   .menu > ul > li a {
       top: 45px; 
   }
@@ -243,9 +260,10 @@ a:hover.sti_menu_link {
 Mobile styles
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-@media only screen and (max-width: 959px) {
+@media only screen and (max-width: 990px) {
     .menu-container {
         width: 100%;
+	background-image: none;
     }
     .menu-mobile {
         display: block;

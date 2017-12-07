@@ -69,7 +69,7 @@ div.news {
 #containernews {
   height: 60px;
   position: relative;
-  top: -120px;
+  top: -70px;
   padding: 0px 0px 0px 45px;
   z-index: 3;
 }
