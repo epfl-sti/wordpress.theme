@@ -46,8 +46,14 @@ Screen style's
 
 .menu-container {
     width: 100%;
+    height: 180px;
     margin: 0 auto;
     background: #fff;
+    border-top: #cb161d 7px solid;
+    background-image: url('/sti/wp-content/themes/epfl-sti/img/src/lozenges.png');
+    background-position: top right;
+    background-repeat: no-repeat;
+    border-bottom: #cb161d 3px solid;
 }
 
 .menu-mobile {
@@ -79,6 +85,23 @@ Screen style's
     color: #333;
 }
 
+.language {
+ position: absolute;
+ right: 20px;
+ top: 60px;
+ color:#cb161d;
+ z-index:100;
+}
+
+.language > a {
+ color:#333;
+}
+
+.language > a:hover {
+ color:#333;
+ text-decoration:none;
+}
+
 .menu > ul {
     margin: 0 auto;
     width: 100%;
@@ -100,19 +123,29 @@ Screen style's
 
 .menu > ul > li {
     float: left;
-    background: #fff;
     padding: 0;
     margin: 0;
 }
 
-.menu > ul > li a {
-    text-decoration: none;
-    padding: 30px 13px 53px 13px;
-    display: block;
+.menu > ul > li > a {
+  text-decoration: none;
+  padding: 93px 7px 30px 32px;
+  display: block;
+  font: 600 13pt 'Open Sans Regular',sans-serif;
+  text-decoration: none;
+  color: #222;
+  position: relative; 
+  height: 170px;
+  background-image: url('/sti/wp-content/themes/epfl-sti/img/src/sideshadow.gif');
+  background-position: 0px 86px;
+  background-repeat: no-repeat;
 }
 
+.menu > ul > li > a:hover {
+  background-image: none;
+}
 .menu > ul > li:hover {
-    background: #ddd;
+    background: #eee;
 }
 
 .menu > ul > li > ul {
@@ -127,6 +160,25 @@ Screen style's
     list-style: none;
     box-sizing: border-box;
 }
+
+@media screen and (max-width: 990px) {
+  .menu > ul > li a {
+   top: 5px; 
+   background-image: none;
+  } 
+}
+@media screen and (min-width: 990px) {
+  .menu > ul > li a {
+      top: 45px; 
+  }
+}
+/*a:visited.sti_menu_link {
+  color: #555; }
+
+a:hover.sti_menu_link {
+  text-decoration: none;
+  color: #888; }
+*/
 
 .menu > ul > li > ul:before,
 .menu > ul > li > ul:after {
@@ -209,9 +261,10 @@ Screen style's
 Mobile styles
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-@media only screen and (max-width: 959px) {
+@media only screen and (max-width: 990px) {
     .menu-container {
         width: 100%;
+	background-image: none;
     }
     .menu-mobile {
         display: block;

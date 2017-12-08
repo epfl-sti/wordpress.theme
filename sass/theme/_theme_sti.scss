@@ -1,94 +1,11 @@
-$megamenu-small: 959px;  // This is the hard-coded value from megamenu.css
-
-a.sti_menu_link {
-  font: 18pt 'Open Sans Regular',sans-serif;
-  text-decoration: none;
-  color: #555;
-
-  position: relative;
-  @media screen and (max-width: $megamenu-small) {
-    top: 5px;
-  }
-  @media screen and (min-width: $megamenu-small) {
-    top: 45px;
-  }
-}
-
-a:visited.sti_menu_link {
-  color: #555;
-}
-a:hover.sti_menu_link {
-  text-decoration: none;
-  color: #888;
-}
-
-.sti-carousel-button {
-    position: absolute;
-    top: 0px;
-    background-color: red;
-
-    @media screen and (max-width: $megamenu-small) {
-       visibility: hidden;
-    }
-}
-
-.sti-carousel-button.next {
-    right: 0px;
-}
-
-.sti-carousel-button.prev {
-    left: 0px;
-}
-
 ul.sti-megamenu a.sti_menu_link {
   position: relative;
   top: 35px;
 }
 
 /* -------------------------------
-          EVENTS in SLIDER
-   ---------------------------- */
-
-.slider-event-table {
-  border-collapse: separate;
-  border-spacing: 5px 8px;
-}
-.slider-event-row {}
-.slider-event-cell {
-  width: 280px;
-  background-color: #fff;
-  padding: 8px;
-  border-right: 1px solid #fff;
-}
-.slider-event-date {
-  width: 32px;
-  display: block;
-  float: left;
-  border: 1px solid #55576A;
-  padding: 4px;
-}
-.slider-event-date-day {
-  display:block;
-  text-align:center;
-  font-size:0.6em;
-}
-.slider-event-date-month {
-  display: block;
-  text-align: center;
-  font-size: 0.5em;
-}
-.slider-event-title {
-  display: block;
-  margin-left: 40px;
-  font-size: 0.9em;
-}
-
-/* -------------------------------
           EPFL Actu
    ---------------------------- */
-.epfl-news {
-  background-color: #F7F7F7;
-}
 .epfl-new-card {
   width: 20rem;
   margin: 10px;

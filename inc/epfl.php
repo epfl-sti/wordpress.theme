@@ -19,13 +19,6 @@ function get_theme_relative_uri() {
     return "wp-content/themes/" . get_theme_basename();
 }
 
-/**
- * @return The absolute URI of the theme (starting wih /)
- */
-function get_theme_absolute_uri() {
-    return get_theme_root_uri() . "/" . get_theme_basename();
-}
-
 function curl_get($url)
 {
   $ch = curl_init($url);

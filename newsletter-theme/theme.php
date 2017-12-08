@@ -1,5 +1,10 @@
 <?php
 
+/*
+Theme Name: EPFL STI
+Description: Newsletter theme for the School of Engineering
+*/
+
 namespace EPFL\STI\Newsletter;
 
 if (!defined('ABSPATH'))
@@ -21,7 +26,7 @@ function css()
  padding:4px;
 }
 <?php # https://stackoverflow.com/a/18721938/435004 ?>
-td > img {
+td > img, td > a > img {
     vertical-align: top;
 }
 p {
@@ -34,7 +39,7 @@ p {
 // <table>s everywhere is the way to go - Not sure how ancient versions of Outlook
 // like HTML5 stuff.
 
-$date = "Vol. 1, No. 1, November 2017";
+$date = "Vol. 1, No. 1, December 2017";
 
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -53,7 +58,7 @@ $date = "Vol. 1, No. 1, November 2017";
                             <td colspan=2>
 				<table cellpadding=0 cellspacing=0 border=0>
 				 <tr>
-                                  <td><img src="<?php echo get_theme_relative_uri() . "/newsletter-theme/banner.gif"; ?>"/></td>
+                                  <td><a href=http://sti.epfl.ch><img src="<?php echo get_theme_relative_uri() . "/newsletter-theme/banner.gif"; ?>"/></a></td>
 				 </tr>
 				 <tr>
                                   <td align=right style="padding: 0px 8px 0px 0px; margin: 0px; font: bold 9px verdana; background-color:white;"><?php echo $date; ?></td>
@@ -71,52 +76,62 @@ $date = "Vol. 1, No. 1, November 2017";
 			</tr>
                        <?php 
 		       	function redtitle($name) {
-			 return "<tr> <td style='background-color: #c50813; color:white; padding: 4px 0px 4px 8px; '>$name</td> </tr>";
+			 return "<tr> <td style='font-family:verdana,sans-serif; background-color: #c50813; color:white; padding: 4px 0px 4px 8px; '>$name</td> </tr>";
 		       	} 
+                        function format_date($day,$month,$link) {
+			       return "<div style='border:3px solid #aaa; background-color:#eee; width: 36px; padding:0px 5px 0px 5px' align=center><a href=$link style='text-decoration:none; color:#000'><span style='font-size:20px;'>$day</span></a><br><span style='font-weight: bold; color:#c50813; vertical-align:top;'><sup>$month</span></div>";
+		        }
+			function format_event($title,$day,$month,$link,$place,$outlink) {
+			       $datebox=format_date($day,$month,$link);
+			       return "<table><tr><td style='font-size:14px; width:100%; padding: 0px 0px 10px 0px;' colspan=2><a href=$link style='text-decoration:none; color:#000'>$title</a></td></tr><tr><td style='padding: 0px 0px 10px 0px;' width=50 align=left valign=top><a href=$link>$datebox</a></td><td style='font-size:12px;' align=right>$place<br><a href='$outlink' style='text-decoration:none; color:#000'>Add to calendar</a></td></tr><tr><td colspan=2 style='border-bottom:2px solid #c50813; font-size:1px'>&nbsp;</td></tr></table>";
+		        }
+			function format_media($article,$link,$source,$date) {
+			       return "<table><tr><td style='font-size:14px; width:100%; padding: 0px 0px 10px 0px;'><a href=$link style='text-decoration:none; color:#000'>$article</a></td></tr><tr><td style='font-size:10px;' align=right>$source, $date</td></tr><tr><td style='border-bottom:2px solid #c50813; font-size:1px'>&nbsp;</tr></table>";
+		        }
 			$whitebg="style='background-color:white;'";
-			$opentable="<table width=100% cellpadding=0 cellspacing=0 border=0>";
+			$opentable="<table width=100% cellpadding=8 cellspacing=0 border=0>";
 		       	$righthand_column=$opentable;
 			$righthand_column.=redtitle("EVENTS");
 			$righthand_column.="
 			 <tr>
-			  <td $whitebg>phew
+			  <td $whitebg>".format_event('Towards next-generation membranes for energy-efficient molecular separation','7','dec','http://sti.epfl.ch/page-42995.html#httpsmementoepflchimage10622122x122jpg','EPFL Wallis (Sion)','https://stisrv13.epfl.ch/outlink.php?enddate=20171207T113000&datestring=20171207T103000&speaker=Prof.%20Kumar%20AgrawalLaboratory%20of%20advanced%20separationsEPFL%20Valais,%20Sion&title=Towards%20the%20next-generation%20membranes%20for%20energy-efficient%20molecular%20separation&room=Zeuzier,%20I17%204%20K2')." </td>
+			 </tr>
+			 <tr>
+			  <td $whitebg>".format_event('What impact can integrated photonics have on data center architecture?','8','dec','http://sti.epfl.ch/page-42995.html#httpsmementoepflchimage10667122x122jpg','BC 420','https://stisrv13.epfl.ch/outlink.php?enddate=20171208T120000&datestring=20171208T110000&speaker=S%E9bastien%20Rumley,%20Research%20Scientist%20in%20the%20Lightwave%20Research%20Laboratory,%20Columbia%20University,%20New%20York&title=What%20impact%20can%20Integrated%20Photonics%20have%20on%20data%20center%20architecture?&room=BC%20420')."
 			  </td>
 			 </tr>
 			 <tr>
-			  <td $whitebg>event
-			  </td>
-			 </tr>
-			 <tr>
-			  <td $whitebg>more
+			  <td $whitebg align=right><table><td><a href='https://sti.epfl.ch/seminars'  style='font-size:12px; text-decoration:none; color:#000'>More...</a></td></table>
 			  </td>
 			 </tr>
 			</table>
 		       ";
-		       $righthand_column.="<br><br>".$opentable;
+		       $righthand_column.="<br>".$opentable;
 		       $righthand_column.=redtitle("IN THE MEDIA");
 		       $righthand_column.="
 			 <tr>
-			  <td $whitebg>phew
+			  <td $whitebg>".format_media('Sylvie Roke makes waves with her work on 3D imaging of surface chemistry','https://www.eurekalert.org/pub_releases/2017-07/epfd-3io071917.php','Science News','September 2017')."
 			  </td>
 			 </tr>
 			 <tr>
-			  <td $whitebg>event
+			  <td $whitebg>".format_media('Elison Matioli make groundbreaking use of slanted tri-gate structures','http://www.semiconductor-today.com/news_items/2017/aug/epf_230817.shtml','Semiconductor Today','August, 2017')."
 			  </td>
 			 </tr>
 			 <tr>
-			  <td $whitebg>more
+			  <td $whitebg align=right><table><td><a href='https://sti.epfl.ch/news'  style='font-size:12px; text-decoration:none; color:#000'>More...</a></td></table>
 			  </td>
 			 </tr>
 			</table>
 		       ";
-
 		       $index = 0;
 		       $count = 0;
                        foreach (get_newsletter_categories($theme_options) as $cat):
                                   $index = $index + 1;
                         // Do not use &post, it leads to problems...
                         global $post;
-                        foreach ($cat->posts() as $post):
+		        foreach ($cat->posts() as $post):
+
+			 if ($count<5) { // for layout purposes, temporary
 
                          // Setup the post (WordPress requirement)
                          setup_postdata($post);
@@ -124,8 +139,10 @@ $date = "Vol. 1, No. 1, November 2017";
                          // The theme can "suggest" a subject replacing the one configured, for example. In this case
                          // the theme, is there is no subject, suggest the first post title.
                          if (empty($theme_options['subject'])) $theme_options['subject'] = $post->post_title;
-			 if ($count<1) {
-			  $colspan="colspan=2"; #first article only
+			 if (($count<1)||($count>3)){
+			  if ($count<1) {
+				 $colspan="colspan=2"; #first article only
+		   	  }
 			  $rowstyle="' style='font-size: 18px; color: #000; text-decoration: none;font-family:Tahoma,Verdana,sans-serif'>";
 			  $imagesize="width:250px";
   			 }
@@ -134,10 +151,14 @@ $date = "Vol. 1, No. 1, November 2017";
 			  $rowstyle="' style='font-size: 14px; color: #000; text-decoration: none;font-family:Tahoma,Verdana,sans-serif'>";
 			  $imagesize="";
 			 }
+			 if ($count>3) {
+			  echo "<tr><td><table cellpadding=0 cellspacing=0 border=0>";
+			  echo redtitle("OPEN POSITIONS");
+			 }
                          echo "<tr> <td width=450 $colspan style='padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; color: #666; font-family:Tahoma,Verdana,sans-serif'>";
                          $image_path = get_thumb_relpath(wp_get_attachment_metadata(get_post_thumbnail_id(get_the_id())));
-                          if ($image_path) {
-                         echo "<img hspace=8 src='$image_path' style='$imagesize' alt='picture' align='left'/>";
+                         if ($image_path) {
+                          echo "<img hspace=18 src='$image_path' style='$imagesize' alt='picture' align='left'/>";
                          }
                          echo "<p><a target='_tab' href='";
 			 echo get_permalink();  
@@ -149,11 +170,17 @@ $date = "Vol. 1, No. 1, November 2017";
                          if ($count === 1) { 
 			  echo "<td rowspan=4 valign=top style='padding: 0px; background-color:#d6d6d6; font-size: 14px; color: #666; font-family:Tahoma,Verdana,sans-serif'>$righthand_column</td>";
 			 }
-		 	 echo " </tr>";
+			 echo " </tr>";
+			 if ($count>3) {
+			  echo "</table></td></tr>";
+			 }
 			 $count++; 
+
+			 } // for layout purposes, temporary
+
                         endforeach; # posts 
                        endforeach; # categories 
-                         if (!isset($theme_options['theme_social_disable'])) { ?> 
+                         if (isset($theme_options['theme_social_disable'])) { ?> <!--- put "!" back before isset --->
                             <tr>
                                 <td  style="font-family: Tahoma,Verdana,sans-serif; font-size: 12px">
                                     <?php include WP_PLUGIN_DIR . '/newsletter/emails/themes/default/social.php'; ?>
@@ -161,9 +188,16 @@ $date = "Vol. 1, No. 1, November 2017";
                             </tr>
                         <?php } ?>
                         <tr>
-                            <td colspan=2 style="border-top: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 12px; color: #999; font-family:Tahoma, Verdana, sans-serif;">
-                                <p>Dear {name}, this is the <?php echo get_option('blogname'); ?> newsletter.</p>
-                                You received this email because you subscribed for it as {email}. You can unsubscribe by clicking <a target="_tab" href="{unsubscription_url}">here</a>.
+			    <td colspan=2>
+			  	<table id='footer' cellpadding=0 cellspacing=0 border=0 width=100%>
+				 <tr>
+				  <td style="border-top:10px solid #c50813; background-color:white;font-size:10px; font-family:verdana,sans-serif;padding: 5px;" align=center>
+                                   <a style="color: #c50813; text-decoration: none; font-weight: bold" href="https://sti.epfl.ch">School of Engineering</a>, &Eacute;cole Polytechnique F&eacute;d&eacute;rale de Lausanne (<a style="color: #c50813; text-decoration: none; font-weight: bold" href="https://www.epfl.ch">EPFL</a>), Switzerland<br>You can access previous versions of the newsletter <a style="color: #c50813; text-decoration: none; font-weight: bold" href=#>here</a>
+<br>
+Unsubscribe by clicking <a style="color: #c50813; text-decoration: none; font-weight: bold" target="_tab" href="{unsubscription_url}">here</a>
+				 </td>
+				 </tr>
+			        </table>
                             </td>
                         </tr>
                     </table>

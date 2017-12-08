@@ -23,13 +23,11 @@ $container = get_theme_mod( 'epflsti_container_type' );
 
     <!-- Custom -->
     <!-- CSS -->
-    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/normalize.css">
-    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/ionicons.min.css">
+    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/normalize.css">
+    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/ionicons.min.css">
     <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/css/megamenu.css">
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
     <link href='<?php echo get_stylesheet_directory_uri(); ?>/css/firststep.css' rel='stylesheet' type='text/css'>
-    <!-- JS -->
-    <script src="<?php echo get_stylesheet_directory_uri(); ?>/js/modernizr.js"></script>
     <!-- end custom -->
 
     <?php wp_head(); ?>
@@ -43,14 +41,16 @@ $container = get_theme_mod( 'epflsti_container_type' );
 
             <!-- Your site logo -->
             <?php if ( ! has_custom_logo() ) { ?>
-               <a href="https://www.epfl.ch"> <img id=epfl_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a>
-               <a href="<?php echo esc_url( home_url( '/' ) ); ?>"> <img id=sti_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.gif" /></a>
+	       <a href="https://www.epfl.ch"> <img width=174 id=epfl_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a>	
+               <a href="<?php echo esc_url( home_url( '/' ) ); ?>"> <img id=sti_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.png" /></a>
             <?php } else {
                     the_custom_logo();
             } ?><!-- end custom logo -->
 
+	<div class=language><a href='french'>FR&nbsp;&nbsp;/</a>&nbsp;&nbsp;EN</div>
+
       <ul>
-            <li><a class="sti_menu_link" href="#">The School</a>
+            <li><a class="sti_menu_link" href="#">THE SCHOOL</a>
 
                 <ul>
                     <li>News
@@ -113,7 +113,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
                     </li>
                 </ul>
             </li>
-            <li><a href="#" class="sti_menu_link">Education</a>
+            <li><a href="#" class="sti_menu_link">EDUCATION</a>
                 <ul>
                     <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/education<?php echo rand(1,2); ?>.jpg" /></div></li> </ul> </li>
                     <li>Bachelor
@@ -144,7 +144,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
 		    </li>
                 </ul>
             </li>
-            <li><a href="#" class="sti_menu_link">Research</a>
+            <li><a href="#" class="sti_menu_link">RESEARCH</a>
                 <ul>
                     <li> <ul> <li><div style="float:left"><img width=220 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/research<?php echo rand(1,2); ?>.jpg" /></div></li> </ul> </li>
                     <li>Faculty
@@ -170,7 +170,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
                     </li>
                 </ul>
             </li>
-            <li><a href="#" class="sti_menu_link">Innovation</a>
+            <li><a href="#" class="sti_menu_link">INNOVATION</a>
                 <ul>
                     <li>
                         <ul>
