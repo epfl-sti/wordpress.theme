@@ -64,9 +64,9 @@ gulp.task('sass', function () {
                 this.emit('end');
             }
         }))
+        .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(assetsDest())  // Save un-minified, then continue
-        .pipe(sourcemaps.init())
         .pipe(cleanCSS())
         .pipe(rename({suffix: '.min'}))
         .pipe(sourcemaps.write('.'))
