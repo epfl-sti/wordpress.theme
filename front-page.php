@@ -135,46 +135,127 @@ $( "tr.slider-event-row" )
 </div>
 <center>
  <div class=frontrow>
-  <div class=frontrowheader>
-   RESEARCH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   <span class=frontrowred>NEWS</a>
+  <div class=frontrowcontainer>
+   <div class=frontrowheader>
+    RESEARCH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class=frontrowred>NEWS</a>
+   </div>
+   <div class=frontrowcontent>
+<?php
+
+$epfl_news = get_news_from_actu();
+foreach ($epfl_news as $new) {
+ if ($x<3) {
+  echo "<div class=frontrownews style=\"background-image:url('$new->news_large_thumbnail_absolute_url');\">";
+  echo "<a class=whitelink href=$new->absolute_slug>"; 
+  echo "<div class=frontrownewstitle>";
+  echo $new->title;
+  echo "</div>";
+  echo "</a></div>";
+ }
+ $x++;
+}
+
+?>
+
+   </div>
   </div>
-  <div class=frontrowheader>
-   SCHOOL OF
-   <span class=frontrowred>ENGINEERING</a>
+
+  <div class=frontrowcontainer>
+   <div class=frontrowheader>
+    SCHOOL OF
+    <span class=frontrowred>ENGINEERING
+   </div>
+   <div class=frontrowlistbox>
+    <ul class=frontrowlist>
+	<li><a href=#>Faculty Members</a></li>
+	<li><a href=#>Open Positions</a></li>
+	<li><a href=#>Education</a></li>
+	<li><a href=#>Research</a></li>
+	<li><a href=#>Services</a></li>
+	<li><a href=#>Contact</a></li>
+    </ul> 
+   </div>
   </div>
-  <div class=frontrowheader>
-   INSTITUTES
-   <span class=frontrowred>&amp;&nbsp;CENTRES</a>
+
+  <div class=frontrowcontainer>
+   <div class=frontrowheader>
+    INSTITUTES
+    <span class=frontrowred>&amp;&nbsp;CENTRES
+   </div>
+   <div class=frontrowlistbox>
+    <ul class=frontrowlist>
+	<li><a href=#>Bioengineering</a></li>
+	<li><a href=#>Electrical Engineering</a></li>
+	<li><a href=#>Materials Science &amp; Engineering</a></li>
+	<li><a href=#>Mechanical Engineering</a></li>
+	<li><a href=#>Microengineering</a></li>
+    </ul> 
+    <ul class=frontrowlist>
+	<li><a href=#>Research Centres</a></li>
+	<li><a href=#>Platforms &amp; Workshops</a></li>
+    </ul> 
+   </div>
   </div>
-  <div class=frontrowheader>
-   UPCOMING
-   <span class=frontrowred>EVENTS</a>
-  </div>
+  <div class=frontrowcontainer>
+   <div class=frontrowheader>
+    UPCOMING
+    <span class=frontrowred>EVENTS
+   </div>
+   <div class=frontrowevents>
+
+<?php
+ echo "<table class='slider-event-table'>";
+ $events = get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=5);
+ $max_len = 56;
+ foreach ($events as $event) {
+  $event_day = date("d", strtotime($event->event_start_date));
+  $event_month = strtolower(date("M", strtotime($event->event_start_date)));
+  echo "<tr class='slider-event-row' data-link='$event->absolute_slug'>";
+  echo "<td class='slider-event-cell'>
+   <div class='slider-event-date'>
+    <span class='slider-event-date-day'>
+     $event_day 
+    </span>
+    <span class='slider-event-date-month'>
+     $event_month 
+    </span>
+   </div>
+   <div class='slider-event-title'>";
+  $s = $event->title;
+  if (strlen($event->title) > $max_len) {
+   $offset = ($max_len - 3) - strlen($event->title);
+   $s = substr($event->title, 0, strrpos($event->title, ' ', $offset)) . '…';
+  };
+  echo $s;
+  echo "<br /> </div> </td> </tr>";
+ }
+ echo "</table>";
+?>
+    <a href=#><img class=frontrowmore align=right src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/more.png"></a>
+  </div> 
  </div>
 </center>
-  <!-- Begin EPFL news -->
-  <div class="news epfl-news">
-  <?php
-    // Fetch news from actu web service
-    $epfl_news = get_news_from_actu();
-    foreach ($epfl_news as $new) {
-  ?>
-    <div class="card epfl-new-card">
-      <img class="card-img-top epfl-new-card-img" src="<?php echo $new->news_large_thumbnail_absolute_url; // news_visual_absolute_url ?>" title="<?php echo $new->title; ?>" />
-      <div class="card-body epfl-new-card-body">
-        <a href="<?php echo $new->absolute_slug; ?>" target="_blank" class="epfl-new-card-link">
-          <h4 class="card-title epfl-new-card-title">
-            <?php echo $new->title; ?>
-          </h4>
-        </a>
-      </div>
-    </div>
-    <?php
-    }
-    ?>
-  </div>
-  <!-- End EPFL news -->
+
+<script>
+// For the events in the slider
+$( "div.slider-event-date" )
+  .mouseenter(function() {
+    $( this ).css( { backgroundColor: "#55576A", color: "#fff", "font-weight": "normal" })
+    $( this ).parent().css({ "border-right": "1px solid #FA2400" });
+  })
+  .mouseleave(function() {
+    $( this ).css( { backgroundColor: "#b3b3b3", color: "#000", "font-weight": "normal" })
+    $( this ).parent().css({ "border-right": "1px solid #fff" });
+
+  });
+$( "tr.slider-event-row" )
+  .click(function() {
+    window.location = $( this ).data("link");
+    return true;
+   });
+</script>
+<br><br><br><br>
 
   <div class="news news-stisrv13">
     <?php
