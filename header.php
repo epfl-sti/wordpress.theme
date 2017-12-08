@@ -37,7 +37,6 @@ $container = get_theme_mod( 'epflsti_container_type' );
 
 <!-- Ugly hard coded menu -->
 <div class="menu-container">
-    <?php wp_nav_menu( array( 'epflsti_lang_menu' => 'langmenu' ) ); ?>
     <div class="menu">
 
             <!-- Your site logo -->
