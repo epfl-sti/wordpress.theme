@@ -191,7 +191,7 @@ function uglifyJS(rename_opts) {
     const cloneSink = clone.sink();
     return lazypipe()
         .pipe(() => ignore.include(new RegExp('js$')))
-        .pipe(uglify)
+        .pipe(() => uglify( {compress: {drop_debugger: false}} ))
         .pipe(() => rename(rename_opts))
         .pipe(() => sourcemaps.write('.'))
         ();
