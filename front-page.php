@@ -97,7 +97,6 @@ $( "tr.slider-event-row" )
               <div class="carousel-item">
                   <div class="sti_carousel">
                       <div class="div-wrapper" id="containerwave" style="background-image:url('<?php echo get_stylesheet_directory_uri(); ?>/img/ProfCamilleBres.jpg');">
-                          <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/waving.png">
                       </div>
                       <div class="pixelman">
                           <div id="containernews">
@@ -111,7 +110,6 @@ $( "tr.slider-event-row" )
               <div class="carousel-item">
                   <div class="sti_carousel">
                       <div class="div-wrapper" id="containerwave" style="background-image:url('<?php echo get_stylesheet_directory_uri(); ?>/img/LacourTeam.jpg');">
-                          <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/waving.png">
                       </div>
                       <div class="pixelman">
                           <div id="containernews">
@@ -132,6 +130,11 @@ $( "tr.slider-event-row" )
             </a>
         </div><!-- .sti-homecarousel -->
     </div>
+</div>
+<div class=pixelman id="redwave">
+ <div>
+  <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/waving.png">
+ </div>
 </div>
 <center>
  <div class=frontrow>
@@ -236,6 +239,17 @@ foreach ($epfl_news as $new) {
   </div> 
  </div>
 </center>
+<center>
+ <div class='frontrow whitebg'>
+  <div class=secondarytitle>EDUCATION</div>
+  <div class=educationcontainer> A
+  </div>
+  <div class=educationcontainer> B
+  </div>
+  <div class=educationcontainer> C
+  </div>
+ </div>
+</center>
 
 <script>
 // For the events in the slider
@@ -245,7 +259,7 @@ $( "div.slider-event-date" )
     $( this ).parent().css({ "border-right": "1px solid #FA2400" });
   })
   .mouseleave(function() {
-    $( this ).css( { backgroundColor: "#b3b3b3", color: "#000", "font-weight": "normal" })
+    $( this ).css( { backgroundColor: "#ccc", color: "#000", "font-weight": "normal" })
     $( this ).parent().css({ "border-right": "1px solid #fff" });
 
   });

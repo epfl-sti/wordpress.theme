@@ -19,6 +19,10 @@
  margin-top: 20px;
 }
 
+.whitebg {
+ background-color: white;
+}
+
 .frontrowcontainer {
  float:left;
  display: inline;
@@ -26,6 +30,35 @@
  width: 270px;
  height: 540px;
  position: relative;
+}
+
+#redwave {
+ position: absolute;
+ top: 500px;
+ min-width: 1400px;
+ z-index: 5;
+}
+
+.secondarytitle {
+ font: 26px 'Open Sans Regular';
+ padding: 22px 5px 0px 22px
+ 
+}
+
+.educationrow {
+ text-align: left;
+ display: inline-block;
+ margin-top: 20px;
+}
+
+.educationcontainer {
+ float:left;
+ display: inline;
+ clear: none;
+ width: 360px;
+ height: 500px;
+ position: relative;
+ padding: 20px;
 }
 
 .frontrowcontent {
@@ -55,6 +88,8 @@
  background-size: cover;
  width: 270px;
  height: 150px;
+ border-left: #797979 1px solid;
+ border-bottom: #797979 1px solid;
 }
 
 .frontrowheader {
@@ -81,6 +116,8 @@
  width: 270px;
  height: 450px;
  background-image: url('../img/src/charcoal.gif');
+ border-left: #444 1px solid;
+ border-bottom: #111 1px solid;
 }
 
 .frontrowlist {
@@ -167,9 +204,9 @@ div.news {
 #containernews {
   height: 60px;
   position: relative;
-  top: -70px;
+  top: -570px;
   padding: 0px 0px 0px 45px;
-  z-index: 3;
+  z-index: 8;
 }
 
 a.titlelink {
@@ -180,7 +217,7 @@ a.titlelink {
   font-family: 'Open Sans Regular', sans-serif;
 }
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 990px) {
   a.titlelink {
     font-size: 5vw;
     text-shadow: 1px 1px 2px black;
@@ -189,12 +226,24 @@ a.titlelink {
     font-size: 4vw;
     text-shadow: 1px 1px 2px black;
   }
-  #containercalendar {
+  #redwave {
    visibility: hidden;
   }
 }
 
-@media screen and (min-width: 680px) {
+@media screen and (min-width: 1600px) {
+  #redwave {
+   top: 369px;
+  }
+}
+
+@media screen and (min-width: 1550px) {
+  #redwave {
+   top: 469px;
+  }
+}
+
+@media screen and (min-width: 990px) {
   a.titlelink {
     font-size: 2.1em;
     text-shadow: 1px 1px 2px black;
@@ -214,7 +263,7 @@ a.titlelink {
     background-size: cover;
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 680px) {
     #containerwave {
         height: 450px;
     }
