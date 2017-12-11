@@ -6,11 +6,7 @@ jQuery(function($){
     new Vue({
         el: '#vuenewslettercomposer',
         render: function (createElement) {
-            return createElement(Hello, {
-                props: {
-                    wpAjaxUrl: window.ajaxurl
-                }
-            })
+            return createElement(Hello)
         }
     })
     // Clean up UI that we won't be using
