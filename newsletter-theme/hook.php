@@ -26,6 +26,11 @@ add_action("load-admin_page_newsletter_emails_new", function() {
                        get_theme_file_uri("/assets/newsletter-admin.min.js"),
                        "0.1.0" );
     wp_enqueue_script($script_slug);
+    $css_slug = $script_slug . "_css";
+    wp_register_style($css_slug,
+                       get_theme_file_uri("/newsletter-theme/newsletter-admin.css"));
+    wp_dequeue_style("tnp-admin");
+    wp_enqueue_style($css_slug);
 });
 
 /* Hook up core.js (gives us e.g. a working "".endsWith() in IE) very

@@ -1,0 +1,42 @@
+/* Like plugins/newsletter/admin.css, only much soberer
+ * Only applies to the "new newsletter" page
+ */
+
+/* Pieces kept from the original CSS */
+.tnp-body-lite {
+    background-color: #F1F1F1 !important;
+}
+
+#tnp-header {
+    display: none;
+}
+
+#tnp-body {
+    padding: 10px;
+    background-color: #28313C;
+    border-color: #28313C;
+    border-width: 10px;
+    border-style: solid;
+    overflow: auto;
+}
+
+.tnp-error {
+    border-left: 5px solid #dd0000;
+    background-color: #fff;
+    padding: 10px;
+    margin: 15px 0;
+}
+
+.tnp-warning {
+    border-left: 5px solid #ffb900;
+    background-color: #fff;
+    padding: 10px;
+    margin: 15px 0;
+}
+
+.tnp-message {
+    border-left: 5px solid #46b450;
+    background-color: #fff;
+    padding: 10px;
+    margin: 15px 0;
+}

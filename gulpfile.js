@@ -64,7 +64,7 @@ gulp.task('watch', ['default'], function () {
 // the build products change
 gulp.task('browser-sync', ['watch'], function() {
     browserSync.init(
-        ['assets/**/*', '**/*.php'],
+        ['assets/**/*', '**/*.php', 'newsletter-theme/*.css'],
         browserSyncOptions);
 });
 
