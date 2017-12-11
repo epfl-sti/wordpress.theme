@@ -12,6 +12,8 @@
 </template>
 
 <script>
+  import WPajax from "./inc/ajax.js"
+
   export default {
     data () {
       return {
@@ -21,24 +23,17 @@
         errors: []
       }
     },
-    props: ['wpAjaxUrl'],
     methods: {
       numberChanged () {
         var self = this;
-        console.log("numberChanged() for " + this.number + ", calling " + self.wpAjaxUrl);
-        $.post({
-          url: self.wpAjaxUrl,
-          dataType: "json"
-        }, {
+        WPajax({
           "action": "epfl_sti_newsletter_addten",
           "number": this.number
         })
-        .done(response => {
-          console.log(response);
-          console.log(response.number);
+        .then(response => {
           self.plusten = response.number
         })
-        .fail(e => {
+        .catch(e => {
           self.errors.push(e)
         })
       }
