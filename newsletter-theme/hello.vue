@@ -48,6 +48,6 @@
 
 <style scoped>
   p {
-    text-color: blue;
+    color: blue;
   }
 </style>

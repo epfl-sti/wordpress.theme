@@ -19,10 +19,10 @@ jQuery(function($){
         var elt = $(e),
             onclick = elt.attr("onclick");
         return (onclick && onclick.includes("'save'"));
-    }).remove();
+    }).remove()
     $('img', button_row).filter((unused_index, e) => {
         var elt = $(e),
             src = elt.attr("src");
         return (src.endsWith("arrow.png"));
-    }).remove();
+    }).remove()
 });
