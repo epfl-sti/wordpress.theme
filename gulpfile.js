@@ -23,7 +23,12 @@ const argv = require("yargs").argv;
 // see: https://www.browsersync.io/docs/options/
 var browserSyncOptions = {
     proxy: (argv.url || "https://localhost/sti/"),
-    notify: false
+    notify: false,
+    // https://github.com/BrowserSync/browser-sync/issues/639#issuecomment-351125049
+    https: {
+        key:  "devsupport/browser-sync.key",
+        cert: "devsupport/browser-sync.crt"
+    }
 };
 
 if (argv.browser) {

@@ -28,10 +28,11 @@ http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
 
 ### Running
 
-1. Get WordPress running and note down the URL for step 4
-2. Make sure you have installed Node.js on your computer globally
-3. Then open your terminal and browse to the location of your UnderStrap copy
-4. Run e.g.: `$ npm start -- --url=https://localhost/sti --browser=chrome`<br/>💡 For Mac OS X, use `--browser="Google Chrome"` instead.
+1. Get WordPress running and note down the URL for step 5
+2. Add `devsupport/browser-sync.crt` to your browser's or operating system's trusted certificate store (*optional* but [recommended in order to debug with Chrome]())
+3. Make sure you have installed Node.js on your computer globally
+4. Then open your terminal and browse to the location of your UnderStrap copy
+5. Run e.g.: `$ npm start -- --url=https://localhost/sti --browser=chrome`<br/>💡 For Mac OS X, use `--browser="Google Chrome"` instead.
 
 ### Directory layout
 
