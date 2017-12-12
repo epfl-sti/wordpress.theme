@@ -29,20 +29,4 @@ $controls->merge_defaults($theme_defaults);
 
 <div id="vuenewslettercomposer">
 </div>
-<table class="form-table">
-    <tr valign="top">
-        <th>Max new posts to include</th>
-        <td>
-            <?php $controls->text('theme_max_posts', 5); ?> (it defaults to 10 if empty or invalid)
-        </td>
-    </tr>
-    <tr valign="top">
-        <th>Categories</th>
-        <td>
-            <?php $controls->categories_group('theme_categories'); ?>
-        </td>
-    </tr>
-</table>
-
-<?php include WP_PLUGIN_DIR . '/newsletter/emails/themes/default/social-options.php'; ?>
 

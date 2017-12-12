@@ -1,12 +1,12 @@
 import Vue from 'vue'
-import Hello from './hello.vue'
+import Composer from './vue/Composer.vue'
 
 jQuery(function($){
     // As per the instructions in node_modules/vueify/README.md:
     new Vue({
         el: '#vuenewslettercomposer',
         render: function (createElement) {
-            return createElement(Hello)
+            return createElement(Composer)
         }
     })
     // Clean up UI that we won't be using

@@ -93,10 +93,9 @@ class NewsletterHook
      * Handlers are protected by a nonce against XSRF attacks:
      * @see hook_xsrf_nonce
      *
-     * @param $class The fully qualified class name. Tip: to avoid
-     *               messing with PHP namespaces, use
-     *               get_called_class() from a method (static or not)
-     *               of the class itself.
+     * @param $class The fully qualified class name. Tip: you can
+     *               use the form `MyClass::class` to get a fully
+     *               qualified class name.
      *
      * @param $prefix Prefix all method names with this from the JS
      *                side. For instance, if PHP class `$myclass` has
@@ -164,24 +163,4 @@ class NewsletterHook
 
 NewsletterHook::hook();
 
-/**
- * Demo class that handles AJAX.
- *
- * TODO: move to another file.
- */
-class ToyHandler
-{
-    static function hook ()
-    {
-        $js_action_prefix = "epfl_sti_newsletter_";
-        NewsletterHook::add_ajax_class(get_called_class(), $js_action_prefix);
-    }
-    static function ajax_addten ()
-    {
-        global $wpdb; // this is how you get access to the database
-        $value = $_POST['number'];
-        return array("number" => $value + 10);
-    }
-}
-
-ToyHandler::hook();
+require_once dirname(__FILE__) . "/inc/ajax.php";
