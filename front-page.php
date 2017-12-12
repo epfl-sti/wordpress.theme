@@ -89,7 +89,7 @@ $( "tr.slider-event-row" )
     return true;
    });
 </script>
-<div class="div-wrapper" id="containerwave" style="">
+<div class="div-wrapper" id="containerwave">
    <div class="pixelman">
       <div id="sti-homecarousel" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner" role="listbox">
@@ -231,7 +231,8 @@ foreach ($epfl_news as $new) {
    $s = substr($event->title, 0, strrpos($event->title, ' ', $offset)) . '…';
   };
   echo $s;
-  echo "<br /> </div> </td> </tr>";
+  $calendarlink="https://stisrv13.epfl.ch/outlink.php?enddate=20171214T113000&datestring=20171214T103000&speaker=Dr.%20Noris%20GallandatLaboratory%20for%20Materials%20in%20Renewable%20EnergyEPFL%20Valais/Wallis&title=Hydrogen%20Technologies%20and%20Synthetic%20Fuels%20-%20From%20the%20Lab%20to%20the%20Market&room=Zeuzier,%20I17%204%20K2";
+  echo "<span class='eventsplus'><a href=$calendarlink title='Add to calendar' class='eventspluslink'>+</a></span></div> </td> </tr>";
  }
  echo "</table>";
 ?>
@@ -240,17 +241,47 @@ foreach ($epfl_news as $new) {
  </div>
 </center>
 <center>
- <div class='frontrow whitebg'>
+ <div class='secondaryrow whitebg'>
   <div class=secondarytitle>EDUCATION</div>
-  <div class=educationcontainer> A
-  </div>
-  <div class=educationcontainer> B
-  </div>
-  <div class=educationcontainer> C
+   <?php 
+    echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=testimonials"); 
+    echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=placement"); 
+    echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=masters"); 
+   ?>
+ </div>
+</center>
+<center>
+ <div class='secondaryrow whitebg'>
+  <div class=secondarytitle>RESEARCH</div>
+   <?php
+    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=news");
+    echo str_replace("educationbg","researchbg",$output);
+    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=research"); 
+    echo str_replace("educationbg","researchbg",$output);
+    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=campus"); 
+    echo str_replace("educationbg","researchbg",$output);
+   ?>
   </div>
  </div>
 </center>
+<center>
+ <div class='secondaryrow whitebg'>
+  <div class=secondarytitle>INNOVATION</div>
+   <?php
+    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=researchvideo");
+    echo str_replace("educationbg","innovationbg",$output);
+    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=whatis"); 
+    echo str_replace("educationbg","innovationbg",$output);
+    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=inthenews"); 
+    echo str_replace("educationbg","innovationbg",$output);
+   ?>
+ </div>
+</center>
+<!---
 
+      $newsids = ["news", "researchvideo", "inthenews", "testimonials", "campus", "appointments", "whatis", "research", "placement", "masters"];
+
+-->
 <script>
 // For the events in the slider
 $( "div.slider-event-date" )
@@ -271,18 +302,7 @@ $( "tr.slider-event-row" )
 </script>
 <br><br><br><br>
 
-  <div class="news news-stisrv13">
-    <?php
-      $stisrv13lang = (substr(get_locale(),0,2) == 'fr') ? 'fra' : 'eng';
-      $newsids = ["news", "researchvideo", "inthenews", "testimonials", "campus", "appointments", "whatis", "research", "placement", "masters"];
-      foreach ($newsids as $newsid) {
-        $newshtml = curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=" . $stisrv13lang . "&id=" . $newsid);
-        echo "<div class=\"sti_news_html\">$newshtml</div>";
-      }
-    ?>
-  </div>
-
-  <!-- Begin inline sti-shortcut-menu -->
+  <!--- Begin inline sti-shortcut-menu 
   <div class="sti-shortcut-menu">
     <div class="sti-shortcut-menu-flex">
       <div class="sti-link-box">
@@ -302,7 +322,7 @@ $( "tr.slider-event-row" )
       </div>
     </div>
   </div>
-  <!-- End sti-shortcut-menu -->
+  End sti-shortcut-menu -->
 
 
 <?php get_footer(); ?>

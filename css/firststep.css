@@ -23,6 +23,18 @@
  background-color: white;
 }
 
+.educationbg {
+ background-color: #f5f5f5;
+}
+
+.researchbg {
+ background-color: #ddd;
+}
+
+.innovationbg {
+ background-color: #bbb;
+}
+
 .frontrowcontainer {
  float:left;
  display: inline;
@@ -32,33 +44,55 @@
  position: relative;
 }
 
-#redwave {
- position: absolute;
- top: 500px;
- min-width: 1400px;
- z-index: 5;
-}
-
 .secondarytitle {
  font: 26px 'Open Sans Regular';
- padding: 22px 5px 0px 22px
+ padding: 2px 5px 0px 12px
  
 }
 
-.educationrow {
- text-align: left;
- display: inline-block;
- margin-top: 20px;
-}
-
-.educationcontainer {
+.footercontainer {
  float:left;
  display: inline;
  clear: none;
- width: 360px;
- height: 500px;
+ margin: 5px;
+ -webkit-filter: grayscale(100%);
+ filter: grayscale(100%);
+}
+
+.footerrow {
+ text-align: left;
+ display: inline-block;
+ margin-top: 20px;
+ max-width: 1090px;
+}
+
+.secondaryrow {
+ text-align: left;
+ display: inline-block;
+ margin-top: 20px;
+ padding: 15px;
+ max-width: 1080px;
+}
+
+.secondarycontainer {
+ float:left;
+ display: inline;
+ clear: none;
+ width: 320px;
+ height: 400px;
  position: relative;
- padding: 20px;
+ margin: 15px;
+ border: black 1px solid;
+}
+
+.secondaryimage {
+ height: 200px;
+ background-position: center;
+ border: black 1px solid;
+}
+
+.secondarycontent {
+ padding: 30px 20px 20px 30px;
 }
 
 .frontrowcontent {
@@ -73,6 +107,28 @@
  background: rgb(42,41,46);
  background: rgba(42,41,46,0.5);
  padding: 8px;
+}
+
+.eventsplus {
+ width: 16px;
+ height: 16px;
+ background-color: #000;
+ float: right;
+ display: block;
+ font: 14px verdana;
+}
+
+.eventspluslink {
+ color: #fff;
+ text-decoration: none;
+ position: relative;
+ top: -3px;;
+ left: 3px;;
+}
+
+.eventspluslink:hover {
+ color: #cc161d;
+ text-decoration: none;
 }
 
 .frontrowevents {
@@ -143,8 +199,18 @@
  color: #cc161d;
 }
 	
-.whitelink,.whitelink:hover,.whitelink:visited {
+.whitelink,.whitelink:visited {
  color: #fff;
+ text-decoration: none;
+}
+
+.whitelink:hover {
+ color: #cccccc;
+ text-decoration: none;
+}
+
+.secondarylink,.secondarylink:hover,.secondarylink:visited {
+ color: #555;
  text-decoration: none;
 }
 
@@ -217,6 +283,13 @@ a.titlelink {
   font-family: 'Open Sans Regular', sans-serif;
 }
 
+#redwave {
+ position: absolute;
+ top: 500px;
+ min-width: 1400px;
+ z-index: 5;
+}
+
 @media screen and (max-width: 990px) {
   a.titlelink {
     font-size: 5vw;
@@ -231,9 +304,21 @@ a.titlelink {
   }
 }
 
+@media screen and (min-width: 1800px) {
+  #redwave {
+   visibility: hidden;
+  }
+}
+
+@media screen and (min-width: 1700px) {
+  #redwave {
+   top: 309px;
+  }
+}
+
 @media screen and (min-width: 1600px) {
   #redwave {
-   top: 369px;
+   top: 359px;
   }
 }
 
@@ -272,4 +357,16 @@ a.titlelink {
     #containerwave {
         height: 600px;
     }
+}
+
+.footercontact {
+ position: relative;
+ left: 10px;
+ top: -160px;
+}
+
+.contactbox {
+ position: relative;
+ left: 5px;
+ top: 10px;
 }

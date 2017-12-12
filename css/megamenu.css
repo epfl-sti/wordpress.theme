@@ -150,15 +150,17 @@ Screen style's
 
 .menu > ul > li > ul {
     display: none;
-    width: 100%;
+    width: 1080px;
     background: #fff;
     padding: 20px;
-    position: absolute;
     z-index: 99;
     left: 0;
-    margin: 0;
     list-style: none;
     box-sizing: border-box;
+    position: absolute;
+    margin: 0 auto; /* Will not center vertically and won't work in IE6/7. */
+    right: 0; 
+    top: 177px;
 }
 
 @media screen and (max-width: 990px) {
