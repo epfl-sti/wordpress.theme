@@ -210,7 +210,7 @@ foreach ($epfl_news as $new) {
 <?php
  echo "<table class='slider-event-table'>";
  $events = get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=5);
- $max_len = 56;
+ $max_len = 52;
  foreach ($events as $event) {
   $event_day = date("d", strtotime($event->event_start_date));
   $event_month = strtolower(date("M", strtotime($event->event_start_date)));
