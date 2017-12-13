@@ -1,19 +1,15 @@
-ul.sti-megamenu a.sti_menu_link {
-  position: relative;
-  top: 35px;
-}
+/* TODO: Move all these things to files of their own. */
 
 /* -------------------------------
           EPFL Actu
    ---------------------------- */
+.epfl-news {
+}
+
 .epfl-new-card {
   width: 20rem;
   margin: 10px;
 }
-.epfl-new-card-img {}
-.epfl-new-card-body {}
-.epfl-new-card-link {}
-.epfl-new-card-title {}
 
 /* -------------------------------
           STI Shortcut Menu
@@ -21,8 +17,8 @@ ul.sti-megamenu a.sti_menu_link {
 /* https://codepen.io/anon/pen/zLxBo */
 .sti-shortcut-menu {
   background-color: #D30017;
-  height: 170px;
-}
+  height: 170px; }
+
 .sti-shortcut-menu-flex {
   list-style: none;
   display: -webkit-box;
@@ -32,9 +28,9 @@ ul.sti-megamenu a.sti_menu_link {
   display: flex;
   align-items: center;
   justify-content: center;
-  vertical-align: middle;
-}
-.sti-link-box{
+  vertical-align: middle; }
+
+.sti-link-box {
   background: #AE0014;
   padding: 5px;
   width: 200px;
@@ -44,18 +40,15 @@ ul.sti-megamenu a.sti_menu_link {
   color: white;
   font-weight: bold;
   font-size: 1.2em;
-  text-align: center;
-}
+  text-align: center; }
+
 .sti-link-box-a {
   color: white;
-  font-weight: bolder;
-}
-
+  font-weight: bolder; }
 
 /* -------------------------------
           STI Theme footer
    ---------------------------- */
 .sti-footer {
-  background-color: #F7F7F7;
-  height: 300px;
-}
+  background-color: #ccc;
+  height: 300px; }

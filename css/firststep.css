@@ -1,3 +1,7 @@
+body {
+	background-color:#ccc !important;
+}
+
 @font-face {
   font-family: 'Junction Regular';
   src: url('../fonts/Junction-regular.woff');
@@ -89,6 +93,12 @@
  height: 200px;
  background-position: center;
  border: black 1px solid;
+ background-size: 110%;
+ transition: all .4s ease-in-out;
+}
+
+.secondaryimage:hover {
+ background-size: 140%;
 }
 
 .secondarycontent {
@@ -101,7 +111,7 @@
 
 .frontrownewstitle {
  width: 270px;
- height: 65px;
+ height: 61px;
  position: relative;
  top: 85px;
  background: rgb(42,41,46);
@@ -141,11 +151,17 @@
 }
 
 .frontrownews {
- background-size: cover;
  width: 270px;
  height: 150px;
  border-left: #797979 1px solid;
- border-bottom: #797979 1px solid;
+ border-bottom: #cc161d 4px solid;
+ background-size: 100%;
+ background-position: center;
+ transition: all .4s ease-in-out;
+}
+
+.frontrownews:hover {
+ background-size: 130%;
 }
 
 .frontrowheader {
