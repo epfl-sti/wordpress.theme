@@ -7,7 +7,8 @@
     background-color: #F1F1F1 !important;
 }
 
-#tnp-header {
+/* Adware */
+#tnp-header, #tnp-footer {
     display: none;
 }
 
