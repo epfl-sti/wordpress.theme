@@ -1,5 +1,6 @@
 <template>
   <div>
+    <item-picker></item-picker>
     <p>{{ greeting }} World!</p>
     <input type="text" v-model="number" @change="numberChanged"/>
     <p>+ 10 = {{ plusten }}</p>
@@ -12,7 +13,8 @@
 </template>
 
 <script>
-  import WPajax from "./inc/ajax.js"
+  import WPajax from "../inc/ajax.js"
+  import ItemPicker from "./ItemPicker.vue"
 
   export default {
     data () {
@@ -22,6 +24,9 @@
         plusten: 0,
         errors: []
       }
+    },
+    components: {
+        'item-picker': ItemPicker
     },
     methods: {
       numberChanged () {

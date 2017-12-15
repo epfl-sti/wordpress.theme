@@ -5,16 +5,34 @@
  */
 
 namespace EPFL\STI\Newsletter;
+use \WP_Query;
 
 $js_action_prefix = "epfl_sti_newsletter_";
 
 class ContentSearchAjax
 {
-    static function ajax_addten ()
+    static function ajax_search ()
     {
-        global $wpdb; // this is how you get access to the database
-        $value = $_POST['number'];
-        return array("number" => $value + 10);
+        $query = new WP_Query;
+        $results = array();
+        foreach ($query->query(array( 'post_type' => $_POST['postType'],
+                                        's'       => $_POST['searchTerm'] ))
+                 as $result) {
+            array_push($results, array(
+                "ID"           => $result->ID,
+                // TODO: $result->post_author is an int, should dereference it
+                "post_author"  => strip_tags($result->post_author),
+                "post_date"    => $result->post_date,
+                "post_title"   => strip_tags($result->post_title),
+                "post_excerpt" => strip_tags($result->post_excerpt),
+                "post_content" => strip_tags($result->post_content)
+            ));
+        }
+
+        return array(
+            "status" => "OK",
+            "searchResults" => $results
+        );
     }
 }
 
