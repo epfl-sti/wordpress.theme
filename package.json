@@ -39,6 +39,7 @@
     "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
     "popper.js": "^1.12.9",
+    "v-autocomplete": "^1.8.1",
     "vue": "^2.5.9",
     "vue-axios": "^2.0.2",
     "vue-router": "^3.0.1",
