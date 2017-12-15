@@ -126,6 +126,7 @@ gulp.task('admin-scripts', function() {
             "transform": [
                 'vueify',
                 'babelify', // With options from .babelrc
+                'unassertify'
             ]
         }))
         .pipe(rename("newsletter-admin.js"))
