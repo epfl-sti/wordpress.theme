@@ -117,7 +117,7 @@ class NewsletterHook
                     check_ajax_referer(self::SLUG);  // See hook_xsrf_nonce
                     $json_response = call_user_func(
                         array($class, $method_name));
-                    echo json_encode($json_response);
+                    echo json_encode($json_response, JSON_PRETTY_PRINT);
                     wp_die();  // That's the way WP AJAX rolls
                 });
         }
