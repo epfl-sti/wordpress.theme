@@ -21,7 +21,6 @@ export default {
   methods: {
     find_in_context: (kw, text, contextWords) => {
         if (! kw || ! text || ! contextWords) {
-            debugger
             return text
         }
         return highlightKeywordHTML(
