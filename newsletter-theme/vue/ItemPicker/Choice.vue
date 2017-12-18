@@ -1,8 +1,7 @@
 <template>
     <div>
     <img v-if="item.thumbnail_url" :src="item.thumbnail_url">
-    <b>#{{item.ID}}</b>
-    <abbr>{{ item.title }}</abbr>
+    <h3><b>#{{item.ID}}</b> {{ item.post_title }}</h3>
     <span v-html="find_in_context(searchText, item.post_excerpt, contextWords)"></span><br/>
     <span v-html="find_in_context(searchText, item.post_content, contextWords)"></span>
   </div>

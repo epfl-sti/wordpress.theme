@@ -20,7 +20,7 @@ class ContentSearchAjax
         $results = array();
         $post_type = $_POST['postType'];
         foreach ($query->query(array( 'post_type' => $post_type,
-                                        's'       => $_POST['searchTerm'] ))
+                                      's'         => $_POST['searchTerm'] ))
                  as $result) {
             $details = array(
                 "ID"           => $result->ID,
