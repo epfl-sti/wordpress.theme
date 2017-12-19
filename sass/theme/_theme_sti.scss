@@ -52,3 +52,21 @@
 .sti-footer {
   background-color: #ccc;
   height: 300px; }
+
+/* -------------------------------
+    Polylang languages menu
+   ---------------------------- */
+.lang-item {
+  display: inline;
+}
+.lang-item-first:after {
+  content: " /";
+}
+.lang-item a {
+  color: #23282D;
+  text-decoration:  none;
+}
+.lang-item.current-lang a {
+  color: #cb161d;
+  pointer-events: none;
+}
