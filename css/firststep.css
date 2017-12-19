@@ -233,6 +233,7 @@ body {
 .whitelink,.whitelink:visited {
  color: #fff;
  text-decoration: none;
+ font-size: 14px;
 }
 
 .whitelink:hover {
@@ -316,7 +317,7 @@ a.titlelink {
 
 #redwave {
  position: absolute;
- top: 500px;
+ top: 530px;
  min-width: 1400px;
  z-index: 5;
 }
@@ -343,19 +344,19 @@ a.titlelink {
 
 @media screen and (min-width: 1700px) {
   #redwave {
-   top: 309px;
+   top: 329px;
   }
 }
 
 @media screen and (min-width: 1600px) {
   #redwave {
-   top: 359px;
+   top: 389px;
   }
 }
 
 @media screen and (min-width: 1550px) {
   #redwave {
-   top: 469px;
+   top: 499px;
   }
 }
 
@@ -390,10 +391,19 @@ a.titlelink {
     }
 }
 
+.sti_content_title {
+ font: black 30px lucida;
+}
+
+.sti_content_menu {
+    float: right;
+    text-align: right;
+    width: auto;
+}
+
 .footercontact {
  position: relative;
  left: 10px;
- top: -160px;
 }
 
 .contactbox {
