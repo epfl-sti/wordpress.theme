@@ -300,8 +300,8 @@ a.titlelink {
 }
 
 #redwave {
- position: absolute;
- top: 500px;
+ position: relative;
+ top: -290px;
  min-width: 1400px;
  z-index: 5;
 }
