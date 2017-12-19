@@ -19,6 +19,13 @@ http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
 - Go to Appearance → Themes
 - Activate the EPFL-STI theme
 
+### Plugins
+
+#### polylang
+1. Install Polylang
+1. Change the language full name to get the FR / EN (<https://polylang.pro/doc/configure-the-languages/#full-name>)
+
+
 ## Development
 
 ### Installing Dependencies
@@ -47,7 +54,7 @@ http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
 The `/css/theme.css` and its minified little brother `/css/theme.min.css` file(s) provides most of the styles. It is composed of five different SCSS sets and one variable file at `/sass/theme.scss`. Read the comments there for a quick orientation session. Add your designs to /sass/theme/_theme.scss` and your variables to `/sass/theme/_theme_variables.scss`.
 
 # Licenses & Credits
-=
+
 - Understrap: http://understrap.com
 - Font Awesome: http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
 - Bootstrap: http://getbootstrap.com | https://github.com/twbs/bootstrap/blob/master/LICENSE (Code licensed under MIT documentation under CC BY 3.0.)
