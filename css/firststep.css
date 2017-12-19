@@ -54,22 +54,6 @@ body {
  
 }
 
-.footercontainer {
- float:left;
- display: inline;
- clear: none;
- margin: 5px;
- -webkit-filter: grayscale(100%);
- filter: grayscale(100%);
-}
-
-.footerrow {
- text-align: left;
- display: inline-block;
- margin-top: 20px;
- max-width: 1090px;
-}
-
 .secondaryrow {
  text-align: left;
  display: inline-block;
@@ -373,16 +357,4 @@ a.titlelink {
     #containerwave {
         height: 600px;
     }
-}
-
-.footercontact {
- position: relative;
- left: 10px;
- top: -160px;
-}
-
-.contactbox {
- position: relative;
- left: 5px;
- top: 10px;
 }

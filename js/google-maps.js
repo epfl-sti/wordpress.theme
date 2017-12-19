@@ -5,7 +5,7 @@ var service;
 function initMap() {
   var sti_locations_center = {lat: 46.56, lng: 6.8 };
 
-  map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('googlemap'), {
     center: sti_locations_center,
     zoom: 8
   });
