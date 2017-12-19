@@ -7,10 +7,11 @@
 
 ?>
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
-
+ <center>
+  <div class=secondaryrow> 
 	<header class="entry-header">
 
-		<?php the_title( '<h1 style="color:red" class="entry-title">', '</h1>' ); ?>
+		<?php the_title( '<h1 class="sti-content-title">', '</h1>' ); ?>
 
 	</header><!-- .entry-header -->
 
@@ -34,5 +35,6 @@
 		<?php edit_post_link( __( 'Edit', 'epflsti' ), '<span class="edit-link">', '</span>' ); ?>
 
 	</footer><!-- .entry-footer -->
-
+  </div>
+ </center>
 </article><!-- #post-## -->
