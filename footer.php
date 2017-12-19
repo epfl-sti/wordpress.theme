@@ -19,7 +19,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
 	<div class="<?php echo esc_attr( $container ); ?>">
 <div class=footercontact>
  <div class=footerrow>
-  <div class=footercontainer>
+  <!---div class=footercontainer>
    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2745.44682228478!2d6.564568915650063!3d46.519059370457676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478c30fdddeca23f%3A0xbbcc34ab7f93b272!2s%C3%89cole+Polytechnique+F%C3%A9d%C3%A9rale+de+Lausanne!5e0!3m2!1sfr!2sch!4v1447795467500" style="border:0" allowfullscreen="" width="353" height="250" frameborder="0"></iframe>
   </div>
   <div class=footercontainer>
@@ -27,7 +27,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
   </div>
   <div class=footercontainer>
    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2721.165867240955!2d6.943764815663466!3d46.99771603783268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478e0a247392c74b%3A0x2779be2d98bea5b3!2sMicrocity!5e0!3m2!1sen!2suk!4v1447795778830" style="border:0" allowfullscreen="" width="353" height="250" frameborder="0"></iframe>
-  </div>
+  </div--->
  </div>
 
 <div class=contactbox>
