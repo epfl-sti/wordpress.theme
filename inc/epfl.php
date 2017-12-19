@@ -49,3 +49,7 @@ function get_news_from_actu($url='https://actu.epfl.ch/api/jahia/channels/sti/ne
   $data = json_decode($data);
   return $data;
 }
+
+function get_institute() {
+  return "igm";
+}
