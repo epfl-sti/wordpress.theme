@@ -1,0 +1,18 @@
+
+#googlemap {
+ text-align: left;
+ margin-top: 20px;
+ max-width: $max-map-width;
+ clear: none;
+ margin: 5px;
+ height: 500px;
+ -webkit-filter: grayscale(100%);
+ filter: grayscale(100%);
+}
+
+.footer {
+ background-color: #aaa;
+ box-sizing: border-box;
+ padding: 20px 0px 20px 0px;
+ width: 100%;
+}
