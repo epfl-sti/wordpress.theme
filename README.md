@@ -52,6 +52,7 @@ http://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
 ### SCSS basics
 
 The `/css/theme.css` and its minified little brother `/css/theme.min.css` file(s) provides most of the styles. It is composed of five different SCSS sets and one variable file at `/sass/theme.scss`. Read the comments there for a quick orientation session. Add your designs to /sass/theme/_theme.scss` and your variables to `/sass/theme/_theme_variables.scss`.
+The `/css/theme.css` and its minified little brother `/css/theme.min.css` file(s) provides most of the styles. It is composed of five different SCSS sets and one variable file at `/sass/theme.scss`. Read the comments there for a quick orientation session. Add your designs to `/sass/theme/_theme.scss` and your variables to `/sass/theme/_theme_variables.scss`.
 
 # Licenses & Credits
 
