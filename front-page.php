@@ -171,13 +171,16 @@ foreach ($epfl_news as $new) {
    </div>
    <div class=frontrowlistbox>
     <ul class=frontrowlist>
-	<li><a href=#>Faculty Members</a></li>
-	<li><a href=#>Open Positions</a></li>
+	<li><a href=#>About</a></li>
+	<li><a href=#>Administration</a></li>
+	<li><a href=#>Faculty</a></li>
 	<li><a href=#>Education</a></li>
 	<li><a href=#>Research</a></li>
-	<li><a href=#>Services</a></li>
-	<li><a href=#>Contact</a></li>
+	<li><a href=#>Innovation</a></li>
     </ul> 
+    <ul class=frontrowlist>
+	<li><a href=#>News</a></li>
+	<li><a href=#>Open Facuilty Positions</a></li>
    </div>
   </div>
 
@@ -210,7 +213,7 @@ foreach ($epfl_news as $new) {
 <?php
  echo "<table class='slider-event-table'>";
  $events = get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=5);
- $max_len = 56;
+ $max_len = 52;
  foreach ($events as $event) {
   $event_day = date("d", strtotime($event->event_start_date));
   $event_month = strtolower(date("M", strtotime($event->event_start_date)));
