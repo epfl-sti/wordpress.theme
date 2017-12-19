@@ -21,7 +21,7 @@ function _parse_opts(url_or_opts, data) {
 function WPajax(/* optional__url_or_opts, data */) {
     const [ opts, data ] = _parse_opts.apply({}, arguments)
     if (! data._ajax_nonce) {
-        // See docstring of hook_xsrf_nonce() in ../hook.php for explanations
+        // See docstring of script_pass_xsrf_nonce() in ../hook.php for explanations
         data._ajax_nonce = window.epflsti_newsletter_composer.nonce;
     }
     var ajax = jQuery.ajax(

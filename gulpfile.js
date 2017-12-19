@@ -141,7 +141,7 @@ gulp.task('admin-scripts', function() {
                 'unassertify'
             ]
         }))
-        .pipe(rename("newsletter-admin.js"))
+        .pipe(rename("newsletter-composer.js"))
         .pipe(assetsDest())  // Save non-minified, then continue
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(uglifyJS({suffix: '.min'}))

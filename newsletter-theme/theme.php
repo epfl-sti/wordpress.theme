@@ -205,6 +205,9 @@ $date = "Vol. 1, No. 1, December 2017";
     <head>
         <title></title>
         <?php css(); ?>
+        <?php if (function_exists("\\EPFL\\STI\\Newsletter\\render_editor_scripts")) {
+                 render_editor_scripts();
+        } ?>
     </head>
 
     <body>

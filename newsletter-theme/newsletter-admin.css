@@ -41,3 +41,8 @@
     padding: 10px;
     margin: 15px 0;
 }
+
+iframe.emails-vue-editor {
+    width: 100%;
+    height: 800px;
+}

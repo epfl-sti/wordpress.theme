@@ -16,26 +16,26 @@ if ( ! defined( 'ABSPATH' ) ) {
     die( 'Access denied.' );
 }
 
+require_once(dirname(dirname(__FILE__)) . "/inc/epfl.php");
+use function \EPFL\STI\get_theme_relative_uri;
+
 class NewsletterHook
 {
     // PHP only:
     const SLUG = 'epfl_sti_newsletter';
 
     // Must be the same as in inc/ajax.js:
-    const GLOBAL_JS_VAR_NAME = 'epflsti_newsletter_composer';
+    const TOPLEVEL_JS_VAR_NAME = 'epflsti_newsletter_composer';
 
     static function hook ()
     {
         self::register_epfl_newsletter_theme();
 
         $pagename  = "admin_page_newsletter_emails_new";
-        add_action("admin_print_scripts-${pagename}",
-                   array(get_called_class(), "hook_core_js"),
-                   -1000);  // Very early
+        add_action("wp_loaded", array(get_called_class(), "serve_composer_app"));
+
         add_action("load-${pagename}",
-                   array(get_called_class(), "hook_composer_scripts"));
-        add_action("load-${pagename}",
-                   array(get_called_class(), "hook_composer_styles"));
+                   array(get_called_class(), "hook_composer_style"));
     }
 
     static function register_epfl_newsletter_theme ()
@@ -48,28 +48,11 @@ class NewsletterHook
     }
 
     /**
-     * Hook core.js very early in the page loading
+     * Use our custom CSS for the "new newsletter" admin page
      *
-     * core.js is a polyfill gallery that gives us e.g. a working
-     * "".endsWith() in IE.
+     * @file ./newsletter-admin.css
      */
-    static function hook_core_js ()
-    {
-        printf('<script type="text/javascript" src="%s"></script>',
-               get_theme_file_uri("/assets/core.min.js"));
-    }
-
-    static function hook_composer_scripts ()
-    {
-        wp_register_script(self::SLUG,
-                           get_theme_file_uri("/assets/newsletter-admin.min.js"),
-                           "0.1.0");
-        wp_enqueue_script(self::SLUG);
-
-        self::hook_xsrf_nonce();
-    }
-
-    static function hook_composer_styles ()
+    static function hook_composer_style ()
     {
         $css_slug = self::SLUG . "_css";
         wp_register_style($css_slug,
@@ -91,7 +74,7 @@ class NewsletterHook
      * (typically a PHP associative array).
      *
      * Handlers are protected by a nonce against XSRF attacks:
-     * @see hook_xsrf_nonce
+     * @see serve_composer_app
      *
      * @param $class The fully qualified class name. Tip: you can
      *               use the form `MyClass::class` to get a fully
@@ -114,7 +97,7 @@ class NewsletterHook
             add_action(
                 sprintf("wp_ajax_%s%s", $prefix, $matched[1]),
                 function() use ($class, $method_name) {
-                    check_ajax_referer(self::SLUG);  // See hook_xsrf_nonce
+                    check_ajax_referer(self::SLUG);  // Nonce provided by serve_composer_app
                     $json_response = call_user_func(
                         array($class, $method_name));
                     echo json_encode($json_response, JSON_PRETTY_PRINT);
@@ -124,20 +107,25 @@ class NewsletterHook
     }
 
     /**
-     * Arrange for `window.epflsti_newsletter_composer` to be set in JS code.
+     * @return Some JS code that sets window.epflsti_newsletter_composer.nonce
      *
-     * Called at "load-${pagename}" time by PHPNewsletter::hook().
-     * This creates a global `window.epflsti_newsletter_composer` JS
-     * variable that has a `nonce` field. The JS code is supposed to
-     * pass it back as a parameter in every AJAX request (under the
-     * name _wp_nonce). Upon receiving the AJAX call, PHP code calls
-     * check_ajax_referer() to validate the nonce, thereby thwarting
-     * cross-site request forgery (XSRF) attacks.
+     * This is to thwart cross-site request forgery (XSRF) attacks.
+     * Vue.js code that performs AJAX requests is supposed to pass
+     * that nonce back as the _wp_nonce key in the request payload.
+     * (This is handled in @file inc/ajax.js) Upon receiving the AJAX
+     * call, PHP code calls check_ajax_referer() to validate the
+     * nonce.
      */
-    static function hook_xsrf_nonce ()
+    static function script_pass_xsrf_nonce ()
     {
-        self::add_global_variable_field(self::GLOBAL_JS_VAR_NAME, "nonce",
-                                        wp_create_nonce(self::SLUG));
+        return sprintf("
+            <script>
+               window.%s = {};
+               window.%s.nonce = \"%s\";
+            </script>
+",
+                       self::TOPLEVEL_JS_VAR_NAME, self::TOPLEVEL_JS_VAR_NAME,
+                       wp_create_nonce(self::SLUG));
     }
 
     static $_declared_vars = array();
@@ -158,6 +146,46 @@ class NewsletterHook
         // new, wp_enqueue()d script does nothing. So we piggy-back on
         // our own script instead.
         wp_add_inline_script(self::SLUG, $payload);
+    }
+
+    /**
+     * Serve the Composer Vue app under ?epflsti=emails-vue-editor
+     *
+     * This is done by invoking theme.php just like The Newsletter
+     * Plugin would, except that a function render_editor_scripts() is
+     * made available. (theme.php is expected to call that function in
+     * <head> iff it exists.) render_editor_scripts() in turn ensures
+     * that all the bells and whistles are available to the
+     * single-page Web app in the iframe, namely: js-core polyfills,
+     * window.epflsti_newsletter_composer.nonce for XSRF protection
+     * (which is supposed to be POSTed back as the _wp_nonce JSON
+     * parameter upon every AJAX request; see inc/ajax.js), and the
+     * browserified Vue app.
+     */
+    static function serve_composer_app ()
+    {
+        if ($_GET["epflsti"] !== "emails-vue-editor") return;
+        if (!current_user_can('manage_categories')) {
+            die('Not enough privileges');
+        }
+        if (!check_admin_referer('view')) {
+            die();
+        }
+
+        header('Content-Type: text/html;charset=UTF-8');
+
+        function render_editor_scripts () {
+            echo sprintf("<script type=\"text/javascript\" src=\"%s\"></script>\n",
+                         get_theme_relative_uri() . "/assets/core.min.js");
+            echo sprintf("<script type=\"text/javascript\" src=\"%s\"></script>\n",
+                         get_theme_relative_uri() . "/assets/jquery.min.js");
+            echo NewsletterHook::script_pass_xsrf_nonce();
+            echo sprintf("<script type=\"text/javascript\" src=\"%s\"></script>\n",
+                         get_theme_relative_uri() . "/assets/newsletter-composer.min.js");
+        }
+        include(dirname(__FILE__) . "/theme.php");
+
+        die();
     }
 }
 

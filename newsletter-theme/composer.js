@@ -9,16 +9,4 @@ jQuery(function($){
             return createElement(Composer)
         }
     })
-    // Clean up UI that we won't be using
-    var button_row = $("tr", $("form > table"))[0];
-    $('.button-primary', button_row).filter((unused_index, e) => {
-        var elt = $(e),
-            onclick = elt.attr("onclick");
-        return (onclick && onclick.includes("'save'"));
-    }).remove()
-    $('img', button_row).filter((unused_index, e) => {
-        var elt = $(e),
-            src = elt.attr("src");
-        return (src.endsWith("arrow.png"));
-    }).remove()
 });

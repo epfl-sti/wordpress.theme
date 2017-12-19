@@ -1,32 +1,54 @@
 <?php
 /*
- * This is a pre packaged theme options page. Every option name
- * must start with "theme_" so Newsletter can distinguish them from other
- * options that are specific to the object using the theme.
+ * Single-page Web app for the EPFL-STI newsletter editor.
  *
- * An array of theme default options should always be present and that default options
- * should be merged with the current complete set of options as shown below.
- *
- * Every theme can define its own set of options, the will be used in the theme.php
- * file while composing the email body. Newsletter knows nothing about theme options
- * (other than saving them) and does not use or relies on any of them.
- *
- * For multilanguage purpose you can actually check the constants "WP_LANG", until
- * a decent system will be implemented.
+ * The app is in an iframe taking up most of the real estate in the
+ * wp-admin UI. See serve_composer_app in hook.php for how the app is
+ * served into the iframe.
  */
 
 if (!defined('ABSPATH'))
     exit;
 
-$theme_defaults = array(
-    'theme_max_posts'=>10,
-    'theme_categories'=>array()
-    );
-
-// Mandatory!
-$controls->merge_defaults($theme_defaults);
+$our_iframe_src = wp_nonce_url(
+    sprintf("%s?epflsti=emails-vue-editor&ts=%s&mode=editing",
+            home_url('/', is_ssl() ? 'https' : 'http'),
+            time()),
+    'view');
 ?>
 
-<div id="vuenewslettercomposer">
-</div>
+<iframe id="emails-vue-editor" src="<?php echo $our_iframe_src ?>" height="700" style="width: 100%; border: 1px solid #ccc"></iframe>
+<script type="text/javascript">
+<?php # Trim down the "traditional" composer UI, and keep just the iframe. ?>
+if (!String.prototype.endsWith) {
+  String.prototype.endsWith = function(searchStr, Position) {
+      // This works much better than >= because
+      // it compensates for NaN:
+      if (!(Position < this.length))
+        Position = this.length;
+      else
+        Position |= 0; // round position
+      return this.substr(Position - searchStr.length,
+                         searchStr.length) === searchStr;
+  };
+}
 
+jQuery(function($){
+    var button_row = $("tr", $("form > table"))[0];
+    $('.button-primary', button_row).filter(function(unused_index, e) {
+        var elt = $(e),
+            onclick = elt.attr("onclick");
+        return (onclick && onclick.includes("'save'"));
+    }).remove();
+    $('img', button_row).filter(function(unused_index, e) {
+        var elt = $(e),
+            src = elt.attr("src");
+        return (src.endsWith("arrow.png"));
+    }).remove();
+
+    var iframe_to_keep = $("iframe#emails-vue-editor");
+    var main_ui_tr = iframe_to_keep.closest("tr");
+    $("form").append(iframe_to_keep);
+    main_ui_tr.remove();
+});
+</script>
