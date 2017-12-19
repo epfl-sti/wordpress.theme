@@ -40,17 +40,20 @@ $container = get_theme_mod( 'epflsti_container_type' );
 
     <div class="menu">
 
-            <!-- Your site logo -->
-            <?php if ( ! has_custom_logo() ) { ?>
-	       <a href="https://www.epfl.ch"> <img width=174 id=epfl_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a>	
-               <a href="<?php echo esc_url( home_url( '/' ) ); ?>"> <img id=sti_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.png" /></a>
-            <?php } else {
-                    the_custom_logo();
-            } ?><!-- end custom logo -->
+        <!-- Your site logo -->
+        <?php if ( ! has_custom_logo() ) { ?>
+           <a href="https://www.epfl.ch"> <img width=174 id=epfl_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a>
+           <a href="<?php echo esc_url( home_url( '/' ) ); ?>"> <img id=sti_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.png" /></a>
+        <?php } else {
+            the_custom_logo();
+        } ?><!-- end custom logo -->
 
-	<div class=language><a href='french'>FR&nbsp;&nbsp;/</a>&nbsp;&nbsp;EN</div>
+        <div class="language">
+            <?php // This uses polylang. Change the language full name to get the FR / EN (https://polylang.pro/doc/configure-the-languages/#full-name) ?>
+            <ul class="epflstilangmenu"><?php if (function_exists('pll_the_languages')) { pll_the_languages(); } ?></ul>
+        </div>
 
-      <ul>
+        <ul class="sti_menu_link_ul">
             <li><a class="sti_menu_link" href="#">THE SCHOOL</a>
 
                 <ul>
