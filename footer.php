@@ -30,6 +30,15 @@ $container = get_theme_mod( 'epflsti_container_type' );
   </div>
  </div>
 
+	<style>
+	#map {
+    height: 500px;
+  }
+	</style>
+ 	<script src="<?= get_template_directory_uri() . '/js/google-maps.js' ?>"></script>
+  <div id="map"></div>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-KB1byyUR6AEWVI1B8cdGFIDI1v8g8YY&libraries=places&callback=initMap" async defer></script>
+
 <div class=contactbox>
 CONTACT<br><br>
 Faculté des sciences et techniques de l'ingénieur STI<br>
@@ -47,15 +56,15 @@ CH-1015 Lausanne<br></div>
 					<div class="site-info">
 <!---
 
-							<a href="<?php  echo esc_url( __( 'http://wordpress.org/','epflsti' ) ); ?>"><?php printf( 
+							<a href="<?php  echo esc_url( __( 'http://wordpress.org/','epflsti' ) ); ?>"><?php printf(
 							/* translators:*/
 							esc_html__( 'Proudly powered by %s', 'epflsti' ),'WordPress' ); ?></a>
 								<span class="sep"> | </span>
-					
+
 							<?php printf( // WPCS: XSS ok.
 							/* translators:*/
-								esc_html__( 'Theme: %1$s by %2$s.', 'epflsti' ), $the_theme->get( 'Name' ),  '<a href="'.esc_url( __('http://sti.epfl.ch', 'epflsti')).'">sti.epfl.ch</a>' ); ?> 
-				
+								esc_html__( 'Theme: %1$s by %2$s.', 'epflsti' ), $the_theme->get( 'Name' ),  '<a href="'.esc_url( __('http://sti.epfl.ch', 'epflsti')).'">sti.epfl.ch</a>' ); ?>
+
 							(<?php printf( // WPCS: XSS ok.
 							/* translators:*/
 								esc_html__( 'Version: %1$s', 'epflsti' ), $the_theme->get( 'Version' ) ); ?>)
@@ -84,4 +93,3 @@ CH-1015 Lausanne<br></div>
 </body>
 
 </html>
-
