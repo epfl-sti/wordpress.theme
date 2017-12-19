@@ -7,8 +7,6 @@
  * @package epflsti
  */
 
-$the_theme = wp_get_theme();
-$container = get_theme_mod( 'epflsti_container_type' );
 ?>
 
 <?php get_sidebar( 'footerfull' ); ?>
