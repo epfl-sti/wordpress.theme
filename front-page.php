@@ -20,7 +20,7 @@ use function EPFL\STI\{ get_events_from_memento,
 
 <div>
     <div class="pixelman">
-        <div id="containercalendar">
+        <div style='display:none;' id="containercalendar">
             <table cellpadding="16" style="background-image:url('https://stisrv13.epfl.ch/proposals/darkpixel.png');">
                 <td>
                     <table class="slider-event-table">
@@ -89,7 +89,7 @@ $( "tr.slider-event-row" )
     return true;
    });
 </script>
-<div class="div-wrapper" id="containerwave" style="">
+<div class="div-wrapper" id="containerwave">
    <div class="pixelman">
       <div id="sti-homecarousel" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner" role="listbox">
@@ -97,12 +97,11 @@ $( "tr.slider-event-row" )
               <div class="carousel-item">
                   <div class="sti_carousel">
                       <div class="div-wrapper" id="containerwave" style="background-image:url('<?php echo get_stylesheet_directory_uri(); ?>/img/ProfCamilleBres.jpg');">
-                          <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/waving.png">
                       </div>
                       <div class="pixelman">
                           <div id="containernews">
                               <a class="titlelink" href="http://sti.epfl.ch/page-108381.html#anchor2019">Early career award in photonics </a><br>
-                              <a class="titlelink subtitlelink" href="http://sti.epfl.ch/page-108381.html#anchor2019">Prof. Camille Brès has received the Early Career Women/Entrepreneur award in Photonics</a><br>
+                              <a class="titlelink subtitlelink" href="http://sti.epfl.ch/page-108381.html#anchor2019"></a><br>
                           </div>
                       </div>
                   </div>
@@ -111,12 +110,11 @@ $( "tr.slider-event-row" )
               <div class="carousel-item">
                   <div class="sti_carousel">
                       <div class="div-wrapper" id="containerwave" style="background-image:url('<?php echo get_stylesheet_directory_uri(); ?>/img/LacourTeam.jpg');">
-                          <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/waving.png">
                       </div>
                       <div class="pixelman">
                           <div id="containernews">
                               <a class="titlelink" href="#">A long-term implant to restore walking</a><br>
-                              <a class="titlelink subtitlelink" href="#">Prof. Stéphanie Lacour of the Institute of Bioengineering</a><br>
+                              <a class="titlelink subtitlelink" href="#"></a><br>
                           </div>
                       </div>
                   </div>
@@ -133,42 +131,178 @@ $( "tr.slider-event-row" )
         </div><!-- .sti-homecarousel -->
     </div>
 </div>
+<div class=pixelman id="redwave">
+ <div>
+  <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/waving.png">
+ </div>
+</div>
+<center>
+ <div class=frontrow>
+  <div class=frontrowcontainer>
+   <div class=frontrowheader>
+    RESEARCH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class=frontrowred>NEWS</a>
+   </div>
+   <div class=frontrowcontent>
+<?php
 
-  <!-- Begin EPFL news -->
-  <div class="news epfl-news">
-  <?php
-    // Fetch news from actu web service
-    $epfl_news = get_news_from_actu();
-    foreach ($epfl_news as $new) {
-  ?>
-    <div class="card epfl-new-card">
-      <img class="card-img-top epfl-new-card-img" src="<?php echo $new->news_large_thumbnail_absolute_url; // news_visual_absolute_url ?>" title="<?php echo $new->title; ?>" />
-      <div class="card-body epfl-new-card-body">
-        <a href="<?php echo $new->absolute_slug; ?>" target="_blank" class="epfl-new-card-link">
-          <h4 class="card-title epfl-new-card-title">
-            <?php echo $new->title; ?>
-          </h4>
-        </a>
-      </div>
-    </div>
-    <?php
-    }
-    ?>
+$epfl_news = get_news_from_actu();
+foreach ($epfl_news as $new) {
+ if ($x<3) {
+  echo "<div class=frontrownews style=\"background-image:url('$new->news_large_thumbnail_absolute_url');\">";
+  echo "<a class=whitelink href=$new->absolute_slug>"; 
+  echo "<div class=frontrownewstitle>";
+  echo $new->title;
+  echo "</div>";
+  echo "</a></div>";
+ }
+ $x++;
+}
+
+?>
+
+   </div>
   </div>
-  <!-- End EPFL news -->
 
-  <div class="news news-stisrv13">
-    <?php
-      $stisrv13lang = (substr(get_locale(),0,2) == 'fr') ? 'fra' : 'eng';
+  <div class=frontrowcontainer>
+   <div class=frontrowheader>
+    SCHOOL OF
+    <span class=frontrowred>ENGINEERING
+   </div>
+   <div class=frontrowlistbox>
+    <ul class=frontrowlist>
+	<li><a href=#>Faculty Members</a></li>
+	<li><a href=#>Open Positions</a></li>
+	<li><a href=#>Education</a></li>
+	<li><a href=#>Research</a></li>
+	<li><a href=#>Services</a></li>
+	<li><a href=#>Contact</a></li>
+    </ul> 
+   </div>
+  </div>
+
+  <div class=frontrowcontainer>
+   <div class=frontrowheader>
+    INSTITUTES
+    <span class=frontrowred>&amp;&nbsp;CENTRES
+   </div>
+   <div class=frontrowlistbox>
+    <ul class=frontrowlist>
+	<li><a href=#>Bioengineering</a></li>
+	<li><a href=#>Electrical Engineering</a></li>
+	<li><a href=#>Materials Science &amp; Engineering</a></li>
+	<li><a href=#>Mechanical Engineering</a></li>
+	<li><a href=#>Microengineering</a></li>
+    </ul> 
+    <ul class=frontrowlist>
+	<li><a href=#>Research Centres</a></li>
+	<li><a href=#>Platforms &amp; Workshops</a></li>
+    </ul> 
+   </div>
+  </div>
+  <div class=frontrowcontainer>
+   <div class=frontrowheader>
+    UPCOMING
+    <span class=frontrowred>EVENTS
+   </div>
+   <div class=frontrowevents>
+
+<?php
+ echo "<table class='slider-event-table'>";
+ $events = get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=5);
+ $max_len = 56;
+ foreach ($events as $event) {
+  $event_day = date("d", strtotime($event->event_start_date));
+  $event_month = strtolower(date("M", strtotime($event->event_start_date)));
+  echo "<tr class='slider-event-row' data-link='$event->absolute_slug'>";
+  echo "<td class='slider-event-cell'>
+   <div class='slider-event-date'>
+    <span class='slider-event-date-day'>
+     $event_day 
+    </span>
+    <span class='slider-event-date-month'>
+     $event_month 
+    </span>
+   </div>
+   <div class='slider-event-title'>";
+  $s = $event->title;
+  if (strlen($event->title) > $max_len) {
+   $offset = ($max_len - 3) - strlen($event->title);
+   $s = substr($event->title, 0, strrpos($event->title, ' ', $offset)) . '…';
+  };
+  echo $s;
+  $calendarlink="https://stisrv13.epfl.ch/outlink.php?enddate=20171214T113000&datestring=20171214T103000&speaker=Dr.%20Noris%20GallandatLaboratory%20for%20Materials%20in%20Renewable%20EnergyEPFL%20Valais/Wallis&title=Hydrogen%20Technologies%20and%20Synthetic%20Fuels%20-%20From%20the%20Lab%20to%20the%20Market&room=Zeuzier,%20I17%204%20K2";
+  echo "<span class='eventsplus'><a href=$calendarlink title='Add to calendar' class='eventspluslink'>+</a></span></div> </td> </tr>";
+ }
+ echo "</table>";
+?>
+    <a href=#><img class=frontrowmore align=right src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/more.png"></a>
+  </div> 
+ </div>
+</center>
+<center>
+ <div class='secondaryrow whitebg'>
+  <div class=secondarytitle>EDUCATION</div>
+   <?php 
+    echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=testimonials"); 
+    echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=placement"); 
+    echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=masters"); 
+   ?>
+ </div>
+</center>
+<center>
+ <div class='secondaryrow whitebg'>
+  <div class=secondarytitle>RESEARCH</div>
+   <?php
+    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=news");
+    echo str_replace("educationbg","researchbg",$output);
+    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=research"); 
+    echo str_replace("educationbg","researchbg",$output);
+    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=campus"); 
+    echo str_replace("educationbg","researchbg",$output);
+   ?>
+  </div>
+ </div>
+</center>
+<center>
+ <div class='secondaryrow whitebg'>
+  <div class=secondarytitle>INNOVATION</div>
+   <?php
+    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=researchvideo");
+    echo str_replace("educationbg","innovationbg",$output);
+    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=whatis"); 
+    echo str_replace("educationbg","innovationbg",$output);
+    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=inthenews"); 
+    echo str_replace("educationbg","innovationbg",$output);
+   ?>
+ </div>
+</center>
+<!---
+
       $newsids = ["news", "researchvideo", "inthenews", "testimonials", "campus", "appointments", "whatis", "research", "placement", "masters"];
-      foreach ($newsids as $newsid) {
-        $newshtml = curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=" . $stisrv13lang . "&id=" . $newsid);
-        echo "<div class=\"sti_news_html\">$newshtml</div>";
-      }
-    ?>
-  </div>
 
-  <!-- Begin inline sti-shortcut-menu -->
+-->
+<script>
+// For the events in the slider
+$( "div.slider-event-date" )
+  .mouseenter(function() {
+    $( this ).css( { backgroundColor: "#55576A", color: "#fff", "font-weight": "normal" })
+    $( this ).parent().css({ "border-right": "1px solid #FA2400" });
+  })
+  .mouseleave(function() {
+    $( this ).css( { backgroundColor: "#ccc", color: "#000", "font-weight": "normal" })
+    $( this ).parent().css({ "border-right": "1px solid #fff" });
+
+  });
+$( "tr.slider-event-row" )
+  .click(function() {
+    window.location = $( this ).data("link");
+    return true;
+   });
+</script>
+<br><br><br><br>
+
+  <!--- Begin inline sti-shortcut-menu 
   <div class="sti-shortcut-menu">
     <div class="sti-shortcut-menu-flex">
       <div class="sti-link-box">
@@ -188,7 +322,7 @@ $( "tr.slider-event-row" )
       </div>
     </div>
   </div>
-  <!-- End sti-shortcut-menu -->
+  End sti-shortcut-menu -->
 
 
 <?php get_footer(); ?>

@@ -1,0 +1,30 @@
+$sti-carousel-button-distancefromtop: 160px;
+$sti-carousel-button-size: 32px;
+$sti-carousel-button-distancefromleftright: 25px;
+
+.sti-carousel-button {
+    position: absolute;
+    top: $sti-carousel-button-distancefromtop;
+
+    @media screen and (max-width: $megamenu-small) {
+       visibility: hidden;
+    }
+}
+
+.sti-carousel-button {
+    height: $sti-carousel-button-size;
+    &.next {
+        right: $sti-carousel-button-distancefromleftright;
+    }
+    &.prev {
+        left: $sti-carousel-button-distancefromleftright;
+    }
+}
+
+.carousel-control-prev-icon:hover {
+  background-image: url("/sti/wp-content/themes/epfl-sti/img/src/left_desat.png");
+}
+
+.carousel-control-next-icon:hover {
+  background-image: url("/sti/wp-content/themes/epfl-sti/img/src/right_desat.png");
+}

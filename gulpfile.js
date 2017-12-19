@@ -23,8 +23,17 @@ const argv = require("yargs").argv;
 // see: https://www.browsersync.io/docs/options/
 var browserSyncOptions = {
     proxy: (argv.url || "https://localhost/sti/"),
-    notify: false
+    notify: false,
+    // https://github.com/BrowserSync/browser-sync/issues/639#issuecomment-351125049
+    https: {
+        key:  "devsupport/browser-sync.key",
+        cert: "devsupport/browser-sync.crt"
+    }
 };
+
+if (argv.browser) {
+    browserSyncOptions.browser = argv.browser;
+}
 
 // Run any of:
 // gulp default
@@ -64,9 +73,9 @@ gulp.task('sass', function () {
                 this.emit('end');
             }
         }))
+        .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(assetsDest())  // Save un-minified, then continue
-        .pipe(sourcemaps.init())
         .pipe(cleanCSS())
         .pipe(rename({suffix: '.min'}))
         .pipe(sourcemaps.write('.'))
@@ -166,7 +175,6 @@ function pipeLog(formatter) {
  * of Modernizr.
  *
  * Pipe the return of this function to a pipeline that produces JS files.
- *
  */
 function bundleJS(destination_filename) {
     const cloneSink = clone.sink();
@@ -180,11 +188,19 @@ function bundleJS(destination_filename) {
         ();
 }
 
+/**
+ * @returns A DuplexStream that uglifies JS files found in it, and drops
+ *          the other files (does not forward them).
+ *
+ * "debugger" statements are kept, so that one may do development out
+ * of the uglified files - Thereby minimizing the likelihood of problems
+ * that only exist in production code.
+ */
 function uglifyJS(rename_opts) {
     const cloneSink = clone.sink();
     return lazypipe()
         .pipe(() => ignore.include(new RegExp('js$')))
-        .pipe(uglify)
+        .pipe(() => uglify( {compress: {drop_debugger: false}} ))
         .pipe(() => rename(rename_opts))
         .pipe(() => sourcemaps.write('.'))
         ();
