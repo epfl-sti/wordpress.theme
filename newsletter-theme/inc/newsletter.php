@@ -23,6 +23,7 @@ class PostCategory
 
     function __construct ($theme_options)
     {
+        if (! $theme_options) $theme_options = array();
         $this->theme_options = $theme_options;
     }
 
@@ -32,13 +33,15 @@ class PostCategory
 
         // Maximum number of post to retrieve
         $filters['posts_per_page'] = (int) $this->theme_options['theme_max_posts'];
-        if ($filters['posts_per_page'] == 0)
+        if (! $filters['posts_per_page'])
             $filters['posts_per_page'] = 10;
 
         // Include only posts from specified categories. Do not filter per category is no
         // one category has been selected.
         if (is_array($this->theme_options['theme_categories'])) {
             $filters['cat'] = implode(',', $this->theme_options['theme_categories']);
+        } else {
+            $filters['post_type'] = "epfl-actu";
         }
 
         return $filters;
