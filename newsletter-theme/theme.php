@@ -267,9 +267,6 @@ render_frame_table(function() {
                 // Setup the post (WordPress requirement)
                 setup_postdata($post);
     
-                // The theme can "suggest" a subject replacing the one configured, for example. In this case
-                // the theme, is there is no subject, suggest the first post title.
-                if (empty($theme_options['subject'])) $theme_options['subject'] = $post->post_title;
                 if ($count>3) {
                     echo "<tr><td><table cellpadding=0 cellspacing=0 border=0>";
                     render_red_title_tr("OPEN POSITIONS");
