@@ -11,9 +11,10 @@ use function \EPFL\STI\Theme\___;
 function get_newsletter_categories ($theme_options)
 {
     return array(
-        new NewsCategory($theme_options),
-        new EventsCategory($theme_options),
-        new FacultyNewsCategory($theme_options)
+        "news"       => new NewsCategory($theme_options),
+        "events"     => new EventsCategory($theme_options),
+        "faculty"    => new FacultyNewsCategory($theme_options),
+        "inthemedia" => new InTheMediaCategory($theme_options)
         );
 }
 
@@ -56,16 +57,20 @@ class PostCategory
 
 class NewsCategory extends PostCategory
 {
-    function title () { return ___("News") ; }
+    function title () { return ___("News"); }
 }
 
 class EventsCategory extends PostCategory
 {
-    function title () { return ___("Upcoming events") ; }
+    function title () { return ___("Upcoming events"); }
 }
 
 class FacultyNewsCategory extends PostCategory
 {
-    function title () { return ___("Faculty positions") ; }
+    function title () { return ___("Faculty positions"); }
 }
 
+class InTheMediaCategory extends PostCategory
+{
+    function title () { return ___("In the media"); }
+}

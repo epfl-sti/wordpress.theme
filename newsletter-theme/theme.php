@@ -162,7 +162,7 @@ function render_event_tr ($title, $day, $month, $link, $place, $outlink)
     <?php
 }
 
-function render_righthand_column_td ($render_events_func)
+function render_righthand_column_td ($render_events_func, $render_in_the_media_func)
 {
     echo "<td rowspan=4 valign=top style=\"padding: 0px; background-color:#d6d6d6; font-size: 14px; color: #666; font-family:Tahoma,Verdana,sans-serif\">\n";
 
@@ -176,15 +176,18 @@ function render_righthand_column_td ($render_events_func)
 			 </tr>
 			</table>
 		       ";
+            if ($render_in_the_media_func) {
 		       echo "<br>$opentable";
 		       render_red_title_tr("IN THE MEDIA");
-               render_media_tr('Sylvie Roke makes waves with her work on 3D imaging of surface chemistry','https://www.eurekalert.org/pub_releases/2017-07/epfd-3io071917.php','Science News','September 2017');
-               render_media_tr('Elison Matioli makes groundbreaking use of slanted tri-gate structures','http://www.semiconductor-today.com/news_items/2017/aug/epf_230817.shtml','Semiconductor Today','August, 2017');
+               call_user_func($render_in_the_media_func);
               echo "
 			 <tr>
 			  <td align=right><table><td><a href=\"https://sti.epfl.ch/news\" class=\"outlink more\">More...</a></td></table></td>
 			 </tr>
 			</table>
+";
+           }
+           echo "
         </td>
 ";
 }
@@ -240,6 +243,28 @@ Unsubscribe by clicking <a target="_tab" href="{unsubscription_url}">here</a>
     <?php
 }
 
+function render_events ()
+{
+    render_event_tr(
+        'Towards next-generation membranes for energy-efficient molecular separation',
+        '7','dec',
+        'http://sti.epfl.ch/page-42995.html#httpsmementoepflchimage10622122x122jpg',
+        'EPFL Wallis (Sion)',
+        'https://stisrv13.epfl.ch/outlink.php?enddate=20171207T113000&datestring=20171207T103000&speaker=Prof.%20Kumar%20AgrawalLaboratory%20of%20advanced%20separationsEPFL%20Valais,%20Sion&title=Towards%20the%20next-generation%20membranes%20for%20energy-efficient%20molecular%20separation&room=Zeuzier,%20I17%204%20K2');
+    render_event_tr(
+        'What impact can integrated photonics have on data center architecture?',
+        '8','dec',
+        'http://sti.epfl.ch/page-42995.html#httpsmementoepflchimage10667122x122jpg',
+        'BC 420',
+        'https://stisrv13.epfl.ch/outlink.php?enddate=20171208T120000&datestring=20171208T110000&speaker=S%E9bastien%20Rumley,%20Research%20Scientist%20in%20the%20Lightwave%20Research%20Laboratory,%20Columbia%20University,%20New%20York&title=What%20impact%20can%20Integrated%20Photonics%20have%20on%20data%20center%20architecture?&room=BC%20420');
+}
+
+function render_in_the_media ()
+{
+    render_media_tr('Sylvie Roke makes waves with her work on 3D imaging of surface chemistry','https://www.eurekalert.org/pub_releases/2017-07/epfd-3io071917.php','Science News','September 2017');
+    render_media_tr('Elison Matioli makes groundbreaking use of slanted tri-gate structures','http://www.semiconductor-today.com/news_items/2017/aug/epf_230817.shtml','Semiconductor Today','August, 2017');
+}
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -258,7 +283,7 @@ render_frame_table(function() {
     render_header_tr($volumeno);
     $index = 0;
     $count = 0;
-    foreach (get_newsletter_categories($theme_options) as $cat) {
+    foreach (get_newsletter_categories($theme_options) as $cat_id => $cat) {
         $index = $index + 1;
         global $post;
         foreach ($cat->posts() as $post) {
@@ -274,20 +299,9 @@ render_frame_table(function() {
                 echo "<tr>";
                 render_news_item_td($count === 0 ? "hero" : "normal");
                 if ($count === 1) {
-                    render_righthand_column_td(function() {
-                        render_event_tr(
-                            'Towards next-generation membranes for energy-efficient molecular separation',
-                            '7','dec',
-                            'http://sti.epfl.ch/page-42995.html#httpsmementoepflchimage10622122x122jpg',
-                            'EPFL Wallis (Sion)',
-                            'https://stisrv13.epfl.ch/outlink.php?enddate=20171207T113000&datestring=20171207T103000&speaker=Prof.%20Kumar%20AgrawalLaboratory%20of%20advanced%20separationsEPFL%20Valais,%20Sion&title=Towards%20the%20next-generation%20membranes%20for%20energy-efficient%20molecular%20separation&room=Zeuzier,%20I17%204%20K2');
-                        render_event_tr(
-                            'What impact can integrated photonics have on data center architecture?',
-                            '8','dec',
-                            'http://sti.epfl.ch/page-42995.html#httpsmementoepflchimage10667122x122jpg',
-                            'BC 420',
-                            'https://stisrv13.epfl.ch/outlink.php?enddate=20171208T120000&datestring=20171208T110000&speaker=S%E9bastien%20Rumley,%20Research%20Scientist%20in%20the%20Lightwave%20Research%20Laboratory,%20Columbia%20University,%20New%20York&title=What%20impact%20can%20Integrated%20Photonics%20have%20on%20data%20center%20architecture?&room=BC%20420');
-                    });
+                    render_righthand_column_td(
+                        "EPFL\\STI\\Newsletter\\render_events",
+                        "EPFL\\STI\\Newsletter\\render_in_the_media");
                 }
                 echo " </tr>";
                 if ($count>3) {
