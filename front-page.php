@@ -177,6 +177,7 @@ foreach ($epfl_news as $new) {
 	<li><a href=#>Education</a></li>
 	<li><a href=#>Research</a></li>
 	<li><a href=#>Innovation</a></li>
+	<li><a href=#>Themes</a></li>
     </ul> 
     <ul class=frontrowlist>
 	<li><a href=#>News</a></li>

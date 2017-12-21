@@ -221,7 +221,8 @@ $container = get_theme_mod( 'epflsti_container_type' );
   		    </li>
                 </ul>
             </li>
-            <li><a href="#" class="sti_menu_link">THEMES</a></li>
+            <li><a href="#" class="sti_menu_link">THEMES</a>
+            </li>
         </ul>
     </div>
 </div>
