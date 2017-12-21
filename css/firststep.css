@@ -69,6 +69,28 @@ body {
  padding: 2px 5px 0px 12px
 }
 
+.sti_content_title {
+ background-color: black;
+ color: white;
+ font: 26px 'Open Sans Regular';
+ width: 100%;
+ padding: 10px;
+ margin-bottom: 10px;
+}
+
+.sti_content_body {
+ display: inline-block;
+ text-align: left;
+ margin-top: 20px;
+}
+
+.sti_content_maincolumn {
+ display: inline;
+ width: 810px;
+ padding: 0px 30px 30px 30px;
+ float: left;
+}
+
 .sti_righthand_menu {
  display: inline;
  width: 300px;
