@@ -7,11 +7,10 @@
 
 ?>
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
- <center>
-  <div class=secondaryrow> 
+ <div class=sti_content_maincolumn>
 	<header class="entry-header">
 
-		<?php the_title( '<h1 class="sti-content-title">', '</h1>' ); ?>
+		<?php the_title( '<div class="sti_content_title">', '</div>' ); ?>
 
 	</header><!-- .entry-header -->
 
@@ -35,6 +34,25 @@
 		<?php edit_post_link( __( 'Edit', 'epflsti' ), '<span class="edit-link">', '</span>' ); ?>
 
 	</footer><!-- .entry-footer -->
+ </div>
+ <div class=sti_righthand_menu>
+  <div class="frontrowlist_title frontrowmarker"><a class="frontrowtitle_link" href=#>RESEARCH</a> - IEL</span></div>
+  <div class="frontrowlistbox rollup">
+   <ul class=frontrowlist>
+	<li><a href=#>Welcome from the Director</a></li>
+	<li><a href=#>Faculty Members</a></li>
+	<li><a href=#>EE Laboratories</a></li>
+	<li><a href=#>Lab Videos</a></li>
+	<li><a href=#>Facts and Figures</a></li>
+	<li><a href=#>Main Research Topics</a></li>
+	<li><a href=#>EPFL centers and EE</a></li>
+	<li><a href=#>Facilities</a></li>
+	<li><a href=#>Campus</a></li>
+	<li><a href=#>News</a></li>
+	<li><a href=#>Agenda</a></li>
+   </ul> 
   </div>
- </center>
+ </div>
+
+
 </article><!-- #post-## -->
