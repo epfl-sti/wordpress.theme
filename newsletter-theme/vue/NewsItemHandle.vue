@@ -15,6 +15,9 @@ export default {
       type: String,
       required: true
     }
+  },
+  methods: {
+    postType: () => "News"
   }
 }
 </script>

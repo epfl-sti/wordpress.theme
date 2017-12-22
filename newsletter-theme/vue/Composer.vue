@@ -20,13 +20,27 @@
 
 <script>
 import NewsItemHandle from "./NewsItemHandle.vue"
+import _ from "lodash"
 
 export default {
   el: '#composer-toplevel',
+  data: () => ({
+    news: []
+  }),
   components: {
     /* Vue magically maps the NewsItemHandle class
        to <news-item-handle> in the HTML */
     NewsItemHandle
+  },
+  mounted: function() {
+    let $children = this.$children
+    this.$nextTick(() => {
+      // Documentation says children should be mounted too now.
+      // It also says that there is no guarantee on ordering, so
+      // we should perhaps sort by DOM order...
+      let newsChildren = _.filter($children, (child) => (child.postType && (child.postType() === "News")))
+      this.news = _.map(newsChildren, (child) => child.postId)
+    })
   }
 }
 </script>
