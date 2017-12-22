@@ -248,9 +248,9 @@ foreach ($epfl_news as $new) {
  <div class='secondaryrow whitebg'>
   <div class=secondarytitle>EDUCATION</div>
    <?php 
-    echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=testimonials"); 
-    echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=placement"); 
-    echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=masters"); 
+    echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=testimonials&baseurl=/wp-content");
+    echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=placement&baseurl=/wp-content");
+    echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=masters&baseurl=/wp-content");
    ?>
  </div>
 </center>
@@ -258,11 +258,11 @@ foreach ($epfl_news as $new) {
  <div class='secondaryrow whitebg'>
   <div class=secondarytitle>RESEARCH</div>
    <?php
-    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=news");
+    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=news&baseurl=/wp-content");
     echo str_replace("educationbg","researchbg",$output);
-    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=research"); 
+    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=research&baseurl=/wp-content");
     echo str_replace("educationbg","researchbg",$output);
-    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=campus"); 
+    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=campus&baseurl=/wp-content");
     echo str_replace("educationbg","researchbg",$output);
    ?>
   </div>
@@ -272,11 +272,11 @@ foreach ($epfl_news as $new) {
  <div class='secondaryrow whitebg'>
   <div class=secondarytitle>INNOVATION</div>
    <?php
-    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=researchvideo");
+    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=researchvideo&baseurl=/wp-content");
     echo str_replace("educationbg","innovationbg",$output);
-    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=whatis"); 
+    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=whatis&baseurl=/wp-content");
     echo str_replace("educationbg","innovationbg",$output);
-    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=inthenews"); 
+    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=inthenews&baseurl=/wp-content");
     echo str_replace("educationbg","innovationbg",$output);
    ?>
  </div>
