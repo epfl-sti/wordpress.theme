@@ -27,22 +27,25 @@ $container   = get_theme_mod( 'epflsti_container_type' );
 <?php else:    # Default footer is a map and contact info ?>
 
 <div class="footer">
-
-<div class="<?php echo esc_attr( $container ); ?>">
+   <div class=footercontainer>
+   <span class=footertitle>CONTACT</span><br><br>
+School of Engineering<br>
+Dean's Office<br>
+EPFL - ELB 114<br>
+Station 11<br>
+CH-1015 Lausanne<br><br>
+email: <a href="mailto:secretariat.sti@epfl.ch">STI Secretary Office</a>
+  </div>
   <script src="<?= get_template_directory_uri() . '/js/google-maps.js' ?>"></script>
   <div id="googlemap"></div>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-KB1byyUR6AEWVI1B8cdGFIDI1v8g8YY&libraries=places&callback=initMap" async defer></script>
-</div>
 
-<div class="contactbox <?php echo esc_attr( $container ); ?>">
-CONTACT<br><br>
-Faculté des sciences et techniques de l'ingénieur STI<br>
-Décanat<br>
-EPFL - ELB 114<br>
-Station 11<br>
-CH-1015 Lausanne<br></div>
-</div>
-
-</div>
+   <div class=footercontainer>
+   <span class=footertitle>NEWSLETTER</span><br><br>
+   Sign up for our email bulletin:
+   <form><input name=subscriber><br><br><input type=submit value=GO></form>
+    
+   </div>
+ </div> <!-- footer --->
 
 <?php endif; ?>

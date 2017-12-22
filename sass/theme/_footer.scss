@@ -5,14 +5,38 @@
  max-width: $max-map-width;
  clear: none;
  margin: 5px;
- height: 500px;
- -webkit-filter: grayscale(100%);
+ height: 300px;
+ width: 450px;
  filter: grayscale(100%);
 }
 
 .footer {
- background-color: #aaa;
+ background-color: white;
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
  box-sizing: border-box;
  padding: 20px 0px 20px 0px;
  width: 100%;
 }
+
+.footercontainer {
+ width: 270px;
+ float:left;
+ display: inline;
+ clear: none;
+ margin: 5px;
+ padding-left: 20px
+}
+
+.footerrow {
+ text-align: left;
+ display: inline-block;
+ margin-top: 20px;
+ max-width: 1080px;
+}
+
+.footertitle {
+ font: 26px 'Open Sans Regular';
+}
+

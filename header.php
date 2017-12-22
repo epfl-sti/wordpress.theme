@@ -74,7 +74,6 @@ $hp = (function_exists( 'pll_home_url' )) ? pll_home_url() : get_site_url();
                 <?php echo "<!-- THE THEMES MENU -->"; echo get_page_by_title( 'menu-themes-'. $cl )->post_content ; ?>
             </li>
         </ul>
-
     </div>
 </div>
 <!-- End ugly hard coded menu -->
