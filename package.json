@@ -77,5 +77,9 @@
     "unassertify": "^2.1.0",
     "vueify": "^9.4.1",
     "yargs": "^10.0.3"
+  },
+  "browser": {
+    "vue": "vue/dist/vue.common.js",
+    "__comment": "Alias Vue into its \"full build\" for Browserify, so as to enable the browser-side template compiler. See newsletter-theme/composer.js for explanations."
   }
 }

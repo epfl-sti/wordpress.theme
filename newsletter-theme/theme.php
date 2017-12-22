@@ -110,7 +110,7 @@ function render_frame_table ($render_inside_func) {
     <table bgcolor="white" width="100%" cellpadding="4" cellspacing="0" border="0">
     <tr>
         <td align="center">
-            <table width="737" bgcolor="#d6d6d6" align="center" cellspacing="14" cellpadding="0">
+            <table id="composer-toplevel" width="737" bgcolor="#d6d6d6" align="center" cellspacing="14" cellpadding="0">
                <?php call_user_func($render_inside_func); ?>
              </table>
         </td>
@@ -221,6 +221,7 @@ function render_news_item_td ($style)
                  $link_class,
                  the_title("", "", false));
     the_excerpt(); 
+    echo sprintf("<news-item-handle post-id=\"%d\"></news-item-handle>", get_the_id());
     echo "</td>";
 }
 
