@@ -17,7 +17,7 @@ require_once(dirname(__FILE__) . '/inc/newsletter.php');
 
 function render_css()
 { ?>
-<style type="text/css">
+<style>
 .newsletter-title {
  background-color:#039;
  font-size: 20px;
@@ -158,7 +158,7 @@ function render_event_tr ($title, $day, $month, $link, $place, $outlink)
 {
     $datebox = "<div class=\"date\"><a href=\"$link\"><span class=\"day\">$day</span><br><span class=\"month\">$month</span></a></div>";
     ?>
-    <tr><td><table><tr><td style="font-size:14px; width:100%; padding: 0px 0px 10px 0px;" colspan=2><a href="<?php echo $link; ?>"><?php echo $title; ?></a></td></tr><tr><td style='padding: 0px 0px 10px 0px;' width=50 align=left valign=top><a href="<?php echo $link; ?>"><?php echo $datebox; ?></a></td><td style="font-size:12px;" align=right><?php echo $place; ?><br><a href="<?php echo $outlink; ?>">Add to calendar</a></td></tr><tr><td colspan=2 style='border-bottom:2px solid #c50813; font-size:1px'>&nbsp;</td></tr></table></td></tr>
+    <tr><td><table><tr><td style="font-size:14px; width:100%; padding: 0px 0px 10px 0px;" colspan=2><a href="<?php echo $link; ?>"><?php echo $title; ?></a></td></tr><tr><td style='padding: 0px 0px 10px 0px;' width=50 align=left valign=top><?php echo $datebox; ?></td><td style="font-size:12px;" align=right><?php echo $place; ?><br><a href="<?php echo $outlink; ?>">Add to calendar</a></td></tr><tr><td colspan=2 style='border-bottom:2px solid #c50813; font-size:1px'>&nbsp;</td></tr></table></td></tr>
     <?php
 }
 
@@ -166,7 +166,7 @@ function render_righthand_column_td ($render_events_func, $render_in_the_media_f
 {
     echo "<td rowspan=4 valign=top style=\"padding: 0px; background-color:#d6d6d6; font-size: 14px; color: #666; font-family:Tahoma,Verdana,sans-serif\">\n";
 
-    $opentable = "<table class=\"righthand-column\" width=\"100%\" cellpadding=\"8\" cellspacing=\"0 border=\"0\">";
+    $opentable = "<table class=\"righthand-column\" width=\"100%\" cellpadding=\"8\" cellspacing=\"0\" border=\"0\">";
 			echo "$opentable";
 			render_red_title_tr("EVENTS");
             call_user_func($render_events_func);
@@ -216,7 +216,7 @@ function render_news_item_td ($style)
         "align"  => "left"
     ));
     if ($img) echo $img;
-    echo sprintf("<p><a target='_tab' href=\"%s\" class=\"%s\">%s</a></p>",
+    echo sprintf("<p><a target='_blank' href=\"%s\" class=\"%s\">%s</a></p>",
                  get_permalink(),
                  $link_class,
                  the_title("", "", false));
@@ -234,7 +234,7 @@ function render_footer_tr ()
 				  <td>
                          <a href="https://sti.epfl.ch">School of Engineering</a>, &Eacute;cole Polytechnique F&eacute;d&eacute;rale de Lausanne (<a href="https://www.epfl.ch">EPFL</a>), Switzerland<br>You can access previous versions of the newsletter <a href="#">here</a>
 <br>
-Unsubscribe by clicking <a target="_tab" href="{unsubscription_url}">here</a>
+Unsubscribe by clicking <a target="_blank" href="{unsubscription_url}">here</a>
 				 </td>
 				 </tr>
 			    </table>

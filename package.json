@@ -23,10 +23,10 @@
     "framework",
     "bootstrap"
   ],
-  "author": "Holger Koenemann",
+  "author": "STI-IT Web team <stiitweb@groups.epfl.ch>",
   "license": "GPL-2.0",
   "bugs": {
-    "url": "https://github.com/holger1411/epflsti/issues"
+    "url": "https://github.com/epfl-sti/wordpress.theme/issues"
   },
   "homepage": "https://sti.epfl.ch",
   "dependencies": {
