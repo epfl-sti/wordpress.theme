@@ -50,7 +50,7 @@ Screen style's
     margin: 0 auto;
     background: #fff;
     border-top: #cb161d 7px solid;
-    background-image: url('/sti/wp-content/themes/epfl-sti/img/src/lozenges.png');
+    background-image: url('/wp-content/themes/epfl-sti/img/src/lozenges.png');
     background-position: top right;
     background-repeat: no-repeat;
     border-bottom: #cb161d 3px solid;
@@ -136,7 +136,7 @@ Screen style's
   color: #222;
   position: relative; 
   height: 170px;
-  background-image: url('/sti/wp-content/themes/epfl-sti/img/src/sideshadow.gif');
+  background-image: url('/wp-content/themes/epfl-sti/img/src/sideshadow.gif');
   background-position: 0px 86px;
   background-repeat: no-repeat;
 }
