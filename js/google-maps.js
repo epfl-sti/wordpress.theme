@@ -12,11 +12,12 @@ function initMap() {
 
   // Find placeId here: https://developers.google.com/places/place-id
   var locations = [
-    {placeId: 'ChIJP6Ls3f0wjEcRcrKTf6s0zLs'},
-    {placeId: 'ChIJFzvjoR5ljEcRk75_LhNfOhY'},
-    {placeId: 'ChIJ04YCiSMKjkcR82vHt2FplPE'},
-    {placeId: 'ChIJp1NwgyTcjkcRyy0R3xVAkIA'},
-    {placeId: 'ChIJh5I7JtQvjEcRMH8V58ImG3E'},
+    {placeId: 'ChIJP6Ls3f0wjEcRcrKTf6s0zLs'}, //  Swiss Federal Institute of Technology Lausanne
+    {placeId: 'ChIJFzvjoR5ljEcRk75_LhNfOhY'}, //  Campus Biotech
+    {placeId: 'ChIJ04YCiSMKjkcR82vHt2FplPE'}, //  Microcity
+    {placeId: 'ChIJp1NwgyTcjkcRyy0R3xVAkIA'}, //  EPFL Valais Wallis
+    {placeId: 'ChIJh5I7JtQvjEcRMH8V58ImG3E'}, //  EPFL Laboratoire de Machines hydrauliques
+    {placeId: 'ChIJU3z_HDTIjkcR1zFyL-u2amg'}, //  Idiap Research Institute
   ]
 
   service = new google.maps.places.PlacesService(map);

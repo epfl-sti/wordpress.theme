@@ -69,6 +69,34 @@ body {
  padding: 2px 5px 0px 12px
 }
 
+.sti_content_title {
+ background-color: black;
+ color: white;
+ font: 26px 'Open Sans Regular';
+ width: 100%;
+ padding: 10px;
+ margin-bottom: 10px;
+}
+
+.sti_content_body {
+ display: inline-block;
+ text-align: left;
+ margin-top: 20px;
+}
+
+.sti_content_maincolumn {
+ display: inline;
+ width: 810px;
+ padding: 0px 30px 30px 30px;
+ float: left;
+}
+
+.sti_righthand_menu {
+ display: inline;
+ width: 300px;
+ float: left;
+}
+
 .secondaryrow {
  text-align: left;
  display: inline-block;
@@ -191,9 +219,34 @@ body {
  border-bottom: #111 1px solid;
 }
 
+.frontrowlistbox.rollup {
+ height: auto;
+}
+
+.frontrowlist_title {
+ background-color: black;
+ width: 270px;
+ height: 56px;
+ padding: 12px 5px 25px 22px;
+ font: 24px verdana;
+}
+
+.frontrowtitle_link,.frontrowtitle_link:visited {
+ color: #fff;
+ text-decoration: none;
+}
+.frontrowtitle_link:hover {
+ color: #cc161d;
+ text-decoration: none;
+}
+
+.frontrowmarker {
+ color: #cc161d;
+}
+
 .frontrowlist {
  list-style-type: none;
- padding: 13px 10px 10px 10px;
+ padding: 13px 10px 10px 5px;
 }
 
 .frontrowlist > li {
