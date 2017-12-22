@@ -379,24 +379,6 @@ a.titlelink {
   }
 }
 
-@media screen and (min-width: 1700px) {
-  #redwave {
-   top: 329px;
-  }
-}
-
-@media screen and (min-width: 1600px) {
-  #redwave {
-   top: 389px;
-  }
-}
-
-@media screen and (min-width: 1550px) {
-  #redwave {
-   top: 499px;
-  }
-}
-
 @media screen and (min-width: 990px) {
   a.titlelink {
     font-size: 2.1em;
