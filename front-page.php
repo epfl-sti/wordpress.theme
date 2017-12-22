@@ -100,8 +100,8 @@ $( "tr.slider-event-row" )
                       </div>
                       <div class="pixelman">
                           <div id="containernews">
-                              <a class="titlelink" href="http://sti.epfl.ch/page-108381.html#anchor2019">Early career award in photonics </a><br>
-                              <a class="titlelink subtitlelink" href="http://sti.epfl.ch/page-108381.html#anchor2019"></a><br>
+                              <a class="titlelink" href="https://sti.epfl.ch/page-108381.html#anchor2019">Early career award in photonics </a><br>
+                              <a class="titlelink subtitlelink" href="https://sti.epfl.ch/page-108381.html#anchor2019"></a><br>
                           </div>
                       </div>
                   </div>
