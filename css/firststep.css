@@ -86,7 +86,7 @@ body {
 
 .sti_content_maincolumn {
  display: inline;
- width: 810px;
+ width: 789px; /* this degrade col-md-8 of the parent div very badly! */
  padding: 0px 30px 30px 30px;
  float: left;
 }
@@ -266,7 +266,7 @@ body {
 .frontrowlist > li > a:hover {
  color: #cc161d;
 }
-	
+
 .whitelink,.whitelink:visited {
  color: #fff;
  text-decoration: none;
