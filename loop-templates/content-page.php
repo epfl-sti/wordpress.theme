@@ -35,6 +35,7 @@
 
 	</footer><!-- .entry-footer -->
  </div>
+<!-- this is probably not where you want to put this menu
  <div class=sti_righthand_menu>
   <div class="frontrowlist_title frontrowmarker"><a class="frontrowtitle_link" href=#>RESEARCH</a> - IEL</span></div>
   <div class="frontrowlistbox rollup">
@@ -50,9 +51,9 @@
 	<li><a href=#>Campus</a></li>
 	<li><a href=#>News</a></li>
 	<li><a href=#>Agenda</a></li>
-   </ul> 
+   </ul>
   </div>
  </div>
-
+-->
 
 </article><!-- #post-## -->

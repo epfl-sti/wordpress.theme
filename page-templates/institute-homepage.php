@@ -19,25 +19,19 @@ use function \EPFL\STI\get_institute;
 	<div class="<?php echo esc_attr( $container ); ?>" id="content">
 
 		<div class="row">
-			<h1> THIS IS AN INSTITUTE PAGE TEMPLATE</h1>
+
 			<div class="col-md-8 content-area" id="primary">
 
 				<main class="site-main" id="main" role="main">
 
 					<?php while ( have_posts() ) : the_post(); ?>
-
 						<?php get_template_part( 'loop-templates/content', 'page' ); ?>
-						<!-- NAV MENU START -->
-						<?php wp_nav_menu( array( 'theme_location' => sprintf('institutenavmenu-%s', get_institute()) ) ); ?>
-						<!-- NAV MENU END -->
-
 						<?php
 						// If comments are open or we have at least one comment, load up the comment template.
 						if ( comments_open() || get_comments_number() ) :
 							comments_template();
 						endif;
 						?>
-
 					<?php endwhile; // end of the loop. ?>
 
 				</main><!-- #main -->
@@ -45,7 +39,26 @@ use function \EPFL\STI\get_institute;
 			</div><!-- #primary -->
 
 			<?php get_sidebar( 'right' ); ?>
-
+			<!-- NAV MENU START -->
+			<div class="sti_righthand_menu col-md-4">
+				<div class="frontrowlist_title frontrowmarker">
+					<?php
+					global $post;
+					/* Get an array of Ancestors and Parents if they exist */
+					$parents = get_post_ancestors( $post->ID );
+					/* Get the top Level page->ID count base 1, array base 0 so -1 */
+					$id = ($parents) ? $parents[count($parents)-1]: $post->ID;
+					/* Get the parent and set the $class with the page slug (post_name) */
+					$parent = get_post( $id );
+					$class = $parent->post_name;
+					?>
+					<a class="frontrowtitle_link" href=#><?php echo strtoupper($class); ?></a> - <?php echo strtoupper(get_institute()); ?></span>
+				</div>
+				<div class="frontrowlistbox rollup">
+					<?php wp_nav_menu( array( 'theme_location' => sprintf('institutenavmenu-%s', get_institute()) ) ); ?>
+				</div>
+			</div><!-- .sti_righthand_menu -->
+			<!-- NAV MENU END -->
 		</div><!-- .row -->
 
 	</div><!-- Container end -->

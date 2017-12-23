@@ -1,6 +1,11 @@
 /* TODO: Move all these things to files of their own. */
 
 /* -------------------------------
+        Color variables
+  ----------------------------- */
+$theRed: #cc161d;
+
+/* -------------------------------
           EPFL Actu
    ---------------------------- */
 .epfl-news {
@@ -68,6 +73,33 @@
   text-decoration:  none;
 }
 .lang-item.current-lang a {
-  color: #cb161d;
+  color: $theRed;
   pointer-events: none;
+}
+
+/* -------------------------------
+    Institute right menu
+   ---------------------------- */
+#menu-igm-nav-menu {
+  list-style-type: none;
+  padding: 13px 10px 10px 5px;
+
+  li {
+    background-image: url('../img/src/charcoal_separator.gif');
+    background-position: bottom;
+    background-repeat: repeat-x;
+    height: 35px;
+    padding: 0px 0px 0px 20px;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      font: 14px verdana;
+
+
+    }
+    a:hover {
+      color: $theRed;
+    }
+  }
 }
