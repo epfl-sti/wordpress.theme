@@ -197,7 +197,7 @@ function render_news_item_td ($style)
     if ($style === "hero") {
         $colspan="colspan=2"; #first article only
     } else {
-        $colspan="colspan=1";	
+        $colspan="colspan=1";
     }
     if ($style === "hero" or $style === "large") {
         $link_class="newstitle $style";

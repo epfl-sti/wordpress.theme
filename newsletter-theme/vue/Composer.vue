@@ -21,6 +21,7 @@
 <script>
 import NewsItemHandle from "./NewsItemHandle.vue"
 import _ from "lodash"
+import dragula from "dragula"
 
 export default {
   el: '#composer-toplevel',
@@ -40,8 +41,13 @@ export default {
       // we should perhaps sort by DOM order...
       let newsChildren = _.filter($children, (child) => (child.postType && (child.postType() === "News")))
       this.news = _.map(newsChildren, (child) => child.postId)
+
+      this.dragula = dragula([$("tbody", $("#composer-toplevel"))[0]])
     })
   }
 }
 </script>
 
+<style lang="scss">
+@import "dragula/dist/dragula"
+</style>
