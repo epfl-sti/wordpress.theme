@@ -9,14 +9,14 @@ namespace EPFL\STI;
  * @return The name of the directory the epfl-sti theme is installed at.
  */
 function get_theme_basename() {
-    return basename(dirname(dirname(__FILE__)));
+  return basename(dirname(dirname(__FILE__)));
 }
 
 /**
  * @return The top URI of the theme (relative to content_url())
  */
 function get_theme_relative_uri() {
-    return "wp-content/themes/" . get_theme_basename();
+  return "wp-content/themes/" . get_theme_basename();
 }
 
 function curl_get($url)
@@ -50,6 +50,42 @@ function get_news_from_actu($url='https://actu.epfl.ch/api/jahia/channels/sti/ne
   return $data;
 }
 
+// To return the current institute's acronym. Used to load the relevant menu.
 function get_institute() {
-  return "igm";
+  $url = get_permalink();
+  $path = parse_url($url, PHP_URL_PATH);
+  switch ($path) {
+    case '/fr/recherche/ibi/':
+    case '/research/ibi/':
+    case '/sti/research/ibi/':
+    case '/fr/sti/research/ibi/':
+      return 'ibi';
+      break;
+    case '/fr/recherche/iel/':
+    case '/research/iel/':
+    case '/sti/research/iel/':
+    case '/fr/sti/research/iel/':
+      return 'iel';
+      break;
+    case '/fr/recherche/imx/':
+    case '/research/imx/':
+    case '/sti/research/imx/':
+    case '/fr/sti/research/imx/':
+      return 'imx';
+      break;
+    case '/fr/recherche/igm/':
+    case '/research/igm/':
+    case '/sti/research/igm/':
+    case '/fr/sti/research/igm/':
+      return 'igm';
+      break;
+    case '/fr/recherche/imt/':
+    case '/research/imt/':
+    case '/sti/research/imt/':
+    case '/fr/sti/research/imt/':
+      return 'imt';
+      break;
+    default:
+      break;
+  }
 }
