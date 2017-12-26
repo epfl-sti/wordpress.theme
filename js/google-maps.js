@@ -23,7 +23,6 @@ function initMap() {
   service = new google.maps.places.PlacesService(map);
   infoWindow = new google.maps.InfoWindow();
 
-  console.log('before for');
   for (var i = 0; i < locations.length; i++) {
     service.getDetails(locations[i], callback);
   }
@@ -31,7 +30,6 @@ function initMap() {
 
 function callback(place, status)
 {
-  console.log('into callback');
   if (status == google.maps.places.PlacesServiceStatus.OK) {
     createMarker(place);
   }
