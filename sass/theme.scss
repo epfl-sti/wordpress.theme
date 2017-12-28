@@ -3,7 +3,8 @@
 @import "understrap/understrap";// <-------- Loads the Understrap defaults. Just a few classes to incorporate BS in WP
 
 //Optional files - If you dont use the corresponding scripts/fonts comment em out
-@import "../node_modules/font-awesome/scss/font-awesome"; // <------- Font Awesome Icon font
+//@import "../node_modules/font-awesome/scss/font-awesome"; // <------- Font Awesome Icon font
+//@import "../node_modules/@fortawesome/fontawesome/styles.css";
 
 // Any additional imported files //
 @import "theme/theme";  // <--------- That's where you can add your own design. Thats your part!
@@ -13,3 +14,7 @@
 @import "theme/megamenu";
 @import "theme/footer";
 @import "theme/theme_sti"; // Unsorted things, need their own files
+@import "fontawesome5/fontawesome.scss";
+@import "fontawesome5/fa-solid.scss";
+@import "fontawesome5/fa-regular.scss";
+@import "fontawesome5/fa-brands.scss";
