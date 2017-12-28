@@ -55,34 +55,34 @@ function get_institute() {
   $url = get_permalink();
   $path = parse_url($url, PHP_URL_PATH);
   switch ($path) {
-    case '/fr/recherche/ibi/':
-    case '/research/ibi/':
-    case '/sti/research/ibi/':
-    case '/fr/sti/research/ibi/':
+    case '/fr/instituts/ibi/':
+    case '/institutes/ibi/':
+    case '/sti/institutes/ibi/':
+    case '/sti/fr/instituts/ibi/':
       return 'ibi';
       break;
-    case '/fr/recherche/iel/':
-    case '/research/iel/':
-    case '/sti/research/iel/':
-    case '/fr/sti/research/iel/':
+    case '/fr/instituts/iel/':
+    case '/institutes/iel/':
+    case '/sti/institutes/iel/':
+    case '/sti/fr/instituts/iel/':
       return 'iel';
       break;
-    case '/fr/recherche/imx/':
-    case '/research/imx/':
-    case '/sti/research/imx/':
-    case '/fr/sti/research/imx/':
+    case '/fr/instituts/imx/':
+    case '/institutes/imx/':
+    case '/sti/institutes/imx/':
+    case '/sti/fr/instituts/imx/':
       return 'imx';
       break;
-    case '/fr/recherche/igm/':
-    case '/research/igm/':
-    case '/sti/research/igm/':
-    case '/fr/sti/research/igm/':
+    case '/fr/instituts/igm/':
+    case '/institutes/igm/':
+    case '/sti/institutes/igm/':
+    case '/sti/fr/instituts/igm/':
       return 'igm';
       break;
-    case '/fr/recherche/imt/':
-    case '/research/imt/':
-    case '/sti/research/imt/':
-    case '/fr/sti/research/imt/':
+    case '/fr/instituts/imt/':
+    case '/institutes/imt/':
+    case '/sti/institutes/imt/':
+    case '/sti/fr/instituts/imt/':
       return 'imt';
       break;
     default:
