@@ -21,7 +21,7 @@ use function EPFL\STI\{ get_events_from_memento,
 <div>
     <div class="pixelman">
         <div style='display:none;' id="containercalendar">
-            <table cellpadding="16" style="background-image:url('https://stisrv13.epfl.ch/proposals/darkpixel.png');">
+            <table cellpadding="16" style="background-color:#43455a;">
                 <td>
                     <table class="slider-event-table">
                         <tr>
