@@ -6,10 +6,10 @@ a.sti_menu_link {
   color: #555;
 
   position: relative;
-  @media screen and (max-width: $megamenu-small) {
+  @media screen and (max-width: $megamenu-toosmall) {
     top: 5px;
   }
-  @media screen and (min-width: $megamenu-small) {
+  @media screen and (min-width: $megamenu-toosmall) {
     top: 45px;
   }
 }
@@ -148,13 +148,13 @@ Screen style's
     box-sizing: border-box;
 }
 
-@media screen and (max-width: $megamenu-small) {
+@media screen and (max-width: $megamenu-toosmall) {
   .menu > ul > li a {
    top: 5px;
    background-image: none;
   } 
 }
-@media screen and (min-width: $megamenu-small) {
+@media screen and (min-width: $megamenu-toosmall) {
   .menu > ul > li a {
       top: 45px; 
   }
@@ -248,7 +248,7 @@ a:hover.sti_menu_link {
 Mobile styles
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-@media only screen and (max-width: $megamenu-small) {
+@media only screen and (max-width: $megamenu-toosmall) {
     .menu-container {
         width: 100%;
 	background-image: none;

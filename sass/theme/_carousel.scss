@@ -1,24 +1,87 @@
-$sti-carousel-button-distancefromtop: 160px;
-$sti-carousel-button-size: 32px;
-$sti-carousel-button-distancefromleftright: 25px;
+#container-carousel {
+    position: relative;
+    top: 0px;
+    z-index: 2;
+    background-position: center top;
+    height: 300px;
+    width: 100%;
+    overflow: hidden;
+
+    @media screen and (max-width: $carousel-screen-width-small) {
+        height: $carousel-height-small;
+    }
+    @media screen and (min-width: $carousel-screen-width-small) {
+        height: $carousel-height-large;
+    }
+}
+
+.carousel-item div.legend {
+    position: absolute;
+    left: 45px;
+    // Note: since the height of the image is not known (and can in fact vary wildly),
+    // only "top:" is safe. Positioning under the carousel buttons can be done like this:
+    @media screen and (min-width: $carousel-screen-width-small) {
+      top: ($sti-carousel-button-distancefromtop + $carousel-control-icon-width + $sti-carousel-legend-margin);
+    }
+    @media screen and (max-width: $carousel-screen-width-small) {
+      top: $sti-carousel-legend-margin;
+    }
+    z-index: 8;
+    font-family: 'Open Sans Regular', sans-serif;
+    color: white !important;
+}
+
+.carousel-item div.legend a {
+  color: white !important;
+  text-decoration: none;
+}
+
+@media screen and (max-width: $carousel-screen-width-small) {
+  .carousel-item h1 {
+    font-size: 5vw;
+    text-shadow: 1px 1px 2px black;
+  }
+  .carousel-item h2 {
+    font-size: 4vw;
+    text-shadow: 1px 1px 2px black;
+  }
+}
+
+@media screen and (min-width: $carousel-screen-width-small) {
+  .carousel-item h1 {
+    font-size: 2.1em;
+    text-shadow: 1px 1px 2px black;
+  }
+  .carousel-item h2 {
+    font-size: 1.5em;
+    text-shadow: 1px 1px 2px black;
+  }
+}
 
 .sti-carousel-button {
     position: absolute;
     top: $sti-carousel-button-distancefromtop;
 
-    @media screen and (max-width: $megamenu-small) {
+    @media screen and (max-width: $megamenu-toosmall) {
        visibility: hidden;
     }
 }
 
 .sti-carousel-button {
-    height: $sti-carousel-button-size;
-    &.next {
-        right: $sti-carousel-button-distancefromleftright;
-    }
-    &.prev {
-        left: $sti-carousel-button-distancefromleftright;
-    }
+  &.next {
+    right: $sti-carousel-button-distancefromleftright;
+  }
+  &.prev {
+    left: $sti-carousel-button-distancefromleftright;
+  }
+}
+
+.carousel-control-prev-icon {
+  background-image: url("/wp-content/themes/epfl-sti/img/src/left.png");
+}
+
+.carousel-control-next-icon {
+  background-image: url("/wp-content/themes/epfl-sti/img/src/right.png");
 }
 
 .carousel-control-prev-icon:hover {
@@ -27,4 +90,18 @@ $sti-carousel-button-distancefromleftright: 25px;
 
 .carousel-control-next-icon:hover {
   background-image: url("/wp-content/themes/epfl-sti/img/src/right_desat.png");
+}
+
+#redwave {
+ position: relative;
+ top: -290px;
+ min-width: 1400px;
+ height: 0px;
+ z-index: 5;
+ @media screen and (max-width: $redwave-toosmall) {
+  visibility: hidden;
+ }
+ @media screen and (min-width: $redwave-toolarge) {
+  visibility: hidden;
+ }
 }

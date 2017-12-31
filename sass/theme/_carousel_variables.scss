@@ -3,5 +3,16 @@
 // has loaded
 $carousel-control-prev-icon-bg: url("/wp-content/themes/epfl-sti/img/src/left.png");
 $carousel-control-next-icon-bg: url("/wp-content/themes/epfl-sti/img/src/right.png");
-$carousel-control-icon-width: 32px;
 
+$sti-carousel-button-distancefromtop: 160px;
+// This variable is for the Bootstrap carousel that we use:
+$carousel-control-icon-width: 32px;
+$sti-carousel-button-distancefromleftright: 25px;
+$sti-carousel-legend-margin: 60px;
+
+$carousel-screen-width-small: 680px;
+$carousel-height-small:       450px;
+$carousel-height-large:       600px;
+
+$redwave-toosmall: $megamenu-toosmall;
+$redwave-toolarge: 1800px;

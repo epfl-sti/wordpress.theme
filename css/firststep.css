@@ -2,22 +2,6 @@ body {
 	background-color:#ccc !important;
 }
 
-.carousel-control-prev-icon {
-  background-image: url("/wp-content/themes/epfl-sti/img/src/left.png");
-}
-
-.carousel-control-next-icon {
-  background-image: url("/wp-content/themes/epfl-sti/img/src/right.png");
-}
-
-.carousel-control-prev-icon:hover {
-  background-image: url("/wp-content/themes/epfl-sti/img/src/left_desat.png");
-}
-
-.carousel-control-next-icon:hover {
-  background-image: url("/wp-content/themes/epfl-sti/img/src/right_desat.png");
-}
-
 @font-face {
   font-family: 'Junction Regular';
   src: url('../fonts/Junction-regular.woff');
@@ -283,18 +267,6 @@ body {
  text-decoration: none;
 }
 
-.div-wrapper {
-    position: relative;
-    height: 300px;
-    width: 300px;
-}
-
-.div-wrapper img {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-}
-
 .pixelman {
   height: 0px;
 }
@@ -334,80 +306,6 @@ div.news {
   right: 60px;
   top: 240px;
   z-index: 4;
-}
-
-#containernews {
-  height: 60px;
-  position: relative;
-  top: -570px;
-  padding: 0px 0px 0px 45px;
-  z-index: 8;
-}
-
-a.titlelink {
-  color: white !important;
-  text-decoration: none !important;
-  background-image: none;
-  border-bottom: none;
-  font-family: 'Open Sans Regular', sans-serif;
-}
-
-#redwave {
- position: relative;
- top: -290px;
- min-width: 1400px;
- z-index: 5;
-}
-
-@media screen and (max-width: 990px) {
-  a.titlelink {
-    font-size: 5vw;
-    text-shadow: 1px 1px 2px black;
-  }
-  a.subtitlelink {
-    font-size: 4vw;
-    text-shadow: 1px 1px 2px black;
-  }
-  #redwave {
-   visibility: hidden;
-  }
-}
-
-@media screen and (min-width: 1800px) {
-  #redwave {
-   visibility: hidden;
-  }
-}
-
-@media screen and (min-width: 990px) {
-  a.titlelink {
-    font-size: 2.1em;
-    text-shadow: 1px 1px 2px black;
-  }
-  a.subtitlelink {
-    font-size: 1.5em;
-    text-shadow: 1px 1px 2px black;
-  }
-}
-
-#containerwave {
-    position: relative;
-    top: 0px;
-    z-index: 2;
-    background-position: center top;
-    width:100%;
-    background-size: cover;
-}
-
-@media screen and (max-width: 680px) {
-    #containerwave {
-        height: 450px;
-    }
-}
-@media screen and (min-width: 680px) {
-    #containerwave {
-        height: 600px;
-    }
 }
 
 .sti_content_title {

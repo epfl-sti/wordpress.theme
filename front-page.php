@@ -89,52 +89,7 @@ $( "tr.slider-event-row" )
     return true;
    });
 </script>
-<div class="div-wrapper" id="containerwave">
-      <div id="sti-homecarousel" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner" role="listbox">
-
-              <div class="carousel-item">
-                  <div class="sti_carousel">
-                      <div class="div-wrapper" id="containerwave" style="background-image:url('<?php echo get_stylesheet_directory_uri(); ?>/img/ProfCamilleBres.jpg');">
-                      </div>
-                      <div class="pixelman">
-                          <div id="containernews">
-                              <a class="titlelink" href="https://sti.epfl.ch/page-108381.html#anchor2019">Early career award in photonics </a><br>
-                              <a class="titlelink subtitlelink" href="https://sti.epfl.ch/page-108381.html#anchor2019"></a><br>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="carousel-item">
-                  <div class="sti_carousel">
-                      <div class="div-wrapper" id="containerwave" style="background-image:url('<?php echo get_stylesheet_directory_uri(); ?>/img/LacourTeam.jpg');">
-                      </div>
-                      <div class="pixelman">
-                          <div id="containernews">
-                              <a class="titlelink" href="#">A long-term implant to restore walking</a><br>
-                              <a class="titlelink subtitlelink" href="#"></a><br>
-                          </div>
-                      </div>
-                  </div>
-              </div><!-- .carousel-item -->
-            </div><!-- .carousel-inner -->
-            <a class="sti-carousel-button prev" href="#sti-homecarousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="sti-carousel-button next" href="#sti-homecarousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-           </div>
-        </div><!-- .sti-homecarousel -->
-</div>
-<div class=pixelman id="redwave">
- <div>
-  <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/waving.png">
- </div>
-</div>
+<?php require dirname(__FILE__) . "/widgets/carousel.php"; ?>
 <center>
  <div class=frontrow>
   <div class=frontrowcontainer>
