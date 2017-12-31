@@ -90,7 +90,6 @@ $( "tr.slider-event-row" )
    });
 </script>
 <div class="div-wrapper" id="containerwave">
-   <div class="pixelman">
       <div id="sti-homecarousel" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner" role="listbox">
 
@@ -119,7 +118,7 @@ $( "tr.slider-event-row" )
                       </div>
                   </div>
               </div><!-- .carousel-item -->
-            </div>
+            </div><!-- .carousel-inner -->
             <a class="sti-carousel-button prev" href="#sti-homecarousel" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
@@ -128,8 +127,8 @@ $( "tr.slider-event-row" )
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
+           </div>
         </div><!-- .sti-homecarousel -->
-    </div>
 </div>
 <div class=pixelman id="redwave">
  <div>
