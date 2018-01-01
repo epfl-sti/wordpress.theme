@@ -2,10 +2,9 @@
 
 namespace EPFL\STI\Theme\Carousel;
 
-function render ()
+function render_carousel_items ()
 {
-?>
-<div id="container-carousel" class="carousel slide" data-ride="carousel">
+    ?>
     <div class="carousel-item">
         <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/ProfCamilleBres.jpg');">
         <div class="legend">
@@ -20,7 +19,15 @@ function render ()
                 <h1><a href="XXX">A long-term implant to restore walking</a></h1>
                 <h2><a href="XXX">Prof. Lacour's team</a></h2>
         </div>
-    </div><!-- .carousel-item -->
+    </div>
+    <?php
+}
+
+function render ()
+{
+?>
+<div id="container-carousel" class="carousel slide" data-ride="carousel">
+    <?php render_carousel_items(); ?>
     <a class="sti-carousel-button prev" href="#container-carousel" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
