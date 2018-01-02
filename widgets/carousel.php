@@ -1,9 +1,36 @@
 <?php
 
-namespace EPFL\STI\Theme\Carousel;
+/**
+ * Show the carousel for the posts returned by the global $wp_query object.
+ *
+ * If there is currently no query, set up a default one.
+ */
 
-function render_carousel_items ()
+namespace EPFL\STI\Theme\Widgets;
+
+if (! class_exists('WP_Widget')) {
+    die( 'Access denied.' );
+}
+
+require_once(dirname(dirname(__FILE__)) . "/inc/i18n.php");
+use function \EPFL\STI\Theme\___;
+
+class Carousel extends \WP_Widget
 {
+    public function __construct()
+    {
+		parent::__construct(
+			'EPFL_STI_Theme_Widget_Carousel', // unique id
+			'EPFL STI News Carousel', // widget title
+			// additional parameters
+			array(
+				'description' => ___( 'Rotates a selection of news with a big picture' )
+			)
+        );
+	}
+
+    function render_carousel_items ()
+    {
     ?>
     <div class="carousel-item">
         <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/ProfCamilleBres.jpg');">
@@ -17,17 +44,17 @@ function render_carousel_items ()
         <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/LacourTeam.jpg');">
         <div class="legend">
                 <h1><a href="XXX">A long-term implant to restore walking</a></h1>
-                <h2><a href="XXX">Prof. Lacour's team</a></h2>
+                <h2><a href="XXX">Prof. Lacour’s team</a></h2>
         </div>
     </div>
     <?php
-}
+    }
 
-function render ()
-{
-?>
+    public function widget ($args, $instance)
+    {
+    ?>
 <div id="container-carousel" class="carousel slide" data-ride="carousel">
-    <?php render_carousel_items(); ?>
+    <?php $this->render_carousel_items(); ?>
     <a class="sti-carousel-button prev" href="#container-carousel" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
@@ -41,6 +68,8 @@ function render ()
 <div id="redwave">
     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/waving.png">
 </div>
-<?php
+   <?php
+    }
 }
-render();
+
+register_widget(Carousel::class);
