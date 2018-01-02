@@ -29,7 +29,7 @@ class Carousel extends \WP_Widget
         );
 	}
 
-    function render_carousel_items ()
+    function render_carousel_items ($config)
     {
     ?>
     <div class="carousel-item">
@@ -50,7 +50,7 @@ class Carousel extends \WP_Widget
     <?php
     }
 
-    public function widget ($args, $instance)
+    public function widget ($args, $config)
     {
     ?>
 <div id="container-carousel" class="carousel slide" data-ride="carousel">
@@ -69,6 +69,26 @@ class Carousel extends \WP_Widget
     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/waving.png">
 </div>
    <?php
+    }
+
+    public function form ($config)
+    {
+        printf("<select id=\"%s\" name=\"%s\">\n",
+               $this->get_field_id('category'),
+               $this->get_field_name('category'));
+        foreach (get_categories() as $category) {
+            printf("<option value=\"%d\" %s>%s</option>\n",
+                   $category->cat_ID,
+                   selected( $config["category"], $category->cat_ID),
+                   $category->cat_name);
+        }
+        print "</select>\n";
+    }
+
+	public function update( $new_config, $old_config ) {
+        $config = $old_config;
+        $config["category"] = $new_config["category"];
+        return $config;
     }
 }
 
