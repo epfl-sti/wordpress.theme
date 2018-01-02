@@ -66,7 +66,7 @@ $sidebar_pos = get_theme_mod( 'epflsti_sidebar_position' );
 		<!-- Do the right sidebar check -->
 		<?php if ( 'right' === $sidebar_pos || 'both' === $sidebar_pos ) : ?>
 
-			<?php get_sidebar( 'right' ); ?>
+			<?php dynamic_sidebar( 'right' ); ?>
 
 		<?php endif; ?>
 

@@ -11,9 +11,9 @@
 
 	<div class="wrapper" id="wrapper-hero">
 	
-		<?php get_sidebar( 'hero' ); ?>
+		<?php dynamic_sidebar( 'hero' ); ?>
 		
-		<?php get_sidebar( 'statichero' ); ?>
+		<?php dynamic_sidebar( 'statichero' ); ?>
 
 	</div>
 

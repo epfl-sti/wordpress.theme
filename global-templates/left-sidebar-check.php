@@ -12,7 +12,7 @@ $sidebar_pos = get_theme_mod( 'epflsti_sidebar_position' );
 ?>
 
 <?php if ( 'left' === $sidebar_pos || 'both' === $sidebar_pos ) : ?>
-	<?php get_sidebar( 'left' ); ?>
+	<?php dynamic_sidebar( 'left' ); ?>
 <?php endif; ?>
 
 <?php 

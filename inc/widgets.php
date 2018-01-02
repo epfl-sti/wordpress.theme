@@ -44,11 +44,20 @@ if ( ! function_exists( 'slbd_count_widgets' ) ) {
 	}
 }
 
-if ( ! function_exists( 'epflsti_widgets_init' ) ) {
+add_action( 'widgets_init', function () {
 	/**
 	 * Initializes themes widgets.
 	 */
-	function epflsti_widgets_init() {
+		register_sidebar( array(
+			'name'          => __( 'Home page', 'epflsti' ),
+			'id'            => 'homepage',
+			'description'   => 'Widget area shown on the home page',
+			'before_widget' => '<div class="homepage-widgets">',
+			'after_widget'  => '</div>',
+			'before_title'  => '',
+			'after_title'   => '',
+		) );
+
 		register_sidebar( array(
 			'name'          => __( 'Right Sidebar', 'epflsti' ),
 			'id'            => 'right-sidebar',
@@ -70,27 +79,7 @@ if ( ! function_exists( 'epflsti_widgets_init' ) ) {
 		) );
 
 		register_sidebar( array(
-			'name'          => __( 'Hero Slider', 'epflsti' ),
-			'id'            => 'hero',
-			'description'   => 'Hero slider area. Place two or more widgets here and they will slide!',
-			'before_widget' => '<div class="carousel-item">',
-			'after_widget'  => '</div>',
-			'before_title'  => '',
-			'after_title'   => '',
-		) );
-
-		register_sidebar( array(
-			'name'          => __( 'Hero Static', 'epflsti' ),
-			'id'            => 'statichero',
-			'description'   => 'Static Hero widget. no slider functionallity',
-		    'before_widget'  => '<div id="%1$s" class="static-hero-widget %2$s '. slbd_count_widgets( 'statichero' ) .'">', 
-		    'after_widget'   => '</div><!-- .static-hero-widget -->', 
-		    'before_title'   => '<h3 class="widget-title">', 
-		    'after_title'    => '</h3>',
-		) );
-
-		register_sidebar( array(
-			'name'          => __( 'Footer Full', 'epflsti' ),
+			'name'          => __( 'Footer (UNUSED FOR NOW)', 'epflsti' ),
 			'id'            => 'footerfull',
 			'description'   => 'Widget area below main content and above footer',
 		    'before_widget'  => '<div id="%1$s" class="footer-widget %2$s '. slbd_count_widgets( 'footerfull' ) .'">', 
@@ -98,8 +87,5 @@ if ( ! function_exists( 'epflsti_widgets_init' ) ) {
 		    'before_title'   => '<h3 class="widget-title">', 
 		    'after_title'    => '</h3>', 
 		) );
-
-	}
-} // endif function_exists( 'epflsti_widgets_init' ).
-add_action( 'widgets_init', 'epflsti_widgets_init' );
+});  // add_action('widgets_init')
 

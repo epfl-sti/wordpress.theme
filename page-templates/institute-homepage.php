@@ -38,7 +38,7 @@ use function \EPFL\STI\get_institute;
 
 			</div><!-- #primary -->
 
-			<?php get_sidebar( 'right' ); ?>
+			<?php dynamic_sidebar( 'right' ); ?>
 			<!-- NAV MENU START -->
 			<div class="sti_righthand_menu col-md-4">
 				<div class="frontrowlist_title frontrowmarker">

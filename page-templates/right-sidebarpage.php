@@ -40,7 +40,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
 
 			</div><!-- #primary -->
 
-			<?php get_sidebar( 'right' ); ?>
+			<?php dynamic_sidebar( 'right' ); ?>
 
 		</div><!-- .row -->
 
