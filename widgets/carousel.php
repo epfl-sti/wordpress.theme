@@ -38,7 +38,8 @@ class Carousel extends \WP_Widget
                 get_template("loop-templates/carousel");
             } else {
                 $link = get_the_permalink();
-                $subtitle = function_exists("get_the_subtitle") ? get_the_subtitle() : null;
+                global $post;
+                $subtitle = function_exists("get_the_subtitle") ? get_the_subtitle($post, "", "", false) : null;
     ?>
     <div class="carousel-item">
         <?php the_post_thumbnail("full"); ?>
