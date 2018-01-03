@@ -57,24 +57,6 @@ dynamic_sidebar( 'homepage' ); ?>
       $newsids = ["news", "researchvideo", "inthenews", "testimonials", "campus", "appointments", "whatis", "research", "placement", "masters"];
 
 -->
-<script>
-// For the events in the slider
-$( "div.slider-event-date" )
-  .mouseenter(function() {
-    $( this ).css( { backgroundColor: "#55576A", color: "#fff", "font-weight": "normal" })
-    $( this ).parent().css({ "border-right": "1px solid #FA2400" });
-  })
-  .mouseleave(function() {
-    $( this ).css( { backgroundColor: "#ccc", color: "#000", "font-weight": "normal" })
-    $( this ).parent().css({ "border-right": "1px solid #fff" });
-
-  });
-$( "tr.slider-event-row" )
-  .click(function() {
-    window.location = $( this ).data("link");
-    return true;
-   });
-</script>
 <br><br><br><br>
 
   <!--- Begin inline sti-shortcut-menu
