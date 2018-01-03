@@ -29,29 +29,40 @@ class Carousel extends \WP_Widget
         );
 	}
 
-    function render_carousel_items ($config)
+    function render_carousel_items ()
     {
+        $has_carousel_custom_template = locate_template("loop-templates/carousel");
+        while($this->carousel_query->have_posts()) {
+            $this->carousel_query->the_post();
+            if ($has_carousel_custom_template) {
+                get_template("loop-templates/carousel");
+            } else {
+                $link = get_the_permalink();
+                $subtitle = function_exists("get_the_subtitle") ? get_the_subtitle() : null;
     ?>
     <div class="carousel-item">
-        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/ProfCamilleBres.jpg');">
+        <?php the_post_thumbnail("full"); ?>
         <div class="legend">
-                <h1><a href="https://sti.epfl.ch/page-108381.html#anchor2019">Early career award in photonics </a></h1>
-                <h2><a href="https://sti.epfl.ch/page-108381.html#anchor2019"></a></h2>
+                <h1><a href="<?php echo $link; ?>"><?php the_title(); ?></a></h1>
+                <?php if ($subtitle) : ?><h2><a href="<?php echo $link; ?>"><?php echo $subtitle; ?></a></h2><?php endif; ?>
         </div>
     </div>
-
-    <div class="carousel-item">
-        <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/LacourTeam.jpg');">
-        <div class="legend">
-                <h1><a href="XXX">A long-term implant to restore walking</a></h1>
-                <h2><a href="XXX">Prof. Lacour’s team</a></h2>
-        </div>
-    </div>
+                <?php
+            }
+        }
+        wp_reset_postdata();
+    ?>
     <?php
     }
 
     public function widget ($args, $config)
     {
+        $this->carousel_query = new \WP_Query(array(
+            'post_type' => 'any',
+            'cat'       => intval($config['category'])));
+        if (! $this->carousel_query->have_posts()) {
+            return;
+        }
     ?>
 <div id="container-carousel" class="carousel slide" data-ride="carousel">
     <?php $this->render_carousel_items(); ?>
