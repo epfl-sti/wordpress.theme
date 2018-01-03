@@ -1,8 +1,14 @@
 # Makefile to automate tasks pertaining to translations.
 
-.PHONY: default
+.PHONY: all
 
-default: epfl-sti-theme.pot
+all: compile epfl-sti-theme.pot
+
+.PHONY: compile
+compile: $(patsubst %.po, %.mo, $(wildcard *.mo))
+
+%.mo: %.po
+	msgfmt -o $@ $<
 
 .PHONY: epfl-sti-theme.pot
 epfl-sti-theme.pot:
@@ -13,3 +19,8 @@ epfl-sti-theme.pot:
 	  --package-name=epfl-sti-theme \
 	  --msgid-bugs-address=stiitweb@groupes.epfl.ch \
 	  -j -o epfl-sti-theme.pot
+
+.PHONY: msgmerge
+msgmerge:
+	@test -n "$(TARGET)" || { echo >&2 "Usage: make msgmerge TARGET=en_JP.po"; exit 1; }
+	msgmerge -U $(TARGET) epfl-sti-theme.pot
