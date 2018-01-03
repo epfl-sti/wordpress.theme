@@ -49,8 +49,7 @@ foreach ($actu_sti_research as $actu) {
 
   <div class=frontrowcontainer>
    <div class=frontrowheader>
-    SCHOOL OF
-    <span class=frontrowred>ENGINEERING
+    SCHOOL OF<br /><span class=frontrowred>ENGINEERING</span>
    </div>
    <div class=frontrowlistbox>
     <ul class=frontrowlist>
@@ -70,8 +69,7 @@ foreach ($actu_sti_research as $actu) {
 
   <div class=frontrowcontainer>
    <div class=frontrowheader>
-    INSTITUTES
-    <span class=frontrowred>&amp;&nbsp;CENTRES
+    INSTITUTES<br /><span class=frontrowred>&amp;&nbsp;CENTRES</span>
    </div>
    <div class=frontrowlistbox>
     <ul class=frontrowlist>
@@ -82,48 +80,47 @@ foreach ($actu_sti_research as $actu) {
       <li><a href=#>Microengineering</a></li>
     </ul>
     <ul class=frontrowlist>
-      <li><a href=#>Research Centres</a></li>
-      <li><a href=#>Platforms &amp; Workshops</a></li>
+        <li><a href=#>Research Centres</a></li>
+        <li><a href=#>Platforms &amp; Workshops</a></li>
     </ul>
    </div>
   </div>
   <div class=frontrowcontainer>
    <div class=frontrowheader>
-    UPCOMING
-    <span class=frontrowred>EVENTS
+    UPCOMING<br /><span class=frontrowred>EVENTS</span>
    </div>
    <div class=frontrowevents>
 
 <?php
- echo "<table class='slider-event-table'>";
- $events = get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=5);
- $max_len = 52;
- foreach ($events as $event) {
-  $event_day = date("d", strtotime($event->event_start_date));
-  $event_month = strtolower(date("M", strtotime($event->event_start_date)));
-  echo "<tr class='slider-event-row' data-link='$event->absolute_slug'>";
-  echo "<td class='slider-event-cell'>
-   <div class='slider-event-date'>
-    <span class='slider-event-date-day'>
-     $event_day
-    </span>
-    <span class='slider-event-date-month'>
-     $event_month
-    </span>
-   </div>
-   <div class='slider-event-title'>";
-  $s = $event->title;
-  if (strlen($event->title) > $max_len) {
-   $offset = ($max_len - 3) - strlen($event->title);
-   $s = substr($event->title, 0, strrpos($event->title, ' ', $offset)) . '…';
-  };
-  echo $s;
-  $calendarlink="https://stisrv13.epfl.ch/outlink.php?enddate=20171214T113000&datestring=20171214T103000&speaker=Dr.%20Noris%20GallandatLaboratory%20for%20Materials%20in%20Renewable%20EnergyEPFL%20Valais/Wallis&title=Hydrogen%20Technologies%20and%20Synthetic%20Fuels%20-%20From%20the%20Lab%20to%20the%20Market&room=Zeuzier,%20I17%204%20K2";
-  echo "<span class='eventsplus'><a href=$calendarlink title='Add to calendar' class='eventspluslink'>+</a></span></div> </td> </tr>";
- }
- echo "</table>";
+  echo '<table class="slider-event-table">';
+  $events = get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=5);
+  $max_len = 52;
+  foreach ($events as $event) {
+    $event_day = date("d", strtotime($event->event_start_date));
+    $event_month = strtolower(date("M", strtotime($event->event_start_date)));
+    echo "<tr class='slider-event-row' data-link='$event->absolute_slug'>\n";
+    echo "<td class='slider-event-cell'>
+      <div class='slider-event-date'>
+        <span class='slider-event-date-day'>
+          $event_day
+        </span>
+        <span class='slider-event-date-month'>
+          $event_month
+        </span>
+      </div>
+      <div class='slider-event-title'>";
+    $s = $event->title;
+    if (strlen($event->title) > $max_len) {
+      $offset = ($max_len - 3) - strlen($event->title);
+      $s = substr($event->title, 0, strrpos($event->title, ' ', $offset)) . '…';
+    };
+    echo $s;
+    echo '<span class="eventsplus"><a href="https://memento.epfl.ch/event/export/' . $event->translation_id . '/" title="Add to calendar" class="eventspluslink">+</a></span>';
+    echo "\n</div>\n</td>\n</tr>\n";
+  }
+  echo "</table>";
 ?>
-    <a href=#><img class=frontrowmore align=right src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/more.png"></a>
+    <a href="https://memento.epfl.ch/sti/?period=7"><img class="frontrowmore" align="right" src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/more.png"></a>
   </div>
  </div>
 </center>
