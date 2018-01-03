@@ -1,0 +1,87 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the epfl-sti-theme package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: epfl-sti-theme\n"
+"Report-Msgid-Bugs-To: stiitweb@groupes.epfl.ch\n"
+"POT-Creation-Date: 2018-01-03 22:46+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: In sti-test.epfl.ch data
+msgctxt "white-news"
+msgid "EDUCATION"
+msgstr ""
+
+#: In sti-test.epfl.ch data
+msgctxt "white-news"
+msgid "RESEARCH"
+msgstr ""
+
+#: In sti-test.epfl.ch data
+msgctxt "white-news"
+msgid "INNOVATION"
+msgstr ""
+
+#: ../newsletter-theme/inc/newsletter.php:56
+msgid "News"
+msgstr ""
+
+#: ../newsletter-theme/inc/newsletter.php:61
+msgid "Upcoming events"
+msgstr ""
+
+#: ../newsletter-theme/inc/newsletter.php:66
+msgid "Faculty positions"
+msgstr ""
+
+#: ../widgets/carousel.php:27
+msgid "Rotates a selection of news with a big picture"
+msgstr ""
+
+#: ../widgets/frontrow.php:30
+msgid "EPFL STI Front Row"
+msgstr ""
+
+#: ../widgets/frontrow.php:33
+msgid "Shows a blackboard of quick links and useful information"
+msgstr ""
+
+#: ../widgets/overlay-calendar.php:26
+msgid "EPFL STI Overlay Events Calendar"
+msgstr ""
+
+#: ../widgets/overlay-calendar.php:29
+msgid ""
+"Shows a calendar of upcoming events. Zero-height, intended for overlaying on "
+"top of the carousel. (Must come immediately before it in the widget lineup.)"
+msgstr ""
+
+#: ../widgets/white-news.php:26
+msgid "EPFL STI White News Row"
+msgstr ""
+
+#: ../widgets/white-news.php:29
+msgid "Shows rows of collages of news on white background"
+msgstr ""
+
+#: ../widgets/white-news.php:39
+msgid "Title:"
+msgstr ""
+
+#: ../widgets/white-news.php:46
+msgid "CSS class:"
+msgstr ""
+
+#: ../widgets/white-news.php:54
+msgid "URLs to fetch:"
+msgstr ""
