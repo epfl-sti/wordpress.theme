@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: epflsti\n"
 "Report-Msgid-Bugs-To: stiitweb@groupes.epfl.ch\n"
 "POT-Creation-Date: 2018-01-03 22:46+0100\n"
-"PO-Revision-Date: 2018-01-03 22:59+0100\n"
+"PO-Revision-Date: 2018-01-03 23:13+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -47,7 +47,7 @@ msgstr ""
 #: In sti-test.epfl.ch data
 msgctxt "white-news"
 msgid "EDUCATION"
-msgstr ""
+msgstr "ÉDUCATION"
 
 #: In sti-test.epfl.ch data
 msgctxt "white-news"
