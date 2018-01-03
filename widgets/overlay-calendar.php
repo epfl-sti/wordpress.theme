@@ -23,7 +23,7 @@ class OverlayCalendar extends \WP_Widget
     { 
 		parent::__construct( 
 			'EPFL_STI_Theme_Widget_OverlayCalendar', // unique id 
-			'EPFL STI Overlay Events Calendar', // widget title 
+			___('EPFL STI Overlay Events Calendar'), // widget title 
 			// additional parameters 
 			array(
 				'description' => ___( 'Shows a calendar of upcoming events. Zero-height, intended for overlaying on top of the carousel. (Must come immediately before it in the widget lineup.)' )
