@@ -13,55 +13,54 @@
 get_header();
 
 use function EPFL\STI\{ get_events_from_memento,
+                        get_current_language,
                         get_news_from_actu,
-                        curl_get };
+                        get_actu_link,
+                        curl_get
+                     };
 
-?>
-
-<?php dynamic_sidebar( 'homepage' ); ?>
+$cl = get_current_language();
+dynamic_sidebar( 'homepage' ); ?>
 <center>
- <div class=frontrow>
-  <div class=frontrowcontainer>
-   <div class=frontrowheader>
-    RESEARCH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <span class=frontrowred>NEWS</a>
-   </div>
-   <div class=frontrowcontent>
+  <div class="frontrow">
+    <div class="frontrowcontainer">
+      <div class="frontrowheader">
+        RESEARCH<br />
+        <span class="frontrowred">NEWS</span>
+      </div>
+      <div class="frontrowcontent">
 <?php
-
-$epfl_news = get_news_from_actu();
-foreach ($epfl_news as $new) {
- if ($x<3) {
-  echo "<div class=frontrownews style=\"background-image:url('$new->news_large_thumbnail_absolute_url');\">";
-  echo "<a class=whitelink href=$new->absolute_slug>"; 
-  echo "<div class=frontrownewstitle>";
-  echo $new->title;
-  echo "</div>";
-  echo "</a></div>";
- }
- $x++;
+$actu_sti_research_url = 'https://actu.epfl.ch/api/v1/channels/10/news/?format=json&lang='.$cl.'&category=3&faculty=3&themes=4';
+$actu_sti_research = get_news_from_actu($actu_sti_research_url);
+foreach ($actu_sti_research as $actu) {
+  if ($x<3) {
+    echo '<div class="frontrownews" style="background-image:url(' . $actu->visual_url . ')">';
+    echo '<a class=whitelink href="' . get_actu_link($actu->title) . '">';
+    echo '<div class="frontrownewstitle">';
+    echo $actu->title;
+    echo '</div>';
+    echo '</a></div>';
+  }
+  $x++;
 }
-
 ?>
-
-   </div>
-  </div>
+      </div>
+    </div>
 
   <div class=frontrowcontainer>
    <div class=frontrowheader>
-    SCHOOL OF
-    <span class=frontrowred>ENGINEERING
+    SCHOOL OF<br /><span class=frontrowred>ENGINEERING</span>
    </div>
    <div class=frontrowlistbox>
     <ul class=frontrowlist>
-	<li><a href=#>About</a></li>
-	<li><a href=#>Administration</a></li>
-	<li><a href=#>Faculty</a></li>
-	<li><a href=#>Education</a></li>
-	<li><a href=#>Research</a></li>
-	<li><a href=#>Innovation</a></li>
-	<li><a href=#>Themes</a></li>
-    </ul> 
+      <li><a href=#>About</a></li>
+      <li><a href=#>Administration</a></li>
+      <li><a href=#>Faculty</a></li>
+      <li><a href=#>Education</a></li>
+      <li><a href=#>Research</a></li>
+      <li><a href=#>Innovation</a></li>
+      <li><a href=#>Themes</a></li>
+    </ul>
     <ul class=frontrowlist>
 	<li><a href=#>News</a></li>
 	<li><a href=#>Open Facuilty Positions</a></li>
@@ -70,67 +69,65 @@ foreach ($epfl_news as $new) {
 
   <div class=frontrowcontainer>
    <div class=frontrowheader>
-    INSTITUTES
-    <span class=frontrowred>&amp;&nbsp;CENTRES
+    INSTITUTES<br /><span class=frontrowred>&amp;&nbsp;CENTRES</span>
    </div>
    <div class=frontrowlistbox>
     <ul class=frontrowlist>
-	<li><a href=#>Bioengineering</a></li>
-	<li><a href=#>Electrical Engineering</a></li>
-	<li><a href=#>Materials Science &amp; Engineering</a></li>
-	<li><a href=#>Mechanical Engineering</a></li>
-	<li><a href=#>Microengineering</a></li>
-    </ul> 
+      <li><a href=#>Bioengineering</a></li>
+      <li><a href=#>Electrical Engineering</a></li>
+      <li><a href=#>Materials Science &amp; Engineering</a></li>
+      <li><a href=#>Mechanical Engineering</a></li>
+      <li><a href=#>Microengineering</a></li>
+    </ul>
     <ul class=frontrowlist>
-	<li><a href=#>Research Centres</a></li>
-	<li><a href=#>Platforms &amp; Workshops</a></li>
-    </ul> 
+        <li><a href=#>Research Centres</a></li>
+        <li><a href=#>Platforms &amp; Workshops</a></li>
+    </ul>
    </div>
   </div>
   <div class=frontrowcontainer>
    <div class=frontrowheader>
-    UPCOMING
-    <span class=frontrowred>EVENTS
+    UPCOMING<br /><span class=frontrowred>EVENTS</span>
    </div>
    <div class=frontrowevents>
 
 <?php
- echo "<table class='slider-event-table'>";
- $events = get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=5);
- $max_len = 52;
- foreach ($events as $event) {
-  $event_day = date("d", strtotime($event->event_start_date));
-  $event_month = strtolower(date("M", strtotime($event->event_start_date)));
-  echo "<tr class='slider-event-row' data-link='$event->absolute_slug'>";
-  echo "<td class='slider-event-cell'>
-   <div class='slider-event-date'>
-    <span class='slider-event-date-day'>
-     $event_day 
-    </span>
-    <span class='slider-event-date-month'>
-     $event_month 
-    </span>
-   </div>
-   <div class='slider-event-title'>";
-  $s = $event->title;
-  if (strlen($event->title) > $max_len) {
-   $offset = ($max_len - 3) - strlen($event->title);
-   $s = substr($event->title, 0, strrpos($event->title, ' ', $offset)) . '…';
-  };
-  echo $s;
-  $calendarlink="https://stisrv13.epfl.ch/outlink.php?enddate=20171214T113000&datestring=20171214T103000&speaker=Dr.%20Noris%20GallandatLaboratory%20for%20Materials%20in%20Renewable%20EnergyEPFL%20Valais/Wallis&title=Hydrogen%20Technologies%20and%20Synthetic%20Fuels%20-%20From%20the%20Lab%20to%20the%20Market&room=Zeuzier,%20I17%204%20K2";
-  echo "<span class='eventsplus'><a href=$calendarlink title='Add to calendar' class='eventspluslink'>+</a></span></div> </td> </tr>";
- }
- echo "</table>";
+  echo '<table class="slider-event-table">';
+  $events = get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=5);
+  $max_len = 52;
+  foreach ($events as $event) {
+    $event_day = date("d", strtotime($event->event_start_date));
+    $event_month = strtolower(date("M", strtotime($event->event_start_date)));
+    echo "<tr class='slider-event-row' data-link='$event->absolute_slug'>\n";
+    echo "<td class='slider-event-cell'>
+      <div class='slider-event-date'>
+        <span class='slider-event-date-day'>
+          $event_day
+        </span>
+        <span class='slider-event-date-month'>
+          $event_month
+        </span>
+      </div>
+      <div class='slider-event-title'>";
+    $s = $event->title;
+    if (strlen($event->title) > $max_len) {
+      $offset = ($max_len - 3) - strlen($event->title);
+      $s = substr($event->title, 0, strrpos($event->title, ' ', $offset)) . '…';
+    };
+    echo $s;
+    echo '<span class="eventsplus"><a href="https://memento.epfl.ch/event/export/' . $event->translation_id . '/" title="Add to calendar" class="eventspluslink">+</a></span>';
+    echo "\n</div>\n</td>\n</tr>\n";
+  }
+  echo "</table>";
 ?>
-    <a href=#><img class=frontrowmore align=right src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/more.png"></a>
-  </div> 
+    <a href="https://memento.epfl.ch/sti/?period=7"><img class="frontrowmore" align="right" src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/more.png"></a>
+  </div>
  </div>
 </center>
 <center>
  <div class='secondaryrow whitebg'>
   <div class=secondarytitle>EDUCATION</div>
-   <?php 
+   <?php
     echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=testimonials&baseurl=/wp-content");
     echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=placement&baseurl=/wp-content");
     echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=masters&baseurl=/wp-content");
@@ -189,7 +186,7 @@ $( "tr.slider-event-row" )
 </script>
 <br><br><br><br>
 
-  <!--- Begin inline sti-shortcut-menu 
+  <!--- Begin inline sti-shortcut-menu
   <div class="sti-shortcut-menu">
     <div class="sti-shortcut-menu-flex">
       <div class="sti-link-box">
