@@ -12,46 +12,10 @@
 
 get_header();
 
-use function EPFL\STI\curl_get;
-
+// Include various bits and pieces from widgets/, as configured in
+// wp-admin for the "homepage" sidebar (not really a sidebar, more
+// like a mainbar)
 dynamic_sidebar( 'homepage' ); ?>
-<center>
- <div class='secondaryrow whitebg'>
-  <div class=secondarytitle>EDUCATION</div>
-   <?php
-    echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=testimonials&baseurl=/wp-content");
-    echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=placement&baseurl=/wp-content");
-    echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=masters&baseurl=/wp-content");
-   ?>
- </div>
-</center>
-<center>
- <div class='secondaryrow whitebg'>
-  <div class=secondarytitle>RESEARCH</div>
-   <?php
-    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=news&baseurl=/wp-content");
-    echo str_replace("educationbg","researchbg",$output);
-    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=research&baseurl=/wp-content");
-    echo str_replace("educationbg","researchbg",$output);
-    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=campus&baseurl=/wp-content");
-    echo str_replace("educationbg","researchbg",$output);
-   ?>
-  </div>
- </div>
-</center>
-<center>
- <div class='secondaryrow whitebg'>
-  <div class=secondarytitle>INNOVATION</div>
-   <?php
-    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=researchvideo&baseurl=/wp-content");
-    echo str_replace("educationbg","innovationbg",$output);
-    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=whatis&baseurl=/wp-content");
-    echo str_replace("educationbg","innovationbg",$output);
-    $output=curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=inthenews&baseurl=/wp-content");
-    echo str_replace("educationbg","innovationbg",$output);
-   ?>
- </div>
-</center>
 <br><br><br><br>
 
   <!--- Begin inline sti-shortcut-menu
