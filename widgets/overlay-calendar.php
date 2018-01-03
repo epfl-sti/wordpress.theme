@@ -31,7 +31,7 @@ class OverlayCalendar extends \WP_Widget
         );
 	}
 
-    public function widget ($args, $instance)
+    public function widget ($args, $config)
     {
 ?>
 
