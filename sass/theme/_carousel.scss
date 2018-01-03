@@ -15,47 +15,56 @@
     }
 }
 
-.carousel-item div.legend {
-    position: absolute;
-    left: 45px;
-    // Note: since the height of the image is not known (and can in fact vary wildly),
-    // only "top:" is safe. Positioning under the carousel buttons can be done like this:
-    @media screen and (min-width: $carousel-screen-width-small) {
-      top: ($sti-carousel-button-distancefromtop + $carousel-control-icon-width + $sti-carousel-legend-margin);
+.carousel-item {
+    text-align: center;  // For the inline-block below
+    > div {
+        display: inline-block;
+        position: relative;  // So that the legend can have position: absolute
     }
-    @media screen and (max-width: $carousel-screen-width-small) {
-      top: $sti-carousel-legend-margin;
+
+    div.legend {
+        position: absolute;
+        left: 45px;
+
+        text-align: left;  // Countermand parent
+
+        // Note: since the height of the image is not known (and can in
+        // fact vary wildly), only "top:" is safe. Positioning under the
+        // carousel buttons can be done like this:
+        @media screen and (min-width: $carousel-screen-width-small) {
+          top: ($sti-carousel-button-distancefromtop + $carousel-control-icon-width + $sti-carousel-legend-margin);
+        }
+        @media screen and (max-width: $carousel-screen-width-small) {
+          top: $sti-carousel-legend-margin;
+        }
+        z-index: 8;
+        font-family: 'Open Sans Regular', sans-serif;
+        color: white;
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+        h1, h2 {
+            text-shadow: 1px 1px 2px black;
+        }
+        @media screen and (max-width: $carousel-screen-width-small) {
+            h1 {
+                font-size: 5vw;
+            }
+            h2 {
+                font-size: 4vw;
+            }
+        }
+        @media screen and (min-width: $carousel-screen-width-small) {
+            h1 {
+                font-size: 2.1em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+        }
     }
-    z-index: 8;
-    font-family: 'Open Sans Regular', sans-serif;
-    color: white;
-}
-
-.carousel-item div.legend a {
-  color: white;
-  text-decoration: none;
-}
-
-@media screen and (max-width: $carousel-screen-width-small) {
-  .carousel-item h1 {
-    font-size: 5vw;
-    text-shadow: 1px 1px 2px black;
-  }
-  .carousel-item h2 {
-    font-size: 4vw;
-    text-shadow: 1px 1px 2px black;
-  }
-}
-
-@media screen and (min-width: $carousel-screen-width-small) {
-  .carousel-item h1 {
-    font-size: 2.1em;
-    text-shadow: 1px 1px 2px black;
-  }
-  .carousel-item h2 {
-    font-size: 1.5em;
-    text-shadow: 1px 1px 2px black;
-  }
 }
 
 .sti-carousel-button {

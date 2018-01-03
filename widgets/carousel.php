@@ -42,11 +42,13 @@ class Carousel extends \WP_Widget
                 $subtitle = function_exists("get_the_subtitle") ? get_the_subtitle($post, "", "", false) : null;
     ?>
     <div class="carousel-item">
+      <div>
         <?php the_post_thumbnail("full"); ?>
         <div class="legend">
                 <h1><a href="<?php echo $link; ?>"><?php the_title(); ?></a></h1>
                 <?php if ($subtitle) : ?><h2><a href="<?php echo $link; ?>"><?php echo $subtitle; ?></a></h2><?php endif; ?>
         </div>
+      </div>
     </div>
                 <?php
             }
