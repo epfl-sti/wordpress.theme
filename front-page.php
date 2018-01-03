@@ -52,11 +52,6 @@ dynamic_sidebar( 'homepage' ); ?>
    ?>
  </div>
 </center>
-<!---
-
-      $newsids = ["news", "researchvideo", "inthenews", "testimonials", "campus", "appointments", "whatis", "research", "placement", "masters"];
-
--->
 <br><br><br><br>
 
   <!--- Begin inline sti-shortcut-menu
