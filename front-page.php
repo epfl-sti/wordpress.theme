@@ -2,10 +2,8 @@
 /**
  * The template for displaying the front page.
  *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site will use a
- * different template.
+ * WordPress innately picks up this file for the front page; see
+ * https://developer.wordpress.org/themes/basics/template-hierarchy/#visual-overview
  *
  * @package epflsti
  */
