@@ -7,9 +7,11 @@
  * @package epflsti
  */
 
+use function EPFL\STI\{ get_current_language };
+$cl = get_current_language();
+
+
 $container = get_theme_mod( 'epflsti_container_type' );
-// cl Current Language (fr/en); needs polylang.
-$cl = (function_exists( 'pll_current_language' )) ? pll_current_language( 'slug' ) : 'en';
 // hp Home Page URL (use polylang if available otherwise the WP site url)
 $hp = (function_exists( 'pll_home_url' )) ? pll_home_url() : get_site_url();
 ?>

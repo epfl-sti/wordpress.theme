@@ -19,6 +19,14 @@ function get_theme_relative_uri() {
   return "wp-content/themes/" . get_theme_basename();
 }
 
+/**
+ * @return The language code name (e.g. en, fr)
+ * Fall back to english (needs polylang)
+ */
+function get_current_language() {
+  return (function_exists( 'pll_current_language' )) ? pll_current_language( 'slug' ) : 'en';
+}
+
 function curl_get($url)
 {
   $ch = curl_init($url);
@@ -43,13 +51,22 @@ function get_events_from_memento($url='https://memento.epfl.ch/api/jahia/memento
 }
 
 // To adapt to your school, change from https://actu.epfl.ch/feeds/rss/STI/en/ to e.g. http://actu.epfl.ch/api/jahia/channels/enac/news/fr/?format=json
-function get_news_from_actu($url='https://actu.epfl.ch/api/jahia/channels/sti/news/en/?format=json', $limit=4)
+// 'https://actu.epfl.ch/api/v1/channels/10/news/?format=json&lang='.$lang.'&category=3&faculty=3&themes=4';
+function get_news_from_actu($url='https://actu.epfl.ch/api/jahia/channels/sti/news/en/?format=json', $limit=3)
 {
   $data = curl_get($url . '&limit=' . $limit);
   $data = json_decode($data);
-  return $data;
+  return $data->results;
 }
 
+function get_actu_link($title) {
+  // "a-robotic-spy-among-the-fish/"
+  setlocale(LC_ALL, "en_US.utf8");
+  $title = iconv('UTF-8','ASCII//TRANSLIT',$title);
+  $title = str_replace(" ", "-", $title);
+  $title = strtolower($title);
+  return 'https://actu.epfl.ch/news/'. $title;
+}
 // To return the current institute's acronym. Used to load the relevant menu.
 function get_institute() {
   $url = get_permalink();

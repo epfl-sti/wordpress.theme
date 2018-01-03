@@ -13,39 +13,39 @@
 get_header();
 
 use function EPFL\STI\{ get_events_from_memento,
+                        get_current_language,
                         get_news_from_actu,
-                        curl_get };
+                        get_actu_link,
+                        curl_get
+                     };
 
-?>
-
-<?php dynamic_sidebar( 'homepage' ); ?>
+$cl = get_current_language();
+dynamic_sidebar( 'homepage' ); ?>
 <center>
- <div class=frontrow>
-  <div class=frontrowcontainer>
-   <div class=frontrowheader>
-    RESEARCH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <span class=frontrowred>NEWS</a>
-   </div>
-   <div class=frontrowcontent>
+  <div class="frontrow">
+    <div class="frontrowcontainer">
+      <div class="frontrowheader">
+        RESEARCH<br />
+        <span class="frontrowred">NEWS</span>
+      </div>
+      <div class="frontrowcontent">
 <?php
-
-$epfl_news = get_news_from_actu();
-foreach ($epfl_news as $new) {
- if ($x<3) {
-  echo "<div class=frontrownews style=\"background-image:url('$new->news_large_thumbnail_absolute_url');\">";
-  echo "<a class=whitelink href=$new->absolute_slug>"; 
-  echo "<div class=frontrownewstitle>";
-  echo $new->title;
-  echo "</div>";
-  echo "</a></div>";
- }
- $x++;
+$actu_sti_research_url = 'https://actu.epfl.ch/api/v1/channels/10/news/?format=json&lang='.$cl.'&category=3&faculty=3&themes=4';
+$actu_sti_research = get_news_from_actu($actu_sti_research_url);
+foreach ($actu_sti_research as $actu) {
+  if ($x<3) {
+    echo '<div class="frontrownews" style="background-image:url(' . $actu->visual_url . ')">';
+    echo '<a class=whitelink href="' . get_actu_link($actu->title) . '">';
+    echo '<div class="frontrownewstitle">';
+    echo $actu->title;
+    echo '</div>';
+    echo '</a></div>';
+  }
+  $x++;
 }
-
 ?>
-
-   </div>
-  </div>
+      </div>
+    </div>
 
   <div class=frontrowcontainer>
    <div class=frontrowheader>
@@ -54,14 +54,14 @@ foreach ($epfl_news as $new) {
    </div>
    <div class=frontrowlistbox>
     <ul class=frontrowlist>
-	<li><a href=#>About</a></li>
-	<li><a href=#>Administration</a></li>
-	<li><a href=#>Faculty</a></li>
-	<li><a href=#>Education</a></li>
-	<li><a href=#>Research</a></li>
-	<li><a href=#>Innovation</a></li>
-	<li><a href=#>Themes</a></li>
-    </ul> 
+      <li><a href=#>About</a></li>
+      <li><a href=#>Administration</a></li>
+      <li><a href=#>Faculty</a></li>
+      <li><a href=#>Education</a></li>
+      <li><a href=#>Research</a></li>
+      <li><a href=#>Innovation</a></li>
+      <li><a href=#>Themes</a></li>
+    </ul>
     <ul class=frontrowlist>
 	<li><a href=#>News</a></li>
 	<li><a href=#>Open Facuilty Positions</a></li>
@@ -75,16 +75,16 @@ foreach ($epfl_news as $new) {
    </div>
    <div class=frontrowlistbox>
     <ul class=frontrowlist>
-	<li><a href=#>Bioengineering</a></li>
-	<li><a href=#>Electrical Engineering</a></li>
-	<li><a href=#>Materials Science &amp; Engineering</a></li>
-	<li><a href=#>Mechanical Engineering</a></li>
-	<li><a href=#>Microengineering</a></li>
-    </ul> 
+      <li><a href=#>Bioengineering</a></li>
+      <li><a href=#>Electrical Engineering</a></li>
+      <li><a href=#>Materials Science &amp; Engineering</a></li>
+      <li><a href=#>Mechanical Engineering</a></li>
+      <li><a href=#>Microengineering</a></li>
+    </ul>
     <ul class=frontrowlist>
-	<li><a href=#>Research Centres</a></li>
-	<li><a href=#>Platforms &amp; Workshops</a></li>
-    </ul> 
+      <li><a href=#>Research Centres</a></li>
+      <li><a href=#>Platforms &amp; Workshops</a></li>
+    </ul>
    </div>
   </div>
   <div class=frontrowcontainer>
@@ -105,10 +105,10 @@ foreach ($epfl_news as $new) {
   echo "<td class='slider-event-cell'>
    <div class='slider-event-date'>
     <span class='slider-event-date-day'>
-     $event_day 
+     $event_day
     </span>
     <span class='slider-event-date-month'>
-     $event_month 
+     $event_month
     </span>
    </div>
    <div class='slider-event-title'>";
@@ -124,13 +124,13 @@ foreach ($epfl_news as $new) {
  echo "</table>";
 ?>
     <a href=#><img class=frontrowmore align=right src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/more.png"></a>
-  </div> 
+  </div>
  </div>
 </center>
 <center>
  <div class='secondaryrow whitebg'>
   <div class=secondarytitle>EDUCATION</div>
-   <?php 
+   <?php
     echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=testimonials&baseurl=/wp-content");
     echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=placement&baseurl=/wp-content");
     echo curl_get("https://stisrv13.epfl.ch/cgi-bin/whoop/thunderbird.pl?look=leonardo&lang=eng&id=masters&baseurl=/wp-content");
@@ -189,7 +189,7 @@ $( "tr.slider-event-row" )
 </script>
 <br><br><br><br>
 
-  <!--- Begin inline sti-shortcut-menu 
+  <!--- Begin inline sti-shortcut-menu
   <div class="sti-shortcut-menu">
     <div class="sti-shortcut-menu-flex">
       <div class="sti-link-box">
