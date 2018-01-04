@@ -20,10 +20,10 @@ class WhiteNews extends \WP_Widget
 {
     public function __construct ()
     {
-		parent::__construct( 
-			'EPFL_STI_Theme_Widget_WhiteNews', // unique id 
-			___('EPFL STI White News Row'), // widget title 
-			// additional parameters 
+		parent::__construct(
+			'EPFL_STI_Theme_Widget_WhiteNews', // unique id
+			___('EPFL STI White News Row'), // widget title
+			// additional parameters
 			array(
 				'description' => ___( 'Shows rows of collages of news on white background' )
 			)
@@ -98,7 +98,15 @@ class WhiteNews extends \WP_Widget
 <div class="secondarycontainer <?php echo $config["cssclass"]; ?>">
   <a class="secondarylink" href="<?php echo get_the_permalink(); ?>">
     <div>
-      <div class="wp-post-image-container"><?php the_post_thumbnail("full"); ?></div>
+      <div class="wp-post-image-container">
+        <?php
+        if (get_post_meta($the_post->ID)["news_has_video"][0] === "True") {
+          echo '<object class="epfl-actu-video-in-new" style="width:316px; height:177px; float:none; clear:both; margin:2px auto;" data="http://www.youtube.com/embed/'.get_post_meta($the_post->ID)["youtube_id"][0].'"></object>';
+        } else {
+          the_post_thumbnail("full");
+        }
+        ?>
+      </div>
       <img style="position: absolute; top:-11px; right: -10px;" src="/wp-content/themes/epfl-sti/img/src/topright.png">
       <img style="position: absolute; top:153px; right: 295px;" src="/wp-content/themes/epfl-sti/img/src/bottomleft.png">
     </div>
