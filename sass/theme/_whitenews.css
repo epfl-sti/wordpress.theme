@@ -25,26 +25,37 @@
  position: relative;
  margin: 15px;
  border: black 1px solid;
+
+ > a:first-child > div {
+     width: 318px;
+ }
+
+ img.wp-post-image {
+     height: 200px;
+     transition: all .4s ease-in-out;
+ }
+ img.wp-post-image:hover {
+     transform: scale(1.1);
+ }
+ .wp-post-image-container {
+     border: black 1px solid;
+     height: 200px;
+     width: 318px;
+     overflow: hidden;
+ }
+
+ a {
+     color: #555;
+     text-decoration: none;
+ }
 }
 
 .secondaryimage {
- height: 200px;
- background-position: center;
- border: black 1px solid;
- background-size: 110%;
- transition: all .4s ease-in-out;
 }
 
-.secondaryimage:hover {
- background-size: 140%;
-}
 
 .secondarycontent {
  padding: 30px 20px 20px 30px;
 }
 
-.secondarylink,.secondarylink:hover,.secondarylink:visited {
- color: #555;
- text-decoration: none;
-}
 

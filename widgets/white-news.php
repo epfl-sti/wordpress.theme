@@ -14,8 +14,7 @@ require_once(dirname(dirname(__FILE__)) . "/inc/i18n.php");
 use function \EPFL\STI\Theme\___;
 use function \EPFL\STI\Theme\__x;
 
-require_once(dirname(dirname(__FILE__)) . "/inc/epfl.php");
-use function EPFL\STI\curl_get;
+require_once(dirname(__FILE__) . "/category-chooser.inc");
 
 class WhiteNews extends \WP_Widget
 {
@@ -36,48 +35,83 @@ class WhiteNews extends \WP_Widget
         $title_id   = $this->get_field_id  ('title');
         $title_name = $this->get_field_name('title');
         printf("<label for=\"%s\">%s</label>", $title_id,
-                   ___('Title:'));
+                   __x('Title:', 'white-news-admin'));
         printf("<input type=\"text\" id=\"$title_id\" name=\"$title_name\" value=\"%s\">", esc_html($config["title"]));
         echo "<br />\n";
 
         $cssclass_id   = $this->get_field_id  ('cssclass');
         $cssclass_name = $this->get_field_name('cssclass');
         printf("<label for=\"%s\">%s</label>", $cssclass_id,
-                   ___('CSS class:'));
+                   __x('CSS class:', 'white-news-admin'));
         printf("<input type=\"text\" id=\"$cssclass_id\" name=\"$cssclass_name\" value=\"%s\">", esc_html($config["cssclass"]));
         echo "<br />\n";
 
-        // TODO: see other TODO below
-        $urls_id   = $this->get_field_id  ('urls');
-        $urls_name = $this->get_field_name('urls');
-        printf("<label for=\"%s\">%s</label>", $urls_id,
-                   ___('URLs to fetch:'));
-        printf("<textarea id=\"$urls_id\" name=\"$urls_name\">%s</textarea>",
-               $config["urls"]);
+        $category_id   = $this->get_field_id  ('category');
+        $category_name = $this->get_field_name('category');
+        printf("<label for=\"%s\">%s</label>", $category_id,
+               __x("Category:", 'white-news-admin'));
+        render_category_chooser($category_id, $category_name,
+                                $config["category"]);
         echo "<br />\n";
+
+        $maxcount_id   = $this->get_field_id  ('maxcount');
+        $maxcount_name = $this->get_field_name('maxcount');
+        printf("<label for=\"%s\">%s</label>", $maxcount_id,
+               __x("Max news count:", 'white-news-admin'));
+        printf("<input type=\"text\" id=\"$maxcount_id\" name=\"$maxcount_name\" value=\"%s\">", esc_html($config["maxcount"]));
     }
 
 	public function update( $new_config, $old_config ) {
         $config = $old_config;
         $config["title"]    = $new_config["title"];
         $config["cssclass"] = $new_config["cssclass"];
-        $config["urls"]     = $new_config["urls"];
+        $config["category"] = $new_config["category"];
+        $config["maxcount"] = $new_config["maxcount"];
         return $config;
     }
 
     public function widget ($args, $config)
     {
+        $query = new \WP_Query(array(
+            'post_type' => 'any',
+            'cat'       => intval($config['category'])));
+        $newsitems = array_filter($query->get_posts(), function($post) {
+            return !(! get_the_post_thumbnail($post));
+        });
+        if (! count($newsitems)) return;
+        if (count($newsitems) > $config["maxcount"]) {
+            $newsitems = array_slice($newsitems, 0, 0 + $config["maxcount"]);
+        }
+        $has_custom_template = locate_template("loop-templates/white-news");
+
 ?>
 <center>
- <div class='secondaryrow whitebg'>
-  <div class=secondarytitle><?php echo esc_html(__x($config["title"], "white-news" )); ?></div>
+ <div class="secondaryrow whitebg">
+  <div class="secondarytitle"><?php echo esc_html(__x($config["title"], "white-news" )); ?></div>
    <?php
-        // TODO: This is a poor excuse for a proper news feed.
-        foreach (explode("\n",$config["urls"]) as $url) {
-            $url = trim($url);
-            if (! $url) continue;
-            echo str_replace("educationbg", $config["cssclass"], curl_get($url));
-        }
+        foreach ($newsitems as $the_post) {
+            global $post; $post = $the_post; setup_postdata($post);
+            if ($has_custom_template) {
+                get_template("loop-templates/white-news");
+            } else {
+                ?>
+<div class="secondarycontainer <?php echo $config["cssclass"]; ?>">
+  <a class="secondarylink" href="<?php echo get_the_permalink(); ?>">
+    <div>
+      <div class="wp-post-image-container"><?php the_post_thumbnail("full"); ?></div>
+      <img style="position: absolute; top:-11px; right: -10px;" src="/wp-content/themes/epfl-sti/img/src/topright.png">
+      <img style="position: absolute; top:153px; right: 295px;" src="/wp-content/themes/epfl-sti/img/src/bottomleft.png">
+    </div>
+  </a>
+  <div class="secondarycontent">
+  <a href="<?php echo get_the_permalink(); ?>"><?php the_title(); ?></a>
+  <br />
+   <a href="#"><img class="frontrowmore" src="/wp-content/themes/epfl-sti/img/src/yetmore.png" align="right"></a>
+  </div>
+</div>
+                <?php
+            }
+        }  // foreach ($newsitems as $the_post)
    ?>
  </div>
 </center>
