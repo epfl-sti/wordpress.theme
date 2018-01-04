@@ -1,17 +1,16 @@
-@import "theme/theme_variables";  // <--------- Add your variables into this file. Also add variables to overwrite Bootstrap or EPFL STI variables here
-@import "../node_modules/bootstrap/scss/bootstrap.scss";// <--------- Loads Bootstrap3 or Bootstrap4. Change from /bootstrap3 to /bootstrap4 Watch out! just for testing in the moment!
+// First import all variables
+@import "theme/bootstrap_variables";
+@import "theme/megamenu_variables";
+@import "theme/carousel_variables";
+@import "theme/footer_variables";
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
 @import "understrap/understrap";// <-------- Loads the Understrap defaults. Just a few classes to incorporate BS in WP
 
-//Optional files - If you dont use the corresponding scripts/fonts comment em out
-//@import "../node_modules/font-awesome/scss/font-awesome"; // <------- Font Awesome Icon font
-//@import "../node_modules/@fortawesome/fontawesome/styles.css";
-
-// Any additional imported files //
-@import "theme/theme";  // <--------- That's where you can add your own design. Thats your part!
 @import "theme/contact-form7"; // Contact Form 7 - Bootstrap 4 support
-@import "theme/carousel";
 @import "theme/events_slider";
 @import "theme/megamenu";
+@import "theme/carousel";
 @import "theme/footer";
 @import "theme/theme_sti"; // Unsorted things, need their own files
 @import "fontawesome5/fontawesome.scss";
