@@ -101,7 +101,7 @@ class WhiteNews extends \WP_Widget
       <div class="wp-post-image-container">
         <?php
         if (get_post_meta($the_post->ID)["news_has_video"][0] === "True") {
-          echo '<object class="epfl-actu-video-in-new" data="http://www.youtube.com/embed/'.get_post_meta($the_post->ID)["youtube_id"][0].'"></object>';
+          echo '<object class="epfl-actu-video-in-new" data="https://www.youtube.com/embed/'.get_post_meta($the_post->ID)["youtube_id"][0].'"></object>';
         } else {
           the_post_thumbnail("full");
         }
