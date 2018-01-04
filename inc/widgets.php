@@ -90,7 +90,7 @@ add_action( 'widgets_init', function () {
 
         $widgets_dir = dirname(dirname(__FILE__)) . "/widgets";
         foreach (scandir($widgets_dir) as $widget_file) {
-            if (preg_match('/\.php$/', $widget_file)) {
+            if (preg_match('/^[^.].*\.php$/', $widget_file)) {
                 require_once("$widgets_dir/$widget_file");
             }
         }
