@@ -3,59 +3,58 @@
  */
 
 .secondarytitle {
- font: 26px 'Open Sans Regular';
- padding: 2px 5px 0px 12px
+  font: 26px 'Open Sans Regular';
+  padding: 2px 5px 0px 12px
 }
 
-
 .secondaryrow {
- text-align: left;
- display: inline-block;
- margin-top: 20px;
- padding: 15px;
- max-width: 1080px;
+  text-align: left;
+  display: inline-block;
+  margin-top: 20px;
+  padding: 15px;
+  max-width: 1080px;
 }
 
 .secondarycontainer {
- float:left;
- display: inline;
- clear: none;
- width: 320px;
- height: 400px;
- position: relative;
- margin: 15px;
- border: black 1px solid;
-
- > a:first-child > div {
-     width: 318px;
- }
-
- img.wp-post-image {
-     height: 200px;
-     transition: all .4s ease-in-out;
- }
- img.wp-post-image:hover {
-     transform: scale(1.1);
- }
- .wp-post-image-container {
-     border: black 1px solid;
-     height: 200px;
-     width: 318px;
-     overflow: hidden;
- }
-
- a {
-     color: #555;
-     text-decoration: none;
- }
+  float: left;
+  display: inline;
+  clear: none;
+  width: 320px;
+  height: 400px;
+  position: relative;
+  margin: 15px;
+  border: black 1px solid;
+  >a:first-child>div {
+    width: 318px;
+  }
+  img.wp-post-image {
+    height: 200px;
+    transition: all .4s ease-in-out;
+  }
+  img.wp-post-image:hover {
+    transform: scale(1.1);
+  }
+  .wp-post-image-container {
+    border: black 1px solid;
+    height: 200px;
+    width: 318px;
+    overflow: hidden;
+    .epfl-actu-video-in-new {
+      width: 316px;
+      height: 198px;
+      float: none;
+      clear: both;
+      margin: 0px auto;
+    }
+  }
+  a {
+    color: #555;
+    text-decoration: none;
+  }
 }
 
-.secondaryimage {
-}
-
+.secondaryimage {}
 
 .secondarycontent {
- padding: 30px 20px 20px 30px;
+  padding: 30px 20px 20px 30px;
 }
-
-
