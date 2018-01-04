@@ -6,6 +6,10 @@ epflsti.zip
 # Emacs
 .emacs.desktop*
 
+# Self-signed certs for BrowserSync
+devsupport/browser-sync.crt
+devsupport/browser-sync.key
+
 # .DS_Store banished!
 .DS_Store
 

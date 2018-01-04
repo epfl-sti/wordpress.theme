@@ -24,16 +24,28 @@ const argv = require("yargs").argv;
 var browserSyncOptions = {
     proxy: (argv.url || "https://localhost/sti/"),
     notify: false,
-    // https://github.com/BrowserSync/browser-sync/issues/639#issuecomment-351125049
-    https: {
-        key:  "devsupport/browser-sync.key",
-        cert: "devsupport/browser-sync.crt"
-    }
 };
 
 if (argv.browser) {
     browserSyncOptions.browser = argv.browser;
 }
+
+/* If Chrome doesn't trust the certificate presented by browserSync,
+ * *even if you have already clicked your way through the security
+ * exception*, it won't reliably load source maps (see details at
+ * https://github.com/BrowserSync/browser-sync/issues/639#issuecomment-351125049)
+ * There is a kit to make your own self-signed certificate under
+ * devsupport/ (see instructions in devsupport/openssl.cnf), which you
+ * then need to enroll into your OS' trusted certificate store.
+ */
+(function() {
+  const keypair = { cert: "devsupport/browser-sync.crt",
+                    key:  "devsupport/browser-sync.key" };
+
+  if (fs.existsSync(keypair.key) && fs.existsSync(keypair.cert)) {
+    browserSyncOptions.https = keypair;
+  }
+}());
 
 // Run any of:
 // gulp default
