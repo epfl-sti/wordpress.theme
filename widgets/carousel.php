@@ -15,6 +15,8 @@ if (! class_exists('WP_Widget')) {
 require_once(dirname(dirname(__FILE__)) . "/inc/i18n.php");
 use function \EPFL\STI\Theme\___;
 
+require_once(dirname(__FILE__) . "/category-chooser.inc");
+
 class Carousel extends \WP_Widget
 {
     public function __construct()
@@ -87,16 +89,9 @@ class Carousel extends \WP_Widget
 
     public function form ($config)
     {
-        printf("<select id=\"%s\" name=\"%s\">\n",
-               $this->get_field_id('category'),
-               $this->get_field_name('category'));
-        foreach (get_categories() as $category) {
-            printf("<option value=\"%d\" %s>%s</option>\n",
-                   $category->cat_ID,
-                   selected( $config["category"], $category->cat_ID),
-                   $category->cat_name);
-        }
-        print "</select>\n";
+        render_category_chooser($this->get_field_id('category'),
+                                $this->get_field_name('category'),
+                                $config["category"]);
     }
 
 	public function update( $new_config, $old_config ) {
