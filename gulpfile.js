@@ -1,4 +1,20 @@
-// Defining requirements
+/*
+ * gulpfile.js is like the Makefile for client-side Web assets:
+ * JavaScript code obviously, but also CSS, minified images.
+ *
+ * Using gulpfile.js requires npm, as in "npm install" or "npm start"
+ * (sans double-quotes). Once you have done either of these once, you can
+ * also say "./node_modules/.bin/gulp sass" (sans double-quotes) or replace
+ * "sass" with the name of any of the gulp.task's found below.
+ * Some of the tasks take command-line arguments, which you pass as either
+ *
+ *   ./node_modules/.bin/gulp watch --url=https://localhost:444/sti/
+ *
+ * or through npm, protected with -- like this:
+ *
+ *   npm start -- --url=https://localhost:444/sti/
+ */
+const fs = require('fs');  // Part of node.js core
 const gulp = require('gulp');
 const util = require('util');
 const watch = require('gulp-watch');
@@ -8,7 +24,7 @@ const lazypipe = require('lazypipe');
 const plumber = require('gulp-plumber');
 const concat = require('gulp-concat');
 const clone = require('gulp-clone');
-const through2 = require("through2");
+const through2 = require('through2');
 const sass = require('gulp-sass');
 const imagemin = require('gulp-imagemin');
 const sourcemaps = require('gulp-sourcemaps');
@@ -20,7 +36,7 @@ const modernizr = require('gulp-modernizr');
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
 const del = require('del');
-const argv = require("yargs").argv;
+const argv = require('yargs').argv;
 
 // browser-sync options
 // see: https://www.browsersync.io/docs/options/
@@ -126,23 +142,52 @@ gulp.task('scripts', function() {
 
 // Run:
 // gulp admin-scripts
-// Concat all JS files for the admin pages into assets/admin-theme{,.min}.js
+// Render all Vue and JS files (and even CSS) files for the admin pages into
+// assets/admin-theme{,.min}.js
 gulp.task('admin-scripts', function() {
+    /* Babel digests modern JS into something even IE8 can grok */
+    const babelOptions = () => ({
+      "presets": [
+        ["env", {
+          "targets": {
+            /* IE 7 is a non-goal (not supported by Vue) */
+            "browsers": ["> 5%", "ie >= 8"]
+          }
+        }]
+      ]
+    });
     return gulp.src([
         // Source just the entry point; Browserify will chase dependencies
         // by itself
         './newsletter-theme/composer.js'
     ])
         .pipe(bro({
-            "debug": true,  // Produce a sourcemap
-            "transform": [
-                'vueify',
-                'babelify', // With options from .babelrc
+            debug: true,  // Produce a sourcemap
+            transform: [
+                /* Turn Vue components into pure JS (even the CSS snippets) */
+                ['vueify', {
+                  /* This options object uses the same keys as vue.config.js */
+                  babel: babelOptions(),
+                  /* You can say <style lang="scss"></style> in Vue. Also,
+                   * correct CSS happens to also be correct SASS, so you can
+                   * also @import a CSS straight out of an NPM package
+                   * (https://github.com/vuejs-templates/webpack/issues/604)
+                   */
+                  sass: { includePaths: ["./node_modules"] }
+                }],
+                /* One more bout of Babel for "straight" (non-Vue) JS files: */
+                babelify.configure(babelOptions()),
+                /* You can use assert in the test suite, and the browser won't see it. */
                 'unassertify'
             ]
         }))
         .pipe(rename("newsletter-composer.js"))
         .pipe(assetsDest())  // Save non-minified, then continue
+        /* Source maps cause the Chrome debugger to reveal all source
+         * files in their pristine splendor, *provided* it doesn't
+         * silently refuse to do so for reasons such as a dodgy SSL
+         * cert (see the comments near const keypair, above)
+         */
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(uglifyJS({suffix: '.min'}))
         .pipe(assetsDest());
@@ -151,6 +196,8 @@ gulp.task('admin-scripts', function() {
 // Run:
 // gulp copy-assets
 // Copy all needed dependency assets files from node_modules to assets/
+// Note that these are front-end theme dependencies only;
+// admin-scripts handles its dependencies separately
 gulp.task('copy-assets', function() {
     var npm_goodies = [
         'core-js/client/core.min.js*',
