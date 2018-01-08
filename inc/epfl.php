@@ -27,17 +27,82 @@ function get_current_language() {
   return (function_exists( 'pll_current_language' )) ? pll_current_language( 'slug' ) : 'en';
 }
 
-function curl_get($url)
+function curl_get ($url)
 {
-  $ch = curl_init($url);
-  curl_setopt($ch, CURLOPT_HEADER, 0);
-  curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-  curl_setopt($ch, CURLOPT_ENCODING, 'UTF-8');
-  $output = curl_exec($ch);
-  curl_close($ch);
-  return $output;
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_ENCODING, 'UTF-8');
+    $output = curl_exec($ch);
+    curl_close($ch);
+
+    return $output;
+}
+
+/**
+ * @return The contents of $url, converted to UTF-8 (including any meta
+ *         markers for the content type that might be embedded in the HTML)
+ */
+function curl_get_utf8 ($url)
+{
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_ENCODING, 'UTF-8');
+    $output = curl_exec($ch);
+
+    // https://stackoverflow.com/a/2513938/435004
+    unset($charset);
+    $content_type = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+    curl_close($ch);
+
+    /* 1: HTTP Content-Type: header */
+    preg_match( '@([\w/+]+)(;\s*charset=(\S+))?@i', $content_type, $matches );
+    if ( isset( $matches[3] ) )
+        $charset = $matches[3];
+
+    /* 2: <meta> element in the page */
+    if (!isset($charset)) {
+        preg_match( '@<meta\s+http-equiv="Content-Type"\s+content="[\w/]+\s*;\s*charset=([^\s"]+)@i', $output, $matches );
+        if ( isset( $matches[1] ) ) {
+            $charset = $matches[1];
+            // In case we want do do further processing downstream:
+            $output = preg_replace('@(<meta\s+http-equiv="Content-Type"\s+content="[\w/]+\s*;\s*charset=)([^\s"]+)@i', '$1utf-8', $output, 1);
+        }
+    }
+
+    /* 3: <xml> element in the page */
+    if (!isset($charset)) {
+        preg_match( '@<\?xml.+encoding="([^\s"]+)@si', $output, $matches );
+        if ( isset( $matches[1] ) ) {
+            $charset = $matches[1];
+            // In case we want do do further processing downstream:
+            $output = preg_replace('@(<\?xml.+encoding=")([^\s"]+)@si', '$1utf-8', $output, 1);
+        }
+    }
+
+    /* 4: PHP's heuristic detection */
+    if (!isset($charset)) {
+        $encoding = mb_detect_encoding($output);
+        if ($encoding)
+            $charset = $encoding;
+    }
+
+    /* 5: Default for HTML */
+    if (!isset($charset)) {
+        if (strstr($content_type, "text/html") === 0)
+            $charset = "ISO 8859-1";
+    }
+
+    if (isset($charset) && strtoupper($charset) != "UTF-8") {
+        return iconv($charset, 'UTF-8', $output);
+    } else {
+        return $output;
+    }
 }
 
 /* Retrieve events from the Memento REST api */
