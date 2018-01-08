@@ -44,18 +44,11 @@ use function \EPFL\STI\get_institute;
 				<div class="frontrowlist_title frontrowmarker">
 					<?php
 					global $post;
-					/* Get an array of Ancestors and Parents if they exist */
-					$parents = get_post_ancestors( $post->ID );
-					/* Get the top Level page->ID count base 1, array base 0 so -1 */
-					$id = ($parents) ? $parents[count($parents)-1]: $post->ID;
-					/* Get the parent and set the $class with the page slug (post_name) */
-					$parent = get_post( $id );
-					$class = $parent->post_name;
 					?>
-					<a class="frontrowtitle_link" href=#><?php echo strtoupper($class); ?></a> - <?php echo strtoupper(get_institute()); ?></span>
+					<a class="frontrowtitle_link" href="#"><?php echo strtoupper($post->post_name); ?></a>
 				</div>
 				<div class="frontrowlistbox rollup">
-					<?php wp_nav_menu( array( 'theme_location' => 'institute-menu' ) ); ?>
+					<?php wp_nav_menu( array( 'theme_location' => 'institute-menu-'.$post->post_name.'' ) ); ?>
 				</div>
 			</div><!-- .sti_righthand_menu -->
 			<!-- NAV MENU END -->
