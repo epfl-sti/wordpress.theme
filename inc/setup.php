@@ -44,11 +44,7 @@ if ( ! function_exists( 'epflsti_setup' ) ) :
 		register_nav_menus( array(
 			'primary' => __( 'Primary Menu', 'epflsti' ),
 			'langmenu' => __( 'Lang Menu', 'epflsti' ),
-			'institutenavmenu-igm' => __( 'IGM Nav Menu', 'epflsti' ),
-			'institutenavmenu-iel' => __( 'IEL Nav Menu', 'epflsti' ),
-			'institutenavmenu-imt' => __( 'IMT Nav Menu', 'epflsti' ),
-			'institutenavmenu-imx' => __( 'IMX Nav Menu', 'epflsti' ),
-			'institutenavmenu-ibi' => __( 'IBI Nav Menu', 'epflsti' ),
+			'institute-menu' => __( 'Institutes Nav Menu', 'epflsti' ),
 		) );
 
 		/*

@@ -55,7 +55,7 @@ use function \EPFL\STI\get_institute;
 					<a class="frontrowtitle_link" href=#><?php echo strtoupper($class); ?></a> - <?php echo strtoupper(get_institute()); ?></span>
 				</div>
 				<div class="frontrowlistbox rollup">
-					<?php wp_nav_menu( array( 'theme_location' => sprintf('institutenavmenu-%s', get_institute()) ) ); ?>
+					<?php wp_nav_menu( array( 'theme_location' => 'institute-menu' ) ); ?>
 				</div>
 			</div><!-- .sti_righthand_menu -->
 			<!-- NAV MENU END -->
