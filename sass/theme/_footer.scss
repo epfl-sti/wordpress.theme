@@ -19,25 +19,16 @@
  box-sizing: border-box;
  padding: 20px 0px 20px 0px;
  width: 100%;
-}
 
-.footercontainer {
- width: 270px;
- float:left;
- display: inline;
- clear: none;
- margin: 5px;
- padding-left: 20px
+.widget {
+  width: 270px;
+  float:left;
+  display: inline;
+  clear: none;
+  margin: 5px;
+  padding-left: 20px
+ }
+ h1 {
+  font: 26px 'Open Sans Regular';
+ }
 }
-
-.footerrow {
- text-align: left;
- display: inline-block;
- margin-top: 20px;
- max-width: 1080px;
-}
-
-.footertitle {
- font: 26px 'Open Sans Regular';
-}
-

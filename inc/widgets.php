@@ -79,9 +79,9 @@ add_action( 'widgets_init', function () {
 		) );
 
 		register_sidebar( array(
-			'name'          => __( 'Footer (UNUSED FOR NOW)', 'epflsti' ),
+			'name'          => __( 'Footer', 'epflsti' ),
 			'id'            => 'footerfull',
-			'description'   => 'Widget area below main content and above footer',
+			'description'   => 'Widget area at the bottom of the page',
 		    'before_widget'  => '<div id="%1$s" class="footer-widget %2$s '. slbd_count_widgets( 'footerfull' ) .'">', 
 		    'after_widget'   => '</div><!-- .footer-widget -->', 
 		    'before_title'   => '<h3 class="widget-title">', 
