@@ -72,42 +72,12 @@ function get_actu_link($title) {
   $title = substr($title, 0, 50);
   return 'https://actu.epfl.ch/news/'. $title;
 }
+
 // To return the current institute's acronym. Used to load the relevant menu.
 function get_institute() {
   $url = get_permalink();
   $path = parse_url($url, PHP_URL_PATH);
-  switch ($path) {
-    case '/fr/instituts/ibi/':
-    case '/institutes/ibi/':
-    case '/sti/institutes/ibi/':
-    case '/sti/fr/instituts/ibi/':
-      return 'ibi';
-      break;
-    case '/fr/instituts/iel/':
-    case '/institutes/iel/':
-    case '/sti/institutes/iel/':
-    case '/sti/fr/instituts/iel/':
-      return 'iel';
-      break;
-    case '/fr/instituts/imx/':
-    case '/institutes/imx/':
-    case '/sti/institutes/imx/':
-    case '/sti/fr/instituts/imx/':
-      return 'imx';
-      break;
-    case '/fr/instituts/igm/':
-    case '/institutes/igm/':
-    case '/sti/institutes/igm/':
-    case '/sti/fr/instituts/igm/':
-      return 'igm';
-      break;
-    case '/fr/instituts/imt/':
-    case '/institutes/imt/':
-    case '/sti/institutes/imt/':
-    case '/sti/fr/instituts/imt/':
-      return 'imt';
-      break;
-    default:
-      break;
-  }
+  $re = '/\/institute?s\/(\S*)\//';
+  preg_match_all($re, $path, $matches, PREG_SET_ORDER, 0);
+  return "igm"; //$matches[0][1];
 }

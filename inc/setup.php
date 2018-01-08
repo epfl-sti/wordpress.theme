@@ -44,11 +44,11 @@ if ( ! function_exists( 'epflsti_setup' ) ) :
 		register_nav_menus( array(
 			'primary' => __( 'Primary Menu', 'epflsti' ),
 			'langmenu' => __( 'Lang Menu', 'epflsti' ),
-			'institutenavmenu-igm' => __( 'IGM Nav Menu', 'epflsti' ),
-			'institutenavmenu-iel' => __( 'IEL Nav Menu', 'epflsti' ),
-			'institutenavmenu-imt' => __( 'IMT Nav Menu', 'epflsti' ),
-			'institutenavmenu-imx' => __( 'IMX Nav Menu', 'epflsti' ),
-			'institutenavmenu-ibi' => __( 'IBI Nav Menu', 'epflsti' ),
+			'institute-menu-igm' => __( 'IGM Nav Menu', 'epflsti' ),
+			'institute-menu-ibi' => __( 'IBI Nav Menu', 'epflsti' ),
+			'institute-menu-imt' => __( 'IMT Nav Menu', 'epflsti' ),
+			'institute-menu-imx' => __( 'IMX Nav Menu', 'epflsti' ),
+			'institute-menu-iel' => __( 'IEL Nav Menu', 'epflsti' ),
 		) );
 
 		/*
