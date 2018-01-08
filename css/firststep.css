@@ -85,7 +85,7 @@ body {
  position: relative;
  top: 85px;
  background: rgb(42,41,46);
- background: rgba(42,41,46,0.5);
+ background: rgba(0,0,0,0.7);
  padding: 8px;
 }
 
@@ -189,15 +189,21 @@ body {
 
 .frontrowlist {
  list-style-type: none;
- padding: 13px 10px 10px 5px;
+ padding: 0px 10px 10px 5px;
 }
 
 .frontrowlist > li {
+padding: 7px 7px 7px 15px;
+border-bottom: 1.5px solid #2c2b2b;
+border-top: 1.5px solid #3e3e3e;    
+
+/*    
  background-image: url('../img/src/charcoal_separator.gif');
  background-position: bottom;
  background-repeat: repeat-x;
  height: 35px;
  padding: 0px 0px 0px 20px;
+*/
 }
 
 .frontrowlist > li > a {
