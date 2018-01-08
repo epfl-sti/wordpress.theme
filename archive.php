@@ -1,6 +1,7 @@
 <?php
 /**
- * The template for displaying archive pages.
+ * The template for displaying "archive" pages (i.e. category or
+ * taxonomy tables of contents).
  *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
