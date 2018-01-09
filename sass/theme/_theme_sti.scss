@@ -100,10 +100,16 @@ $theRed: #cc161d;
   }
 }
 
+/* -------------------------------
+    FontAwesome icons
+    ---------------------------- */
+a > i:hover {
+  color: $theRed;
+}
 
 /* -------------------------------
    Footnote menu
-  ---------------------------- */
+   ---------------------------- */
 .footnote {
   font-size:small;
   background-color:#3C3C3C;
