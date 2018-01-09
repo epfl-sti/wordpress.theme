@@ -54,12 +54,29 @@ body {
 }
 
 .sti_content_title {
- background-color: black;
- color: white;
+ color: #555;
  font: 26px 'Open Sans Regular';
  width: 100%;
  padding: 10px;
  margin-bottom: 10px;
+}
+
+.holding {
+ display: inline-block;
+}
+
+.sti_content_prof_text {
+ min-width: 300px;
+ float:left;
+ display: inline;
+ clear: none;
+ padding-left: 20px;
+}
+
+.sti_content_prof_photo {
+ float: left;
+ display: inline;
+ clear: none;
 }
 
 .sti_content_body {
@@ -74,13 +91,22 @@ body {
  float: left;
  width: 100%;
  min-width: 360px;
+ background-color: white;
+ margin-bottom: 30px;
 }
 
 .sti_righthand_menu {
  display: inline;
- width: 300px;
  float: left;
+ min-width: 360px;
 }
+
+.sti_people_righthand_menu {
+ display: inline;
+ float: left;
+ min-width: 360px;
+}
+
 .frontrowcontent {
  display: inline-block;
 }
@@ -160,6 +186,10 @@ body {
  right: 10px;
 }
 
+.frontrowlistbox.rollup {
+ height: auto;
+}
+
 .frontrowlistbox {
  width: 270px;
  height: 450px;
@@ -168,16 +198,54 @@ body {
  border-bottom: #111 1px solid;
 }
 
-.frontrowlistbox.rollup {
- height: auto;
-}
-
 .frontrowlist_title {
  background-color: black;
  width: 270px;
  height: 56px;
  padding: 12px 5px 25px 22px;
  font: 24px verdana;
+}
+
+.sti_people_box {
+ background-image: url('../img/src/charcoal.gif');
+}
+
+.sti_people_menu_title {
+ background-color: white;
+ padding: 12px 5px 12px 22px;
+ font: 15px verdana;
+ font-weight: bold;
+}
+
+.sti_people_menu_image {
+ width: 100%;
+}
+
+.sti_people_menu_black {
+ color: black;
+}
+
+@media screen and (max-width: 768px; ) {
+ .sti_people_box{
+  width: 100%;
+  min-width: 350px;
+ }
+ .sti_people_menu_title {
+  width: 100%;
+  min-width: 350px;
+ }
+ .sti_people_righthand_menu {
+  display: none;
+ }
+}
+
+@media screen and (min-width: 768px) {
+ .sti_people_box{
+  width: 340px;
+ }
+ .sti_people_menu_title {
+  width: 340px;
+ }
 }
 
 .frontrowtitle_link,.frontrowtitle_link:visited {
@@ -199,17 +267,9 @@ body {
 }
 
 .frontrowlist > li {
-padding: 7px 7px 7px 15px;
-border-bottom: 1.5px solid #2c2b2b;
-border-top: 1.5px solid #3e3e3e;    
-
-/*    
- background-image: url('../img/src/charcoal_separator.gif');
- background-position: bottom;
- background-repeat: repeat-x;
- height: 35px;
- padding: 0px 0px 0px 20px;
-*/
+ padding: 7px 7px 7px 15px;
+ border-bottom: 1.5px solid #2c2b2b;
+ border-top: 1.5px solid #3e3e3e;    
 }
 
 .frontrowlist > li > a {
@@ -231,6 +291,12 @@ border-top: 1.5px solid #3e3e3e;
 .whitelink:hover {
  color: #cccccc;
  text-decoration: none;
+}
+
+.sti_people_menu_white {
+ color: white;
+ font-size: 13px;
+ padding: 20px;
 }
 
 #mobile_header {
