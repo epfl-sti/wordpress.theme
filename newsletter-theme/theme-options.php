@@ -34,6 +34,10 @@ if (!String.prototype.endsWith) {
 }
 
 jQuery(function($){
+    // Remove the "Theme options are saved etc." blurb
+    $("p", $("div#tnp-heading")).remove();
+
+    // Remove various other pieces of UI we don't need
     var button_row = $("tr", $("form > table"))[0];
     $('.button-primary', button_row).filter(function(unused_index, e) {
         var elt = $(e),
@@ -46,6 +50,7 @@ jQuery(function($){
         return (src.endsWith("arrow.png"));
     }).remove();
 
+    // iframe is front and center
     var iframe_to_keep = $("iframe#emails-vue-editor");
     var main_ui_tr = iframe_to_keep.closest("tr");
     $("form").append(iframe_to_keep);
