@@ -282,10 +282,8 @@ function render_in_the_media ()
 render_frame_table(function() {
     $volumeno = "Vol. 1, No. 1, December 2017";
     render_header_tr($volumeno);
-    $index = 0;
     $count = 0;
     foreach (get_newsletter_categories($theme_options) as $cat_id => $cat) {
-        $index = $index + 1;
         global $post;
         foreach ($cat->posts() as $post) {
             if ($count<5) { // for layout purposes, temporary
