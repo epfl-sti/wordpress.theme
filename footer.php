@@ -8,9 +8,12 @@
  * @package epflsti
  */
 
-echo "<div class=\"footer\">\n";
-dynamic_sidebar( 'footer' );
-echo "</div>\n";
+echo '<div class="footer">';
+  dynamic_sidebar( 'footer' );
+echo '</div>';
+echo '<div class="footnote">';
+  wp_nav_menu( array( 'theme_location' => 'footnote' ) );
+echo '</div>';
 wp_footer();
 ?>
 </body>

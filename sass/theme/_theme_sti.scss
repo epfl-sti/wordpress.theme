@@ -98,9 +98,31 @@ $theRed: #cc161d;
       font: 14px verdana;
 
 
+/* -------------------------------
+   Footnote menu
+  ---------------------------- */
+.footnote {
+  font-size:small;
+  background-color:#3C3C3C;
+  text-align: center !important;
+  border-top: 2px solid $theRed;
+  padding-bottom: 5px;
+  ul {
+    padding-left: 0;
+    list-style: none;
+    text-align: center;
+    li {
+      display: inline-block;
+      a {
+        color: #C7C7C7;
+      }
     }
-    a:hover {
-      color: $theRed;
+    li+li:before {
+      content: "|";
+      padding: 0 1em;
     }
+  }
+  .menu {
+    margin-bottom: 0px;
   }
 }
