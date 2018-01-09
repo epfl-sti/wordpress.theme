@@ -23,26 +23,38 @@ import NewsItemHandle from "./NewsItemHandle.vue"
 import _ from "lodash"
 import dragula from "dragula"
 
+function updateNewsOrder (vm) {
+  vm.$set(vm, 'news', NewsItemHandle.findUnder(vm))
+}
+
 export default {
   el: '#composer-toplevel',
   data: () => ({
-    news: []
+    news: []  // Kept in DOM order across drags
   }),
+  computed: {
+    newsIds () {
+      let newsIds = _.map(this.news, (n) => n.postId)
+      return newsIds
+    }
+  },
   components: {
     /* Vue magically maps the NewsItemHandle class
        to <news-item-handle> in the HTML */
     NewsItemHandle
   },
   mounted: function() {
-    let $children = this.$children
     this.$nextTick(() => {
-      // Documentation says children should be mounted too now.
-      // It also says that there is no guarantee on ordering, so
-      // we should perhaps sort by DOM order...
-      let newsChildren = _.filter($children, (child) => (child.postType && (child.postType() === "News")))
-      this.news = _.map(newsChildren, (child) => child.postId)
+      let $this = this
 
-      this.dragula = dragula([$("tbody", $("#composer-toplevel"))[0]])
+      // Documentation says children should be mounted too now.
+      updateNewsOrder($this)
+
+      let newsletterTbody = $("#composer-toplevel > tbody")
+      this.dragula = dragula(newsletterTbody.toArray())
+      this.dragula.on("drop", () => {
+        updateNewsOrder($this)
+      })
     })
   }
 }

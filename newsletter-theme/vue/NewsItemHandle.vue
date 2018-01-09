@@ -5,10 +5,13 @@
 -->
 
 <template>
-  <div>Edit news ID {{postId}}</div>
+  <div class="news-item-handle">Edit news ID {{postId}}</div>
 </template>
 
 <script>
+import Vue from 'vue'
+import _ from "lodash"
+
 export default {
   props: {
     postId: {
@@ -18,6 +21,11 @@ export default {
   },
   methods: {
     postType: () => "News"
+  },
+  findUnder (under) {
+    if (under instanceof Vue) under = under.$el
+    return _.map($("div.news-item-handle", under),
+                 (jq) => $(jq).prop("__vue__"))
   }
 }
 </script>
