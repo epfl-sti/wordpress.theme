@@ -4,7 +4,7 @@
     The top-level component doesn't have a template or a render
     function. Instead, it uses the DOM that is already under
     #composer-toplevel as its template, substituting the elements
-    listed under "components:" below This allows for the Vue composer
+    listed under "components:" below. This allows for the Vue composer
     to work directly off the "real" HTML newsletter (as rendered by
     ../theme.php), leaving only minimally intrusive markup in the HTML
     that goes out through email (PHP needs only make sure to remove
@@ -47,11 +47,20 @@ export default {
     this.$nextTick(() => {
       let $this = this
 
-      // Documentation says children should be mounted too now.
+      // Documentation says children should be mounted too by now.
       updateNewsOrder($this)
 
       let newsletterTbody = $("#composer-toplevel > tbody")
-      this.dragula = dragula(newsletterTbody.toArray())
+      this.dragula = dragula(
+        newsletterTbody.toArray(),
+        {
+          invalid (el) {
+            // Pieces without a NewsItemHandle (e.g. the big image
+            // at the top) may not move
+            return ! NewsItemHandle.findUnder(el).length
+          }
+        }
+      )
       this.dragula.on("drop", () => {
         updateNewsOrder($this)
       })
