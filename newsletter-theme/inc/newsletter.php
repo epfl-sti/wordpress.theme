@@ -8,7 +8,7 @@ if (!defined('ABSPATH'))
 require_once(dirname(dirname(dirname(__FILE__))) . '/inc/i18n.php');
 use function \EPFL\STI\Theme\___;
 
-function get_newsletter_categories ($theme_options)
+function get_newsletter_posts ($theme_options)
 {
     return array(
         "news"       => new NewsCategory($theme_options),
@@ -68,6 +68,12 @@ class EventsCategory extends PostCategory
 class FacultyNewsCategory extends PostCategory
 {
     function title () { return ___("Faculty positions"); }
+
+    function get_post_filters ()
+    {
+        return array("category_name" => "faculty-positions");
+    }
+
 }
 
 class InTheMediaCategory extends PostCategory

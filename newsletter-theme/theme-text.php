@@ -11,7 +11,7 @@ require_once(dirname(__FILE__) . '/inc/newsletter.php');
 
 * <?php echo $theme_options['theme_title']; ?>
 
-<?php foreach (get_newsletter_categories($theme_options) as $cat): ?>
+<?php foreach (get_newsletter_posts($theme_options) as $cat): ?>
 
 === <?php echo $cat->title(); ?>
 
