@@ -26,6 +26,7 @@ const concat = require('gulp-concat');
 const clone = require('gulp-clone');
 const through2 = require('through2');
 const sass = require('gulp-sass');
+const tildeImporter = require('node-sass-tilde-importer');
 const imagemin = require('gulp-imagemin');
 const sourcemaps = require('gulp-sourcemaps');
 const bro = require('gulp-bro');
@@ -173,7 +174,13 @@ gulp.task('admin-scripts', function() {
                    * also @import a CSS straight out of an NPM package
                    * (https://github.com/vuejs-templates/webpack/issues/604)
                    */
-                  sass: { includePaths: ["./node_modules"] }
+                  sass: {
+                    importer: function(url, prev, done) {
+                      // This turns @import ~foo/bar into
+                      // @import [....]/node_modules/foo/bar:
+                      return tildeImporter(url, __dirname, done)
+                    }
+                  }
                 }],
                 /* One more bout of Babel for "straight" (non-Vue) JS files: */
                 babelify.configure(babelOptions()),

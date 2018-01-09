@@ -70,5 +70,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "dragula/dist/dragula"
+@import "~dragula/dist/dragula"
 </style>
