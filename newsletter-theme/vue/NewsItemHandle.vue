@@ -5,7 +5,11 @@
 -->
 
 <template>
-  <div class="news-item-handle">Edit news ID {{postId}}</div>
+  <div class="news-item-handle">
+    News ID {{postId}}
+    <button @click="buttonTrash"><i class="fa fa-trash-o"></i></button>
+    <button @click="buttonPlus"><i class="fa fa-plus-square-o"></i></button>
+  </div>
 </template>
 
 <script>
@@ -20,7 +24,13 @@ export default {
     }
   },
   methods: {
-    postType: () => "News"
+    postType: () => "News",
+    buttonTrash () {
+      console.log(this)
+    },
+    buttonPlus () {
+      console.log("+")
+    }
   },
   findUnder (under) {
     if (under instanceof Vue) under = under.$el
@@ -36,4 +46,7 @@ div {
   padding: 4px;
   display: inline-block;
 }
+</style>
+
+<style lang="scss">
 </style>

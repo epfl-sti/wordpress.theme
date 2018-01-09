@@ -43,6 +43,11 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/pagination.php';
 
 /**
+ * Well-known URLs for this theme's assets
+ */
+require get_template_directory() . '/inc/serve-assets.php';
+
+/**
  * Custom functions that act independently of the theme templates.
  */
 require get_template_directory() . '/inc/extras.php';

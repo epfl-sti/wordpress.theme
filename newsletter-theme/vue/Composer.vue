@@ -70,5 +70,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~dragula/dist/dragula"
+@import "~dragula/dist/dragula";
+// See ../inc/serve-assets.php for how this URL came to be.
+// There is no other way, since we need to know the URL at compile time.
+$fa-font-path: 'theme-epfl-sti/node_modules/font-awesome/fonts';
+@import "~font-awesome/scss/font-awesome";
 </style>
