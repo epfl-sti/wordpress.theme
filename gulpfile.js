@@ -125,13 +125,14 @@ gulp.task('imagemin', function(){
         .pipe(assetsDest())
 });
 
-// Run: 
+// Run:
 // gulp scripts
 // Concat all JS files into assets/theme{,.min}.js
 gulp.task('scripts', function() {
     return gulp.src([
         'node_modules/popper.js/dist/umd/popper.js',  // Bootstrap dependency, must come before it
         'node_modules/bootstrap/dist/js/bootstrap.js',
+        'node_modules/anchor-js/anchor.min.js', // https://www.bryanbraun.com/anchorjs/
         'js/**/*.js'
     ])
         .pipe(bundleJS('theme.js'))
