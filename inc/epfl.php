@@ -144,5 +144,5 @@ function get_institute() {
   $path = parse_url($url, PHP_URL_PATH);
   $re = '/\/institute?s\/(\S*)\//';
   preg_match_all($re, $path, $matches, PREG_SET_ORDER, 0);
-  return "igm"; //$matches[0][1];
+  return $matches[0][1];
 }
