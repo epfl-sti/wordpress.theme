@@ -13,7 +13,7 @@ if (!defined('ABSPATH'))
 require_once(dirname(dirname(__FILE__)) . "/inc/epfl.php");
 use function \EPFL\STI\get_theme_relative_uri;
 
-require_once(dirname(__FILE__) . '/inc/newsletter.php');
+require_once(dirname(__FILE__) . '/inc/newsletter_state.php');
 
 function render_css()
 { ?>

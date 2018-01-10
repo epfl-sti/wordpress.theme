@@ -5,7 +5,7 @@ namespace EPFL\STI\Newsletter;
 if (!defined('ABSPATH'))
     exit;
 
-require_once(dirname(__FILE__) . '/inc/newsletter.php');
+require_once(dirname(__FILE__) . '/inc/newsletter_state.php');
 
 ?><?php echo $theme_options['theme_opening_text']; ?>
 
