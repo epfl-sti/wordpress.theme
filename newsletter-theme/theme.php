@@ -13,7 +13,7 @@ if (!defined('ABSPATH'))
 require_once(dirname(dirname(__FILE__)) . "/inc/epfl.php");
 use function \EPFL\STI\get_theme_relative_uri;
 
-require_once(dirname(__FILE__) . '/inc/newsletter.php');
+require_once(dirname(__FILE__) . '/inc/newsletter_state.php');
 
 function render_css()
 { ?>
@@ -197,7 +197,7 @@ function render_news_item_td ($style)
     if ($style === "hero") {
         $colspan="colspan=2"; #first article only
     } else {
-        $colspan="colspan=1";
+        $colspan="";
     }
     if ($style === "hero" or $style === "large") {
         $link_class="newstitle $style";
@@ -207,7 +207,7 @@ function render_news_item_td ($style)
         $imagesize="";
   }
 
-    echo "<td width=450 $colspan style='padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; color: #666; font-family:Tahoma,Verdana,sans-serif'>";
+    echo "<td $colspan style='padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; color: #666; font-family:Tahoma,Verdana,sans-serif'>";
 
     $img = get_the_post_thumbnail(get_the_id(), 'post-thumbnail', array(
         "style"  => $imagesize,
@@ -222,6 +222,17 @@ function render_news_item_td ($style)
                  the_title("", "", false));
     the_excerpt(); 
     echo sprintf("<news-item-handle post-id=\"%d\"></news-item-handle>", get_the_id());
+    echo "</td>";
+}
+
+function render_position_td () {
+    echo "<td  width=450 style='padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; color: #666; font-family:Tahoma,Verdana,sans-serif'>";
+    echo sprintf("<p><a target='_blank' href=\"%s\" class=\"%s\">%s</a></p>",
+                 get_permalink(),
+                 $link_class,
+                 the_title("", "", false));
+    the_excerpt(); 
+    echo sprintf("<faculty-position-handle post-id=\"%d\"></faculty-position-handle>", get_the_id());
     echo "</td>";
 }
 
@@ -244,7 +255,7 @@ Unsubscribe by clicking <a target="_blank" href="{unsubscription_url}">here</a>
     <?php
 }
 
-function render_events ()
+function render_events ($unused_events)
 {
     render_event_tr(
         'Towards next-generation membranes for energy-efficient molecular separation',
@@ -260,7 +271,7 @@ function render_events ()
         'https://stisrv13.epfl.ch/outlink.php?enddate=20171208T120000&datestring=20171208T110000&speaker=S%E9bastien%20Rumley,%20Research%20Scientist%20in%20the%20Lightwave%20Research%20Laboratory,%20Columbia%20University,%20New%20York&title=What%20impact%20can%20Integrated%20Photonics%20have%20on%20data%20center%20architecture?&room=BC%20420');
 }
 
-function render_in_the_media ()
+function render_in_the_media ($unused_media)
 {
     render_media_tr('Sylvie Roke makes waves with her work on 3D imaging of surface chemistry','https://www.eurekalert.org/pub_releases/2017-07/epfd-3io071917.php','Science News','September 2017');
     render_media_tr('Elison Matioli makes groundbreaking use of slanted tri-gate structures','http://www.semiconductor-today.com/news_items/2017/aug/epf_230817.shtml','Semiconductor Today','August, 2017');
@@ -282,36 +293,38 @@ function render_in_the_media ()
 render_frame_table(function() {
     $volumeno = "Vol. 1, No. 1, December 2017";
     render_header_tr($volumeno);
-    $index = 0;
+    $posts = get_newsletter_posts($theme_options);
+    global $post;
+
     $count = 0;
-    foreach (get_newsletter_categories($theme_options) as $cat_id => $cat) {
-        $index = $index + 1;
-        global $post;
-        foreach ($cat->posts() as $post) {
-            if ($count<5) { // for layout purposes, temporary
-    
-                // Setup the post (WordPress requirement)
-                setup_postdata($post);
-    
-                if ($count>3) {
-                    echo "<tr><td><table cellpadding=0 cellspacing=0 border=0>";
-                    render_red_title_tr("OPEN POSITIONS");
-                }
-                echo "<tr>";
-                render_news_item_td($count === 0 ? "hero" : "normal");
-                if ($count === 1) {
-                    render_righthand_column_td(
-                        "EPFL\\STI\\Newsletter\\render_events",
-                        "EPFL\\STI\\Newsletter\\render_in_the_media");
-                }
-                echo " </tr>";
-                if ($count>3) {
-                    echo "</table></td></tr>";
-                }
-            } // for layout purposes, temporary
-            $count++;
-        } # posts
-    } # categories
+    foreach ($posts["news"]->posts() as $p) {
+        $post = $p;  // We aren't in The Loop so there is nothing else to do
+        echo "<tr>";
+        render_news_item_td($count === 0 ? "hero" : "normal");
+        if ($count === 1) {
+            render_righthand_column_td(
+                function () use ($posts) {
+                    render_events($posts["events"]);
+                },
+                function () use ($posts) {
+                    render_in_the_media($posts["in_the_media"]);
+                });
+        }
+        echo " </tr>";
+        $count++;
+    }
+
+    if (count($posts["faculty"]->posts())) {
+        echo "<tr><td><table cellpadding=0 cellspacing=0 border=0 style=\"width: 100%;\">";
+        render_red_title_tr("OPEN POSITIONS");
+        foreach ($posts["faculty"]->posts() as $p) {
+            $post = $p;
+            echo "<tr>";
+            render_position_td();
+            echo "</tr>";
+        }
+        echo "</table></td></tr>";
+    }
     render_footer_tr();
 });  // end of function passed to render_frame_table
     ?>

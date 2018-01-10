@@ -5,8 +5,8 @@
  */
 import _ from "lodash"
 
-function _parse_opts(url_or_opts, data) {
-    if (arguments.length === 1) {
+function _parse_opts(action, url_or_opts, data) {
+    if (arguments.length === 2) {
         data = url_or_opts
         url_or_opts = undefined
     }
@@ -15,22 +15,24 @@ function _parse_opts(url_or_opts, data) {
         typeof(url_or_opts) === "undefined" ? {}                   :
         url_or_opts
     )
-    return [ opts, data ]
+    return [ action, opts, data ]
 }
 
-function WPajax(/* optional__url_or_opts, data */) {
-    const [ opts, data ] = _parse_opts.apply({}, arguments)
-    if (! data._ajax_nonce) {
-        // See docstring of script_pass_xsrf_nonce() in ../hook.php for explanations
-        data._ajax_nonce = window.epflsti_newsletter_composer.nonce;
-    }
+function WPajax(/*action, url_or_opts?, data */) {
+    const [ action, opts, data ] = _parse_opts.apply({}, arguments)
+    var url = window.epflsti_newsletter_composer.ajaxurl;
+    url = url + ((url.indexOf("?") !== -1) ? "&" : "?")
+        + "action=" + action
+        // See docstring of script_pass_params() in ../hook.php for explanations
+        + "&_ajax_nonce=" + window.epflsti_newsletter_composer.nonce;
     var ajax = jQuery.ajax(
         _.extend(
             {
-                url: window.ajaxurl,
-                dataType: "json",
-                data: data,
-                type: "POST"
+                url: url,
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                dataType: "json"  // Expected in return
             }, opts))
     ajax.then = ajax.done.bind(ajax)
     ajax.catch = ajax.fail.bind(ajax)
@@ -39,12 +41,12 @@ function WPajax(/* optional__url_or_opts, data */) {
 
 export default WPajax
 
-WPajax.get = function(/* optional__url_or_opts, data */) {
-    const [ opts, data ] = _parse_opts.apply({}, arguments);
-    return WPajax(_.extend({type: "GET"}, opts), data);
+WPajax.get = function(/* action, url_or_opts?, data */) {
+    const [ action, opts, data ] = _parse_opts.apply({}, arguments);
+    return WPajax(action, _.extend({type: "GET"}, opts), data);
 }
 
-WPajax.post = function(/* optional__url_or_opts, data */) {
-    const [ opts, data ] = _parse_opts.apply({}, arguments);
+WPajax.post = function(/* action, url_or_opts?, data */) {
+    const [ action, opts, data ] = _parse_opts.apply({}, arguments);
     return WPajax(_.extend({type: "POST"}, opts), data);
 }

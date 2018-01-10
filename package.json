@@ -34,6 +34,7 @@
     "axios": "^0.17.1",
     "bootstrap": "^4.0.0-beta.3",
     "core-js": "^2.5.1",
+    "cssnext": "^1.8.4",
     "dragula": "^3.7.2",
     "ionicons": "^3.0.0",
     "jquery": "3.2.1",
@@ -75,6 +76,7 @@
     "gulp-watch": "^4.3.11",
     "lazypipe": "^1.0.1",
     "mocha": "^4.0.1",
+    "node-sass-tilde-importer": "^1.0.1",
     "unassertify": "^2.1.0",
     "vueify": "^9.4.1",
     "yargs": "^10.0.3"
