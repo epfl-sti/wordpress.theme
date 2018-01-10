@@ -61,7 +61,7 @@ export default {
      */
     _tmpServerState () {
       if (this.news === null) return null   // Not fully initialized yet
-      let newsIds = _.map(this.news, (n) => n.postId)
+      let newsIds = _.map(this.news, (n) => parseInt(n.postId))
       return { news: newsIds }
     }
   },
