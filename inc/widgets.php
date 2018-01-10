@@ -70,7 +70,7 @@ add_action( 'widgets_init', function () {
                 $institute_name),
             'id'            => "${institute_code}-homepage",
             'description'   => sprintf(___('Widget area shown on the %s home page'), $institute_name),
-            'before_widget' => '<div class="institute-homepage-widgets">',
+            'before_widget' => "<div class=\"institute-homepage-widget $institute_code\">",
             'after_widget'  => '</div>',
             'before_title'  => '',
             'after_title'   => '',
