@@ -68,6 +68,7 @@ class Carousel extends \WP_Widget
         if (! $this->carousel_query->have_posts()) {
             return;
         }
+        echo $args['before_widget'];
     ?>
 <div id="container-carousel" class="carousel slide" data-ride="carousel">
     <?php $this->render_carousel_items(); ?>
@@ -85,6 +86,7 @@ class Carousel extends \WP_Widget
     <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/waving.png">
 </div>
    <?php
+        echo $args['after_widget'];
     }
 
     public function form ($config)

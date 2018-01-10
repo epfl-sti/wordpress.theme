@@ -28,6 +28,7 @@ class ContactAndSocial extends \WP_Widget
 
     public function widget ($args, $config)
     {
+        echo $args['before_widget'];
 ?>
   <div class="widget epfl-sti-social">
     <div itemscope itemtype="https://schema.org/ContactPoint">
@@ -51,6 +52,7 @@ class ContactAndSocial extends \WP_Widget
     </div>
   </div>
 <?php
+        echo $args['after_widget'];
     }  // public function Widget
 }      // class ContactAndSocial
 

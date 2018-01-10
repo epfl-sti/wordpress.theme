@@ -33,6 +33,7 @@ class OverlayCalendar extends \WP_Widget
 
     public function widget ($args, $config)
     {
+        echo $args['before_widget'];
 ?>
 
 <div id="containercalendar" style="height: 0px;">
@@ -103,6 +104,7 @@ $( "tr.slider-event-row" )
    });
 </script>
 <?php
+        echo $args['after_widget'];
     }
 }
 

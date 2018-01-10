@@ -28,12 +28,14 @@ class GoogleMap extends \WP_Widget
 
     public function widget ($args, $config)
     {
+        echo $args['before_widget'];
 ?>
   <script src="<?= get_template_directory_uri() . '/js/google-maps.js' ?>"></script>
   <div id="googlemap"></div>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-KB1byyUR6AEWVI1B8cdGFIDI1v8g8YY&libraries=places&callback=initMap" async defer></script>
 
 <?php
+        echo $args['after_widget'];
     }  // public function Widget
 }      // class GoogleMap
 

@@ -35,6 +35,7 @@ class FrontRow extends \WP_Widget
 
     public function widget($args, $config)
     {
+        echo $args['before_widget'];
         $cl = get_current_language(); ?>
 <div class="container">
   <div class="row no-gutters">
@@ -108,6 +109,7 @@ class FrontRow extends \WP_Widget
   </div>
 </div>
 <?php
+        echo $args['after_widget'];
     }  // public function widget
 }
 

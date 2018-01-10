@@ -28,6 +28,7 @@ class SubscribeNewsletter extends \WP_Widget
 
     public function widget ($args, $config)
     {
+        echo $args['before_widget'];
 ?>
   <div class="widget">
     <h1>NEWSLETTER</h1>
@@ -40,6 +41,7 @@ class SubscribeNewsletter extends \WP_Widget
       </form>
   </div>
 <?php
+        echo $args['after_widget'];
     }  // public function Widget
 }      // class SubscribeNewsletter
 

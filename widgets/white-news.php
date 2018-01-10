@@ -84,6 +84,7 @@ class WhiteNews extends \WP_Widget
         }
         $has_custom_template = locate_template("loop-templates/white-news");
 
+        echo $args['before_widget'];
 ?>
 <center>
  <div class="secondaryrow whitebg">
@@ -124,6 +125,7 @@ class WhiteNews extends \WP_Widget
  </div>
 </center>
 <?php
+        echo $args['after_widget'];
     }  // public function widget
 }  // class WhiteNews
 
