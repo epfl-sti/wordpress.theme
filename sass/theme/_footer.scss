@@ -1,34 +1,70 @@
-
+/* -------------------------------
+   Footer
+   ---------------------------- */
 #googlemap {
- text-align: left;
- margin-top: 20px;
- max-width: $max-map-width;
- clear: none;
- margin: 5px;
- height: 300px;
- width: 450px;
- filter: grayscale(100%);
+  text-align: left;
+  margin-top: 20px;
+  max-width: $max-map-width;
+  clear: none;
+  margin: 5px;
+  height: 300px;
+  width: 450px;
+  filter: grayscale(100%);
 }
 
 .footer {
- margin-top: 60px;
- background-color: white;
- display: flex;
- flex-direction: row;
- justify-content: center;
- box-sizing: border-box;
- padding: 20px 0px 20px 0px;
- width: 100%;
+  margin-top: 60px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 20px 0;
+  width: 100%;
 
-.widget {
-  width: 270px;
-  float:left;
-  display: inline;
-  clear: none;
-  margin: 5px;
-  padding-left: 20px
- }
- h1 {
-  font: 26px 'Open Sans Regular';
- }
+  .widget {
+    width: 270px;
+    float: left;
+    display: inline;
+    clear: none;
+    margin: 5px;
+    padding-left: 20px;
+  }
+
+  h1 {
+    font: 26px 'Open Sans Regular';
+  }
+}
+/* -------------------------------
+   Footnote menu
+   ---------------------------- */
+.footnote {
+  font-size: small;
+  background-color: #3C3C3C;
+  text-align: center !important;
+  border-top: 2px solid $theRed;
+  padding-bottom: 5px;
+
+  ul {
+    padding-left: 0;
+    list-style: none;
+    text-align: center;
+
+    li {
+      display: inline-block;
+
+      a {
+        color: #C7C7C7;
+      }
+    }
+
+    li+li:before {
+      content: "|";
+      padding: 0 1em;
+    }
+  }
+
+  .menu {
+    margin-bottom: 0;
+  }
 }

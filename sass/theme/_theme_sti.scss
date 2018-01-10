@@ -1,137 +1,27 @@
 /* TODO: Move all these things to files of their own. */
-
-/* -------------------------------
-        Color variables
-  ----------------------------- */
-$theRed: #cc161d;
-
-/* -------------------------------
-          EPFL Actu
-   ---------------------------- */
-.epfl-news {
-}
-
-.epfl-new-card {
-  width: 20rem;
-  margin: 10px;
-}
-
-/* -------------------------------
-          STI Shortcut Menu
-   ---------------------------- */
-/* https://codepen.io/anon/pen/zLxBo */
-.sti-shortcut-menu {
-  background-color: #D30017;
-  height: 170px; }
-
-.sti-shortcut-menu-flex {
-  list-style: none;
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  vertical-align: middle; }
-
-.sti-link-box {
-  background: #AE0014;
-  padding: 5px;
-  width: 200px;
-  height: 150px;
-  margin: 10px;
-  line-height: 150px;
-  color: white;
-  font-weight: bold;
-  font-size: 1.2em;
-  text-align: center; }
-
-.sti-link-box-a {
-  color: white;
-  font-weight: bolder; }
-
 /* -------------------------------
     Polylang languages menu
    ---------------------------- */
 .lang-item {
   display: inline;
 }
+
 .lang-item-first:after {
   content: " /";
 }
+
 .lang-item a {
   color: #23282D;
-  text-decoration:  none;
+  text-decoration: none;
 }
+
 .lang-item.current-lang a {
   color: $theRed;
   pointer-events: none;
 }
-
-/* -------------------------------
-    Institute right menu
-   ---------------------------- */
-#menu-igm-nav-menu-fr,
-#menu-igm-nav-menu,
-#menu-iel-nav-menu-fr,
-#menu-iel-nav-menu,
-#menu-imx-nav-menu-fr,
-#menu-imx-nav-menu,
-#menu-imt-nav-menu-fr,
-#menu-imt-nav-menu,
-#menu-ibi-nav-menu-fr,
-#menu-ibi-nav-menu {
-  list-style-type: none;
-  padding: 13px 10px 10px 5px;
-
-  li {
-    background-image: url('../img/src/charcoal_separator.gif');
-    background-position: bottom;
-    background-repeat: repeat-x;
-    height: 35px;
-    padding: 0px 0px 0px 20px;
-
-    a {
-      color: #fff;
-      text-decoration: none;
-      font: 14px verdana;
-    }
-  }
-}
-
 /* -------------------------------
     FontAwesome icons
     ---------------------------- */
 a > i:hover {
   color: $theRed;
-}
-
-/* -------------------------------
-   Footnote menu
-   ---------------------------- */
-.footnote {
-  font-size:small;
-  background-color:#3C3C3C;
-  text-align: center !important;
-  border-top: 2px solid $theRed;
-  padding-bottom: 5px;
-  ul {
-    padding-left: 0;
-    list-style: none;
-    text-align: center;
-    li {
-      display: inline-block;
-      a {
-        color: #C7C7C7;
-      }
-    }
-    li+li:before {
-      content: "|";
-      padding: 0 1em;
-    }
-  }
-  .menu {
-    margin-bottom: 0px;
-  }
 }
