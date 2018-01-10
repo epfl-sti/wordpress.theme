@@ -40,7 +40,6 @@ use function \EPFL\STI\get_institute;
 
 			<?php dynamic_sidebar( 'right' ); ?>
 
-			<?php dynamic_sidebar( 'institutepage-' . get_institute() ); ?>
 			<!-- NAV MENU START -->
 			<div class="sti_righthand_menu col-md-4">
 				<div class="frontrowlist_title frontrowmarker">
@@ -55,6 +54,7 @@ use function \EPFL\STI\get_institute;
 			</div><!-- .sti_righthand_menu -->
 			<!-- NAV MENU END -->
 		</div><!-- .row -->
+        <?php dynamic_sidebar( get_institute() . '-homepage' ); ?>
 
 	</div><!-- Container end -->
 

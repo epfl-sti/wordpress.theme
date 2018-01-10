@@ -68,7 +68,7 @@ add_action( 'widgets_init', function () {
             'name'          => sprintf(
                 __x( '%s home page', 'Institute home page'),
                 $institute_name),
-            'id'            => "${institute_name}-homepage",
+            'id'            => "${institute_code}-homepage",
             'description'   => sprintf(___('Widget area shown on the %s home page'), $institute_name),
             'before_widget' => '<div class="institute-homepage-widgets">',
             'after_widget'  => '</div>',
