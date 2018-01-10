@@ -40,7 +40,6 @@ $hp = (function_exists( 'pll_home_url' )) ? pll_home_url() : get_site_url();
 
 <body <?php body_class(); ?>>
 
-<!-- Ugly hard coded menu -->
 <div class="menu-container">
 
     <div class="menu">
@@ -77,4 +76,3 @@ $hp = (function_exists( 'pll_home_url' )) ? pll_home_url() : get_site_url();
         </ul>
     </div>
 </div>
-<!-- End ugly hard coded menu -->
