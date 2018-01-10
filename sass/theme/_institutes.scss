@@ -1,0 +1,30 @@
+/* -------------------------------
+    Institute right menu
+   ---------------------------- */
+#menu-ibi-nav-menu,
+#menu-ibi-nav-menu-fr,
+#menu-iel-nav-menu,
+#menu-iel-nav-menu-fr,
+#menu-igm-nav-menu,
+#menu-igm-nav-menu-fr,
+#menu-imt-nav-menu,
+#menu-imt-nav-menu-fr,
+#menu-imx-nav-menu,
+#menu-imx-nav-menu-fr {
+  list-style-type: none;
+  padding: 13px 10px 10px 5px;
+
+  li {
+    background-image: url("../img/src/charcoal_separator.gif");
+    background-position: bottom;
+    background-repeat: repeat-x;
+    height: 35px;
+    padding: 0 0 0 20px;
+
+    a {
+      color: #fff;
+      text-decoration: none;
+      font: 14px verdana;
+    }
+  }
+}

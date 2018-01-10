@@ -29,22 +29,26 @@ class ContactAndSocial extends \WP_Widget
     public function widget ($args, $config)
     {
 ?>
-  <div class="widget">
-    <h1>CONTACT</h1>
-    <br />
-    <br />
-    School of Engineering<br />
-    Dean's Office<br />
-    EPFL - ELB 114<br />
-    Station 11<br />
-    CH-1015 Lausanne<br />
-    <br />
-    <a href="mailto:secretariat.sti@epfl.ch" target="_blank" title="email: STI Secretary Officel"><i class="fas fa-2x fa-envelope-square"></i></a>
-    <a href="https://twitter.com/epfl_sti" target="_blank" title="EPFL STI Twitter"><i class="fab fa-2x fa-twitter-square"></i></a>
-    <a href="https://plus.google.com/epfl_sti" target="_blank" title="EPFL STI Google plus"><i class="fab fa-2x fa-google-plus-square"></i></a>
-    <a href="https://instagram.com/epfl_sti" target="_blank" title="EPFL STI Instagram"><i class="fab fa-2x fa-instagram"></i></a>
-    <a href="https://facebook.com/epfl_sti" target="_blank" title="EPFL STI Facebook"><i class="fab fa-2x fa-facebook-square"></i></a>
-    <a href="https://youtube.com/epfl_sti" target="_blank" title="EPFL STI Youtube"><i class="fab fa-2x fa-youtube"></i></a>
+  <div class="widget epfl-sti-social">
+    <div itemscope itemtype="http://schema.org/ContactPoint">
+      <h1>CONTACT</h1>
+      <address>
+        <div itemscope itemtype="schema.org/PostalAddress">
+          <strong><span property="name">School of Engineering</span></strong><br />
+          <span itemprop="contactType">Dean's Office</span><br />
+          <span itemprop="streetAddress">EPFL - ELB 11</span><br />
+          <span itemprop="postOfficeBoxNumber">Station 11</span><br />
+          <span itemprop="addressCountry">CH</span>-<span itemprop="postalCode">1015</span> <span itemprop="addressLocality">Lausanne</span><br />
+        </div>
+      </address>
+      <br />
+      <a href="mailto:secretariat.sti@epfl.ch" class="epfl-sti-social-item" target="_blank" title="email: STI Secretary Officel"><i class="fas fa-2x fa-envelope-square"></i></a>
+      <a href="https://twitter.com/epfl_sti" class="epfl-sti-social-item" target="_blank" title="EPFL STI Twitter"><i class="fab fa-2x fa-twitter-square"></i></a>
+      <a href="https://plus.google.com/epfl_sti" class="epfl-sti-social-item" target="_blank" title="EPFL STI Google plus"><i class="fab fa-2x fa-google-plus-square"></i></a>
+      <a href="https://instagram.com/epfl_sti" class="epfl-sti-social-item" target="_blank" title="EPFL STI Instagram"><i class="fab fa-2x fa-instagram"></i></a>
+      <a href="https://facebook.com/epfl_sti" class="epfl-sti-social-item" target="_blank" title="EPFL STI Facebook"><i class="fab fa-2x fa-facebook-square"></i></a>
+      <a href="https://youtube.com/epfl_sti" class="epfl-sti-social-item" target="_blank" title="EPFL STI Youtube"><i class="fab fa-2x fa-youtube"></i></a>
+    </div>
   </div>
 <?php
     }  // public function Widget

@@ -49,6 +49,7 @@ if ( ! function_exists( 'epflsti_setup' ) ) :
 			'institute-menu-imt' => __( 'IMT Nav Menu', 'epflsti' ),
 			'institute-menu-imx' => __( 'IMX Nav Menu', 'epflsti' ),
 			'institute-menu-iel' => __( 'IEL Nav Menu', 'epflsti' ),
+			'footnote' => __( 'Footnote', 'epflsti' ),
 		) );
 
 		/*
