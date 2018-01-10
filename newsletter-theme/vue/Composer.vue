@@ -22,6 +22,7 @@
 import NewsItemHandle from "./NewsItemHandle.vue"
 import _ from "lodash"
 import dragula from "dragula"
+import Debouncer from "./Debouncer.js"
 
 function updateNewsOrder (vm) {
   vm.$set(vm, 'news', NewsItemHandle.findUnder(vm))
@@ -29,13 +30,39 @@ function updateNewsOrder (vm) {
 
 export default {
   el: '#composer-toplevel',
+  props: {
+    /**
+     * The time after the last user input when the page will reload
+     */
+    commitDelay: {
+      type: Number,
+      default: 2000
+    }
+  },
   data: () => ({
-    news: []  // Kept in DOM order across drags
+    /**
+     * The ordered list of NewsItemHandle children
+     */
+    news: null,
+    /**
+     * The serializable state of the composer.
+     *
+     * If different from the original state, will be submitted right away
+     * as an AJAX POST followed by page reload
+     */
+    serverState: null
   }),
   computed: {
-    newsIds () {
+    /**
+     * The most recent server-side state of the composer.
+     *
+     * Flows to serverState after user is inactive for `commitDelay`
+     * milliseconds
+     */
+    _tmpServerState () {
+      if (this.news === null) return null   // Not fully initialized yet
       let newsIds = _.map(this.news, (n) => n.postId)
-      return newsIds
+      return { news: newsIds }
     }
   },
   components: {
@@ -44,6 +71,8 @@ export default {
     NewsItemHandle
   },
   mounted: function() {
+    this._priv = {}
+    this._priv.debouncer = new Debouncer()
     this.$nextTick(() => {
       let $this = this
 
@@ -65,6 +94,26 @@ export default {
         updateNewsOrder($this)
       })
     })
+  },
+  watch: {
+    // After a while, _tmpServerState flows to serverState
+    _tmpServerState (newState, oldState) {
+      console.log("New state!", newState, "(was ", oldState, ")")
+
+      if (this.serverState === null) {
+        // First time around: propagate right away
+        // Note that the serverState watch detects this case and
+        // does nothing
+        this.serverState = _.cloneDeep(newState)
+      } else {
+        // Same, but after a small delay
+        let $this = this
+        $this._priv.debouncer.after($this.commitDelay, function() {
+          console.log(newState, "now flows to serverState")
+          $this.serverState = { news: newState.news }
+        })
+      }
+    }
   }
 }
 </script>

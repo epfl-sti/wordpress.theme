@@ -48,22 +48,5 @@ class ContentSearchAjax
     }
 }
 
-class NewsletterDraftAjax
-{
-    static function ajax_save ()
-    {
-        $theme_options = array();
-        foreach ($_POST["state"] as $k => $v) {
-            $theme_options["theme_$k"] = $v;
-        }
-        \NewsletterEmails::instance()->themes->save_options(
-            "epfl-sti", $theme_options);
-        return array(
-            "status" => "OK"
-        );
-    }
-}
-
 require_once dirname(dirname(__FILE__)) . "/hook.php";
 NewsletterHook::add_ajax_class(ContentSearchAjax::class, "epfl_sti_newsletter_");
-NewsletterHook::add_ajax_class(NewsletterDraftAjax::class, "epfl_sti_newsletter_draft_");
