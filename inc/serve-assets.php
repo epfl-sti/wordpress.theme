@@ -29,9 +29,16 @@ function serve_file($path_relative)
     $path = get_theme_file_path();
     if (! preg_match('@/$@', $path)) $path .= '/';
     $path .= $path_relative;
+
+    if (! file_exists($path)) {
+        http_response_code(404);
+        echo "$path_relative was not found";
+        die();
+    }
+
     $type = mime_content_type($path);
     http_response_code(200);
     header("Content-Type: " . $type);
     readfile($path);
-    die;
+    die();
 }

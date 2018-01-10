@@ -19,7 +19,14 @@
 @import "theme/theme_sti"; // Unsorted things, need their own files
 
 /* Font Awesome 5 */
-@import "fontawesome5/fontawesome.scss";
-@import "fontawesome5/fa-solid.scss";
-@import "fontawesome5/fa-regular.scss";
-@import "fontawesome5/fa-brands.scss";
+
+// We need to know the URL of the fonts at compile time, therefore we
+// can't use get_theme_relative_uri() and friends. See
+// ../inc/serve-assets.php to find out how this magical URL is being
+// served.
+$fa-font-path: 'theme-epfl-sti/node_modules/@fortawesome/fontawesome-free-webfonts/webfonts';
+
+@import "../node_modules/@fortawesome/fontawesome-free-webfonts/scss/fontawesome";
+@import "../node_modules/@fortawesome/fontawesome-free-webfonts/scss/fa-regular";
+@import "../node_modules/@fortawesome/fontawesome-free-webfonts/scss/fa-solid";
+@import "../node_modules/@fortawesome/fontawesome-free-webfonts/scss/fa-brands";
