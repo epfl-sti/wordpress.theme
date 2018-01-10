@@ -5,6 +5,10 @@
  * @package epflsti
  */
 
+require_once(dirname(__FILE__).'/i18n.php');
+use function \EPFL\STI\Theme\___;
+use function \EPFL\STI\Theme\__x;
+
 /**
  * Count number of widgets in a sidebar
  * Used to add classes to widget areas so widgets can be displayed one, two, three or four per row
@@ -49,7 +53,7 @@ add_action( 'widgets_init', function () {
    * Initializes themes widgets.
    */
     register_sidebar( array(
-      'name'          => __( 'Home page', 'epflsti' ),
+      'name'          => ___('Home page'),
       'id'            => 'homepage',
       'description'   => 'Widget area shown on the home page',
       'before_widget' => '<div class="homepage-widgets">',
@@ -57,6 +61,21 @@ add_action( 'widgets_init', function () {
       'before_title'  => '',
       'after_title'   => '',
     ) );
+
+    foreach (["iel", "igm", "ibi", "imt", "imx"] as $institute_code) {
+        $institute_name = strtoupper($institute_code);
+        register_sidebar( array(
+            'name'          => sprintf(
+                __x( '%s home page', 'Institute home page'),
+                $institute_name),
+            'id'            => "${institute_name}-homepage",
+            'description'   => sprintf(___('Widget area shown on the %s home page'), $institute_name),
+            'before_widget' => '<div class="institute-homepage-widgets">',
+            'after_widget'  => '</div>',
+            'before_title'  => '',
+            'after_title'   => '',
+        ) );
+    }
 
     register_sidebar( array(
       'name'          => __( 'Right Sidebar', 'epflsti' ),
