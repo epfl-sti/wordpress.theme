@@ -67,9 +67,12 @@ class NewsletterHook
      * All methods whose name start with ajax_ in $class are set up as
      * handlers for the corresponding "action" in the sense of
      * @link https://codex.wordpress.org/AJAX_in_Plugins . These
-     * methods can obtain the details of the AJAX request in $_GET,
-     * $_POST and/or $_REQUEST (depending on which HTTP method the
-     * JavaScript code decides to use). Handlers should return the
+     * methods can obtain the details of a GET AJAX request in $_GET,
+     * and/or $_REQUEST; in the case of a proper POST request (with
+     * Content-Type: application/json in the request), the decoded
+     * JSON will be passed as a parameter to the handler instead.
+     *
+     * Handlers should return the
      * data structure that they wish to return to the AJAX caller
      * (typically a PHP associative array).
      *
@@ -98,8 +101,15 @@ class NewsletterHook
                 sprintf("wp_ajax_%s%s", $prefix, $matched[1]),
                 function() use ($class, $method_name) {
                     check_ajax_referer(self::SLUG);  // Nonce provided by serve_composer_app
-                    $json_response = call_user_func(
-                        array($class, $method_name));
+                    if ($_SERVER['REQUEST_METHOD'] === "POST" &&
+                        $_SERVER["CONTENT_TYPE"] === "application/json") {
+                        $json_response = call_user_func(
+                            array($class, $method_name),
+                            json_decode(file_get_contents('php://input'), true));
+                    } else {
+                        $json_response = call_user_func(
+                            array($class, $method_name));
+                    }
                     echo json_encode($json_response, JSON_PRETTY_PRINT);
                     wp_die();  // That's the way WP AJAX rolls
                 });
@@ -107,25 +117,28 @@ class NewsletterHook
     }
 
     /**
-     * @return Some JS code that sets window.epflsti_newsletter_composer.nonce
+     * @return Some JS code that sets window.epflsti_newsletter_composer
      *
-     * This is to thwart cross-site request forgery (XSRF) attacks.
-     * Vue.js code that performs AJAX requests is supposed to pass
-     * that nonce back as the _wp_nonce key in the request payload.
-     * (This is handled in @file inc/ajax.js) Upon receiving the AJAX
-     * call, PHP code calls check_ajax_referer() to validate the
-     * nonce.
+     * window.epflsti_newsletter_composer contains fields .ajaxurl
+     * (self-explanatory) and .nonce, which serves to thwart
+     * cross-site request forgery (XSRF) attacks. Vue.js code that
+     * performs AJAX requests is supposed to pass that nonce back as
+     * the _wp_nonce key in the request payload. (This is handled
+     * in @file inc/ajax.js) Upon receiving the AJAX call, PHP code
+     * calls check_ajax_referer() to validate the nonce.
      */
-    static function script_pass_xsrf_nonce ()
+    static function script_pass_params ()
     {
         return sprintf("
             <script>
                window.%s = {};
                window.%s.nonce = \"%s\";
+               window.%s.ajaxurl = \"%s\";
             </script>
 ",
-                       self::TOPLEVEL_JS_VAR_NAME, self::TOPLEVEL_JS_VAR_NAME,
-                       wp_create_nonce(self::SLUG));
+                       self::TOPLEVEL_JS_VAR_NAME,
+                       self::TOPLEVEL_JS_VAR_NAME, wp_create_nonce(self::SLUG),
+                       self::TOPLEVEL_JS_VAR_NAME, admin_url( 'admin-ajax.php' ));
     }
 
     static $_declared_vars = array();
@@ -179,7 +192,7 @@ class NewsletterHook
                          get_theme_relative_uri() . "/assets/core.min.js");
             echo sprintf("<script type=\"text/javascript\" src=\"%s\"></script>\n",
                          get_theme_relative_uri() . "/assets/jquery.min.js");
-            echo NewsletterHook::script_pass_xsrf_nonce();
+            echo NewsletterHook::script_pass_params();
             echo sprintf("<script type=\"text/javascript\" src=\"%s\"></script>\n",
                          get_theme_relative_uri() . "/assets/newsletter-composer.min.js");
         }
