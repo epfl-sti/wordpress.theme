@@ -32,19 +32,36 @@ function get_newsletter_posts ($theme_options)
 
 class NewsletterDraftState
 {
+    const TIMEOUT_SECS = 45 * 60;
+
     function __construct($theme_options)
     {
+        $saved_state = get_site_transient(self::_get_transient_key());
     }
 
     function is_set ($kind)
     {
-        return false;
+        return false;   // XXX
     }
 
     function get_list_of_posts ($kind)
     {
-        return null;
+        return null;   // XXX
     }
+
+    static function ajax_save ($state)
+    {
+        set_site_transient(self::_get_transient_key(),
+                           json_encode($state),
+                           self::TIMEOUT_SECS);
+    }
+
+    static private function _get_transient_key ()
+    {
+        return sprintf("epfl-newsletter-draft-state_%d",
+                       get_current_user_id());
+    }
+
 }
 
 NewsletterHook::add_ajax_class(NewsletterDraftState::class, "epfl_sti_newsletter_draft_");
