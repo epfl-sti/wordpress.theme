@@ -7,8 +7,8 @@
 <template>
   <div class="news-item-handle">
     News ID {{postId}}
-    <button @click="buttonTrash"><i class="fa fa-trash-o"></i></button>
-    <button @click="buttonPlus"><i class="fa fa-plus-square-o"></i></button>
+    <button @click="buttonTrash"><i class="fa fa-trash"></i></button>
+    <button @click="buttonPlus"><i class="fa fa-plus-square"></i></button>
   </div>
 </template>
 
