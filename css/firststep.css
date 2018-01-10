@@ -1,5 +1,5 @@
 body {
-	background-color:#ccc !important;
+  background-color: #ccc !important;
 }
 
 @font-face {
@@ -18,213 +18,186 @@ body {
 }
 
 .frontrow {
- text-align: left;
- display: inline-block;
- margin-top: 20px;
+  text-align: left;
+  display: inline-block;
+  margin-top: 20px;
 }
 
 .whitebg {
- background-color: white;
+  background-color: white;
 }
 
 .educationbg {
- background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
 .researchbg {
- background-color: #ddd;
+  background-color: #ddd;
 }
 
 .innovationbg {
- background-color: #bbb;
+  background-color: #bbb;
 }
 
 .frontrowcontainer {
- float:left;
- display: inline;
- clear: none;
- width: 270px;
- height: 540px;
- position: relative;
+  float: left;
+  display: inline;
+  clear: none;
+  width: 270px;
+  height: 540px;
+  position: relative;
 }
 
 .sti_content_title {
- background-color: black;
- color: white;
- font: 26px 'Open Sans Regular';
- width: 100%;
- padding: 10px;
- margin-bottom: 10px;
+  background-color: black;
+  color: white;
+  font: 26px 'Open Sans Regular';
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 .sti_content_body {
- display: inline-block;
- text-align: left;
- margin-top: 20px;
+  display: inline-block;
+  text-align: left;
+  margin-top: 20px;
 }
 
 .sti_content_maincolumn {
- display: inline;
- width: 789px; /* this degrade col-md-8 of the parent div very badly! */
- padding: 0px 30px 30px 30px;
- float: left;
+  display: inline;
+  width: 789px;
+  /* this degrade col-md-8 of the parent div very badly! */
+  padding: 0px 30px 30px 30px;
+  float: left;
 }
 
 .sti_righthand_menu {
- display: inline;
- width: 300px;
- float: left;
-}
-.frontrowcontent {
- display: inline-block;
+  display: inline;
+  width: 300px;
+  float: left;
 }
 
-.frontrownewstitle {
- width: 270px;
- height: 61px;
- position: relative;
- top: 85px;
- background: rgb(42,41,46);
- background: rgba(0,0,0,0.7);
- padding: 8px;
+.frontrowcontent {
+  display: inline-block;
 }
 
 .eventsplus {
- width: 16px;
- height: 16px;
- background-color: #000;
- float: right;
- display: block;
- font: 14px verdana;
+  width: 16px;
+  height: 16px;
+  background-color: #000;
+  float: right;
+  display: block;
+  font: 14px verdana;
 }
 
 .eventspluslink {
- color: #fff;
- text-decoration: none;
- position: relative;
- top: -3px;;
- left: 3px;;
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+  top: -3px;
+  ;
+  left: 3px;
+  ;
 }
 
 .eventspluslink:hover {
- color: #cc161d;
- text-decoration: none;
+  color: #cc161d;
+  text-decoration: none;
 }
 
 .frontrowevents {
- background-color: #aaa;
- width: 270px;
- height: 450px;
- border-right: #797979 1px solid;
- border-left: #797979 1px solid;
- border-bottom: #797979 1px solid;
-}
-
-.frontrownews {
- width: 270px;
- height: 150px;
- border-left: #797979 1px solid;
- border-bottom: #cc161d 4px solid;
- background-size: 100%;
- background-position: center;
- transition: all .4s ease-in-out;
-}
-
-.frontrownews:hover {
- background-size: 130%;
+  background-color: #aaa;
+  width: 270px;
+  height: 450px;
+  border-right: #797979 1px solid;
+  border-left: #797979 1px solid;
+  border-bottom: #797979 1px solid;
 }
 
 .frontrowheader {
- height: 90px;
- background-color: #272727;
- font: 26px 'Open Sans Regular';
- color: #fff;
- padding: 12px 5px 0px 29px
+  height: 90px;
+  background-color: #272727;
+  font: 26px 'Open Sans Regular';
+  color: #fff;
+  padding: 12px 5px 0px 29px
 }
 
 .frontrowred {
- color: #cc161d;
- position: relative;
- top: -6px;
+  color: #cc161d;
+  position: relative;
+  top: -6px;
 }
 
 .frontrowmore {
- position: absolute;
- bottom: 10px;
- right: 10px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
 
 .frontrowlistbox {
- width: 270px;
- height: 450px;
- background-image: url('../img/src/charcoal.gif');
- border-left: #444 1px solid;
- border-bottom: #111 1px solid;
+  width: 270px;
+  height: 450px;
+  background-image: url('../img/src/charcoal.gif');
+  border-left: #444 1px solid;
+  border-bottom: #111 1px solid;
 }
 
 .frontrowlistbox.rollup {
- height: auto;
+  height: auto;
 }
 
 .frontrowlist_title {
- background-color: black;
- width: 270px;
- height: 56px;
- padding: 12px 5px 25px 22px;
- font: 24px verdana;
+  background-color: black;
+  width: 270px;
+  height: 56px;
+  padding: 12px 5px 25px 22px;
+  font: 24px verdana;
 }
 
-.frontrowtitle_link,.frontrowtitle_link:visited {
- color: #fff;
- text-decoration: none;
+.frontrowtitle_link, .frontrowtitle_link:visited {
+  color: #fff;
+  text-decoration: none;
 }
+
 .frontrowtitle_link:hover {
- color: #cc161d;
- text-decoration: none;
+  color: #cc161d;
+  text-decoration: none;
 }
 
 .frontrowmarker {
- color: #cc161d;
+  color: #cc161d;
 }
 
 .frontrowlist {
- list-style-type: none;
- padding: 0px 10px 10px 5px;
+  list-style-type: none;
+  padding: 0px 10px 10px 5px;
 }
 
-.frontrowlist > li {
-padding: 7px 7px 7px 15px;
-border-bottom: 1.5px solid #2c2b2b;
-border-top: 1.5px solid #3e3e3e;    
-
-/*    
- background-image: url('../img/src/charcoal_separator.gif');
- background-position: bottom;
- background-repeat: repeat-x;
- height: 35px;
- padding: 0px 0px 0px 20px;
-*/
+.frontrowlist>li {
+  padding: 7px 7px 7px 15px;
+  border-bottom: 1.5px solid #2c2b2b;
+  border-top: 1.5px solid #3e3e3e;
 }
 
-.frontrowlist > li > a {
- color: #fff;
- text-decoration: none;
- font: 14px verdana;
+.frontrowlist>li>a {
+  color: #fff;
+  text-decoration: none;
+  font: 14px verdana;
 }
 
-.frontrowlist > li > a:hover {
- color: #cc161d;
+.frontrowlist>li>a:hover {
+  color: #cc161d;
 }
 
-.whitelink,.whitelink:visited {
- color: #fff;
- text-decoration: none;
- font-size: 14px;
+.whitelink, .whitelink:visited {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
 }
 
 .whitelink:hover {
- color: #cccccc;
- text-decoration: none;
+  color: #cccccc;
+  text-decoration: none;
 }
 
 #mobile_header {
@@ -265,11 +238,11 @@ div.news {
 }
 
 .sti_content_title {
- font: black 30px lucida;
+  font: black 30px lucida;
 }
 
 .sti_content_menu {
-    float: right;
-    text-align: right;
-    width: auto;
+  float: right;
+  text-align: right;
+  width: auto;
 }
