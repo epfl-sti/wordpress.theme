@@ -34,19 +34,22 @@ class NewsletterDraftState
 {
     const TIMEOUT_SECS = 45 * 60;
 
+    private $saved_state;
+
     function __construct($theme_options)
     {
-        $saved_state = get_site_transient(self::_get_transient_key());
+        $this->saved_state = JSON_decode(get_site_transient(self::_get_transient_key()), true);
     }
 
     function is_set ($kind)
     {
-        return false;   // XXX
+        if (! $this->saved_state) return false;
+        return !(! $this->saved_state[$kind]);
     }
 
     function get_list_of_posts ($kind)
     {
-        return null;   // XXX
+        return $this->saved_state[$kind];
     }
 
     static function ajax_save ($state)
@@ -70,6 +73,7 @@ class PostQuery
 {
     var $theme_options = null;
     protected $filter;
+    protected $post_list;
 
     function __construct ($state)
     {
@@ -80,16 +84,36 @@ class PostQuery
     {
         $this->filter = array();
         $this->_setup_filter($this->state);
-        return get_posts($this->filter);
+        $posts = get_posts($this->filter);
+        if (! $this->post_list) return $posts;
+
+        // Reorder like $this->post_list
+        $ordered_posts = array();
+        foreach ($this->post_list as $id) {
+            end($posts); $last_post_key = key($posts);
+            foreach ($posts as $key => $post) {
+                if ($post->ID == $id) {
+                    array_push($ordered_posts, $post);
+                    break;
+                }
+                if ($key === $last_post_key) {
+                    error_log("Couldn't find ID $id in get_posts() results");
+                }
+            }
+        }
+        assert(count($posts) === count($ordered_posts));
+        return $ordered_posts;
     }
 
     private function _setup_filter ($state)
     {
-        if (! $state->is_set($this->KIND)) {
+        if (! $state->is_set(static::KIND)) {
             $this->_set_default_filter();
         } else {
             $this->filter['post_type'] = 'any';
-            $this->filter['post__in'] = $state->get_list_of_posts($this->KIND);
+            $this->post_list = $state->get_list_of_posts(static::KIND);
+            $this->filter['post__in'] = $this->post_list;
+            $this->filter['posts_per_page'] = count($this->post_list);
             $this->filter["ignore_sticky_posts"] = true;
         }
     }
