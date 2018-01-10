@@ -30,7 +30,7 @@ class ContactAndSocial extends \WP_Widget
     {
 ?>
   <div class="widget epfl-sti-social">
-    <div itemscope itemtype="http://schema.org/ContactPoint">
+    <div itemscope itemtype="https://schema.org/ContactPoint">
       <h1>CONTACT</h1>
       <address>
         <div itemscope itemtype="schema.org/PostalAddress">
