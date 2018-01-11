@@ -1,14 +1,15 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# THIS IS THE MAIN TRANSLATION FILE OF THE EPFL STI THEME.
+# Copyright (C) MIT License / Copyright (c) 2017-2018 EPFL ⋅ STI ⋅ IT
 # This file is distributed under the same license as the epfl-sti-theme package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Dominique Quatravaux <dominique.quatravaux@epfl.ch>, 2018.
+# Nicolas Borboën, <nicolas.borboen@epfl.ch>, 2018.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: epfl-sti-theme\n"
 "Report-Msgid-Bugs-To: stiitweb@groupes.epfl.ch\n"
-"POT-Creation-Date: 2018-01-03 22:46+0100\n"
+"POT-Creation-Date: 2018-01-11 14:45+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,26 +34,29 @@ msgid "INNOVATION"
 msgstr ""
 
 #: ../newsletter-theme/inc/newsletter.php:56
+#: ../newsletter-theme/inc/newsletter_state.php:129
 msgid "News"
 msgstr ""
 
 #: ../newsletter-theme/inc/newsletter.php:61
+#: ../newsletter-theme/inc/newsletter_state.php:141
 msgid "Upcoming events"
 msgstr ""
 
 #: ../newsletter-theme/inc/newsletter.php:66
+#: ../newsletter-theme/inc/newsletter_state.php:148
 msgid "Faculty positions"
 msgstr ""
 
-#: ../widgets/carousel.php:27
+#: ../widgets/carousel.php:27 ../widgets/carousel.php:29
 msgid "Rotates a selection of news with a big picture"
 msgstr ""
 
-#: ../widgets/frontrow.php:30
+#: ../widgets/frontrow.php:30 ../widgets/frontrow.php:28
 msgid "EPFL STI Front Row"
 msgstr ""
 
-#: ../widgets/frontrow.php:33
+#: ../widgets/frontrow.php:33 ../widgets/frontrow.php:31
 msgid "Shows a blackboard of quick links and useful information"
 msgstr ""
 
@@ -66,22 +70,109 @@ msgid ""
 "top of the carousel. (Must come immediately before it in the widget lineup.)"
 msgstr ""
 
-#: ../widgets/white-news.php:26
+#: ../widgets/white-news.php:26 ../widgets/white-news.php:25
 msgid "EPFL STI White News Row"
 msgstr ""
 
-#: ../widgets/white-news.php:29
+#: ../widgets/white-news.php:29 ../widgets/white-news.php:28
 msgid "Shows rows of collages of news on white background"
 msgstr ""
 
-#: ../widgets/white-news.php:39
+#: ../widgets/white-news.php:39 ../widgets/white-news.php:38
 msgid "Title:"
 msgstr ""
 
-#: ../widgets/white-news.php:46
+#: ../widgets/white-news.php:46 ../widgets/white-news.php:45
 msgid "CSS class:"
 msgstr ""
 
 #: ../widgets/white-news.php:54
 msgid "URLs to fetch:"
+msgstr ""
+
+#: ../inc/widgets.php:56
+msgid "Home page"
+msgstr ""
+
+#: ../inc/widgets.php:69
+#, php-format
+msgid "%s home page"
+msgstr ""
+
+#: ../inc/widgets.php:72
+#, php-format
+msgid "Widget area shown on the %s home page"
+msgstr ""
+
+#: ../newsletter-theme/inc/newsletter_state.php:161
+msgid "In the media"
+msgstr ""
+
+#: ../widgets/google-map.php:24
+msgid "Show a Google Map with pins for all the EPFL STI sites"
+msgstr ""
+
+#: ../widgets/contact-and-social.php:24
+msgid "Show snail-mail contact info and some social buttons"
+msgstr ""
+
+#: ../widgets/contact-and-social.php:35
+msgid "CONTACT"
+msgstr ""
+
+#: ../widgets/contact-and-social.php:38
+msgid "School of Engineering"
+msgstr ""
+
+#: ../widgets/contact-and-social.php:39
+msgid "Dean's Office"
+msgstr ""
+
+#: ../widgets/contact-and-social.php:40
+msgid "EPFL - ELB 11"
+msgstr ""
+
+#: ../widgets/frontrow.php:45
+msgid "RESEARCH"
+msgstr ""
+
+#: ../widgets/frontrow.php:45
+msgid "NEWS"
+msgstr ""
+
+#: ../widgets/frontrow.php:65
+msgid "SCHOOL OF"
+msgstr ""
+
+#: ../widgets/frontrow.php:65
+msgid "ENGINEERING"
+msgstr ""
+
+#: ../widgets/frontrow.php:71
+msgid "INSTITUTES"
+msgstr ""
+
+#: ../widgets/frontrow.php:71
+msgid "CENTRES"
+msgstr ""
+
+#: ../widgets/frontrow.php:77
+msgid "UPCOMING"
+msgstr ""
+
+#: ../widgets/frontrow.php:77
+msgid "EVENTS"
+msgstr ""
+
+#: ../widgets/white-news.php:52
+msgid "Category:"
+msgstr ""
+
+#: ../widgets/white-news.php:60
+msgid "Max news count:"
+msgstr ""
+
+#: ../widgets/subscribe-newsletter.php:24
+msgid ""
+"Shows an input form to subscribe to the EPFL-STI newsletter through e-mail"
 msgstr ""
