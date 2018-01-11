@@ -45,6 +45,7 @@
 }
 
 .menu-front-row {
+    margin-left: 8pt;
     li {
         padding: 4pt 0;
     }
