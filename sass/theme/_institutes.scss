@@ -14,22 +14,60 @@
   list-style-type: none;
   padding: 13px 10px 10px 5px;
 
+  .sub-menu {
+    list-style-type: none;
+    padding: 0px;
+
+  }
+
   li {
-    background-image: url("../img/src/charcoal_separator.gif");
     background-position: bottom;
     background-repeat: repeat-x;
-    height: 35px;
-    padding: 0 0 0 20px;
-
+    padding: 0 15px;
     a {
       color: #fff;
       text-decoration: none;
       font: 14px verdana;
     }
+    a:hover {
+      color: $theRed;
+    }
   }
+
+  .current_page_item a {
+    text-decoration: underline;
+  }
+
 }
 
 .institute-homepage-widget {
   margin-top: 3em;
   margin-bottom: 3em;
+}
+
+.institute-righthand-menu {
+  display: inline;
+  float: left;
+
+  .institute-righthand-menu-title {
+    background-color: black;
+    padding: 12px 5px 25px 22px;
+    font: 24px verdana;
+
+  }
+
+  .institute-righthand-menu-title-link {
+    color: #fff;
+  }
+  .institute-righthand-menu-title-link:hover {
+    color: $theRed;
+    text-decoration: none;
+  }
+
+  .institute-righthand-menu-list-container{
+    background-image: url('../img/src/charcoal.gif');
+    border-left: #444 1px solid;
+    border-bottom: #111 1px solid;
+    height: auto;
+  }
 }

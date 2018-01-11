@@ -20,7 +20,7 @@ use function \EPFL\STI\get_institute;
 
 		<div class="row">
 
-			<div class="col-md-8 content-area" id="primary">
+			<div class="col-md-9 content-area" id="primary">
 
 				<main class="site-main" id="main" role="main">
 
@@ -41,14 +41,14 @@ use function \EPFL\STI\get_institute;
 			<?php dynamic_sidebar( 'right' ); ?>
 
 			<!-- NAV MENU START -->
-			<div class="sti_righthand_menu col-md-4">
-				<div class="frontrowlist_title frontrowmarker">
+			<div class="institute-righthand-menu col-md-3">
+				<div class="institute-righthand-menu-title">
 					<?php
 					global $post;
 					?>
-					<a class="frontrowtitle_link" href="#"><?php echo strtoupper(get_institute()); ?></a>
+					<a class="institute-righthand-menu-title-link" href="#"><?php echo strtoupper(get_institute()); ?></a>
 				</div>
-				<div class="frontrowlistbox rollup">
+				<div class="institute-righthand-menu-list-container">
 					<?php wp_nav_menu( array( 'theme_location' => 'institute-menu-'.get_institute().'' ) ); ?>
 				</div>
 			</div><!-- .sti_righthand_menu -->

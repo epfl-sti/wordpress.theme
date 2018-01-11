@@ -43,8 +43,8 @@ body {
   float: left;
   display: inline;
   clear: none;
-  width: 270px;
-  height: 540px;
+  /*width: 270px;
+  height: 540px;*/
   position: relative;
 }
 
@@ -65,7 +65,7 @@ body {
 
 .sti_righthand_menu {
   display: inline;
-  width: 300px;
+  /*width: 300px;*/
   float: left;
 }
 
@@ -87,9 +87,7 @@ body {
   text-decoration: none;
   position: relative;
   top: -3px;
-  ;
   left: 3px;
-  ;
 }
 
 .eventspluslink:hover {
@@ -127,8 +125,8 @@ body {
 }
 
 .frontrowlistbox {
-  width: 270px;
-  height: 450px;
+  /*width: 270px;
+  height: 450px;*/
   background-image: url('../img/src/charcoal.gif');
   border-left: #444 1px solid;
   border-bottom: #111 1px solid;
@@ -140,8 +138,8 @@ body {
 
 .frontrowlist_title {
   background-color: black;
-  width: 270px;
-  height: 56px;
+  /*width: 270px;
+  height: 56px;*/
   padding: 12px 5px 25px 22px;
   font: 24px verdana;
 }
