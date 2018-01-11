@@ -14,8 +14,6 @@
   }
 
   li {
-    background-position: bottom;
-    background-repeat: repeat-x;
     text-decoration: none;
     a:hover {
       color: $theRed;
@@ -40,9 +38,15 @@
 
 .institute-nav-menu,
 .prof-nav-menu {
+    ul.menu > li {
+        background-image: url(../img/src/charcoal_separator.gif);
+        background-position: bottom;
+        background-repeat: repeat-x;
+        padding: 2pt 15px 7pt 15px;
+    }
     font-size: 11pt;
     li {
-        padding: 2pt 15px;
+        padding: 2pt 15px 2pt 15px;
     }
 }
 
@@ -58,5 +62,12 @@
     ul.sub-menu {
         padding-bottom: 8pt;
         text-transform: none;
+    }
+
+    ul.sub-menu > li {
+        background-image: url(../img/src/charcoal_separator.gif);
+        background-position: bottom;
+        background-repeat: repeat-x;
+        padding: 4pt 0 11pt 0;
     }
 }
