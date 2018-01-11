@@ -18,6 +18,7 @@ epfl-sti-theme.pot:
 	  xgettext -d "epfl-sti" -k"__x" -k"___" -k"__e" \
 	  --package-name=epfl-sti-theme \
 	  --msgid-bugs-address=stiitweb@groupes.epfl.ch \
+	  --omit-header \
 	  -j -o epfl-sti-theme.pot
 
 .PHONY: msgmerge
