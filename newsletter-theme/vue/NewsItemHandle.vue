@@ -8,7 +8,7 @@
   <div class="news-item-handle">
     News ID {{postId}}
     <button @click="buttonTrash"><i class="fa fa-trash"></i></button>
-    <button @click="buttonPlus"><i class="fa fa-plus-square"></i></button>
+    <plus-button @click="buttonPlus" />
   </div>
 </template>
 
@@ -16,12 +16,17 @@
 import Vue from 'vue'
 import _ from "lodash"
 
+import PlusButton from "./PlusButton.vue"
+
 export default {
   props: {
     postId: {
       type: String,
       required: true
     }
+  },
+  components: {
+    PlusButton
   },
   methods: {
     postType: () => "News",

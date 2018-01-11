@@ -19,10 +19,12 @@
     -->
 
 <script>
-import NewsItemHandle from "./NewsItemHandle.vue"
 import _ from "lodash"
-import dragula from "dragula"
 import Debouncer from "./Debouncer.js"
+
+import dragula from "dragula"
+import NewsItemHandle from "./NewsItemHandle.vue"
+import NewsItemMore from "./NewsItemMore.vue"
 
 function updateNewsOrder (vm) {
   vm.$set(vm, 'news', NewsItemHandle.findUnder(vm))
@@ -67,8 +69,8 @@ export default {
   },
   components: {
     /* Vue magically maps the NewsItemHandle class
-       to <news-item-handle> in the HTML */
-    NewsItemHandle
+       to <news-item-handle> in the HTML and so on */
+    NewsItemHandle, NewsItemMore
   },
   mounted: function() {
     this._priv = {}
