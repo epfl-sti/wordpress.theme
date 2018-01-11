@@ -3,6 +3,7 @@
    ----------------------------------------------------------- */
 
 .institute-nav-menu,
+.prof-nav-menu,
 .menu-front-row {
   list-style-type: none;
   padding: 13px 10px 10px 5px;
@@ -37,7 +38,8 @@
 
 /* And now, the differences: */
 
-.institute-nav-menu {
+.institute-nav-menu,
+.prof-nav-menu {
     font-size: 11pt;
     li {
         padding: 2pt 15px;

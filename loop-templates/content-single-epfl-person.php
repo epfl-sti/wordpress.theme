@@ -145,8 +145,8 @@ $fullcontact="
     <div class="sti_people_menu_white">
      <?php echo$keywords; ?>
     </div><!--menuwhite-->
-    <div class="menu-ibi-nav-menu-container">
-     <ul id="menu-ibi-nav-menu" class="menu">
+    <div class="prof-nav-menu">
+     <ul class="menu">
       <li id="menu-item-128" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-128"><a href="<?php echo $labwebsite; ?>">LAB WEBSITE</a></li>
       <li id="menu-item-129" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-129"><a href="https://people.epfl.ch/cgi-bin/people?id=<?php echo $sciper;?>&op=publications&lang=en&cvlang=en">PUBLICATIONS</a></li>
 	<li id="menu-item-131" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#news">NEWS</a></li>
