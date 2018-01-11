@@ -63,6 +63,7 @@ body {
 
 .sti_content_prof_text {
  min-width: 300px;
+ max-width: 690px;
  float:left;
  display: inline;
  clear: none;
@@ -73,6 +74,7 @@ body {
  float: left;
  display: inline;
  clear: none;
+ margin-right: 20px;
 }
 
 .sti_content_body {
@@ -89,6 +91,7 @@ body {
  min-width: 360px;
  background-color: white;
  margin-bottom: 30px;
+ position: relative;
 }
 
 .sti_righthand_menu {
@@ -113,8 +116,8 @@ body {
 
 .sti_people_news {
  height: 145px;
- width: 210px;
- background-size: 100%;
+ width: 203px;
+ background-size: 110%;
  background-position: center;
  transition: all .4s ease-in-out;
  float:left;
@@ -122,6 +125,7 @@ body {
  clear: none;
  margin-right: 20px;
  margin-top: 20px;
+ border-bottom: #cc161d 4px solid;
 }
 
 .frontrownews:hover {
@@ -156,10 +160,10 @@ body {
 }
 
 .peoplenewstitle {
- width: 210px;
+ width: 203px;
  height: 61px;
  position: relative;
- top: 85px;
+ top: 81px;
  background: rgb(42,41,46);
  background: rgba(0,0,0,0.7);
  padding: 8px;
@@ -259,7 +263,7 @@ body {
  color: #444;
 }
 
-@media screen and (max-width: 768px; ) {
+@media screen and (max-width: 1176px; ) {
  .sti_people_box{
   width: 100%;
   min-width: 350px;
@@ -270,15 +274,26 @@ body {
  }
  .sti_people_righthand_menu {
   display: none;
+  margin-left: 0px;
+ }
+ .sti_bugfix {
+  margin-right:0px;
  }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1176px) {
  .sti_people_box{
   width: 340px;
  }
  .sti_people_menu_title {
   width: 340px;
+ }
+ .sti_people_righthand_menu {
+  margin-left: 30px;
+ }
+ .sti_bugfix {
+  margin-left:-10px;
+  margin-right:-10px;
  }
 }
 
