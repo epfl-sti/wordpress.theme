@@ -32,12 +32,12 @@ class ContactAndSocial extends \WP_Widget
 ?>
   <div class="widget epfl-sti-social">
     <div itemscope itemtype="https://schema.org/ContactPoint">
-      <h1>CONTACT</h1>
+      <h1><?php echo ___('CONTACT'); ?></h1>
       <address>
         <div itemscope itemtype="schema.org/PostalAddress">
-          <strong><span property="name">School of Engineering</span></strong><br />
-          <span itemprop="contactType">Dean's Office</span><br />
-          <span itemprop="streetAddress">EPFL - ELB 11</span><br />
+          <strong><span property="name"><?php echo ___('School of Engineering'); ?></span></strong><br />
+          <span itemprop="contactType"><?php echo ___('Dean\'s Office'); ?></span><br />
+          <span itemprop="streetAddress"><?php echo ___('EPFL - ELB 11'); ?></span><br />
           <span itemprop="postOfficeBoxNumber">Station 11</span><br />
           <span itemprop="addressCountry">CH</span>-<span itemprop="postalCode">1015</span> <span itemprop="addressLocality">Lausanne</span><br />
         </div>
