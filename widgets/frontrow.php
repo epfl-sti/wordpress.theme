@@ -64,13 +64,19 @@ class FrontRow extends \WP_Widget
           <div class="text-white frontrowtitle">
             <?php echo ___('SCHOOL OF'); ?><br /><span class="text-danger"><?php echo ___('ENGINEERING'); ?></span>
           </div>
-            <?php wp_nav_menu(array( 'theme_location' => 'front-row-school-menu' )); ?>
+            <?php wp_nav_menu(array(
+                'theme_location' => 'front-row-school-menu',
+                'container_class' => 'menu-front-row  menu-schools'
+            )); ?>
         </div>
         <div class="col-md-3 frontrowcol">
           <div class="text-white frontrowtitle">
             <?php echo ___('INSTITUTES'); ?><br /><span class="text-danger">&amp;&nbsp;<?php echo ___('CENTRES'); ?></span>
           </div>
-          <?php wp_nav_menu(array( 'theme_location' => 'front-row-centres-menu' )); ?>
+          <?php wp_nav_menu(array(
+              'theme_location' => 'front-row-centres-menu',
+              'container_class' => 'menu-front-row menu-centres'
+          )); ?>
         </div>
         <div class="col-md-3 frontrowcol">
           <div class="text-white frontrowtitle">
