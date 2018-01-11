@@ -46,15 +46,15 @@ use function \EPFL\STI\get_institute;
 					<?php
 					global $post;
 					?>
-					<a class="frontrowtitle_link" href="#"><?php echo strtoupper($post->post_name); ?></a>
+					<a class="frontrowtitle_link" href="#"><?php echo strtoupper(get_institute()); ?></a>
 				</div>
 				<div class="frontrowlistbox rollup">
-					<?php wp_nav_menu( array( 'theme_location' => 'institute-menu-'.$post->post_name.'' ) ); ?>
+					<?php wp_nav_menu( array( 'theme_location' => 'institute-menu-'.get_institute().'' ) ); ?>
 				</div>
 			</div><!-- .sti_righthand_menu -->
 			<!-- NAV MENU END -->
 		</div><!-- .row -->
-        <?php dynamic_sidebar( get_institute() . '-homepage' ); ?>
+		<?php dynamic_sidebar( get_institute() . '-homepage' ); ?>
 
 	</div><!-- Container end -->
 
