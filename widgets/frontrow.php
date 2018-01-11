@@ -41,7 +41,7 @@ class FrontRow extends \WP_Widget
   <div class="row no-gutters">
     <div class="col-md-3 frontrowcol">
       <div class="text-white frontrowtitle">
-        RESEARCH<br /><span class="text-danger">NEWS</span>
+        <?php echo ___('RESEARCH'); ?><br /><span class="text-danger"><?php echo ___('NEWS'); ?></span>
       </div>
       <?php
         $actu_sti_research_url = 'https://actu.epfl.ch/api/v1/channels/10/news/?format=json&lang='.$cl.'&category=3&faculty=3&themes=4';
@@ -61,19 +61,19 @@ class FrontRow extends \WP_Widget
     </div>
     <div class="col-md-3 frontrowcol">
       <div class="text-white frontrowtitle">
-        SCHOOL OF<br /><span class="text-danger">ENGINEERING</span>
+        <?php echo ___('SCHOOL OF'); ?><br /><span class="text-danger"><?php echo ___('ENGINEERING'); ?></span>
       </div>
         <?php wp_nav_menu( array( 'theme_location' => 'front-row-school-menu' ) ); ?>
     </div>
     <div class="col-md-3 frontrowcol">
       <div class="text-white frontrowtitle">
-        INSTITUTES<br /><span class="text-danger">&amp;&nbsp;CENTRES</span>
+        <?php echo ___('INSTITUTES'); ?><br /><span class="text-danger">&amp;&nbsp;<?php echo ___('CENTRES'); ?></span>
       </div>
       <?php wp_nav_menu( array( 'theme_location' => 'front-row-centres-menu' ) ); ?>
     </div>
     <div class="col-md-3 frontrowcol">
       <div class="text-white frontrowtitle">
-        UPCOMING<br /><span class="text-danger">EVENTS</span>
+        <?php echo ___('UPCOMING'); ?><br /><span class="text-danger"><?php echo ___('EVENTS'); ?></span>
       </div>
       <div><?php
         echo '<table class="slider-event-table">';
