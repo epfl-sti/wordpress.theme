@@ -23,7 +23,7 @@ $office="ELE233";
 $sciper="199128";
 
 $epfl_positions="
-<br><br>
+<br>
 Associate Professor:
 <ul>
  <li>EPFL STI IEL LIONS 
@@ -48,14 +48,17 @@ CCE Member:
 $newstitle1="Three Prestigious Consolidator Grants";
 $newstitle2="Volkan Cevher wins an ERC starting grant";
 $newstitle3="Algorithms are all around";
+$newstitle4="IEEE Signal Processing Best Paper Award";
 
 $newsimage1="https://stisrv13.epfl.ch/newsdesk/covershots/el/left2017.png";
 $newsimage2="https://stisrv13.epfl.ch/newsdesk/covershots/el/left1263.png";
 $newsimage3="https://stisrv13.epfl.ch/newsdesk/covershots/el/left1180.png";
+$newsimage4="https://i.ytimg.com/vi/blIMmx5oh7o/maxresdefault.jpg";
 
 $newslink1="http://sti.epfl.ch/page-140428.html#anchor2017";
 $newslink2="http://sti.epfl.ch/page-67196.html#anchor1263";
 $newslink3="http://sti.epfl.ch/page-57268.html";
+$newslink4="http://sti.epfl.ch/page-108381.html#anchor2025";
 
 $publicationtext1="C. Aprile, A. Cevrero, P. A. Francese, C. Menolfi and M. Braendli et al. An Eight lanes 7Gb/s/pin Source Synchronous Single-Ended RX with Equalization and Far-End Crosstalk Cancellation for Backplane Channels, in IEEE Journal of Solid State Circuits, vol. PP, num. 99, p. 1-12, 2018";
 $publicationlink1="https://infoscience.epfl.ch/record/233712/files/08246724.pdf?version=1";
@@ -76,9 +79,6 @@ $publicationrecord4="https://infoscience.epfl.ch/record/232383?ln=en";
 $fullcontact="
 <table>
  <tr>
-  <td><h1><a href=https://people.epfl.ch/$epflname>$firstname $surname</a></h1><br></td>
- </tr>
- <tr>
   <td colspan=2>Associate Professor</td>
  </tr>
  <tr>
@@ -98,7 +98,7 @@ $fullcontact="
 				Office	ELE 233</td>
  </tr>
 </table> 
-
+<br><br>
 ";
 ?>
 
@@ -115,31 +115,34 @@ $fullcontact="
   <div class="col-sm-8 content-area" id="primary" style="">
    <main class="site-main sti_content_maincolumn" id="main" role="main">
     <header class="entry-header">
-     <h1><?php the_title(); ?></h1>
+     <h1 class="people_titles temp_people_title"><?php the_title(); ?></h1>
     </header><!-- .entry-header -->
-
-    <div class="entry-content holding">
-     <div class="sti_content_prof_photo">
+    <div class=sti_beige>
+     <!---img style="position: absolute; top:-12px; right: 8px;" src="/wp-content/themes/epfl-sti/img/src/topright.png"--->
+     <div class="entry-content">
+      <div class="sti_content_prof_photo">
 		<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
-     </div>
-     <div class="sti_content_prof_text">
+      </div><!-- prof_photo -->
+      <div class="sti_content_prof_text">
 		<?php //the_content(); ?>
-                <p style="width: 400px" ><?php echo "$position<br><br>$bio"; ?></p>
-     </div>
-    </div><!-- .entry-content -->
+                <p style="width: 400px" ><b><?php echo "$position</b><br><br>$bio"; ?></p>
+      </div><!-- prof_text -->
+     </div><!-- .entry-content -->
+    </div><!-- beige -->
    </main><!-- #main -->
    <br>
    <main class="site-main sti_content_maincolumn" id="main" role="main">
     <div class="entry-content">
      <div class="sti_content_prof_text">
-      <?php echo $epfl_positions ?>
-     </div>
+      <h1 class="people_titles">Positions</h1>
+       <?php echo $epfl_positions ?>
+     </div><!-- prof_text -->
     </div><!-- .entry-content -->
    </main><!-- #main -->
   </div><!-- #primary -->
 
   <!-- NAV MENU START -->
-  <div class="sti_people_righthand_menu col-md-4">
+  <div class="sti_righthand_menu col-md-4">
    <div class="sti_people_menu_title frontrowmarker">
     <?php echo $labname; ?> <span class="sti_people_menu_black"><?php echo $mylabname; ?></span>
     <img src=<?php echo $labimage; ?> class="sti_people_menu_image">
@@ -158,7 +161,7 @@ $fullcontact="
      <?php 
 echo "$firstname $surname<br>$position<br>Office: <a class=whitelink href=https://maps.epfl.ch/?q=$office>ELE233</a><br><a class=whitelink href=mailto:$epflname@epfl.ch>$epflname@epfl.ch</a><br><a class=whitelink href=https://people.epfl.ch/$epflname>https://people.epfl.ch/$epflname</a><br>Tel: <a class=whitelink href=\"tel:$phone\">$phone</a><br>";
 ?>
-     </div>
+     </div><!-- menu_white-->
     </div>
    </div>
   </div><!-- .sti_righthand_menu -->
@@ -167,20 +170,23 @@ echo "$firstname $surname<br>$position<br>Office: <a class=whitelink href=https:
  <div class="row">
   <div class="col-md-8 content-area" id="primary">
    <main class="site-main sti_content_maincolumn" id="main" role="main">
-    <div class="entry-content">
-     <div class="sti_content_prof_text">
-	<h1>Recent Publications</h1>	
+     <div class="entry-content">
+      <div class="sti_content_prof_text">
+	<h1 class=people_titles>Recent Publications</h1>	
+    <div class=sti_beige style="margin-left:-10px">
 <?php
-		echo "<h2>2018</h2>";
+		echo "<br>";
+		echo "<h3>2018</h3>";
 		echo "<a href=$publicationlink1>$publicationtext1</a><br><br><a href=$publicationrecord1>Detailed record</a><br><br>";
-		echo "<h2>2017</h2>";
+		echo "<h3>2017</h3>";
 		echo "<a href=$publicationlink2>$publicationtext2</a><br><br><a href=$publicationrecord2>Detailed record</a><br><br>";
 		echo "<a href=$publicationlink3>$publicationtext3</a><br><br><a href=$publicationrecord3>Detailed record</a><br><br>";
 		echo "<a href=$publicationlink4>$publicationtext4</a><br><br><a href=$publicationrecord4>Detailed record</a><br><br>";
 ?>
 
-     </div>
-    </div><!-- .entry-content -->
+    </div><!-- beige -->
+      </div><!-- prof_text -->
+     </div><!-- .entry-content -->
    </main><!-- #main -->
   </div><!-- #primary -->
 
@@ -188,20 +194,20 @@ echo "$firstname $surname<br>$position<br>Office: <a class=whitelink href=https:
  <div class="row">
   <div class="col-md-8 content-area" id="primary">
    <main class="site-main sti_content_maincolumn" id="main" role="main">
-    <div class="entry-content holding">
-     <div class="sti_content_prof_text">
+     <div class="entry-content holding">
+      <div class="sti_content_prof_text">
 	<a name=news></a>
-	<h1>News</h1>	
-      <div class="frontrowcontent">
+	<h1 class=people_titles>News</h1>	
+         <div class="frontrowcontent">
 <?php
 		echo "<div class='sti_people_news' style='background-image:url(\"$newsimage1\");'><div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>";
 		echo "<div class='sti_people_news' style='background-image:url(\"$newsimage2\");'><div class=peoplenewstitle><a class=whitelink href=$newslink2>$newstitle2</a></div></div>"; 
 		echo "<div class='sti_people_news' style='background-image:url(\"$newsimage3\");'><div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>"; 
-		echo "<div class='sti_people_news' style='background-image:url(\"$newsimage1\");'><div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>";
+		echo "<div class='sti_people_news' style='background-image:url(\"$newsimage4\");'><div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>";
 ?>
 
-      </div>
-     </div>
+       </div><!--frontrowcontent-->
+     </div><!--prof_text-->
     </div><!-- .entry-content -->
    </main><!-- #main -->
   </div><!-- #primary -->
@@ -212,10 +218,10 @@ echo "$firstname $surname<br>$position<br>Office: <a class=whitelink href=https:
    <main class="site-main sti_content_maincolumn" id="main" role="main">
     <div class="entry-content holding">
      <div class="sti_content_prof_text">
-      <br><a name=fullcontact></a>
+      <a name=fullcontact></a>
+      <h1 class=people_titles><?php echo "$firstname $surname"; ?></h1>	
        <?php echo $fullcontact; ?>
-      </div>
-     </div>
+     </div><!--prof_text-->
     </div><!-- .entry-content -->
    </main><!-- #main -->
   </div><!-- #primary -->
