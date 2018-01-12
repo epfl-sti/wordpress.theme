@@ -18,6 +18,8 @@ $epflname="volkan.cevher";
 $phone="+41 21 693 1101";
 $office="ELE233";
 $sciper="199128";
+$labvideo="blIMmx5oh7o";
+$labvideotitle="Turning data into information...";
 
 $epfl_positions="
 <br>
@@ -137,11 +139,12 @@ $fullcontact="
    <div class="prof-nav-menu">
     <ul class="menu">
      <li id="menu-item-128" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-128"><a href="<?php echo $labwebsite; ?>">LAB WEBSITE</a></li>
-     <li id="menu-item-129" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-129"><a href="https://people.epfl.ch/cgi-bin/people?id=<?php echo $sciper;?>&op=publications&lang=en&cvlang=en">PUBLICATIONS</a></li>
-   <li id="menu-item-131" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#news">NEWS</a></li>
-   <li id="menu-item-130" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-130"><a href="https://stisrv13.epfl.ch/collaborations/tube_html5.php?sciper=<?php echo $sciper; ?>&showpublications=1&showpatents=1&showexternals=1&showindustry=1">COLLABORATIONS</a></li>
-   <li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-132"><a href="#fullcontact">FULL CONTACT DETAILS</a></li>
-    </ul>
+      <li id="menu-item-129" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-129"><a href="https://people.epfl.ch/cgi-bin/people?id=<?php echo $sciper;?>&op=publications&lang=en&cvlang=en">PUBLICATIONS</a></li>
+	<li id="menu-item-130" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#news">NEWS</a></li>
+	<li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#video">VIDEO</a></li>
+	<li id="menu-item-133" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-130"><a href="https://stisrv13.epfl.ch/collaborations/tube_html5.php?sciper=<?php echo $sciper; ?>&showpublications=1&showpatents=1&showexternals=1&showindustry=1">COLLABORATIONS</a></li>
+	<li id="menu-item-134" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-132"><a href="#fullcontact">FULL CONTACT DETAILS</a></li>
+</ul>
     <div class="sti_people_menu_white">
     <?php 
 echo "<h5>$firstname $surname</h5>$position<br>Office: <a class=whitelink href=https://maps.epfl.ch/?q=$office>ELE233</a><br><a class=whitelink href=mailto:$epflname@epfl.ch>$epflname@epfl.ch</a><br><a class=whitelink href=https://people.epfl.ch/$epflname>https://people.epfl.ch/$epflname</a><br>Tel: <a class=whitelink href=\"tel:$phone\">$phone</a><br>";
@@ -195,6 +198,21 @@ echo "<h5>$firstname $surname</h5>$position<br>Office: <a class=whitelink href=h
 <div class="row">
  <div class="col-md-8 content-area" id="primary">
   <div class="entry-content sti_content_maincolumn holding">
+    <h1 class=people_titles><?php echo "$labvideotitle"; ?></h1>	
+    <div class="sti_content_prof_text">
+     <a name=video></a>
+
+     <div style="margin: 20px 0px 40px 0px; float:left; max-width:680; width: 100%; height:285px; "><iframe src="https://www.youtube.com/embed/<?php echo $labvideo; ?>?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="680" height="280" frameborder="0"></iframe></div>
+
+    </div><!--prof_text-->
+  </div><?php # .sti_content_maincolumn ?>
+ </div><?php # #primary ?>
+</div><?php # .row ?>
+
+<div class="row">
+ <div class="col-md-8 content-area" id="primary">
+  <div class="sti_content_maincolumn">
+   <div class="entry-content holding">
     <h1 class=people_titles><?php echo "$firstname $surname"; ?></h1>	
     <div class="sti_content_prof_text">
      <a name=fullcontact></a>
