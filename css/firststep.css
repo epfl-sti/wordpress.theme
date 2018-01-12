@@ -95,6 +95,12 @@ body {
   position: relative;
 }
 
+.sti_content_maincolumn h1 {
+ color: #444;
+ padding: 12px 8px 0px 20px;
+ font-size: 24px;
+}
+
 .frontrownews {
  display: inline-block;
  height: 150px;
@@ -134,12 +140,6 @@ body {
     margin: 10px;
     padding: 12px 8px 0px 12px;
     width: auto;
-}
-
-.people_titles {
- color: #444;
- padding: 12px 8px 0px 0px;
- font-size: 24px;
 }
 
 .temp_people_title {
