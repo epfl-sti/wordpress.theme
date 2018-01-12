@@ -49,7 +49,14 @@ use function \EPFL\STI\get_institute;
 					<a class="institute-righthand-menu-title-link" href="#"><?php echo strtoupper(get_institute()); ?></a>
 				</div>
 				<div class="institute-righthand-menu-list-container">
-					<?php wp_nav_menu( array( 'theme_location' => 'institute-menu-'.get_institute().'' ) ); ?>
+					<?php wp_nav_menu( array(
+                        'theme_location' => 'institute-menu-'.get_institute(),
+                        'container_class' => sprintf(
+                            'institute-nav-menu %s%s',
+                            get_institute(),
+                            function_exists('pll_current_language') ?
+                              ' lang-' . pll_current_language() : '')
+                    ) ); ?>
 				</div>
 			</div><!-- .sti_righthand_menu -->
 			<!-- NAV MENU END -->

@@ -1,0 +1,73 @@
+/* ------------------------------------------------------------
+    Navigation menus (common to front row and institute menus)
+   ----------------------------------------------------------- */
+
+.institute-nav-menu,
+.prof-nav-menu,
+.menu-front-row {
+  list-style-type: none;
+  padding: 13px 10px 10px 5px;
+
+  ul {
+    list-style-type: none;
+    padding: 0px;
+  }
+
+  li {
+    text-decoration: none;
+    a:hover {
+      color: $theRed;
+    }
+  }
+
+  li, a {
+    font-family: verdana;
+    color: #fff;
+  }
+
+  a {
+      text-decoration: none;
+  }
+
+  .current_page_item a {
+    text-decoration: underline;
+  }
+}
+
+/* And now, the differences: */
+
+.institute-nav-menu,
+.prof-nav-menu {
+    ul.menu > li {
+        background-image: url(../img/src/charcoal_separator.gif);
+        background-position: bottom;
+        background-repeat: repeat-x;
+        padding: 2pt 15px 7pt 15px;
+    }
+    font-size: 11pt;
+    li {
+        padding: 2pt 15px 2pt 15px;
+    }
+}
+
+.menu-front-row {
+    margin-left: 8pt;
+    li {
+        padding: 4pt 0;
+    }
+    ul.menu {
+        font-size: 14pt;
+        text-transform: uppercase;
+    }
+    ul.sub-menu {
+        padding-bottom: 8pt;
+        text-transform: none;
+    }
+
+    ul.sub-menu > li {
+        background-image: url(../img/src/charcoal_separator.gif);
+        background-position: bottom;
+        background-repeat: repeat-x;
+        padding: 4pt 0 11pt 0;
+    }
+}

@@ -1,44 +1,11 @@
 /* -------------------------------
-    Institute right menu
-   ---------------------------- */
-#menu-ibi-nav-menu,
-#menu-ibi-nav-menu-fr,
-#menu-iel-nav-menu,
-#menu-iel-nav-menu-fr,
-#menu-igm-nav-menu,
-#menu-igm-nav-menu-fr,
-#menu-imt-nav-menu,
-#menu-imt-nav-menu-fr,
-#menu-imx-nav-menu,
-#menu-imx-nav-menu-fr {
-  list-style-type: none;
-  padding: 13px 10px 10px 5px;
+    Institute-specific styles
+   ----------------------------
 
-  .sub-menu {
-    list-style-type: none;
-    padding: 0px;
+See also _navmenus.css for the nav menus, which look the same both at
+the school and the institute level.
 
-  }
-
-  li {
-    background-position: bottom;
-    background-repeat: repeat-x;
-    padding: 0 15px;
-    a {
-      color: #fff;
-      text-decoration: none;
-      font: 14px verdana;
-    }
-    a:hover {
-      color: $theRed;
-    }
-  }
-
-  .current_page_item a {
-    text-decoration: underline;
-  }
-
-}
+*/
 
 .institute-homepage-widget {
   margin-top: 3em;

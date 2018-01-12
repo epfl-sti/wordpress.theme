@@ -1,0 +1,32 @@
+/* -------------------------------
+    Home Page Front Row
+    ---------------------------- */
+.frontrowcol {
+  background-image: url('../img/src/charcoal.gif');
+}
+.frontrowtitle {
+  background-color: #272727;
+  font: 26px 'Open Sans Regular';
+  color: #fff;
+  padding: 10px;
+}
+.frontrownews {
+  width: 100%;
+  height: 150px;
+  border-left: #797979 1px solid;
+  border-bottom: #cc161d 4px solid;
+  background-size: 100%;
+  background-position: center;
+  transition: all .4s ease-in-out;
+}
+.frontrownews:hover {
+  background-size: 130%;
+}
+.frontrownewstitle {
+  width: 100%;
+  height: 61px;
+  position: relative;
+  top: 85px;
+  background-color: #4C4C4C;
+  padding: 8px;
+}
