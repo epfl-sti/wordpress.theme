@@ -99,11 +99,10 @@ $fullcontact="
 ?>
 
 <div class="row">
- <div class="col-sm-8 content-area" id="primary">
-  <main class="site-main sti_content_maincolumn" id="main" role="main">
+ <div class="col-sm-8 content-area  sti_content_maincolumn" id="primary">
    <header class="entry-header">
     <h1 class="people_titles temp_people_title"><?php the_title(); ?></h1>
-   </header><!-- .entry-header -->
+   </header><?php # .entry-header ?>
    <div class=sti_beige>
     <div class="entry-content">
     <img style="position: absolute; top:-12px; right: -8px;" src="/wp-content/themes/epfl-sti/img/src/topright.png">
@@ -112,24 +111,21 @@ $fullcontact="
    	<?php //the_content(); ?>
       <div class="sti_content_prof_photo">
    	<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
-      </div><!-- prof_photo -->
+      </div><?php # prof_photo ?>
       <b><?php echo "$position</b><br><br>$bio<br><br>"; ?>
-     </div><!-- prof_text -->
-    </div><!-- .entry-content -->
-   </div><!-- beige -->
-  </main><!-- #main -->
+     </div><?php # prof_text ?>
+    </div><?php # .entry-content ?>
+   </div><?php # beige ?>
   <br>
-  <main class="site-main sti_content_maincolumn" id="main" role="main">
    <div class="entry-content">
     <div class="sti_content_prof_text">
      <h1 class="people_titles">Positions</h1>
       <?php echo $epfl_positions ?>
-    </div><!-- prof_text -->
-   </div><!-- .entry-content -->
-  </main><!-- #main -->
- </div><!-- #primary -->
+    </div><?php # prof_text ?>
+   </div><?php # .entry-content ?>
+ </div><?php # #primary ?>
 
- <!-- NAV MENU START -->
+ <?PHP # NAV MENU START ?>
  <div class="sti_righthand_menu col-md-4">
   <div class="sti_people_menu_title frontrowmarker">
    <?php echo $labname; ?> <span class="sti_people_menu_black"><?php echo $mylabname; ?></span>
@@ -154,16 +150,14 @@ echo "<h5>$firstname $surname</h5>$position<br>Office: <a class=whitelink href=h
     </div><!-- menu_white-->
    </div><!-- menucontainer-->
   </div><!-- peoplebox-->
- </div><!-- .sti_righthand_menu -->
-</div><!-- .row -->
- <!-- NAV MENU END -->
+ </div><?php # .sti_righthand_menu ?>
+</div><?php # .row ?>
+ <?PHP # NAV MENU END ?>
 <div class="row">
- <div class="col-md-8 content-area" id="primary">
-  <main class="site-main sti_content_maincolumn" id="main" role="main">
+ <div class="col-md-8 content-area sti_content_maincolumn" id="primary">
     <div class="entry-content">
-     <div class="sti_content_prof_text">
    <h1 class=people_titles>Recent Publications</h1>	
-        <div class="sti_beige sti_bugfix">
+        <div class="sti_beige">
 <?php
    	echo "<br>";
    	echo "<h3>2018</h3>";
@@ -174,16 +168,14 @@ echo "<h5>$firstname $surname</h5>$position<br>Office: <a class=whitelink href=h
    	echo "<a href=$publicationlink4>$publicationtext4</a><br><br><a href=$publicationrecord4>Detailed record</a><br><br>";
 ?>
 
-      </div><!-- beige -->
-     </div><!-- prof_text -->
-    </div><!-- .entry-content -->
-  </main><!-- #main -->
- </div><!-- #primary -->
+      </div><?php # beige ?>
+    </div><?php # .entry-content ?>
+ </div><?php # #primary ?>
 
-</div><!-- .row -->
+</div><?php # .row ?>
 <div class="row">
  <div class="col-md-8 content-area" id="primary">
-  <main class="site-main sti_content_maincolumn" id="main" role="main">
+  <div class="sti_content_maincolumn">
    <div class="entry-content holding">
     <div class="sti_content_prof_text">
      <a name=news></a>
@@ -198,21 +190,21 @@ echo "<h5>$firstname $surname</h5>$position<br>Office: <a class=whitelink href=h
 
      </div><!--frontrowcontent-->
     </div><!--prof_text-->
-   </div><!-- .entry-content -->
-  </main><!-- #main -->
- </div><!-- #primary -->
-</div><!-- .row -->
+   </div><?php # .entry-content ?>
+  </div><?php # .sti_content_maincolumn ?>
+ </div><?php # #primary ?>
+</div><?php # .row ?>
 
 <div class="row">
  <div class="col-md-8 content-area" id="primary">
-  <main class="site-main sti_content_maincolumn" id="main" role="main">
+  <div class="sti_content_maincolumn">
    <div class="entry-content holding">
     <div class="sti_content_prof_text">
      <a name=fullcontact></a>
      <h1 class=people_titles><?php echo "$firstname $surname"; ?></h1>	
       <?php echo $fullcontact; ?>
     </div><!--prof_text-->
-   </div><!-- .entry-content -->
-  </main><!-- #main -->
- </div><!-- #primary -->
-</div><!-- .row -->
+   </div><?php # .entry-content ?>
+  </div><?php # .sti_content_maincolumn ?>
+ </div><?php # #primary ?>
+</div><?php # .row ?>

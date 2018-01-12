@@ -128,10 +128,12 @@ body {
 }
 
 .sti_beige {
- background-color: #f5f3d3;
- overflow: hidden;
- margin: 10px;
- padding: 12px 8px 0px 12px;
+    box-sizing: border-box;
+    background-color: #f5f3d3;
+    overflow: hidden;
+    margin: 10px;
+    padding: 12px 8px 0px 12px;
+    width: auto;
 }
 
 .people_titles {
@@ -261,9 +263,6 @@ body {
   display: none;
   margin-left: 0px;
  }
- .sti_bugfix {
-  margin-right:0px;
- }
 }
 
 @media screen and (min-width: 1176px) {
@@ -275,10 +274,6 @@ body {
  }
  .sti_people_righthand_menu {
   margin-left: 30px;
- }
- .sti_bugfix {
-  margin-left:-10px;
-  margin-right:-10px;
  }
 }
 
