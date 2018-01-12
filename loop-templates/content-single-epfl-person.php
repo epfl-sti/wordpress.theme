@@ -98,146 +98,121 @@ $fullcontact="
 ";
 ?>
 
-<article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
- <header class="entry-header">
-  <div class="entry-meta"> </div><!-- .entry-meta -->
- </header><!-- .entry-header -->
-
-<div class="container" id="content">
- <div class="row">
-  <div class="col-sm-8 content-area" id="primary">
-   <main class="site-main sti_content_maincolumn" id="main" role="main">
-    <header class="entry-header">
-     <h1 class="people_titles temp_people_title"><?php the_title(); ?></h1>
-    </header><!-- .entry-header -->
-    <div class=sti_beige>
-     <div class="entry-content">
-     <img style="position: absolute; top:-12px; right: -8px;" src="/wp-content/themes/epfl-sti/img/src/topright.png">
-     <img style="position: absolute; bottom:-12px; left: -4px;" src="/wp-content/themes/epfl-sti/img/src/bottomleft.png">
-      <div class="sti_content_prof_text">
-		<?php //the_content(); ?>
-       <div class="sti_content_prof_photo">
-		<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
-       </div><!-- prof_photo -->
-       <b><?php echo "$position</b><br><br>$bio<br><br>"; ?>
-      </div><!-- prof_text -->
-     </div><!-- .entry-content -->
-    </div><!-- beige -->
-   </main><!-- #main -->
-   <br>
-   <main class="site-main sti_content_maincolumn" id="main" role="main">
+<div class="row">
+ <div class="col-sm-8 content-area" id="primary">
+  <main class="site-main sti_content_maincolumn" id="main" role="main">
+   <header class="entry-header">
+    <h1 class="people_titles temp_people_title"><?php the_title(); ?></h1>
+   </header><!-- .entry-header -->
+   <div class=sti_beige>
     <div class="entry-content">
+    <img style="position: absolute; top:-12px; right: -8px;" src="/wp-content/themes/epfl-sti/img/src/topright.png">
+    <img style="position: absolute; bottom:-12px; left: -4px;" src="/wp-content/themes/epfl-sti/img/src/bottomleft.png">
      <div class="sti_content_prof_text">
-      <h1 class="people_titles">Positions</h1>
-       <?php echo $epfl_positions ?>
+   	<?php //the_content(); ?>
+      <div class="sti_content_prof_photo">
+   	<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
+      </div><!-- prof_photo -->
+      <b><?php echo "$position</b><br><br>$bio<br><br>"; ?>
      </div><!-- prof_text -->
     </div><!-- .entry-content -->
-   </main><!-- #main -->
-  </div><!-- #primary -->
+   </div><!-- beige -->
+  </main><!-- #main -->
+  <br>
+  <main class="site-main sti_content_maincolumn" id="main" role="main">
+   <div class="entry-content">
+    <div class="sti_content_prof_text">
+     <h1 class="people_titles">Positions</h1>
+      <?php echo $epfl_positions ?>
+    </div><!-- prof_text -->
+   </div><!-- .entry-content -->
+  </main><!-- #main -->
+ </div><!-- #primary -->
 
-  <!-- NAV MENU START -->
-  <div class="sti_righthand_menu col-md-4">
-   <div class="sti_people_menu_title frontrowmarker">
-    <?php echo $labname; ?> <span class="sti_people_menu_black"><?php echo $mylabname; ?></span>
-    <img src=<?php echo $labimage; ?> class="sti_people_menu_image">
-   </div><!-- menutitle-->
-   <div class="sti_people_box">
+ <!-- NAV MENU START -->
+ <div class="sti_righthand_menu col-md-4">
+  <div class="sti_people_menu_title frontrowmarker">
+   <?php echo $labname; ?> <span class="sti_people_menu_black"><?php echo $mylabname; ?></span>
+   <img src=<?php echo $labimage; ?> class="sti_people_menu_image">
+  </div><!-- menutitle-->
+  <div class="sti_people_box">
+   <div class="sti_people_menu_white">
+    <?php echo$keywords; ?>
+   </div><!--menuwhite-->
+   <div class="prof-nav-menu">
+    <ul class="menu">
+     <li id="menu-item-128" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-128"><a href="<?php echo $labwebsite; ?>">LAB WEBSITE</a></li>
+     <li id="menu-item-129" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-129"><a href="https://people.epfl.ch/cgi-bin/people?id=<?php echo $sciper;?>&op=publications&lang=en&cvlang=en">PUBLICATIONS</a></li>
+   <li id="menu-item-131" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#news">NEWS</a></li>
+   <li id="menu-item-130" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-130"><a href="https://stisrv13.epfl.ch/collaborations/tube_html5.php?sciper=<?php echo $sciper; ?>&showpublications=1&showpatents=1&showexternals=1&showindustry=1">COLLABORATIONS</a></li>
+   <li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-132"><a href="#fullcontact">FULL CONTACT DETAILS</a></li>
+    </ul>
     <div class="sti_people_menu_white">
-     <?php echo$keywords; ?>
-    </div><!--menuwhite-->
-    <div class="prof-nav-menu">
-     <ul class="menu">
-      <li id="menu-item-128" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-128"><a href="<?php echo $labwebsite; ?>">LAB WEBSITE</a></li>
-      <li id="menu-item-129" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-129"><a href="https://people.epfl.ch/cgi-bin/people?id=<?php echo $sciper;?>&op=publications&lang=en&cvlang=en">PUBLICATIONS</a></li>
-	<li id="menu-item-131" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#news">NEWS</a></li>
-	<li id="menu-item-130" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-130"><a href="https://stisrv13.epfl.ch/collaborations/tube_html5.php?sciper=<?php echo $sciper; ?>&showpublications=1&showpatents=1&showexternals=1&showindustry=1">COLLABORATIONS</a></li>
-	<li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-132"><a href="#fullcontact">FULL CONTACT DETAILS</a></li>
-     </ul>
-     <div class="sti_people_menu_white">
-     <?php 
+    <?php 
 echo "<h5>$firstname $surname</h5>$position<br>Office: <a class=whitelink href=https://maps.epfl.ch/?q=$office>ELE233</a><br><a class=whitelink href=mailto:$epflname@epfl.ch>$epflname@epfl.ch</a><br><a class=whitelink href=https://people.epfl.ch/$epflname>https://people.epfl.ch/$epflname</a><br>Tel: <a class=whitelink href=\"tel:$phone\">$phone</a><br>";
 ?>
-     </div><!-- menu_white-->
-    </div><!-- menucontainer-->
-   </div><!-- peoplebox-->
-  </div><!-- .sti_righthand_menu -->
- </div><!-- .row -->
-  <!-- NAV MENU END -->
- <div class="row">
-  <div class="col-md-8 content-area" id="primary">
-   <main class="site-main sti_content_maincolumn" id="main" role="main">
-     <div class="entry-content">
-      <div class="sti_content_prof_text">
-	<h1 class=people_titles>Recent Publications</h1>	
-         <div class="sti_beige sti_bugfix">
+    </div><!-- menu_white-->
+   </div><!-- menucontainer-->
+  </div><!-- peoplebox-->
+ </div><!-- .sti_righthand_menu -->
+</div><!-- .row -->
+ <!-- NAV MENU END -->
+<div class="row">
+ <div class="col-md-8 content-area" id="primary">
+  <main class="site-main sti_content_maincolumn" id="main" role="main">
+    <div class="entry-content">
+     <div class="sti_content_prof_text">
+   <h1 class=people_titles>Recent Publications</h1>	
+        <div class="sti_beige sti_bugfix">
 <?php
-		echo "<br>";
-		echo "<h3>2018</h3>";
-		echo "<a href=$publicationlink1>$publicationtext1</a><br><br><a href=$publicationrecord1>Detailed record</a><br><br>";
-		echo "<h3>2017</h3>";
-		echo "<a href=$publicationlink2>$publicationtext2</a><br><br><a href=$publicationrecord2>Detailed record</a><br><br>";
-		echo "<a href=$publicationlink3>$publicationtext3</a><br><br><a href=$publicationrecord3>Detailed record</a><br><br>";
-		echo "<a href=$publicationlink4>$publicationtext4</a><br><br><a href=$publicationrecord4>Detailed record</a><br><br>";
+   	echo "<br>";
+   	echo "<h3>2018</h3>";
+   	echo "<a href=$publicationlink1>$publicationtext1</a><br><br><a href=$publicationrecord1>Detailed record</a><br><br>";
+   	echo "<h3>2017</h3>";
+   	echo "<a href=$publicationlink2>$publicationtext2</a><br><br><a href=$publicationrecord2>Detailed record</a><br><br>";
+   	echo "<a href=$publicationlink3>$publicationtext3</a><br><br><a href=$publicationrecord3>Detailed record</a><br><br>";
+   	echo "<a href=$publicationlink4>$publicationtext4</a><br><br><a href=$publicationrecord4>Detailed record</a><br><br>";
 ?>
 
-       </div><!-- beige -->
-      </div><!-- prof_text -->
-     </div><!-- .entry-content -->
-   </main><!-- #main -->
-  </div><!-- #primary -->
+      </div><!-- beige -->
+     </div><!-- prof_text -->
+    </div><!-- .entry-content -->
+  </main><!-- #main -->
+ </div><!-- #primary -->
 
- </div><!-- .row -->
- <div class="row">
-  <div class="col-md-8 content-area" id="primary">
-   <main class="site-main sti_content_maincolumn" id="main" role="main">
-    <div class="entry-content holding">
-     <div class="sti_content_prof_text">
-      <a name=news></a>
-      <h1 class=people_titles>News</h1>	
-      <div class="frontrowcontent">
+</div><!-- .row -->
+<div class="row">
+ <div class="col-md-8 content-area" id="primary">
+  <main class="site-main sti_content_maincolumn" id="main" role="main">
+   <div class="entry-content holding">
+    <div class="sti_content_prof_text">
+     <a name=news></a>
+     <h1 class=people_titles>News</h1>	
+     <div class="frontrowcontent">
 <?php
-		echo "<div class='sti_people_news' style='background-image:url(\"$newsimage1\");'><div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>";
-		echo "<div class='sti_people_news' style='background-image:url(\"$newsimage2\");'><div class=peoplenewstitle><a class=whitelink href=$newslink2>$newstitle2</a></div></div>"; 
-		echo "<div class='sti_people_news' style='background-image:url(\"$newsimage3\");'><div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>"; 
-		echo "<div class='sti_people_news' style='background-image:url(\"$newsimage4\");'><div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>";
+   	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage1\");'><div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>";
+   	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage2\");'><div class=peoplenewstitle><a class=whitelink href=$newslink2>$newstitle2</a></div></div>"; 
+   	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage3\");'><div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>"; 
+   	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage4\");'><div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>";
 ?>
 
-      </div><!--frontrowcontent-->
-     </div><!--prof_text-->
-    </div><!-- .entry-content -->
-   </main><!-- #main -->
-  </div><!-- #primary -->
- </div><!-- .row -->
+     </div><!--frontrowcontent-->
+    </div><!--prof_text-->
+   </div><!-- .entry-content -->
+  </main><!-- #main -->
+ </div><!-- #primary -->
+</div><!-- .row -->
 
- <div class="row">
-  <div class="col-md-8 content-area" id="primary">
-   <main class="site-main sti_content_maincolumn" id="main" role="main">
-    <div class="entry-content holding">
-     <div class="sti_content_prof_text">
-      <a name=fullcontact></a>
-      <h1 class=people_titles><?php echo "$firstname $surname"; ?></h1>	
-       <?php echo $fullcontact; ?>
-     </div><!--prof_text-->
-    </div><!-- .entry-content -->
-   </main><!-- #main -->
-  </div><!-- #primary -->
- </div><!-- .row -->
-</div><!-- Container end -->
-
-
-			<?php //epflsti_posted_on(); ?>
-		<?php
-		wp_link_pages( array(
-			'before' => '<div class="page-links">' . __( 'Pages:', 'epflsti' ),
-			'after'  => '</div>',
-		) );
-		?>
-
-
-<footer class="entry-footer">
- <?php epflsti_entry_footer(); ?>
-</footer><!-- .entry-footer -->
-
-</article><!-- #post-## -->
-
-
+<div class="row">
+ <div class="col-md-8 content-area" id="primary">
+  <main class="site-main sti_content_maincolumn" id="main" role="main">
+   <div class="entry-content holding">
+    <div class="sti_content_prof_text">
+     <a name=fullcontact></a>
+     <h1 class=people_titles><?php echo "$firstname $surname"; ?></h1>	
+      <?php echo $fullcontact; ?>
+    </div><!--prof_text-->
+   </div><!-- .entry-content -->
+  </main><!-- #main -->
+ </div><!-- #primary -->
+</div><!-- .row -->
