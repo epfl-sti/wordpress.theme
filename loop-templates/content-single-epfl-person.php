@@ -99,27 +99,26 @@ $fullcontact="
 ?>
 
 <div class="row">
- <div class="col-sm-8 content-area  sti_content_maincolumn" id="primary">
-   <header class="entry-header">
-    <h1 class="people_titles temp_people_title"><?php the_title(); ?></h1>
-   </header><?php # .entry-header ?>
-   <div class=sti_beige>
-    <div class="entry-content">
-    <img style="position: absolute; top:-12px; right: -8px;" src="/wp-content/themes/epfl-sti/img/src/topright.png">
-    <img style="position: absolute; bottom:-12px; left: -4px;" src="/wp-content/themes/epfl-sti/img/src/bottomleft.png">
+ <div class="col-sm-8 content-area" id="primary">
+   <div class="entry-content sti_content_maincolumn">
+    <header class="entry-header">
+     <h1 class="people_titles temp_people_title"><?php the_title(); ?></h1>
+    </header><?php # .entry-header ?>
+    <div class=sti_beige>
+     <img style="position: absolute; top:-12px; right: -8px;" src="/wp-content/themes/epfl-sti/img/src/topright.png">
+     <img style="position: absolute; bottom:-12px; left: -4px;" src="/wp-content/themes/epfl-sti/img/src/bottomleft.png">
      <div class="sti_content_prof_text">
-   	<?php //the_content(); ?>
       <div class="sti_content_prof_photo">
    	<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
       </div><?php # prof_photo ?>
       <b><?php echo "$position</b><br><br>$bio<br><br>"; ?>
      </div><?php # prof_text ?>
-    </div><?php # .entry-content ?>
-   </div><?php # beige ?>
+    </div><?php # beige ?>
+   </div><?php # .entry-content ?>
   <br>
-   <div class="entry-content">
-    <div class="sti_content_prof_text">
+   <div class="entry-content sti_content_maincolumn">
      <h1 class="people_titles">Positions</h1>
+    <div class="sti_content_prof_text">
       <?php echo $epfl_positions ?>
     </div><?php # prof_text ?>
    </div><?php # .entry-content ?>
@@ -154,8 +153,8 @@ echo "<h5>$firstname $surname</h5>$position<br>Office: <a class=whitelink href=h
 </div><?php # .row ?>
  <?PHP # NAV MENU END ?>
 <div class="row">
- <div class="col-md-8 content-area sti_content_maincolumn" id="primary">
-    <div class="entry-content">
+ <div class="col-md-8 content-area" id="primary">
+    <div class="entry-content sti_content_maincolumn">
    <h1 class=people_titles>Recent Publications</h1>	
         <div class="sti_beige">
 <?php
@@ -175,11 +174,10 @@ echo "<h5>$firstname $surname</h5>$position<br>Office: <a class=whitelink href=h
 </div><?php # .row ?>
 <div class="row">
  <div class="col-md-8 content-area" id="primary">
-  <div class="sti_content_maincolumn">
-   <div class="entry-content holding">
+   <div class="entry-content holding sti_content_maincolumn">
+    <h1 class=people_titles>News</h1>	
     <div class="sti_content_prof_text">
      <a name=news></a>
-     <h1 class=people_titles>News</h1>	
      <div class="frontrowcontent">
 <?php
    	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage1\");'><div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>";
@@ -188,23 +186,20 @@ echo "<h5>$firstname $surname</h5>$position<br>Office: <a class=whitelink href=h
    	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage4\");'><div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>";
 ?>
 
-     </div><!--frontrowcontent-->
-    </div><!--prof_text-->
-   </div><?php # .entry-content ?>
+     </div><?php # frontrowcontent ?>
+    </div><?php # prof_text ?>
   </div><?php # .sti_content_maincolumn ?>
  </div><?php # #primary ?>
 </div><?php # .row ?>
 
 <div class="row">
  <div class="col-md-8 content-area" id="primary">
-  <div class="sti_content_maincolumn">
-   <div class="entry-content holding">
+  <div class="entry-content sti_content_maincolumn holding">
+    <h1 class=people_titles><?php echo "$firstname $surname"; ?></h1>	
     <div class="sti_content_prof_text">
      <a name=fullcontact></a>
-     <h1 class=people_titles><?php echo "$firstname $surname"; ?></h1>	
       <?php echo $fullcontact; ?>
     </div><!--prof_text-->
-   </div><?php # .entry-content ?>
   </div><?php # .sti_content_maincolumn ?>
  </div><?php # #primary ?>
 </div><?php # .row ?>
