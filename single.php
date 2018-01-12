@@ -28,8 +28,6 @@ $sidebar_pos = get_theme_mod( 'epflsti_sidebar_position' );
                          get_template_part( 'loop-templates/content', $has_typespecific_loop_template ? $single_post_template_name : 'single');
                 ?>
 
-						<?php epflsti_post_nav(); ?>
-
 					<?php
 					// If comments are open or we have at least one comment, load up the comment template.
 					if ( comments_open() || get_comments_number() ) :
