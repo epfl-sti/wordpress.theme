@@ -6,14 +6,16 @@
 
 <template>
   <div class="news-item-handle">
-    News ID {{postId}}
+    <a :href="editUrl()" target="_blank"><button><i class="fa fa-edit"></i></button></a>
     <button @click="buttonTrash"><i class="fa fa-trash"></i></button>
-    <plus-button @click="buttonPlus" />
+    <plus-button @click="$data._isShowingAddForm = true" />
+    <add-form v-show="$data._isShowingAddForm" @close="$data._isShowingAddForm = false"></add-form>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import AddForm from './AddForm.vue'
 import _ from "lodash"
 
 import PlusButton from "./PlusButton.vue"
@@ -25,9 +27,10 @@ export default {
       required: true
     }
   },
-  components: {
-    PlusButton
-  },
+  data: () => ({
+    _isShowingAddForm: false
+  }),
+  components: { PlusButton, AddForm },
   methods: {
     postType: () => "News",
     buttonTrash () {
@@ -35,6 +38,9 @@ export default {
     },
     buttonPlus () {
       console.log("+")
+    },
+    editUrl () {
+      return "wp-admin/post.php?post=" + this.postId + "&action=edit";
     }
   },
   findUnder (under) {
@@ -50,6 +56,7 @@ div {
   border: 1px solid red;
   padding: 4px;
   display: inline-block;
+  position: relative;  /* Acts as the anchor for <add-form> */
 }
 </style>
 
