@@ -26,7 +26,7 @@ const concat = require('gulp-concat');
 const clone = require('gulp-clone');
 const through2 = require('through2');
 const sass = require('gulp-sass');
-var cssnext = require('postcss-cssnext');
+const cssnext = require('postcss-cssnext');
 const tildeImporter = require('node-sass-tilde-importer');
 const imagemin = require('gulp-imagemin');
 const sourcemaps = require('gulp-sourcemaps');
@@ -100,21 +100,10 @@ gulp.task('browser-sync', ['watch'], function() {
 
 // Run:
 // gulp sass
-// Compiles SCSS files in CSS
+// Compiles the theme's SCSS files to CSS
 gulp.task('sass', function () {
     return gulp.src('./sass/*.scss')
-        .pipe(plumber({
-            errorHandler: function (err) {
-                console.log(err);
-                this.emit('end');
-            }
-        }))
-        .pipe(sourcemaps.init())
-        .pipe(sass())
-        .pipe(assetsDest())  // Save un-minified, then continue
-        .pipe(cleanCSS())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(sourcemaps.write('.'))
+        .pipe(processSASS())
         .pipe(assetsDest());
 });
 
@@ -139,7 +128,7 @@ gulp.task('scripts', function() {
     ])
         .pipe(bundleJS('theme.js'))
         .pipe(assetsDest())  // Save un-minified, then continue
-        .pipe(uglifyJS({suffix: '.min'}))
+        .pipe(uglifyJS())
         .pipe(assetsDest());
 });
 
@@ -201,7 +190,7 @@ gulp.task('admin-scripts', function() {
          * cert (see the comments near const keypair, above)
          */
         .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(uglifyJS({suffix: '.min'}))
+        .pipe(uglifyJS())
         .pipe(assetsDest());
 });
 
@@ -290,19 +279,43 @@ function bundleJS(destination_filename) {
 }
 
 /**
- * @returns A DuplexStream that uglifies JS files found in it, and drops
- *          the other files (does not forward them).
+ * @return A DuplexStream that uglifies individual JS files found in it,
+ *         and drops the other files (does not forward them).
  *
- * "debugger" statements are kept, so that one may do development out
- * of the uglified files - Thereby minimizing the likelihood of problems
- * that only exist in production code.
+ * The output is both developer- and production-friendly. "debugger"
+ * statements are kept, so that one may do development out of the
+ * uglified files - Thereby minimizing the likelihood of problems that
+ * only exist in production code. All files are renamed from *.js to
+ * *.min.js after uglifying, and (if initialized by caller beforehand)
+ * sourcemap files are output alongside as *.min.js.map
  */
-function uglifyJS(rename_opts) {
-    const cloneSink = clone.sink();
+function uglifyJS() {
     return lazypipe()
         .pipe(() => ignore.include(new RegExp('js$')))
         .pipe(() => uglify( {compress: {drop_debugger: false}} ))
-        .pipe(() => rename(rename_opts))
+        .pipe(() => rename({suffix: '.min'}))
+        .pipe(() => sourcemaps.write('.'))
+        ();
+}
+
+/**
+ * @return A DuplexStream that turns every .scss file inside it
+ *         into two CSS files (plain and minified) and their corresponding
+ *         sourcemaps.
+ */
+function processSASS() {
+    return lazypipe()
+        .pipe(() => plumber({
+            errorHandler: function (err) {
+                console.log(err);
+                this.emit('end');
+            }
+        }))
+        .pipe(() => sourcemaps.init())
+        .pipe(() => sass())
+        .pipe(() => assetsDest())  // Save un-minified, then continue
+        .pipe(() => cleanCSS())
+        .pipe(() => rename({suffix: '.min'}))
         .pipe(() => sourcemaps.write('.'))
         ();
 }
