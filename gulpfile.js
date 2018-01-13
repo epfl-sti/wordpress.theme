@@ -321,17 +321,16 @@ function uglifyJS() {
  */
 function processSASS() {
     return lazypipe()
-        .pipe(() => plumber({
-            errorHandler: function (err) {
-                console.log(err);
-                this.emit('end');
-            }
-        }))
         .pipe(() => sourcemaps.init())
         .pipe(() => sass())
         .pipe(() => assetsDest())  // Save un-minified, then continue
         .pipe(() => cleanCSS())
         .pipe(() => rename({suffix: '.min'}))
         .pipe(() => sourcemaps.write('.'))
-        ();
+        ()
+        /* We don't want an error in the SASS code to stop "gulp watch": */
+        .on("error", function (err) {
+            console.log(err);
+            this.emit('end');
+        });
 }
