@@ -193,6 +193,8 @@ class NewsletterHook
             echo sprintf("<script type=\"text/javascript\" src=\"%s\"></script>\n",
                          get_theme_relative_uri() . "/assets/jquery.min.js");
             echo NewsletterHook::script_pass_params();
+            echo sprintf("<link rel=\"stylesheet\" href=\"%s\">\n",
+                         get_theme_relative_uri() . "/assets/newsletter-composer.min.css");
             echo sprintf("<script type=\"text/javascript\" src=\"%s\"></script>\n",
                          get_theme_relative_uri() . "/assets/newsletter-composer.min.js");
         }

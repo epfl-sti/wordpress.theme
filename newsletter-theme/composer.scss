@@ -1,0 +1,5 @@
+/* Newsletter composer widgets are based on bootstrap-vue */
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+/* Not sure why, but at https://bootstrap-vue.js.org/docs#browser
+ * they say to add this: */
+@import "../node_modules/bootstrap-vue/dist/bootstrap-vue.css";

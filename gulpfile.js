@@ -25,6 +25,7 @@ const plumber = require('gulp-plumber');
 const concat = require('gulp-concat');
 const clone = require('gulp-clone');
 const through2 = require('through2');
+const merge2 = require('merge2');
 const sass = require('gulp-sass');
 const cssnext = require('postcss-cssnext');
 const tildeImporter = require('node-sass-tilde-importer');
@@ -83,7 +84,8 @@ gulp.task('all', ['default'])
 gulp.task('watch', ['default'], function () {
     gulp.watch('./sass/**/*', ['sass']);
     gulp.watch(['js/**/*.js'], ['scripts']);
-    gulp.watch(['newsletter-theme/**/*.js', 'newsletter-theme/**/*.vue'],
+    gulp.watch(['newsletter-theme/**/*.js', 'newsletter-theme/**/*.vue',
+                'newsletter-theme/**/*.scss'],
                ['admin-scripts']);
     gulp.watch('./img/src/**', ['imagemin'])
 });
@@ -134,9 +136,19 @@ gulp.task('scripts', function() {
 
 // Run:
 // gulp admin-scripts
-// Render all Vue and JS files (and even CSS) files for the admin pages into
-// assets/admin-theme{,.min}.js
+// Render all Vue and JS files files for the admin pages into
+// assets/admin-theme{,.min}.js and assets/admin-theme{,.min}.css
 gulp.task('admin-scripts', function() {
+    const js_sources = gulp.src([
+        // Source just the entry point; Browserify will chase dependencies
+        // by itself (bypassing the Gulp pipeline)
+        './newsletter-theme/composer.js'
+    ]);
+
+    const sass_sources = gulp.src([
+        './newsletter-theme/composer.scss'
+    ]);
+
     /* Babel digests modern JS into something even IE8 can grok */
     const babelOptions = () => ({
       "presets": [
@@ -148,11 +160,8 @@ gulp.task('admin-scripts', function() {
         }]
       ]
     });
-    return gulp.src([
-        // Source just the entry point; Browserify will chase dependencies
-        // by itself
-        './newsletter-theme/composer.js'
-    ])
+
+    const js_pipeline = js_sources
         .pipe(bro({
             debug: true,  // Produce a sourcemap
             transform: [
@@ -192,6 +201,13 @@ gulp.task('admin-scripts', function() {
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(uglifyJS())
         .pipe(assetsDest());
+
+    const css_pipeline = sass_sources
+        .pipe(rename("newsletter-composer.scss"))
+        .pipe(processSASS())
+        .pipe(assetsDest());
+
+    return merge2(js_pipeline, css_pipeline);
 });
 
 // Run:

@@ -76,6 +76,7 @@
     "gulp-uglify": "^3.0.0",
     "gulp-watch": "^4.3.11",
     "lazypipe": "^1.0.1",
+    "merge2": "^1.2.1",
     "mocha": "^4.0.1",
     "node-sass-tilde-importer": "^1.0.1",
     "postcss-cssnext": "^3.0.2",
