@@ -4,6 +4,10 @@ import Loading from "./vue/Loading.vue"
 import WPajax from "./inc/ajax.js"
 import _ from 'lodash'
 
+// Make all <b-foo> elements available everywhere:
+import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue)
+
 $(($) => {
   let composer = new Vue(Composer)
   composer.$watch("serverState", function(newState, oldState) {

@@ -3,10 +3,9 @@
 -->
 
 <template>
-<form>
-  HELLO
-  <i class="fa fa-times" aria-hidden="true"></i>
-</form>
+<div class="text-center my-3">
+  <b-btn v-b-popover.hover="'I am popover content!'" title="Popover Title">Hover Me</b-btn>
+</div>
 </template>
 
 <script>
@@ -17,4 +16,15 @@ export default {
     }
   }
 }
-<script>
+</script>
+
+<style scoped>
+form {
+}
+button {
+  position: absolute;
+  background-color: red;
+  top: 5px;
+  right: 5px;
+}
+</style>
