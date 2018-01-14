@@ -6,21 +6,22 @@
 
 <template>
 <div class="news-item-handle">
-  <b-dropdown id="ddown-aria" :text="$gettext('Edit')" variant="primary">
-    <template slot="button-content">
-      <i class="fa fa-edit"></i>
-      <translate>Edit</translate>
-    </template>
-  </b-dropdown>
+  <b-btn v-b-toggle.collapse variant="primary">
+    <i class="fa fa-edit"></i>
+    <translate>Edit</translate>
+    <span class="arrow">→</span>
+  </b-btn>
+  <b-collapse ref="theCollapse" id="collapse">
+    <b-card>
+      <p style="border: 1px solid red;">Lorem ipsum</p>
+    </b-card>
+  </b-collapse>
 </div>
 </template>
 
 <script>
 import _ from 'lodash'
 import Vue from 'vue'
-import AddForm from './AddForm.vue'
-
-import PlusButton from "./PlusButton.vue"
 
 export default {
   props: {
@@ -29,22 +30,18 @@ export default {
       required: true
     }
   },
-  data: () => ({
-    _isShowingAddForm: false
-  }),
-  components: { PlusButton, AddForm },
+
   methods: {
-    postType: () => "News",
-    buttonTrash () {
-      console.log(this)
-    },
-    buttonPlus () {
-      console.log("+")
-    },
     editUrl () {
       return "wp-admin/post.php?post=" + this.postId + "&action=edit";
     }
   },
+
+  /**
+   * "Class method" available to parent Component
+   *
+   * @return A list of NewsItemHandle instances under @param under
+   */
   findUnder (under) {
     if (under instanceof Vue) under = under.$el
     return _.map($("div.news-item-handle", under),
@@ -53,8 +50,17 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 div {
   margin-top: 1em;
+}
+span.arrow {
+  transition: transform 150ms ease;
+  display: inline-block;
+  transform: rotate( -90deg );
+}
+
+button.collapsed span.arrow {
+  transform: rotate( 0deg );
 }
 </style>
