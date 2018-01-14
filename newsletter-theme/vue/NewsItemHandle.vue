@@ -5,18 +5,16 @@
 -->
 
 <template>
-  <div class="news-item-handle">
-    <a :href="editUrl()" target="_blank"><button><i class="fa fa-edit"></i></button></a>
-    <button @click="buttonTrash"><i class="fa fa-trash"></i></button>
-    <plus-button @click="$data._isShowingAddForm = true" />
-    <add-form v-show="$data._isShowingAddForm" @close="$data._isShowingAddForm = false"></add-form>
-  </div>
+<div class="news-item-handle">
+  <b-dropdown id="ddown-aria" :text="$gettext('Edit')" variant="primary">
+  </b-dropdown>
+</div>
 </template>
 
 <script>
+import _ from 'lodash'
 import Vue from 'vue'
 import AddForm from './AddForm.vue'
-import _ from "lodash"
 
 import PlusButton from "./PlusButton.vue"
 
@@ -50,15 +48,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-div {
-  border: 1px solid red;
-  padding: 4px;
-  display: inline-block;
-  position: relative;  /* Acts as the anchor for <add-form> */
-}
-</style>
-
-<style lang="scss">
-</style>

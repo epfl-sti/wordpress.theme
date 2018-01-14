@@ -8,6 +8,11 @@ import _ from 'lodash'
 import BootstrapVue from 'bootstrap-vue'
 Vue.use(BootstrapVue)
 
+// Likewise for $gettext, <translation> etc.
+import Gettext from 'vue-gettext'
+Vue.use(Gettext, {translations: {}})
+Vue.config.getTextPluginSilent = true  // No complaining about missing languages
+
 $(($) => {
   let composer = new Vue(Composer)
   composer.$watch("serverState", function(newState, oldState) {
