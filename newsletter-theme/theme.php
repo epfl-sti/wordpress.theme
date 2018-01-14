@@ -200,10 +200,10 @@ function render_news_item_td ($style)
         $colspan="";
     }
     if ($style === "hero" or $style === "large") {
-        $link_class="newstitle $style";
+        $title_link_class="newstitle $style";
         $imagesize="width:250px";
     } else {
-        $link_class="newstitle";
+        $title_link_class="newstitle";
         $imagesize="";
   }
 
@@ -215,22 +215,24 @@ function render_news_item_td ($style)
         "alt"    => "picture",
         "align"  => "left"
     ));
-    if ($img) echo $img;
-    echo sprintf("<p><a target='_blank' href=\"%s\" class=\"%s\">%s</a></p>",
+    if ($img) {
+        echo sprintf('<a target="blank" href="%s">%s</a>', get_permalink(), $img);
+    }
+    echo sprintf('<p><a target="_blank" href="%s" class="%s">%s</a></p>',
                  get_permalink(),
-                 $link_class,
-                 the_title("", "", false));
-    the_excerpt(); 
+                 $title_link_class,
+                 get_the_title());
+    echo sprintf('<a target="_blank" href="%s">%s</a>',
+                 get_permalink(), get_the_excerpt());
     echo sprintf("<news-item-handle post-id=\"%d\"></news-item-handle>", get_the_id());
     echo "</td>";
 }
 
 function render_position_td () {
     echo "<td  width=450 style='padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; color: #666; font-family:Tahoma,Verdana,sans-serif'>";
-    echo sprintf("<p><a target='_blank' href=\"%s\" class=\"%s\">%s</a></p>",
+    echo sprintf("<p><a target='_blank' href=\"%s\" class=\"positiontitle\">%s</a></p>",
                  get_permalink(),
-                 $link_class,
-                 the_title("", "", false));
+                 get_the_title());
     the_excerpt(); 
     echo sprintf("<faculty-position-handle post-id=\"%d\"></faculty-position-handle>", get_the_id());
     echo "</td>";
