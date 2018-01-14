@@ -13,7 +13,7 @@
   </b-btn>
   <b-collapse ref="theCollapse" id="collapse">
     <b-card>
-      <p style="border: 1px solid red;">Lorem ipsum</p>
+      <select2-demo :offline="false"></select2-demo>
     </b-card>
   </b-collapse>
 </div>
@@ -22,6 +22,8 @@
 <script>
 import _ from 'lodash'
 import Vue from 'vue'
+import select2 from "./Select2.vue"
+import Select2Demo from "./tests/Select2Demo.vue"
 
 export default {
   props: {
@@ -34,8 +36,12 @@ export default {
   methods: {
     editUrl () {
       return "wp-admin/post.php?post=" + this.postId + "&action=edit";
+    },
+    doSearch () {
     }
   },
+
+  components: {select2, 'select2-demo': Select2Demo},
 
   /**
    * "Class method" available to parent Component
@@ -63,4 +69,5 @@ span.arrow {
 button.collapsed span.arrow {
   transform: rotate( 0deg );
 }
+
 </style>
