@@ -27,6 +27,7 @@ const clone = require('gulp-clone');
 const through2 = require('through2');
 const merge2 = require('merge2');
 const sass = require('gulp-sass');
+const postcss = require('gulp-postcss');
 const cssnext = require('postcss-cssnext');
 const tildeImporter = require('node-sass-tilde-importer');
 const imagemin = require('gulp-imagemin');
@@ -68,6 +69,14 @@ if (argv.browser) {
     browserSyncOptions.https = keypair;
   }
 }());
+
+const sassConfig = {
+  importer: function(url, prev, done) {
+    // This turns @import ~foo/bar into
+    // @import [....]/node_modules/foo/bar:
+    return tildeImporter(url, __dirname, done)
+  }
+};
 
 // Run any of:
 // gulp default
@@ -162,27 +171,16 @@ gulp.task('admin-scripts', function() {
     });
 
     const js_pipeline = js_sources
-        .pipe(bro({
+        .pipe(bro({  // Bro is a modern wrapper for browserify
             debug: true,  // Produce a sourcemap
             transform: [
                 /* Turn Vue components into pure JS (even the CSS snippets) */
                 ['vueify', {
                   /* This options object uses the same keys as vue.config.js */
                   babel: babelOptions(),
-                  /* You can say <style lang="scss"></style> in Vue. Also,
-                   * correct CSS happens to also be correct SASS, so you can
-                   * also @import a CSS straight out of an NPM package
-                   * (https://github.com/vuejs-templates/webpack/issues/604)
-                   */
-                  sass: {
-                    importer: function(url, prev, done) {
-                      // This turns @import ~foo/bar into
-                      // @import [....]/node_modules/foo/bar:
-                      return tildeImporter(url, __dirname, done)
-                    }
-                  },
-                  // Turn :fullscreen into :-moz-full-screen etc., and more
-                  // See https://cssnext.io/
+                  /* You can say <style lang="scss"></style> in Vue: */
+                  sass: sassConfig,
+                  /* See comment in processSASS(), below */
                   postcss: [cssnext()]
                 }],
                 /* One more bout of Babel for "straight" (non-Vue) JS files: */
@@ -322,7 +320,10 @@ function uglifyJS() {
 function processSASS() {
     return lazypipe()
         .pipe(() => sourcemaps.init())
-        .pipe(() => sass())
+        .pipe(() => sass(sassConfig))
+                  // Turn :fullscreen into :-moz-full-screen etc., and more
+                  // See https://cssnext.io/
+        .pipe(() => postcss([cssnext()]))
         .pipe(() => assetsDest())  // Save un-minified, then continue
         .pipe(() => cleanCSS())
         .pipe(() => rename({suffix: '.min'}))

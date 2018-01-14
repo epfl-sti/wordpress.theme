@@ -122,15 +122,4 @@ export default {
 
 <style lang="scss">
 @import "~dragula/dist/dragula";
-
-// We need to know the URL of the fonts at compile time, therefore we
-// can't use get_theme_relative_uri() and friends. See
-// ../inc/serve-assets.php to find out how this magical URL is being
-// served.
-$fa-font-path: 'theme-epfl-sti/node_modules/@fortawesome/fontawesome-free-webfonts/webfonts';
-
-@import "~@fortawesome/fontawesome-free-webfonts/scss/fontawesome.scss";
-@import "~@fortawesome/fontawesome-free-webfonts/scss/fa-regular";
-@import "~@fortawesome/fontawesome-free-webfonts/scss/fa-solid";
-@import "~@fortawesome/fontawesome-free-webfonts/scss/fa-brands";
 </style>
