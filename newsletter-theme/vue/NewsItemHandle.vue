@@ -7,6 +7,10 @@
 <template>
 <div class="news-item-handle">
   <b-dropdown id="ddown-aria" :text="$gettext('Edit')" variant="primary">
+    <template slot="button-content">
+      <i class="fa fa-edit"></i>
+      <translate>Edit</translate>
+    </template>
   </b-dropdown>
 </div>
 </template>
@@ -48,3 +52,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+div {
+  margin-top: 1em;
+}
+</style>
