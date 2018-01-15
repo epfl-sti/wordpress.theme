@@ -8,22 +8,23 @@
 <div class="news-item-handle">
   <b-btn v-b-toggle="'collapse' + id" variant="primary">
     <i class="fa fa-edit"></i>
-    <translate>Edit</translate>
+    <translate>Replace</translate>
     <span class="arrow">→</span>
   </b-btn>
   <b-collapse ref="theCollapse" :id="'collapse' + id">
     <b-card>
-      <select2 v-model="picked" @search="doSearch" :more="more">
-        <template slot="results" slot-scope="snitch">
-          <option slot="results" v-for="item in items" :value="item.ID">
+      <select2 v-model="picked" @singlesearch="doSearch" :search="search" :status="status">
+        <template slot="results" slot-scope="select2" v-if="select2.search">
+          <option v-for="item in select2.search.items" :value="item.ID">
             <div>
               <img v-if="item.thumbnail_url" :src="item.thumbnail_url">
-              <h3><b>#{{item.ID}}</b> {{ item.post_title }}</h3>
-              <span v-html="findInContext(searchText, item.post_excerpt, contextWords)"></span><br/>
-              <span v-html="findInContext(searchText, item.post_content, contextWords)"></span>
+              <b>#{{item.ID}} {{ item.post_title }}</b>
+              <br/>
+            <!--              <p v-html="findInContext(searchText, item.post_excerpt, contextWords)"></p>
+                              <p v-html="findInContext(searchText, item.post_content, contextWords)"></p>
+-->
             </div>
           </option>
-          {{ snitch.done() }}
         </template>
       </select2>
     </b-card>
@@ -48,7 +49,8 @@ export default {
 
   data() {
     return {
-      loading: false,
+      search: null,
+      status: null,
       picked: null,
       items: [],
       id: this._uid
@@ -59,29 +61,26 @@ export default {
     editUrl () {
       return "wp-admin/post.php?post=" + this.postId + "&action=edit";
     },
-    doSearch(term, page, ops) {
+    doSearch(term, page) {
       let vm = this
-      if (vm.loading) return
-      if (!term || term.length < 3) {
-        ops.cancel()
-        return
-      }
 
-      vm.loading = true
+      if (!term || term.length < 3) return
+      // let Select2 know that we are starting an asynchronous search
+      vm.search = {}
+      vm.status = null
+
       WPajax("epfl_sti_newsletter_search",
              {
                post_type: "epfl-actu",
                s: term
              })
       .then(response => {
-        this.items = response.searchResults
-        vm.loading = false
-        ops.success()
+        vm.search.items = response.searchResults
+        vm.status = "success"
       })
       .catch(e => {
         alert("Search error: " + e)
-        vm.loading = false
-        ops.fail(e)
+        vm.search = null
       })
     },
     findInContext (kw, text, contextWords) {

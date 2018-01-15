@@ -3,13 +3,16 @@
      This is the same example as https://select2.org/data-sources/ajax
      with the same API case (the GitHub search-as-you-type), CSS styles
      and per-result HTML.
+
+     TODO: Due to changes in Select2.vue, this is probably broken at
+     the moment.
  -->
 
 <template>
-  <select2 v-model="picked" @search="doSearch" :more="more">
+  <select2 ref="select2" v-model="picked" @search="doSearch">
     <p slot="message" style="color: blue;">{{ searchMessage }}</p>
-    <template slot="results" slot-scope="snitch">
-      <option v-for="repo in items" :value="repo.id">
+    <template slot="results" slot-scope="search" v-if="search.items">
+      <option v-for="repo in search.items" :value="repo.id">
         <div class="select2-result-repository clearfix">
           <div class="select2-result-repository__avatar"><img :src="repo.owner.avatar_url" /></div>
           <div class="select2-result-repository__meta">
@@ -23,7 +26,6 @@
           </div>
         </div>
       </option>
-      {{ snitch.done() }}
     </template>
   </select2>
 </template>
@@ -77,7 +79,7 @@ export default {
         }).done(function(results) {
           vm.loading = false
           vm.items = results.items
-          vm.more  = page * 30 < results.total_count
+          vm.$refs.select2.more  = page * 30 < results.total_count
         }).fail(function(error) {
           vm.loading = false
           that.fail(error)

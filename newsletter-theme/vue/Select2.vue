@@ -8,14 +8,15 @@ Events:
 
 - input: A new result has been selected
 
-- search: The user is typing into the search box. Params are
-          (query, pageno, that). Calling that.success
-          with arguments provides the data to jQuery's select2 like
-          returning from an AJAX search with custom transport would.
-          Calling that.success with no arguments (or not calling it at
-          all) results in the results being parsed out of the DOM
-          again when `update` Vue lifecycle hook fires. Calling that.fail
-          (with optional argument) displays an error.
+- search: The user is typing into the search box. Params are (query,
+          pageno). Note that this is an advanced feature, as the event
+          fires for every single search action (typing or scrolling to
+          the end in the case of "infinite search"); consider using
+          single_search instead
+
+- singlesearch: The user is requesting a new search (by typing or
+                scrolling to the end of an "infinite search") and no
+                search is currently outstanding.
 
 Known bugs:
 
@@ -33,7 +34,9 @@ More info:
 <template>
 <div>
   <select ref="select">
-    <slot name="results" :done="resultsAreRendered()"></slot>
+    <slot name="results"
+          :search="search"
+          :status="status"></slot>
   </select>
 </div>
 </template>
@@ -128,18 +131,8 @@ const VueResultsAdapter = {
 
         function VueResultsDecorator (decorated, $element, options, dataAdapter) {
           decorated.call(this, $element, options, dataAdapter)
-          var self = this
-          $element.data('vue-select2-message', function ($msg) {
-            // This sort-of works, but calling it closes the search
-            // box so we don't use it.
-            if (! self.$results) {
-              return  // Too soon
-            } else if ($msg) {
-              self.displayMessage({message: $msg})
-            } else {
-              self.hideMessages()
-            }
-          })
+          // Make a pass to the _jqResults method:
+          $element.data('vue-select2-results', this)
         }
 
         VueResultsDecorator.prototype.bind = function (decorated, container, $container) {
@@ -169,18 +162,28 @@ export default {
       type: String,
       default: "bootstrap4"
     },
-    /* Whether the last search has more */
+    /* The search state. Select2 doesn't interpret this value in any
+     * way, except to notice when it is not null (which means that
+     * a search has started) and to pass it down to the slots.
+     */
+    search: Object,
+    /* Setting this tells Select2 that the search is over and that it is time
+     * to parse the "results" slot to find out the results. */
+    status: {},
+    /* Setting this to true enables "infinite scrolling". Instead of
+     * resetting the search results, the next search will append to them. */
     more: {
       type: Boolean,
       default: false
     },
-    /* The time to wait for the user to stop typing, before calling
-     * the "search" function above */
+    /* The time to wait for the user to stop typing, before starting a
+     * new search */
     delay: {
       type: Number,
       default: 250
     }
   },
+
   mounted: function () {
     if (! $.fn.select2) {
       // Load the jQuery plug-in. Inferred from reading the source:
@@ -197,40 +200,11 @@ export default {
         data: this.options,
         resultsAdapter: $.fn.select2.amd.require("VueResultsAdapter"),
         ajax: {
+          // Every time 
           delay: this.delay,
           url: (element, data) => data,
-          transport(params, success, fail) {
-            success = _.once(success)
-            fail    = _.once(fail)
-            vm._currentSearch = {
-              success () {
-                if (arguments.length) {
-                  delete vm._currentSearch
-                  success.apply({}, arguments)
-                } else {
-                  // Parent had the courtesy to call success() but
-                  // did not provide results; expect them in
-                  // the next DOM update (see "update", below)
-                  // In the mean time the search remains active, i.e.
-                  // we do nothing
-                }
-              },
-              fail () {
-                delete vm._currentSearch
-                fail.apply({}, arguments)
-              },
-              cancel () {
-                success([])
-                delete vm._currentSearch
-              }
-            }
-            vm.$nextTick(() => {
-              if (vm._currentSearch) {
-                vm.$emit("search", params.data.term, params.data.page,
-                         vm._currentSearch)
-              }
-            })
-            return vm._currentSearch
+          transport(params, success) {
+            vm._userIsSearching(params.data.term, params.data.page, success)
           }
         }
       })
@@ -243,19 +217,44 @@ export default {
   },
 
   methods: {
-    messageIsRendered () {
-      return function () {
-          console.log("Message is rendered");
-      }
+    _jqResults () {
+      // Set by VueResultsDecorator, above
+      if (! this.$refs.select) return
+      return $(this.$refs.select).data('vue-select2-results')
     },
-    resultsAreRendered () {
-      var vm = this
-      return function () {
-        if (! vm._currentSearch) return
+    _userIsSearching (term, page, success) {
+      this._search = {
+        success: _.once(success)
+      }
 
-        vm.$nextTick(() => {
-          const results = parseSelect(vm.$refs.select)
-          vm._currentSearch.success({results, pagination: {more: vm.more}})
+      let hadSearch = !! this.search
+
+      // Listeners to the "search" event always get to
+      // know that the user is typing (or scrolling). It is up to
+      // them to manage cancellations, concurrent searches etc.
+      this.$emit("search", term, page)
+
+      if (! (hadSearch && ! this.status)) {
+        // Listeners to "singlesearch" are excused from some of the
+        // bookkeeping, but cannot start another search as long as the
+        // previous one is in progress
+        this.$emit("singlesearch", term, page)
+      }
+
+      if (! hadSearch) {
+        this.$nextTick(() => {
+          if (this.search && ! this.status) {
+            console.log("Search started")
+            
+            let results = this._jqResults()
+            if (results) results.showLoading()
+          } else if (this.search && this.status) {
+            console.log("Parent has completed search in one game turn")
+            delete this._search
+          } else {  // Still ! this.search
+            console.log("Parent has declined to search for ", term)
+            delete this._search
+          }
         })
       }
     }
@@ -263,14 +262,45 @@ export default {
 
   watch: {
     /**
+     * When parent component sets search, and sets status to null,
+     * it means that an asynchronous search has started. If we knew
+     * how, we would update the display here.
+     */
+    search (newVal, oldVal) {
+    },
+    /**
+     * When parent component transitions status from null to non-null,
+     * with search also non-null, it means that a search is over. It
+     * is then time to pass on both search and status to the scoped slot,
+     * so as to harvest the search results on $nextTick.
+     */
+    status (newVal, oldVal) {
+      if (! (newVal && !oldVal)) {
+        // TODO: implement more non-happy-path cases here?
+        return;
+      }
+      if (! this._search) {
+        console.log("I don't remember starting this search?");
+        return;
+      }
+      let vm = this,
+          success = this._search.success
+      vm.$nextTick(() => {
+        success({results: parseSelect(vm.$refs.select),
+                 pagination: {more: vm.more}})
+      })
+      delete this._search
+    },
+
+    /**
      * When parent component updates value, let the select2 jQuery code know
      */
     value (value) {
-      $(this.$el).val(value)
+      $(this.$refs.select).val(value)
     }
   },
   destroyed: function () {
-    $(this.$el).off().select2('destroy')
+    $(this.$refs.select).off().select2('destroy')
   }
 }
 </script>
