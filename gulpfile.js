@@ -135,6 +135,7 @@ gulp.task('scripts', function() {
         'node_modules/popper.js/dist/umd/popper.js',  // Bootstrap dependency, must come before it
         'node_modules/bootstrap/dist/js/bootstrap.js',
         'node_modules/anchor-js/anchor.min.js', // https://www.bryanbraun.com/anchorjs/
+        'node_modules/cookieconsent/src/cookieconsent.js', // https://github.com/insites/cookieconsent
         'js/**/*.js'
     ])
         .pipe(bundleJS('theme.js'))
