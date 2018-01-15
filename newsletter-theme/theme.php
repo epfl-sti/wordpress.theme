@@ -316,8 +316,6 @@ render_frame_table(function() {
         $count++;
     }
 
-    echo "<tr><td><news-item-more></news-item-more></td></tr>";
-
     if (count($posts["faculty"]->posts())) {
         echo "<tr><td><table cellpadding=0 cellspacing=0 border=0 style=\"width: 100%;\">";
         render_red_title_tr("OPEN POSITIONS");
