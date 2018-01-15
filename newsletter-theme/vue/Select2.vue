@@ -81,16 +81,17 @@ function parseItem ($option) {
     if ($option.is('option')) {
       data = {
         id: $option.val(),
-        text: $option.text(),
         disabled: $option.prop('disabled'),
         selected: $option.prop('selected'),
-        title: $option.prop('title')
+        text:     $option.text(),
+        contents: $option.children()
       };
     } else if ($option.is('optgroup')) {
       data = {
         text: $option.prop('label'),
         children: [],
-        title: $option.prop('title')
+        title: $option.prop('title'),
+        contents: $option.children(':not(option)')
       };
 
       var $children = $option.children('option');
@@ -145,6 +146,11 @@ const VueResultsAdapter = {
           decorated.call(this, container, $container)
           // We manage messages ourselves:
           container.listeners['results:message'] = []
+        }
+
+        VueResultsDecorator.prototype.template = function (decorated, result, container) {
+          if (! result.contents) return
+           $(container).append(result.contents.clone());
         }
 
         let adapter = Utils.Decorate(Results, VueResultsDecorator);
