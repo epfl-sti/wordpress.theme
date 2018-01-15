@@ -3,27 +3,19 @@
  * (https://alligator.io/vuejs/global-event-bus/ explains the
  * pattern). Insert witty Fortnite™ joke here.
  *
- * Events received:
- *
- * - dom_reordered: A drag-and-drop operation has made it necessary
- *                 to re-read the state. Parameter is an idle delay
- *                 after which must_save ought to be sent.
- *
  * Events emitted:
  *
  * - must_save: The state has been modified for a long enough time
  *              (depending on the specifics of the UI); it is time to
  *              POST it and reload the page. Parameter is the new
  *              state.
+ *
+ * Events received: see docstrings on "$on" invocations, below.
  */
 
 import _ from "lodash"
 import Vue from 'vue'
 import NewsItemHandle from "./NewsItemHandle.vue"
-
-function updateNewsOrder (vm) {
-  vm.$set(vm, 'news', NewsItemHandle.findUnder(vm))
-}
 
 const GlobalBus = new Vue({
   data: () => ({
@@ -47,7 +39,7 @@ const GlobalBus = new Vue({
       this.$nextTick(() => {
         // Documentation says children should be mounted too by now.
         this.initialState = this._readState()
-        this.state = this.initialState
+        this.state = _.cloneDeep(this.initialState)
       })
     },
     _readState () {
@@ -66,15 +58,30 @@ const GlobalBus = new Vue({
       }
     },
     _saveNow () {
-      if (JSON.stringify(this.initialState) ===
-          JSON.stringify(this.state)) return
+      if (_.isEqual(this.initialState, this.state)) return
       this.$emit("must_save", this.state)
     }
   }
 })
 
+/**
+ * A drag-and-drop operation has made it necessary to re-read the
+ * state. Parameter is an idle delay after which must_save ought to be
+ * sent.
+ */
 GlobalBus.$on("dom_reordered", function () {
   this.state = this._readState()
+})
+
+/**
+ * A new news with ID @new_id is being added right after @param vm. We
+ * should reload immediately.
+ */
+GlobalBus.$on("insert_news_after", function (vm, new_id) {
+  let i = _.indexOf(NewsItemHandle.findUnder(this._rootComponent),
+                    vm)
+  this.state.news.splice(i + 1, 0, new_id)
+  this.setIdleDelay(0)
 })
 
 export default GlobalBus

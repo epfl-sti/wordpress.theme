@@ -209,9 +209,7 @@ export default {
         }
       })
       .val(this.value)
-      .trigger('change')
-      // emit event on change.
-      .on('change', function () {
+      .on('select2:close', function () {
         vm.$emit('input', this.value)
       })
   },

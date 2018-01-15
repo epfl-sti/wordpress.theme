@@ -8,7 +8,7 @@
 <div class="news-item-handle">
   <b-btn v-b-toggle="'collapse' + id" variant="primary">
     <i class="fa fa-edit"></i>
-    <translate>Replace</translate>
+    <translate>Insert</translate>
     <span class="arrow">→</span>
   </b-btn>
   <b-collapse ref="theCollapse" :id="'collapse' + id">
@@ -38,6 +38,7 @@ import Vue from 'vue'
 import select2 from "./Select2.vue"
 import WPajax from "../inc/ajax.js"
 import highlightKeywordHTML from "../inc/highlight.js"
+import GlobalBus from "./GlobalBus.js"
 
 export default {
   props: {
@@ -96,7 +97,8 @@ export default {
 
   watch: {
     picked (newVal) {
-      console.log(newVal)
+      if (! newVal) return
+      GlobalBus.$emit("insert_news_after", this, Number(newVal))
     }
   },
 
