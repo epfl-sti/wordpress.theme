@@ -7,8 +7,8 @@
 namespace EPFL\STI\Newsletter;
 use \WP_Query;
 
-use \EPFL\Actu\Actu;
-function has_actus() { return class_exists('\\EPFL\\Actu\\Actu'); }
+use \EPFL\WS\Actu\Actu;
+function has_actus() { return class_exists('\\EPFL\\WS\\Actu\\Actu'); }
 
 $js_action_prefix = "epfl_sti_newsletter_";
 
@@ -33,7 +33,7 @@ class ContentSearchAjax
             );
             if (has_actus() && $post_type === Actu::get_post_type()) {
                 $actu = new Actu($details["ID"]);
-                $thumbnail_url = $actu->get_external_thumbnail_url();
+                $thumbnail_url = $actu->get_image_url();
                 if ($thumbnail_url) {
                     $details["thumbnail_url"] = $thumbnail_url;
                 }
