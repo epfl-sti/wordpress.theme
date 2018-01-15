@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Composer from "./vue/Composer.vue"
 import Loading from "./vue/Loading.vue"
+import GlobalBus from "./vue/GlobalBus.js"
 import WPajax from "./inc/ajax.js"
 import _ from 'lodash'
 
@@ -15,11 +16,9 @@ Vue.config.getTextPluginSilent = true  // No complaining about missing languages
 
 $(($) => {
   let composer = new Vue(Composer)
-  composer.$watch("serverState", function(newState, oldState) {
-    if (oldState === null || _.isEqual(newState, oldState)) return
-
+  GlobalBus.$on("must_save", function(state) {
     let loading = new Vue(Loading).$mount($('<div />').appendTo('body')[0])
-    WPajax("epfl_sti_newsletter_draft_save", newState)
+    WPajax("epfl_sti_newsletter_draft_save", state)
       .then(response => {
         location.reload()
       })

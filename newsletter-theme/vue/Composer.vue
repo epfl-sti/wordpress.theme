@@ -20,15 +20,11 @@
 
 <script>
 import _ from "lodash"
-import Debouncer from "./Debouncer.js"
+import GlobalBus from "./GlobalBus.js"
 
 import dragula from "dragula"
 import NewsItemHandle from "./NewsItemHandle.vue"
 import NewsItemMore from "./NewsItemMore.vue"
-
-function updateNewsOrder (vm) {
-  vm.$set(vm, 'news', NewsItemHandle.findUnder(vm))
-}
 
 export default {
   el: '#composer-toplevel',
@@ -36,7 +32,7 @@ export default {
     /**
      * The time after the last user input when the page will reload
      */
-    commitDelay: {
+    dragIdleDelay: {
       type: Number,
       default: 2000
     }
@@ -73,16 +69,13 @@ export default {
     NewsItemHandle, NewsItemMore
   },
   mounted: function() {
-    this._priv = {}
-    this._priv.debouncer = new Debouncer()
-    this.$nextTick(() => {
-      let $this = this
+    GlobalBus.registerRootComponent(this)
 
+    let vm = this
+    vm.$nextTick(() => {
       // Documentation says children should be mounted too by now.
-      updateNewsOrder($this)
-
       let newsletterTbody = $("#composer-toplevel > tbody")
-      this.dragula = dragula(
+      vm.dragula = dragula(
         newsletterTbody.toArray(),
         {
           invalid (el) {
@@ -92,30 +85,11 @@ export default {
           }
         }
       )
-      this.dragula.on("drop", () => {
-        updateNewsOrder($this)
+      vm.dragula.on("drop", () => {
+        GlobalBus.setIdleDelay(this.dragIdleDelay)
+        GlobalBus.$emit("dom_reordered")
       })
     })
-  },
-  watch: {
-    // After a while, _tmpServerState flows to serverState
-    _tmpServerState (newState, oldState) {
-      console.log("New state!", newState, "(was ", oldState, ")")
-
-      if (this.serverState === null) {
-        // First time around: propagate right away
-        // Note that the serverState watch detects this case and
-        // does nothing
-        this.serverState = _.cloneDeep(newState)
-      } else {
-        // Same, but after a small delay
-        let $this = this
-        $this._priv.debouncer.after($this.commitDelay, function() {
-          console.log(newState, "now flows to serverState")
-          $this.serverState = { news: newState.news }
-        })
-      }
-    }
   }
 }
 </script>
