@@ -48,6 +48,12 @@
         border-top: 1.5px solid #3e3e3e;
         padding: 7px 7px 7px 15px;
     }
+    ul.sub-menu {
+        padding: 0pt 0pt 4pt 8pt;
+        > li {
+            padding-top: 4pt;
+        }
+    }
 }
 
 .menu-front-row {
