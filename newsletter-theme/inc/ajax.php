@@ -14,13 +14,13 @@ $js_action_prefix = "epfl_sti_newsletter_";
 
 class ContentSearchAjax
 {
-    static function ajax_search ()
+    static function ajax_search ($params)
     {
         $query = new WP_Query;
         $results = array();
-        $post_type = $_POST['postType'];
+        $post_type = $params['post_type'];
         foreach ($query->query(array( 'post_type' => $post_type,
-                                      's'         => $_POST['searchTerm'] ))
+                                      's'         => $params['s'] ))
                  as $result) {
             $details = array(
                 "ID"           => $result->ID,
@@ -29,7 +29,7 @@ class ContentSearchAjax
                 "post_date"    => $result->post_date,
                 "post_title"   => strip_tags($result->post_title),
                 "post_excerpt" => strip_tags($result->post_excerpt),
-                "post_content" => strip_tags($result->post_content)
+                "post_content" => strip_tags($result->post_content),
             );
             if (has_actus() && $post_type === Actu::get_post_type()) {
                 $actu = new Actu($details["ID"]);
@@ -49,4 +49,4 @@ class ContentSearchAjax
 }
 
 require_once dirname(dirname(__FILE__)) . "/hook.php";
-NewsletterHook::add_ajax_class(ContentSearchAjax::class, "epfl_sti_newsletter_");
+NewsletterHook::add_ajax_class(ContentSearchAjax::class, $js_action_prefix);
