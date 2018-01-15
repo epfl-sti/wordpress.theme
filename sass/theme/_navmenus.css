@@ -6,11 +6,15 @@
 .prof-nav-menu,
 .menu-front-row {
   list-style-type: none;
-  padding: 13px 10px 10px 5px;
+  padding: 0px 10px 10px 5px;
 
   ul {
     list-style-type: none;
     padding: 0px;
+  }
+
+  ul.sub-menu  li {
+    border: none;
   }
 
   li {
@@ -38,15 +42,17 @@
 
 .institute-nav-menu,
 .prof-nav-menu {
-    ul.menu > li {
-        background-image: url(../img/src/charcoal_separator.gif);
-        background-position: bottom;
-        background-repeat: repeat-x;
-        padding: 2pt 15px 7pt 15px;
-    }
     font-size: 11pt;
-    li {
-        padding: 2pt 15px 2pt 15px;
+    ul.menu > li {
+        border-bottom: 1.5px solid #2c2b2b;
+        border-top: 1.5px solid #3e3e3e;
+        padding: 7px 7px 7px 15px;
+    }
+    ul.sub-menu {
+        padding: 0pt 0pt 4pt 8pt;
+        > li {
+            padding-top: 4pt;
+        }
     }
 }
 
@@ -56,7 +62,7 @@
         padding: 4pt 0;
     }
     ul.menu {
-        font-size: 14pt;
+        font: 14px verdana;
         text-transform: uppercase;
     }
     ul.sub-menu {
@@ -65,9 +71,8 @@
     }
 
     ul.sub-menu > li {
-        background-image: url(../img/src/charcoal_separator.gif);
-        background-position: bottom;
-        background-repeat: repeat-x;
+        border-bottom: 1.5px solid #2c2b2b;
+        border-top: 1.5px solid #3e3e3e;
         padding: 4pt 0 11pt 0;
     }
 }
