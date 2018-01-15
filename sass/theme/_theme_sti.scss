@@ -83,14 +83,12 @@ $theRed: #cc161d;
 #menu-ibi-nav-menu-fr,
 #menu-ibi-nav-menu {
   list-style-type: none;
-  padding: 13px 10px 10px 5px;
+  padding: 0px 10px 10px 5px;
 
   li {
-    background-image: url('../img/src/charcoal_separator.gif');
-    background-position: bottom;
-    background-repeat: repeat-x;
-    height: 35px;
-    padding: 0px 0px 0px 20px;
+    padding: 7px 7px 7px 15px;
+    border-bottom: 1.5px solid #2c2b2b;
+    border-top: 1.5px solid #3e3e3e;
 
     a {
       color: #fff;
