@@ -6,12 +6,12 @@
 
 <template>
 <div class="news-item-handle">
-  <b-btn v-b-toggle.collapse variant="primary">
+  <b-btn v-b-toggle="'collapse' + id" variant="primary">
     <i class="fa fa-edit"></i>
     <translate>Edit</translate>
     <span class="arrow">→</span>
   </b-btn>
-  <b-collapse ref="theCollapse" id="collapse">
+  <b-collapse ref="theCollapse" :id="'collapse' + id">
     <b-card>
       <select2-demo :offline="false"></select2-demo>
     </b-card>
@@ -30,6 +30,12 @@ export default {
     postId: {
       type: String,
       required: true
+    }
+  },
+
+  data() {
+    return {
+      id: this._uid
     }
   },
 
