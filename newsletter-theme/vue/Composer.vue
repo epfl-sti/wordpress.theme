@@ -24,7 +24,6 @@ import GlobalBus from "./GlobalBus.js"
 
 import dragula from "dragula"
 import NewsItemHandle from "./NewsItemHandle.vue"
-import NewsItemMore from "./NewsItemMore.vue"
 
 export default {
   el: '#composer-toplevel',
@@ -66,7 +65,7 @@ export default {
   components: {
     /* Vue magically maps the NewsItemHandle class
        to <news-item-handle> in the HTML and so on */
-    NewsItemHandle, NewsItemMore
+    NewsItemHandle
   },
   mounted: function() {
     GlobalBus.registerRootComponent(this)
