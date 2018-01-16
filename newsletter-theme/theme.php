@@ -126,7 +126,7 @@ function render_header_tr ($volumeno)
                 <td colspan=2>
 				<table cellpadding=0 cellspacing=0 border=0>
 				 <tr>
-                                  <td><a href=http://sti.epfl.ch><img src="<?php echo get_theme_relative_uri() . "/newsletter-theme/banner.gif"; ?>"/></a></td>
+                                  <td><a href=http://sti.epfl.ch><img src="<?php echo get_theme_relative_uri() . "/newsletter-theme/banner.png"; ?>"/></a></td>
 				 </tr>
 				 <tr>
                                   <td align=right style="padding: 0px 8px 0px 0px; margin: 0px; font: bold 9px verdana; background-color:white;"><?php echo $volumeno; ?></td>
