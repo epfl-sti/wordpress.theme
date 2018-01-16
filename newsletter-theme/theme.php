@@ -313,7 +313,7 @@ function render_in_the_media ($unused_media)
     <body>
 <?php
 render_frame_table(function() {
-    $volumeno = "Vol. 1, No. 1, December 2017";
+    $volumeno = "Vol. 1, No. 1, " . (new \DateTime())->format("F Y");
     render_header_tr($volumeno);
     $posts = get_newsletter_posts($theme_options);
     global $post;
