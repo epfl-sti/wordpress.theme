@@ -83,6 +83,14 @@ table.righthand-column td {
     font-size: 18px;
 }
 
+#news-main td {
+    border-bottom: 14px solid #d6d6d6;
+}
+
+#news-main tr.last td {
+    border-bottom: 0px;
+}
+
 #footer td {
     border-top:10px solid #c50813;
     background-color:white;
@@ -110,13 +118,18 @@ function render_frame_table ($render_inside_func) {
     <table bgcolor="white" width="100%" cellpadding="4" cellspacing="0" border="0">
     <tr>
         <td align="center">
-            <table id="composer-toplevel" width="737" bgcolor="#d6d6d6" align="center" cellspacing="14" cellpadding="0">
+            <table id="composer-toplevel" width="737" align="center" cellspacing="14" <?php echo get_main_grid_table_attributes(); ?>>
                <?php call_user_func($render_inside_func); ?>
              </table>
         </td>
     </tr>
     </table>
     <?php
+}
+
+function get_main_grid_table_attributes ()
+{
+    return 'bgcolor="#d6d6d6" cellpadding="0" border="0"';
 }
 
 function render_header_tr ($volumeno)
@@ -195,7 +208,7 @@ function get_main_matter_font_style ()
 
 function get_main_matter_td_style ()
 {
-    return sprintf("style=\"padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; %s\"", get_main_matter_font_style);
+    return sprintf("style=\"padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; %s\"", get_main_matter_font_style());
 }
 
 function render_news_item_td ($style)
@@ -208,7 +221,7 @@ function render_news_item_td ($style)
     if ($style === "hero" or $style === "large") {
         $title_link_class="newstitle $style";
         $imagesize="width:250px";
-    } else {
+    } elseif ($style === "hero") {
         $title_link_class="newstitle";
         $imagesize="";
   }
@@ -331,11 +344,19 @@ render_frame_table(function() {
     echo " </tr>";
 
     echo "<tr>";
+    echo "<td style=\"width: 66%;\">";
+    printf('<table id="news-main" width="%s" cellspacing="0" %s>',
+           "100%", get_main_grid_table_attributes());
+    for ($i = 1; $i < count($news); $i++) {
+        $post = $news[$i];  // See comment above
+        echo ($i === count($news) - 1 ? "<tr class=\"last\">" : "<tr>");
+        render_news_item_td("normal");
+        echo " </tr>";
+    }
+    echo "</table></td>\n";
     $post = $news[1];  // See comment above
-    render_news_item_td("normal");
 
-    printf("<td rowspan=\"7\" valign=top style=\"padding: 0px; background-color:#d6d6d6; font-size: 14px; %s\">\n",
-           get_main_matter_font_style());
+    printf("<td valign=\"top\" style=\"%s\">", get_main_matter_font_style());
     render_righthand_column_tables(
         function () use ($posts) {
             render_events($posts["events"]);
@@ -345,13 +366,6 @@ render_frame_table(function() {
         });
     echo "</td>";
     echo " </tr>";
-
-    for ($i = 2; $i < count($news); $i++) {
-        $post = $news[$i];  // See comment above
-        echo "<tr>";
-        render_news_item_td("normal");
-        echo " </tr>";
-    }
 
     if (count($posts["faculty"]->posts())) {
         echo "<tr><td><table cellpadding=0 cellspacing=0 border=0 style=\"width: 100%;\">";
