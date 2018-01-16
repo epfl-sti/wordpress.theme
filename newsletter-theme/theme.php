@@ -164,7 +164,7 @@ function render_event_tr ($title, $day, $month, $link, $place, $outlink)
 
 function render_righthand_column_td ($render_events_func, $render_in_the_media_func)
 {
-    echo "<td rowspan=4 valign=top style=\"padding: 0px; background-color:#d6d6d6; font-size: 14px; color: #666; font-family:Tahoma,Verdana,sans-serif\">\n";
+    echo "<td rowspan=\"6\" valign=top style=\"padding: 0px; background-color:#d6d6d6; font-size: 14px; color: #666; font-family:Tahoma,Verdana,sans-serif\">\n";
 
     $opentable = "<table class=\"righthand-column\" width=\"100%\" cellpadding=\"8\" cellspacing=\"0\" border=\"0\">";
 			echo "$opentable";
@@ -260,23 +260,43 @@ Unsubscribe by clicking <a target="_blank" href="{unsubscription_url}">here</a>
 function render_events ($unused_events)
 {
     render_event_tr(
-        'Towards next-generation membranes for energy-efficient molecular separation',
-        '7','dec',
-        'http://sti.epfl.ch/page-42995.html#httpsmementoepflchimage10622122x122jpg',
-        'EPFL Wallis (Sion)',
-        'https://stisrv13.epfl.ch/outlink.php?enddate=20171207T113000&datestring=20171207T103000&speaker=Prof.%20Kumar%20AgrawalLaboratory%20of%20advanced%20separationsEPFL%20Valais,%20Sion&title=Towards%20the%20next-generation%20membranes%20for%20energy-efficient%20molecular%20separation&room=Zeuzier,%20I17%204%20K2');
+        'Applied Machine Learning Days',
+        '27','jan',
+        'https://memento.epfl.ch/event/applied-machine-learning-days-2018/',
+        'Swiss Tech Convention Center',
+        'https://memento.epfl.ch/event/export/69272/');
     render_event_tr(
-        'What impact can integrated photonics have on data center architecture?',
-        '8','dec',
-        'http://sti.epfl.ch/page-42995.html#httpsmementoepflchimage10667122x122jpg',
-        'BC 420',
-        'https://stisrv13.epfl.ch/outlink.php?enddate=20171208T120000&datestring=20171208T110000&speaker=S%E9bastien%20Rumley,%20Research%20Scientist%20in%20the%20Lightwave%20Research%20Laboratory,%20Columbia%20University,%20New%20York&title=What%20impact%20can%20Integrated%20Photonics%20have%20on%20data%20center%20architecture?&room=BC%20420');
+        "Prof. Lacour's Inaugural Lecture",
+        '31','jan',
+        'https://memento.epfl.ch/event/soft-bioelectronic-interfaces/',
+        'EPFL SV1717',
+        'https://memento.epfl.ch/event/export/69722/');
+    render_event_tr(
+        "High Power Electromagnetics Workshop",
+        '5','feb',
+        'https://memento.epfl.ch/event/high-power-electromagnetics-workshop/',
+        'EPFL ELA1',
+        'https://memento.epfl.ch/event/export/69804/');
+    render_event_tr(
+        "Eurotech Winter School - Energy systems: from physics to systems",
+        '5—16','feb',
+        'https://memento.epfl.ch/event/eurotech-winter-school-energy-systems-from-physics/',
+        'EPFL INM202',
+        'https://memento.epfl.ch/event/export/70475/');
+    render_event_tr(
+        "Machine-learning of density functionals for applications in molecules and materials",
+        '20','feb',
+        'https://memento.epfl.ch/event/machine-learning-of-density-functionals-for-applic/',
+        'EPFL MXF1',
+        'https://memento.epfl.ch/event/machine-learning-of-density-functionals-for-applic/');
+
 }
 
 function render_in_the_media ($unused_media)
 {
-    render_media_tr('Sylvie Roke makes waves with her work on 3D imaging of surface chemistry','https://www.eurekalert.org/pub_releases/2017-07/epfd-3io071917.php','Science News','September 2017');
-    render_media_tr('Elison Matioli makes groundbreaking use of slanted tri-gate structures','http://www.semiconductor-today.com/news_items/2017/aug/epf_230817.shtml','Semiconductor Today','August, 2017');
+    render_media_tr('Woman receives bionic hand with sense of touch','https://www.thetimes.co.uk/article/bionic-hand-feels-like-the-real-thing-kc0f3h28q','Times','Jan 2018');
+    render_media_tr('Lego-like vacuum robot climbs walls and sorts your containers','https://www.newscientist.com/article/2145756-lego-like-vacuum-robot-climbs-walls-and-sorts-your-containers/','New Scientist','Sep 2017');
+    render_media_tr('Shape-shifting origami robot swaps bodies to roll, swim or walk','https://www.newscientist.com/article/2148827-shape-shifting-origami-robot-swaps-bodies-to-roll-swim-or-walk/','New Scientist','Sep 2017');
 }
 
 ?>
