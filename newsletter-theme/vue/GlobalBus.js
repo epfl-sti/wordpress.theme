@@ -30,7 +30,15 @@ const GlobalBus = new Vue({
      * The serializable state of the entire composer, at the time
      * the page was loaded.
      */
-    initialState: null
+    initialState: null,
+    /**
+     * The time after the last user action when the page will reload
+     *
+     * This acts as a default value only, as some operations (e.g. inserts)
+     * are not made in the DOM faithfully enough (or at all). These will
+     * instead require  an immediate reload.
+     */
+    standardIdleDelay: null
   }),
 
   methods: {
@@ -42,6 +50,9 @@ const GlobalBus = new Vue({
         this.state = _.cloneDeep(this.initialState)
       })
     },
+    setStandardIdleDelay (delayMs) {
+      this.standardIdleDelay = delayMs
+    },
     _readState () {
       return {
         news: _.map(
@@ -49,7 +60,7 @@ const GlobalBus = new Vue({
           (news) => parseInt(news.postId))
       }
     },
-    setIdleDelay (delay) {
+    _setIdleDelay (delay) {
       if (this._timeout) clearTimeout(this._timeout)
       if (delay === 0) {
         this._saveNow()
@@ -70,6 +81,7 @@ const GlobalBus = new Vue({
  * sent.
  */
 GlobalBus.$on("dom_reordered", function () {
+  this._setIdleDelay(this.standardIdleDelay)
   this.state = this._readState()
 })
 
@@ -81,7 +93,7 @@ GlobalBus.$on("insert_news_after", function (vm, new_id) {
   let i = _.indexOf(NewsItemHandle.findUnder(this._rootComponent),
                     vm)
   this.state.news.splice(i + 1, 0, new_id)
-  this.setIdleDelay(0)
+  this._setIdleDelay(0)
 })
 
 export default GlobalBus

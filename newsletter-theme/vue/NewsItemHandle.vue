@@ -6,6 +6,10 @@
 
 <template>
 <div class="news-item-handle">
+  <b-btn @click="doDelete" variant="danger">
+    <i class="fa fa-trash"></i>
+    <translate>Delete</translate>
+  </b-btn>
   <b-btn v-b-toggle="'collapse' + id" variant="primary">
     <i class="fa fa-edit"></i>
     <translate>Insert</translate>
@@ -90,6 +94,13 @@ export default {
       }
       return highlightKeywordHTML(
         text, kw, {contextWords})
+    },
+    doDelete () {
+      let parentTr = $(this.$el).closest('tr')
+      console.log(parentTr)
+      this.$destroy()
+      parentTr.remove()
+      GlobalBus.$emit("dom_reordered")
     }
   },
 

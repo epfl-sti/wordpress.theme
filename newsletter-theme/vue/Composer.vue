@@ -29,9 +29,13 @@ export default {
   el: '#composer-toplevel',
   props: {
     /**
-     * The time after the last user input when the page will reload
+     * The time after the last user action when the page will reload
+     *
+     * This acts as a default value only, as some operations (e.g. inserts)
+     * are not made in the DOM faithfully enough (or at all). These will
+     * instead require  an immediate reload.
      */
-    dragIdleDelay: {
+    standardIdleDelay: {
       type: Number,
       default: 2000
     }
@@ -69,6 +73,7 @@ export default {
   },
   mounted: function() {
     GlobalBus.registerRootComponent(this)
+    GlobalBus.setStandardIdleDelay(this.standardIdleDelay)
 
     let vm = this
     vm.$nextTick(() => {
@@ -85,7 +90,6 @@ export default {
         }
       )
       vm.dragula.on("drop", () => {
-        GlobalBus.setIdleDelay(this.dragIdleDelay)
         GlobalBus.$emit("dom_reordered")
       })
     })
