@@ -188,6 +188,11 @@ function render_righthand_column_tables ($render_events_func, $render_in_the_med
     echo "</td>\n";
 }
 
+function get_main_matter_td_style ()
+{
+    return "style=\"padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; color: #666; font-family:Tahoma,Verdana,sans-serif;\"";
+}
+
 function render_news_item_td ($style)
 {
     if ($style === "hero") {
@@ -203,7 +208,7 @@ function render_news_item_td ($style)
         $imagesize="";
   }
 
-    echo "<td $colspan style='padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; color: #666; font-family:Tahoma,Verdana,sans-serif'>";
+    printf("<td %s %s>", $colspan, get_main_matter_td_style());
 
     $img = get_the_post_thumbnail(get_the_id(), 'post-thumbnail', array(
         "style"  => $imagesize,
@@ -225,7 +230,7 @@ function render_news_item_td ($style)
 }
 
 function render_position_td () {
-    echo "<td  width=450 style='padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; color: #666; font-family:Tahoma,Verdana,sans-serif'>";
+    printf("<td width=450 %s>", get_main_matter_td_style());
     echo sprintf("<p><a target='_blank' href=\"%s\" class=\"positiontitle\">%s</a></p>",
                  get_permalink(),
                  get_the_title());
@@ -316,7 +321,7 @@ render_frame_table(function() {
 
     $news = $posts["news"]->posts();
     $post = $news[0];  // We aren't in The Loop so there is nothing else to do
-    echo "<tr>";
+    echo "<tr id=\"news-hero\">";
     render_news_item_td("hero");
     echo " </tr>";
 
