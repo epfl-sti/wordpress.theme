@@ -188,9 +188,14 @@ function render_righthand_column_tables ($render_events_func, $render_in_the_med
     echo "</td>\n";
 }
 
+function get_main_matter_font_style ()
+{
+    return "color: #666; font-family:Tahoma,Verdana,sans-serif;";
+}
+
 function get_main_matter_td_style ()
 {
-    return "style=\"padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; color: #666; font-family:Tahoma,Verdana,sans-serif;\"";
+    return sprintf("style=\"padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; %s\"", get_main_matter_font_style);
 }
 
 function render_news_item_td ($style)
@@ -329,7 +334,8 @@ render_frame_table(function() {
     $post = $news[1];  // See comment above
     render_news_item_td("normal");
 
-    echo "<td rowspan=\"7\" valign=top style=\"padding: 0px; background-color:#d6d6d6; font-size: 14px; color: #666; font-family:Tahoma,Verdana,sans-serif\">\n";
+    printf("<td rowspan=\"7\" valign=top style=\"padding: 0px; background-color:#d6d6d6; font-size: 14px; %s\">\n",
+           get_main_matter_font_style());
     render_righthand_column_tables(
         function () use ($posts) {
             render_events($posts["events"]);
