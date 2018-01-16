@@ -134,7 +134,7 @@ function render_header_tr ($volumeno)
 				 <tr>
                                   <td><img src="<?php echo get_theme_relative_uri() . "/newsletter-theme/outrider.gif"; ?>" style="display: block;"/></td>
 				 </tr>
-				</table> 
+				</table>
                 </td>
             </tr>
 			<tr>
@@ -162,34 +162,30 @@ function render_event_tr ($title, $day, $month, $link, $place, $outlink)
     <?php
 }
 
-function render_righthand_column_td ($render_events_func, $render_in_the_media_func)
+function render_righthand_column_tables ($render_events_func, $render_in_the_media_func)
 {
-    echo "<td rowspan=\"7\" valign=top style=\"padding: 0px; background-color:#d6d6d6; font-size: 14px; color: #666; font-family:Tahoma,Verdana,sans-serif\">\n";
-
     $opentable = "<table class=\"righthand-column\" width=\"100%\" cellpadding=\"8\" cellspacing=\"0\" border=\"0\">";
-			echo "$opentable";
-			render_red_title_tr("EVENTS");
-            call_user_func($render_events_func);
-                echo "
+    echo "$opentable";
+    render_red_title_tr("EVENTS");
+    call_user_func($render_events_func);
+    echo "
 			 <tr>
 			  <td align=right><table><td><a href=\"https://sti.epfl.ch/seminars\" class=\"outlink more\">More...</a></td></table></td>
 			 </tr>
 			</table>
 		       ";
-            if ($render_in_the_media_func) {
-		       echo "<br>$opentable";
-		       render_red_title_tr("IN THE MEDIA");
-               call_user_func($render_in_the_media_func);
-              echo "
+    if ($render_in_the_media_func) {
+        echo "<br>$opentable";
+        render_red_title_tr("IN THE MEDIA");
+        call_user_func($render_in_the_media_func);
+        echo "
 			 <tr>
 			  <td align=right><table><td><a href=\"https://sti.epfl.ch/news\" class=\"outlink more\">More...</a></td></table></td>
 			 </tr>
 			</table>
 ";
-           }
-           echo "
-        </td>
-";
+    }
+    echo "</td>\n";
 }
 
 function render_news_item_td ($style)
@@ -233,7 +229,7 @@ function render_position_td () {
     echo sprintf("<p><a target='_blank' href=\"%s\" class=\"positiontitle\">%s</a></p>",
                  get_permalink(),
                  get_the_title());
-    the_excerpt(); 
+    the_excerpt();
     echo sprintf("<faculty-position-handle post-id=\"%d\"></faculty-position-handle>", get_the_id());
     echo "</td>";
 }
@@ -318,22 +314,32 @@ render_frame_table(function() {
     $posts = get_newsletter_posts($theme_options);
     global $post;
 
-    $count = 0;
-    foreach ($posts["news"]->posts() as $p) {
-        $post = $p;  // We aren't in The Loop so there is nothing else to do
+    $news = $posts["news"]->posts();
+    $post = $news[0];  // We aren't in The Loop so there is nothing else to do
+    echo "<tr>";
+    render_news_item_td("hero");
+    echo " </tr>";
+
+    echo "<tr>";
+    $post = $news[1];  // See comment above
+    render_news_item_td("normal");
+
+    echo "<td rowspan=\"7\" valign=top style=\"padding: 0px; background-color:#d6d6d6; font-size: 14px; color: #666; font-family:Tahoma,Verdana,sans-serif\">\n";
+    render_righthand_column_tables(
+        function () use ($posts) {
+            render_events($posts["events"]);
+        },
+        function () use ($posts) {
+            render_in_the_media($posts["in_the_media"]);
+        });
+    echo "</td>";
+    echo " </tr>";
+
+    for ($i = 2; $i < count($news); $i++) {
+        $post = $news[$i];  // See comment above
         echo "<tr>";
-        render_news_item_td($count === 0 ? "hero" : "normal");
-        if ($count === 1) {
-            render_righthand_column_td(
-                function () use ($posts) {
-                    render_events($posts["events"]);
-                },
-                function () use ($posts) {
-                    render_in_the_media($posts["in_the_media"]);
-                });
-        }
+        render_news_item_td("normal");
         echo " </tr>";
-        $count++;
     }
 
     if (count($posts["faculty"]->posts())) {
