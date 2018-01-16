@@ -164,7 +164,7 @@ function render_event_tr ($title, $day, $month, $link, $place, $outlink)
 
 function render_righthand_column_td ($render_events_func, $render_in_the_media_func)
 {
-    echo "<td rowspan=\"6\" valign=top style=\"padding: 0px; background-color:#d6d6d6; font-size: 14px; color: #666; font-family:Tahoma,Verdana,sans-serif\">\n";
+    echo "<td rowspan=\"7\" valign=top style=\"padding: 0px; background-color:#d6d6d6; font-size: 14px; color: #666; font-family:Tahoma,Verdana,sans-serif\">\n";
 
     $opentable = "<table class=\"righthand-column\" width=\"100%\" cellpadding=\"8\" cellspacing=\"0\" border=\"0\">";
 			echo "$opentable";
