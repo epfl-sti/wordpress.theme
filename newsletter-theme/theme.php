@@ -279,7 +279,7 @@ function render_events ($unused_events)
         'https://memento.epfl.ch/event/export/69804/');
     render_event_tr(
         "Eurotech Winter School - Energy systems: from physics to systems",
-        '5—16','feb',
+        '5-16','feb',
         'https://memento.epfl.ch/event/eurotech-winter-school-energy-systems-from-physics/',
         'EPFL INM202',
         'https://memento.epfl.ch/event/export/70475/');
