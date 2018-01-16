@@ -230,7 +230,7 @@ function render_news_item_td ($style)
 }
 
 function render_position_td () {
-    printf("<td width=450 %s>", get_main_matter_td_style());
+    printf("<td %s>", get_main_matter_td_style());
     echo sprintf("<p><a target='_blank' href=\"%s\" class=\"positiontitle\">%s</a></p>",
                  get_permalink(),
                  get_the_title());
