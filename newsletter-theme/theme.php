@@ -257,6 +257,21 @@ function render_position_td () {
     echo "</td>";
 }
 
+function render_write_us_table () {
+    echo "<tr>\n";
+    echo "\t<td>\n";
+    echo "\t\t<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width: 100%;\">\n";
+    render_red_title_tr("WRITE TO US!");
+    echo "\t\t\t<tr>\n";
+    echo "\t\t\t\t<td width=\"450\" style=\"padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; color: #666; font-family:Tahoma,Verdana,sans-serif\">\n";
+    echo "\t\t\t\t\t<p>You would like to have a story published in the newsletter, or you have a remark or suggestion, contact us: <a target=\"_blank\" href=\"mailto:stiitweb@groupes.epfl.ch\" class=\"writetous\">stiitweb@groupes.epfl.ch</a></p>\n";
+    echo "\t\t\t\t</td>\n";
+    echo "\t\t\t</tr>\n";
+    echo "\t\t</table>\n";
+    echo "\t</td>\n";
+    echo "</tr>\n";
+}
+
 function render_footer_tr ()
 {
     ?>
@@ -376,6 +391,7 @@ render_frame_table(function() {
         }
         echo "</table></td></tr>\n";
     }
+    render_write_us_table();
     render_footer_tr();
 });  // end of function passed to render_frame_table
     ?>
