@@ -288,27 +288,26 @@ function render_events ($unused_events)
         "Prof. Lacour's Inaugural Lecture",
         '31','jan',
         'https://memento.epfl.ch/event/soft-bioelectronic-interfaces/',
-        'EPFL SV1717',
+        'EPFL campus',
         'https://memento.epfl.ch/event/export/69722/');
     render_event_tr(
         "High Power Electromagnetics Workshop",
         '5','feb',
         'https://memento.epfl.ch/event/high-power-electromagnetics-workshop/',
-        'EPFL ELA1',
+        'EPFL campus',
         'https://memento.epfl.ch/event/export/69804/');
     render_event_tr(
         "Eurotech Winter School - Energy systems: from physics to systems",
         '5-16','feb',
         'https://memento.epfl.ch/event/eurotech-winter-school-energy-systems-from-physics/',
-        'EPFL INM202',
+        'EPFL campus',
         'https://memento.epfl.ch/event/export/70475/');
     render_event_tr(
         "Machine-learning of density functionals for applications in molecules and materials",
         '20','feb',
         'https://memento.epfl.ch/event/machine-learning-of-density-functionals-for-applic/',
-        'EPFL MXF1',
+        'EPFL campus',
         'https://memento.epfl.ch/event/machine-learning-of-density-functionals-for-applic/');
-
 }
 
 function render_in_the_media ($unused_media)
@@ -354,7 +353,6 @@ render_frame_table(function() {
         echo " </tr>";
     }
     echo "</table></td>\n";
-    $post = $news[1];  // See comment above
 
     printf("<td valign=\"top\" style=\"%s\">", get_main_matter_font_style());
     render_righthand_column_tables(
@@ -365,7 +363,7 @@ render_frame_table(function() {
             render_in_the_media($posts["in_the_media"]);
         });
     echo "</td>";
-    echo " </tr>";
+    echo "</tr>\n";
 
     if (count($posts["faculty"]->posts())) {
         echo "<tr><td><table cellpadding=0 cellspacing=0 border=0 style=\"width: 100%;\">";
@@ -376,7 +374,7 @@ render_frame_table(function() {
             render_position_td();
             echo "</tr>";
         }
-        echo "</table></td></tr>";
+        echo "</table></td></tr>\n";
     }
     render_footer_tr();
 });  // end of function passed to render_frame_table

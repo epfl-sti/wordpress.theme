@@ -75,17 +75,30 @@ export default {
     GlobalBus.registerRootComponent(this)
     GlobalBus.setStandardIdleDelay(this.standardIdleDelay)
 
-    let vm = this
+    let vm = this, console = window.console
+    console.log("Ready")
     vm.$nextTick(() => {
       // Documentation says children should be mounted too by now.
-      let newsletterTbody = $("#composer-toplevel > tbody")
+      let mainTbody = $("#composer-toplevel > tbody")[0],
+          newsTbody = $("#news-main > tbody")[0]
       vm.dragula = dragula(
-        newsletterTbody.toArray(),
+        [mainTbody, newsTbody],
         {
           invalid (el) {
+            // Experience revals that the "invalid" check bubbles up
+            // the DOM tree, and stops as soon as something returns
+            // true. If el is not a <tr>, we don't want to make a
+            // decision now:
+            if (! $(el).is("tr")) { return }
+
+            console.log("Attempting to drag", el)
             // Pieces without a NewsItemHandle (e.g. the big image
             // at the top) may not move
-            return ! NewsItemHandle.findUnder(el).length
+            if (! NewsItemHandle.findUnder(el).length) { return true }
+
+            // The big table at the bottom may not move as a whole
+            if ($("#news-main", el).length) { return true }
+            console.log("Drag permitted")
           }
         }
       )
