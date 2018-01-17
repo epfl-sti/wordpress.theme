@@ -61,6 +61,10 @@ td#right-sidebar table td {
     background-color:white;
 }
 
+td#right-sidebar .divider {
+    border-bottom:2px solid #c50813;
+    font-size:1px;
+}
 
 .main-matter {
   padding: 20px 10px 20px 10px;
@@ -179,14 +183,6 @@ function render_media_tr ($article, $link, $source, $date)
     echo "<tr><td><table><tr><td style='font-size:14px; width:100%; padding: 0px 0px 10px 0px;'><a href=\"$link\">$article</a></td></tr><tr><td style='font-size:10px;' align=right>$source, $date</td></tr><tr><td style='border-bottom:2px solid #c50813; font-size:1px'>&nbsp;</tr></table></td></tr>";
 }
 
-function render_event_tr ($title, $day, $month, $link, $place, $outlink)
-{
-    $datebox = "<div class=\"date\"><a href=\"$link\"><span class=\"day\">$day</span><br><span class=\"month\">$month</span></a></div>";
-    ?>
-    <tr><td><table><tr><td style="font-size:14px; width:100%; padding: 0px 0px 10px 0px;" colspan=2><a href="<?php echo $link; ?>"><?php echo $title; ?></a></td></tr><tr><td style='padding: 0px 0px 10px 0px;' width=50 align=left valign=top><?php echo $datebox; ?></td><td style="font-size:12px;" align=right><?php echo $place; ?><br><a href="<?php echo $outlink; ?>">Add to calendar</a></td></tr><tr><td colspan=2 style='border-bottom:2px solid #c50813; font-size:1px'>&nbsp;</td></tr></table></td></tr>
-    <?php
-}
-
 function render_righthand_column_tables ($render_events_func, $render_in_the_media_func)
 {
     $opentable = "<table width=\"100%\" cellpadding=\"8\" cellspacing=\"0\" border=\"0\">";
@@ -298,38 +294,66 @@ Unsubscribe by clicking <a target="_blank" href="{unsubscription_url}">here</a>
     <?php
 }
 
-function render_events ($unused_events)
+function render_events ($events)
 {
-    render_event_tr(
-        'Applied Machine Learning Days',
-        '27','jan',
-        'https://memento.epfl.ch/event/applied-machine-learning-days-2018/',
-        'Swiss Tech Convention Center',
-        'https://memento.epfl.ch/event/export/69272/');
-    render_event_tr(
-        "Prof. Lacour's Inaugural Lecture",
-        '31','jan',
-        'https://memento.epfl.ch/event/soft-bioelectronic-interfaces/',
-        'EPFL campus',
-        'https://memento.epfl.ch/event/export/69722/');
-    render_event_tr(
-        "High Power Electromagnetics Workshop",
-        '5','feb',
-        'https://memento.epfl.ch/event/high-power-electromagnetics-workshop/',
-        'EPFL campus',
-        'https://memento.epfl.ch/event/export/69804/');
-    render_event_tr(
-        "Eurotech Winter School - Energy systems: from physics to systems",
-        '5-16','feb',
-        'https://memento.epfl.ch/event/eurotech-winter-school-energy-systems-from-physics/',
-        'EPFL campus',
-        'https://memento.epfl.ch/event/export/70475/');
-    render_event_tr(
-        "Machine-learning of density functionals for applications in molecules and materials",
-        '20','feb',
-        'https://memento.epfl.ch/event/machine-learning-of-density-functionals-for-applic/',
-        'EPFL campus',
-        'https://memento.epfl.ch/event/machine-learning-of-density-functionals-for-applic/');
+    foreach ($events as $event) {
+        global $post;
+        $post = $event;  // We aren't in The Loop so there is nothing else to do
+        $title = get_the_title();
+        $link = get_permalink($post);
+        if (class_exists('EPFL\\WS\\Memento\\Memento')) {
+            $epfl_memento = \EPFL\WS\Memento\Memento::get($post);
+
+            $start = $epfl_memento->get_start_datetime();
+            $end   = $epfl_memento->get_end_datetime();
+            if (! $start) {
+                $day = "?";
+                $month = "";
+            } else {
+                if ($start && $end &&
+                    ($start->format('Y m') === $end->format('Y m')) &&
+                    ($start->format('j')   !== $end->format('j'))) {
+                    $day = sprintf("%d-%d", $start->format('j'),
+                                   $start->format('j'));
+                } else {
+                    $day = sprintf("%d", $start->format('j'));
+                }
+                $month = strtolower($start->format('M'));
+            }
+
+            $ical_link = $epfl_memento->get_ical_link();
+        } else {  // No epfl-ws plugin
+            $day = "?";
+            $month = "";
+            $ical_link = $link;
+        }
+?>
+ <tr>
+  <td>
+   <table>
+    <tr>
+     <td style="font-size:14px; width:100%; padding: 0px 0px 10px 0px;" colspan=2>
+      <a href="<?php echo $link; ?>"><?php echo $title; ?></a>
+     </td>
+    </tr>
+    <tr>
+     <td style="padding: 0px 0px 10px 0px;" width="50" align="left" valign="top">
+      <div class="date"><a href="<?php echo $link; ?>"><span class="day"><?php  echo $day; ?></span><br><span class="month"><?php echo $month; ?></span></a></div>
+     </td>
+     <td style="font-size:12px;" align=right>
+      <?php echo $place; ?>
+      <br>
+      <a href="<?php echo $ical_link; ?>">Add to calendar</a>
+     </td>
+    </tr>
+    <tr>
+     <td colspan=2 class="divider">&nbsp;</td>
+    </tr>
+   </table>
+  </td>
+ </tr>
+<?php
+    }
 }
 
 function render_in_the_media ($unused_media)
@@ -365,7 +389,7 @@ render_frame_table(function() {
     echo " </tr>";
 
     echo "<tr>";
-    echo "<td style=\"width: 66%;\">";
+    echo "<td style=\"width: 66%;\" valign=\"top\">";
     printf('<table id="news-main" width="%s" cellspacing="0" %s>',
            "100%", get_main_grid_table_attributes());
     for ($i = 1; $i < count($news); $i++) {
@@ -379,7 +403,7 @@ render_frame_table(function() {
     printf("<td valign=\"top\" id=\"right-sidebar\">");
     render_righthand_column_tables(
         function () use ($posts) {
-            render_events($posts["events"]);
+            render_events($posts["events"]->posts());
         },
         function () use ($posts) {
             render_in_the_media($posts["in_the_media"]);

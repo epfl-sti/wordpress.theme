@@ -139,6 +139,11 @@ class EventsQuery extends PostQuery
     const KIND = "events";
 
     function title () { return ___("Upcoming events"); }
+
+    protected function _set_default_filter () {
+        $this->filter['post_type'] = "epfl-memento";
+        $this->filter['posts_per_page'] = 10;
+    }
 }
 
 class FacultyNewsQuery extends PostQuery
