@@ -99,12 +99,8 @@ td#right-sidebar .divider {
     font-size: 18px;
 }
 
-#news-main td {
+#news-main td, #faculty {
     border-bottom: 14px solid #d6d6d6;
-}
-
-#news-main tr.last td {
-    border-bottom: 0px;
 }
 
 #footer td {
@@ -280,8 +276,6 @@ function render_position_td () {
 }
 
 function render_write_us_table () {
-    echo "<tr>\n";
-    echo "\t<td>\n";
     echo "\t\t<table id=\"write-to-us\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width: 100%;\">\n";
     render_red_title_tr("WRITE TO US!");
     echo "\t\t\t<tr>\n";
@@ -290,8 +284,6 @@ function render_write_us_table () {
     echo "\t\t\t\t</td>\n";
     echo "\t\t\t</tr>\n";
     echo "\t\t</table>\n";
-    echo "\t</td>\n";
-    echo "</tr>\n";
 }
 
 function render_footer_tr ()
@@ -411,11 +403,25 @@ render_frame_table(function() {
            "100%", get_main_grid_table_attributes());
     for ($i = 1; $i < count($news); $i++) {
         $post = $news[$i];  // See comment above
-        echo ($i === count($news) - 1 ? "<tr class=\"last\">" : "<tr>");
+        echo "<tr>";
         render_news_item_td("normal");
         echo " </tr>";
     }
-    echo "</table></td>\n";
+    echo "</table>\n";
+
+    if (count($posts["faculty"]->posts())) {
+        echo "<table id=\"faculty\" cellpadding=0 cellspacing=0 border=0 style=\"width: 100%;\">";
+        render_red_title_tr("OPEN POSITIONS");
+        foreach ($posts["faculty"]->posts() as $p) {
+            $post = $p;
+            echo "<tr>";
+            render_position_td();
+            echo "</tr>";
+        }
+        echo "</table>\n";
+    }
+    render_write_us_table();
+    echo "</td>\n";  // End of main matter
 
     printf("<td valign=\"top\" id=\"right-sidebar\">");
     render_righthand_column_tables(
@@ -428,18 +434,6 @@ render_frame_table(function() {
     echo "</td>";
     echo "</tr>\n";
 
-    if (count($posts["faculty"]->posts())) {
-        echo "<tr><td><table id=\"faculty\" cellpadding=0 cellspacing=0 border=0 style=\"width: 100%;\">";
-        render_red_title_tr("OPEN POSITIONS");
-        foreach ($posts["faculty"]->posts() as $p) {
-            $post = $p;
-            echo "<tr>";
-            render_position_td();
-            echo "</tr>";
-        }
-        echo "</table></td></tr>\n";
-    }
-    render_write_us_table();
     render_footer_tr();
 });  // end of function passed to render_frame_table
     ?>
