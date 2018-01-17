@@ -43,10 +43,6 @@ a.outlink.more {
     font-size:12px;
 }
 
-table.righthand-column td {
-    background-color:white;
-}
-
 .redtitle {
     text-align: inherit;
     font-family: verdana,sans-serif;
@@ -54,6 +50,22 @@ table.righthand-column td {
     color:white;
     background-color: #c50813;
     padding: 4px 0px 4px 8px;
+}
+
+.main-matter, td#right-sidebar {
+  color: #666;
+  font-family:Tahoma,Verdana,sans-serif;
+}
+
+td#right-sidebar table td {
+    background-color:white;
+}
+
+
+.main-matter {
+  padding: 20px 10px 20px 10px;
+  background-color:#fff;
+  font-size: 13px;
 }
 
 .date {
@@ -177,7 +189,7 @@ function render_event_tr ($title, $day, $month, $link, $place, $outlink)
 
 function render_righthand_column_tables ($render_events_func, $render_in_the_media_func)
 {
-    $opentable = "<table class=\"righthand-column\" width=\"100%\" cellpadding=\"8\" cellspacing=\"0\" border=\"0\">";
+    $opentable = "<table width=\"100%\" cellpadding=\"8\" cellspacing=\"0\" border=\"0\">";
     echo "$opentable";
     render_red_title_tr("EVENTS");
     call_user_func($render_events_func);
@@ -193,17 +205,12 @@ function render_righthand_column_tables ($render_events_func, $render_in_the_med
         call_user_func($render_in_the_media_func);
         echo "
 			 <tr>
-			  <td align=right><table><td><a href=\"https://sti.epfl.ch/news\" class=\"outlink more\">More...</a></td></table></td>
+			  <td align=right><table id=\"inthemedia\"><td><a href=\"https://sti.epfl.ch/news\" class=\"outlink more\">More...</a></td></table></td>
 			 </tr>
 			</table>
 ";
     }
     echo "</td>\n";
-}
-
-function get_main_matter_font_style ()
-{
-    return "color: #666; font-family:Tahoma,Verdana,sans-serif;";
 }
 
 function get_main_matter_td_style ()
@@ -226,7 +233,7 @@ function render_news_item_td ($style)
         $imagesize="";
   }
 
-    printf("<td %s %s>", $colspan, get_main_matter_td_style());
+    printf("<td class=\"main-matter\" %s>", $colspan);
 
     $img = get_the_post_thumbnail(get_the_id(), 'post-thumbnail', array(
         "style"  => $imagesize,
@@ -248,7 +255,7 @@ function render_news_item_td ($style)
 }
 
 function render_position_td () {
-    printf("<td %s>", get_main_matter_td_style());
+    echo "<td class=\"main-matter\">\n";
     echo sprintf("<p><a target='_blank' href=\"%s\" class=\"positiontitle\">%s</a></p>",
                  get_permalink(),
                  get_the_title());
@@ -260,7 +267,7 @@ function render_position_td () {
 function render_write_us_table () {
     echo "<tr>\n";
     echo "\t<td>\n";
-    echo "\t\t<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width: 100%;\">\n";
+    echo "\t\t<table id=\"write-to-us\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width: 100%;\">\n";
     render_red_title_tr("WRITE TO US!");
     echo "\t\t\t<tr>\n";
     echo "\t\t\t\t<td width=\"450\" style=\"padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; color: #666; font-family:Tahoma,Verdana,sans-serif\">\n";
@@ -369,7 +376,7 @@ render_frame_table(function() {
     }
     echo "</table></td>\n";
 
-    printf("<td valign=\"top\" style=\"%s\">", get_main_matter_font_style());
+    printf("<td valign=\"top\" id=\"right-sidebar\">");
     render_righthand_column_tables(
         function () use ($posts) {
             render_events($posts["events"]);
@@ -381,7 +388,7 @@ render_frame_table(function() {
     echo "</tr>\n";
 
     if (count($posts["faculty"]->posts())) {
-        echo "<tr><td><table cellpadding=0 cellspacing=0 border=0 style=\"width: 100%;\">";
+        echo "<tr><td><table id=\"faculty\" cellpadding=0 cellspacing=0 border=0 style=\"width: 100%;\">";
         render_red_title_tr("OPEN POSITIONS");
         foreach ($posts["faculty"]->posts() as $p) {
             $post = $p;
