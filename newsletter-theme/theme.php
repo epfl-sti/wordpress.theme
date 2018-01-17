@@ -178,9 +178,28 @@ function render_red_title_tr ($name)
     echo "<tr><th class=\"redtitle\">$name</th> </tr>";
 }
 
-function render_media_tr ($article, $link, $source, $date)
+function render_in_the_media_tr ($article, $link, $source, $date)
 {
-    echo "<tr><td><table><tr><td style='font-size:14px; width:100%; padding: 0px 0px 10px 0px;'><a href=\"$link\">$article</a></td></tr><tr><td style='font-size:10px;' align=right>$source, $date</td></tr><tr><td style='border-bottom:2px solid #c50813; font-size:1px'>&nbsp;</tr></table></td></tr>";
+    ?>
+    <tr>
+     <td>
+      <table>
+       <tr>
+        <td style='font-size:14px; width:100%; padding: 0px 0px 10px 0px;'>
+         <a href="<?php echo $link; ?>"><?php echo "$article"; ?></a>
+        </td>
+       </tr>
+       <tr>
+        <td style='font-size:10px;' align=right>
+         <?php echo "$source, $date"; ?>
+        </td>
+       </tr>
+       <tr><td class="divider">&nbsp;</td></tr>
+      </table>
+     </td>
+    </tr>
+    <?php
+
 }
 
 function render_righthand_column_tables ($render_events_func, $render_in_the_media_func)
@@ -346,9 +365,7 @@ function render_events ($events)
       <a href="<?php echo $ical_link; ?>">Add to calendar</a>
      </td>
     </tr>
-    <tr>
-     <td colspan=2 class="divider">&nbsp;</td>
-    </tr>
+    <tr><td colspan="2" class="divider">&nbsp;</td></tr>
    </table>
   </td>
  </tr>
@@ -358,9 +375,9 @@ function render_events ($events)
 
 function render_in_the_media ($unused_media)
 {
-    render_media_tr('Woman receives bionic hand with sense of touch','https://www.thetimes.co.uk/article/bionic-hand-feels-like-the-real-thing-kc0f3h28q','Times','Jan 2018');
-    render_media_tr('Lego-like vacuum robot climbs walls and sorts your containers','https://www.newscientist.com/article/2145756-lego-like-vacuum-robot-climbs-walls-and-sorts-your-containers/','New Scientist','Sep 2017');
-    render_media_tr('Shape-shifting origami robot swaps bodies to roll, swim or walk','https://www.newscientist.com/article/2148827-shape-shifting-origami-robot-swaps-bodies-to-roll-swim-or-walk/','New Scientist','Sep 2017');
+    render_in_the_media_tr('Woman receives bionic hand with sense of touch','https://www.thetimes.co.uk/article/bionic-hand-feels-like-the-real-thing-kc0f3h28q','Times','Jan 2018');
+    render_in_the_media_tr('Lego-like vacuum robot climbs walls and sorts your containers','https://www.newscientist.com/article/2145756-lego-like-vacuum-robot-climbs-walls-and-sorts-your-containers/','New Scientist','Sep 2017');
+    render_in_the_media_tr('Shape-shifting origami robot swaps bodies to roll, swim or walk','https://www.newscientist.com/article/2148827-shape-shifting-origami-robot-swaps-bodies-to-roll-swim-or-walk/','New Scientist','Sep 2017');
 }
 
 ?>
