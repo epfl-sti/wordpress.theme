@@ -190,7 +190,11 @@ function render_in_the_media_tr ($article, $link, $source, $date)
          <?php echo "$source, $date"; ?>
         </td>
        </tr>
-       <tr><td class="divider">&nbsp;</td></tr>
+       <tr>
+        <td class="divider">
+         <media-item-handle post-id="<?php echo get_the_id(); ?>"></media-item-handle>
+         &nbsp;</td>
+       </tr>
       </table>
      </td>
     </tr>
@@ -357,7 +361,9 @@ function render_events ($events)
       <a href="<?php echo $ical_link; ?>">Add to calendar</a>
      </td>
     </tr>
-    <tr><td colspan="2" class="divider">&nbsp;</td></tr>
+    <tr><td colspan="2" class="divider">&nbsp;
+        <event-handle post-id="<?php echo get_the_id(); ?>"></event-handle>
+</td></tr>
    </table>
   </td>
  </tr>
