@@ -44,15 +44,21 @@ a.outlink.more {
 }
 
 .redtitle {
-    text-align: inherit;
-    font-family: verdana,sans-serif;
-    font-weight: inherit;
-    color:white;
-    background-color: #c50813;
-    padding: 4px 0px 4px 8px;
+    padding: 0px;
 }
 
-.main-matter, td#right-sidebar {
+.redtitle h1 {
+    padding: 4px 0px 4px 8px;
+    margin-bottom: 0px;
+    text-align: left;
+    font-family: verdana,sans-serif;
+    font-size: medium;
+    font-weight: regular;
+    color:white;
+    background-color: #c50813;
+}
+
+body, td.main-matter > a {
   color: #666;
   font-family:Tahoma,Verdana,sans-serif;
 }
@@ -66,7 +72,7 @@ td#right-sidebar .divider {
     font-size:1px;
 }
 
-.main-matter {
+td.main-matter {
   padding: 20px 10px 20px 10px;
   background-color:#fff;
   font-size: 13px;
@@ -90,13 +96,12 @@ td#right-sidebar .divider {
     vertical-align:top;
 }
 
-.newstitle {
-    font-size: 14px;
-    font-family:Tahoma,Verdana,sans-serif;
+.main-matter h2.hero {
+    font-size: 18px;
 }
 
-.newstitle.hero {
-    font-size: 18px;
+.main-matter h2 {
+    font-size: 14px;
 }
 
 #news-main td, #faculty {
@@ -171,7 +176,7 @@ function render_header_tr ($volumeno)
 
 function render_red_title_tr ($name)
 {
-    echo "<tr><th class=\"redtitle\">$name</th> </tr>";
+    echo "<tr><th class=\"redtitle\"><h1>$name</h1></th> </tr>";
 }
 
 function render_in_the_media_tr ($article, $link, $source, $date)
@@ -241,10 +246,10 @@ function render_news_item_td ($style)
         $colspan="";
     }
     if ($style === "hero" or $style === "large") {
-        $title_link_class="newstitle $style";
+        $h2='<h2 class="hero">';
         $imagesize="width:250px";
-    } elseif ($style === "hero") {
-        $title_link_class="newstitle";
+    } else {
+        $h2='<h2>';
         $imagesize="";
   }
 
@@ -257,21 +262,21 @@ function render_news_item_td ($style)
         "align"  => "left"
     ));
     if ($img) {
-        echo sprintf('<a target="blank" href="%s">%s</a>', get_permalink(), $img);
+        echo sprintf('<a target="_blank" href="%s">%s</a>', get_permalink(), $img);
     }
-    echo sprintf('<p><a target="_blank" href="%s" class="%s">%s</a></p>',
+    echo sprintf('%s<a target="_blank" href="%s">%s</a></h2>',
+                 $h2,
                  get_permalink(),
-                 $title_link_class,
                  get_the_title());
     echo sprintf('<a target="_blank" href="%s">%s</a>',
-                 get_permalink(), get_the_excerpt());
+                 get_permalink(), strip_tags(get_the_excerpt()));
     echo sprintf("<news-item-handle post-id=\"%d\"></news-item-handle>", get_the_id());
     echo "</td>";
 }
 
 function render_position_td () {
     echo "<td class=\"main-matter\">\n";
-    echo sprintf("<p><a target='_blank' href=\"%s\" class=\"positiontitle\">%s</a></p>",
+    echo sprintf("<h2><a target='_blank' href=\"%s\" class=\"positiontitle\">%s</a></h2>",
                  get_permalink(),
                  get_the_title());
     the_excerpt();
@@ -283,7 +288,7 @@ function render_write_us_table () {
     echo "\t\t<table id=\"write-to-us\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width: 100%;\">\n";
     render_red_title_tr("WRITE TO US!");
     echo "\t\t\t<tr>\n";
-    echo "\t\t\t\t<td width=\"450\" style=\"padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; color: #666; font-family:Tahoma,Verdana,sans-serif\">\n";
+    echo "\t\t\t\t<td class=\"main-matter\">\n";
     echo "\t\t\t\t\t<p>You would like to have a story published in the newsletter, or you have a remark or suggestion, contact us: <a target=\"_blank\" href=\"mailto:stiitweb@groupes.epfl.ch\" class=\"writetous\">stiitweb@groupes.epfl.ch</a></p>\n";
     echo "\t\t\t\t</td>\n";
     echo "\t\t\t</tr>\n";
@@ -404,7 +409,7 @@ render_frame_table(function() {
     echo " </tr>";
 
     echo "<tr>";
-    echo "<td style=\"width: 66%;\" valign=\"top\">";
+    echo "<td width=\"520\" valign=\"top\">";
     printf('<table id="news-main" width="%s" cellspacing="0" %s>',
            "100%", get_main_grid_table_attributes());
     for ($i = 1; $i < count($news); $i++) {
