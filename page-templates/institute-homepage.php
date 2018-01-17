@@ -24,6 +24,7 @@ use function \EPFL\STI\get_institute;
 
 				<div class="col-md-9 content-area" id="primary">
 
+                    <?php require(dirname(__FILE__) . "/directory.php"); ?>
 					<main class="site-main" id="main" role="main">
 
 						<?php while ( have_posts() ) : the_post(); ?>
