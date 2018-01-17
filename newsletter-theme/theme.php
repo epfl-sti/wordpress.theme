@@ -83,6 +83,14 @@ table.righthand-column td {
     font-size: 18px;
 }
 
+#news-main td {
+    border-bottom: 14px solid #d6d6d6;
+}
+
+#news-main tr.last td {
+    border-bottom: 0px;
+}
+
 #footer td {
     border-top:10px solid #c50813;
     background-color:white;
@@ -110,13 +118,18 @@ function render_frame_table ($render_inside_func) {
     <table bgcolor="white" width="100%" cellpadding="4" cellspacing="0" border="0">
     <tr>
         <td align="center">
-            <table id="composer-toplevel" width="737" bgcolor="#d6d6d6" align="center" cellspacing="14" cellpadding="0">
+            <table id="composer-toplevel" width="737" align="center" cellspacing="14" <?php echo get_main_grid_table_attributes(); ?>>
                <?php call_user_func($render_inside_func); ?>
              </table>
         </td>
     </tr>
     </table>
     <?php
+}
+
+function get_main_grid_table_attributes ()
+{
+    return 'bgcolor="#d6d6d6" cellpadding="0" border="0"';
 }
 
 function render_header_tr ($volumeno)
@@ -134,7 +147,7 @@ function render_header_tr ($volumeno)
 				 <tr>
                                   <td><img src="<?php echo get_theme_relative_uri() . "/newsletter-theme/outrider.gif"; ?>" style="display: block;"/></td>
 				 </tr>
-				</table> 
+				</table>
                 </td>
             </tr>
 			<tr>
@@ -162,34 +175,40 @@ function render_event_tr ($title, $day, $month, $link, $place, $outlink)
     <?php
 }
 
-function render_righthand_column_td ($render_events_func, $render_in_the_media_func)
+function render_righthand_column_tables ($render_events_func, $render_in_the_media_func)
 {
-    echo "<td rowspan=\"7\" valign=top style=\"padding: 0px; background-color:#d6d6d6; font-size: 14px; color: #666; font-family:Tahoma,Verdana,sans-serif\">\n";
-
     $opentable = "<table class=\"righthand-column\" width=\"100%\" cellpadding=\"8\" cellspacing=\"0\" border=\"0\">";
-			echo "$opentable";
-			render_red_title_tr("EVENTS");
-            call_user_func($render_events_func);
-                echo "
+    echo "$opentable";
+    render_red_title_tr("EVENTS");
+    call_user_func($render_events_func);
+    echo "
 			 <tr>
 			  <td align=right><table><td><a href=\"https://sti.epfl.ch/seminars\" class=\"outlink more\">More...</a></td></table></td>
 			 </tr>
 			</table>
 		       ";
-            if ($render_in_the_media_func) {
-		       echo "<br>$opentable";
-		       render_red_title_tr("IN THE MEDIA");
-               call_user_func($render_in_the_media_func);
-              echo "
+    if ($render_in_the_media_func) {
+        echo "<br>$opentable";
+        render_red_title_tr("IN THE MEDIA");
+        call_user_func($render_in_the_media_func);
+        echo "
 			 <tr>
 			  <td align=right><table><td><a href=\"https://sti.epfl.ch/news\" class=\"outlink more\">More...</a></td></table></td>
 			 </tr>
 			</table>
 ";
-           }
-           echo "
-        </td>
-";
+    }
+    echo "</td>\n";
+}
+
+function get_main_matter_font_style ()
+{
+    return "color: #666; font-family:Tahoma,Verdana,sans-serif;";
+}
+
+function get_main_matter_td_style ()
+{
+    return sprintf("style=\"padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; %s\"", get_main_matter_font_style());
 }
 
 function render_news_item_td ($style)
@@ -202,12 +221,12 @@ function render_news_item_td ($style)
     if ($style === "hero" or $style === "large") {
         $title_link_class="newstitle $style";
         $imagesize="width:250px";
-    } else {
+    } elseif ($style === "hero") {
         $title_link_class="newstitle";
         $imagesize="";
   }
 
-    echo "<td $colspan style='padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; color: #666; font-family:Tahoma,Verdana,sans-serif'>";
+    printf("<td %s %s>", $colspan, get_main_matter_td_style());
 
     $img = get_the_post_thumbnail(get_the_id(), 'post-thumbnail', array(
         "style"  => $imagesize,
@@ -229,11 +248,11 @@ function render_news_item_td ($style)
 }
 
 function render_position_td () {
-    echo "<td  width=450 style='padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; color: #666; font-family:Tahoma,Verdana,sans-serif'>";
+    printf("<td %s>", get_main_matter_td_style());
     echo sprintf("<p><a target='_blank' href=\"%s\" class=\"positiontitle\">%s</a></p>",
                  get_permalink(),
                  get_the_title());
-    the_excerpt(); 
+    the_excerpt();
     echo sprintf("<faculty-position-handle post-id=\"%d\"></faculty-position-handle>", get_the_id());
     echo "</td>";
 }
@@ -269,27 +288,26 @@ function render_events ($unused_events)
         "Prof. Lacour's Inaugural Lecture",
         '31','jan',
         'https://memento.epfl.ch/event/soft-bioelectronic-interfaces/',
-        'EPFL SV1717',
+        'EPFL campus',
         'https://memento.epfl.ch/event/export/69722/');
     render_event_tr(
         "High Power Electromagnetics Workshop",
         '5','feb',
         'https://memento.epfl.ch/event/high-power-electromagnetics-workshop/',
-        'EPFL ELA1',
+        'EPFL campus',
         'https://memento.epfl.ch/event/export/69804/');
     render_event_tr(
         "Eurotech Winter School - Energy systems: from physics to systems",
         '5-16','feb',
         'https://memento.epfl.ch/event/eurotech-winter-school-energy-systems-from-physics/',
-        'EPFL INM202',
+        'EPFL campus',
         'https://memento.epfl.ch/event/export/70475/');
     render_event_tr(
         "Machine-learning of density functionals for applications in molecules and materials",
         '20','feb',
         'https://memento.epfl.ch/event/machine-learning-of-density-functionals-for-applic/',
-        'EPFL MXF1',
+        'EPFL campus',
         'https://memento.epfl.ch/event/machine-learning-of-density-functionals-for-applic/');
-
 }
 
 function render_in_the_media ($unused_media)
@@ -318,23 +336,34 @@ render_frame_table(function() {
     $posts = get_newsletter_posts($theme_options);
     global $post;
 
-    $count = 0;
-    foreach ($posts["news"]->posts() as $p) {
-        $post = $p;  // We aren't in The Loop so there is nothing else to do
-        echo "<tr>";
-        render_news_item_td($count === 0 ? "hero" : "normal");
-        if ($count === 1) {
-            render_righthand_column_td(
-                function () use ($posts) {
-                    render_events($posts["events"]);
-                },
-                function () use ($posts) {
-                    render_in_the_media($posts["in_the_media"]);
-                });
-        }
+    $news = $posts["news"]->posts();
+    $post = $news[0];  // We aren't in The Loop so there is nothing else to do
+    echo "<tr id=\"news-hero\">";
+    render_news_item_td("hero");
+    echo " </tr>";
+
+    echo "<tr>";
+    echo "<td style=\"width: 66%;\">";
+    printf('<table id="news-main" width="%s" cellspacing="0" %s>',
+           "100%", get_main_grid_table_attributes());
+    for ($i = 1; $i < count($news); $i++) {
+        $post = $news[$i];  // See comment above
+        echo ($i === count($news) - 1 ? "<tr class=\"last\">" : "<tr>");
+        render_news_item_td("normal");
         echo " </tr>";
-        $count++;
     }
+    echo "</table></td>\n";
+
+    printf("<td valign=\"top\" style=\"%s\">", get_main_matter_font_style());
+    render_righthand_column_tables(
+        function () use ($posts) {
+            render_events($posts["events"]);
+        },
+        function () use ($posts) {
+            render_in_the_media($posts["in_the_media"]);
+        });
+    echo "</td>";
+    echo "</tr>\n";
 
     if (count($posts["faculty"]->posts())) {
         echo "<tr><td><table cellpadding=0 cellspacing=0 border=0 style=\"width: 100%;\">";
@@ -345,7 +374,7 @@ render_frame_table(function() {
             render_position_td();
             echo "</tr>";
         }
-        echo "</table></td></tr>";
+        echo "</table></td></tr>\n";
     }
     render_footer_tr();
 });  // end of function passed to render_frame_table
