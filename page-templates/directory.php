@@ -1,6 +1,5 @@
 <directory>
-<script type=text/javascript src="https://stisrv13.epfl.ch/profs/img/people.js"></script> 
-<script type=text/javascript src="https://stisrv13.epfl.ch/js/trickshots.js"></script>
+<script type=text/javascript src="/wp-content/themes/epfl-sti/js/trickshots.js"></script>
 
 <center>
 	<h4><img src="https://stisrv13.epfl.ch/js/faculty.png" usemap="#facultybar" alt="" border="0"></h4>
