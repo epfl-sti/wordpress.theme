@@ -1,4 +1,4 @@
-/*
+/**
  * gulpfile.js is like the Makefile for client-side Web assets:
  * JavaScript code obviously, but also CSS, minified images.
  *
@@ -42,41 +42,77 @@ const rename = require('gulp-rename');
 const del = require('del');
 const argv = require('yargs').argv;
 
-// browser-sync options
-// see: https://www.browsersync.io/docs/options/
-var browserSyncOptions = {
-    proxy: (argv.url || "https://localhost/"),
-    notify: false,
-};
+/**
+ * Browser-sync reloads pages for us during development
+ *
+ * @see https://www.browsersync.io/docs/options/
+ */
+function browserSyncOptions() {
+    var browserSyncOptions = {
+        proxy: (argv.url || "https://localhost/"),
+        notify: false,
+    };
 
-if (argv.browser) {
-    browserSyncOptions.browser = argv.browser;
+    if (argv.browser) {
+        browserSyncOptions.browser = argv.browser;
+    }
+
+    /* If Chrome doesn't trust the certificate presented by browserSync,
+     * *even if you have already clicked your way through the security
+     * exception*, it won't reliably load source maps (see details at
+     * https://github.com/BrowserSync/browser-sync/issues/639#issuecomment-351125049)
+     * There is a kit to make your own self-signed certificate under
+     * devsupport/ (see instructions in devsupport/openssl.cnf), which you
+     * then need to enroll into your OS' trusted certificate store. */
+    const keypair = { cert: "devsupport/browser-sync.crt",
+                      key:  "devsupport/browser-sync.key" };
+
+    if (fs.existsSync(keypair.key) && fs.existsSync(keypair.cert)) {
+        browserSyncOptions.https = keypair;
+    }
+    return browserSyncOptions;
 }
 
-/* If Chrome doesn't trust the certificate presented by browserSync,
- * *even if you have already clicked your way through the security
- * exception*, it won't reliably load source maps (see details at
- * https://github.com/BrowserSync/browser-sync/issues/639#issuecomment-351125049)
- * There is a kit to make your own self-signed certificate under
- * devsupport/ (see instructions in devsupport/openssl.cnf), which you
- * then need to enroll into your OS' trusted certificate store.
+/**
+ * SASS gives us compile-time @include's in CSS, templating (with
+ * variables) and more. Bootstrap itself is written in SASS so that we
+ * can easily tweak things such as link colors etc.
  */
-(function() {
-  const keypair = { cert: "devsupport/browser-sync.crt",
-                    key:  "devsupport/browser-sync.key" };
+function sassOptions() {
+    return {
+        importer: function(url, prev, done) {
+            // This turns @import ~foo/bar into
+            // @import [....]/node_modules/foo/bar:
+            return tildeImporter(url, __dirname, done)
+        }
+    }
+}
 
-  if (fs.existsSync(keypair.key) && fs.existsSync(keypair.cert)) {
-    browserSyncOptions.https = keypair;
-  }
-}());
+/**
+ * Babel digests modern JS into something even IE8 can grok
+ */
+function babelOptions() {
+    return {
+        "presets": [
+            ["env", {
+                "targets": {
+                    /* IE 7 is a non-goal (not supported by Vue) */
+                    "browsers": ["> 5%", "ie >= 8"]
+                }
+            }]
+        ]
+    }
+}
 
-const sassConfig = {
-  importer: function(url, prev, done) {
-    // This turns @import ~foo/bar into
-    // @import [....]/node_modules/foo/bar:
-    return tildeImporter(url, __dirname, done)
-  }
-};
+/**
+ * CSSNext turns :fullscreen into :-moz-full-screen etc., and more
+ *
+ * @see https://cssnext.io/
+ */
+function postcssOptions() {
+    return [cssnext()]
+}
+
 
 // Run any of:
 // gulp default
@@ -106,7 +142,7 @@ gulp.task('watch', ['default'], function () {
 gulp.task('browser-sync', ['watch'], function() {
     browserSync.init(
         ['assets/**/*', 'css/**/*', '**/*.php', 'newsletter-theme/*.css'],
-        browserSyncOptions);
+        browserSyncOptions());
 });
 
 // Run:
@@ -159,30 +195,17 @@ gulp.task('admin-scripts', function() {
         './newsletter-theme/composer.scss'
     ]);
 
-    /* Babel digests modern JS into something even IE8 can grok */
-    const babelOptions = () => ({
-      "presets": [
-        ["env", {
-          "targets": {
-            /* IE 7 is a non-goal (not supported by Vue) */
-            "browsers": ["> 5%", "ie >= 8"]
-          }
-        }]
-      ]
-    });
-
     const js_pipeline = js_sources
         .pipe(bro({  // Bro is a modern wrapper for browserify
             debug: true,  // Produce a sourcemap
             transform: [
-                /* Turn Vue components into pure JS (even the CSS snippets) */
+                /* Turn Vue components into pure JS */
                 ['vueify', {
-                  /* This options object uses the same keys as vue.config.js */
+                  /* Use advanced JS in Vue */
                   babel: babelOptions(),
                   /* You can say <style lang="scss"></style> in Vue: */
-                  sass: sassConfig,
-                  /* See comment in processSASS(), below */
-                  postcss: [cssnext()]
+                  sass: sassOptions(),
+                  postcss: postcssOptions()
                 }],
                 /* One more bout of Babel for "straight" (non-Vue) JS files: */
                 babelify.configure(babelOptions()),
@@ -201,6 +224,7 @@ gulp.task('admin-scripts', function() {
         .pipe(uglifyJS())
         .pipe(assetsDest());
 
+    /* This is for stand-alone SASS files, not the snippets in .vue files */
     const css_pipeline = sass_sources
         .pipe(rename("newsletter-composer.scss"))
         .pipe(processSASS())
@@ -321,10 +345,8 @@ function uglifyJS() {
 function processSASS() {
     return lazypipe()
         .pipe(() => sourcemaps.init())
-        .pipe(() => sass(sassConfig))
-                  // Turn :fullscreen into :-moz-full-screen etc., and more
-                  // See https://cssnext.io/
-        .pipe(() => postcss([cssnext()]))
+        .pipe(() => sass(sassOptions()))
+        .pipe(() => postcss(postcssOptions()))
         .pipe(() => assetsDest())  // Save un-minified, then continue
         .pipe(() => cleanCSS())
         .pipe(() => rename({suffix: '.min'}))
