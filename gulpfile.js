@@ -198,6 +198,7 @@ gulp.task('admin-scripts', function() {
     const js_pipeline = js_sources
         .pipe(bro({  // Bro is a modern wrapper for browserify
             debug: true,  // Produce a sourcemap
+            cacheFile: "assets/browserify-cache.json",
             transform: [
                 /* Turn Vue components into pure JS */
                 ['vueify', {
