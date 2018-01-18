@@ -1,18 +1,23 @@
 <!--
-    Edit handle for news items.
+    Edit handles for news / memento / in-the-news articles.
 
-    Permits deletion, editing (to replace with another news item).
+    Permits deletion, search-as-you-type insertion.
+
+    The default import an "abstract base class" that *cannot* be
+    instantiated directly. Instead, instantiate "subclasses" that
+    are available as ItemHandle.News, ItemHandle.Event etc.
+
 -->
 
 <template>
-<div class="news-item-handle">
+<div :class="getToplevelDivClass()">
   <b-btn @click="doDelete" variant="danger">
     <i class="fa fa-trash"></i>
-    <translate>Delete</translate>
+    <translate v-if="getSize() !== 'small'">Delete</translate>
   </b-btn>
   <b-btn v-b-toggle="'collapse' + id" variant="primary">
     <i class="fa fa-edit"></i>
-    <translate>Insert</translate>
+    <translate v-if="getSize() !== 'small'">Insert</translate>
     <span class="arrow">→</span>
   </b-btn>
   <b-collapse ref="theCollapse" :id="'collapse' + id">
@@ -40,14 +45,27 @@
 import _ from 'lodash'
 import Vue from 'vue'
 import select2 from "./Select2.vue"
-import WPajax from "../inc/ajax.js"
 import highlightKeywordHTML from "../inc/highlight.js"
 import GlobalBus from "./GlobalBus.js"
+import WPajax from "../inc/ajax.js"
 
-export default {
+/**
+ * The "base class"
+ *
+ *
+ *   In order to be useable, this component need to be **mixed in** with
+ *   the following additional methods:
+ *
+ *   - getToplevelDivClass()
+ *
+ *   - getSearchPromise(term)
+ *
+ *   - getSize()  // Should return a Bootstrap size e.g. "" or "sm"
+ */
+let ItemHandleBase = {
   props: {
     postId: {
-      type: String,
+      type: Number,
       required: true
     }
   },
@@ -74,11 +92,7 @@ export default {
       vm.search = {}
       vm.status = null
 
-      WPajax("epfl_sti_newsletter_search",
-             {
-               post_type: "epfl-actu",
-               s: term
-             })
+      vm.getSearchPromise(term)
       .then(response => {
         vm.search.items = response.searchResults
         vm.status = "success"
@@ -101,6 +115,11 @@ export default {
       this.$destroy()
       parentTr.remove()
       GlobalBus.$emit("dom_reordered")
+    },
+    findUnder (under) {
+      if (under instanceof Vue) under = under.$el
+      return _.map($("div." + this.getToplevelDivClass(), under),
+                   (jq) => $(jq).prop("__vue__"))
     }
   },
 
@@ -109,21 +128,61 @@ export default {
   watch: {
     picked (newVal) {
       if (! newVal) return
-      GlobalBus.$emit("insert_news_after", this, Number(newVal))
+      GlobalBus.$emit("insert_after", this, Number(newVal))
     }
   },
-
-  /**
-   * "Class method" available to parent Component
-   *
-   * @return A list of NewsItemHandle instances under @param under
-   */
-  findUnder (under) {
-    if (under instanceof Vue) under = under.$el
-    return _.map($("div.news-item-handle", under),
-                 (jq) => $(jq).prop("__vue__"))
-  }
 }
+
+
+/**
+ * Factory that makes working "concrete subclasses"
+ *
+ * @param methods Contains the following functions:
+ *
+ *                - getToplevelDivClass()
+ *
+ *                  Returns a CSS class name
+ *
+ *                - getSearchPromise(term)
+ *
+ *                  Returns a promise of a data structure like
+ *                  { searchResults: [item, item...] }
+ *                                          
+ *
+ * @return Something that can be fed into the Vue constructor
+ */
+function mixinify(methods) {
+  methods = _.extend({}, methods)
+
+  let theNewClass = {
+    mixins: [ItemHandleBase, { methods }]
+  }
+
+  methods.isInstanceOf = (aClass) => theNewClass === aClass
+
+  /* Allow findUnder to be used as a "class method" */
+  theNewClass.findUnder = function (under) {
+    let fakeThis = methods
+    return ItemHandleBase.methods.findUnder.call(fakeThis, under)
+  }
+  return theNewClass
+}
+
+ItemHandleBase.News = mixinify({
+    getToplevelDivClass () { return "news-item-handle" },
+    getSearchPromise(term) {
+        return WPajax(
+            "epfl_sti_newsletter_search",
+            {
+                post_type: "epfl-actu",
+                s: term
+            })
+    },
+    getSize() { return "normal" }
+})
+
+
+export default ItemHandleBase  // But don't try to instantiate it
 </script>
 
 <style lang="scss" scoped>

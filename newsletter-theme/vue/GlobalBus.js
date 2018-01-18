@@ -15,7 +15,7 @@
 
 import _ from "lodash"
 import Vue from 'vue'
-import NewsItemHandle from "./NewsItemHandle.vue"
+import ItemHandle from "./ItemHandle.vue"
 
 const GlobalBus = new Vue({
   data: () => ({
@@ -56,7 +56,7 @@ const GlobalBus = new Vue({
     _readState () {
       return {
         news: _.map(
-          NewsItemHandle.findUnder(this._rootComponent),
+          ItemHandle.News.findUnder(this._rootComponent),
           (news) => parseInt(news.postId))
       }
     },
@@ -86,14 +86,18 @@ GlobalBus.$on("dom_reordered", function () {
 })
 
 /**
- * A new news with ID @new_id is being added right after @param vm. We
- * should reload immediately.
+ * A new article / news / event with ID @new_id is being added right
+ * after @param vm. We should reload immediately.
  */
-GlobalBus.$on("insert_news_after", function (vm, new_id) {
-  let i = _.indexOf(NewsItemHandle.findUnder(this._rootComponent),
-                    vm)
-  this.state.news.splice(i + 1, 0, new_id)
-  this._setIdleDelay(0)
+GlobalBus.$on("insert_after", function (vm, new_id) {
+    let i = _.indexOf(vm.findUnder(this._rootComponent), vm)
+
+    if (vm.isInstanceOf(ItemHandle.News)) {
+        console.log("This is indeed a News object");  // XXX
+        this.state.news.splice(i + 1, 0, new_id)
+    }
+
+    this._setIdleDelay(0)
 })
 
 export default GlobalBus

@@ -23,7 +23,7 @@ import _ from "lodash"
 import GlobalBus from "./GlobalBus.js"
 
 import dragula from "dragula"
-import NewsItemHandle from "./NewsItemHandle.vue"
+import ItemHandle from "./ItemHandle.vue"
 
 export default {
   el: '#composer-toplevel',
@@ -43,7 +43,7 @@ export default {
   components: {
     /* Vue magically maps the NewsItemHandle class
        to <news-item-handle> in the HTML and so on */
-    NewsItemHandle
+    NewsItemHandle: ItemHandle.News
   },
   mounted: function() {
     GlobalBus.registerRootComponent(this)
@@ -67,7 +67,7 @@ export default {
             console.log("Attempting to drag", el)
             // Pieces without a NewsItemHandle (e.g. the big image
             // at the top) may not move
-            if (! NewsItemHandle.findUnder(el).length) { return true }
+            if (! ItemHandle.News.findUnder(el).length) { return true }
 
             // The big table at the bottom may not move as a whole
             if ($("#news-main", el).length) { return true }
