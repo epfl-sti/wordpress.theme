@@ -33,7 +33,8 @@ More info:
 
 <template>
 <div>
-  <select ref="select">
+  <!-- Re "width: 100%", see https://stackoverflow.com/a/34780303/435004 -->
+  <select ref="select" style="width: 100%;">
     <slot name="results"
           :search="search"
           :status="status"></slot>
