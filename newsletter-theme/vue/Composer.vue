@@ -40,32 +40,6 @@ export default {
       default: 2000
     }
   },
-  data: () => ({
-    /**
-     * The ordered list of NewsItemHandle children
-     */
-    news: null,
-    /**
-     * The serializable state of the composer.
-     *
-     * If different from the original state, will be submitted right away
-     * as an AJAX POST followed by page reload
-     */
-    serverState: null
-  }),
-  computed: {
-    /**
-     * The most recent server-side state of the composer.
-     *
-     * Flows to serverState after user is inactive for `commitDelay`
-     * milliseconds
-     */
-    _tmpServerState () {
-      if (this.news === null) return null   // Not fully initialized yet
-      let newsIds = _.map(this.news, (n) => parseInt(n.postId))
-      return { news: newsIds }
-    }
-  },
   components: {
     /* Vue magically maps the NewsItemHandle class
        to <news-item-handle> in the HTML and so on */
@@ -76,7 +50,6 @@ export default {
     GlobalBus.setStandardIdleDelay(this.standardIdleDelay)
 
     let vm = this, console = window.console
-    console.log("Ready")
     vm.$nextTick(() => {
       // Documentation says children should be mounted too by now.
       let mainTbody = $("#composer-toplevel > tbody")[0],
