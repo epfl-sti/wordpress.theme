@@ -244,7 +244,6 @@ class NewsletterSectionCategory
     function get_newsletter_section_name ()
     {
         $slug = $this->get_newsletter_section_slug();
-        error_log(var_export($slug, true));  // XXX
         $retval = self::get_sections()[$slug];
         if (! $retval) {
             $retval = __x("(Not set)", "Newsletter section category");
@@ -324,7 +323,6 @@ class NewsletterSectionCategoryController
 
     static function save_section_slug ($term_id, $unused_taxonomy) {
         $newval = $_REQUEST[NewsletterSectionCategory::SLUG];
-        error_log("Saving $newval for $term_id");  // XXX
         if ( null !== $newval ) {
             delete_term_meta($term_id, NewsletterSectionCategory::SLUG);
             if ($newval) {
