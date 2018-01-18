@@ -11,13 +11,15 @@
 
 <template>
 <div :class="getToplevelDivClass()">
-  <b-btn @click="doDelete" variant="danger">
+  <b-btn @click="doDelete"
+         :size="getSize()" variant="danger">
     <i class="fa fa-trash"></i>
-    <translate v-if="getSize() !== 'small'">Delete</translate>
+    <translate v-if="getSize() !== 'sm'">Delete</translate>
   </b-btn>
-  <b-btn v-b-toggle="'collapse' + id" variant="primary">
+  <b-btn v-b-toggle="'collapse' + id"
+         :size="getSize()" variant="primary">
     <i class="fa fa-edit"></i>
-    <translate v-if="getSize() !== 'small'">Insert</translate>
+    <translate v-if="getSize() !== 'sm'">Insert</translate>
     <span class="arrow">→</span>
   </b-btn>
   <b-collapse ref="theCollapse" :id="'collapse' + id">
@@ -178,11 +180,50 @@ ItemHandleBase.News = mixinify({
                 s: term
             })
     },
-    getSize() { return "normal" }
+    getSize() { return "" }
 })
 
+ItemHandleBase.Event = mixinify({
+    getToplevelDivClass () { return "event-handle" },
+    getSearchPromise(term) {
+        return WPajax(
+            "epfl_sti_newsletter_search",
+            {
+                post_type: "epfl-memento",
+                s: term
+            })
+    },
+    getSize() { return "sm" }
+})
+
+ItemHandleBase.Media = mixinify({
+    getToplevelDivClass () { return "media-item-handle" },
+    getSearchPromise(term) {
+        return WPajax(
+            "epfl_sti_newsletter_search",
+            {
+                topic: "in_the_media",
+                s: term
+            })
+    },
+    getSize() { return "sm" }
+})
+
+ItemHandleBase.Faculty = mixinify({
+    getToplevelDivClass () { return "media-item-handle" },
+    getSearchPromise(term) {
+        return WPajax(
+            "epfl_sti_newsletter_search",
+            {
+                topic: "faculty_positions",
+                s: term
+            })
+    },
+    getSize() { return "" }
+})
 
 export default ItemHandleBase  // But don't try to instantiate it
+
 </script>
 
 <style lang="scss" scoped>

@@ -43,7 +43,10 @@ export default {
   components: {
     /* Vue magically maps the NewsItemHandle class
        to <news-item-handle> in the HTML and so on */
-    NewsItemHandle: ItemHandle.News
+    NewsItemHandle       : ItemHandle.News,
+    EventHandle          : ItemHandle.Event,
+    MediaItemHandle      : ItemHandle.Media,
+    FacultyPositionHandle: ItemHandle.Faculty
   },
   mounted: function() {
     GlobalBus.registerRootComponent(this)
