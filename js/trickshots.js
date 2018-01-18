@@ -1,37 +1,18 @@
-//var viewportwidth;
- 
-//if (typeof window.innerWidth != 'undefined') {
- //viewportwidth = window.innerWidth;
-//}
- 
-//else if (typeof document.documentElement != 'undefined'
- //    && typeof document.documentElement.clientWidth !=
-  //   'undefined' && document.documentElement.clientWidth != 0) {
- //viewportwidth = document.documentElement.clientWidth;
-//}
- 
-//else {
-// viewportwidth = document.getElementsByTagName('body')[0].clientWidth;
-//}
 
-//var viewportwidth2 = parseFloat(viewportwidth);
-//var numperrow = 6;
-//if (viewportwidth2 < 1050) { numperrow=4; }
-
-var numperrow = 5;
-
-function set_personal_info(id, lastname, firstname, institute, title, lab, labsite, phone, office, image, link) {
+function set_personal_info(id, lastname, firstname, institute, title, mylabname, labname, labwebsite, phone, office, image, link, keywords) {
  this.id = id;
  this.lastname = lastname;
  this.firstname = firstname;
  this.institute = institute;
  this.title = title;
- this.lab = lab;
- this.labsite = labsite;
+ this.mylabname = mylabname;
+ this.labname = labname;
+ this.labwebsite = labwebsite;
  this.phone = phone;
  this.office = office;
  this.image = image;
  this.link = link;
+ this.keywords= keywords;
 }
 
 function findString(tstring,text) {
@@ -63,20 +44,12 @@ function _doPrintOuter(people_listing, which, lang, level) {
     
      if (people_listing[x].institute!='IBI1') {
 	result++;
-	test+="\
-            <div style='width:118px; height:190px; float:left; display: inline; clear: none;' class='pandalink' valign=top>\n\
-";
-	 test+=people_listing[x].link + "<img width='78' height='100' border='0' src='";
-				
-test+=img_dir+people_listing[x].image + "' title='" + people_listing[x].firstname + " " + people_listing[x].lastname;				
-		  test+="'/></a>\n\ <br>\n" + people_listing[x].link + people_listing[x].lastname + "<br>" + people_listing[x].firstname;				
-		  test+="</a>\n\ <div style='width: 78px' align=right>\n\ ";
-		  test+="<a class='pandalink' href='\n\
-				";
-test+= people_listing[x].labsite + "'>" + people_listing[x].lab + "</a></div><br/>";
-			test+="\
-			<br><br></div>\n\
-";
+	test+="<div style='width:148px; height:290px; float:left; display: inline; clear: none; background-color:#eee; padding:10px' class='' valign=top>";
+	test+=people_listing[x].link + "<img width='108' border='0' src='";
+	test+=img_dir+people_listing[x].image + "' title='" + people_listing[x].firstname + " " + people_listing[x].lastname;				
+	test+="'/></a>\n\ <br>\n" + people_listing[x].link + people_listing[x].lastname + "<br>" + people_listing[x].firstname;				
+	test+="</a>\n\ <div style='width: 138px; font-size:10px'>\n\ ";
+	test+="<a href=" + people_listing[x].labwebsite + ">" + people_listing[x].mylabname + "</a></div></div>";
   count++;
       
      }
