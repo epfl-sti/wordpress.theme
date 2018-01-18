@@ -19,7 +19,7 @@ class FacultyGallery extends \WP_Widget
   {
     parent::__construct(
       'EPFL_STI_Theme_Widget_FacultyGallery', // unique id
-      ___('Faculty Gallery'), // widget title
+      ___('EPFL Faculty Gallery'), // widget title
       // additional parameters
       array(
         'description' => ___('Shows mugshots of faculty members')
@@ -73,11 +73,8 @@ function _doPrintOuter(people_listing, which, lang, level) {
 test+=img_dir+people_listing[x].image + "' title='" + people_listing[x].firstname + " " + people_listing[x].lastname;				
 		  test+="'/></a>\n\ <br>\n" + people_listing[x].link + people_listing[x].lastname + "<br>" + people_listing[x].firstname;				
 		  test+="</a>\n\ <div style='width: 78px' align=right>\n\ ";
-		  test+="<a class='pandalink' href='\n\
-				";
-test+= people_listing[x].labsite + "'>" + people_listing[x].lab + "</a></div><br/>";
-			test+="\
-			<br><br></div>\n\
+		  test+="<a class='pandalink' href='" + people_listing[x].labwebsite + "'>" + people_listing[x].labname + "</a></div><br/>";
+			test+="<br><br></div>\n\
 ";
   count++;
       
