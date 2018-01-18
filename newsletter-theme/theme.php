@@ -215,7 +215,7 @@ function render_righthand_column_tables ($render_events_func, $render_in_the_med
     call_user_func($render_events_func);
     echo "
 			 <tr>
-			  <td align=right><table><td><a href=\"https://sti.epfl.ch/seminars\" class=\"outlink more\">More...</a></td></table></td>
+			  <td align=\"right\"><a href=\"https://sti.epfl.ch/seminars\" class=\"outlink more\">More...</a></td>
 			 </tr>
 			</table>
 		       ";
@@ -225,7 +225,7 @@ function render_righthand_column_tables ($render_events_func, $render_in_the_med
         call_user_func($render_in_the_media_func);
         echo "
 			 <tr>
-			  <td align=right><td><a href=\"https://sti.epfl.ch/news\" class=\"outlink more\">More...</a></td></td>
+			  <td align=\"right\"><a href=\"https://sti.epfl.ch/news\" class=\"outlink more\">More...</a></td>
 			 </tr>
 			</table>
 ";
