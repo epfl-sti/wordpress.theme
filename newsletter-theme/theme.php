@@ -197,7 +197,7 @@ function render_in_the_media_tr ($article, $link, $source, $date)
        </tr>
        <tr>
         <td class="divider">
-         <media-item-handle post-id="<?php echo get_the_id(); ?>"></media-item-handle>
+         <media-item-handle :post-id="<?php echo get_the_id(); ?>"></media-item-handle>
          &nbsp;</td>
        </tr>
       </table>
@@ -265,7 +265,7 @@ function render_news_item_td ($style)
                  get_the_title());
     echo sprintf('<a target="_blank" href="%s">%s</a>',
                  get_permalink(), strip_tags(get_the_excerpt()));
-    echo sprintf("<news-item-handle post-id=\"%d\"></news-item-handle>", get_the_id());
+    echo sprintf("<news-item-handle :post-id=\"%d\"></news-item-handle>", get_the_id());
     echo "</td>";
 }
 
@@ -275,7 +275,7 @@ function render_position_td () {
                  get_permalink(),
                  get_the_title());
     the_excerpt();
-    echo sprintf("<faculty-position-handle post-id=\"%d\"></faculty-position-handle>", get_the_id());
+    echo sprintf("<faculty-position-handle :post-id=\"%d\"></faculty-position-handle>", get_the_id());
     echo "</td>";
 }
 
@@ -362,7 +362,7 @@ function render_events ($events)
      </td>
     </tr>
     <tr><td colspan="2" class="divider">&nbsp;
-        <event-handle post-id="<?php echo get_the_id(); ?>"></event-handle>
+        <event-handle :post-id="<?php echo get_the_id(); ?>"></event-handle>
 </td></tr>
    </table>
   </td>
