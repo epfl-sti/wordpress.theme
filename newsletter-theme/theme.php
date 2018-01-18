@@ -315,17 +315,16 @@ function render_events ($events)
         global $post;
         $post = $event;  // We aren't in The Loop so there is nothing else to do
         $title = get_the_title();
-        $link = get_permalink($post);
+        $link  = get_permalink($post);
+        $day   = null;  // Unless changed below
+        $month = null;  // Same
         if (class_exists('EPFL\\WS\\Memento\\Memento')) {
             $epfl_memento = \EPFL\WS\Memento\Memento::get($post);
 
             $start = $epfl_memento->get_start_datetime();
             $end   = $epfl_memento->get_end_datetime();
-            if (! $start) {
-                $day = "?";
-                $month = "";
-            } else {
-                if ($start && $end &&
+            if ($start) {
+                if ($end &&
                     ($start->format('Y m') === $end->format('Y m')) &&
                     ($start->format('j')   !== $end->format('j'))) {
                     $day = sprintf("%d-%d", $start->format('j'),
@@ -338,8 +337,6 @@ function render_events ($events)
 
             $ical_link = $epfl_memento->get_ical_link();
         } else {  // No epfl-ws plugin
-            $day = "?";
-            $month = "";
             $ical_link = $link;
         }
 ?>
@@ -352,9 +349,11 @@ function render_events ($events)
      </td>
     </tr>
     <tr>
-     <td style="padding: 0px 0px 10px 0px;" width="50" align="left" valign="top">
-      <div class="date"><a href="<?php echo $link; ?>"><span class="day"><?php  echo $day; ?></span><br><span class="month"><?php echo $month; ?></span></a></div>
-     </td>
+     <?php if ($day && $month): ?>
+      <td style="padding: 0px 0px 10px 0px;" width="50" align="left" valign="top">
+       <div class="date"><a href="<?php echo $link; ?>"><span class="day"><?php  echo $day; ?></span><br><span class="month"><?php echo $month; ?></span></a></div>
+      </td>
+     <?php endif; ?>
      <td style="font-size:12px;" align=right>
       <?php echo $place; ?>
       <br>
