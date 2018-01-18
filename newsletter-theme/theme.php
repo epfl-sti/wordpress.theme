@@ -209,8 +209,8 @@ function render_in_the_media_tr ($article, $link, $source, $date)
 
 function render_righthand_column_tables ($render_events_func, $render_in_the_media_func)
 {
-    $opentable = "<table width=\"100%\" cellpadding=\"8\" cellspacing=\"0\" border=\"0\">";
-    echo "$opentable";
+    $table_attributes = "width=\"100%\" cellpadding=\"8\" cellspacing=\"0\" border=\"0\"";
+    echo "<table $table_attributes id=\"events\">";
     render_red_title_tr("EVENTS");
     call_user_func($render_events_func);
     echo "
@@ -220,22 +220,17 @@ function render_righthand_column_tables ($render_events_func, $render_in_the_med
 			</table>
 		       ";
     if ($render_in_the_media_func) {
-        echo "<br>$opentable";
+        echo "<br><table $table_attributes id=\"in-the-media\">";
         render_red_title_tr("IN THE MEDIA");
         call_user_func($render_in_the_media_func);
         echo "
 			 <tr>
-			  <td align=right><table id=\"inthemedia\"><td><a href=\"https://sti.epfl.ch/news\" class=\"outlink more\">More...</a></td></table></td>
+			  <td align=right><td><a href=\"https://sti.epfl.ch/news\" class=\"outlink more\">More...</a></td></td>
 			 </tr>
 			</table>
 ";
     }
     echo "</td>\n";
-}
-
-function get_main_matter_td_style ()
-{
-    return sprintf("style=\"padding: 20px 10px 20px 10px; background-color:#fff; font-size: 13px; %s\"", get_main_matter_font_style());
 }
 
 function render_news_item_td ($style)
@@ -410,8 +405,8 @@ render_frame_table(function() {
 
     echo "<tr>";
     echo "<td width=\"520\" valign=\"top\">";
-    printf('<table id="news-main" width="%s" cellspacing="0" %s>',
-           "100%", get_main_grid_table_attributes());
+    printf('<table id="news-main" width="100%%" cellspacing="0" %s>',
+           get_main_grid_table_attributes());
     for ($i = 1; $i < count($news); $i++) {
         $post = $news[$i];  // See comment above
         echo "<tr>";
