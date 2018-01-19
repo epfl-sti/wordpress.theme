@@ -62,7 +62,7 @@
     position: absolute;
     top: $sti-carousel-button-distancefromtop;
 
-    @media screen and (max-width: $megamenu-toosmall - 1) {
+    @media screen and (max-width: $carousel-controls-toosmall - 1) {
        visibility: hidden;
     }
   &.next {
