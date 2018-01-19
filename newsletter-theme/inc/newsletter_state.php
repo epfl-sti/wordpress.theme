@@ -194,15 +194,20 @@ abstract class PostQuery
         foreach ($this->_get_posts_by_query($query) as $post) {
             array_push($results, $this->_post2result($post));
         }
-        return array(
+        $ajax_retval = array(
             "status" => "OK",
             "searchResults" => $results
         );
+        if (function_exists("pll_the_languages")) {
+            $ajax_retval["pll_the_languages"] = \pll_the_languages(
+                array("raw" => 1));
+        }
+        return $ajax_retval;
     }
 
     protected function _post2result ($post)
     {
-        return array(
+        $result = array(
             "ID"           => $post->ID,
             // TODO: $post->post_author is an int, should dereference it
             "post_author"  => strip_tags($post->post_author),
@@ -211,6 +216,12 @@ abstract class PostQuery
             "post_excerpt" => strip_tags($post->post_excerpt),
             "post_content" => strip_tags($post->post_content),
         );
+
+        if (function_exists("pll_get_post_language")) {
+            $result["lang"] = \pll_get_post_language($post->ID);
+        }
+
+        return $result;
     }
 }
 
