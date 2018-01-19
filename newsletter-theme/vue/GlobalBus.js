@@ -17,6 +17,13 @@ import _ from "lodash"
 import Vue from 'vue'
 import ItemHandle from "./ItemHandle.vue"
 
+const stateTraits = {
+    news:    ItemHandle.news,
+    events:  ItemHandle.Event,
+    media:   ItemHandle.Media,
+    faculty: ItemHandle.Media,
+}
+
 const GlobalBus = new Vue({
   data: () => ({
     /**
@@ -54,11 +61,14 @@ const GlobalBus = new Vue({
       this.standardIdleDelay = delayMs
     },
     _readState () {
-      return {
-        news: _.map(
-          ItemHandle.News.findUnder(this._rootComponent),
-          (news) => parseInt(news.postId))
-      }
+      const vm = this
+      return _.mapValues(
+          stateTraits,
+          (theClass, key) => _.map(
+              theClass.findUnder(vm._rootComponent),
+              (item) => parseInt(item.postId)
+          )
+      )
     },
     _setIdleDelay (delay) {
       if (this._timeout) clearTimeout(this._timeout)
@@ -92,11 +102,11 @@ GlobalBus.$on("dom_reordered", function () {
 GlobalBus.$on("insert_after", function (vm, new_id) {
     let i = _.indexOf(vm.findUnder(this._rootComponent), vm)
 
-    if (vm.isInstanceOf(ItemHandle.News)) {
-        console.log("This is indeed a News object");  // XXX
-        this.state.news.splice(i + 1, 0, new_id)
-    }
-
+    _.mapKeys(stateTraits, function(theClass, key) {
+        if (vm.isInstanceOf(theClass)) {
+            this.state.splice(i + 1, 0, new_id)
+        }
+    })
     this._setIdleDelay(0)
 })
 

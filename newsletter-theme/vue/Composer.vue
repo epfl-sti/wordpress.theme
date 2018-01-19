@@ -55,9 +55,11 @@ export default {
     let vm = this, console = window.console
     vm.$nextTick(() => {
       // Documentation says children should be mounted too by now.
+      vm.drakes = {}
+
       let mainTbody = $("#composer-toplevel > tbody")[0],
           newsTbody = $("#news-main > tbody")[0]
-      vm.dragula = dragula(
+      vm.drakes.news = dragula(
         [mainTbody, newsTbody],
         {
           invalid (el) {
@@ -78,8 +80,14 @@ export default {
           }
         }
       )
-      vm.dragula.on("drop", () => {
-        GlobalBus.$emit("dom_reordered")
+
+      // The other ones are easier DOM-wise
+      vm.drakes.events  = dragula([$("table#events        > tbody")[0]])
+      vm.drakes.media   = dragula([$("table#in-the-media  > tbody")[0]])
+      vm.drakes.faculty = dragula([$("table#faculty       > tbody")[0]])
+
+      _.map(_.values(vm.drakes], (drake) => {
+        drake.on("drop", () => GlobalBus.$emit("dom_reordered"))
       })
     })
   }
