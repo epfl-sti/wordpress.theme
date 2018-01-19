@@ -6,7 +6,7 @@ a.sti_menu_link {
   color: #555;
 
   position: relative;
-  @media screen and (max-width: $megamenu-toosmall) {
+  @media screen and (max-width: $megamenu-toosmall - 1) {
     top: 5px;
   }
   @media screen and (min-width: $megamenu-toosmall) {
@@ -147,7 +147,7 @@ Screen style's
     box-sizing: border-box;
 }
 
-@media screen and (max-width: $megamenu-toosmall) {
+@media screen and (max-width: $megamenu-toosmall - 1) {
   .menu > ul > li a {
    top: 5px;
    background-image: none;
@@ -247,7 +247,7 @@ a:hover.sti_menu_link {
 Mobile styles
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-@media only screen and (max-width: $megamenu-toosmall) {
+@media only screen and (max-width: $megamenu-toosmall - 1) {
     .menu-container {
         width: 100%;
 	background-image: none;
