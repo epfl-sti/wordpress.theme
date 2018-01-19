@@ -251,7 +251,7 @@ class NewsletterSectionCategory
         return $retval;
     }
 
-    static function find ($slug, $language_hint = null)
+    static function find_all ($slug, $language_hint = null)
     {
         $terms = get_terms(array(
             'taxonomy'   => 'category',
@@ -270,14 +270,12 @@ class NewsletterSectionCategory
                         pll_get_term($term->term_id, $language_hint));
                 }));
         }
-        // No Polylang? No matter: just keep the first one (a notch
-        // better than inserting into all of them, which we *could* do
-        // too from here)
-        if (count($terms)) {
-            return [new $theclass($terms[0]->term_id)];
-        } else {
-            return [];
-        }
+        return array_values(array_filter(
+            $terms,
+            function ($term) {
+                return new NewsletterSectionCategory($term->term_id);
+            }
+        ));
     }
 }
 
