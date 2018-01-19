@@ -384,11 +384,19 @@ function render_in_the_media_table ($media_list)
         global $post; $post = $media;
         $article = strip_tags(get_the_title());
         $link    = get_permalink($post);
-        if (class_exists('\EPFL\STI\EPFLPost')) {
-            $epfl_post = new EPFL\STI\EPFLPost($post);
+        if (class_exists('\\EPFL\\STI\\EPFLPost')) {
+            $epfl_post = new \EPFL\STI\EPFLPost($post);
             $source    = $epfl_post->get_published_in();
             $date      = $epfl_post->get_publication_date();
-            // TODO: Tabulate authors and their labs
+            $dateformat = __x("Y-m-d",
+                              "Date format for an \"in the media\" entry in the newsletter");
+            if ($source && $date) {
+                $bibentry = "$source, " . $date->format($dateformat);
+            } elseif ($source) {
+                $bibentry = "source";
+            } else {
+                $bibentry = "";
+            }
         }
     ?>
      <tr>
@@ -402,9 +410,20 @@ function render_in_the_media_table ($media_list)
         </tr>
         <tr>
          <td style='font-size:10px;' align=right>
-          <?php echo "$source, $date"; ?>
+          <?php echo $bibentry;
+            $authors = $epfl_post->get_authors();
+            if ($authors) {
+              $labname = sprintf(___("%s's lab"), $authors[0]->get_full_name());
+              $laburl = $authors[0]->get_lab_website_url();
+              echo "<br>";
+              printf(___("At %s"), sprintf('<a href="%s">%s</a>',
+                                           $laburl, $labname));
+          ?>
          </td>
         </tr>
+        <?php
+            }  // end if ($authors)
+        ?>
         <tr>
          <td class="divider">&nbsp;</td>
         </tr>

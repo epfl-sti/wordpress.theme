@@ -28,7 +28,7 @@ class EPFLPost
 {
     const EXTERNAL_URL_SLUG  = "external_url";
 
-    const AUTHOR_SLUG        = "epfl_author";
+    const AUTHOR_SLUG        = "epfl_work_by";
 
     const PUBLISHED_IN_SLUG  = "epfl_media_publication_name";
 
@@ -54,12 +54,12 @@ class EPFLPost
 
     function get_authors ()
     {
-        if (! class_exists('EPFL\Persons\Person')) { return []; }
+        if (! class_exists('\\EPFL\\Persons\\Person')) { return []; }
 
         $authors = [];
         foreach (get_post_meta($this->ID, self::AUTHOR_SLUG)
             as $sciper_text) {
-            $author = EPFL\Persons\Person::find_by_sciper((int) $sciper_text);
+            $author = \EPFL\Persons\Person::find_by_sciper((int) $sciper_text);
             if ($author) { array_push($authors, $author); }
         }
         return $authors;
@@ -75,9 +75,11 @@ class EPFLPost
         return get_post_meta($this->ID, self::PUBLISHED_IN_SLUG, true);
     }
 
-    function get_the_publication_date ()
+    function get_publication_date ()
     {
-        return get_post_meta($this->ID, self::PUBLISHED_ON_SLUG, true);
+        $date_raw = get_post_meta($this->ID, self::PUBLISHED_ON_SLUG, true);
+        if (! $date_raw) return;
+        return \DateTime::createFromFormat('Y-m-d', $date_raw);
     }
 }
 
