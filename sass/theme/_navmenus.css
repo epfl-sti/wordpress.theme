@@ -48,22 +48,21 @@
 .menu-front-row {
   margin-left: 8pt;
   li {
-    padding: 4pt 0;
+    padding: 1em 0;
   }
   ul.menu {
     font: 1em verdana;
     text-transform: uppercase;
-    padding-bottom: 3px;
   }
   ul.sub-menu {
     font: 0.9em verdana;
     padding-bottom: 8pt;
     text-transform: none;
-    padding-top: 10px;
+    padding-top: 1em;
   }
   ul.sub-menu>li {
     border-bottom: 1.5px solid #2c2b2b;
     border-top: 1.5px solid #3e3e3e;
-    padding: 4pt 0 11pt 0;
+    padding: 0.5em 0 0.5em 0.5em;
   }
 }
