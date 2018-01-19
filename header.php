@@ -40,24 +40,26 @@ $hp = (function_exists( 'pll_home_url' )) ? pll_home_url() : get_site_url();
 
 <body <?php body_class(); ?>>
 
-<div class="menu-container">
+<div class="menu-container container-fluid">
 
-    <div class="menu">
+    <div class="menu row no-gutters">
 
-        <!-- Your site logo -->
-        <?php if ( ! has_custom_logo() ) { ?>
-           <a href="https://www.epfl.ch"> <img width=174 id=epfl_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a>
-           <a href="<?php echo esc_url( home_url( '/' ) ); ?>"> <img id=sti_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.png" /></a>
-        <?php } else {
-            the_custom_logo();
-        } ?><!-- end custom logo -->
+        <?php # Site logo and top-most navigation in a 0-height div ?>
+        <div style="height: 0px; overflow: visible;">
+            <?php if ( ! has_custom_logo() ) { ?>
+               <a href="https://www.epfl.ch"> <img width=174 id=epfl_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a>
+               <a href="<?php echo esc_url( home_url( '/' ) ); ?>"> <img id=sti_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.png" /></a>
+            <?php } else {
+                the_custom_logo();
+            } ?>
 
-        <div class="language">
-            <?php // This uses polylang. Change the language full name to get the FR / EN (https://polylang.pro/doc/configure-the-languages/#full-name) ?>
-            <ul class="epflstilangmenu"><?php if (function_exists('pll_the_languages')) { pll_the_languages(); } ?></ul>
-        </div>
+            <div class="language">
+                <?php // This uses polylang. Change the language full name to get the FR / EN (https://polylang.pro/doc/configure-the-languages/#full-name) ?>
+                <ul class="epflstilangmenu"><?php if (function_exists('pll_the_languages')) { pll_the_languages(); } ?></ul>
+            </div>
+        </div><?php # Site logo ?>
 
-        <ul class="sti_menu_link_ul">
+        <ul id="megamenu" class="justify-content-center">
             <li>
                 <?php echo "<!-- THE SCHOOL MENU -->"; echo get_page_by_title( 'menu-school-'. $cl )->post_content ; ?>
             </li>

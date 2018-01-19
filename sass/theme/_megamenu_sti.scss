@@ -1,0 +1,8 @@
+@media screen and (min-width: $megamenu-toosmall) {
+  ul#megamenu {
+    display: flex;
+    background-image: url('/wp-content/themes/epfl-sti/img/src/lozenges.png');
+    background-repeat: no-repeat;
+    background-position: top center;
+  }
+}
