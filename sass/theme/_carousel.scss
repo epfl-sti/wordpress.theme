@@ -1,18 +1,11 @@
-#container-carousel {
+.carousel.slide {
     position: relative;
     top: 0px;
     z-index: 2;
     background-position: center top;
-    height: 300px;
     width: 100%;
     overflow: hidden;
-
-    @media screen and (max-width: $carousel-screen-width-small) {
-        height: $carousel-height-small;
-    }
-    @media screen and (min-width: $carousel-screen-width-small) {
-        height: $carousel-height-large;
-    }
+    margin-bottom: 20pt;
 }
 
 .carousel-item {
