@@ -100,39 +100,40 @@ $fullcontact="
 ";
 ?>
 
-<div class="row">
- <div class="col-sm-8 content-area" id="primary">
-   <div class="entry-content sti_content_maincolumn">
-    <header class="entry-header">
-     <h1 class="people_titles temp_people_title"><?php the_title(); ?></h1>
-    </header><?php # .entry-header ?>
-    <div class=sti_beige>
-     <img style="position: absolute; top:-12px; right: -8px;" src="/wp-content/themes/epfl-sti/img/src/topright.png">
-     <img style="position: absolute; bottom:-12px; left: -4px;" src="/wp-content/themes/epfl-sti/img/src/bottomleft.png">
+<div class="container">
+ <div class="row">
+  <div class="col-8 content-area" id="primary">
+    <div class="entry-content sti_content_maincolumn">
+     <header class="entry-header">
+      <h1 class="people_titles temp_people_title"><?php the_title(); ?></h1>
+     </header><?php # .entry-header ?>
+     <div class=sti_beige>
+      <img style="position: absolute; top:-12px; right: -8px;" src="/wp-content/themes/epfl-sti/img/src/topright.png">
+      <img style="position: absolute; bottom:-12px; left: -4px;" src="/wp-content/themes/epfl-sti/img/src/bottomleft.png">
+      <div class="sti_content_prof_text">
+       <div class="sti_content_prof_photo">
+    	<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
+       </div><?php # prof_photo ?>
+       <b><?php echo "$position</b><br><br>$bio<br><br>"; ?>
+      </div><?php # prof_text ?>
+     </div><?php # beige ?>
+    </div><?php # .entry-content ?>
+   <br>
+    <div class="entry-content sti_content_maincolumn">
+      <h1 class="people_titles">Positions</h1>
      <div class="sti_content_prof_text">
-      <div class="sti_content_prof_photo">
-   	<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
-      </div><?php # prof_photo ?>
-      <b><?php echo "$position</b><br><br>$bio<br><br>"; ?>
+       <?php echo $epfl_positions ?>
      </div><?php # prof_text ?>
-    </div><?php # beige ?>
-   </div><?php # .entry-content ?>
-  <br>
-   <div class="entry-content sti_content_maincolumn">
-     <h1 class="people_titles">Positions</h1>
-    <div class="sti_content_prof_text">
-      <?php echo $epfl_positions ?>
-    </div><?php # prof_text ?>
-   </div><?php # .entry-content ?>
- </div><?php # #primary ?>
-
- <?PHP # NAV MENU START ?>
- <div class="sti_righthand_menu col-md-4">
-  <div class="sti_people_menu_title frontrowmarker">
-   <?php echo $labname; ?> <span class="sti_people_menu_black"><?php echo $mylabname; ?></span>
-   <img src=<?php echo $labimage; ?> class="sti_people_menu_image">
-  </div><!-- menutitle-->
-  <div class="sti_people_box">
+    </div><?php # .entry-content ?>
+  </div><?php # #primary ?>
+ 
+  <?PHP # NAV MENU START ?>
+  <div class="sti_righthand_menu offset-1 col-md-3 d-xs-none d-md-block">
+   <div class="sti_people_menu_title frontrowmarker">
+    <?php echo $labname; ?> <span class="sti_people_menu_black"><?php echo $mylabname; ?></span>
+    <img src=<?php echo $labimage; ?> class="sti_people_menu_image">
+   </div><!-- menutitle-->
+   <div class="sti_people_box">
    <div class="sti_people_menu_white">
     <?php echo$keywords; ?>
    </div><!--menuwhite-->
@@ -174,50 +175,51 @@ echo "<h5>$firstname $surname</h5>$position<br>Office: <a class=whitelink href=h
     </div><?php # .entry-content ?>
  </div><?php # #primary ?>
 
-</div><?php # .row ?>
-<div class="row">
- <div class="col-md-8 content-area" id="primary">
-   <div class="entry-content holding sti_content_maincolumn">
-    <h1 class=people_titles>News</h1>	
-    <div class="sti_content_prof_text">
-     <a name=news></a>
-     <div class="frontrowcontent">
-<?php
-   	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage1\");'><div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>";
-   	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage2\");'><div class=peoplenewstitle><a class=whitelink href=$newslink2>$newstitle2</a></div></div>"; 
-   	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage3\");'><div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>"; 
-   	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage4\");'><div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>";
-?>
-
-     </div><?php # frontrowcontent ?>
-    </div><?php # prof_text ?>
-  </div><?php # .sti_content_maincolumn ?>
- </div><?php # #primary ?>
-</div><?php # .row ?>
-
-<div class="row">
- <div class="col-md-8 content-area" id="primary">
-  <div class="entry-content sti_content_maincolumn holding">
-    <h1 class=people_titles><?php echo "$labvideotitle"; ?></h1>	
-    <div class="sti_content_prof_text">
-     <a name=video></a>
-
-     <div style="margin: 20px 0px 40px 0px; float:left; max-width:680; width: 100%; height:285px; "><iframe src="https://www.youtube.com/embed/<?php echo $labvideo; ?>?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="680" height="280" frameborder="0"></iframe></div>
-
-    </div><!--prof_text-->
-  </div><?php # .sti_content_maincolumn ?>
- </div><?php # #primary ?>
-</div><?php # .row ?>
-
-<div class="row">
- <div class="col-md-8 content-area" id="primary">
-  <div class="sti_content_maincolumn">
-   <div class="entry-content holding">
-    <h1 class=people_titles><?php echo "$firstname $surname"; ?></h1>	
-    <div class="sti_content_prof_text">
-     <a name=fullcontact></a>
-      <?php echo $fullcontact; ?>
-    </div><!--prof_text-->
-  </div><?php # .sti_content_maincolumn ?>
- </div><?php # #primary ?>
-</div><?php # .row ?>
+ </div><?php # .row ?>
+ <div class="row">
+  <div class="col-md-8 content-area" id="primary">
+    <div class="entry-content holding sti_content_maincolumn">
+     <h1 class=people_titles>News</h1>	
+     <div class="sti_content_prof_text">
+      <a name=news></a>
+      <div class="frontrowcontent">
+ <?php
+    	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage1\");'><div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>";
+    	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage2\");'><div class=peoplenewstitle><a class=whitelink href=$newslink2>$newstitle2</a></div></div>"; 
+    	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage3\");'><div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>"; 
+    	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage4\");'><div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>";
+ ?>
+ 
+      </div><?php # frontrowcontent ?>
+     </div><?php # prof_text ?>
+   </div><?php # .sti_content_maincolumn ?>
+  </div><?php # #primary ?>
+ </div><?php # .row ?>
+ 
+ <div class="row">
+  <div class="col-md-8 content-area" id="primary">
+   <div class="entry-content sti_content_maincolumn holding">
+     <h1 class=people_titles><?php echo "$labvideotitle"; ?></h1>	
+     <div class="sti_content_prof_text">
+      <a name=video></a>
+ 
+      <div style="margin: 20px 0px 40px 0px; float:left; max-width:680; width: 100%; height:285px; "><iframe src="https://www.youtube.com/embed/<?php echo $labvideo; ?>?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="680" height="280" frameborder="0"></iframe></div>
+ 
+     </div><!--prof_text-->
+   </div><?php # .sti_content_maincolumn ?>
+  </div><?php # #primary ?>
+ </div><?php # .row ?>
+ 
+ <div class="row">
+  <div class="col-md-8 content-area" id="primary">
+   <div class="sti_content_maincolumn">
+    <div class="entry-content holding">
+     <h1 class=people_titles><?php echo "$firstname $surname"; ?></h1>	
+     <div class="sti_content_prof_text">
+      <a name=fullcontact></a>
+       <?php echo $fullcontact; ?>
+     </div><!--prof_text-->
+   </div><?php # .sti_content_maincolumn ?>
+  </div><?php # #primary ?>
+ </div><?php # .row ?>
+</div><?php # .container ?>
