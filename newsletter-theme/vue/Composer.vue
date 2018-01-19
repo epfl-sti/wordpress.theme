@@ -86,7 +86,7 @@ export default {
       vm.drakes.media   = dragula([$("table#in-the-media  > tbody")[0]])
       vm.drakes.faculty = dragula([$("table#faculty       > tbody")[0]])
 
-      _.map(_.values(vm.drakes], (drake) => {
+      _.map(_.values(vm.drakes), (drake) => {
         drake.on("drop", () => GlobalBus.$emit("dom_reordered"))
       })
     })
