@@ -38,6 +38,11 @@ require get_template_directory() . '/inc/enqueue.php';
 require get_template_directory() . '/inc/template-tags.php';
 
 /**
+ * Custom post metadata and its rendering.
+ */
+require get_template_directory() . '/inc/metadata.php';
+
+/**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/pagination.php';
