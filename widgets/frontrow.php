@@ -107,7 +107,7 @@ class FrontRow extends \WP_Widget
                         };
                         echo $s;
                       ?>
-                      <div class="add_to_calendar"><a href="https://memento.epfl.ch/event/export/' . $event->translation_id . '/" title="Add to calendar"><i class="far fa-calendar-plus"></i></a></div>
+                      <div class="add_to_calendar"><a href="https://memento.epfl.ch/event/export/<?php echo $event->translation_id; ?>/" title="Add to calendar"><i class="far fa-calendar-plus"></i></a></div>
                     </div>
                   </div>
               <?php
