@@ -40,7 +40,7 @@ $hp = (function_exists( 'pll_home_url' )) ? pll_home_url() : get_site_url();
 
 <body <?php body_class(); ?>>
 
-<div class="menu-container container-fluid">
+<div id="header" class="menu-container container-fluid">
 
     <div id="megamenu" class="menu row no-gutters">
 
