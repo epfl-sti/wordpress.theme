@@ -1,8 +1,8 @@
 // Home page carousel variables
 // See also _carousel.scss for customization *after* the Bootstrap carousel
 // has loaded
-$carousel-control-prev-icon-bg: url("/wp-content/themes/epfl-sti/img/src/left.png");
-$carousel-control-next-icon-bg: url("/wp-content/themes/epfl-sti/img/src/right.png");
+$carousel-control-prev-icon-bg: url("../img/src/left.png");
+$carousel-control-next-icon-bg: url("../img/src/right.png");
 
 $sti-carousel-button-distancefromtop: 160px;
 // This variable is for the Bootstrap carousel that we use:
