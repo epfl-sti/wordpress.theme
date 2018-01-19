@@ -1,8 +1,18 @@
+#header {
+  // Require to use z-indexes, position: absolute on children
+  position: relative;
+}
+
+#megamenu a.menu-mobile {  // burger menu - Hidden (by _megamenu.scss) on large widths
+  position: absolute;
+  // In principle, we should share variables with _megamenu.scss for
+  // these coordinates:
+  top: 0px;
+  right: 20px;
+}
+
 // The full-feathered mega menu! (Offer void if screen too small)
 @media screen and (min-width: $megamenu-toosmall) {
-  #header {
-    position: relative;
-  }
   #megamenu > ul {
     display: flex;
     background-image: url('/wp-content/themes/epfl-sti/img/src/lozenges.png');
@@ -18,8 +28,14 @@
 }
 
 // Something that works on smaller screens
-#megamenu a.menu-mobile {  // burger menu
-  position: absolute;
-  top: 80px;
-  right: 20px;
+@media screen and (max-width: $megamenu-toosmall - 1) {
+  #megamenu {
+    z-index: 10;
+    > ul {
+      // Somewhere between the "+" color (#ddd) and the main page's grey
+      // background (#ccc): 
+      background-color: #cac8c8;
+      border: 1px solid black;
+    }
+  }
 }
