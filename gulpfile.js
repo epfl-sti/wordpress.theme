@@ -151,7 +151,8 @@ gulp.task('browser-sync', ['watch'], function() {
 gulp.task('sass', function () {
     return gulp.src('./sass/*.scss')
         .pipe(processSASS())
-        .pipe(assetsDest());
+        .pipe(assetsDest())
+        .pipe(browserSync.stream());
 });
 
 // Run:
@@ -177,7 +178,8 @@ gulp.task('scripts', function() {
         .pipe(bundleJS('theme.js'))
         .pipe(assetsDest())  // Save un-minified, then continue
         .pipe(uglifyJS())
-        .pipe(assetsDest());
+        .pipe(assetsDest())
+        .pipe(browserSync.stream());
 });
 
 // Run:
@@ -231,7 +233,8 @@ gulp.task('admin-scripts', function() {
         .pipe(processSASS())
         .pipe(assetsDest());
 
-    return merge2(js_pipeline, css_pipeline);
+    return merge2(js_pipeline, css_pipeline)
+        .pipe(browserSync.stream());
 });
 
 // Run:
@@ -248,7 +251,8 @@ gulp.task('copy-assets', function() {
         'ionicons/dist/css/ionicons.min.css*'
     ];
     return gulp.src(npm_goodies.map((path) => './node_modules/' + path))
-            .pipe(assetsDest());
+        .pipe(assetsDest())
+        .pipe(browserSync.stream());
 });
 
 // Run:
