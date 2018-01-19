@@ -1,8 +1,25 @@
+// The full-feathered mega menu! (Offer void if screen too small)
 @media screen and (min-width: $megamenu-toosmall) {
-  ul#megamenu {
+  #header {
+    position: relative;
+  }
+  #megamenu > ul {
     display: flex;
     background-image: url('/wp-content/themes/epfl-sti/img/src/lozenges.png');
     background-repeat: no-repeat;
     background-position: top center;
   }
+
+  #megamenu nav {
+    height: 0px;
+    overflow: visible;
+  }
+
+}
+
+// Something that works on smaller tests
+#megamenu a.menu-mobile {  // burger menu
+  position: absolute;
+  top: 80px;
+  right: 20px;
 }

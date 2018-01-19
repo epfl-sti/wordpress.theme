@@ -42,10 +42,10 @@ $hp = (function_exists( 'pll_home_url' )) ? pll_home_url() : get_site_url();
 
 <div class="menu-container container-fluid">
 
-    <div class="menu row no-gutters">
+    <div id="megamenu" class="menu row no-gutters">
 
         <?php # Site logo and top-most navigation in a 0-height div ?>
-        <div style="height: 0px; overflow: visible;">
+        <nav>
             <?php if ( ! has_custom_logo() ) { ?>
                <a href="https://www.epfl.ch"> <img width=174 id=epfl_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a>
                <a href="<?php echo esc_url( home_url( '/' ) ); ?>"> <img id=sti_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.png" /></a>
@@ -57,7 +57,7 @@ $hp = (function_exists( 'pll_home_url' )) ? pll_home_url() : get_site_url();
                 <?php // This uses polylang. Change the language full name to get the FR / EN (https://polylang.pro/doc/configure-the-languages/#full-name) ?>
                 <ul class="epflstilangmenu"><?php if (function_exists('pll_the_languages')) { pll_the_languages(); } ?></ul>
             </div>
-        </div><?php # Site logo ?>
+        </nav>
 
         <ul id="megamenu" class="justify-content-center">
             <li>
