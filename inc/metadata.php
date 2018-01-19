@@ -30,7 +30,9 @@ class EPFLPost
 
     const AUTHOR_SLUG        = "epfl_author";
 
-    const PUBLISHED_IN_SLUG  = "epfl_published_in";
+    const PUBLISHED_IN_SLUG  = "epfl_media_publication_name";
+
+    const PUBLISHED_ON_SLUG  = "epfl_media_publication_date";
 
     function __construct ($post_or_post_id)
     {
@@ -68,9 +70,14 @@ class EPFLPost
         return get_post_meta($this->ID, self::EXTERNAL_URL_SLUG, true);
     }
 
-    function get_the_published_in ()
+    function get_published_in ()
     {
         return get_post_meta($this->ID, self::PUBLISHED_IN_SLUG, true);
+    }
+
+    function get_the_publication_date ()
+    {
+        return get_post_meta($this->ID, self::PUBLISHED_ON_SLUG, true);
     }
 }
 

@@ -58,13 +58,18 @@ const GlobalBus = new Vue({
       this.standardIdleDelay = delayMs
     },
     _readState () {
-      const vm = this
+      const gs = this
       return _.mapValues(
           stateTraits,
-          (theClass, key) => _.map(
-              theClass.findUnder(vm._rootComponent),
-              (item) => parseInt(item.postId)
-          )
+          function(theClass, key) {
+              let vms = theClass.findUnder(gs._rootComponent),
+                  retval = []
+              for(var i = 0; i < vms.length; i++) {
+                  const id = vms[i].postId
+                  if (id) { retval.push(id) }
+              }
+              return retval
+          }
       )
     },
     _setIdleDelay (delay) {
@@ -88,8 +93,8 @@ const GlobalBus = new Vue({
  * sent.
  */
 GlobalBus.$on("dom_reordered", function () {
-  this._setIdleDelay(this.standardIdleDelay)
-  this.state = this._readState()
+    this._setIdleDelay(this.standardIdleDelay)
+    this.state = this._readState()
 })
 
 /**
@@ -97,11 +102,18 @@ GlobalBus.$on("dom_reordered", function () {
  * after @param vm. We should reload immediately.
  */
 GlobalBus.$on("insert_after", function (vm, new_id) {
-    let i = _.indexOf(vm.findUnder(this._rootComponent), vm)
-
+    const gs = this
     _.mapKeys(stateTraits, function(theClass, key) {
-        if (vm.isInstanceOf(theClass)) {
-            this.state.splice(i + 1, 0, new_id)
+        if (! vm.isInstanceOf(theClass)) return
+        if (! gs.state[key]) { gs.state[key] = [] }
+
+        let postIdList = gs.state[key]
+        if (! vm.postId) {
+            // This is an insert-only handle
+            postIdList.push(new_id)
+        } else {
+            let i = _.indexOf(vm.findUnder(gs._rootComponent), vm)
+            postIdList.splice(i + 1, 0, new_id)
         }
     })
     this._setIdleDelay(0)

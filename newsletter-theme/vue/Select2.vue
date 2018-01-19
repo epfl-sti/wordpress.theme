@@ -210,7 +210,7 @@ export default {
         }
       })
       .val(this.value)
-      .on('select2:close', function () {
+      .on('select2:select', function () {
         vm.$emit('input', this.value)
       })
   },

@@ -1,7 +1,9 @@
 <!--
     Edit handles for news / memento / in-the-news articles.
 
-    Permits deletion, search-as-you-type insertion.
+    Permits search-as-you-type insertion, and deletion (unless the
+    `postId` prop is undefined, in which case an insert-only widget is
+    rendered)
 
     The default import an "abstract base class" that *cannot* be
     instantiated directly. Instead, instantiate "subclasses" that
@@ -11,7 +13,7 @@
 
 <template>
 <div :class="toplevelDivClass">
-  <b-btn @click="doDelete"
+  <b-btn v-if="postId !== undefined" @click="doDelete"
          :size="bootstrapSize" variant="danger">
     <i class="fa fa-trash"></i>
     <translate v-if="bootstrapSize !== 'sm'">Delete</translate>
@@ -19,7 +21,7 @@
   <b-btn v-b-toggle="'collapse' + id"
          :size="bootstrapSize" variant="primary">
     <i class="fa fa-edit"></i>
-    <translate v-if="bootstrapSize !== 'sm'">Insert</translate>
+    <translate v-if="(postId === undefined) || (bootstrapSize !== 'sm')">Insert</translate>
     <span class="arrow">→</span>
   </b-btn>
   <b-collapse ref="theCollapse" :id="'collapse' + id">
@@ -62,7 +64,7 @@ let ItemHandleBase = {
   props: {
     postId: {
       type: Number,
-      required: true
+      // If missing, this is an insert-only handle
     }
   },
 
@@ -94,7 +96,8 @@ let ItemHandleBase = {
         vm.status = "success"
       })
       .catch(e => {
-        alert("Search error: " + e)
+        console.log(e)
+        alert("Search error: " + e.statusText)
         vm.search = null
       })
     },
@@ -107,7 +110,6 @@ let ItemHandleBase = {
     },
     doDelete () {
       let parentTr = $(this.$el).closest('tr')
-      console.log(parentTr)
       this.$destroy()
       parentTr.remove()
       GlobalBus.$emit("dom_reordered")
@@ -139,24 +141,26 @@ let ItemHandleBase = {
  *
  *                - modelMoniker: a string in plural form e.g. "news", "events"
  *
- *                - bootstrapSize: 
+ *                - bootstrapSize: "md", "sm" etc. or "" to use the default
  *                                          
  *
  * @return Something that can be fed into the Vue constructor
  */
 function mixinify(methodsAndProps) {
-  methods = _.pickBy(methodsAndProps, (f) => f instanceof Function)
-  props =   _.pickBy(methodsAndProps, (f) => !(f instanceof Function))
+  let methods = _.pickBy(methodsAndProps, (f) => f instanceof Function),
+      props   = _.pickBy(methodsAndProps, (f) => !(f instanceof Function))
 
-  let theNewClass = {
-    mixins: [ItemHandleBase, { methods, props }]
-  }
+  let propsWithDefaults = _.mapValues(props, (prop) => ({ default: prop }))
+
+  let theNewClass = _.extend(
+    {mixins: [ItemHandleBase, { methods, props: propsWithDefaults }]},
+    props)   // Make them available as "class props"
 
   methods.isInstanceOf = (aClass) => theNewClass === aClass
 
   /* Allow findUnder to be used as a "class method" */
+  let fakeThis = _.extend({}, methods, props)
   theNewClass.findUnder = function (under) {
-    let fakeThis = methods
     return ItemHandleBase.methods.findUnder.call(fakeThis, under)
   }
   return theNewClass

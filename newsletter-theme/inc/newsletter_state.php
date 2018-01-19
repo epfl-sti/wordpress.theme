@@ -16,17 +16,21 @@ if (!defined('ABSPATH')) { exit; }
 require_once(dirname(dirname(dirname(__FILE__))) . '/inc/i18n.php');
 use function \EPFL\STI\Theme\___;
 
+use \EPFL\WS\Actu\Actu;  // If it exists
+
 require_once(dirname(__FILE__) . "/newsletter_section_categories.inc");
 
 function get_newsletter_posts ($theme_options)
 {
     $state = new NewsletterDraftState($theme_options);
-    return array(
-        "news"       => new NewsQuery($state),
-        "events"     => new EventsQuery($state),
-        "faculty"    => new FacultyNewsQuery($state),
-        "inthemedia" => new InTheMediaQuery($state)
-        );
+    $retval = array();
+    foreach (array(new NewsQuery($state),
+                   new EventsQuery($state),
+                   new FacultyNewsQuery($state),
+                   new InTheMediaQuery($state)) as $query) {
+        $retval[$query::KIND] = $query;
+    }
+    return $retval;
 }
 
 class NewsletterDraftState
@@ -43,7 +47,7 @@ class NewsletterDraftState
     function is_set ($kind)
     {
         if (! $this->saved_state) return false;
-        return !(! $this->saved_state[$kind]);
+        return is_array($this->saved_state[$kind]);
     }
 
     function get_list_of_posts ($kind)
@@ -56,6 +60,11 @@ class NewsletterDraftState
         set_site_transient(self::_get_transient_key(),
                            json_encode($state),
                            self::TIMEOUT_SECS);
+    }
+
+    static function clear ()
+    {
+        delete_site_transient(self::_get_transient_key());
     }
 
     static private function _get_transient_key ()
@@ -148,12 +157,13 @@ abstract class PostQuery
             $language_hint = \pll_get_language();
         }
         $categories = array_map(
-            NewsletterSectionCategory::find_all(static::KIND, $language_hint),
-            function($cat) { return $cat->ID(); });
+            function($cat) { return $cat->ID(); },
+            NewsletterSectionCategory::find_all(static::KIND, $language_hint));
+        if (! count($categories)) return;
 
         $criteria = array("category__in" => $categories);
-        if ($query["term"]) {
-            $criteria["s"] = $query["term"];
+        if ($query["s"]) {
+            $criteria["s"] = $query["s"];
         }
         return get_posts($criteria);
     }
@@ -166,8 +176,8 @@ abstract class PostQuery
         $criteria['post_type'] = $post_type;
         $criteria['posts_per_page'] = $count;
 
-        if ($query && $query["term"]) {
-            $criteria["s"] = $query["term"];
+        if ($query && $query["s"]) {
+            $criteria["s"] = $query["s"];
         }
         return get_posts($criteria);
     }
@@ -181,8 +191,8 @@ abstract class PostQuery
     private function _do_ajax_search ($query)
     {
         $results = array();
-        foreach ($that->_get_posts_by_query($query) as $post) {
-            array_push($results, $that->_post2result($post));
+        foreach ($this->_get_posts_by_query($query) as $post) {
+            array_push($results, $this->_post2result($post));
         }
         return array(
             "status" => "OK",
@@ -193,19 +203,21 @@ abstract class PostQuery
     protected function _post2result ($post)
     {
         return array(
-            "ID"           => $result->ID,
-            // TODO: $result->post_author is an int, should dereference it
-            "post_author"  => strip_tags($result->post_author),
-            "post_date"    => $result->post_date,
-            "post_title"   => strip_tags($result->post_title),
-            "post_excerpt" => strip_tags($result->post_excerpt),
-            "post_content" => strip_tags($result->post_content),
+            "ID"           => $post->ID,
+            // TODO: $post->post_author is an int, should dereference it
+            "post_author"  => strip_tags($post->post_author),
+            "post_date"    => $post->post_date,
+            "post_title"   => strip_tags($post->post_title),
+            "post_excerpt" => strip_tags($post->post_excerpt),
+            "post_content" => strip_tags($post->post_content),
         );
     }
 }
 
 class NewsQuery extends PostQuery
 {
+    // IMPORTANT: here and in the other subclasses, KIND must match the key in
+    // the stateTraits object in ../vue/GlobalBus.js
     const KIND = "news";
 
     function title () { return ___("News"); }
@@ -224,14 +236,16 @@ class NewsQuery extends PostQuery
         $result = parent::_post2result($post);
         if (class_exists('\\EPFL\\WS\\Actu\\Actu') &&
             $post->post_type === Actu::get_post_type()) {
-            $actu = new Actu($details["ID"]);
-            $thumbnail_url = $actu->get_image_url();
-            if ($thumbnail_url) {
-                $result["thumbnail_url"] = $thumbnail_url;
+            $actu = Actu::get($post->ID);
+            if ($actu) {
+                $thumbnail_url = $actu->get_image_url();
+                if ($thumbnail_url) {
+                    $result["thumbnail_url"] = $thumbnail_url;
+                }
             }
         }
 
-        return $post;
+        return $result;
     }
 }
 

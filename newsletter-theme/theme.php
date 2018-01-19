@@ -13,7 +13,16 @@ if (!defined('ABSPATH'))
 require_once(dirname(dirname(__FILE__)) . "/inc/epfl.php");
 use function \EPFL\STI\get_theme_relative_uri;
 
+require_once(dirname(dirname(__FILE__)) . "/inc/i18n.php");
+use function \EPFL\STI\Theme\___;
+use function \EPFL\STI\Theme\__x;
+
 require_once(dirname(__FILE__) . '/inc/newsletter_state.php');
+
+function has_vue_app ()
+{
+    return function_exists("\\EPFL\\STI\\Newsletter\\render_editor_scripts");
+}
 
 function render_css()
 { ?>
@@ -179,58 +188,8 @@ function render_red_title_tr ($name)
     echo "<tr><th class=\"redtitle\"><h1>$name</h1></th> </tr>";
 }
 
-function render_in_the_media_tr ($article, $link, $source, $date)
-{
-    ?>
-    <tr>
-     <td>
-      <table>
-       <tr>
-        <td style='font-size:14px; width:100%; padding: 0px 0px 10px 0px;'>
-         <a href="<?php echo $link; ?>"><?php echo "$article"; ?></a>
-        </td>
-       </tr>
-       <tr>
-        <td style='font-size:10px;' align=right>
-         <?php echo "$source, $date"; ?>
-        </td>
-       </tr>
-       <tr>
-        <td class="divider">
-         <media-item-handle :post-id="<?php echo get_the_id(); ?>"></media-item-handle>
-         &nbsp;</td>
-       </tr>
-      </table>
-     </td>
-    </tr>
-    <?php
-
-}
-
-function render_righthand_column_tables ($render_events_func, $render_in_the_media_func)
-{
-    $table_attributes = "width=\"100%\" cellpadding=\"8\" cellspacing=\"0\" border=\"0\"";
-    echo "<table $table_attributes id=\"events\">";
-    render_red_title_tr("EVENTS");
-    call_user_func($render_events_func);
-    echo "
-			 <tr>
-			  <td align=\"right\"><a href=\"https://sti.epfl.ch/seminars\" class=\"outlink more\">More...</a></td>
-			 </tr>
-			</table>
-		       ";
-    if ($render_in_the_media_func) {
-        echo "<br><table $table_attributes id=\"in-the-media\">";
-        render_red_title_tr("IN THE MEDIA");
-        call_user_func($render_in_the_media_func);
-        echo "
-			 <tr>
-			  <td align=\"right\"><a href=\"https://sti.epfl.ch/news\" class=\"outlink more\">More...</a></td>
-			 </tr>
-			</table>
-";
-    }
-    echo "</td>\n";
+function get_righthand_column_table_attributes () {
+    return "width=\"100%\" cellpadding=\"8\" cellspacing=\"0\" border=\"0\"";
 }
 
 function render_news_item_td ($style)
@@ -269,22 +228,13 @@ function render_news_item_td ($style)
     echo "</td>";
 }
 
-function render_position_td () {
-    echo "<td class=\"main-matter\">\n";
-    echo sprintf("<h2><a target='_blank' href=\"%s\" class=\"positiontitle\">%s</a></h2>",
-                 get_permalink(),
-                 get_the_title());
-    the_excerpt();
-    echo sprintf("<faculty-position-handle :post-id=\"%d\"></faculty-position-handle>", get_the_id());
-    echo "</td>";
-}
-
 function render_write_us_table () {
     echo "\t\t<table id=\"write-to-us\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width: 100%;\">\n";
-    render_red_title_tr("WRITE TO US!");
+    render_red_title_tr(___("WRITE TO US!"));
     echo "\t\t\t<tr>\n";
     echo "\t\t\t\t<td class=\"main-matter\">\n";
-    echo "\t\t\t\t\t<p>You would like to have a story published in the newsletter, or you have a remark or suggestion, contact us: <a target=\"_blank\" href=\"mailto:stiitweb@groupes.epfl.ch\" class=\"writetous\">stiitweb@groupes.epfl.ch</a></p>\n";
+    echo sprintf("\t\t\t\t\t<p>%s<a target=\"_blank\" href=\"mailto:stiitweb@groupes.epfl.ch\" class=\"writetous\">stiitweb@groupes.epfl.ch</a></p>\n",
+                 ___("You would like to have a story published in the newsletter, or you have a remark or suggestion, contact us:"));
     echo "\t\t\t\t</td>\n";
     echo "\t\t\t</tr>\n";
     echo "\t\t</table>\n";
@@ -309,8 +259,49 @@ Unsubscribe by clicking <a target="_blank" href="{unsubscription_url}">here</a>
     <?php
 }
 
-function render_events ($events)
+function render_faculty_positions_table ($positions) {
+    if (!count($positions) && !has_vue_app()) { return; }
+
+    echo "<table id=\"faculty\" cellpadding=0 cellspacing=0 border=0 style=\"width: 100%;\">";
+    render_red_title_tr(___("OPEN POSITIONS"));
+
+    if (! count($positions)) {
+        echo "<tr><td class=\"main-matter\">";
+        echo ___('No faculty positions yet.');
+        echo "<faculty-position-handle></faculty-position-handle>";
+        echo "</td></tr>";
+    }
+
+    foreach ($positions as $p) {
+        global $post;
+        $post = $p;
+        echo "<tr>";
+        echo "<td class=\"main-matter\">\n";
+        echo sprintf("<h2><a target='_blank' href=\"%s\" class=\"positiontitle\">%s</a></h2>",
+                 get_permalink(),
+                 get_the_title());
+        the_excerpt();
+        echo sprintf("<faculty-position-handle :post-id=\"%d\"></faculty-position-handle>", get_the_id());
+        echo "</td>";
+        echo "</tr>";
+    }
+    echo "</table>\n";
+}
+
+function render_events_table ($events)
 {
+    if (!count($events) && !has_vue_app()) { return; }
+    $table_attributes = get_righthand_column_table_attributes();
+    echo "<table $table_attributes id=\"events\">";
+    render_red_title_tr(___("EVENTS"));
+
+    if (! count($events)) {
+        echo "<tr><td>";
+        echo ___('No events yet.');
+        echo '<event-handle></event-handle>';
+        echo "</td></tr>";
+    }
+
     foreach ($events as $event) {
         global $post;
         $post = $event;  // We aren't in The Loop so there is nothing else to do
@@ -342,6 +333,7 @@ function render_events ($events)
 ?>
  <tr>
   <td>
+   <event-handle :post-id="<?php echo get_the_id(); ?>"></event-handle>
    <table>
     <tr>
      <td style="font-size:14px; width:100%; padding: 0px 0px 10px 0px;" colspan=2>
@@ -360,21 +352,73 @@ function render_events ($events)
       <a href="<?php echo $ical_link; ?>">Add to calendar</a>
      </td>
     </tr>
-    <tr><td colspan="2" class="divider">&nbsp;
-        <event-handle :post-id="<?php echo get_the_id(); ?>"></event-handle>
-</td></tr>
+    <tr><td colspan="2" class="divider">&nbsp;</td></tr>
    </table>
   </td>
  </tr>
 <?php
     }
+    ?>
+ <tr>
+  <td align="right"><a href="https://sti.epfl.ch/seminars" class="outlink more">More...</a></td>
+ </tr>
+</table>
+    <?php
 }
 
-function render_in_the_media ($unused_media)
+function render_in_the_media_table ($media_list)
 {
-    render_in_the_media_tr('Woman receives bionic hand with sense of touch','https://www.thetimes.co.uk/article/bionic-hand-feels-like-the-real-thing-kc0f3h28q','Times','Jan 2018');
-    render_in_the_media_tr('Lego-like vacuum robot climbs walls and sorts your containers','https://www.newscientist.com/article/2145756-lego-like-vacuum-robot-climbs-walls-and-sorts-your-containers/','New Scientist','Sep 2017');
-    render_in_the_media_tr('Shape-shifting origami robot swaps bodies to roll, swim or walk','https://www.newscientist.com/article/2148827-shape-shifting-origami-robot-swaps-bodies-to-roll-swim-or-walk/','New Scientist','Sep 2017');
+    if (!count($media_list) && !has_vue_app()) { return; }
+    $table_attributes = get_righthand_column_table_attributes();
+    echo "<br><table $table_attributes id=\"in-the-media\">";
+    render_red_title_tr(___("IN THE MEDIA"));
+
+    if (! count($media_list)) {
+        echo "<tr><td>";
+        echo ___('No media excerpts yet.');
+        echo '<media-item-handle></media-item-handle>';
+        echo "</td></tr>";
+    }
+
+    foreach ($media_list as $media) {
+        global $post; $post = $media;
+        $article = strip_tags(get_the_title());
+        $link    = get_permalink($post);
+        if (class_exists('\EPFL\STI\EPFLPost')) {
+            $epfl_post = new EPFL\STI\EPFLPost($post);
+            $source    = $epfl_post->get_published_in();
+            $date      = $epfl_post->get_publication_date();
+            // TODO: Tabulate authors and their labs
+        }
+    ?>
+     <tr>
+      <td>
+       <media-item-handle :post-id="<?php echo get_the_id(); ?>"></media-item-handle>
+       <table>
+        <tr>
+         <td style='font-size:14px; width:100%; padding: 0px 0px 10px 0px;'>
+          <a href="<?php echo $link; ?>"><?php echo "$article"; ?></a>
+         </td>
+        </tr>
+        <tr>
+         <td style='font-size:10px;' align=right>
+          <?php echo "$source, $date"; ?>
+         </td>
+        </tr>
+        <tr>
+         <td class="divider">&nbsp;</td>
+        </tr>
+       </table>
+      </td>
+     </tr>
+    <?php
+    }
+    ?>
+     <tr>
+      <td align="right"><a href="https://sti.epfl.ch/news" class="outlink more">More...</a></td>
+     </tr>
+    </table>
+    <?php 
 }
 
 ?>
@@ -382,10 +426,12 @@ function render_in_the_media ($unused_media)
 <html>
     <head>
         <title></title>
-        <?php render_css(); ?>
-        <?php if (function_exists("\\EPFL\\STI\\Newsletter\\render_editor_scripts")) {
-                 render_editor_scripts();
-        } ?>
+        <?php
+        render_css();
+        if (has_vue_app()) {
+            render_editor_scripts();
+        }
+    ?>
     </head>
 
     <body>
@@ -414,28 +460,13 @@ render_frame_table(function() {
     }
     echo "</table>\n";
 
-    if (count($posts["faculty"]->posts())) {
-        echo "<table id=\"faculty\" cellpadding=0 cellspacing=0 border=0 style=\"width: 100%;\">";
-        render_red_title_tr("OPEN POSITIONS");
-        foreach ($posts["faculty"]->posts() as $p) {
-            $post = $p;
-            echo "<tr>";
-            render_position_td();
-            echo "</tr>";
-        }
-        echo "</table>\n";
-    }
+    render_faculty_positions_table($posts["faculty"]->posts());
     render_write_us_table();
     echo "</td>\n";  // End of main matter
 
     printf("<td valign=\"top\" id=\"right-sidebar\">");
-    render_righthand_column_tables(
-        function () use ($posts) {
-            render_events($posts["events"]->posts());
-        },
-        function () use ($posts) {
-            render_in_the_media($posts["in_the_media"]);
-        });
+    render_events_table($posts["events"]->posts());
+    render_in_the_media_table($posts["media"]->posts());
     echo "</td>";
     echo "</tr>\n";
 

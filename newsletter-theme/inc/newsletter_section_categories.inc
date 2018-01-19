@@ -68,12 +68,10 @@ class NewsletterSectionCategory
                         pll_get_term($term->term_id, $language_hint));
                 }));
         }
-        return array_values(array_filter(
-            $terms,
+        return array_map(
             function ($term) {
                 return new NewsletterSectionCategory($term->term_id);
-            }
-        ));
+            }, $terms);
     }
 }
 
