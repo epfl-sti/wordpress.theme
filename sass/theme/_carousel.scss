@@ -100,17 +100,3 @@
 .carousel-control-next-icon:hover {
   background-image: url("/wp-content/themes/epfl-sti/img/src/right_desat.png");
 }
-
-#redwave {
- position: relative;
- top: -290px;
- min-width: 1400px;
- height: 0px;
- z-index: 5;
- @media screen and (max-width: $redwave-toosmall) {
-  visibility: hidden;
- }
- @media screen and (min-width: $redwave-toolarge) {
-  visibility: hidden;
- }
-}

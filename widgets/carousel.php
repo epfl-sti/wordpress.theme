@@ -83,7 +83,9 @@ class Carousel extends \WP_Widget
 </div>
 <?php # The wave must be outside the carousel, so as not to be clipped. ?>
 <div id="redwave">
-    <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/waving.png">
+   <div class="wave"> </div>
+   <div class="wave"> </div>
+   <div class="wave"> </div>
 </div>
    <?php
         echo $args['after_widget'];
