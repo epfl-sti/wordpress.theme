@@ -28,6 +28,7 @@
     <b-card>
       <select2 v-model="picked" @singlesearch="doSearch" :search="search" :status="status">
         <template slot="results" slot-scope="select2" v-if="select2.search">
+          <option></option>
           <option v-for="item in select2.search.items" :value="item.ID">
             <div>
               <img v-if="item.thumbnail_url" :src="item.thumbnail_url">
