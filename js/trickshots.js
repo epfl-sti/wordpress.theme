@@ -44,13 +44,13 @@ function _doPrintOuter(people_listing, which, lang, level) {
     
      if (people_listing[x].institute!='IBI1') {
 	result++;
-	test+="<div style='width:148px; height:290px; float:left; display: inline; clear: none; background-color:#eee; padding:10px' class='' valign=top>";
+	test+="<div style='width:148px; height:290px; float:left; display: inline; clear: none; background-color:#eee; margin: 5px; padding:10px' class='' valign=top>";
 	test+=people_listing[x].link + "<img width='108' border='0' src='";
 	test+=img_dir+people_listing[x].image + "' title='" + people_listing[x].firstname + " " + people_listing[x].lastname;				
 	test+="'/></a>\n\ <br>\n" + people_listing[x].link + people_listing[x].lastname + "<br>" + people_listing[x].firstname;				
 	test+="</a>\n\ <div style='width: 138px; font-size:10px'>\n\ ";
-	test+="<a href=" + people_listing[x].labwebsite + ">" + people_listing[x].mylabname + "</a></div></div>";
-  count++;
+	test+="<a href=" + people_listing[x].labwebsite + ">" + people_listing[x].mylabname + "</a>TEST</div></div>";
+        count++;
       
      }
     }

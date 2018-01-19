@@ -17,6 +17,42 @@ body {
   src: url('../fonts/GothamNarrow-Bold.woff');
 }
 
+.sti_faculty_sort {
+  width: 100%;
+  padding 30px;
+  display: inline-block; 
+  margin-bottom: 15px;
+  background-color: white;
+}
+
+.sti_sort_box {
+  display: inline;
+  padding: 0px;
+  float: left;
+  margin: 15px 0px 0px 15px ;
+}
+
+.sti_sort_button {
+  background-color: #eee;
+  width: 250px;
+  margin: 0px 0px 15px 0px ;
+  padding: 5px;
+  padding-left: 15px;
+}
+
+.sti_sort_button:hover {
+  background-color: #444;
+}
+
+.blacklink, .blacklink:visited {
+  color: #333;
+  text-decoration: none;
+}
+
+.blacklink:hover {
+  color: white;
+  text-decoration: none;
+}
 .frontrow {
   text-align: left;
   display: inline-block;
