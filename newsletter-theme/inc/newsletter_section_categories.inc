@@ -1,5 +1,7 @@
 <?php
 
+namespace EPFL\STI\Newsletter;
+
 require_once(dirname(dirname(dirname(__FILE__))) . '/inc/i18n.php');
 use function \EPFL\STI\Theme\___;
 use function \EPFL\STI\Theme\__x;

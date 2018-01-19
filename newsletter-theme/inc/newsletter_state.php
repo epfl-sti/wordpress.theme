@@ -11,13 +11,12 @@
 
 namespace EPFL\STI\Newsletter;
 
-if (!defined('ABSPATH'))
-    exit;
+if (!defined('ABSPATH')) { exit; }
 
 require_once(dirname(dirname(dirname(__FILE__))) . '/inc/i18n.php');
 use function \EPFL\STI\Theme\___;
 
-require_once(dirname(__FILE__) . '/ajax.php');
+require_once(dirname(__FILE__) . "/newsletter_section_categories.inc");
 
 function get_newsletter_posts ($theme_options)
 {
@@ -52,7 +51,7 @@ class NewsletterDraftState
         return $this->saved_state[$kind];
     }
 
-    static function ajax_save ($state)
+    static function ajax_draft_save ($state)
     {
         set_site_transient(self::_get_transient_key(),
                            json_encode($state),
@@ -64,32 +63,62 @@ class NewsletterDraftState
         return sprintf("epfl-newsletter-draft-state_%d",
                        get_current_user_id());
     }
-
 }
 
-NewsletterHook::add_ajax_class(NewsletterDraftState::class, "epfl_sti_newsletter_draft_");
+NewsletterHook::add_ajax_class(NewsletterDraftState::class, "epfl_sti_newsletter_");
 
-class PostQuery
+/**
+ * A PostQuery instance enumerates posts for the newsletter.
+ *
+ * There are three main use cases:
+ *
+ * a) Rendering the HTML for the pristine newsletter
+ *
+ * b) Rendering the HTML for the newsletter after the user has mutated
+ *    its state and saved it (using an AJAX POST through the
+ *    NewsletterDraftState class)
+ *
+ * c) Returning results for a search-as-you-type AJAX query
+ *
+ * In case b) the list of post IDs is known precisely. In the other two
+ * cases, a "starter" set of filters is computed by the _get_query_filter
+ * abstract method so as to only return the posts of interest in the
+ * context of the corresponding newsletter section.
+ */
+
+abstract class PostQuery
 {
     var $theme_options = null;
-    protected $filter;
+    protected $state;
+    protected $query;
     protected $post_list;
 
-    function __construct ($state)
+    function __construct ($state = null, $query = null)
     {
         $this->state = $state;
+        $this->query = $query;
     }
 
     function posts ()
     {
-        $this->filter = array();
-        $this->_setup_filter($this->state);
-        $posts = get_posts($this->filter);
-        if (! $this->post_list) return $posts;
+        if ($this->state && $this->state->is_set(static::KIND)) {
+            return $this->_get_posts_in_order($this->state->get_list_of_posts(static::KIND));
+        } else {
+            return $this->_get_posts_by_query($this->query);
+        }
+    }
 
-        // Reorder like $this->post_list
+    private function _get_posts_in_order($post_list) {
+        $posts = get_posts(array(
+            'post_type'           => 'any',
+            'post__in'            => $post_list,
+            'posts_per_page'      => count($post_list),
+            'ignore_sticky_posts' => true
+        ));
+
+        // Reorder like $post_list
         $ordered_posts = array();
-        foreach ($this->post_list as $id) {
+        foreach ($post_list as $id) {
             end($posts); $last_post_key = key($posts);
             foreach ($posts as $key => $post) {
                 if ($post->ID == $id) {
@@ -105,22 +134,75 @@ class PostQuery
         return $ordered_posts;
     }
 
-    private function _setup_filter ($state)
+    /**
+     * @return The post list, in the a) and c) cases
+     *
+     * The base class only applies filtering by NewsletterSectionCategory.
+     * Subclasses for types that have a dedicated post type (i.e. NewsQuery
+     * and EventsQuery) will want to override this to add to the result set.
+     */
+    protected function _get_posts_by_query ($query)
     {
-        if (! $state->is_set(static::KIND)) {
-            $this->_set_default_filter();
-        } else {
-            $this->filter['post_type'] = 'any';
-            $this->post_list = $state->get_list_of_posts(static::KIND);
-            $this->filter['post__in'] = $this->post_list;
-            $this->filter['posts_per_page'] = count($this->post_list);
-            $this->filter["ignore_sticky_posts"] = true;
+        $language_hint = null;
+        if (function_exists("pll_get_language")) {
+            $language_hint = \pll_get_language();
         }
+        $categories = array_map(
+            NewsletterSectionCategory::find_all(static::KIND, $language_hint),
+            function($cat) { return $cat->ID(); });
+
+        $criteria = array("category__in" => $categories);
+        if ($query["term"]) {
+            $criteria["s"] = $query["term"];
+        }
+        return get_posts($criteria);
     }
 
-    protected function _set_default_filter () {}
-}
+    /**
+     * For use by subclasses overriding _get_posts_by_query()
+     */
+    protected function _get_posts_by_post_type ($post_type, $query = null, $count = 20) {
+        $criteria = array();
+        $criteria['post_type'] = $post_type;
+        $criteria['posts_per_page'] = $count;
 
+        if ($query && $query["term"]) {
+            $criteria["s"] = $query["term"];
+        }
+        return get_posts($criteria);
+    }
+
+    static function ajax_search ($query)
+    {
+        $thisclass = get_called_class();
+        return (new $thisclass(null, $query))->_do_ajax_search($query);
+    }
+
+    private function _do_ajax_search ($query)
+    {
+        $results = array();
+        foreach ($that->_get_posts_by_query($query) as $post) {
+            array_push($results, $that->_post2result($post));
+        }
+        return array(
+            "status" => "OK",
+            "searchResults" => $results
+        );
+    }
+
+    protected function _post2result ($post)
+    {
+        return array(
+            "ID"           => $result->ID,
+            // TODO: $result->post_author is an int, should dereference it
+            "post_author"  => strip_tags($result->post_author),
+            "post_date"    => $result->post_date,
+            "post_title"   => strip_tags($result->post_title),
+            "post_excerpt" => strip_tags($result->post_excerpt),
+            "post_content" => strip_tags($result->post_content),
+        );
+    }
+}
 
 class NewsQuery extends PostQuery
 {
@@ -128,9 +210,28 @@ class NewsQuery extends PostQuery
 
     function title () { return ___("News"); }
 
-    protected function _set_default_filter () {
-        $this->filter['post_type'] = "epfl-actu";
-        $this->filter['posts_per_page'] = 10;
+    protected function _get_posts_by_query ($query)
+    {
+        return array_merge(
+            parent::_get_posts_by_query($query),
+            $this->_get_posts_by_post_type("epfl-actu", $query));
+        // Note that the behavior degrades nicely if the epfl-ws
+        // plugin is not active.
+    }
+
+    protected function _post2result ($post)
+    {
+        $result = parent::_post2result($post);
+        if (class_exists('\\EPFL\\WS\\Actu\\Actu') &&
+            $post->post_type === Actu::get_post_type()) {
+            $actu = new Actu($details["ID"]);
+            $thumbnail_url = $actu->get_image_url();
+            if ($thumbnail_url) {
+                $result["thumbnail_url"] = $thumbnail_url;
+            }
+        }
+
+        return $post;
     }
 }
 
@@ -140,10 +241,15 @@ class EventsQuery extends PostQuery
 
     function title () { return ___("Upcoming events"); }
 
-    protected function _set_default_filter () {
-        $this->filter['post_type'] = "epfl-memento";
-        $this->filter['posts_per_page'] = 10;
+    protected function _get_posts_by_query ($query)
+    {
+        return array_merge(
+            parent::_get_posts_by_query($query),
+            $this->_get_posts_by_post_type("epfl-memento", $query));
+        // Note that the behavior degrades nicely if the epfl-ws
+        // plugin is not active.
     }
+
 }
 
 class FacultyNewsQuery extends PostQuery
@@ -151,17 +257,19 @@ class FacultyNewsQuery extends PostQuery
     const KIND = "faculty";
 
     function title () { return ___("Faculty positions"); }
-
-    protected function _set_default_filter ()
-    {
-        $this->filter["category_name"] = "faculty-positions";
-    }
-
 }
 
 class InTheMediaQuery extends PostQuery
 {
-    const KIND = "inthemedia";
+    const KIND = "media";
 
     function title () { return ___("In the media"); }
+}
+
+foreach (array(NewsQuery::class, EventsQuery::class,
+               FacultyNewsQuery::class, InTheMediaQuery::class)
+         as $theclass) {
+    NewsletterHook::add_ajax_class(
+        $theclass,
+        sprintf("epfl_sti_newsletter_%s_", $theclass::KIND));
 }

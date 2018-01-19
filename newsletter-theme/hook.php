@@ -207,6 +207,8 @@ class NewsletterHook
         die();
     }
 }
-// Need to require_once all files that have AJAX handlers or otherwise
-// have hooks of their own:
+
+NewsletterHook::hook();
+// Also need to require_once all files that have AJAX handlers or
+// otherwise have hooks of their own:
 require_once dirname(__FILE__) . "/inc/newsletter_state.php";

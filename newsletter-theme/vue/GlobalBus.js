@@ -17,12 +17,9 @@ import _ from "lodash"
 import Vue from 'vue'
 import ItemHandle from "./ItemHandle.vue"
 
-const stateTraits = {
-    news:    ItemHandle.news,
-    events:  ItemHandle.Event,
-    media:   ItemHandle.Media,
-    faculty: ItemHandle.Media,
-}
+const stateTraits = _.keyBy(
+    [ItemHandle.News, ItemHandle.Event, ItemHandle.Media, ItemHandle.Faculty],
+    (c) => c.modelMoniker)
 
 const GlobalBus = new Vue({
   data: () => ({

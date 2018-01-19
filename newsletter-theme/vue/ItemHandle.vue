@@ -10,16 +10,16 @@
 -->
 
 <template>
-<div :class="getToplevelDivClass()">
+<div :class="toplevelDivClass">
   <b-btn @click="doDelete"
-         :size="getSize()" variant="danger">
+         :size="bootstrapSize" variant="danger">
     <i class="fa fa-trash"></i>
-    <translate v-if="getSize() !== 'sm'">Delete</translate>
+    <translate v-if="bootstrapSize !== 'sm'">Delete</translate>
   </b-btn>
   <b-btn v-b-toggle="'collapse' + id"
-         :size="getSize()" variant="primary">
+         :size="bootstrapSize" variant="primary">
     <i class="fa fa-edit"></i>
-    <translate v-if="getSize() !== 'sm'">Insert</translate>
+    <translate v-if="bootstrapSize !== 'sm'">Insert</translate>
     <span class="arrow">→</span>
   </b-btn>
   <b-collapse ref="theCollapse" :id="'collapse' + id">
@@ -56,13 +56,7 @@ import WPajax from "../inc/ajax.js"
  *
  *
  *   In order to be useable, this component need to be **mixed in** with
- *   the following additional methods:
- *
- *   - getToplevelDivClass()
- *
- *   - getSearchPromise(term)
- *
- *   - getSize()  // Should return a Bootstrap size e.g. "" or "sm"
+ *   additional props and methods — See mixinify()
  */
 let ItemHandleBase = {
   props: {
@@ -94,7 +88,7 @@ let ItemHandleBase = {
       vm.search = {}
       vm.status = null
 
-      vm.getSearchPromise(term)
+      WPajax("epfl_sti_newsletter_" + vm.modelMoniker + "_search", { s: term })
       .then(response => {
         vm.search.items = response.searchResults
         vm.status = "success"
@@ -120,7 +114,7 @@ let ItemHandleBase = {
     },
     findUnder (under) {
       if (under instanceof Vue) under = under.$el
-      return _.map($("div." + this.getToplevelDivClass(), under),
+      return _.map($("div." + this.toplevelDivClass, under),
                    (jq) => $(jq).prop("__vue__"))
     }
   },
@@ -139,25 +133,23 @@ let ItemHandleBase = {
 /**
  * Factory that makes working "concrete subclasses"
  *
- * @param methods Contains the following functions:
+ * @param methodsAndProps shall ontain the following:
  *
- *                - getToplevelDivClass()
+ *                - toplevelDivClass: a CSS class name as a string
  *
- *                  Returns a CSS class name
+ *                - modelMoniker: a string in plural form e.g. "news", "events"
  *
- *                - getSearchPromise(term)
- *
- *                  Returns a promise of a data structure like
- *                  { searchResults: [item, item...] }
+ *                - bootstrapSize: 
  *                                          
  *
  * @return Something that can be fed into the Vue constructor
  */
-function mixinify(methods) {
-  methods = _.extend({}, methods)
+function mixinify(methodsAndProps) {
+  methods = _.pickBy(methodsAndProps, (f) => f instanceof Function)
+  props =   _.pickBy(methodsAndProps, (f) => !(f instanceof Function))
 
   let theNewClass = {
-    mixins: [ItemHandleBase, { methods }]
+    mixins: [ItemHandleBase, { methods, props }]
   }
 
   methods.isInstanceOf = (aClass) => theNewClass === aClass
@@ -171,55 +163,27 @@ function mixinify(methods) {
 }
 
 ItemHandleBase.News = mixinify({
-    getToplevelDivClass () { return "news-item-handle" },
-    getSearchPromise(term) {
-        return WPajax(
-            "epfl_sti_newsletter_search",
-            {
-                post_type: "epfl-actu",
-                s: term
-            })
-    },
-    getSize() { return "" }
+  toplevelDivClass: "news-item-handle",
+  modelMoniker: "news",
+  bootstrapSize: ""
 })
 
 ItemHandleBase.Event = mixinify({
-    getToplevelDivClass () { return "event-handle" },
-    getSearchPromise(term) {
-        return WPajax(
-            "epfl_sti_newsletter_search",
-            {
-                post_type: "epfl-memento",
-                s: term
-            })
-    },
-    getSize() { return "sm" }
+  toplevelDivClass: "event-handle",
+  modelMoniker: "events",
+  bootstrapSize: "sm"
 })
 
 ItemHandleBase.Media = mixinify({
-    getToplevelDivClass () { return "media-item-handle" },
-    getSearchPromise(term) {
-        return WPajax(
-            "epfl_sti_newsletter_search",
-            {
-                topic: "in_the_media",
-                s: term
-            })
-    },
-    getSize() { return "sm" }
+  toplevelDivClass: "media-item-handle",
+  modelMoniker: "media",
+  bootstrapSize: "sm"
 })
 
 ItemHandleBase.Faculty = mixinify({
-    getToplevelDivClass () { return "media-item-handle" },
-    getSearchPromise(term) {
-        return WPajax(
-            "epfl_sti_newsletter_search",
-            {
-                topic: "faculty_positions",
-                s: term
-            })
-    },
-    getSize() { return "" }
+  toplevelDivClass:  "faculty-position-handle",
+  modelMoniker: "faculty",
+  bootstrapSize: ""
 })
 
 export default ItemHandleBase  // But don't try to instantiate it
