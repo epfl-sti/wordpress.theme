@@ -28,9 +28,12 @@
     <b-card>
       <select2 v-model="picked" @singlesearch="doSearch" :search="search" :status="status">
         <template slot="results" slot-scope="select2" v-if="select2.search">
+          <option></option>
           <option v-for="item in select2.search.items" :value="item.ID">
             <div>
               <img v-if="item.thumbnail_url" :src="item.thumbnail_url">
+              <flag :lang="item.lang"
+                    :langs="select2.search.pll_the_languages"></flag>
               <b>#{{item.ID}} {{ item.post_title }}</b>
               <br/>
             <!--              <p v-html="findInContext(searchText, item.post_excerpt, contextWords)"></p>
@@ -92,7 +95,8 @@ let ItemHandleBase = {
 
       WPajax("epfl_sti_newsletter_" + vm.modelMoniker + "_search", { s: term })
       .then(response => {
-        vm.search.items = response.searchResults
+        vm.search.items             = response.searchResults
+        vm.search.pll_the_languages = response.pll_the_languages
         vm.status = "success"
       })
       .catch(e => {
@@ -121,7 +125,22 @@ let ItemHandleBase = {
     }
   },
 
-  components: {select2},
+  components: {
+    select2,
+    flag: {
+      props: ["lang", "langs"],
+      render (h) {
+        if (!(this.lang && this.langs &&
+              this.langs[this.lang])) return
+        let url = this.langs[this.lang].flag
+        if (! url) return
+        url = url.replace(/\\\//g, '/')
+        url = url.replace(/https?:\/\/(.*?)\//g, '/')
+
+        return <img src={url}></img>;
+      }
+    }
+  },
 
   watch: {
     picked (newVal) {

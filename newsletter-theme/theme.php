@@ -325,6 +325,20 @@ function render_events_table ($events)
                 }
                 $month = strtolower($start->format('M'));
             }
+            $venue = $epfl_memento->get_venue();
+            if ($venue) {
+                if (preg_match("/swisstech/i", $venue) ||
+                    preg_match("/stcc/i", $venue)) {
+                    $venue = ___("SwissTech Convention Center");
+                } elseif (preg_match("/RLC/", $venue) ||
+                          preg_match("/Rolex/i", $venue)) {
+                    $venue = ___("Rolex Learning Center");
+                } elseif (preg_match("/^MC/", $venue)) {
+                    $venue = ___("Microcity Neuchâtel");
+                } else {
+                  $venue = ___("EPFL campus");
+                }
+            }
 
             $ical_link = $epfl_memento->get_ical_link();
         } else {  // No epfl-ws plugin
@@ -347,7 +361,7 @@ function render_events_table ($events)
       </td>
      <?php endif; ?>
      <td style="font-size:12px;" align=right>
-      <?php echo $place; ?>
+      <?php echo $venue; ?>
       <br>
       <a href="<?php echo $ical_link; ?>">Add to calendar</a>
      </td>
@@ -384,11 +398,19 @@ function render_in_the_media_table ($media_list)
         global $post; $post = $media;
         $article = strip_tags(get_the_title());
         $link    = get_permalink($post);
-        if (class_exists('\EPFL\STI\EPFLPost')) {
-            $epfl_post = new EPFL\STI\EPFLPost($post);
+        if (class_exists('\\EPFL\\STI\\EPFLPost')) {
+            $epfl_post = new \EPFL\STI\EPFLPost($post);
             $source    = $epfl_post->get_published_in();
             $date      = $epfl_post->get_publication_date();
-            // TODO: Tabulate authors and their labs
+            $dateformat = __x("Y-m-d",
+                              "Date format for an \"in the media\" entry in the newsletter");
+            if ($source && $date) {
+                $bibentry = "$source, " . $date->format($dateformat);
+            } elseif ($source) {
+                $bibentry = "source";
+            } else {
+                $bibentry = "";
+            }
         }
     ?>
      <tr>
@@ -402,9 +424,20 @@ function render_in_the_media_table ($media_list)
         </tr>
         <tr>
          <td style='font-size:10px;' align=right>
-          <?php echo "$source, $date"; ?>
+          <?php echo $bibentry;
+            $authors = $epfl_post->get_authors();
+            if ($authors) {
+              $labname = sprintf(___("%s's lab"), $authors[0]->get_full_name());
+              $laburl = $authors[0]->get_lab_website_url();
+              echo "<br>";
+              printf(___("At %s"), sprintf('<a href="%s">%s</a>',
+                                           $laburl, $labname));
+          ?>
          </td>
         </tr>
+        <?php
+            }  // end if ($authors)
+        ?>
         <tr>
          <td class="divider">&nbsp;</td>
         </tr>

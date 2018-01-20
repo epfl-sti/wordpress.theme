@@ -100,7 +100,8 @@ function babelOptions() {
                     "browsers": ["> 5%", "ie >= 8"]
                 }
             }]
-        ]
+        ],
+        "plugins": ["transform-vue-jsx"]
     }
 }
 

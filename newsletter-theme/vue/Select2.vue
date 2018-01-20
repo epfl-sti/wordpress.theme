@@ -33,8 +33,13 @@ More info:
 
 <template>
 <div>
-  <!-- Re "width: 100%", see https://stackoverflow.com/a/34780303/435004 -->
-  <select ref="select" style="width: 100%;">
+  <!-- For whatever reason, *on Firefox only* the select2 jQuery plugin
+       insists on computing a ridiculous value for the width like 27.5px
+       See https://stackoverflow.com/a/34780303/435004 for a quantum of
+       insight
+       Thankfully, setting a width in the element style countermands
+       this weird behaviour. -->
+  <select ref="select" style="width: auto;">
     <slot name="results"
           :search="search"
           :status="status"></slot>
