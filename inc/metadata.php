@@ -54,12 +54,12 @@ class EPFLPost
 
     function get_authors ()
     {
-        if (! class_exists('\\EPFL\\Persons\\Person')) { return []; }
+        if (! class_exists('\\EPFL\\WS\\Persons\\Person')) { return []; }
 
         $authors = [];
         foreach (get_post_meta($this->ID, self::AUTHOR_SLUG)
             as $sciper_text) {
-            $author = \EPFL\Persons\Person::find_by_sciper((int) $sciper_text);
+            $author = \EPFL\WS\Persons\Person::find_by_sciper((int) $sciper_text);
             if ($author) { array_push($authors, $author); }
         }
         return $authors;
