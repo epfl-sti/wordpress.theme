@@ -8,13 +8,25 @@
  * @package epflsti
  */
 
-echo '<div class="footer">';
-  dynamic_sidebar( 'footer' );
-echo '</div>';
-echo '<div class="footnote">';
-  wp_nav_menu( array( 'theme_location' => 'footnote' ) );
-echo '</div>';
-wp_footer();
+?>
+  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <?php dynamic_sidebar( 'footer-left' ); ?>
+        </div>
+        <div class="col-md-6">
+          <?php dynamic_sidebar( 'footer-middle' ); ?>
+        </div>
+        <div class="col-md-3">
+          <?php dynamic_sidebar( 'footer-right' ); ?>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footnote"><?php wp_nav_menu( array( 'theme_location' => 'footnote' ) );?></div>
+<?php
+  wp_footer();
 ?>
 </body>
 </html>
