@@ -1,4 +1,15 @@
 
+var PO=0;
+var PA=0;
+var PATT=0;
+var PT=0;
+var MER=0;
+var IBI2=0;
+var IEL=0;
+var IMX=0;
+var IMT=0;
+var IMX=0;
+
 function set_personal_info(id, lastname, firstname, institute, title, mylabname, labname, labwebsite, phone, office, image, link, keywords) {
  this.id = id;
  this.lastname = lastname;
@@ -13,6 +24,7 @@ function set_personal_info(id, lastname, firstname, institute, title, mylabname,
  this.image = image;
  this.link = link;
  this.keywords= keywords;
+
 }
 
 function findString(tstring,text) {
@@ -44,12 +56,12 @@ function _doPrintOuter(people_listing, which, lang, level) {
     
      if (people_listing[x].institute!='IBI1') {
 	result++;
-	test+="<div style='width:148px; height:290px; float:left; display: inline; clear: none; background-color:#eee; margin: 5px; padding:10px' class='' valign=top>";
-	test+=people_listing[x].link + "<img width='108' border='0' src='";
+	test+="<div style='width:140px; height:285px; float:left; display: inline; clear: none; background-color:#eee; margin: 5px; padding:10px' class='' valign=top>";
+	test+=people_listing[x].link + "<img width='118' border='0' src='";
 	test+=img_dir+people_listing[x].image + "' title='" + people_listing[x].firstname + " " + people_listing[x].lastname;				
 	test+="'/></a>\n\ <br>\n" + people_listing[x].link + people_listing[x].lastname + "<br>" + people_listing[x].firstname;				
-	test+="</a>\n\ <div style='width: 138px; font-size:10px'>\n\ ";
-	test+="<a href=" + people_listing[x].labwebsite + ">" + people_listing[x].mylabname + "</a>TEST</div></div>";
+	test+="</a>\n\ <div style='width: 110px; font-size:10px'>\n\ ";
+	test+="<a href=" + people_listing[x].labwebsite + ">" + people_listing[x].mylabname + "</a></div></div>";
         count++;
       
      }
@@ -63,10 +75,87 @@ function _doPrintOuter(people_listing, which, lang, level) {
 }
 
 function printOuter(which, lang, level) {
-    $.ajax({
+ var target=window['level'];
+ if (target==0) {
+  document.getElementById(level).classList.remove('blacklinkinverted');
+  document.getElementById(level).classList.add('blacklink');
+  window['level']=1;
+ }
+ else {
+  document.getElementById(level).classList.remove('blacklink');
+  document.getElementById(level).classList.add('blacklinkinverted');
+  window['level']=0;
+ }
+
+ $.ajax({
         url: "https://stisrv13.epfl.ch/cgi-bin/whoop/faculty-and-teachers.pl",
         dataType: "json",
 }).done(function(people_listing) {
     _doPrintOuter(people_listing, which, lang, level);
 });
+
 }
+
+/*(function kickit(incoming) {  
+ if (level == 'PO') {
+  if (PO==0) {
+   document.getElementById("PO").classList.remove('blacklinkinverted');
+   document.getElementById("PO").classList.add('blacklink');
+   PO=1;
+  }
+  else {
+   document.getElementById("PO").classList.remove('blacklink');
+   document.getElementById("PO").classList.add('blacklinkinverted');
+   PO=0;
+  }
+ }
+ if (level == 'PA') {
+  if (PA==0) {
+   document.getElementById("PA").classList.remove('blacklinkinverted');
+   document.getElementById("PA").classList.add('blacklink');
+   PA=1;
+  }
+  else {
+   document.getElementById("PA").classList.remove('blacklink');
+   document.getElementById("PA").classList.add('blacklinkinverted');
+   PA=0;
+  }
+ }
+ if (level == 'PATT') {
+  if (PATT==0) {
+   document.getElementById("PATT").classList.remove('blacklinkinverted');
+   document.getElementById("PATT").classList.add('blacklink');
+   PATT=1;
+  }
+  else {
+   document.getElementById("PATT").classList.remove('blacklink');
+   document.getElementById("PATT").classList.add('blacklinkinverted');
+   PATT=0;
+  }
+ }
+ if (level == 'PT') {
+  if (PT==0) {
+   document.getElementById("PT").classList.remove('blacklinkinverted');
+   document.getElementById("PT").classList.add('blacklink');
+   PT=1;
+  }
+  else {
+   document.getElementById("PT").classList.remove('blacklink');
+   document.getElementById("PT").classList.add('blacklinkinverted');
+   PT=0;
+  }
+ }
+ if (level == 'MER') {
+  if (MER==0) {
+   document.getElementById("MER").classList.remove('blacklinkinverted');
+   document.getElementById("MER").classList.add('blacklink');
+   MER=1;
+  }
+  else {
+   document.getElementById("MER").classList.remove('blacklink');
+   document.getElementById("MER").classList.add('blacklinkinverted');
+   MER=0;
+  }
+ }
+}*/
+
