@@ -15,7 +15,7 @@
         <div class="col-md-3">
           <?php dynamic_sidebar( 'footer-left' ); ?>
         </div>
-        <div class="col-md-6 d-sm-none">
+        <div class="col-md-6 d-sm-none d-md-block">
           <?php dynamic_sidebar( 'footer-middle' ); ?>
         </div>
         <div class="col-md-3">
