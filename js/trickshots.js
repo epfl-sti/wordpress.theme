@@ -75,20 +75,38 @@ function _doPrintOuter(people_listing, which, lang, level) {
 }
 
 function printOuter(which, lang, level) {
- var target=window['level'];
- if (target==0) {
-  document.getElementById(level).classList.remove('blacklinkinverted');
-  document.getElementById(level).classList.add('blacklink');
-  window['level']=1;
+ if (level != "") {
+  var target=window['level'];
+  if (target==0) {
+   document.getElementById(level).classList.remove('blacklinkinverted');
+   document.getElementById(level).classList.add('blacklink');
+   window['level']=1;
+  }
+  else {
+   document.getElementById(level).classList.remove('blacklink');
+   document.getElementById(level).classList.add('blacklinkinverted');
+   window['level']=0;
+  }
+
  }
- else {
-  document.getElementById(level).classList.remove('blacklink');
-  document.getElementById(level).classList.add('blacklinkinverted');
-  window['level']=0;
+ else if (which != "") {
+  var target=window['which'];
+  if (target==0) {
+   document.getElementById(which).classList.remove('blacklinkinverted');
+   document.getElementById(which).classList.add('blacklink');
+   window['which']=1;
+  }
+  else {
+   document.getElementById(which).classList.remove('blacklink');
+   document.getElementById(which).classList.add('blacklinkinverted');
+   window['which']=0;
+  }
+
  }
 
+
  $.ajax({
-        url: "https://stisrv13.epfl.ch/cgi-bin/whoop/faculty-and-teachers.pl",
+        url: "https://stisrv13.epfl.ch/cgi-bin/whoop/faculty-and-teachers2.pl?PO="+PO+"&PA="+PA+"&PATT="+PATT+"&PT="+PT+"&MER="+MER+"&IBI2="+IBI2+"&IEL="+IEL+"&IGM="+IGM+"&IMT="+IMT+"&IMX="+IMX,
         dataType: "json",
 }).done(function(people_listing) {
     _doPrintOuter(people_listing, which, lang, level);
