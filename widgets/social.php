@@ -33,7 +33,7 @@ class Social extends \WP_Widget
   public function widget($args, $config)
   {
     echo $args['before_widget']; ?>
-    <div class="widget epfl-sti-contact">
+    <div class="widget epfl-sti-social">
       <div itemscope itemtype="https://schema.org/ContactPoint">
         <a href="mailto:secretariat.sti@epfl.ch" class="epfl-sti-social-item" target="_blank" title="email: STI Secretary Officel"><i class="fas fa-2x fa-envelope-square"></i></a>
         <a href="https://twitter.com/epfl_sti" class="epfl-sti-social-item" target="_blank" title="EPFL STI Twitter"><i class="fab fa-2x fa-twitter-square"></i></a>
