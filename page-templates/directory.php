@@ -4,6 +4,7 @@
 <div class="sti_faculty_sort">
  <div class="sti_sort_box">
   <a class="blacklink" href="#" onClick="javascript:printOuter('','en','');" id=all class="sti_sort_button">All Faculty</a><br><br>
+  <!---a href=# onClick='alert(PO + " " + PA + " " + PATT + " " + PT + " " + MER + " " + IBI2 + " " + IEL + " " + IGM + " " + IMX + " " + IMT);'>report</a--->
  </div>
  <div class="sti_sort_box">
   <a class="blacklink" href="#" onClick="printOuter('','en','PO'); if (PO==1) { PO=0; } else { PO=1; };" id=PO>Full Professors</a>

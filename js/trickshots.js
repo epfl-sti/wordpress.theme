@@ -6,7 +6,7 @@ var PT=0;
 var MER=0;
 var IBI2=0;
 var IEL=0;
-var IMX=0;
+var IGM=0;
 var IMT=0;
 var IMX=0;
 
@@ -42,7 +42,7 @@ function findString(tstring,text) {
     } 
 }
 
-function _doPrintOuter(people_listing, which, lang, level) {
+function _doPrintOuter(people_listing, lang) {
   var img_dir="https://stisrv13.epfl.ch/profs/img/";
   var test="";
   
@@ -52,9 +52,7 @@ function _doPrintOuter(people_listing, which, lang, level) {
    if (people_listing[x]) {
    
     //(findString(people_listing[x].title,'PATT') 
-    if (((findString(people_listing[x].institute,which))||(which=='all'))||(people_listing[x].title==level)) {
     
-     if (people_listing[x].institute!='IBI1') {
 	result++;
 	test+="<div style='width:140px; height:285px; float:left; display: inline; clear: none; background-color:#eee; margin: 5px; padding:10px' class='' valign=top>";
 	test+=people_listing[x].link + "<img width='118' border='0' src='";
@@ -64,8 +62,6 @@ function _doPrintOuter(people_listing, which, lang, level) {
 	test+="<a href=" + people_listing[x].labwebsite + ">" + people_listing[x].mylabname + "</a></div></div>";
         count++;
       
-     }
-    }
    }
   }
   if (count==0) {
@@ -104,12 +100,11 @@ function printOuter(which, lang, level) {
 
  }
 
-
  $.ajax({
         url: "https://stisrv13.epfl.ch/cgi-bin/whoop/faculty-and-teachers2.pl?PO="+PO+"&PA="+PA+"&PATT="+PATT+"&PT="+PT+"&MER="+MER+"&IBI2="+IBI2+"&IEL="+IEL+"&IGM="+IGM+"&IMT="+IMT+"&IMX="+IMX,
         dataType: "json",
 }).done(function(people_listing) {
-    _doPrintOuter(people_listing, which, lang, level);
+    _doPrintOuter(people_listing, lang);
 });
 
 }
