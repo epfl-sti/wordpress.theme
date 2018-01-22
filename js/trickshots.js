@@ -10,23 +10,6 @@ var IGM=0;
 var IMT=0;
 var IMX=0;
 
-function set_personal_info(id, lastname, firstname, institute, title, mylabname, labname, labwebsite, phone, office, image, link, keywords) {
- this.id = id;
- this.lastname = lastname;
- this.firstname = firstname;
- this.institute = institute;
- this.title = title;
- this.mylabname = mylabname;
- this.labname = labname;
- this.labwebsite = labwebsite;
- this.phone = phone;
- this.office = office;
- this.image = image;
- this.link = link;
- this.keywords= keywords;
-
-}
-
 function findString(tstring,text) {
     // Replaces text with by in string
     var strLength = tstring.length, txtLength = text.length;
