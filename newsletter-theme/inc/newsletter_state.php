@@ -1,4 +1,4 @@
-<?php
+<?php // -*- web-mode-code-indent-offset: 4; -*-
 
 /**
  * Manage the state of the draft newsletter
@@ -35,7 +35,8 @@ function get_newsletter_posts ($theme_options)
 
 class NewsletterDraftState
 {
-    const TIMEOUT_SECS = 45 * 60;
+    // 72 hours is enough to leave a draft to dry over a week-end.
+    const TIMEOUT_SECS = 72 * 3600;
 
     private $saved_state;
 
