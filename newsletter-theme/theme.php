@@ -233,7 +233,7 @@ function render_write_us_table () {
     render_red_title_tr(___("WRITE TO US!"));
     echo "\t\t\t<tr>\n";
     echo "\t\t\t\t<td class=\"main-matter\">\n";
-    echo sprintf("\t\t\t\t\t<p>%s<a target=\"_blank\" href=\"mailto:stiitweb@groupes.epfl.ch\" class=\"writetous\">stiitweb@groupes.epfl.ch</a></p>\n",
+    echo sprintf("\t\t\t\t\t<p>%s <a target=\"_blank\" href=\"mailto:stiitweb@groupes.epfl.ch\" class=\"writetous\">stiitweb@groupes.epfl.ch</a></p>\n",
                  ___("You would like to have a story published in the newsletter, or you have a remark or suggestion, contact us:"));
     echo "\t\t\t\t</td>\n";
     echo "\t\t\t</tr>\n";
@@ -320,7 +320,7 @@ function render_events_table ($events)
                     ($start->format('Y m') === $end->format('Y m')) &&
                     ($start->format('j')   !== $end->format('j'))) {
                     $day = sprintf("%d-%d", $start->format('j'),
-                                   $start->format('j'));
+                                   $end->format('j'));
                 } else {
                     $day = sprintf("%d", $start->format('j'));
                 }
