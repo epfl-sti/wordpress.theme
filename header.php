@@ -41,7 +41,7 @@ $cl = get_current_language();
     <div id="megamenu" class="menu row no-gutters">
 
         <?php # Site logo and top-most navigation in a 0-height div ?>
-        <nav>
+        <topbar>
             <?php if ( ! has_custom_logo() ) { ?>
                <a href="https://www.epfl.ch"> <img width=174 id=epfl_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a>
                <a href="<?php echo esc_url( home_url( '/' ) ); ?>"> <img id=sti_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.png" /></a>
@@ -61,24 +61,15 @@ $cl = get_current_language();
               </a>
              </form>
             </div>
-        </nav>
+        </topbar>
 
-        <ul id="megamenu" class="justify-content-center">
-            <li>
-                <?php echo "<!-- THE SCHOOL MENU -->"; echo get_page_by_title( 'menu-school-'. $cl )->post_content ; ?>
-            </li>
-            <li>
-                <?php echo "<!-- THE EDUCATION MENU -->"; echo get_page_by_title( 'menu-education-'. $cl )->post_content ; ?>
-            </li>
-            <li>
-                <?php echo "<!-- THE RESEARCH MENU -->"; echo get_page_by_title( 'menu-research-'. $cl )->post_content ; ?>
-            </li>
-            <li>
-                <?php echo "<!-- THE INNOVATION MENU -->"; echo get_page_by_title( 'menu-innovation-'. $cl )->post_content ; ?>
-            </li>
-            <li>
-                <?php echo "<!-- THE THEMES MENU -->"; echo get_page_by_title( 'menu-themes-'. $cl )->post_content ; ?>
-            </li>
-        </ul>
+        <?php wp_nav_menu( array(
+          'theme_location'  => 'primary',
+	  'container_class' => 'collapse navbar-collapse',
+	  'container_id'    => 'navbarNavDropdown',
+	  'menu_class'      => 'navbar-nav',
+	  'fallback_cb'     => '',
+	  'menu_id'         => 'main-menu',
+        )); ?>
     </div>
 </div>
