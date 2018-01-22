@@ -1,4 +1,4 @@
-<?php
+<?php // -*- web-mode-code-indent-offset: 4; -*-
 
 /*
 Theme Name: EPFL STI
