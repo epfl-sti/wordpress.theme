@@ -97,10 +97,13 @@ class EPFLPostController
             'post_link',
             array(get_called_class(), 'filter_external_permalink'),
             10, 2);
+        add_filter(
+            'post_type_link',
+            array(get_called_class(), 'filter_external_permalink'),
+            10, 2);
     }
 
     static function filter_external_permalink ($link, $post) {
-        if ($post->post_type !== 'post') { return $link; }
         $epfl_post = new EPFLPost($post);
         $newlink = $epfl_post->get_external_url();
         return $newlink ? $newlink : $link;
