@@ -307,6 +307,7 @@ function render_events_table ($events)
         $post = $event;  // We aren't in The Loop so there is nothing else to do
         $title = get_the_title();
         $link  = get_permalink($post);
+        $subtitle = function_exists("get_the_subtitle") ? get_the_subtitle($post, "", "", false) : null;
         $day   = null;  // Unless changed below
         $month = null;  // Same
         if (class_exists('EPFL\\WS\\Memento\\Memento')) {
@@ -352,6 +353,7 @@ function render_events_table ($events)
     <tr>
      <td style="font-size:14px; width:100%; padding: 0px 0px 10px 0px;" colspan=2>
       <a href="<?php echo $link; ?>"><?php echo $title; ?></a>
+      <?php if ($subtitle) { echo "<br/>"; echo $subtitle; } ?>
      </td>
     </tr>
     <tr>
