@@ -384,7 +384,7 @@ function render_in_the_media_table ($media_list)
 {
     if (!count($media_list) && !has_vue_app()) { return; }
     $table_attributes = get_righthand_column_table_attributes();
-    echo "<br><table $table_attributes id=\"in-the-media\">";
+    echo "<table $table_attributes id=\"in-the-media\">";
     render_red_title_tr(___("IN THE MEDIA"));
 
     if (! count($media_list)) {
@@ -498,8 +498,9 @@ render_frame_table(function() {
     echo "</td>\n";  // End of main matter
 
     printf("<td valign=\"top\" id=\"right-sidebar\">");
-    render_events_table($posts["events"]->posts());
     render_in_the_media_table($posts["media"]->posts());
+    echo "<br>";
+    render_events_table($posts["events"]->posts());
     echo "</td>";
     echo "</tr>\n";
 
