@@ -53,6 +53,30 @@ function _doPrintOuter(people_listing, lang) {
   document.getElementById('smackittome').innerHTML = test;
 }
 
+function resetDirectoryForm() {
+    $(".sti_faculty_sort a").data("active", false);
+    $(".sti_faculty_sort a#all").data("active", true);
+    redraw();
+    return false;  // For the onClick() handler to suppress the event
+}
+
+function redraw () {
+    $(".sti_faculty_sort a").map(function (unused_index, e) {
+        $(e).removeClass('blacklinkinverted');
+        $(e).removeClass('blacklink');
+        var activeClass = $(e).data("active") ? 'blacklinkinverted' : 'blacklink';
+        $(e).addClass(activeClass);
+    })
+}
+
+function toggle (this_link) {
+    $(".sti_faculty_sort a#all").data("active", false);
+    var oldState = $(this_link).data("active");
+    $(this_link).data("active", ! oldState);
+    redraw();
+    return false;  // For the onClick() handler to suppress the event
+}
+
 function printOuter(which, lang, level) {
  if (level != "") {
   var target=window['level'];
