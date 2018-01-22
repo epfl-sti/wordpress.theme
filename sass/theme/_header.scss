@@ -14,3 +14,31 @@
   top: 0px;
   right: 20px;
 }
+
+/**
+ * Polylang languages menu
+ */
+.lang-item {
+  display: inline;
+}
+
+.lang-item-first:after {
+  content: " /";
+}
+
+.lang-item a {
+  color: #23282D;
+  text-decoration: none;
+}
+
+.lang-item.current-lang a {
+  color: $theRed;
+  pointer-events: none;
+}
+
+/**
+ * Search box
+ */
+.searchbox {
+  float:right;
+}

@@ -3,3 +3,10 @@ article.type-page {
   padding: 2em 3em 2em 3em;
   border: 1px solid black;
 }
+
+/**
+ * FontAwesome icons become red on hover
+ */
+a > i:hover {
+  color: $theRed;
+}
