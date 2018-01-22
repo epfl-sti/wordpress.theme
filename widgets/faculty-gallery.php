@@ -35,6 +35,16 @@ class FacultyGallery extends \WP_Widget
     ?>
     <directory>
 <script type="text/javascript">
+var PO=0;
+var PA=0;
+var PATT=0;
+var PT=0;
+var MER=0;
+var IBI2=0;
+var IEL=0;
+var IGM=0;
+var IMT=0;
+var IMX=0;
 
 function findString(tstring,text) {
     // Replaces text with by in string
@@ -51,7 +61,7 @@ function findString(tstring,text) {
     } 
 }
 
-function _doPrintOuter(people_listing, which, lang, level) {
+function _doPrintOuter(people_listing, lang) {
   var img_dir="https://stisrv13.epfl.ch/profs/img/";
   var test="";
   
@@ -61,25 +71,16 @@ function _doPrintOuter(people_listing, which, lang, level) {
    if (people_listing[x]) {
    
     //(findString(people_listing[x].title,'PATT') 
-    if (((findString(people_listing[x].institute,which))||(which=='all'))||(people_listing[x].title==level)) {
     
-     if (people_listing[x].institute!='IBI1') {
 	result++;
-	test+="\
-            <div style='width:118px; height:190px; float:left; display: inline; clear: none;' class='pandalink' valign=top>\n\
-";
-	 test+=people_listing[x].link + "<img width='78' height='100' border='0' src='";
-				
-test+=img_dir+people_listing[x].image + "' title='" + people_listing[x].firstname + " " + people_listing[x].lastname;				
-		  test+="'/></a>\n\ <br>\n" + people_listing[x].link + people_listing[x].lastname + "<br>" + people_listing[x].firstname;				
-		  test+="</a>\n\ <div style='width: 78px' align=right>\n\ ";
-		  test+="<a class='pandalink' href='" + people_listing[x].labwebsite + "'>" + people_listing[x].labname + "</a></div><br/>";
-			test+="<br><br></div>\n\
-";
-  count++;
+	test+="<div style='width:140px; height:285px; float:left; display: inline; clear: none; background-color:#eee; margin: 5px; padding:10px' class='' valign=top>";
+	test+=people_listing[x].link + "<img width='118' border='0' src='";
+	test+=img_dir+people_listing[x].image + "' title='" + people_listing[x].firstname + " " + people_listing[x].lastname;
+	test+="'/></a>\n\ <br>\n" + people_listing[x].link + people_listing[x].lastname + "<br>" + people_listing[x].firstname;
+	test+="</a>\n\ <div style='width: 110px; font-size:10px'>\n\ ";
+	test+="<a href=" + people_listing[x].labwebsite + ">" + people_listing[x].mylabname + "</a></div></div>";
+        count++;
       
-     }
-    }
    }
   }
   if (count==0) {
@@ -88,38 +89,82 @@ test+=img_dir+people_listing[x].image + "' title='" + people_listing[x].firstnam
   document.getElementById('<?php echo $div_id; ?>').innerHTML = test;
 }
 
-function printOuter(which, lang, level) {
+function resetDirectoryForm() {
+    $(".sti_faculty_sort a").data("active", false);
+    $(".sti_faculty_sort a#all").data("active", true);
+    redraw();
+    return false;  // For the onClick() handler to suppress the event
+}
+
+function redraw () {
+    $(".sti_faculty_sort a").map(function (unused_index, e) {
+        $(e).removeClass('blacklinkinverted');
+        $(e).removeClass('blacklink');
+        var activeClass = $(e).data("active") ? 'blacklinkinverted' : 'blacklink';
+        $(e).addClass(activeClass);
+    })
+
+    function anchor2cgiparam (id) {
+        return ($("#" + id).data("active") ? "1" : "0");
+    }
+
+    var PO = anchor2cgiparam("PO"),
+        PA = anchor2cgiparam("PA"),
+        PATT = anchor2cgiparam("PATT"),
+        PT = anchor2cgiparam("PT"),
+        MER = anchor2cgiparam("MER"),
+        IBI2 = anchor2cgiparam("IBI2"),
+        IEL = anchor2cgiparam("IEL"),
+        IGM = anchor2cgiparam("IGM"),
+        IMT = anchor2cgiparam("IMT"),
+        IMX = anchor2cgiparam("IMX");
+    var url = "https://stisrv13.epfl.ch/cgi-bin/whoop/faculty-and-teachers2.pl?PO="+PO+"&PA="+PA+"&PATT="+PATT+"&PT="+PT+"&MER="+MER+"&IBI2="+IBI2+"&IEL="+IEL+"&IGM="+IGM+"&IMT="+IMT+"&IMX="+IMX;
+    console.log(url);
     $.ajax({
-        url: "https://stisrv13.epfl.ch/cgi-bin/whoop/faculty-and-teachers.pl",
+        url: url,
         dataType: "json",
 }).done(function(people_listing) {
-    _doPrintOuter(people_listing, which, lang, level);
+    _doPrintOuter(people_listing, "en");
 });
 }
+
+function toggle (this_link) {
+    $(".sti_faculty_sort a#all").data("active", false);
+    var oldState = $(this_link).data("active");
+    $(this_link).data("active", ! oldState);
+    redraw();
+    return false;  // For the onClick() handler to suppress the event
+}
+
+$(function() {
+    $("#all").data("active", true);
+    redraw();
+});
+
 </script>
 
-<center>
-	<h4><img src="https://stisrv13.epfl.ch/js/faculty.png" usemap="#facultybar" alt="" border="0"></h4>
-</center>
+<div class="sti_faculty_sort">
+ <div class="sti_sort_box">
+  <a class="blacklink" href="#" onClick="javascript:return resetDirectoryForm();" id=all class="sti_sort_button">All Faculty</a><br><br>
+  <!---a href=# onClick='alert(PO + " " + PA + " " + PATT + " " + PT + " " + MER + " " + IBI2 + " " + IEL + " " + IGM + " " + IMX + " " + IMT);'>report</a--->
+ </div>
+ <div class="sti_sort_box">
+  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=PO>Full Professors</a>
+  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=PA>Associate Professors</a>
+  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=PATT>Assistant Professors</a>
+  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=PT>Adjunct Professors</a>
+  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=MER>Senior Scientists</a>
+ </div> 
+ <div class="sti_sort_box">
+  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IBI2>Bioengineering</a>
+  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IEL>Electrical Engineering</a>
+  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IMX>Materials Science</a>
+  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IGM>Mechanical Engineering</a>
+  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IMT>Microengineering</a>
+ </div>
+</div>
 
-<map name="facultybar">
-	<area title="Tenure Track Assistant Professors" shape="poly" coords="304,112,390,114,306,115,303,99,445,96,473,113,475,128,397,125" href="#" onclick="javascript:printOuter('','en','PATT');" alt="" />
-
-	<area title="Associate Professors" shape="rect" coords="158,96,282,110" href="#" onclick="javascript:printOuter('','en','PA');" alt="" />
-	<area title="Senior Scientists" shape="rect" coords="155,120,302,139" href="#" onclick="javascript:printOuter('','en','MER');" alt="" />
-	<area title="Adjunct Professors" shape="rect" coords="11,121,148,139" href="#" onclick="javascript:printOuter('','en','PT');" alt="" />
-	<area title="Full Professors" shape="rect" coords="9,94,148,117" href="#" onclick="javascript:printOuter('','en','PO');" alt="" />
-	<area title="Bioengineering" href="#" onclick="javascript:printOuter('IBI2','en','');" coords="375,39,471,79" shape="rect">
-	<area title="Microengineering" href="#" onclick="javascript:printOuter('IMT','en','');" coords="164,60,292,91" shape="rect">
-	<area title="Materials Science and Engineering" href="#" onclick="javascript:printOuter('IMX','en','');" coords="158,40,366,60" shape="rect">
-	<area title="Mechanical Engineering" onclick="javascript:printOuter('IGM','en','');" href="#" coords="12,61,157,81" shape="rect">
-	<area title="Electrical Engineering" href="#" onclick="javascript:printOuter('IEL','en','');" coords="12,40,157,60" shape="rect">
-
-	<area title="Show all faculty members of STI" onclick="javascript:printOuter('all','en','');" href="#" coords="12,0,374,39" shape="rect">
-</map>
-</p>
-<div id="<?php echo $div_id; ?>" style='padding: 15px 0px 0px 25px; display: inline-block; background-color:#444;border:2px solid black;'>&nbsp;</div>
-<script>printOuter('all','en','all');</script>
+<div id="<?php echo $div_id; ?>" style='padding: 15px 0px 0px 25px; display: inline-block; background-color:white;'>&nbsp;</div>
 
 </directory>
 <?php
