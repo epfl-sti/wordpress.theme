@@ -40,7 +40,7 @@ class FrontRow extends \WP_Widget
     ?>
     <div class="container">
       <div class="row no-gutters">
-        <div class="col-md-3 frontrowcol">
+        <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
           <div class="text-white frontrowtitle">
             <?php echo ___('RESEARCH'); ?><br /><span class="text-danger"><?php echo ___('NEWS'); ?></span>
           </div>
@@ -60,7 +60,7 @@ class FrontRow extends \WP_Widget
                 $x++;
             } ?>
         </div>
-        <div class="col-md-3 frontrowcol">
+        <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
           <div class="text-white frontrowtitle">
             <?php echo ___('SCHOOL OF'); ?><br /><span class="text-danger"><?php echo ___('ENGINEERING'); ?></span>
           </div>
@@ -69,7 +69,8 @@ class FrontRow extends \WP_Widget
                 'container_class' => 'menu-front-row  menu-schools'
             )); ?>
         </div>
-        <div class="col-md-3 frontrowcol">
+        <div class="w-100 d-none d-md-block d-lg-none"></div>
+        <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
           <div class="text-white frontrowtitle">
             <?php echo ___('INSTITUTES'); ?><br /><span class="text-danger">&amp;&nbsp;<?php echo ___('CENTRES'); ?></span>
           </div>
@@ -78,7 +79,7 @@ class FrontRow extends \WP_Widget
               'container_class' => 'menu-front-row menu-centres'
           )); ?>
         </div>
-        <div class="col-md-3 frontrowcol">
+        <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
           <div class="text-white frontrowtitle">
             <?php echo ___('UPCOMING'); ?><br /><span class="text-danger"><?php echo ___('EVENTS'); ?></span>
           </div>
