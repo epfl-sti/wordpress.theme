@@ -61,7 +61,7 @@ class WhiteNews extends \WP_Widget
         printf("<input type=\"text\" id=\"$maxcount_id\" name=\"$maxcount_name\" value=\"%s\">", esc_html($config["maxcount"]));
     }
 
-	public function update( $new_config, $old_config ) {
+    public function update( $new_config, $old_config ) {
         $config = $old_config;
         $config["title"]    = $new_config["title"];
         $config["cssclass"] = $new_config["cssclass"];
