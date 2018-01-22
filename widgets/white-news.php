@@ -115,7 +115,7 @@ class WhiteNews extends \WP_Widget
   <div class="secondarycontent">
   <a href="<?php echo get_the_permalink(); ?>"><?php the_title(); ?></a>
   <br />
-   <a href="#"><img class="frontrowmore" src="/wp-content/themes/epfl-sti/img/src/yetmore.png" align="right"></a>
+   <a href="#"><img class="whitenewsmore" src="/wp-content/themes/epfl-sti/img/src/yetmore.png" align="right"></a>
   </div>
 </div>
                 <?php

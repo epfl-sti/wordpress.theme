@@ -20,7 +20,7 @@ body {
 .sti_faculty_sort {
   width: 100%;
   padding 30px;
-  display: inline-block; 
+  display: inline-block;
   margin-bottom: 15px;
   background-color: white;
 }
@@ -253,7 +253,7 @@ body {
   top: -6px;
 }
 
-.frontrowmore {
+.whitenewsmore {
   position: absolute;
   bottom: 10px;
   right: 10px;

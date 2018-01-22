@@ -83,38 +83,42 @@ class FrontRow extends \WP_Widget
           <div class="text-white frontrowtitle">
             <?php echo ___('UPCOMING'); ?><br /><span class="text-danger"><?php echo ___('EVENTS'); ?></span>
           </div>
-            <div class="container">
-              <?php
-                $events = get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=4);
-                $max_len = 52;
-                foreach ($events as $event) { ?>
-                  <div class="row frontrow_event">
-                    <div class="col-4 frontrow_event_date">
-                      <!-- the icon as a time element -->
-                      <a href="<?php echo $event->absolute_slug; ?>" title="<?php echo $event->title; ?>">
-                        <time datetime="<?php echo $event->event_start_date; ?>" class="icon">
-                          <em><?php echo date("l", strtotime($event->event_start_date));      // Friday ?></em>
-                          <strong><?php echo date("F", strtotime($event->event_start_date));  // January ?></strong>
-                          <span><?php echo date("d", strtotime($event->event_start_date));    // 19 ?></span>
-                        </time>
-                      </a>
-                    </div>
-                    <div class="col-8 frontrow_event_text">
-                      <?php //var_dump($event);
-                        $s = $event->title;
-                        if (strlen($event->title) > $max_len) {
-                            $offset = ($max_len - 3) - strlen($event->title);
-                            $s = substr($event->title, 0, strrpos($event->title, ' ', $offset)) . '…';
-                        };
-                        echo $s;
-                      ?>
-                      <div class="add_to_calendar"><a href="https://memento.epfl.ch/event/export/<?php echo $event->translation_id; ?>/" title="Add to calendar"><i class="far fa-calendar-plus"></i></a></div>
-                    </div>
+          <div class="container">
+            <?php
+              $events = get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=4);
+              $max_len = 52;
+              foreach ($events as $event) { ?>
+                <div class="row frontrow_event">
+                  <div class="col-4 frontrow_event_date">
+                    <!-- the icon as a time element -->
+                    <a href="<?php echo $event->absolute_slug; ?>" title="<?php echo $event->title; ?>">
+                      <time datetime="<?php echo $event->event_start_date; ?>" class="icon">
+                        <em><?php echo date("l", strtotime($event->event_start_date));      // Friday ?></em>
+                        <strong><?php echo date("F", strtotime($event->event_start_date));  // January ?></strong>
+                        <span><?php echo date("d", strtotime($event->event_start_date));    // 19 ?></span>
+                      </time>
+                    </a>
                   </div>
-              <?php
-                }
-              ?>
-            <a href="https://memento.epfl.ch/sti/?period=7"><img class="frontrowmore" align="right" src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/more.png"></a>
+                  <div class="col-8 frontrow_event_text">
+                    <?php //var_dump($event);
+                      $s = $event->title;
+                      if (strlen($event->title) > $max_len) {
+                          $offset = ($max_len - 3) - strlen($event->title);
+                          $s = substr($event->title, 0, strrpos($event->title, ' ', $offset)) . '…';
+                      };
+                      echo $s;
+                    ?>
+                    <div class="add_to_calendar"><a href="https://memento.epfl.ch/event/export/<?php echo $event->translation_id; ?>/" title="Add to calendar"><i class="far fa-calendar-plus"></i></a></div>
+                  </div>
+                </div>
+            <?php
+              }
+            ?>
+            <div class="row">
+              <div class="col-12 more_events">
+                <a href="https://memento.epfl.ch/sti/?period=7"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/more.png"></a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
