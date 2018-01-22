@@ -97,7 +97,15 @@ function printOuter(which, lang, level) {
    document.getElementById(which).classList.add('blacklinkinverted');
    window['which']=0;
   }
+ }
 
+ if ((which=="")&&(level=="")) {
+  document.getElementById("all").classList.remove('blacklink');
+  document.getElementById("all").classList.add('blacklinkinverted');
+ }
+ else {
+  document.getElementById("all").classList.remove('blacklinkinverted');
+  document.getElementById("all").classList.add('blacklink');
  }
 
  $.ajax({
