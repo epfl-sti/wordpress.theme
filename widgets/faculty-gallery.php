@@ -12,6 +12,7 @@ if (! class_exists('WP_Widget')) {
 
 require_once(dirname(dirname(__FILE__)) . "/inc/i18n.php");
 use function \EPFL\STI\Theme\___;
+use function \EPFL\STI\Theme\__x;
 
 class FacultyGallery extends \WP_Widget
 {
@@ -27,11 +28,15 @@ class FacultyGallery extends \WP_Widget
     );
   }
 
-  public function widget($args, $config)
+  public function widget ($args, $config)
   {
-    # TODO: Need to be smarter than this to support multiple faculty
-    # galleries per page.
-    $div_id = "faculty-gallery";
+    $institute = $config["institute"];
+    if ($institute) {
+      $div_id = "faculty-gallery-$institute";
+    } else {
+      $div_id = "faculty-gallery";
+    }
+
     ?>
     <directory>
 <script type="text/javascript">
@@ -97,6 +102,7 @@ function resetDirectoryForm() {
 }
 
 function redraw () {
+    var $institute = <?php echo ($institute ? "\"$institute\"" : undefined); ?>;
     $(".sti_faculty_sort a").map(function (unused_index, e) {
         $(e).removeClass('blacklinkinverted');
         $(e).removeClass('blacklink');
@@ -112,13 +118,18 @@ function redraw () {
         PA = anchor2cgiparam("PA"),
         PATT = anchor2cgiparam("PATT"),
         PT = anchor2cgiparam("PT"),
-        MER = anchor2cgiparam("MER"),
-        IBI2 = anchor2cgiparam("IBI2"),
+        MER = anchor2cgiparam("MER");
+    var url = "https://stisrv13.epfl.ch/cgi-bin/whoop/faculty-and-teachers2.pl?PO="+PO+"&PA="+PA+"&PATT="+PATT+"&PT="+PT+"&MER="+MER;
+    if ($institute) {
+      url = url + "&" + $institute + "=1";
+    } else {
+      var IBI2 = anchor2cgiparam("IBI2"),
         IEL = anchor2cgiparam("IEL"),
         IGM = anchor2cgiparam("IGM"),
         IMT = anchor2cgiparam("IMT"),
-        IMX = anchor2cgiparam("IMX");
-    var url = "https://stisrv13.epfl.ch/cgi-bin/whoop/faculty-and-teachers2.pl?PO="+PO+"&PA="+PA+"&PATT="+PATT+"&PT="+PT+"&MER="+MER+"&IBI2="+IBI2+"&IEL="+IEL+"&IGM="+IGM+"&IMT="+IMT+"&IMX="+IMX;
+        IMX = anchor2cgiparam("IMX")
+      url = url+"&IBI2="+IBI2+"&IEL="+IEL+"&IGM="+IGM+"&IMT="+IMT+"&IMX="+IMX;
+    }
     console.log(url);
     $.ajax({
         url: url,
@@ -155,6 +166,7 @@ $(function() {
   <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=PT>Adjunct Professors</a>
   <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=MER>Senior Scientists</a>
  </div> 
+<?php if (! $institute): ?>
  <div class="sti_sort_box">
   <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IBI2>Bioengineering</a>
   <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IEL>Electrical Engineering</a>
@@ -162,6 +174,7 @@ $(function() {
   <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IGM>Mechanical Engineering</a>
   <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IMT>Microengineering</a>
  </div>
+<?php endif; ?>
 </div>
 
 <div id="<?php echo $div_id; ?>" style='padding: 15px 0px 0px 25px; display: inline-block; background-color:white;'>&nbsp;</div>
@@ -170,6 +183,23 @@ $(function() {
 <?php
 
   }  // public function widget
+
+  public function form ($config)
+  {
+    $title_id   = $this->get_field_id  ('institute');
+    $title_name = $this->get_field_name('institute');
+    printf("<label for=\"%s\">%s</label>", $title_id,
+           __x('Institute:', 'faculty-gallery wp-admin'));
+    printf("<input type=\"text\" id=\"$title_id\" name=\"$title_name\" value=\"%s\">", esc_html($config["title"]));
+  }
+
+  public function update( $new_config, $old_config )
+  {
+    $config = $old_config;
+    $config["institute"] = $new_config["institute"];
+    return $config;
+  }
+
 }
 
 register_widget(FacultyGallery::class);
