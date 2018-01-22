@@ -67,6 +67,29 @@ function redraw () {
         var activeClass = $(e).data("active") ? 'blacklinkinverted' : 'blacklink';
         $(e).addClass(activeClass);
     })
+
+    function anchor2cgiparam (id) {
+        return ($("#" + id).data("active") ? "1" : "0");
+    }
+
+    var PO = anchor2cgiparam("PO"),
+        PA = anchor2cgiparam("PA"),
+        PATT = anchor2cgiparam("PATT"),
+        PT = anchor2cgiparam("PT"),
+        MER = anchor2cgiparam("MER"),
+        IBI2 = anchor2cgiparam("IBI2"),
+        IEL = anchor2cgiparam("IEL"),
+        IGM = anchor2cgiparam("IGM"),
+        IMT = anchor2cgiparam("IMT"),
+        IMX = anchor2cgiparam("IMX");
+    var url = "https://stisrv13.epfl.ch/cgi-bin/whoop/faculty-and-teachers2.pl?PO="+PO+"&PA="+PA+"&PATT="+PATT+"&PT="+PT+"&MER="+MER+"&IBI2="+IBI2+"&IEL="+IEL+"&IGM="+IGM+"&IMT="+IMT+"&IMX="+IMX;
+    console.log(url);
+    $.ajax({
+        url: url,
+        dataType: "json",
+}).done(function(people_listing) {
+    _doPrintOuter(people_listing, "en");
+});
 }
 
 function toggle (this_link) {
@@ -77,51 +100,7 @@ function toggle (this_link) {
     return false;  // For the onClick() handler to suppress the event
 }
 
-function printOuter(which, lang, level) {
- if (level != "") {
-  var target=window['level'];
-  if (target==0) {
-   document.getElementById(level).classList.remove('blacklinkinverted');
-   document.getElementById(level).classList.add('blacklink');
-   window['level']=1;
-  }
-  else {
-   document.getElementById(level).classList.remove('blacklink');
-   document.getElementById(level).classList.add('blacklinkinverted');
-   window['level']=0;
-  }
-
- }
- else if (which != "") {
-  var target=window['which'];
-  if (target==0) {
-   document.getElementById(which).classList.remove('blacklinkinverted');
-   document.getElementById(which).classList.add('blacklink');
-   window['which']=1;
-  }
-  else {
-   document.getElementById(which).classList.remove('blacklink');
-   document.getElementById(which).classList.add('blacklinkinverted');
-   window['which']=0;
-  }
- }
-
- if ((which=="")&&(level=="")) {
-  document.getElementById("all").classList.remove('blacklink');
-  document.getElementById("all").classList.add('blacklinkinverted');
- }
- else {
-  document.getElementById("all").classList.remove('blacklinkinverted');
-  document.getElementById("all").classList.add('blacklink');
- }
-
- $.ajax({
-        url: "https://stisrv13.epfl.ch/cgi-bin/whoop/faculty-and-teachers2.pl?PO="+PO+"&PA="+PA+"&PATT="+PATT+"&PT="+PT+"&MER="+MER+"&IBI2="+IBI2+"&IEL="+IEL+"&IGM="+IGM+"&IMT="+IMT+"&IMX="+IMX,
-        dataType: "json",
-}).done(function(people_listing) {
-    _doPrintOuter(people_listing, lang);
+$(function() {
+    $("#all").data("active", true);
+    redraw();
 });
-
-}
-
-
