@@ -1,16 +1,3 @@
-#header {
-  // Require to use z-indexes, position: absolute on children
-  position: relative;
-}
-
-#megamenu a.menu-mobile {  // burger menu - Hidden (by _megamenu.scss) on large widths
-  position: absolute;
-  // In principle, we should share variables with _megamenu.scss for
-  // these coordinates:
-  top: 0px;
-  right: 20px;
-}
-
 // The full-feathered mega menu! (Offer void if screen too small)
 @media screen and (min-width: $megamenu-toosmall) {
   #megamenu > ul {
