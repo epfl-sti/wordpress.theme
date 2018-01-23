@@ -38,7 +38,7 @@ $cl = get_current_language();
 
 <div id="header" class="menu-container container-fluid">
 
-    <div id="megamenu" class="menu row no-gutters">
+    <div class="menu row no-gutters">
 
         <?php # Site logo and top-most navigation in a 0-height div ?>
         <topbar>
@@ -63,13 +63,8 @@ $cl = get_current_language();
             </div>
         </topbar>
 
-        <?php wp_nav_menu( array(
-          'theme_location'  => 'primary',
-	  'container_class' => 'collapse navbar-collapse',
-	  'container_id'    => 'navbarNavDropdown',
-	  'menu_class'      => 'navbar-nav',
-	  'fallback_cb'     => '',
-	  'menu_id'         => 'main-menu',
-        )); ?>
     </div>
 </div>
+<?php wp_nav_menu( array(
+    'theme_location'  => 'primary',
+)); ?>
