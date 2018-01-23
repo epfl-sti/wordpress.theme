@@ -228,18 +228,6 @@ function render_news_item_td ($style)
     echo "</td>";
 }
 
-function render_write_us_table () {
-    echo "\t\t<table id=\"write-to-us\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" style=\"width: 100%;\">\n";
-    render_red_title_tr(___("WRITE TO US!"));
-    echo "\t\t\t<tr>\n";
-    echo "\t\t\t\t<td class=\"main-matter\">\n";
-    echo sprintf("\t\t\t\t\t<p>%s <a target=\"_blank\" href=\"mailto:stiitweb@groupes.epfl.ch\" class=\"writetous\">stiitweb@groupes.epfl.ch</a></p>\n",
-                 ___("You would like to have a story published in the newsletter, or you have a remark or suggestion, contact us:"));
-    echo "\t\t\t\t</td>\n";
-    echo "\t\t\t</tr>\n";
-    echo "\t\t</table>\n";
-}
-
 function render_footer_tr ()
 {
     ?>
@@ -496,7 +484,6 @@ render_frame_table(function() {
     echo "</table>\n";
 
     render_faculty_positions_table($posts["faculty"]->posts());
-    render_write_us_table();
     echo "</td>\n";  // End of main matter
 
     printf("<td valign=\"top\" id=\"right-sidebar\">");
