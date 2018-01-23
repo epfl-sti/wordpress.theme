@@ -45,7 +45,7 @@ p {
 
 a {
  text-decoration: none;
- color: black;
+ color: black !important;   <?php # Gmail thinks different ?>
 }
 
 a.outlink.more {
