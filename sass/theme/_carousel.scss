@@ -27,6 +27,10 @@
         @media screen and (min-width: $carousel-screen-width-small) {
           top: ($sti-carousel-button-distancefromtop + $carousel-control-icon-width + $sti-carousel-legend-margin);
         }
+        @media screen and (max-width: $carousel-screen-width-small - 1) {
+          top: $sti-carousel-legend-margin;
+        }
+
         z-index: 8;
         font-family: 'Open Sans Regular', sans-serif;
         color: white;
@@ -35,11 +39,11 @@
             color: white;
             text-decoration: none;
         }
+
         h1, h2 {
             text-shadow: 1px 1px 2px black;
         }
         @media screen and (max-width: $carousel-screen-width-small - 1) {
-          top: $sti-carousel-legend-margin;
             h1 {
                 font-size: 5vw;
             }
