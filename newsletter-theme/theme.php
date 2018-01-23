@@ -420,8 +420,7 @@ function render_in_the_media_table ($media_list)
               $labname = sprintf(___("%s's lab"), $authors[0]->get_full_name());
               $laburl = $authors[0]->get_lab_website_url();
               echo "<br>";
-              printf(___("At %s"), sprintf('<a href="%s">%s</a>',
-                                           $laburl, $labname));
+              printf('<a href="%s">%s</a>', $laburl, $labname);
           ?>
          </td>
         </tr>
