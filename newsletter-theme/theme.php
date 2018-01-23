@@ -233,13 +233,14 @@ function render_news_item_td ($style)
 
 function render_footer_tr ()
 {
+    $archive_url = site_url("/newsletter-archive");
     ?>
             <tr>
 			    <td colspan=2>
 			    <table id='footer' cellpadding=0 cellspacing=0 border=0 width=100%>
 				 <tr>
 				  <td>
-                         <a href="https://sti.epfl.ch">School of Engineering</a>, &Eacute;cole Polytechnique F&eacute;d&eacute;rale de Lausanne (<a href="https://www.epfl.ch">EPFL</a>), Switzerland<br>You can access previous versions of the newsletter <a href="#">here</a>
+                         <a href="https://sti.epfl.ch">School of Engineering</a>, &Eacute;cole Polytechnique F&eacute;d&eacute;rale de Lausanne (<a href="https://www.epfl.ch">EPFL</a>), Switzerland<br>You can access previous versions of the newsletter <a href="<?php echo $archive_url; ?>">here</a>
 <br>
 Unsubscribe by clicking <a target="_blank" href="{unsubscription_url}">here</a>
 				 </td>
