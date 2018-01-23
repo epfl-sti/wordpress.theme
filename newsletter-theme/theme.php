@@ -81,8 +81,11 @@ td#right-sidebar .divider {
     font-size:1px;
 }
 
+td.main-matter.news {
+    padding: 20px 10px 20px 10px;
+}
+
 td.main-matter {
-  padding: 20px 10px 20px 10px;
   background-color:#fff;
   font-size: 13px;
 }
@@ -207,7 +210,7 @@ function render_news_item_td ($style)
         $imagesize="";
   }
 
-    printf("<td class=\"main-matter\" %s>", $colspan);
+    printf("<td class=\"main-matter news\" %s>", $colspan);
 
     $img = get_the_post_thumbnail(get_the_id(), 'post-thumbnail', array(
         "style"  => $imagesize,
@@ -250,7 +253,7 @@ Unsubscribe by clicking <a target="_blank" href="{unsubscription_url}">here</a>
 function render_faculty_positions_table ($positions) {
     if (!count($positions) && !has_vue_app()) { return; }
 
-    echo "<table id=\"faculty\" cellpadding=0 cellspacing=0 border=0 style=\"width: 100%;\">";
+    echo "<table id=\"faculty\" cellpadding=\"8\" cellspacing=0 border=0 style=\"width: 100%;\">";
     render_red_title_tr(___("OPEN POSITIONS"));
 
     if (! count($positions)) {
