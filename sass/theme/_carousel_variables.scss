@@ -4,14 +4,14 @@
 $carousel-control-prev-icon-bg: url("../img/src/left.png");
 $carousel-control-next-icon-bg: url("../img/src/right.png");
 
-$sti-carousel-button-distancefromtop: 160px;
+$sti-carousel-button-distancefromtop: 20%;
 // This variable is for the Bootstrap carousel that we use:
 $carousel-control-icon-width: 32px;
 $sti-carousel-button-distancefromleftright: 25px;
-$sti-carousel-legend-margin: 60px;
+$sti-carousel-sm-legend-margin: 60px;
 
-$carousel-screen-width-small: 680px;
 $carousel-controls-toosmall: 350px;
+$carousel-container-max-height: 600px;
 
-$redwave-toosmall: $megamenu-toosmall;
+$redwave-toosmall: 540px;
 $redwave-toolarge: 1800px;

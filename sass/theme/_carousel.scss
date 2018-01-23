@@ -17,18 +17,19 @@
 
     div.legend {
         position: absolute;
-        left: 45px;
+        left: 0pt;
+        margin: 0pt 20pt 0pt 20pt;
 
         text-align: left;  // Countermand parent
 
         // Note: since the height of the image is not known (and can in
         // fact vary wildly), only "top:" is safe. Positioning under the
         // carousel buttons can be done like this:
-        @media screen and (min-width: $carousel-screen-width-small) {
-          top: ($sti-carousel-button-distancefromtop + $carousel-control-icon-width + $sti-carousel-legend-margin);
+        @media screen and (min-width: $carousel-controls-toosmall) {
+          top: ($sti-carousel-button-distancefromtop + 20%);
         }
-        @media screen and (max-width: $carousel-screen-width-small - 1) {
-          top: $sti-carousel-legend-margin;
+        @media screen and (max-width: $carousel-controls-toosmall - 1) {
+          top: $sti-carousel-sm-legend-margin;
         }
 
         z-index: 8;
@@ -43,7 +44,7 @@
         h1, h2 {
             text-shadow: 1px 1px 2px black;
         }
-        @media screen and (max-width: $carousel-screen-width-small - 1) {
+        @media screen and (max-width: $carousel-controls-toosmall - 1) {
             h1 {
                 font-size: 5vw;
             }
@@ -51,7 +52,7 @@
                 font-size: 4vw;
             }
         }
-        @media screen and (min-width: $carousel-screen-width-small) {
+        @media screen and (min-width: $carousel-controls-toosmall) {
             h1 {
                 font-size: 2.1em;
             }
@@ -64,6 +65,7 @@
 
 .sti-carousel-button {
     position: absolute;
+    z-index: 10;
     top: $sti-carousel-button-distancefromtop;
 
     @media screen and (max-width: $carousel-controls-toosmall - 1) {
@@ -94,14 +96,27 @@
 }
 
 #redwave {
- position: relative;
- top: -290px;
- height: 0px;
- z-index: 5;
- @media screen and (max-width: $redwave-toosmall) {
+  @media screen and (min-width: $redwave-toosmall) and (max-width: $redwave-toolarge - 1) {
+    visibility: visible;
+  } // otherwise:
   visibility: hidden;
- }
- @media screen and (min-width: $redwave-toolarge) {
-  visibility: hidden;
- }
+
+  position: relative;
+  height: 0px;
+  z-index: 5;
+
+  img {
+    display: block;
+    max-width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+  }
+}
+
+#container-carousel {
+  position: relative;  // So as to anchor the #redwave
+  max-height: $carousel-container-max-height;
 }
