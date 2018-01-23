@@ -29,7 +29,7 @@
           top: $sti-carousel-sm-legend-margin;
         }
         @media screen and (min-width: $carousel-controls-toosmall) {
-          top: ($sti-carousel-button-distancefromtop + 20%);
+          top: ($sti-carousel-button-distancefromtop + 10%);
         }
 
         font-family: 'Open Sans Regular', sans-serif;
