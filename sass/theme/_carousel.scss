@@ -117,6 +117,12 @@
 }
 
 #container-carousel {
-  position: relative;  // So as to anchor the #redwave
+  position: relative;  // To anchor the controller arrows
+  @media screen and (min-width: $redwave-toosmall) {
+    padding-bottom: 20pt;
+  }
+}
+
+#carousel {
   max-height: $carousel-container-max-height;
 }
