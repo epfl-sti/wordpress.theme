@@ -71,6 +71,13 @@ class Carousel extends \WP_Widget
         echo $args['before_widget'];
     ?>
 <div id="container-carousel">
+ <div id="carousel" class="carousel slide" data-ride="carousel">
+    <?php $this->render_carousel_items(); ?>
+ </div>
+ <?php # The wave must be outside the carousel, so as not to be clipped. ?>
+ <div id="redwave">
+  <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/waving.png">
+ </div>
  <a class="sti-carousel-button prev" href="#carousel" role="button" data-slide="prev">
   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
   <span class="sr-only">Previous</span>
@@ -79,13 +86,6 @@ class Carousel extends \WP_Widget
   <span class="carousel-control-next-icon" aria-hidden="true"></span>
   <span class="sr-only">Next</span>
  </a>
- <div id="carousel" class="carousel slide" data-ride="carousel">
-    <?php $this->render_carousel_items(); ?>
- </div>
- <?php # The wave must be outside the carousel, so as not to be clipped. ?>
- <div id="redwave">
-  <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/waving.png">
- </div>
 </div>
    <?php
         echo $args['after_widget'];

@@ -1,7 +1,11 @@
+#container-carousel {
+  position: relative;  // To anchor the position:absolute elements below
+  @media screen and (min-width: $redwave-toosmall) {
+    padding-bottom: 20pt;
+  }
+}
+
 .carousel.slide {
-    position: relative;
-    top: 0px;
-    z-index: 2;
     background-position: center top;
     width: 100%;
     overflow: hidden;
@@ -12,7 +16,6 @@
     text-align: center;  // For the inline-block below
     > div {
         display: inline-block;
-        position: relative;  // So that the legend can have position: absolute
     }
 
     div.legend {
@@ -22,17 +25,13 @@
 
         text-align: left;  // Countermand parent
 
-        // Note: since the height of the image is not known (and can in
-        // fact vary wildly), only "top:" is safe. Positioning under the
-        // carousel buttons can be done like this:
-        @media screen and (min-width: $carousel-controls-toosmall) {
-          top: ($sti-carousel-button-distancefromtop + 20%);
-        }
         @media screen and (max-width: $carousel-controls-toosmall - 1) {
           top: $sti-carousel-sm-legend-margin;
         }
+        @media screen and (min-width: $carousel-controls-toosmall) {
+          top: ($sti-carousel-button-distancefromtop + 20%);
+        }
 
-        z-index: 8;
         font-family: 'Open Sans Regular', sans-serif;
         color: white;
 
@@ -65,7 +64,6 @@
 
 .sti-carousel-button {
     position: absolute;
-    z-index: 10;
     top: $sti-carousel-button-distancefromtop;
 
     @media screen and (max-width: $carousel-controls-toosmall - 1) {
@@ -100,10 +98,9 @@
     visibility: visible;
   } // otherwise:
   visibility: hidden;
+  pointer-events: none;  // Can click through the wave
 
-  position: relative;
   height: 0px;
-  z-index: 5;
 
   img {
     display: block;
@@ -112,14 +109,6 @@
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 50;
-  }
-}
-
-#container-carousel {
-  position: relative;  // To anchor the controller arrows
-  @media screen and (min-width: $redwave-toosmall) {
-    padding-bottom: 20pt;
   }
 }
 
