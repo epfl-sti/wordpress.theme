@@ -26,7 +26,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function megamenu_setup_theme ($themes) {
-    error_log("Setting up megamenu theme");
   $themes["epfl_sti_mega_menu"] = array(
     'title' => 'EPFL STI Mega Menu',
     'menu_item_align' => 'center',
