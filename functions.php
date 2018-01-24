@@ -103,6 +103,11 @@ require get_template_directory() . '/inc/stisrv13.php';
 require get_template_directory() . '/newsletter-theme/hook.php';
 
 /**
+ * Max Mega Menu theme.
+ */
+require get_template_directory() . '/inc/maxmegamenu.php';
+
+/**
  * Enable shortcodes in text widgets.
  */
 add_filter('widget_text','do_shortcode');
