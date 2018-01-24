@@ -59,6 +59,7 @@ a.outlink.more {
 .redtitle h1 {
     padding: 4px 0px 4px 8px;
     margin-bottom: 0px;
+    margin-top: 0px;
     text-align: left;
     font-family: verdana,sans-serif;
     font-size: medium;
@@ -114,6 +115,7 @@ td.main-matter {
 
 .main-matter h2 {
     font-size: 14px;
+    margin: 0px;
 }
 
 #news-main td, #faculty {
