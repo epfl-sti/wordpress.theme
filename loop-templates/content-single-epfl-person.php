@@ -25,7 +25,7 @@ $address="LIONS<br> ELE233<br> Station 11<br> 1015 Lausanne<br> Switzerland";
 
 $epfl_positions="
 <br>
-Associate Professor:
+Associate Professor:<br><br>
 <ul>
  <li>Laboratory for Information and Inference Systems
  <li>Institute of Electrical Engineering
@@ -116,9 +116,9 @@ $publicationrecord4="https://infoscience.epfl.ch/record/232383?ln=en";
    <div class="prof-nav-menu">
     <ul class="menu">
      <li id="menu-item-128" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-128"><a href="<?php echo $labwebsite; ?>">LAB WEBSITE</a></li>
+	<li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#video">VIDEOS</a></li>
       <li id="menu-item-129" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-129"><a href="https://people.epfl.ch/cgi-bin/people?id=<?php echo $sciper;?>&op=publications&lang=en&cvlang=en">PUBLICATIONS</a></li>
 	<li id="menu-item-130" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#news">NEWS</a></li>
-	<li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#video">VIDEOS</a></li>
 	<li id="menu-item-133" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-130"><a href="https://stisrv13.epfl.ch/collaborations/tube_html5.php?sciper=<?php echo $sciper; ?>&showpublications=1&showpatents=1&showexternals=1&showindustry=1">COLLABORATIONS</a></li>
 </ul>
    </div><!-- menucontainer-->
