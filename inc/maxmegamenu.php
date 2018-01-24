@@ -70,38 +70,13 @@ function megamenu_setup_theme ($themes) {
     'menu_item_background_hover_to' => 'rgb(238, 238, 238)',
     'menu_item_link_color' => 'rgb(74, 201, 70)',
 
-
-    'custom_css' => '
-      /* We make sure to respect the same selectors used by
-       * megamenu.scss, except with a leading "megamenu" so
-       * that we win according to the CSS priority rules. */
-      megamenu #{$wrap} {
-        /** Push menu onto new line **/
-        clear: both;
-
-        #{$menu} {
-          /* We don\'t want a teramenu: */
-          max-width: 800px;
-          /* Keep it centered (despite not occupying the full width): */
-          margin: 0 auto;
-
-          > li.mega-menu-item {
-            > a.mega-menu-link {
-              color: black;
-              font: 600 13pt \"Open Sans Regular\", sans-serif;
-              background-image: url(/wp-content/themes/epfl-sti/img/src/sideshadow.gif);
-              background-repeat: no-repeat;
-              background-position-x: -10px;
-              height: 20pt;
-              text-transform: uppercase;
-              &:after {
-                vertical-align: baseline;
-              }
-            }
-          }
-        }
-      }',
+    'custom_css' => '@import "maxmegamenu";'  // See below
   );
   return $themes;
 }
 add_filter("megamenu_themes", "\\EPFL\\STI\\megamenu_setup_theme");
+
+add_filter("megamenu_scss_import_paths", function ($paths) {
+    array_push($paths, get_stylesheet_directory() . "/sass");
+    return $paths;
+});

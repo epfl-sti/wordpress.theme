@@ -1,0 +1,39 @@
+/**
+ * Megamenu style
+ *
+ * This file is *not* processed by gulp. Instead, the Max Megamenu plug-in
+ * includes a SASS compiler written in PHP.
+ *
+ * See development instructions (especially regarding regenrating the
+ * CSS cache) in ../inc/megamenu.php
+ */
+
+/* We make sure to respect the same selectors used by
+ * megamenu.scss, except with a leading "megamenu" so
+ * that we win according to the CSS priority rules. */
+megamenu #{$wrap} {
+  /** Push menu onto new line **/
+  clear: both;
+
+  #{$menu} {
+    /* We don\'t want a teramenu: */
+    max-width: 800px;
+    /* Keep it centered (despite not occupying the full width): */
+    margin: 0 auto;
+
+    > li.mega-menu-item {
+      > a.mega-menu-link {
+        color: black;
+        font: 600 13pt \"Open Sans Regular\", sans-serif;
+        background-image: url(/wp-content/themes/epfl-sti/img/src/sideshadow.gif);
+        background-repeat: no-repeat;
+        background-position-x: -10px;
+        height: 20pt;
+        text-transform: uppercase;
+        &:after {
+          vertical-align: baseline;
+        }
+      }
+    }
+  }
+}
