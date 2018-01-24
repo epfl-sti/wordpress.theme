@@ -26,7 +26,7 @@ function has_vue_app ()
 
 function render_css()
 { ?>
-<style>
+<style type="text/css">
 .newsletter-title {
  background-color:#039;
  font-size: 20px;
