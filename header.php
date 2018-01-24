@@ -38,7 +38,11 @@ $cl = get_current_language();
 
 <div id="header" class="container-fluid">
  <?php # Site logo and top-most navigation in a 0-height div ?>
- <topbar class="row no-gutters">
+ <topbar>
+  <div class="language">
+   <?php // This uses polylang. Change the language full name to get the FR / EN (https://polylang.pro/doc/configure-the-languages/#full-name) ?>
+   <ul class="epflstilangmenu"><?php if (function_exists('pll_the_languages')) { pll_the_languages(); } ?></ul>
+  </div>
   <?php if ( ! has_custom_logo() ) { ?>
    <a href="https://www.epfl.ch"> <img width=174 id=epfl_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a>
    <a href="<?php echo esc_url( home_url( '/' ) ); ?>"> <img id=sti_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.png" /></a>
@@ -46,10 +50,6 @@ $cl = get_current_language();
       the_custom_logo();
   } ?>
 
-  <div class="language">
-   <?php // This uses polylang. Change the language full name to get the FR / EN (https://polylang.pro/doc/configure-the-languages/#full-name) ?>
-   <ul class="epflstilangmenu"><?php if (function_exists('pll_the_languages')) { pll_the_languages(); } ?></ul>
-  </div>
   <div class="searchbox" tabindex="1">
    <form action="/">
     <input type="text" placeholder="search" name="s">
