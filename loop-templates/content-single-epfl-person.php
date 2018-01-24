@@ -20,28 +20,21 @@ $office="ELE233";
 $sciper="199128";
 $labvideo="blIMmx5oh7o";
 $labvideotitle="Turning data into information...";
+$address="LIONS<br> ELE233<br> Station 11<br> 1015 Lausanne<br> Switzerland";
+
 
 $epfl_positions="
 <br>
 Associate Professor:
 <ul>
- <li>EPFL STI IEL LIONS 
  <li>Laboratory for Information and Inference Systems
  <li>Institute of Electrical Engineering
+ <li>School of Engineering
 </ul>
-Associate Professor:
-<ul>
- <li>SEL Teaching
- <li>STI - Electrical Engineering Section
-</ul>
-Associate Professor:
 <ul>
  <li>EDEE - Doctoral Program in Electrical Engineering
 </ul>
-CCE Member:
-<ul>
- <li>CCE - Teaching Conference
-</ul>";
+";
 
 $newstitle1="Three Prestigious Consolidator Grants";
 $newstitle2="Volkan Cevher wins an ERC starting grant";
@@ -74,30 +67,6 @@ $publicationtext4="I. Bogunovic, S. Mitrovic, J. Scarlett and V. Cevher. A Distr
 $publicationlink4="https://infoscience.epfl.ch/record/232383/files/A%20Distributed%20Algorithm%20for%20Partitioned%20Robust%20Submodular%20Maximization.pdf?version=1";
 $publicationrecord4="https://infoscience.epfl.ch/record/232383?ln=en";
 
-$fullcontact="
-<table>
- <tr>
-  <td colspan=2>Associate Professor</td>
- </tr>
- <tr>
-  <td colspan=2><a href=$labwebsite>$mylabname ($labname)</a><br><br></td>
- </tr>
- <tr>
-  <td>Phone:</td><td><a href=tel:'$phone'>$phone</a></td>
- </tr>
- <tr>
-  <td></td><td><a href=#>WebCall <img src=https://people.epfl.ch/images/info.png></a></td>
- </tr>
- <tr>
-  <td valign=top>Postal address:</td><td valign=top>EPFL STI IEL LIONS<br>
-				ELE 233 (Bâtiment ELE)<br>
-				Station 11<br>
-				CH-1015 Lausanne<br>
-				Office	ELE 233</td>
- </tr>
-</table> 
-<br><br>
-";
 ?>
 
 <div class="row">
@@ -106,7 +75,6 @@ $fullcontact="
     <header class="entry-header">
      <h1 class="people_titles temp_people_title"><?php the_title(); ?></h1>
     </header><?php # .entry-header ?>
-    <div class=sti_beige>
      <img style="position: absolute; top:-12px; right: -8px;" src="/wp-content/themes/epfl-sti/img/src/topright.png">
      <img style="position: absolute; bottom:-12px; left: -4px;" src="/wp-content/themes/epfl-sti/img/src/bottomleft.png">
      <div class="sti_content_prof_text">
@@ -115,13 +83,22 @@ $fullcontact="
       </div><?php # prof_photo ?>
       <b><?php echo "$position</b><br><br>$bio<br><br>"; ?>
      </div><?php # prof_text ?>
-    </div><?php # beige ?>
    </div><?php # .entry-content ?>
   <br>
    <div class="entry-content sti_content_maincolumn">
-     <h1 class="people_titles">Positions</h1>
+     <h1 class="people_titles">Positions and Contact</h1>
     <div class="sti_content_prof_text">
       <?php echo $epfl_positions ?>
+    <?php 
+	echo "<h5><br>$firstname $surname</h5>
+	<div class=container>
+		<div class=row>
+			<div class=col-xs-6>Office: <a href=https://maps.epfl.ch/?q=$office>ELE233</a><br><a href=mailto:$epflname@epfl.ch>$epflname@epfl.ch</a><br><a href=https://people.epfl.ch/$epflname>https://people.epfl.ch/$epflname</a><br>Tel: <a href=\"tel:$phone\">$phone</a><br><br></div>
+			<div class=col-xs-6>&nbsp;&nbsp;&nbsp;</div>
+			<div class=col-xs-6>$address</div>
+		</div>
+	</div><br><br>";
+?>
     </div><?php # prof_text ?>
    </div><?php # .entry-content ?>
  </div><?php # #primary ?>
@@ -134,22 +111,16 @@ $fullcontact="
   </div><!-- menutitle-->
   <div class="sti_people_box">
    <div class="sti_people_menu_white">
-    <?php echo$keywords; ?>
+    Research topics:<br><br><?php echo$keywords; ?>
    </div><!--menuwhite-->
    <div class="prof-nav-menu">
     <ul class="menu">
      <li id="menu-item-128" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-128"><a href="<?php echo $labwebsite; ?>">LAB WEBSITE</a></li>
       <li id="menu-item-129" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-129"><a href="https://people.epfl.ch/cgi-bin/people?id=<?php echo $sciper;?>&op=publications&lang=en&cvlang=en">PUBLICATIONS</a></li>
 	<li id="menu-item-130" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#news">NEWS</a></li>
-	<li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#video">VIDEO</a></li>
+	<li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#video">VIDEOS</a></li>
 	<li id="menu-item-133" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-130"><a href="https://stisrv13.epfl.ch/collaborations/tube_html5.php?sciper=<?php echo $sciper; ?>&showpublications=1&showpatents=1&showexternals=1&showindustry=1">COLLABORATIONS</a></li>
-	<li id="menu-item-134" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-132"><a href="#fullcontact">FULL CONTACT DETAILS</a></li>
 </ul>
-    <div class="sti_people_menu_white">
-    <?php 
-echo "<h5>$firstname $surname</h5>$position<br>Office: <a class=whitelink href=https://maps.epfl.ch/?q=$office>ELE233</a><br><a class=whitelink href=mailto:$epflname@epfl.ch>$epflname@epfl.ch</a><br><a class=whitelink href=https://people.epfl.ch/$epflname>https://people.epfl.ch/$epflname</a><br>Tel: <a class=whitelink href=\"tel:$phone\">$phone</a><br>";
-?>
-    </div><!-- menu_white-->
    </div><!-- menucontainer-->
   </div><!-- peoplebox-->
  </div><?php # .sti_righthand_menu ?>
@@ -157,9 +128,23 @@ echo "<h5>$firstname $surname</h5>$position<br>Office: <a class=whitelink href=h
  <?PHP # NAV MENU END ?>
 <div class="row">
  <div class="col-md-8 content-area" id="primary">
+  <div class="entry-content sti_content_maincolumn holding">
+    <h1 class=people_titles><?php echo "$labvideotitle"; ?></h1>	
+    <div class="sti_content_prof_text">
+     <a name=video></a>
+
+     <div style="margin: 20px 0px 40px 0px; float:left; max-width:680; width: 100%; height:285px; "><iframe src="https://www.youtube.com/embed/<?php echo $labvideo; ?>?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="680" height="280" frameborder="0"></iframe></div>
+
+    </div><!--prof_text-->
+  </div><?php # .sti_content_maincolumn ?>
+ </div><?php # #primary ?>
+</div><?php # .row ?>
+
+<div class="row">
+ <div class="col-md-8 content-area" id="primary">
     <div class="entry-content sti_content_maincolumn">
    <h1 class=people_titles>Recent Publications</h1>	
-        <div class="sti_beige">
+        <div class="sti_content_prof_text">
 <?php
    	echo "<br>";
    	echo "<h3>2018</h3>";
@@ -188,36 +173,9 @@ echo "<h5>$firstname $surname</h5>$position<br>Office: <a class=whitelink href=h
    	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage3\");'><div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>"; 
    	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage4\");'><div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>";
 ?>
-
      </div><?php # frontrowcontent ?>
     </div><?php # prof_text ?>
   </div><?php # .sti_content_maincolumn ?>
  </div><?php # #primary ?>
 </div><?php # .row ?>
 
-<div class="row">
- <div class="col-md-8 content-area" id="primary">
-  <div class="entry-content sti_content_maincolumn holding">
-    <h1 class=people_titles><?php echo "$labvideotitle"; ?></h1>	
-    <div class="sti_content_prof_text">
-     <a name=video></a>
-
-     <div style="margin: 20px 0px 40px 0px; float:left; max-width:680; width: 100%; height:285px; "><iframe src="https://www.youtube.com/embed/<?php echo $labvideo; ?>?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="680" height="280" frameborder="0"></iframe></div>
-
-    </div><!--prof_text-->
-  </div><?php # .sti_content_maincolumn ?>
- </div><?php # #primary ?>
-</div><?php # .row ?>
-
-<div class="row">
- <div class="col-md-8 content-area" id="primary">
-  <div class="sti_content_maincolumn">
-   <div class="entry-content holding">
-    <h1 class=people_titles><?php echo "$firstname $surname"; ?></h1>	
-    <div class="sti_content_prof_text">
-     <a name=fullcontact></a>
-      <?php echo $fullcontact; ?>
-    </div><!--prof_text-->
-  </div><?php # .sti_content_maincolumn ?>
- </div><?php # #primary ?>
-</div><?php # .row ?>
