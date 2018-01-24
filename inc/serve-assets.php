@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 add_action('template_redirect', function() {
     $matched = array();
-    if (preg_match('@/theme-epfl-sti/(node_modules/[^?]*)@',
+    if (preg_match('@/theme-epfl-sti/((node_modules|assets)/[^?]*)@',
                    $_SERVER['REQUEST_URI'], $matched)) {
         serve_file($matched[1]);
     }

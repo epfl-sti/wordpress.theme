@@ -12,6 +12,8 @@
   border-top: #cb161d 7px solid;
   background-position: top right;
   background-repeat: no-repeat;
+  // This magic URL is served thanks to ../../inc/serve-assets.php
+  background-image: url(theme-epfl-sti/assets/lozenges.png);
   border-bottom: #cb161d 3px solid;
 }
 
