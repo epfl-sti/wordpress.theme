@@ -8,14 +8,15 @@
  * CSS cache) in ../inc/megamenu.php
  */
 
-/* We make sure to respect the same selectors used by
- * megamenu.scss, except with a leading "megamenu" so
- * that we win according to the CSS priority rules. */
-megamenu #{$wrap} {
+/* We make sure to use the exact same selector hierarchy as
+ * wp-content/plugins/megamenu/megamenu.scss, except with a leading
+ * "megamenu" added on top so that we win according to the CSS
+ * priority rules. */
+megamenu #{$wrap} {  /* i.e. #mega-menu-wrap-primary */
   /** Push menu onto new line **/
   clear: both;
 
-  #{$menu} {
+  #{$menu} {         /* i.e. #mega-menu-primary */
     /* We don\'t want a teramenu: */
     max-width: 800px;
     /* Keep it centered (despite not occupying the full width): */
