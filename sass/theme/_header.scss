@@ -3,8 +3,16 @@
  */
 
 #header {
-  // Require to use z-indexes, position: absolute on children
+  // Requires to use position: absolute on children
   position: relative;
+
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  border-top: #cb161d 7px solid;
+  background-position: top right;
+  background-repeat: no-repeat;
+  border-bottom: #cb161d 3px solid;
 }
 
 #header a.menu-mobile {  // burger menu - Hidden (by _megamenu.scss) on large widths
