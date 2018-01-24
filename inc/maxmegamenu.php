@@ -81,6 +81,11 @@ function megamenu_setup_theme ($themes) {
         clear: both;
 
         #{$menu} {
+          /* We don\'t want a teramenu: */
+          max-width: 800px;
+          /* Keep it centered (despite not occupying the full width): */
+          margin: 0 auto;
+
           > li.mega-menu-item {
             > a.mega-menu-link {
               color: black;
