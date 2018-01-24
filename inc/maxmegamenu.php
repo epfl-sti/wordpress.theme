@@ -5,6 +5,19 @@
  * @package epflsti
  */
 
+/* Development tip: when making improvements here, open any page in
+ * your browser whose PHP code somehow calls wp_nav_menu(); then,
+ * visit the wp-admin area in another browser tab to verify that the
+ * corresponding menu (designated by "theme_location", "slug" etc.
+ * from the wp_nav_menu() invoking code) is configured to use Mega
+ * Menu with the "EPFL STI Mega Menu" theme. From then on, every time
+ * you edit this file you must go to the wo admin-area again to force
+ * the Max Mega Menu plug-in to regenerate the CSS: Mega Menu (right
+ * bar) -> Tools -> Clear CSS Cache. Finally, you will need to reload
+ * the front-end page by hand - in that situation browser-sync is not
+ * helpful, because it will reload too soon (before the CSS cache has
+ * been regenerated) */
+
 namespace EPFL\STI;
 
 // Exit if accessed directly.
@@ -60,6 +73,9 @@ function megamenu_setup_theme ($themes) {
 
 
     'custom_css' => '
+      /* We make sure to respect the same selectors used by
+       * megamenu.scss, except with a leading "megamenu" so
+       * that we win according to the CSS priority rules. */
       megamenu #{$wrap} {
         /** Push menu onto new line **/
         clear: both;
