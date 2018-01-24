@@ -36,35 +36,32 @@ $cl = get_current_language();
 
 <body <?php body_class(); ?>>
 
-<div id="header" class="menu-container container-fluid">
+<div id="header" class="container-fluid">
+ <?php # Site logo and top-most navigation in a 0-height div ?>
+ <topbar class="row no-gutters">
+  <?php if ( ! has_custom_logo() ) { ?>
+   <a href="https://www.epfl.ch"> <img width=174 id=epfl_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a>
+   <a href="<?php echo esc_url( home_url( '/' ) ); ?>"> <img id=sti_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.png" /></a>
+  <?php } else {
+      the_custom_logo();
+  } ?>
 
-    <div class="menu row no-gutters">
-
-        <?php # Site logo and top-most navigation in a 0-height div ?>
-        <topbar>
-            <?php if ( ! has_custom_logo() ) { ?>
-               <a href="https://www.epfl.ch"> <img width=174 id=epfl_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a>
-               <a href="<?php echo esc_url( home_url( '/' ) ); ?>"> <img id=sti_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.png" /></a>
-            <?php } else {
-                the_custom_logo();
-            } ?>
-
-            <div class="language">
-                <?php // This uses polylang. Change the language full name to get the FR / EN (https://polylang.pro/doc/configure-the-languages/#full-name) ?>
-                <ul class="epflstilangmenu"><?php if (function_exists('pll_the_languages')) { pll_the_languages(); } ?></ul>
-            </div>
-            <div class="searchbox" tabindex="1">
-             <form action="/">
-              <input type="text" placeholder="search" name="s">
-              <a class="button">
-               <i class="fa fa-search"></i>
-              </a>
-             </form>
-            </div>
-        </topbar>
-
-    </div>
+  <div class="language">
+   <?php // This uses polylang. Change the language full name to get the FR / EN (https://polylang.pro/doc/configure-the-languages/#full-name) ?>
+   <ul class="epflstilangmenu"><?php if (function_exists('pll_the_languages')) { pll_the_languages(); } ?></ul>
+  </div>
+  <div class="searchbox" tabindex="1">
+   <form action="/">
+    <input type="text" placeholder="search" name="s">
+    <a class="button">
+     <i class="fa fa-search"></i>
+    </a>
+   </form>
+  </div>
+ </topbar>
+ <megamenu>
+  <?php wp_nav_menu( array(
+      'theme_location'  => 'primary',
+  )); ?>
+ </megamenu>
 </div>
-<?php wp_nav_menu( array(
-    'theme_location'  => 'primary',
-)); ?>
