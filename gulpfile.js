@@ -150,7 +150,7 @@ gulp.task('browser-sync', ['watch'], function() {
 // gulp sass
 // Compiles the theme's SCSS files to CSS
 gulp.task('sass', function () {
-    return gulp.src('./sass/*.scss')
+    return gulp.src('./sass/theme.scss')
         .pipe(processSASS())
         .pipe(assetsDest())
         .pipe(browserSync.stream());
