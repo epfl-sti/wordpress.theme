@@ -36,5 +36,10 @@ megamenu #{$wrap} {  /* i.e. #mega-menu-wrap-primary */
         }
       }
     }
+    > li.mega-menu-megamenu {
+      > ul.mega-sub-menu {
+        background-color: white;
+      }
+    }
   }
 }
