@@ -79,17 +79,20 @@ function megamenu_setup_theme ($themes) {
       megamenu #{$wrap} {
         /** Push menu onto new line **/
         clear: both;
-        #{$menu} > li.mega-menu-item {
-          > a.mega-menu-link {
-            color: black;
-            font: 600 13pt \"Open Sans Regular\", sans-serif;
-            background-image: url(/wp-content/themes/epfl-sti/img/src/sideshadow.gif);
-            background-repeat: no-repeat;
-            background-position-x: -10px;
-            height: 20pt;
-            text-transform: uppercase;
-            &:after {
-              vertical-align: baseline;
+
+        #{$menu} {
+          > li.mega-menu-item {
+            > a.mega-menu-link {
+              color: black;
+              font: 600 13pt \"Open Sans Regular\", sans-serif;
+              background-image: url(/wp-content/themes/epfl-sti/img/src/sideshadow.gif);
+              background-repeat: no-repeat;
+              background-position-x: -10px;
+              height: 20pt;
+              text-transform: uppercase;
+              &:after {
+                vertical-align: baseline;
+              }
             }
           }
         }
