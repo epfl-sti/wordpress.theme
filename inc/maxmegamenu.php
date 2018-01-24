@@ -70,7 +70,7 @@ function megamenu_setup_theme ($themes) {
     'menu_item_background_hover_to' => 'rgb(238, 238, 238)',
     'menu_item_link_color' => 'rgb(74, 201, 70)',
 
-    'custom_css' => '@import "maxmegamenu";'  // See below
+    'custom_css' => '@import "maxmegamenu";'  // i.e. ../sass/maxmegamenu.scss; see below
   );
   return $themes;
 }
