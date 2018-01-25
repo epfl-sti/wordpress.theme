@@ -73,6 +73,15 @@ function browserSyncOptions() {
     return browserSyncOptions;
 }
 
+// Note that this has no effect until browserSync.init() is called below.
+browserSync.watch([
+    'assets/**/*',
+    'css/**/*',
+    'js/**/*',
+    '**/*.php',
+    'newsletter-theme/*.css'
+]).on("change", browserSync.reload);
+
 /**
  * SASS gives us compile-time @include's in CSS, templating (with
  * variables) and more. Bootstrap itself is written in SASS so that we
@@ -141,9 +150,7 @@ gulp.task('watch', ['default'], function () {
 // Like "gulp watch", but run a browser and keep reloading it everytime
 // the build products change
 gulp.task('browser-sync', ['watch'], function() {
-    browserSync.init(
-        ['assets/**/*', 'css/**/*', '**/*.php', 'newsletter-theme/*.css'],
-        browserSyncOptions());
+    browserSync.init(browserSyncOptions());
 });
 
 // Run:
