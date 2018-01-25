@@ -16,13 +16,15 @@
 
 <?php
 
+//the following is ready to go as json from https://stisrv13.epfl.ch/cgi-bin/whoop/peoplepage.pl?sciper=
+
 $labname="LIONS";
 $mylabname="Laboratory for Information and Inference Systems";
 $labwebsite="https://lions.epfl.ch";
 $keywords="Machine Learning; Optimization; Signal Processing; Information Theory.";
-$labimage="https://stisrv13.epfl.ch/brochure/img/13/research.png";
 $bio="Prof. Volkan Cevher received his BSc degree (valedictorian) in Electrical Engineering from Bilkent University in 1999, and his PhD degree in Electrical and Computer Engineering from Georgia Institute of Technology in 2005. He held Research Scientist positions at University of Maryland, College Park during 2006-2007 and at Rice University during 2008-2009. Currently, he is an Assistant Professor at Ecole Polytechnique Federale de Lausanne and a Faculty Fellow at Rice University. His research interests include signal processing theory, machine learning, graphical models, and information theory.";
 $position="ASSOCIATE PROFESSOR";
+$id=13;
 $surname="Cevher";
 $firstname="Volkan";
 $epflname="volkan.cevher";
@@ -30,8 +32,12 @@ $phone="+41 21 693 1101";
 $office="ELE233";
 $sciper="199128";
 $videoeng="blIMmx5oh7o";
-$address="LIONS<br> ELE233<br> Station 11<br> 1015 Lausanne<br> Switzerland";
 
+$labimage="https://stisrv13.epfl.ch/brochure/img/$id/research.png";
+
+//the rest must come from other sources
+
+$address="LIONS<br> ELE233<br> Station 11<br> 1015 Lausanne<br> Switzerland";
 
 $epfl_positions="
 <br>
@@ -96,7 +102,7 @@ if ($menu) {
   </div><!-- menutitle-->
   <div class="sti_people_box">
    <div class="sti_people_menu_white">
-    Research topics:<br><br>Machine Learning; Optimization; Signal Processing; Information Theory. 
+    Research topics:<br><br>'.$keywords.'
    </div><!--menuwhite-->
    <div class="prof-nav-menu">
     <ul class="menu">
@@ -149,7 +155,7 @@ if ($menu) {
  		    <div class="container">
 			<div class="row entry-body">
 			      <div class="col-xs-6 standard-margin">
-<?php echo "Office: <a href=https://maps.epfl.ch/?q=$office>ELE233</a><br><a href=mailto:$epflname@epfl.ch>$epflname@epfl.ch</a><br><a href=https://people.epfl.ch/$epflname>https://people.epfl.ch/$epflname</a><br>Tel: <a href=\"tel:$phone\">$phone</a><br><br>"; ?>	
+<?php echo "Office: <a href=https://maps.epfl.ch/?q=$office>$office</a><br><a href=mailto:$epflname@epfl.ch>$epflname@epfl.ch</a><br><a href=https://people.epfl.ch/$epflname>https://people.epfl.ch/$epflname</a><br>Tel: <a href=\"tel:$phone\">$phone</a><br><br>"; ?>	
 			      </div><!-- col  -->
 			      <div class="col-xs-6 standard-margin">
 			        <?php echo $address; ?>
