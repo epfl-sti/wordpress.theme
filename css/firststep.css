@@ -141,6 +141,10 @@ body {
   position: relative;
 }
 
+.width-main-listoflinks {
+ max-width: 800px;
+}
+
 .entry-body {
  padding-left: 40px;
  padding-top: 20px; 
