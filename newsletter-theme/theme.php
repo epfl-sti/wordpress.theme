@@ -48,6 +48,13 @@ a {
  color: black !important;   <?php # Gmail thinks different ?>
 }
 
+.volume-info {
+    padding: 0px 8px 0px 0px;
+    margin: 0px;
+    font: bold 9px verdana;
+    background-color:white;
+}
+
 a.outlink.more {
     font-size:12px;
 }
@@ -82,6 +89,21 @@ td#right-sidebar .divider {
     font-size:1px;
 }
 
+#in-the-media .title,
+#events .title {
+    font-size:12px;
+    width:100%;
+    padding: 0px 0px 10px 0px;
+}
+
+#in-the-media .details {
+    font-size: 10px;
+}
+
+#events .details {
+    font-size:12px;
+}
+
 td.main-matter.news {
     padding: 20px 10px 20px 10px;
 }
@@ -97,6 +119,11 @@ td.main-matter {
     width: 36px;
     padding:0px 5px 0px 5px;
     text-align: center;
+}
+
+.date.double {
+    white-space: nowrap;
+    width: auto;
 }
 
 .date .day {
@@ -173,7 +200,7 @@ function render_header_tr ($volumeno)
                                   <td><a href=http://sti.epfl.ch><img src="<?php echo get_theme_relative_uri() . "/newsletter-theme/banner.png"; ?>"/></a></td>
 				 </tr>
 				 <tr>
-                                  <td align=right style="padding: 0px 8px 0px 0px; margin: 0px; font: bold 9px verdana; background-color:white;"><?php echo $volumeno; ?></td>
+                                  <td align=right class="volume-info"><?php echo $volumeno; ?></td>
 				 </tr>
 				 <tr>
                                   <td><img src="<?php echo get_theme_relative_uri() . "/newsletter-theme/outrider.gif"; ?>" style="display: block;"/></td>
@@ -302,8 +329,9 @@ function render_events_table ($events)
         $title = get_the_title();
         $link  = get_permalink($post);
         $subtitle = function_exists("get_the_subtitle") ? get_the_subtitle($post, "", "", false) : null;
-        $day   = null;  // Unless changed below
-        $month = null;  // Same
+        $day   = null;
+        $month = null;
+        $doubleday_class = "";
         if (class_exists('EPFL\\WS\\Memento\\Memento')) {
             $epfl_memento = \EPFL\WS\Memento\Memento::get($post);
 
@@ -315,6 +343,7 @@ function render_events_table ($events)
                     ($start->format('j')   !== $end->format('j'))) {
                     $day = sprintf("%d-%d", $start->format('j'),
                                    $end->format('j'));
+                    $doubleday_class = " double";
                 } else {
                     $day = sprintf("%d", $start->format('j'));
                 }
@@ -345,7 +374,7 @@ function render_events_table ($events)
    <event-handle :post-id="<?php echo get_the_id(); ?>"></event-handle>
    <table>
     <tr>
-     <td style="font-size:14px; width:100%; padding: 0px 0px 10px 0px;" colspan=2>
+     <td class="event title" colspan=2>
       <a href="<?php echo $link; ?>"><?php echo $title; ?></a>
       <?php if ($subtitle) { echo "<br/>"; echo $subtitle; } ?>
      </td>
@@ -353,10 +382,10 @@ function render_events_table ($events)
     <tr>
      <?php if ($day && $month): ?>
       <td style="padding: 0px 0px 10px 0px;" width="50" align="left" valign="top">
-       <div class="date"><a href="<?php echo $link; ?>"><span class="day"><?php  echo $day; ?></span><br><span class="month"><?php echo $month; ?></span></a></div>
+       <div class="date<?php echo $doubleday_class ?>"><a href="<?php echo $link; ?>"><span class="day"><?php  echo $day; ?></span><br><span class="month"><?php echo $month; ?></span></a></div>
       </td>
      <?php endif; ?>
-     <td style="font-size:12px;" align=right>
+     <td class="details" align=right>
       <?php echo $venue; ?>
       <br>
       <a href="<?php echo $ical_link; ?>">Add to calendar</a>
@@ -414,12 +443,12 @@ function render_in_the_media_table ($media_list)
        <media-item-handle :post-id="<?php echo get_the_id(); ?>"></media-item-handle>
        <table>
         <tr>
-         <td style='font-size:14px; width:100%; padding: 0px 0px 10px 0px;'>
+         <td class="title">
           <a href="<?php echo $link; ?>"><?php echo "$article"; ?></a>
          </td>
         </tr>
         <tr>
-         <td style='font-size:10px;' align=right>
+         <td class="details" align=right>
           <?php echo $bibentry;
             $authors = $epfl_post->get_authors();
             if ($authors) {
