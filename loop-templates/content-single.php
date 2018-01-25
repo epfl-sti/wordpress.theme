@@ -14,12 +14,45 @@
 
 	</header><!-- .entry-header -->
 
+<?php
+
+$rosesarered="<img class='ribbon-red-top' src='/wp-content/themes/epfl-sti/img/src/topright.png'> 
+<img class='ribbon-red-bottom' src='/wp-content/themes/epfl-sti/img/src/bottomleft.png'>";
+
+?>
+
          <div class=container>
            <div class=row>
 
 	    <div class="entry-content standard-content-box">
-     <img class="ribbon-red-top" src="/wp-content/themes/epfl-sti/img/src/topright.png">
-     <img class="ribbon-red-bottom" src="/wp-content/themes/epfl-sti/img/src/bottomleft.png">
+		<?php  // the choice is made to highlight this box
+		 echo $rosesarered;
+		?>
+		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+ 		    <div class="container">
+			<div class="row entry-body">
+			      <div class="col-xs-6 standard-margin">
+				<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
+			      </div><!-- col  -->
+			      <div class="col-xs-6 standard-margin">
+				<?php the_content(); ?>
+			      </div><!-- col  -->
+			</div><!-- row -->
+				<?php
+				wp_link_pages( array(
+					'before' => '<div class="page-links">' . __( 'Pages:', 'epflsti' ),
+					'after'  => '</div>',
+				) );
+				?>
+		     </div> <!-- entry-body-->
+  	    </div><!-- .entry-content -->
+
+		<?php   
+		 // each succeeding box
+                ?>
+	
+	
+	    <div class="entry-content standard-content-box">
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
  		    <div class="container">
 			<div class="row entry-body">
@@ -43,10 +76,10 @@
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
  		    <div class="container">
 			<div class="row entry-body">
-			      <div class=col-xs-6>
+			      <div class="col-xs-6 standard-margin">
 				<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
 			      </div><!-- col  -->
-			      <div class=col-xs-6>
+			      <div class="col-xs-6 standard-margin">
 				<?php the_content(); ?>
 			      </div><!-- col  -->
 			</div><!-- row -->
@@ -58,6 +91,7 @@
 				?>
 		     </div> <!-- entry-body-->
   	    </div><!-- .entry-content -->
+
 	 </div><!-- row-->
         </div><!-- container-->
 
