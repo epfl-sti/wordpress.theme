@@ -29,8 +29,7 @@ $epflname="volkan.cevher";
 $phone="+41 21 693 1101";
 $office="ELE233";
 $sciper="199128";
-$labvideo="blIMmx5oh7o";
-$labvideotitle="Turning data into information...";
+$videoeng="blIMmx5oh7o";
 $address="LIONS<br> ELE233<br> Station 11<br> 1015 Lausanne<br> Switzerland";
 
 
@@ -92,8 +91,8 @@ if ($menu) {
 <?PHP # LIST OF LINKS START ?>
  <div class="col-md-4">
   <div class="sti_people_menu_title frontrowmarker">
-   <?php echo $labname; ?> <span class="sti_people_menu_black"><?php echo $mylabname; ?></span>
-   <img src=https://stisrv13.epfl.ch/brochure/img/13/research.png class="sti_people_menu_image">
+   '.$labname.' <span class="sti_people_menu_black">'.$mylabname.'</span>
+   <img src='.$labimage.' class="sti_people_menu_image">
   </div><!-- menutitle-->
   <div class="sti_people_box">
    <div class="sti_people_menu_white">
@@ -101,11 +100,11 @@ if ($menu) {
    </div><!--menuwhite-->
    <div class="prof-nav-menu">
     <ul class="menu">
-     <li id="menu-item-128" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-128"><a href="<?php echo $labwebsite; ?>">LAB WEBSITE</a></li>
+     <li id="menu-item-128" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-128"><a href="'.$labwebsite.'">LAB WEBSITE</a></li>
         <li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#video">VIDEOS</a></li>
-      <li id="menu-item-129" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-129"><a href="https://people.epfl.ch/cgi-bin/people?id=<?php echo $sciper;?>&op=publications&lang=en&cvlang=en">PUBLICATIONS</a></li>
+      <li id="menu-item-129" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-129"><a href="https://people.epfl.ch/cgi-bin/people?id='.$sciper.'&op=publications&lang=en&cvlang=en">PUBLICATIONS</a></li>
         <li id="menu-item-130" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#news">NEWS</a></li>
-        <li id="menu-item-133" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-130"><a href="https://stisrv13.epfl.ch/collaborations/tube_html5.php?sciper=<?php echo $sciper; ?>&showpublications=1&showpatents=1&showexternals=1&showindustry=1">COLLABORATIONS</a></li>
+        <li id="menu-item-133" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-130"><a href="https://stisrv13.epfl.ch/collaborations/tube_html5.php?sciper='.$sciper.'&showpublications=1&showpatents=1&showexternals=1&showindustry=1">COLLABORATIONS</a></li>
 </ul>
    </div><!-- menucontainer-->
   </div><!-- peoplebox-->
@@ -163,7 +162,7 @@ if ($menu) {
 	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
 		    <a name=video></a>
 
-     <div style="margin: 20px 0px 40px 0px; float:left; width:100%; height:285px; "><iframe src="https://www.youtube.com/embed/<?php echo $labvideo; ?>?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="100%" height="280" frameborder="0"></iframe></div> 
+     <div style="margin: 20px 0px 40px 0px; float:left; width:100%; height:285px; "><iframe src="https://www.youtube.com/embed/<?php echo $videoeng; ?>?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="100%" height="280" frameborder="0"></iframe></div> 
   	    </div><!-- .entry-content -->
 
 	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
