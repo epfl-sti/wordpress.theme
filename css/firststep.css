@@ -132,6 +132,36 @@ body {
   margin-top: 20px;
 }
 
+.standard-content-box {
+  padding: 30px;
+  float: left;
+  width: 100%;
+  background-color: white;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.entry-body {
+ padding-left: 40px;
+ padding-top: 20px; 
+}
+
+.ribbon-red-top {
+ position: absolute; 
+ top:-12px; 
+ right: -8px;
+}
+
+.ribbon-red-bottom {
+ position: absolute; 
+ bottom:-12px; 
+ left: -4px;
+}
+
+.standard-margin {
+ margin-right: 40px;
+}
+
 .sti_content_maincolumn {
   display: inline;
   padding: 0px 0px 0px 0px;
