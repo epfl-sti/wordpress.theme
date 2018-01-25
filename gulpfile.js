@@ -16,7 +16,6 @@
  */
 const fs = require('fs');  // Part of node.js core
 const gulp = require('gulp');
-const util = require('util');
 const watch = require('gulp-watch');
 const browserSync = require('browser-sync').create();
 const ignore = require('gulp-ignore');
@@ -302,14 +301,6 @@ gulp.task('clean-dist-prod', function () {
 
 // Support functions
 function assetsDest() { return  gulp.dest('assets/') }
-
-function pipeLog(formatter) {
-    if (formatter === undefined) formatter = '%s';
-    return through2.obj(function(file, enc, cb) {
-        console.log(util.format(formatter, file.path));
-        cb(null, file);
-    })
-}
 
 /**
  * Bundle all files piped to it into a single file called
