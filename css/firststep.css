@@ -183,6 +183,13 @@ body {
  font-size: 24px;
 }
 
+duckbill
+ float:left;
+ display: inline;
+ clear: none;
+ padding-left: 20px;
+
+
 .frontrownews {
  display: inline-block;
  height: 150px;

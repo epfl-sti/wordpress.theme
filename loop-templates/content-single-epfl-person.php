@@ -1,9 +1,20 @@
 <?php
 /**
- * Partial template for a person.
+ * Single post partial template.
  *
  * @package epflsti
  */
+
+?>
+<article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
+
+	<header class="entry-header">
+
+
+
+	</header><!-- .entry-header -->
+
+<?php
 
 $labname="LIONS";
 $mylabname="Laboratory for Information and Inference Systems";
@@ -67,115 +78,149 @@ $publicationtext4="I. Bogunovic, S. Mitrovic, J. Scarlett and V. Cevher. A Distr
 $publicationlink4="https://infoscience.epfl.ch/record/232383/files/A%20Distributed%20Algorithm%20for%20Partitioned%20Robust%20Submodular%20Maximization.pdf?version=1";
 $publicationrecord4="https://infoscience.epfl.ch/record/232383?ln=en";
 
-?>
+$menu=1;
 
-<div class="row">
- <div class="col-sm-8 content-area" id="primary">
-   <div class="entry-content sti_content_maincolumn">
-    <header class="entry-header">
-     <h1 class="people_titles temp_people_title"><?php the_title(); ?></h1>
-    </header><?php # .entry-header ?>
-     <img style="position: absolute; top:-12px; right: -8px;" src="/wp-content/themes/epfl-sti/img/src/topright.png">
-     <img style="position: absolute; bottom:-12px; left: -4px;" src="/wp-content/themes/epfl-sti/img/src/bottomleft.png">
-     <div class="sti_content_prof_text">
-      <div class="sti_content_prof_photo">
-   	<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
-      </div><?php # prof_photo ?>
-      <b><?php echo "$position</b><br><br>$bio<br><br>"; ?>
-     </div><?php # prof_text ?>
-   </div><?php # .entry-content ?>
-  <br>
-   <div class="entry-content sti_content_maincolumn">
-     <h1 class="people_titles">Positions and Contact</h1>
-    <div class="sti_content_prof_text">
-      <?php echo $epfl_positions ?>
-    <?php 
-	echo "<h5><br>$firstname $surname</h5>
-	<div class=container>
-		<div class=row>
-			<div class=col-xs-6>Office: <a href=https://maps.epfl.ch/?q=$office>ELE233</a><br><a href=mailto:$epflname@epfl.ch>$epflname@epfl.ch</a><br><a href=https://people.epfl.ch/$epflname>https://people.epfl.ch/$epflname</a><br>Tel: <a href=\"tel:$phone\">$phone</a><br><br></div>
-			<div class=col-xs-6>&nbsp;&nbsp;&nbsp;</div>
-			<div class=col-xs-6>$address</div>
-		</div>
-	</div><br><br>";
-?>
-    </div><?php # prof_text ?>
-   </div><?php # .entry-content ?>
- </div><?php # #primary ?>
+if ($menu) {
+ $rosesarered="<img class='ribbon-red-top' src='/wp-content/themes/epfl-sti/img/src/topright.png'> 
+<img class='ribbon-red-bottom' src='/wp-content/themes/epfl-sti/img/src/bottomleft.png'>";
 
- <?PHP # NAV MENU START ?>
- <div class="sti_righthand_menu col-md-4">
+ $listoflinks_main=" col-md-8 content-area";
+ $listoflinks_width=" width-main-listoflinks";
+ $listoflinks_menu=" sti_righthand_menu col-md-4";
+
+ $menu='
+<?PHP # LIST OF LINKS START ?>
+ <div class="col-md-4">
   <div class="sti_people_menu_title frontrowmarker">
    <?php echo $labname; ?> <span class="sti_people_menu_black"><?php echo $mylabname; ?></span>
-   <img src=<?php echo $labimage; ?> class="sti_people_menu_image">
+   <img src=https://stisrv13.epfl.ch/brochure/img/13/research.png class="sti_people_menu_image">
   </div><!-- menutitle-->
   <div class="sti_people_box">
    <div class="sti_people_menu_white">
-    Research topics:<br><br><?php echo$keywords; ?>
+    Research topics:<br><br>Machine Learning; Optimization; Signal Processing; Information Theory. 
    </div><!--menuwhite-->
    <div class="prof-nav-menu">
     <ul class="menu">
      <li id="menu-item-128" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-128"><a href="<?php echo $labwebsite; ?>">LAB WEBSITE</a></li>
-	<li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#video">VIDEOS</a></li>
+        <li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#video">VIDEOS</a></li>
       <li id="menu-item-129" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-129"><a href="https://people.epfl.ch/cgi-bin/people?id=<?php echo $sciper;?>&op=publications&lang=en&cvlang=en">PUBLICATIONS</a></li>
-	<li id="menu-item-130" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#news">NEWS</a></li>
-	<li id="menu-item-133" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-130"><a href="https://stisrv13.epfl.ch/collaborations/tube_html5.php?sciper=<?php echo $sciper; ?>&showpublications=1&showpatents=1&showexternals=1&showindustry=1">COLLABORATIONS</a></li>
+        <li id="menu-item-130" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#news">NEWS</a></li>
+        <li id="menu-item-133" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-130"><a href="https://stisrv13.epfl.ch/collaborations/tube_html5.php?sciper=<?php echo $sciper; ?>&showpublications=1&showpatents=1&showexternals=1&showindustry=1">COLLABORATIONS</a></li>
 </ul>
    </div><!-- menucontainer-->
   </div><!-- peoplebox-->
- </div><?php # .sti_righthand_menu ?>
-</div><?php # .row ?>
- <?PHP # NAV MENU END ?>
-<div class="row">
- <div class="col-md-8 content-area" id="primary">
-  <div class="entry-content sti_content_maincolumn holding">
-    <h1 class=people_titles><?php echo "$labvideotitle"; ?></h1>	
-    <div class="sti_content_prof_text">
-     <a name=video></a>
+ <?PHP # LIST OF LINKS END ?>
+ ';
+}
+?>
+<div class=container><!--row if there is a box of links on the right-->
+  <div class=row><!-- container if there is a box of links on the right-->
+    <div class="<?php echo $listoflinks_main; ?>"><!--column if there is a box of links on the right-->
 
-     <div style="margin: 20px 0px 40px 0px; float:left; max-width:680; width: 100%; height:285px; "><iframe src="https://www.youtube.com/embed/<?php echo $labvideo; ?>?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="680" height="280" frameborder="0"></iframe></div>
 
-    </div><!--prof_text-->
-  </div><?php # .sti_content_maincolumn ?>
- </div><?php # #primary ?>
-</div><?php # .row ?>
 
-<div class="row">
- <div class="col-md-8 content-area" id="primary">
-    <div class="entry-content sti_content_maincolumn">
-   <h1 class=people_titles>Recent Publications</h1>	
+	 <div class=container><!-- main container -->
+           <div class=row><!-- main row-->
+
+	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
+		<?php  // the choice is made to highlight this box
+		 echo $rosesarered;
+		?>
+		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+		     <div class="entry-body">
+		      <div class="sti_content_prof_photo">
+			 <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
+		      </div><?php # prof_photo ?>
+		      <?php echo "<b>$position</b><br><br>$bio<br><br>"; ?>
+		     </div><?php # prof_text ?>
+
+		     
+  	    </div><!-- .entry-content -->
+
+
+		<?php   
+		 // succeeding boxes currently take the_content() too
+                ?>
+	
+	
+	
+	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
+		<h2 class="entry-title">Positions and Contact</h2>
+		<h5><br><?php echo "$firstname $surname"; ?></h5>
+ 		    <div class="container">
+			<div class="row entry-body">
+			      <div class="col-xs-6 standard-margin">
+<?php echo "Office: <a href=https://maps.epfl.ch/?q=$office>ELE233</a><br><a href=mailto:$epflname@epfl.ch>$epflname@epfl.ch</a><br><a href=https://people.epfl.ch/$epflname>https://people.epfl.ch/$epflname</a><br>Tel: <a href=\"tel:$phone\">$phone</a><br><br>"; ?>	
+			      </div><!-- col  -->
+			      <div class="col-xs-6 standard-margin">
+			        <?php echo $address; ?>
+			      </div><!-- col  -->
+			</div><!-- row -->
+
+		     </div> <!-- entry-body-->
+  	    </div><!-- .entry-content -->
+
+	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
+		    <a name=video></a>
+
+     <div style="margin: 20px 0px 40px 0px; float:left; width:100%; height:285px; "><iframe src="https://www.youtube.com/embed/<?php echo $labvideo; ?>?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="100%" height="280" frameborder="0"></iframe></div> 
+  	    </div><!-- .entry-content -->
+
+	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
+     <h2 class=people_titles>Recent Publications</h2>     
         <div class="sti_content_prof_text">
 <?php
-   	echo "<br>";
-   	echo "<h3>2018</h3>";
-   	echo "<a href=$publicationlink1>$publicationtext1</a><br><br><a href=$publicationrecord1>Detailed record</a><br><br>";
-   	echo "<h3>2017</h3>";
-   	echo "<a href=$publicationlink2>$publicationtext2</a><br><br><a href=$publicationrecord2>Detailed record</a><br><br>";
-   	echo "<a href=$publicationlink3>$publicationtext3</a><br><br><a href=$publicationrecord3>Detailed record</a><br><br>";
-   	echo "<a href=$publicationlink4>$publicationtext4</a><br><br><a href=$publicationrecord4>Detailed record</a><br><br>";
+        echo "<br>";
+        echo "<h3>2018</h3>";
+        echo "<a href=$publicationlink1>$publicationtext1</a><br><br><a href=$publicationrecord1>Detailed record</a><br><br>";
+        echo "<h3>2017</h3>";
+        echo "<a href=$publicationlink2>$publicationtext2</a><br><br><a href=$publicationrecord2>Detailed record</a><br><br>";
+        echo "<a href=$publicationlink3>$publicationtext3</a><br><br><a href=$publicationrecord3>Detailed record</a><br><br>";
+        echo "<a href=$publicationlink4>$publicationtext4</a><br><br><a href=$publicationrecord4>Detailed record</a><br><br>";
 ?>
+	</div>
+  	    </div><!-- .entry-content -->
 
-      </div><?php # beige ?>
-    </div><?php # .entry-content ?>
- </div><?php # #primary ?>
-
-</div><?php # .row ?>
-<div class="row">
- <div class="col-md-8 content-area" id="primary">
-   <div class="entry-content holding sti_content_maincolumn">
-    <h1 class=people_titles>News</h1>	
+	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
+    <h2 class=people_titles>News</h2>
     <div class="sti_content_prof_text">
      <a name=news></a>
      <div class="frontrowcontent">
 <?php
-   	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage1\");'><div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>";
-   	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage2\");'><div class=peoplenewstitle><a class=whitelink href=$newslink2>$newstitle2</a></div></div>"; 
-   	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage3\");'><div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>"; 
-   	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage4\");'><div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>";
+        echo "<div class='sti_people_news' style='background-image:url(\"$newsimage1\");'><div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>";
+        echo "<div class='sti_people_news' style='background-image:url(\"$newsimage2\");'><div class=peoplenewstitle><a class=whitelink href=$newslink2>$newstitle2</a></div></div>";
+        echo "<div class='sti_people_news' style='background-image:url(\"$newsimage3\");'><div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>";
+        echo "<div class='sti_people_news' style='background-image:url(\"$newsimage4\");'><div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>";
 ?>
      </div><?php # frontrowcontent ?>
     </div><?php # prof_text ?>
-  </div><?php # .sti_content_maincolumn ?>
- </div><?php # #primary ?>
-</div><?php # .row ?>
+	    </div>
+	 </div><!-- main row-->
+	</div><!-- main container-->
 
+     </div><!--column in case there is a list of links on the right-->
+
+
+		<?php   
+			// this box is a list of links 
+			echo $menu;
+                ?>
+	
+
+
+
+  </div><!--column if there is a box of links on the right-->
+ </div><!--row if there is a box of links on the right-->
+</div><!-- container if there is a box of links on the right-->
+		<div class="entry-meta">
+
+			<!---?php epflsti_posted_on(); --->
+
+		</div><!-- .entry-meta -->
+	<footer class="entry-footer">
+
+		<?php epflsti_entry_footer(); ?>
+
+	</footer><!-- .entry-footer -->
+
+</article><!-- #post-## -->

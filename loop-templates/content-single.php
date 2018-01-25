@@ -15,10 +15,14 @@
 	</header><!-- .entry-header -->
 
 <?php
+
 $menu=1;
-if ($menu) {
- $rosesarered="<img class='ribbon-red-top' src='/wp-content/themes/epfl-sti/img/src/topright.png'> 
+$highlight=1;
+
+$rosesarered="<img class='ribbon-red-top' src='/wp-content/themes/epfl-sti/img/src/topright.png'>
 <img class='ribbon-red-bottom' src='/wp-content/themes/epfl-sti/img/src/bottomleft.png'>";
+
+if ($menu) {
 
  $listoflinks_main=" col-md-8 content-area";
  $listoflinks_width=" width-main-listoflinks";
@@ -59,26 +63,18 @@ if ($menu) {
            <div class=row><!-- main row-->
 
 	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
-		<?php  // the choice is made to highlight this box
-		 echo $rosesarered;
+                <?php  // if the choice is made to highlight this box
+		if ($highlight) {
+			echo $rosesarered;
+		}
 		?>
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
- 		    <div class="container">
-			<div class="row entry-body">
-			      <div class="col-xs-6 standard-margin">
+			<div class="entry-body">
+      			      <div class="sti_content_prof_photo">
 				<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
 			      </div><!-- col  -->
-			      <div class="col-xs-6 standard-margin">
 				<?php the_content(); ?>
-			      </div><!-- col  -->
-			</div><!-- row -->
-				<?php
-				wp_link_pages( array(
-					'before' => '<div class="page-links">' . __( 'Pages:', 'epflsti' ),
-					'after'  => '</div>',
-				) );
-				?>
-		     </div> <!-- entry-body-->
+			</div><!-- entry-body -->
   	    </div><!-- .entry-content -->
 
 		<?php   
@@ -88,22 +84,13 @@ if ($menu) {
 	
 	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
- 		    <div class="container">
-			<div class="row entry-body">
-			      <div class="col-xs-6 standard-margin">
+			<div class="entry-body">
+      			      <div class="sti_content_prof_photo">
 				<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
 			      </div><!-- col  -->
-			      <div class="col-xs-6 standard-margin">
 				<?php the_content(); ?>
-			      </div><!-- col  -->
-			</div><!-- row -->
-				<?php
-				wp_link_pages( array(
-					'before' => '<div class="page-links">' . __( 'Pages:', 'epflsti' ),
-					'after'  => '</div>',
-				) );
-				?>
-		     </div> <!-- entry-body-->
+			</div><!-- entry-body -->
+
   	    </div><!-- .entry-content -->
 
 	 </div><!-- main row-->
@@ -114,7 +101,7 @@ if ($menu) {
 
 		<?php   
 			// this box is a list of links 
-			echo $menu;
+			if ($menu) { echo $menu; }
                 ?>
 	
 
