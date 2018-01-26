@@ -14,7 +14,15 @@
  *
  *   npm start -- --url=https://localhost:444/sti/
  */
-const fs = require('fs');  // Part of node.js core
+
+// The following modules are part of node.js core:
+const fs = require('fs');
+const path = require('path');
+const https = require('https');
+
+// The following are provided by an NPM package (and therefore should
+// each be in the "devDependencies" or "dependencies" section of
+// package.json):
 const gulp = require('gulp');
 const watch = require('gulp-watch');
 const browserSync = require('browser-sync').create();
@@ -39,7 +47,16 @@ const modernizr = require('gulp-modernizr');
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
 const del = require('del');
+const axios = require('axios');
+const pify = require('pify');
 const argv = require('yargs').argv;
+
+// Permit site-level customization
+if (fs.existsSync("gulpfile.js.local")) {
+    require("./gulpfile.js.local")(argv);
+}
+
+const wordpressURL = argv.url || "https://localhost/";
 
 /**
  * Browser-sync reloads pages for us during development
@@ -48,7 +65,7 @@ const argv = require('yargs').argv;
  */
 function browserSyncOptions() {
     var browserSyncOptions = {
-        proxy: (argv.url || "https://localhost/"),
+        proxy: wordpressURL,
         notify: false,
     };
 
@@ -71,15 +88,6 @@ function browserSyncOptions() {
     }
     return browserSyncOptions;
 }
-
-// Note that this has no effect until browserSync.init() is called below.
-browserSync.watch([
-    'assets/**/*',
-    'css/**/*',
-    'js/**/*',
-    '**/*.php',
-    'newsletter-theme/*.css'
-]).on("change", browserSync.reload);
 
 /**
  * SASS gives us compile-time @include's in CSS, templating (with
@@ -129,26 +137,51 @@ function postcssOptions() {
 // gulp
 // The default rule: build everything once, then stop
 gulp.task('default', ['copy-assets', 'imagemin',
-                      'scripts', 'admin-scripts', 'sass'])
+                      'scripts', 'admin-scripts', 'sass', 'clear-caches'])
 gulp.task('all', ['default'])
 
 // Run:
 // gulp watch
 // Starts watcher and run appropriate tasks on changes
 gulp.task('watch', ['default'], function () {
-    gulp.watch('./sass/**/*', ['sass']);
+    gulp.watch(['./sass/theme.scss', './sass/*/**/*', ], ['sass']);
     gulp.watch(['js/**/*.js'], ['scripts']);
     gulp.watch(['newsletter-theme/**/*.js', 'newsletter-theme/**/*.vue',
                 'newsletter-theme/**/*.scss'],
                ['admin-scripts']);
     gulp.watch('./img/src/**', ['imagemin'])
+    gulp.watch(['inc/maxmegamenu.php', 'sass/maxmegamenu.scss'],
+               ['clear-caches']);
 });
 
 // Run:
 // gulp browser-sync
-// Like "gulp watch", but run a browser and keep reloading it everytime
-// the build products change
+// Like "gulp watch", and also start a browser and reload it as required
 gulp.task('browser-sync', ['watch'], function() {
+    browserSync.watch(
+        [
+            // Source code
+            '**/*.php',
+            'css/**/*',
+            'newsletter-theme/*.css',
+
+            // Assets built by Gulp
+            'assets/**/*',
+
+            // Assets built from PHP
+            '../../uploads/*megamenu/style*.css',
+
+            // Save ourselves the initialization costs and also the
+            // spurious reloads, as chokidar (the library behind
+            // browserSync) is both very defensive and buggy as far as
+            // symlinks are concerned:
+            '!node_modules'
+        ],
+        {ignoreInitial: true},
+        browserSync.reload);
+
+    // There are more events that cause a browser reload; look for
+    // `.pipe(browserSync.stream())` elsewhere in this file.
     browserSync.init(browserSyncOptions());
 });
 
@@ -262,6 +295,10 @@ gulp.task('copy-assets', function() {
         .pipe(browserSync.stream());
 });
 
+gulp.task('clear-caches', function() {
+    return reloadCaches();
+});
+
 // Run:
 // gulp dist
 // Copies the files to the /dist folder for distribution as simple theme
@@ -362,3 +399,35 @@ function processSASS() {
             this.emit('end');
         });
 }
+
+/**
+ * Ask devsupport/reload-caches.php to do its thing.
+ */
+function reloadCaches() {
+    var url = wordpressURL;
+    if (! url.endsWith('/')) {
+        url += "/";
+    }
+    url += "wp-content/themes/" + path.basename(__dirname) +
+        "/devsupport/reload-caches.php";
+
+    const shibbolethFilename = __dirname + "/../../uploads/theme-epfl-sti-reload-caches.OK";
+    return pify(fs.writeFile)(shibbolethFilename, "")
+        .then(function() {
+            console.log("Hitting " + url + " ...");
+            const ax = axios.create({
+                httpsAgent: new https.Agent({
+                    rejectUnauthorized: false
+                })
+            });
+            return ax.get(url);
+        })
+        .then(function (response) {
+            console.log("... OK");
+//            browserSync.reload()
+        })
+        .catch(function (error) {
+            console.log("... ERROR", error);
+        });
+}
+

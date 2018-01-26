@@ -1,11 +1,10 @@
 /**
  * Megamenu style
  *
- * This file is *not* processed by gulp. Instead, the Max Megamenu plug-in
- * includes a SASS compiler written in PHP.
- *
- * See development instructions (especially regarding regenrating the
- * CSS cache) in ../inc/megamenu.php
+ * This file is *not* processed by gulp. Instead, the Max Megamenu
+ * plug-in includes a SASS compiler written in PHP. Still, "gulp
+ * browser-sync" will cooperate with devsupport/reload-caches.php to
+ * handle changes to this file like it does any other.
  */
 
 /* We make sure to use the exact same selector hierarchy as

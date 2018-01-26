@@ -1,0 +1,8 @@
+// If you would want to stop passing parameters to opy this file into gulpfile.js.local and tweak the function below
+// to your liking.
+
+module.exports = function(argv) {
+    argv.url = "https://localhost:444";
+    argv.browser = "Google Chrome";
+};
+
