@@ -155,27 +155,40 @@ echo "<h5>$firstname $surname</h5>$position<br>Office: <a class=whitelink href=h
   </div><!-- peoplebox-->
  </div><?php # .sti_righthand_menu ?>
 </div><?php # .row ?>
- <?PHP # NAV MENU END ?>
-<div class="row">
- <div class="col-md-9 content-area" id="primary">
-    <div class="entry-content sti_content_maincolumn">
-   <h1 class=people_titles>Recent Publications</h1>
-        <div class="sti_beige">
+<?PHP # NAV MENU END ?>
+
 <?php
-   	echo "<br>";
-   	echo "<h3>2018</h3>";
-   	echo "<a href=$publicationlink1>$publicationtext1</a><br><br><a href=$publicationrecord1>Detailed record</a><br><br>";
-   	echo "<h3>2017</h3>";
-   	echo "<a href=$publicationlink2>$publicationtext2</a><br><br><a href=$publicationrecord2>Detailed record</a><br><br>";
-   	echo "<a href=$publicationlink3>$publicationtext3</a><br><br><a href=$publicationrecord3>Detailed record</a><br><br>";
-   	echo "<a href=$publicationlink4>$publicationtext4</a><br><br><a href=$publicationrecord4>Detailed record</a><br><br>";
-?>
-
-      </div><?php # beige ?>
-    </div><?php # .entry-content ?>
- </div><?php # #primary ?>
-
- </div><?php # .row ?>
+if ( get_field( 'publications' ) ) { ?>
+  <div class="row">
+    <div class="col-md-9 content-area" id="primary">
+      <div class="entry-content sti_content_maincolumn">
+      <h1 class=people_titles>Recent Publications</h1>
+        <div class="sti_beige">
+          <?php
+            // get publication through the shortcode
+            $tmp = do_shortcode( '[infoscience url=' . get_field('publications') . ']' );
+            $dom=new domDocument;
+            // be sure to load the encoding
+            $dom->loadHTML('<?xml encoding="utf-8" ?>' . $tmp);
+            // let's use XPath
+            $finder = new DomXPath($dom);
+            // set the limit
+            $limit = 10; $cnt = 0;
+            // and remove unwanted elements
+            foreach($finder->query("//*[contains(@class, 'infoscience_record')]") as $elm ) {
+              if ($cnt >= $limit)
+                $elm->parentNode->removeChild($elm);
+              $cnt++;
+            }
+            // finally, echo
+            echo $dom->saveHTML($dom->documentElement);
+          ?>
+        </div><?php # beige ?>
+      </div><?php # .entry-content ?>
+    </div><?php # #primary ?>
+  </div><?php # .row ?>
+<?php
+} ?>
  <div class="row">
   <div class="col-md-9 content-area" id="primary">
     <div class="entry-content holding sti_content_maincolumn">
