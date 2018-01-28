@@ -25,7 +25,7 @@ $epfl_positions="
 <br>
 Associate Professor:
 <ul>
- <li>EPFL STI IEL LIONS 
+ <li>EPFL STI IEL LIONS
  <li>Laboratory for Information and Inference Systems
  <li>Institute of Electrical Engineering
 </ul>
@@ -95,14 +95,14 @@ $fullcontact="
 				CH-1015 Lausanne<br>
 				Office	ELE 233</td>
  </tr>
-</table> 
+</table>
 <br><br>
 ";
 ?>
 
 <div class="container">
  <div class="row">
-  <div class="col-8 content-area" id="primary">
+  <div class="col-9 content-area" id="primary">
     <div class="entry-content sti_content_maincolumn">
      <header class="entry-header">
       <h1 class="people_titles temp_people_title"><?php the_title(); ?></h1>
@@ -126,9 +126,9 @@ $fullcontact="
      </div><?php # prof_text ?>
     </div><?php # .entry-content ?>
   </div><?php # #primary ?>
- 
+
   <?PHP # NAV MENU START ?>
-  <div class="sti_righthand_menu offset-1 col-md-3 d-xs-none d-md-block">
+  <div class="sti_righthand_menu col-md-3 d-xs-none d-md-block">
    <div class="sti_people_menu_title frontrowmarker">
     <?php echo $labname; ?> <span class="sti_people_menu_black"><?php echo $mylabname; ?></span>
     <img src=<?php echo $labimage; ?> class="sti_people_menu_image">
@@ -147,7 +147,7 @@ $fullcontact="
 	<li id="menu-item-134" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-132"><a href="#fullcontact">FULL CONTACT DETAILS</a></li>
 </ul>
     <div class="sti_people_menu_white">
-    <?php 
+    <?php
 echo "<h5>$firstname $surname</h5>$position<br>Office: <a class=whitelink href=https://maps.epfl.ch/?q=$office>ELE233</a><br><a class=whitelink href=mailto:$epflname@epfl.ch>$epflname@epfl.ch</a><br><a class=whitelink href=https://people.epfl.ch/$epflname>https://people.epfl.ch/$epflname</a><br>Tel: <a class=whitelink href=\"tel:$phone\">$phone</a><br>";
 ?>
     </div><!-- menu_white-->
@@ -157,9 +157,9 @@ echo "<h5>$firstname $surname</h5>$position<br>Office: <a class=whitelink href=h
 </div><?php # .row ?>
  <?PHP # NAV MENU END ?>
 <div class="row">
- <div class="col-md-8 content-area" id="primary">
+ <div class="col-md-9 content-area" id="primary">
     <div class="entry-content sti_content_maincolumn">
-   <h1 class=people_titles>Recent Publications</h1>	
+   <h1 class=people_titles>Recent Publications</h1>
         <div class="sti_beige">
 <?php
    	echo "<br>";
@@ -177,44 +177,44 @@ echo "<h5>$firstname $surname</h5>$position<br>Office: <a class=whitelink href=h
 
  </div><?php # .row ?>
  <div class="row">
-  <div class="col-md-8 content-area" id="primary">
+  <div class="col-md-9 content-area" id="primary">
     <div class="entry-content holding sti_content_maincolumn">
-     <h1 class=people_titles>News</h1>	
+     <h1 class=people_titles>News</h1>
      <div class="sti_content_prof_text">
       <a name=news></a>
       <div class="frontrowcontent">
  <?php
     	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage1\");'><div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>";
-    	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage2\");'><div class=peoplenewstitle><a class=whitelink href=$newslink2>$newstitle2</a></div></div>"; 
-    	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage3\");'><div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>"; 
+    	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage2\");'><div class=peoplenewstitle><a class=whitelink href=$newslink2>$newstitle2</a></div></div>";
+    	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage3\");'><div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>";
     	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage4\");'><div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>";
  ?>
- 
+
       </div><?php # frontrowcontent ?>
      </div><?php # prof_text ?>
    </div><?php # .sti_content_maincolumn ?>
   </div><?php # #primary ?>
  </div><?php # .row ?>
- 
+
  <div class="row">
-  <div class="col-md-8 content-area" id="primary">
+  <div class="col-md-9 content-area" id="primary">
    <div class="entry-content sti_content_maincolumn holding">
-     <h1 class=people_titles><?php echo "$labvideotitle"; ?></h1>	
+     <h1 class=people_titles><?php echo "$labvideotitle"; ?></h1>
      <div class="sti_content_prof_text">
       <a name=video></a>
- 
+
       <div style="margin: 20px 0px 40px 0px; float:left; max-width:680; width: 100%; height:285px; "><iframe src="https://www.youtube.com/embed/<?php echo $labvideo; ?>?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="680" height="280" frameborder="0"></iframe></div>
- 
+
      </div><!--prof_text-->
    </div><?php # .sti_content_maincolumn ?>
   </div><?php # #primary ?>
  </div><?php # .row ?>
- 
+
  <div class="row">
-  <div class="col-md-8 content-area" id="primary">
+  <div class="col-md-9 content-area" id="primary">
    <div class="sti_content_maincolumn">
     <div class="entry-content holding">
-     <h1 class=people_titles><?php echo "$firstname $surname"; ?></h1>	
+     <h1 class=people_titles><?php echo "$firstname $surname"; ?></h1>
      <div class="sti_content_prof_text">
       <a name=fullcontact></a>
        <?php echo $fullcontact; ?>
