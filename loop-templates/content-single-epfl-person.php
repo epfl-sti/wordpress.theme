@@ -5,6 +5,8 @@
  * @package epflsti
  */
 
+$incoming_json=file_get_contents('https://stisrv13.epfl.ch/cgi-bin/whoop/peoplepage.pl?sciper=199128');
+$incoming=(json_decode($incoming_json));
 ?>
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
@@ -18,23 +20,32 @@
 
 //the following is ready to go as json from https://stisrv13.epfl.ch/cgi-bin/whoop/peoplepage.pl?sciper=
 
-$labname="LIONS";
-$mylabname="Laboratory for Information and Inference Systems";
-$labwebsite="https://lions.epfl.ch";
-$keywords="Machine Learning, Optimization, Signal Processing, Information Theory.";
+$labname=$incoming->labname;
+$mylabname=$incoming->mylabname;
+$labwebsite=$incoming->labwebsite;
+$keywords=$incoming->keywords;
 $bio="Prof. Volkan Cevher received his BSc degree (valedictorian) in Electrical Engineering from Bilkent University in 1999, and his PhD degree in Electrical and Computer Engineering from Georgia Institute of Technology in 2005. He held Research Scientist positions at University of Maryland, College Park during 2006-2007 and at Rice University during 2008-2009. Currently, he is an Assistant Professor at Ecole Polytechnique Federale de Lausanne and a Faculty Fellow at Rice University. His research interests include signal processing theory, machine learning, graphical models, and information theory.";
-$research="<strong>Information scalable optimization and data acquisition<br></strong><br>We build a scalable optimization and data acquisition framework that achieves optimal computational efficiency and dimensionality reduction while still being practically implementable for a broad set of processing and learning problems. We introduce a number of new key theories to develop optimization methods that minimize convex objectives on combinatorial low-dimensional models, and to adaptively design extremal combinatorial objects, such as extractors, expanders, and polar codes, as compressive sensing architectures that fully leverage learning.<br><br><strong>Learning theory and methods for low-dimensional signal models</strong><br><br>We create theoretical and algorithmic foundations for provable learning (both in generalization and complexity) of structured low-dimensional models. We investigate how to exploit geometric topologies and the diminishing returns (i.e., submodularity) within our learning objectives to significantly move from compressive sensing of signals towards compressive processing of information for scalable parameter estimation.<br><br><strong>Technology pursuits</strong><br><br>We develop new compressive sensing architectures to reshape the fields of data streaming and analog-to-digital conversion design in the presence of increasing memory and energy restrictions of future. We focus on a new paradigm, called analog-to-information conversion, as a replacement for conventional ADC technologies.";
-$position="ASSOCIATE PROFESSOR";
-$id=13;
-$surname="Cevher";
-$firstname="Volkan";
-$epflname="volkan.cevher";
-$phone="+41 21 693 1101";
-$office="ELE233";
-$sciper="199128";
-$videoeng="blIMmx5oh7o";
+$research=$incoming->interests;
+$position=$incoming->position;
+$id=$incoming->id;
+$surname=$incoming->surname;
+$firstname=$incoming->firstname;
+$epflname=$incoming->epflname;
+$phone=$incoming->phone;
+$office=$incoming->office;
+$sciper=$incoming->sciper;
+$videoeng=$incoming->videoeng;
 
 $labimage="https://stisrv13.epfl.ch/brochure/img/$id/research.png";
+
+if ($position == 'PO') { $officialtitle='Prof. ';
+$position='Full Professor'; }
+else if ($position == 'PA') { $officialtitle='Prof. '; $position='Associate Professor'; }
+else if ($position == 'SNF') { $officialtitle='Prof. '; $position='SNF Funded Assistant Professor'; }
+else if ($position == 'PATT') { $officialtitle='Prof. '; $position='Tenure Track Assistant Professor'; }
+else if ($position == 'PT') { $officialtitle='Prof. '; $position='Adjunct Professor'; }
+else if ($position == 'MER') {$officialtitle='Dr. '; $position='Senior Scientist'; }
+else {$officialtitle=$position; }
 
 //the rest must come from other sources
 
@@ -133,7 +144,7 @@ if ($menu) {
 		<?php  // the choice is made to highlight this box
 		 echo $rosesarered;
 		?>
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+		<?php the_title( '<h1 class="entry-title">'.$officialtitle, '</h1>' ); ?>
 		     <div class="entry-body">
 		      <div class="sti_content_prof_photo">
 			 <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
