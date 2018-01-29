@@ -6,7 +6,8 @@
  */
 
 $incoming_json=file_get_contents('https://stisrv13.epfl.ch/cgi-bin/whoop/peoplepage.pl?sciper='.$post->post_name);
-$incoming=(json_decode($incoming_json));
+$incoming=json_decode($incoming_json);
+
 ?>
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
@@ -149,7 +150,7 @@ if ($menu) {
 		      <div class="sti_content_prof_photo">
 			 <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
 		      </div><?php # prof_photo ?>
-		      <?php echo "<b>$position</b>"; ?>
+		      <?php echo "<b>$position</b><br><br>"; ?>
 					<?php
 					// Fetching the BIO form people page
 					$fetch_bio = file_get_contents("https://people.epfl.ch/cgi-bin/people?id=" . $post->post_name . "&op=bio&lang=en&cvlang=en");
