@@ -225,30 +225,40 @@ if ($videoeng != "") {
         echo "<a href=$publicationlink4>$publicationtext4</a><br><br><a href=$publicationrecord4>Detailed record</a><br><br>";
 ?>
 	</div>
-  	    </div><!-- .entry-content -->
+	    </div><!-- .entry-content -->
 
-	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
+<?php
+
+if ($newslink1 !="") {
+
+		echo '
+	    <div class="entry-content standard-content-box '.$listoflinks_width.'">
     <h2 class=people_titles>News</h2>
     <div class="sti_content_prof_text">
      <a name=news></a>
-     <div class="frontrowcontent">
-<?php
-        if ($newslink1 != "") {
+     <div class="frontrowcontent">';
+}
+if ($newslink1 != "") {
 		echo "<div class='sti_people_news' style='background-image:url(\"$newsimage1\");'><div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>";
 	}
-        if ($newslink2 != "") {
+if ($newslink2 != "") {
         	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage2\");'><div class=peoplenewstitle><a class=whitelink href=$newslink2>$newstitle2</a></div></div>";
 	}
-        if ($newslink3 != "") {
+if ($newslink3 != "") {
         	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage3\");'><div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>";
 	}
-        if ($newslink4 != "") {
+if ($newslink4 != "") {
         	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage4\");'><div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>$news";
 	}
+
+if ($newslink1 !="") {
+	echo '
+       </div><?php # frontrowcontent ?>
+      </div><?php # prof_text ?>
+    </div>
+';
+}
 ?>
-     </div><?php # frontrowcontent ?>
-    </div><?php # prof_text ?>
-	    </div>
 	 </div><!-- main row-->
 	</div><!-- main container-->
 
