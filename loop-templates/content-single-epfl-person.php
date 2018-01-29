@@ -202,7 +202,7 @@ if ($menu) {
             <?php
               // get publication through the shortcode
               $tmp = do_shortcode( '[infoscience url=' . get_post_meta( $post->ID, 'publication_link', true) . ']' );
-              $dom=new domDocument;
+              $dom = new DOMDocument();
               // be sure to load the encoding
               $dom->loadHTML('<?xml encoding="utf-8" ?>' . $tmp);
               // let's use XPath
