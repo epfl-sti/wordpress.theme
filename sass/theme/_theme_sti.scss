@@ -26,3 +26,9 @@ a > i:hover {
   color: $theRed;
 }
 
+/* Search box
+ * Will conflict with domq/megamenu-menu; this chunk should
+ * then be moved into _header.scss */
+.searchbox {
+  float:right;
+}

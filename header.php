@@ -57,6 +57,14 @@ $hp = (function_exists( 'pll_home_url' )) ? pll_home_url() : get_site_url();
                 <?php // This uses polylang. Change the language full name to get the FR / EN (https://polylang.pro/doc/configure-the-languages/#full-name) ?>
                 <ul class="epflstilangmenu"><?php if (function_exists('pll_the_languages')) { pll_the_languages(); } ?></ul>
             </div>
+            <div class="searchbox" tabindex="1">
+             <form action="/">
+              <input type="text" placeholder="search" name="s">
+              <a class="button">
+               <i class="fa fa-search"></i>
+              </a>
+             </form>
+            </div>
         </nav>
 
         <ul id="megamenu" class="justify-content-center">
