@@ -205,13 +205,14 @@ if ($videoeng != "") {
 
      <div style="margin: 20px 0px 40px 0px; float:left; width:100%; height:285px; "><iframe src="https://www.youtube.com/embed/'.$videoeng.'?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="100%" height="280" frameborder="0"></iframe></div> 
   	    </div><!-- .entry-content -->
+';
+}
+?>
 
 	    <div class="entry-content standard-content-box '.$listoflinks_width.'"><a name=research></a>
 		<h1>Research Area</h1><br><br>
-		'.$research.'
-  	    </div><!-- .entry-content -->';
-}
-?>
+		<?php echo $research; ?>
+	    </div><!-- .entry-content -->
 	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
      <h2 class=people_titles>Recent Publications</h2>     
         <div class="sti_content_prof_text">
