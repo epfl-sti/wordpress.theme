@@ -5,7 +5,7 @@
  * @package epflsti
  */
 
-$incoming_json=file_get_contents('https://stisrv13.epfl.ch/cgi-bin/whoop/peoplepage.pl?sciper=199128');
+$incoming_json=file_get_contents('https://stisrv13.epfl.ch/cgi-bin/whoop/peoplepage.pl?sciper='.$post->post_name);
 $incoming=(json_decode($incoming_json));
 ?>
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
