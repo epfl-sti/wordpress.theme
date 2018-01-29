@@ -158,10 +158,14 @@ if ($menu) {
 					$dom->loadHTML(mb_convert_encoding($fetch_bio, 'HTML-ENTITIES', 'UTF-8'));
 					$xpath = new DOMXpath($dom);
 					$biography = $xpath->query("//div[@id='content']/h3[text()='Biography']/following-sibling::text()")[0]->textContent;
-					echo "\n" . '<biography class="person-bio" id="person-bio-' . $post->post_name . '">' . "\n";
-					echo "\t" . $biography . "\n";
-					echo "</biography>\n";
-					 ?>
+					if ($biography) {
+						echo "\n" . '<biography class="person-bio" id="person-bio-' . $post->post_name . '">' . "\n";
+						echo "\t" . $biography . "\n";
+						echo "</biography>\n";
+					} else {
+						// Fetch strisrv13 contents
+					}
+					?>
 		     </div><?php # prof_text ?>
 
 		     
