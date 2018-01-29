@@ -57,4 +57,9 @@ megamenu #{$wrap} {  /* i.e. #mega-menu-wrap-primary */
       }
     }
   }
+
+  // Burger menu
+  .mega-menu-toggle .mega-toggle-block-1:before {
+    font-size: 28pt;
+  }
 }
