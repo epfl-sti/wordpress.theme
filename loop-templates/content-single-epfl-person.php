@@ -232,7 +232,7 @@ if ($videoeng != "") {
 if ($newslink1 !="") {
 
 		echo '
-	    <div class="entry-content standard-content-box '.$listoflinks_width.'">
+  <div class="entry-content standard-content-box '.$listoflinks_width.'">
     <h2 class=people_titles>News</h2>
     <div class="sti_content_prof_text">
      <a name=news></a>
