@@ -124,6 +124,7 @@ body {
  display: inline;
  clear: none;
  margin-right: 20px;
+ max-width: 310px;
 }
 
 .sti_content_body {
