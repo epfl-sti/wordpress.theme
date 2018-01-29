@@ -21,8 +21,9 @@
 $labname="LIONS";
 $mylabname="Laboratory for Information and Inference Systems";
 $labwebsite="https://lions.epfl.ch";
-$keywords="Machine Learning; Optimization; Signal Processing; Information Theory.";
+$keywords="Machine Learning, Optimization, Signal Processing, Information Theory.";
 $bio="Prof. Volkan Cevher received his BSc degree (valedictorian) in Electrical Engineering from Bilkent University in 1999, and his PhD degree in Electrical and Computer Engineering from Georgia Institute of Technology in 2005. He held Research Scientist positions at University of Maryland, College Park during 2006-2007 and at Rice University during 2008-2009. Currently, he is an Assistant Professor at Ecole Polytechnique Federale de Lausanne and a Faculty Fellow at Rice University. His research interests include signal processing theory, machine learning, graphical models, and information theory.";
+$research="<strong>Information scalable optimization and data acquisition<br></strong><br>We build a scalable optimization and data acquisition framework that achieves optimal computational efficiency and dimensionality reduction while still being practically implementable for a broad set of processing and learning problems. We introduce a number of new key theories to develop optimization methods that minimize convex objectives on combinatorial low-dimensional models, and to adaptively design extremal combinatorial objects, such as extractors, expanders, and polar codes, as compressive sensing architectures that fully leverage learning.<br><br><strong>Learning theory and methods for low-dimensional signal models</strong><br><br>We create theoretical and algorithmic foundations for provable learning (both in generalization and complexity) of structured low-dimensional models. We investigate how to exploit geometric topologies and the diminishing returns (i.e., submodularity) within our learning objectives to significantly move from compressive sensing of signals towards compressive processing of information for scalable parameter estimation.<br><br><strong>Technology pursuits</strong><br><br>We develop new compressive sensing architectures to reshape the fields of data streaming and analog-to-digital conversion design in the presence of increasing memory and energy restrictions of future. We focus on a new paradigm, called analog-to-information conversion, as a replacement for conventional ADC technologies.";
 $position="ASSOCIATE PROFESSOR";
 $id=13;
 $surname="Cevher";
@@ -108,6 +109,7 @@ if ($menu) {
     <ul class="menu">
      <li id="menu-item-128" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-128"><a href="'.$labwebsite.'">LAB WEBSITE</a></li>
         <li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#video">VIDEOS</a></li>
+        <li id="menu-item-134" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#research">RESEARCH</a></li>
       <li id="menu-item-129" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-129"><a href="https://people.epfl.ch/cgi-bin/people?id='.$sciper.'&op=publications&lang=en&cvlang=en">PUBLICATIONS</a></li>
         <li id="menu-item-130" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#news">NEWS</a></li>
         <li id="menu-item-133" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-130"><a href="https://stisrv13.epfl.ch/collaborations/tube_html5.php?sciper='.$sciper.'&showpublications=1&showpatents=1&showexternals=1&showindustry=1">COLLABORATIONS</a></li>
@@ -169,6 +171,11 @@ if ($menu) {
 		    <a name=video></a>
 
      <div style="margin: 20px 0px 40px 0px; float:left; width:100%; height:285px; "><iframe src="https://www.youtube.com/embed/<?php echo $videoeng; ?>?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="100%" height="280" frameborder="0"></iframe></div> 
+  	    </div><!-- .entry-content -->
+
+	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>"><a name=research></a>
+		<h1>Research Area</h1><br><br>
+		<?php echo $research; ?>
   	    </div><!-- .entry-content -->
 
 	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
