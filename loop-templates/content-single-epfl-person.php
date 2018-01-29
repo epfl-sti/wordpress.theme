@@ -136,101 +136,102 @@ if ($menu) {
             echo $rosesarered;
           ?>
           <?php the_title( '<h1 class="entry-title">'.$officialtitle, '</h1>' ); ?>
-          <div class="entry-body">
-            <div class="sti_content_prof_photo">
-              <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
-            </div><?php # prof_photo ?>
-          <?php echo "<b>$position</b><br><br>"; ?>
-          <?php
-            // Fetching the BIO form people page
-            $fetch_bio = file_get_contents("https://people.epfl.ch/cgi-bin/people?id=" . $post->post_name . "&op=bio&lang=en&cvlang=en");
-            $dom = new DOMDocument();
-            // https://stackoverflow.com/questions/8218230/php-domdocument-loadhtml-not-encoding-utf-8-correctly
-            $dom->loadHTML(mb_convert_encoding($fetch_bio, 'HTML-ENTITIES', 'UTF-8'));
-            $xpath = new DOMXpath($dom);
-            $biography = $xpath->query("//div[@id='content']/h3[text()='Biography']/following-sibling::text()")[0]->textContent;
-            if (!$biography) {
-              $biography=$bio;
-            }
-            echo "\n" . '<biography class="person-bio" id="person-bio-' . $post->post_name . '">' . "\n";
-            echo "\t" . $biography . "\n";
-            echo "</biography>\n";
-          ?>
-        </div><?php # prof_text ?>
-      </div><!-- .entry-content -->
+            <div class="entry-body">
+              <div class="sti_content_prof_photo">
+                <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
+              </div><?php # prof_photo ?>
+            <?php echo "<b>$position</b><br><br>"; ?>
+            <?php
+              // Fetching the BIO form people page
+              $fetch_bio = file_get_contents("https://people.epfl.ch/cgi-bin/people?id=" . $post->post_name . "&op=bio&lang=en&cvlang=en");
+              $dom = new DOMDocument();
+              // https://stackoverflow.com/questions/8218230/php-domdocument-loadhtml-not-encoding-utf-8-correctly
+              $dom->loadHTML(mb_convert_encoding($fetch_bio, 'HTML-ENTITIES', 'UTF-8'));
+              $xpath = new DOMXpath($dom);
+              $biography = $xpath->query("//div[@id='content']/h3[text()='Biography']/following-sibling::text()")[0]->textContent;
+              if (!$biography) {
+                $biography=$bio;
+              }
+              echo "\n" . '<biography class="person-bio" id="person-bio-' . $post->post_name . '">' . "\n";
+              echo "\t" . $biography . "\n";
+              echo "</biography>\n";
+            ?>
+          </div><?php # prof_text ?>
+        </div><!-- .entry-content -->
+        <?php
+          // succeeding boxes currently take the_content() too
+        ?>
+        <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
+          <h2 class="entry-title">Contact</h2>
+          <h5><br><?php echo "$firstname $surname"; ?></h5>
+          <div class="container">
+            <div class="row entry-body">
+              <div class="col-xs-6 standard-margin">
+                <?php echo "Office: <a href=https://maps.epfl.ch/?q=$office>$office</a><br><a href=mailto:$epflname@epfl.ch>$epflname@epfl.ch</a><br><a href=https://people.epfl.ch/$epflname>https://people.epfl.ch/$epflname</a><br>Tel: <a href=\"tel:$phone\">$phone</a><br><br>"; ?>
+              </div><!-- col  -->
+              <div class="col-xs-6 standard-margin">
+                <?php echo "$labname<br> $office<br> Station 11<br> 1015 Lausanne<br> Switzerland";; ?>
+              </div><!-- col  -->
+            </div><!-- row -->
+          </div> <!-- entry-body-->
+        </div><!-- .entry-content -->
+
+        <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
+          <a name="video"></a>
+          <div style="margin: 20px 0px 40px 0px; float:left; width:100%; height:285px; "><iframe src="https://www.youtube.com/embed/<?php echo $videoeng; ?>?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="100%" height="280" frameborder="0"></iframe></div>
+        </div><!-- .entry-content -->
+
+        <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>"><a name=research></a>
+          <h1>Research Area</h1><br><br>
+          <?php echo $research; ?>
+        </div><!-- .entry-content -->
+
       <?php
-        // succeeding boxes currently take the_content() too
-      ?>
-      <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
-        <h2 class="entry-title">Contact</h2>
-        <h5><br><?php echo "$firstname $surname"; ?></h5>
-        <div class="container">
-          <div class="row entry-body">
-            <div class="col-xs-6 standard-margin">
-              <?php echo "Office: <a href=https://maps.epfl.ch/?q=$office>$office</a><br><a href=mailto:$epflname@epfl.ch>$epflname@epfl.ch</a><br><a href=https://people.epfl.ch/$epflname>https://people.epfl.ch/$epflname</a><br>Tel: <a href=\"tel:$phone\">$phone</a><br><br>"; ?>
-            </div><!-- col  -->
-            <div class="col-xs-6 standard-margin">
-              <?php echo "$labname<br> $office<br> Station 11<br> 1015 Lausanne<br> Switzerland";; ?>
-            </div><!-- col  -->
-          </div><!-- row -->
-        </div> <!-- entry-body-->
-      </div><!-- .entry-content -->
+      if ( get_post_meta( $post->ID, 'publication_link', true) ) { ?>
+        <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
+        <h2 class=people_titles>Recent Publications</h2>
+          <div class="sti_content_prof_text">
+            <?php
+              // get publication through the shortcode
+              $tmp = do_shortcode( '[infoscience url=' . get_post_meta( $post->ID, 'publication_link', true) . ']' );
+              $dom=new domDocument;
+              // be sure to load the encoding
+              $dom->loadHTML('<?xml encoding="utf-8" ?>' . $tmp);
+              // let's use XPath
+              $finder = new DomXPath($dom);
+              // set the limit
+              $limit = 10; $cnt = 0;
+              // and remove unwanted elements
+              foreach($finder->query("//*[contains(@class, 'infoscience_record')]") as $elm ) {
+                if ($cnt >= $limit)
+                  $elm->parentNode->removeChild($elm);
+                $cnt++;
+              }
+              // finally, echo
+              echo $dom->saveHTML($dom->documentElement);
+            ?>
+          </div><?php # beige ?>
+        </div><?php # .entry-content ?>
+      <?php
+      } ?>
 
-      <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
-        <a name="video"></a>
-        <div style="margin: 20px 0px 40px 0px; float:left; width:100%; height:285px; "><iframe src="https://www.youtube.com/embed/<?php echo $videoeng; ?>?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="100%" height="280" frameborder="0"></iframe></div>
-      </div><!-- .entry-content -->
-
-      <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>"><a name=research></a>
-        <h1>Research Area</h1><br><br>
-        <?php echo $research; ?>
-      </div><!-- .entry-content -->
-
-    <?php
-    if ( get_post_meta( $post->ID, 'publication_link', true) ) { ?>
-      <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
-      <h2 class=people_titles>Recent Publications</h2>
-        <div class="sti_content_prof_text">
-          <?php
-            // get publication through the shortcode
-            $tmp = do_shortcode( '[infoscience url=' . get_post_meta( $post->ID, 'publication_link', true) . ']' );
-            $dom=new domDocument;
-            // be sure to load the encoding
-            $dom->loadHTML('<?xml encoding="utf-8" ?>' . $tmp);
-            // let's use XPath
-            $finder = new DomXPath($dom);
-            // set the limit
-            $limit = 10; $cnt = 0;
-            // and remove unwanted elements
-            foreach($finder->query("//*[contains(@class, 'infoscience_record')]") as $elm ) {
-              if ($cnt >= $limit)
-                $elm->parentNode->removeChild($elm);
-              $cnt++;
-            }
-            // finally, echo
-            echo $dom->saveHTML($dom->documentElement);
-          ?>
-        </div><?php # beige ?>
-      </div><?php # .entry-content ?>
-    <?php
-    } ?>
-      <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
-        <h2 class=people_titles>News</h2>
-        <div class="sti_content_prof_text">
-          <a name=news></a>
-          <div class="frontrowcontent">
-          <?php
-            echo "<div class='sti_people_news' style='background-image:url(\"$newsimage1\");'>\n<div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>\n";
-            echo "<div class='sti_people_news' style='background-image:url(\"$newsimage2\");'>\n<div class=peoplenewstitle><a class=whitelink href=$newslink2>$newstitle2</a></div></div>\n";
-            echo "<div class='sti_people_news' style='background-image:url(\"$newsimage3\");'>\n<div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>\n";
-            echo "<div class='sti_people_news' style='background-image:url(\"$newsimage4\");'>\n<div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>$news\n";
-          ?>
-          </div><?php # frontrowcontent ?>
-        </div><?php # prof_text ?>
-      </div>
-    </div><!-- main row-->
-  </div><!-- main container-->
-</div><!--column in case there is a list of links on the right-->
+        <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
+          <h2 class=people_titles>News</h2>
+          <div class="sti_content_prof_text">
+            <a name=news></a>
+            <div class="frontrowcontent">
+            <?php
+              echo "<div class='sti_people_news' style='background-image:url(\"$newsimage1\");'>\n<div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>\n";
+              echo "<div class='sti_people_news' style='background-image:url(\"$newsimage2\");'>\n<div class=peoplenewstitle><a class=whitelink href=$newslink2>$newstitle2</a></div></div>\n";
+              echo "<div class='sti_people_news' style='background-image:url(\"$newsimage3\");'>\n<div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>\n";
+              echo "<div class='sti_people_news' style='background-image:url(\"$newsimage4\");'>\n<div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>$news\n";
+            ?>
+            </div><?php # frontrowcontent ?>
+          </div><?php # prof_text ?>
+        </div>
+      </div><!-- main row-->
+    </div><!-- main container-->
+  </div><!--column in case there is a list of links on the right-->
 
 <?php
   // this box is a list of links
