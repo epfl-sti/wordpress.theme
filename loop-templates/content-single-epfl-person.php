@@ -149,7 +149,19 @@ if ($menu) {
 		      <div class="sti_content_prof_photo">
 			 <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
 		      </div><?php # prof_photo ?>
-		      <?php echo "<b>$position</b><br><br>$bio<br><br>"; ?>
+		      <?php echo "<b>$position</b>"; ?>
+					<?php
+					// Fetching the BIO form people page
+					$fetch_bio = file_get_contents("https://people.epfl.ch/cgi-bin/people?id=" . $post->post_name . "&op=bio&lang=en&cvlang=en");
+					$dom = new DOMDocument();
+					// https://stackoverflow.com/questions/8218230/php-domdocument-loadhtml-not-encoding-utf-8-correctly
+					$dom->loadHTML(mb_convert_encoding($fetch_bio, 'HTML-ENTITIES', 'UTF-8'));
+					$xpath = new DOMXpath($dom);
+					$biography = $xpath->query("//div[@id='content']/h3[text()='Biography']/following-sibling::text()")[0]->textContent;
+					echo "\n" . '<biography class="person-bio" id="person-bio-' . $post->post_name . '">' . "\n";
+					echo "\t" . $biography . "\n";
+					echo "</biography>\n";
+					 ?>
 		     </div><?php # prof_text ?>
 
 		     
