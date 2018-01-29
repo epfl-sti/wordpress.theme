@@ -7,7 +7,6 @@
 
 $incoming_json=file_get_contents('https://stisrv13.epfl.ch/cgi-bin/whoop/peoplepage.pl?sciper='.$post->post_name);
 $incoming=json_decode($incoming_json);
-
 ?>
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
@@ -25,7 +24,7 @@ $labname=$incoming->labname;
 $mylabname=$incoming->mylabname;
 $labwebsite=$incoming->labwebsite;
 $keywords=$incoming->keywords;
-$bio="Prof. Volkan Cevher received his BSc degree (valedictorian) in Electrical Engineering from Bilkent University in 1999, and his PhD degree in Electrical and Computer Engineering from Georgia Institute of Technology in 2005. He held Research Scientist positions at University of Maryland, College Park during 2006-2007 and at Rice University during 2008-2009. Currently, he is an Assistant Professor at Ecole Polytechnique Federale de Lausanne and a Faculty Fellow at Rice University. His research interests include signal processing theory, machine learning, graphical models, and information theory.";
+$bio=$incoming->bio;
 $research=$incoming->interests;
 $position=$incoming->position;
 $id=$incoming->id;
@@ -36,6 +35,7 @@ $phone=$incoming->phone;
 $office=$incoming->office;
 $sciper=$incoming->sciper;
 $videoeng=$incoming->videoeng;
+$news=$incoming->news;
 
 $labimage="https://stisrv13.epfl.ch/brochure/img/$id/research.png";
 
@@ -50,8 +50,6 @@ else {$officialtitle=$position; }
 
 //the rest must come from other sources
 
-$address="LIONS<br> ELE233<br> Station 11<br> 1015 Lausanne<br> Switzerland";
-
 $epfl_positions="
 <br>
 Associate Professor:<br><br>
@@ -65,20 +63,20 @@ Associate Professor:<br><br>
 </ul>
 ";
 
-$newstitle1="Three Prestigious Consolidator Grants";
-$newstitle2="Volkan Cevher wins an ERC starting grant";
-$newstitle3="Algorithms are all around";
-$newstitle4="IEEE Signal Processing Best Paper Award";
+$newstitle1=$incoming->newstitle1;
+$newstitle2=$incoming->newstitle2;
+$newstitle3=$incoming->newstitle3;
+$newstitle4=$incoming->newstitle4;
 
-$newsimage1="https://stisrv13.epfl.ch/newsdesk/covershots/el/left2017.png";
-$newsimage2="https://stisrv13.epfl.ch/newsdesk/covershots/el/left1263.png";
-$newsimage3="https://stisrv13.epfl.ch/newsdesk/covershots/el/left1180.png";
-$newsimage4="https://i.ytimg.com/vi/blIMmx5oh7o/maxresdefault.jpg";
+$newsimage1=$incoming->newsimage1;
+$newsimage2=$incoming->newsimage2;
+$newsimage3=$incoming->newsimage3;
+$newsimage4=$incoming->newsimage4;
 
-$newslink1="http://sti.epfl.ch/page-140428.html#anchor2017";
-$newslink2="http://sti.epfl.ch/page-67196.html#anchor1263";
-$newslink3="http://sti.epfl.ch/page-57268.html";
-$newslink4="http://sti.epfl.ch/page-108381.html#anchor2025";
+$newslink1=$incoming->newslink1;
+$newslink2=$incoming->newslink2;
+$newslink3=$incoming->newslink3;
+$newslink4=$incoming->newslink4;
 
 $publicationtext1="C. Aprile, A. Cevrero, P. A. Francese, C. Menolfi and M. Braendli et al. An Eight lanes 7Gb/s/pin Source Synchronous Single-Ended RX with Equalization and Far-End Crosstalk Cancellation for Backplane Channels, in IEEE Journal of Solid State Circuits, vol. PP, num. 99, p. 1-12, 2018";
 $publicationlink1="https://infoscience.epfl.ch/record/233712/files/08246724.pdf?version=1";
@@ -159,13 +157,12 @@ if ($menu) {
 					$dom->loadHTML(mb_convert_encoding($fetch_bio, 'HTML-ENTITIES', 'UTF-8'));
 					$xpath = new DOMXpath($dom);
 					$biography = $xpath->query("//div[@id='content']/h3[text()='Biography']/following-sibling::text()")[0]->textContent;
-					if ($biography) {
-						echo "\n" . '<biography class="person-bio" id="person-bio-' . $post->post_name . '">' . "\n";
-						echo "\t" . $biography . "\n";
-						echo "</biography>\n";
-					} else {
-						// Fetch strisrv13 contents
+					if (!$biography) {
+					 $biography=$bio;
 					}
+					echo "\n" . '<biography class="person-bio" id="person-bio-' . $post->post_name . '">' . "\n";
+					echo "\t" . $biography . "\n";
+					echo "</biography>\n";
 					?>
 		     </div><?php # prof_text ?>
 
@@ -180,7 +177,7 @@ if ($menu) {
 	
 	
 	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
-		<h2 class="entry-title">Positions and Contact</h2>
+		<h2 class="entry-title">Contact</h2>
 		<h5><br><?php echo "$firstname $surname"; ?></h5>
  		    <div class="container">
 			<div class="row entry-body">
@@ -188,7 +185,9 @@ if ($menu) {
 <?php echo "Office: <a href=https://maps.epfl.ch/?q=$office>$office</a><br><a href=mailto:$epflname@epfl.ch>$epflname@epfl.ch</a><br><a href=https://people.epfl.ch/$epflname>https://people.epfl.ch/$epflname</a><br>Tel: <a href=\"tel:$phone\">$phone</a><br><br>"; ?>	
 			      </div><!-- col  -->
 			      <div class="col-xs-6 standard-margin">
-			        <?php echo $address; ?>
+			        <?php echo "$labname<br> $office<br> Station 11<br> 1015 Lausanne<br> Switzerland";; ?>
+
+
 			      </div><!-- col  -->
 			</div><!-- row -->
 
@@ -230,7 +229,7 @@ if ($menu) {
         echo "<div class='sti_people_news' style='background-image:url(\"$newsimage1\");'><div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>";
         echo "<div class='sti_people_news' style='background-image:url(\"$newsimage2\");'><div class=peoplenewstitle><a class=whitelink href=$newslink2>$newstitle2</a></div></div>";
         echo "<div class='sti_people_news' style='background-image:url(\"$newsimage3\");'><div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>";
-        echo "<div class='sti_people_news' style='background-image:url(\"$newsimage4\");'><div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>";
+        echo "<div class='sti_people_news' style='background-image:url(\"$newsimage4\");'><div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>$news";
 ?>
      </div><?php # frontrowcontent ?>
     </div><?php # prof_text ?>
