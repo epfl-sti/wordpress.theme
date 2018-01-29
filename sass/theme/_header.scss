@@ -5,24 +5,15 @@
 #header {
   // Requires to use position: absolute on children
   position: relative;
+  // Create a new 'stacking context' for things inside, and also,
+  // display on top of the carousel
+  z-index: 10;
 
   width: 100%;
   margin: 0 auto;
-  background: #fff;
+  background-color: #fff;
   border-top: #cb161d 7px solid;
-  background-position: top right;
-  background-repeat: no-repeat;
-  // This magic URL is served thanks to ../../inc/serve-assets.php
-  background-image: url(theme-epfl-sti/assets/lozenges.png);
   border-bottom: #cb161d 3px solid;
-}
-
-#header a.menu-mobile {  // burger menu - Hidden (by _megamenu.scss) on large widths
-  position: absolute;
-  // In principle, we should share variables with _megamenu.scss for
-  // these coordinates:
-  top: 0px;
-  right: 20px;
 }
 
 /**
@@ -44,6 +35,17 @@
 .lang-item.current-lang a {
   color: $theRed;
   pointer-events: none;
+}
+
+topbar {
+  display: block;
+  width: 100%;
+  overflow: hidden;  // https://stackoverflow.com/a/5369963/435004
+  z-index: -5;
+  // This magic URL is served thanks to ../../inc/serve-assets.php
+  background-image: url(theme-epfl-sti/assets/lozenges.png);
+  background-position: top right;
+  background-repeat: no-repeat;
 }
 
 topbar .language {

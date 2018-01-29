@@ -37,7 +37,6 @@ $cl = get_current_language();
 <body <?php body_class(); ?>>
 
 <div id="header" class="container-fluid">
- <?php # Site logo and top-most navigation in a 0-height div ?>
  <topbar>
   <div class="language">
    <?php // This uses polylang. Change the language full name to get the FR / EN (https://polylang.pro/doc/configure-the-languages/#full-name) ?>

@@ -27,12 +27,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function megamenu_setup_theme ($themes) {
   $themes["epfl_sti_mega_menu"] = array(
-    'title' => 'EPFL STI Mega Menu',
-    'menu_item_align' => 'center',
-    'menu_item_highlight_current' => 'off',
-    'z_index' => '10',
+    'title'                             => 'EPFL STI Mega Menu',
+    'menu_item_align'                   => 'center',
+    'menu_item_highlight_current'       => 'off',
+    'z_index'                           => '10',
     'panel_second_level_text_transform' => 'uppercase',
-    'mobile_menu_item_link_text_align' => 'left',
+    'mobile_menu_item_link_text_align'  => 'left',
+
+    /* Putting back the arrows (or lack thereof) as they were before */
+    'arrow_up'    => 'disabled',
+    'arrow_down'  => 'disabled',
+    'arrow_left'  => 'disabled',
+    'arrow_right' => 'disabled',
 
     /* Cut back on the plug-in's micromanagement of dimensions, fonts
      * and colors: */
@@ -62,13 +68,14 @@ function megamenu_setup_theme ($themes) {
     'flyout_link_color_hover'                  => 'inherit',
 
     /* Colors that we want to set: */
-    'container_background_from' => 'white',
-    'container_background_to' => 'white',
-    'mobile_background_from' => '#222',
-    'mobile_background_to' => '#222',
-    'menu_item_background_hover_from' => 'rgb(238, 238, 238)',
-    'menu_item_background_hover_to' => 'rgb(238, 238, 238)',
-    'menu_item_link_color' => 'rgb(74, 201, 70)',
+    'container_background_from'       => 'white',
+    'container_background_to'         => 'white',
+    'mobile_background_from'          => 'rgb(202, 200, 200)',
+    'mobile_background_to'            => 'rgb(202, 200, 200)',
+    'menu_item_background_hover_from' => '#eee',
+    'menu_item_background_hover_to'   => '#eee',
+    'menu_item_link_color'            => '#555',
+    'menu_item_link_color_hover'      => '#555',
 
     'custom_css' => '@import "maxmegamenu";'  // i.e. ../sass/maxmegamenu.scss; see below
   );

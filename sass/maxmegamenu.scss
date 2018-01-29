@@ -21,20 +21,36 @@ megamenu #{$wrap} {  /* i.e. #mega-menu-wrap-primary */
     /* Keep it centered (despite not occupying the full width): */
     margin: 0 auto;
 
+    @include mobile {
+      border: 1px solid black;
+    }
+
     > li.mega-menu-item {
       > a.mega-menu-link {
         color: black;
         font: 13pt \"Open Sans Regular\", sans-serif;
-        background-image: url(/wp-content/themes/epfl-sti/img/src/sideshadow.gif);
+        @include desktop {
+          background-image: url(/wp-content/themes/epfl-sti/img/src/sideshadow.gif);
+        }
         background-repeat: no-repeat;
         background-position-x: -10px;
         height: 20pt;
         text-transform: uppercase;
-        &:after {
-          vertical-align: baseline;
+      }
+      @include desktop {
+        &.mega-toggle-on > a:before {
+          content: '';
+          position: absolute;
+          top:   -200px;
+          left: 0px;
+          height: 200px;
+          width: 100%;
+          background-color: #eee;
+          z-index: -1;
         }
       }
     }
+
     > li.mega-menu-megamenu {
       > ul.mega-sub-menu {
         background-color: white;
