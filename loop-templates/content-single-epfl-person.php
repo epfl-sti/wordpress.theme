@@ -149,7 +149,7 @@ if ($menu) {
               $dom->loadHTML(mb_convert_encoding($fetch_bio, 'HTML-ENTITIES', 'UTF-8'));
               $xpath = new DOMXpath($dom);
               $biography = $xpath->query("//div[@id='content']/h3[text()='Biography']/following-sibling::text()")[0]->textContent;
-              if (!$biography) {
+              if (str_word_count($biography) <10) {
                 $biography=$bio;
               }
               echo "\n" . '<biography class="person-bio" id="person-bio-' . $post->post_name . '">' . "\n";
