@@ -133,18 +133,18 @@ body {
 
 .entry-body {
  padding-left: 40px;
- padding-top: 20px; 
+ padding-top: 20px;
 }
 
 .ribbon-red-top {
- position: absolute; 
- top:-12px; 
+ position: absolute;
+ top:-12px;
  right: -8px;
 }
 
 .ribbon-red-bottom {
- position: absolute; 
- bottom:-12px; 
+ position: absolute;
+ bottom:-12px;
  left: -6px;
 }
 
