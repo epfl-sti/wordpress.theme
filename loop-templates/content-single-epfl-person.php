@@ -158,7 +158,7 @@ echo "<h5>$firstname $surname</h5>$position<br>Office: <a class=whitelink href=h
 <?PHP # NAV MENU END ?>
 
 <?php
-if ( get_field( 'publications' ) ) { ?>
+if ( get_post_meta( $post->ID, 'publication_link', true) ) { ?>
   <div class="row">
     <div class="col-md-9 content-area" id="primary">
       <div class="entry-content sti_content_maincolumn">
@@ -166,7 +166,7 @@ if ( get_field( 'publications' ) ) { ?>
         <div class="sti_beige">
           <?php
             // get publication through the shortcode
-            $tmp = do_shortcode( '[infoscience url=' . get_field('publications') . ']' );
+            $tmp = do_shortcode( '[infoscience url=' . get_post_meta( $post->ID, 'publication_link', true) . ']' );
             $dom=new domDocument;
             // be sure to load the encoding
             $dom->loadHTML('<?xml encoding="utf-8" ?>' . $tmp);
