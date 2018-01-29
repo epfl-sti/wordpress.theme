@@ -118,7 +118,11 @@ if ($menu) {
    <div class="prof-nav-menu">
     <ul class="menu">
      <li id="menu-item-128" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-128"><a href="'.$labwebsite.'">LAB WEBSITE</a></li>
-        <li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#video">VIDEOS</a></li>
+ ';
+ if ($videoeng != "") {
+	 $menu.='<li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#video">VIDEOS</a></li>';
+ }
+ $menu.='
         <li id="menu-item-134" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#research">RESEARCH</a></li>
       <li id="menu-item-129" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-129"><a href="https://people.epfl.ch/cgi-bin/people?id='.$sciper.'&op=publications&lang=en&cvlang=en">PUBLICATIONS</a></li>
         <li id="menu-item-130" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#news">NEWS</a></li>
@@ -157,7 +161,7 @@ if ($menu) {
 					$dom->loadHTML(mb_convert_encoding($fetch_bio, 'HTML-ENTITIES', 'UTF-8'));
 					$xpath = new DOMXpath($dom);
 					$biography = $xpath->query("//div[@id='content']/h3[text()='Biography']/following-sibling::text()")[0]->textContent;
-					if (!$biography) {
+					if (str_word_count($biography) <10) {
 					 $biography=$bio;
 					}
 					echo "\n" . '<biography class="person-bio" id="person-bio-' . $post->post_name . '">' . "\n";
@@ -193,18 +197,21 @@ if ($menu) {
 
 		     </div> <!-- entry-body-->
   	    </div><!-- .entry-content -->
+<?php
+if ($videoeng != "") {
 
-	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
+	   echo '<div class="entry-content standard-content-box '.$listoflinks_width.'; ?>">
 		    <a name=video></a>
 
-     <div style="margin: 20px 0px 40px 0px; float:left; width:100%; height:285px; "><iframe src="https://www.youtube.com/embed/<?php echo $videoeng; ?>?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="100%" height="280" frameborder="0"></iframe></div> 
+     <div style="margin: 20px 0px 40px 0px; float:left; width:100%; height:285px; "><iframe src="https://www.youtube.com/embed/'.$videoeng.'?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="100%" height="280" frameborder="0"></iframe></div> 
   	    </div><!-- .entry-content -->
 
-	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>"><a name=research></a>
+	    <div class="entry-content standard-content-box '.$listoflinks_width.'"><a name=research></a>
 		<h1>Research Area</h1><br><br>
-		<?php echo $research; ?>
-  	    </div><!-- .entry-content -->
-
+		'.$research.'
+  	    </div><!-- .entry-content -->';
+}
+?>
 	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
      <h2 class=people_titles>Recent Publications</h2>     
         <div class="sti_content_prof_text">
@@ -226,10 +233,18 @@ if ($menu) {
      <a name=news></a>
      <div class="frontrowcontent">
 <?php
-        echo "<div class='sti_people_news' style='background-image:url(\"$newsimage1\");'><div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>";
-        echo "<div class='sti_people_news' style='background-image:url(\"$newsimage2\");'><div class=peoplenewstitle><a class=whitelink href=$newslink2>$newstitle2</a></div></div>";
-        echo "<div class='sti_people_news' style='background-image:url(\"$newsimage3\");'><div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>";
-        echo "<div class='sti_people_news' style='background-image:url(\"$newsimage4\");'><div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>$news";
+        if ($newslink1 != "") {
+		echo "<div class='sti_people_news' style='background-image:url(\"$newsimage1\");'><div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>";
+	}
+        if ($newslink2 != "") {
+        	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage2\");'><div class=peoplenewstitle><a class=whitelink href=$newslink2>$newstitle2</a></div></div>";
+	}
+        if ($newslink3 != "") {
+        	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage3\");'><div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>";
+	}
+        if ($newslink4 != "") {
+        	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage4\");'><div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>$news";
+	}
 ?>
      </div><?php # frontrowcontent ?>
     </div><?php # prof_text ?>
