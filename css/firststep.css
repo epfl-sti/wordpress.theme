@@ -329,24 +329,6 @@ div.news {
   justify-content: space-around;
 }
 
-#epfl_logo {
-  display: block;
-  float: left;
-  width: 17%;
-  max-width: 174px;
-  min-width: 140px;
-  margin: 15px 0 0 10px;
-}
-
-#sti_logo {
-  display: block;
-  float: left;
-  width: 23%;
-  max-width: 249px;
-  min-width: 190px;
-  margin: 15px 16px 0 0;
-}
-
 #containercalendar {
   height: 60px;
   position: absolute;

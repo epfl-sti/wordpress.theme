@@ -43,8 +43,8 @@ $cl = get_current_language();
    <ul class="epflstilangmenu"><?php if (function_exists('pll_the_languages')) { pll_the_languages(); } ?></ul>
   </div>
   <?php if ( ! has_custom_logo() ) { ?>
-   <a href="https://www.epfl.ch"> <img width=174 id=epfl_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a>
-   <a href="<?php echo esc_url( home_url( '/' ) ); ?>"> <img id=sti_logo src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.png" /></a>
+   <a href="https://www.epfl.ch" id="epfl_logo"> <img width=174 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a>
+   <a id="sti_logo" href="<?php echo esc_url( home_url( '/' ) ); ?>"> <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.png" /></a>
   <?php } else {
       the_custom_logo();
   } ?>
