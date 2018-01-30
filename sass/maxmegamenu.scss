@@ -29,15 +29,14 @@ megamenu #{$wrap} {  /* i.e. #mega-menu-wrap-primary */
       > a.mega-menu-link {
         color: black;
         font: 13pt \"Open Sans Regular\", sans-serif;
+        padding: 6pt;
         @include desktop {
           background-image: url(/wp-content/themes/epfl-sti/img/src/sideshadow.gif);
+          background-repeat: no-repeat;
+          background-position-x: -10px;
+          padding-left: 20px;
         }
-        background-repeat: no-repeat;
-        background-position-x: -10px;
-        height: 20pt;
         text-transform: uppercase;
-      }
-      @include desktop {
         &.mega-toggle-on > a:before {
           content: '';
           position: absolute;
