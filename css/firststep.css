@@ -169,23 +169,6 @@ body {
  font-size: 24px;
 }
 
-duckbill
- float:left;
- display: inline;
- clear: none;
- padding-left: 20px;
-
-
-.frontrownews {
- display: inline-block;
- height: 150px;
- border-left: #797979 1px solid;
- border-bottom: #cc161d 4px solid;
- background-size: 100%;
- background-position: center;
- transition: all .4s ease-in-out;
-}
-
 .sti_people_news:hover {
  background-size: 130%;
 }

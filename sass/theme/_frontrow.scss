@@ -1,29 +1,6 @@
 /* -------------------------------
     Home Page Front Row
     ---------------------------- */
-.frontrow {
-  text-align: left;
-  display: inline-block;
-  margin-top: 20px;
-}
-
-.frontrowheader {
-  height: 90px;
-  background-color: #272727;
-  font: 26px 'Open Sans Regular';
-  color: #fff;
-  padding: 12px 5px 0px 29px
-}
-
-.frontrowcontainer {
-  float: left;
-  display: inline;
-  clear: none;
-  /*width: 270px;
-  height: 540px;*/
-  position: relative;
-}
-
 .frontrowcol {
   background-image: url('../img/src/charcoal.gif');
 }
@@ -50,6 +27,7 @@
 }
 
 .frontrownews {
+  display: inline-block;
   width: 100%;
   height: 150px;
   border-left: #797979 1px solid;

@@ -38,7 +38,7 @@ class FrontRow extends \WP_Widget
     echo $args['before_widget'];
     $cl = get_current_language();
     ?>
-    <div class="container">
+    <div class="frontrow container">
       <div class="row no-gutters">
         <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
           <div class="text-white frontrowtitle">
