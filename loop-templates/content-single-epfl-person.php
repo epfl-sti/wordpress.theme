@@ -158,7 +158,21 @@ if ($menu) {
                 $newdoc = new DOMDocument();
                 $cloned = $element->cloneNode(TRUE);
                 $newdoc->appendChild($newdoc->importNode($cloned,TRUE));
-                $biography .= wp_kses($newdoc->saveHTML(), array("p", "br", "a", "b", "i", "em", "strong", "code", "pre"));
+                $allowed_html = array(
+                                      'a' => array(
+                                          'href' => array(),
+                                          'title' => array()
+                                      ),
+                                      'br' => array(),
+                                      'em' => array(),
+                                      'strong' => array(),
+                                      'p' => array(),
+                                      'b' => array(),
+                                      'i' => array(),
+                                      'code' => array(),
+                                      'pre' => array(),
+                                  );
+                $biography .= wp_kses($newdoc->saveHTML(), $allowed_html);
               }
               if (str_word_count($biography) <10) {
                 $biography=$bio;
