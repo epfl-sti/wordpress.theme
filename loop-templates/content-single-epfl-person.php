@@ -5,22 +5,18 @@
  * @package epflsti
  */
 
+
+use \EPFL\WS\Persons\Person;
+
+// TODO: we should eliminate more and more of this, and move it into accessors
+// in the Person class, below
 $incoming_json=file_get_contents('https://stisrv13.epfl.ch/cgi-bin/whoop/peoplepage.pl?sciper='.$post->post_name);
 $incoming=json_decode($incoming_json);
-?>
-<article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
-
-  <header class="entry-header"></header><!-- .entry-header -->
-
-<?php
-
-//the following is ready to go as json from https://stisrv13.epfl.ch/cgi-bin/whoop/peoplepage.pl?sciper=
-
 $labname=$incoming->labname;
 $mylabname=$incoming->mylabname;
 $labwebsite=$incoming->labwebsite;
 $keywords=$incoming->keywords;
-$bio=$incoming->bio;
+$biography=$incoming->bio;
 $research=$incoming->interests;
 $position=$incoming->position;
 $id=$incoming->id;
@@ -32,8 +28,21 @@ $office=$incoming->office;
 $sciper=$incoming->sciper;
 $videoeng=$incoming->videoeng;
 $news=$incoming->news;
-
 $labimage="https://stisrv13.epfl.ch/brochure/img/$id/research.png";
+
+global $post;
+if (class_exists('\\EPFL\\WS\\Persons\\Person')) {
+    $biography = Person::get($post)->get_bio();
+} else {
+    error_log("Class not exists");
+}
+
+?>
+<article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
+
+  <header class="entry-header"></header><!-- .entry-header -->
+
+<?php
 
 if ($position == 'PO') { $officialtitle='Prof. ';
 $position='Full Professor'; }
@@ -144,38 +153,6 @@ if ($menu) {
               </div><?php # prof_photo ?>
             <?php echo "<b>$position</b><br><br>"; ?>
             <?php
-              // Fetching the BIO form people page
-              $fetch_bio = file_get_contents("https://people.epfl.ch/cgi-bin/people?id=" . $post->post_name . "&op=bio&lang=en&cvlang=en");
-              $dom = new DOMDocument();
-              // https://stackoverflow.com/questions/8218230/php-domdocument-loadhtml-not-encoding-utf-8-correctly
-              $dom->loadHTML(mb_convert_encoding($fetch_bio, 'HTML-ENTITIES', 'UTF-8'));
-              $xpath = new DOMXpath($dom);
-              $bio_nodes = $xpath->query("//div[@id='content']/h3[text()='Biography']/following-sibling::node()");
-              $biography = '';
-              foreach($bio_nodes as $element){
-                if (in_array($element->nodeName, array("h1", "h2", "h3"))) break;
-                $newdoc = new DOMDocument();
-                $cloned = $element->cloneNode(TRUE);
-                $newdoc->appendChild($newdoc->importNode($cloned,TRUE));
-                $allowed_html = array(
-                                      'a' => array(
-                                          'href' => array(),
-                                          'title' => array()
-                                      ),
-                                      'br' => array(),
-                                      'em' => array(),
-                                      'strong' => array(),
-                                      'p' => array(),
-                                      'b' => array(),
-                                      'i' => array(),
-                                      'code' => array(),
-                                      'pre' => array(),
-                                  );
-                $biography .= wp_kses($newdoc->saveHTML(), $allowed_html);
-              }
-              if (str_word_count($biography) <10) {
-                $biography=$bio;
-              }
               echo "\n" . '<biography class="person-bio" id="person-bio-' . $post->post_name . '">' . "\n";
               echo "\t" . $biography . "\n";
               echo "</biography>\n";
