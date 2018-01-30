@@ -93,6 +93,11 @@ require get_template_directory() . '/inc/editor.php';
 require get_template_directory() . '/inc/epfl.php';
 
 /**
+ * Work with the historical STI database.
+ */
+require get_template_directory() . '/inc/stisrv13.php';
+
+/**
  * Newsletter theme.
  */
 require get_template_directory() . '/newsletter-theme/hook.php';
