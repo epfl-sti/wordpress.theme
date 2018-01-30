@@ -150,7 +150,6 @@ if ($menu) {
               // https://stackoverflow.com/questions/8218230/php-domdocument-loadhtml-not-encoding-utf-8-correctly
               $dom->loadHTML(mb_convert_encoding($fetch_bio, 'HTML-ENTITIES', 'UTF-8'));
               $xpath = new DOMXpath($dom);
-              //$biography = $xpath->query("//div[@id='content']/h3[text()='Biography']/following-sibling")[0]->textContent;
               $bio_nodes = $xpath->query("//div[@id='content']/h3[text()='Biography']/following-sibling::node()");
               $biography = '';
               foreach($bio_nodes as $element){
