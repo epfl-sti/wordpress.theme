@@ -150,7 +150,16 @@ if ($menu) {
               // https://stackoverflow.com/questions/8218230/php-domdocument-loadhtml-not-encoding-utf-8-correctly
               $dom->loadHTML(mb_convert_encoding($fetch_bio, 'HTML-ENTITIES', 'UTF-8'));
               $xpath = new DOMXpath($dom);
-              $biography = $xpath->query("//div[@id='content']/h3[text()='Biography']/following-sibling::text()")[0]->textContent;
+              //$biography = $xpath->query("//div[@id='content']/h3[text()='Biography']/following-sibling")[0]->textContent;
+              $bio_nodes = $xpath->query("//div[@id='content']/h3[text()='Biography']/following-sibling::node()");
+              $biography = '';
+              foreach($bio_nodes as $element){
+                if (in_array($element->nodeName, array("h1", "h2", "h3"))) break;
+                $newdoc = new DOMDocument();
+                $cloned = $element->cloneNode(TRUE);
+                $newdoc->appendChild($newdoc->importNode($cloned,TRUE));
+                $biography .= wp_kses($newdoc->saveHTML(), array("p", "br", "a", "b", "i", "em", "strong", "code", "pre"));
+              }
               if (str_word_count($biography) <10) {
                 $biography=$bio;
               }
