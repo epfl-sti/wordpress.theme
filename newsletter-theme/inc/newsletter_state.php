@@ -91,9 +91,7 @@ NewsletterHook::add_ajax_class(NewsletterDraftState::class, "epfl_sti_newsletter
  * c) Returning results for a search-as-you-type AJAX query
  *
  * In case b) the list of post IDs is known precisely. In the other two
- * cases, a "starter" set of filters is computed by the _get_query_filter
- * abstract method so as to only return the posts of interest in the
- * context of the corresponding newsletter section.
+ * cases, the _get_posts_by_query method is called.
  */
 
 abstract class PostQuery
@@ -154,8 +152,8 @@ abstract class PostQuery
     protected function _get_posts_by_query ($query)
     {
         $language_hint = null;
-        if (function_exists("pll_get_language")) {
-            $language_hint = \pll_get_language();
+        if (function_exists("pll_current_language")) {
+            $language_hint = \pll_current_language();
         }
         $categories = array_map(
             function($cat) { return $cat->ID(); },
@@ -179,6 +177,16 @@ abstract class PostQuery
 
         if ($query && $query["s"]) {
             $criteria["s"] = $query["s"];
+        }
+        $language_hint = null;
+        if (function_exists("pll_current_language")) {
+            $criteria["tax_query"] = array(
+                array(
+                    'taxonomy' => 'language',
+                    'field'    => 'slug',
+                    'terms'    => \pll_current_language()
+                )
+            );
         }
         return get_posts($criteria);
     }
@@ -275,7 +283,6 @@ class EventsQuery extends PostQuery
         // Note that the behavior degrades nicely if the epfl-ws
         // plugin is not active.
     }
-
 }
 
 class FacultyNewsQuery extends PostQuery
