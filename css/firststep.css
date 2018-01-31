@@ -86,47 +86,6 @@ body {
   background-color: #bbb;
 }
 
-.sti_content_title {
-  background-color: black;
-  color: white;
-  font: 26px 'Open Sans Regular';
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.sti_content_prof_text {
- min-width: 300px;
- max-width: 690px;
- float:left;
- display: inline;
- clear: none;
- padding-left: 20px;
-}
-
-.sti_content_prof_photo {
- float: left;
- display: inline;
- clear: none;
- margin-right: 20px;
- max-width: 310px;
-}
-
-.sti_content_body {
-  display: inline-block;
-  text-align: left;
-  margin-top: 20px;
-}
-
-.standard-content-box {
-  padding: 30px;
-  float: left;
-  width: 100%;
-  background-color: white;
-  margin-bottom: 30px;
-  position: relative;
-}
-
 .width-main-listoflinks {
  max-width: 1200px;
 }
@@ -148,34 +107,6 @@ body {
  left: -6px;
 }
 
-.standard-margin {
- margin-right: 40px;
-}
-
-.sti_content_maincolumn {
-  display: inline;
-  padding: 0px 0px 0px 0px;
-  float: left;
-  width: 100%;
-  min-width: 360px;
-  background-color: white;
-  margin-bottom: 30px;
-  position: relative;
-}
-
-.sti_content_maincolumn h1 {
- color: #444;
- padding: 12px 8px 0px 20px;
- font-size: 24px;
-}
-
-duckbill
- float:left;
- display: inline;
- clear: none;
- padding-left: 20px;
-
-
 .frontrownews {
  display: inline-block;
  height: 150px;
@@ -184,47 +115,6 @@ duckbill
  background-size: 100%;
  background-position: center;
  transition: all .4s ease-in-out;
-}
-
-.sti_people_news:hover {
- background-size: 130%;
-}
-
-.sti_people_news {
- height: 145px;
- width: 203px;
- background-size: 110%;
- background-position: center;
- transition: all .4s ease-in-out;
- float:left;
- display: inline;
- clear: none;
- margin-right: 20px;
- margin-top: 20px;
- border-bottom: #cc161d 4px solid;
-}
-
-.sti_beige {
-    box-sizing: border-box;
-    background-color: #f5f3d3;
-    overflow: hidden;
-    margin: 10px;
-    padding: 12px 8px 0px 12px;
-    width: auto;
-}
-
-.temp_people_title {
- padding-left: 20px;
-}
-
-.peoplenewstitle {
- width: 203px;
- height: 61px;
- position: relative;
- top: 81px;
- background: rgb(42,41,46);
- background: rgba(0,0,0,0.7);
- padding: 8px;
 }
 
 .eventsplus {
@@ -255,52 +145,6 @@ duckbill
   right: 10px;
 }
 
-.sti_people_box {
- background-image: url('../img/src/charcoal.gif');
-}
-
-.sti_people_menu_title {
- background-color: white;
- padding: 12px 5px 12px 22px;
- font: 15px verdana;
- font-weight: bold;
-}
-
-.sti_people_menu_image {
- width: 100%;
-}
-
-.sti_people_menu_black {
- color: #444;
-}
-
-@media screen and (max-width: 1176px; ) {
- .sti_people_box{
-  width: 100%;
-  min-width: 350px;
- }
- .sti_people_menu_title {
-  width: 100%;
-  min-width: 350px;
- }
- .sti_people_righthand_menu {
-  display: none;
-  margin-left: 0px;
- }
-}
-
-@media screen and (min-width: 1176px) {
- .sti_people_box{
-  width: 340px;
- }
- .sti_people_menu_title {
-  width: 340px;
- }
- .sti_people_righthand_menu {
-  margin-left: 30px;
- }
-}
-
 .whitelink, .whitelink:visited {
   color: #fff;
   text-decoration: none;
@@ -310,12 +154,6 @@ duckbill
 .whitelink:hover {
   color: #cccccc;
   text-decoration: none;
-}
-
-.sti_people_menu_white {
- color: white;
- font-size: 13px;
- padding: 20px 20px 50px 20px;
 }
 
 #mobile_header {
@@ -353,15 +191,4 @@ div.news {
   right: 60px;
   top: 240px;
   z-index: 4;
-}
-
-.sti_content_title {
-  font: black 30px lucida;
- width: 100%;
-}
-
-.sti_content_menu {
-  float: right;
-  text-align: right;
-  width: auto;
 }
