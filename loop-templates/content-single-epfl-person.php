@@ -1,4 +1,10 @@
 <?php
+
+
+$menu=1;
+$highlight=1; //highlights the first box (red ribbon)
+
+
 /**
  * Single post partial template.
  *
@@ -94,11 +100,13 @@ $publicationtext4="I. Bogunovic, S. Mitrovic, J. Scarlett and V. Cevher. A Distr
 $publicationlink4="https://infoscience.epfl.ch/record/232383/files/A%20Distributed%20Algorithm%20for%20Partitioned%20Robust%20Submodular%20Maximization.pdf?version=1";
 $publicationrecord4="https://infoscience.epfl.ch/record/232383?ln=en";
 
-$menu=1;
+
+if ($highlight) {
+ $rosesarered="<img class='ribbon-red-top' src='/wp-content/themes/epfl-sti/img/src/topright.png'> 
+	 <img class='ribbon-red-bottom' src='/wp-content/themes/epfl-sti/img/src/bottomleft.png'>";
+}
 
 if ($menu) {
- $rosesarered="<img class='ribbon-red-top' src='/wp-content/themes/epfl-sti/img/src/topright.png'> 
-<img class='ribbon-red-bottom' src='/wp-content/themes/epfl-sti/img/src/bottomleft.png'>";
 
  $listoflinks_main=" col-md-8 content-area";
  $listoflinks_width=" width-main-listoflinks";
