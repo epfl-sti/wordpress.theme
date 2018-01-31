@@ -1,0 +1,114 @@
+/**
+ * Styling "cards"-based pages (e.g. people)
+ *
+ * We propose a number of card styles, some for the main matter (big
+ * col-md-8) and some for the side matter ("nav bar" which never navs —
+ * Prof. Sayed wants doesn't want any nav devices besides the megamenu)
+ */
+
+/**
+ * The header card of the side matter
+ */
+.card-sidematter {
+  @include media-breakpoint-down(lg) {
+    width: 100%;
+    min-width: 350px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    width: 340px;
+  }
+}
+
+.card-sidematter.first {
+  background-color: white;
+  padding: 12px 5px;
+  font: 15px verdana;
+  font-weight: bold;
+}
+
+/**
+ * A card on black background for displaying *outgoing* links (e.g. Prof's website etc.)
+ */
+.card-sidematter.links {
+ color: white;
+ background-image: url('../img/src/charcoal.gif');
+ font-size: 13px;
+ padding: 20px 20px 50px 20px;
+}
+
+.mini-news {
+ height: 145px;
+ width: 203px;
+ background-size: 110%;
+ float:left;
+ display: inline;
+ clear: none;
+ margin-right: 20px;
+ margin-top: 20px;
+ border-bottom: #cc161d 4px solid;
+}
+
+/**
+ * Cards in the main column
+ */
+.card-mainmatter {
+  padding: 30px;
+  float: left;
+  width: 100%;
+  background-color: white;
+  margin-bottom: 30px;
+  position: relative;
+
+  .text-column {
+    margin-right: 40px;
+  }
+}
+
+
+// TODO: rename all below
+
+.sti_content_title {
+  background-color: black;
+  color: white;
+  font: 26px 'Open Sans Regular';
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.sti_content_prof_text {
+ min-width: 300px;
+ max-width: 690px;
+ float:left;
+ display: inline;
+ clear: none;
+ padding-left: 20px;
+}
+
+.sti_content_prof_photo {
+ float: left;
+ display: inline;
+ clear: none;
+ margin-right: 20px;
+ max-width: 310px;
+}
+
+.sti_people_menu_image {
+ width: 100%;
+}
+
+.sti_people_menu_black {
+ color: #444;
+}
+
+.peoplenewstitle {
+ width: 203px;
+ height: 61px;
+ position: relative;
+ top: 81px;
+ background: rgb(42,41,46);
+ background: rgba(0,0,0,0.7);
+ padding: 8px;
+}
+

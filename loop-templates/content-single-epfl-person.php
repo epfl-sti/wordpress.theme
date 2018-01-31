@@ -121,14 +121,14 @@ if ($menu) {
  $menu='
 <?PHP # LIST OF LINKS START ?>
  <div class="col-md-4">
-  <div class="sti_people_menu_title frontrowmarker">
+  <div class="card-sidematter first frontrowmarker">
    '.$labname.' <span class="sti_people_menu_black">'.$mylabname.'</span>
    <img src='.$labimage.' class="sti_people_menu_image">
   </div><!-- menutitle-->
-  <div class="sti_people_box">
-   <div class="sti_people_menu_white">
+  <div class="card-sidematter links">
+   <div class="research-topics">
     Research topics:<br><br>'.$keywords.'
-   </div><!--menuwhite-->
+   </div>
    <div class="prof-nav-menu">
     <ul class="menu">
      <li id="menu-item-128" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-128"><a href="'.$labwebsite.'">LAB WEBSITE</a></li>
@@ -142,13 +142,13 @@ if ($menu) {
         <li id="menu-item-130" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#news">NEWS</a></li>
         <li id="menu-item-133" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-130"><a href="https://stisrv13.epfl.ch/collaborations/tube_html5.php?sciper='.$sciper.'&showpublications=1&showpatents=1&showexternals=1&showindustry=1">COLLABORATIONS</a></li>
 </ul>
-   </div><!-- menucontainer-->
-  </div><!-- peoplebox-->
+   </div><?php # prof-nav-menu ?>
+  </div><?php # card-sidematter ?>
  <?PHP # LIST OF LINKS END ?>
  ';
 }
 ?>
-<div class=container><!--row if there is a box of links on the right-->
+<div class="container-fluid"><!--row if there is a box of links on the right-->
   <div class=row><!-- container if there is a box of links on the right-->
     <div class="<?php echo $listoflinks_main; ?>"><!--column if there is a box of links on the right-->
 
@@ -157,7 +157,7 @@ if ($menu) {
 	 <div class=container><!-- main container -->
            <div class=row><!-- main row-->
 
-	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
+	    <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>">
 		<?php  // the choice is made to highlight this box
 		 echo $rosesarered;
 		?>
@@ -194,15 +194,15 @@ if ($menu) {
 	
 	
 	
-	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
+	    <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>">
 		<h2 class="entry-title">Contact</h2>
 		<h5><br><?php echo "$firstname $surname"; ?></h5>
  		    <div class="container">
 			<div class="row entry-body">
-			      <div class="col-xs-6 standard-margin">
+			      <div class="col-xs-6 text-column">
 <?php echo "Office: <a href=https://maps.epfl.ch/?q=$office>$office</a><br><a href=mailto:$epflname@epfl.ch>$epflname@epfl.ch</a><br><a href=https://people.epfl.ch/$epflname>https://people.epfl.ch/$epflname</a><br>Tel: <a href=\"tel:$phone\">$phone</a><br><br>"; ?>	
 			      </div><!-- col  -->
-			      <div class="col-xs-6 standard-margin">
+			      <div class="col-xs-6 text-column">
 			        <?php echo "$labname<br> $office<br> Station 11<br> 1015 Lausanne<br> Switzerland";; ?>
 
 
@@ -214,7 +214,7 @@ if ($menu) {
 <?php
 if ($videoeng != "") {
 
-	   echo '<div class="entry-content standard-content-box '.$listoflinks_width.'; ?>">
+	   echo '<div class="entry-content card-mainmatter '.$listoflinks_width.'; ?>">
 		    <a name=video></a>
 
      <div style="margin: 20px 0px 40px 0px; float:left; width:100%; height:285px; "><iframe src="https://www.youtube.com/embed/'.$videoeng.'?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="100%" height="280" frameborder="0"></iframe></div> 
@@ -223,11 +223,11 @@ if ($videoeng != "") {
 }
 ?>
 
-	    <div class="entry-content standard-content-box '.$listoflinks_width.'"><a name=research></a>
+	    <div class="entry-content card-mainmatter '.$listoflinks_width.'"><a name=research></a>
 		<h1>Research Area</h1><br><br>
 		<?php echo $research; ?>
 	    </div><!-- .entry-content -->
-	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
+	    <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>">
      <h2 class=people_titles>Recent Publications</h2>     
         <div class="sti_content_prof_text">
 <?php
@@ -247,23 +247,23 @@ if ($videoeng != "") {
 if ($newslink1 !="") {
 
 		echo '
-  <div class="entry-content standard-content-box '.$listoflinks_width.'">
+  <div class="entry-content card-mainmatter '.$listoflinks_width.'">
     <h2 class=people_titles>News</h2>
     <div class="sti_content_prof_text">
      <a name=news></a>
      <div class="frontrowcontent">';
 }
 if ($newslink1 != "") {
-		echo "<div class='sti_people_news' style='background-image:url(\"$newsimage1\");'><div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>";
+		echo "<div class='mini-news zoomy' style='background-image:url(\"$newsimage1\");'><div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>";
 	}
 if ($newslink2 != "") {
-        	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage2\");'><div class=peoplenewstitle><a class=whitelink href=$newslink2>$newstitle2</a></div></div>";
+        	echo "<div class='mini-news zoomy' style='background-image:url(\"$newsimage2\");'><div class=peoplenewstitle><a class=whitelink href=$newslink2>$newstitle2</a></div></div>";
 	}
 if ($newslink3 != "") {
-        	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage3\");'><div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>";
+        	echo "<div class='mini-news zoomy' style='background-image:url(\"$newsimage3\");'><div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>";
 	}
 if ($newslink4 != "") {
-        	echo "<div class='sti_people_news' style='background-image:url(\"$newsimage4\");'><div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>$news";
+        	echo "<div class='mini-news zoomy' style='background-image:url(\"$newsimage4\");'><div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>$news";
 	}
 
 if ($newslink1 !="") {

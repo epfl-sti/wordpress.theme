@@ -31,12 +31,12 @@ if ($menu) {
  $menu='
 <?PHP # LIST OF LINKS START ?>
  <div class="col-md-4">
-  <div class="sti_people_menu_title frontrowmarker">
+  <div class="card-sidematter first frontrowmarker">
    <?php echo $labname; ?> <span class="sti_people_menu_black"><?php echo $mylabname; ?></span>
    <img src=https://stisrv13.epfl.ch/brochure/img/13/research.png class="sti_people_menu_image">
   </div><!-- menutitle-->
   <div class="sti_people_box">
-   <div class="sti_people_menu_white">
+   <div class="card-sidematter links">
     Research topics:<br><br>Machine Learning; Optimization; Signal Processing; Information Theory. 
    </div><!--menuwhite-->
    <div class="prof-nav-menu">
@@ -62,7 +62,7 @@ if ($menu) {
 	 <div class=container><!-- main container -->
            <div class=row><!-- main row-->
 
-	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
+	    <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>">
                 <?php  // if the choice is made to highlight this box
 		if ($highlight) {
 			echo $rosesarered;
@@ -82,7 +82,7 @@ if ($menu) {
                 ?>
 	
 	
-	    <div class="entry-content standard-content-box <?php echo $listoflinks_width; ?>">
+	    <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>">
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 			<div class="entry-body">
       			      <div class="sti_content_prof_photo">
