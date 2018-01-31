@@ -9,7 +9,7 @@
 use \EPFL\WS\Persons\Person;
 
 // TODO: we should eliminate more and more of this, and move it into accessors
-// in the Person class, below
+// of the Person instance, below
 $incoming_json=file_get_contents('https://stisrv13.epfl.ch/cgi-bin/whoop/peoplepage.pl?sciper='.$post->post_name);
 $incoming=json_decode($incoming_json);
 $labname=$incoming->labname;
@@ -30,9 +30,10 @@ $videoeng=$incoming->videoeng;
 $news=$incoming->news;
 $labimage="https://stisrv13.epfl.ch/brochure/img/$id/research.png";
 
-global $post;
 if (class_exists('\\EPFL\\WS\\Persons\\Person')) {
-    $biography = Person::get($post)->get_bio();
+    global $post;
+    $person = Person::get($post);
+    $biography = $person->get_bio();
 } else {
     error_log("Class not exists");
 }
