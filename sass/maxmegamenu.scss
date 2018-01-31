@@ -26,7 +26,7 @@ megamenu #{$wrap} {  /* i.e. #mega-menu-wrap-primary */
     }
 
     > li.mega-menu-item {
-      > a.mega-menu-link {
+      > a.mega-menu-link {  // Top-level headers, always visible
         color: black;
         font: 13pt \"Open Sans Regular\", sans-serif;
         padding: 6pt;
@@ -51,7 +51,7 @@ megamenu #{$wrap} {  /* i.e. #mega-menu-wrap-primary */
     }
 
     > li.mega-menu-megamenu {
-      > ul.mega-sub-menu {
+      > ul.mega-sub-menu {   // The pop-up white area
         background-color: white;
       }
     }
