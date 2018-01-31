@@ -109,7 +109,7 @@ $publicationrecord4="https://infoscience.epfl.ch/record/232383?ln=en";
 
 if ($highlight) {
  $rosesarered="<img class='ribbon-red-top' src='/wp-content/themes/epfl-sti/img/src/topright.png'> 
-	 <img class='ribbon-red-bottom' src='/wp-content/themes/epfl-sti/img/src/bottomleft.png'>";
+         <img class='ribbon-red-bottom' src='/wp-content/themes/epfl-sti/img/src/bottomleft.png'>";
 }
 
 if ($menu) {
@@ -134,7 +134,7 @@ if ($menu) {
      <li id="menu-item-128" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-128"><a href="'.$labwebsite.'">LAB WEBSITE</a></li>
  ';
  if ($videoeng != "") {
-	 $menu.='<li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#video">VIDEOS</a></li>';
+         $menu.='<li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#video">VIDEOS</a></li>';
  }
  $menu.='
         <li id="menu-item-134" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#research">RESEARCH</a></li>
@@ -154,80 +154,80 @@ if ($menu) {
 
 
 
-	 <div class=container><!-- main container -->
+         <div class=container><!-- main container -->
            <div class=row><!-- main row-->
 
-	    <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>">
-		<?php  // the choice is made to highlight this box
-		 echo $rosesarered;
-		?>
-		<?php the_title( '<h1 class="entry-title">'.$officialtitle, '</h1>' ); ?>
-		     <div class="entry-body">
-		      <div class="sti_content_prof_photo">
-			 <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
-		      </div><?php # prof_photo ?>
-		      <?php echo "<b>$position</b><br><br>"; ?>
-					<?php
-					// Fetching the BIO form people page
-					$fetch_bio = file_get_contents("https://people.epfl.ch/cgi-bin/people?id=" . $post->post_name . "&op=bio&lang=en&cvlang=en");
-					$dom = new DOMDocument();
-					// https://stackoverflow.com/questions/8218230/php-domdocument-loadhtml-not-encoding-utf-8-correctly
-					$dom->loadHTML(mb_convert_encoding($fetch_bio, 'HTML-ENTITIES', 'UTF-8'));
-					$xpath = new DOMXpath($dom);
-					$biography = $xpath->query("//div[@id='content']/h3[text()='Biography']/following-sibling::text()")[0]->textContent;
-					if (str_word_count($biography) <10) {
-					 $biography=$bio;
-					}
-					echo "\n" . '<biography class="person-bio" id="person-bio-' . $post->post_name . '">' . "\n";
-					echo "\t" . $biography . "\n";
-					echo "</biography>\n";
-					?>
-		     </div><?php # prof_text ?>
-
-		     
-  	    </div><!-- .entry-content -->
-
-
-		<?php   
-		 // succeeding boxes currently take the_content() too
+            <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>">
+                <?php  // the choice is made to highlight this box
+                 echo $rosesarered;
                 ?>
-	
-	
-	
-	    <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>">
-		<h2 class="entry-title">Contact</h2>
-		<h5><br><?php echo "$firstname $surname"; ?></h5>
- 		    <div class="container">
-			<div class="row entry-body">
-			      <div class="col-xs-6 text-column">
-<?php echo "Office: <a href=https://maps.epfl.ch/?q=$office>$office</a><br><a href=mailto:$epflname@epfl.ch>$epflname@epfl.ch</a><br><a href=https://people.epfl.ch/$epflname>https://people.epfl.ch/$epflname</a><br>Tel: <a href=\"tel:$phone\">$phone</a><br><br>"; ?>	
-			      </div><!-- col  -->
-			      <div class="col-xs-6 text-column">
-			        <?php echo "$labname<br> $office<br> Station 11<br> 1015 Lausanne<br> Switzerland";; ?>
+                <?php the_title( '<h1 class="entry-title">'.$officialtitle, '</h1>' ); ?>
+                     <div class="entry-body">
+                      <div class="sti_content_prof_photo">
+                         <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
+                      </div><?php # prof_photo ?>
+                      <?php echo "<b>$position</b><br><br>"; ?>
+                                        <?php
+                                        // Fetching the BIO form people page
+                                        $fetch_bio = file_get_contents("https://people.epfl.ch/cgi-bin/people?id=" . $post->post_name . "&op=bio&lang=en&cvlang=en");
+                                        $dom = new DOMDocument();
+                                        // https://stackoverflow.com/questions/8218230/php-domdocument-loadhtml-not-encoding-utf-8-correctly
+                                        $dom->loadHTML(mb_convert_encoding($fetch_bio, 'HTML-ENTITIES', 'UTF-8'));
+                                        $xpath = new DOMXpath($dom);
+                                        $biography = $xpath->query("//div[@id='content']/h3[text()='Biography']/following-sibling::text()")[0]->textContent;
+                                        if (str_word_count($biography) <10) {
+                                         $biography=$bio;
+                                        }
+                                        echo "\n" . '<biography class="person-bio" id="person-bio-' . $post->post_name . '">' . "\n";
+                                        echo "\t" . $biography . "\n";
+                                        echo "</biography>\n";
+                                        ?>
+                     </div><?php # prof_text ?>
+
+                     
+            </div><!-- .entry-content -->
 
 
-			      </div><!-- col  -->
-			</div><!-- row -->
+                <?php   
+                 // succeeding boxes currently take the_content() too
+                ?>
+        
+        
+        
+            <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>">
+                <h2 class="entry-title">Contact</h2>
+                <h5><br><?php echo "$firstname $surname"; ?></h5>
+                    <div class="container">
+                        <div class="row entry-body">
+                              <div class="col-xs-6 text-column">
+<?php echo "Office: <a href=https://maps.epfl.ch/?q=$office>$office</a><br><a href=mailto:$epflname@epfl.ch>$epflname@epfl.ch</a><br><a href=https://people.epfl.ch/$epflname>https://people.epfl.ch/$epflname</a><br>Tel: <a href=\"tel:$phone\">$phone</a><br><br>"; ?>       
+                              </div><!-- col  -->
+                              <div class="col-xs-6 text-column">
+                                <?php echo "$labname<br> $office<br> Station 11<br> 1015 Lausanne<br> Switzerland";; ?>
 
-		     </div> <!-- entry-body-->
-  	    </div><!-- .entry-content -->
+
+                              </div><!-- col  -->
+                        </div><!-- row -->
+
+                     </div> <!-- entry-body-->
+            </div><!-- .entry-content -->
 <?php
 if ($videoeng != "") {
 
-	   echo '<div class="entry-content card-mainmatter '.$listoflinks_width.'; ?>">
-		    <a name=video></a>
+           echo '<div class="entry-content card-mainmatter '.$listoflinks_width.'; ?>">
+                    <a name=video></a>
 
      <div style="margin: 20px 0px 40px 0px; float:left; width:100%; height:285px; "><iframe src="https://www.youtube.com/embed/'.$videoeng.'?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="100%" height="280" frameborder="0"></iframe></div> 
-  	    </div><!-- .entry-content -->
+           </div><!-- .entry-content -->
 ';
 }
 ?>
 
-	    <div class="entry-content card-mainmatter '.$listoflinks_width.'"><a name=research></a>
-		<h1>Research Area</h1><br><br>
-		<?php echo $research; ?>
-	    </div><!-- .entry-content -->
-	    <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>">
+            <div class="entry-content card-mainmatter '.$listoflinks_width.'"><a name=research></a>
+                <h1>Research Area</h1><br><br>
+                <?php echo $research; ?>
+            </div><!-- .entry-content -->
+            <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>">
      <h2 class=people_titles>Recent Publications</h2>     
         <div class="sti_content_prof_text">
 <?php
@@ -239,14 +239,14 @@ if ($videoeng != "") {
         echo "<a href=$publicationlink3>$publicationtext3</a><br><br><a href=$publicationrecord3>Detailed record</a><br><br>";
         echo "<a href=$publicationlink4>$publicationtext4</a><br><br><a href=$publicationrecord4>Detailed record</a><br><br>";
 ?>
-	</div>
-	    </div><!-- .entry-content -->
+        </div>
+            </div><!-- .entry-content -->
 
 <?php
 
 if ($newslink1 !="") {
 
-		echo '
+                echo '
   <div class="entry-content card-mainmatter '.$listoflinks_width.'">
     <h2 class=people_titles>News</h2>
     <div class="sti_content_prof_text">
@@ -254,52 +254,52 @@ if ($newslink1 !="") {
      <div class="frontrowcontent">';
 }
 if ($newslink1 != "") {
-		echo "<div class='mini-news zoomy' style='background-image:url(\"$newsimage1\");'><div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>";
-	}
+                echo "<div class='mini-news zoomy' style='background-image:url(\"$newsimage1\");'><div class=peoplenewstitle><a class=whitelink href=$newslink1>$newstitle1</a></div></div>";
+        }
 if ($newslink2 != "") {
-        	echo "<div class='mini-news zoomy' style='background-image:url(\"$newsimage2\");'><div class=peoplenewstitle><a class=whitelink href=$newslink2>$newstitle2</a></div></div>";
-	}
+                echo "<div class='mini-news zoomy' style='background-image:url(\"$newsimage2\");'><div class=peoplenewstitle><a class=whitelink href=$newslink2>$newstitle2</a></div></div>";
+        }
 if ($newslink3 != "") {
-        	echo "<div class='mini-news zoomy' style='background-image:url(\"$newsimage3\");'><div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>";
-	}
+                echo "<div class='mini-news zoomy' style='background-image:url(\"$newsimage3\");'><div class=peoplenewstitle><a class=whitelink href=$newslink3>$newstitle3</a></div></div>";
+        }
 if ($newslink4 != "") {
-        	echo "<div class='mini-news zoomy' style='background-image:url(\"$newsimage4\");'><div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>$news";
-	}
+                echo "<div class='mini-news zoomy' style='background-image:url(\"$newsimage4\");'><div class=peoplenewstitle><a class=whitelink href=$newslink4>$newstitle4</a></div></div>$news";
+        }
 
 if ($newslink1 !="") {
-	echo '
+        echo '
        </div><?php # frontrowcontent ?>
       </div><?php # prof_text ?>
     </div>
 ';
 }
 ?>
-	 </div><!-- main row-->
-	</div><!-- main container-->
+         </div><!-- main row-->
+        </div><!-- main container-->
 
      </div><!--column in case there is a list of links on the right-->
 
 
-		<?php   
-			// this box is a list of links 
-			echo $menu;
+                <?php   
+                        // this box is a list of links 
+                        echo $menu;
                 ?>
-	
+        
 
 
 
   </div><!--column if there is a box of links on the right-->
  </div><!--row if there is a box of links on the right-->
 </div><!-- container if there is a box of links on the right-->
-		<div class="entry-meta">
+                <div class="entry-meta">
 
-			<!---?php epflsti_posted_on(); --->
+                        <!---?php epflsti_posted_on(); --->
 
-		</div><!-- .entry-meta -->
-	<footer class="entry-footer">
+                </div><!-- .entry-meta -->
+        <footer class="entry-footer">
 
-		<?php epflsti_entry_footer(); ?>
+                <?php epflsti_entry_footer(); ?>
 
-	</footer><!-- .entry-footer -->
+        </footer><!-- .entry-footer -->
 
 </article><!-- #post-## -->
