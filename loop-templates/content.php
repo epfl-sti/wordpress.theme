@@ -9,20 +9,20 @@
 
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
-	<header class="entry-header">
+	<header>
 
 		<?php the_title( sprintf( '<h2><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ),
 		'</a></h2>' ); ?>
 
 		<?php if ( 'post' == get_post_type() ) : ?>
 
-			<div class="entry-meta">
+			<card class="meta">
 				<?php epflsti_posted_on(); ?>
-			</div><!-- .entry-meta -->
+			</div>
 
 		<?php endif; ?>
 
-	</header><!-- .entry-header -->
+	</header>
 
 	<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
 

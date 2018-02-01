@@ -95,18 +95,6 @@ body {
  padding-top: 20px;
 }
 
-.ribbon-red-top {
- position: absolute;
- top:-12px;
- right: -8px;
-}
-
-.ribbon-red-bottom {
- position: absolute;
- bottom:-12px;
- left: -6px;
-}
-
 .frontrownews {
  display: inline-block;
  height: 150px;

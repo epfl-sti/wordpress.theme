@@ -15,21 +15,21 @@
 
 		<?php if ( 'post' == get_post_type() ) : ?>
 
-			<div class="entry-meta">
+			<div class="search-result-meta">
 
 				<?php epflsti_posted_on(); ?>
 
-			</div><!-- .entry-meta -->
+			</div>
 
 		<?php endif; ?>
 
 	</header>
 
-	<div class="entry-summary">
+	<div class="search-result-summary">
 
 		<?php the_excerpt(); ?>
 
-	</div><!-- .entry-summary -->
+	</div>
 
 	<footer>
 

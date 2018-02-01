@@ -2,7 +2,7 @@
 
 
 $menu=1;
-$highlight=1; //highlights the first box (red ribbon)
+$with_red_ribbon=1; //highlights the first box (red ribbon)
 
 
 /**
@@ -47,7 +47,7 @@ if (class_exists('\\EPFL\\WS\\Persons\\Person')) {
 ?>
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
-  <header class="entry-header"></header><!-- .entry-header -->
+  <header ></header>
 
 <?php
 
@@ -106,57 +106,21 @@ $publicationtext4="I. Bogunovic, S. Mitrovic, J. Scarlett and V. Cevher. A Distr
 $publicationlink4="https://infoscience.epfl.ch/record/232383/files/A%20Distributed%20Algorithm%20for%20Partitioned%20Robust%20Submodular%20Maximization.pdf?version=1";
 $publicationrecord4="https://infoscience.epfl.ch/record/232383?ln=en";
 
-
-if ($highlight) {
- $rosesarered="<img class='ribbon-red-top' src='/wp-content/themes/epfl-sti/img/src/topright.png'> 
-         <img class='ribbon-red-bottom' src='/wp-content/themes/epfl-sti/img/src/bottomleft.png'>";
-}
-
-if ($menu) {
-
- $listoflinks_main=" col-md-8 content-area";
- $listoflinks_width=" width-main-listoflinks";
- $listoflinks_menu=" sti_righthand_menu col-md-4";
-
- $menu='
-<?PHP # LIST OF LINKS START ?>
-  <div class="col-md-4">
-    <div class="card-sidematter first frontrowmarker">
-     '.$labname.' <span class="sti_people_menu_black">'.$mylabname.'</span>
-     <img src='.$labimage.' class="sti_people_menu_image">
-    </div><!-- menutitle-->
-    <div class="card-sidematter links">
-      <div class="research-topics">
-        Research topics:<br><br>'.$keywords.'
-      </div>
-      <div class="prof-nav-menu">
-        <ul class="menu">
-          <li id="menu-item-128" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-128"><a href="'.$labwebsite.'">LAB WEBSITE</a></li>';
-
-          if ($videoeng != "") {
-              $menu.='<li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#video">VIDEOS</a></li>';
-          }
- $menu.='
-          <li id="menu-item-134" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#research">RESEARCH</a></li>
-          <li id="menu-item-129" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-129"><a href="https://people.epfl.ch/cgi-bin/people?id='.$sciper.'&op=publications&lang=en&cvlang=en">PUBLICATIONS</a></li>
-          <li id="menu-item-130" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#news">NEWS</a></li>
-          <li id="menu-item-133" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-130"><a href="https://stisrv13.epfl.ch/collaborations/tube_html5.php?sciper='.$sciper.'&showpublications=1&showpatents=1&showexternals=1&showindustry=1">COLLABORATIONS</a></li>
-        </ul>
-      </div><?php # prof-nav-menu ?>
-    </div><?php # card-sidematter ?>';
-}
 ?>
-<div class="container-fluid"><!--row if there is a box of links on the right-->
-  <div class=row><!-- container if there is a box of links on the right-->
-    <div class="<?php echo $listoflinks_main; ?>"><!--column if there is a box of links on the right-->
-      <div class=container><!-- main container -->
-        <div class=row><!-- main row-->
-          <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>">
-          <?php  // the choice is made to highlight this box
-            echo $rosesarered;
-          ?>
+<div class="container-fluid"><?php # row if there is a box of links on the right ?>
+  <div class=row><?php #  container if there is a box of links on the right ?>
+    <div class="<?php echo $listoflinks_main; ?>"><?php # column if there is a box of links on the right ?>
+      <div class=container><?php # main container ?>
+        <div class=row><?php #  main row ?>
+          <card class="<?php echo $listoflinks_width; ?>">
+           <?php if ($with_red_ribbon): ?>
+            <header>
+             <img class="ribbon-red-top" src="/wp-content/themes/epfl-sti/img/src/topright.png"> 
+             <img class="ribbon-red-bottom" src="/wp-content/themes/epfl-sti/img/src/bottomleft.png">
+            </header>
+         <?php endif;  ?>
           <?php the_title( '<h1>'.$officialtitle, '</h1>' ); ?>
-            <div class="entry-body">
+              <div class="card-body">
               <div class="sti_content_prof_photo">
                 <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
               </div><?php # prof_photo ?>
@@ -167,46 +131,50 @@ if ($menu) {
               echo "</biography>\n";
             ?>
           </div><?php # prof_text ?>
-        </div><!-- .entry-content -->
+        </div>
         <?php
           // succeeding boxes currently take the_content() too
         ?>
-        <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>">
+        <card class="mainmatter <?php echo $listoflinks_width; ?>">
           <h2>Contact</h2>
           <h5><br><?php echo "$firstname $surname"; ?></h5>
           <div class="container">
             <div class="row entry-body">
               <div class="col-xs-6 text-column">
                 <?php echo "Office: <a href=https://maps.epfl.ch/?q=$office>$office</a><br><a href=mailto:$epflname@epfl.ch>$epflname@epfl.ch</a><br><a href=https://people.epfl.ch/$epflname>https://people.epfl.ch/$epflname</a><br>Tel: <a href=\"tel:$phone\">$phone</a><br><br>"; ?>
-              </div><!-- col  -->
+              </div>
               <div class="col-xs-6 text-column">
                 <?php echo "$labname<br> $office<br> Station 11<br> 1015 Lausanne<br> Switzerland"; ?>
-              </div><!-- col  -->
-            </div><!-- row -->
-          </div> <!-- entry-body-->
-        </div><!-- .entry-content -->
+              </div>
+            </div>
+          </div>
+        </card>
 
       <?php
       if ($videoeng != "") {
-        echo '<div class="entry-content card-mainmatter '.$listoflinks_width.'; ?>">
+        echo '<card class="mainmatter '.$listoflinks_width.'; ?>">
                 <a name=video></a>
                 <div style="margin: 20px 0px 40px 0px; float:left; width:100%; height:285px; ">
                   <iframe src="https://www.youtube.com/embed/'.$videoeng.'?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="100%" height="280" frameborder="0"></iframe>
                 </div>
-              </div><!-- .entry-content -->';
+              </div>';
       }
       ?>
 
-        <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>"><a name=research></a>
-          <h2>Research Area</h2><br />
+        <card class="mainmatter <?php echo $listoflinks_width; ?>"><a name=research></a>
+         <header>
+          <h2>Research Area</h2>
+         </header>
           <?php echo $research; ?>
-        </div><!-- .entry-content -->
+        </div>
 
       <?php
       if ( get_post_meta( $post->ID, 'publication_link', true) ) { ?>
-        <div class="entry-content card-mainmatter card-prof-publications <?php echo $listoflinks_width; ?>">
-        <h2>Recent Publications</h2>
-          <div class="card-body">
+        <card class="mainmatter card-prof-publications <?php echo $listoflinks_width; ?>">
+         <header>
+          <h2>Recent Publications</h2>
+         </header>
+          <main>
             <?php
               // get publication through the shortcode
               $tmp = do_shortcode( '[infoscience url=' . get_post_meta( $post->ID, 'publication_link', true) . ']' );
@@ -226,18 +194,20 @@ if ($menu) {
               // finally, echo
               echo $dom->saveHTML($dom->documentElement);
             ?>
-          </div><?php # beige ?>
-        </div><?php # .entry-content ?>
+          </main>
+        </card>
       <?php
       } ?>
 
       <?php
         if ($newslink1 !="") {
           echo '
-                <div class="entry-content card-mainmatter card-prof-news '.$listoflinks_width.'">
-                  <h2>News</h2>
-                  <div class="card-body">
+                <card class="prof-news '.$listoflinks_width.'">
+                  <header>
                     <a name=news></a>
+                    <h2>News</h2>
+                  </header>
+                  <main>
                     <div class="frontrowcontent">';
         }
         if ($newslink1 != "") {
@@ -254,28 +224,56 @@ if ($menu) {
         }
         if ($newslink1 !="") {
         echo '
-                  </div><?php # frontrowcontent ?>
-                </div><?php # prof_text ?>
-              </div>
+                  </main>
+                </card>
         ';
         }
       ?>
-      </div><!-- main row-->
-    </div><!-- main container-->
-  </div><!--column in case there is a list of links on the right-->
+      </div><?php # main row ?>
+    </div><?php #  main container ?>
+  </div><?php # column in case there is a list of links on the right ?>
 
 <?php
   // this box is a list of links
-  echo $menu;
-?>
+if ($menu):
 
-      </div><!--column if there is a box of links on the right-->
-    </div><!--row if there is a box of links on the right-->
-  </div><!-- container if there is a box of links on the right-->
+ $listoflinks_main=" col-md-8 content-area";
+ $listoflinks_width=" width-main-listoflinks";
+ $listoflinks_menu=" sti_righthand_menu col-md-4";
+?>
+  <aside class="col-md-4">
+    <card class="first frontrowmarker">
+     '.$labname.' <span class="sti_people_menu_black">'.$mylabname.'</span>
+     <img src='.$labimage.' class="sti_people_menu_image">
+    </div><?php #  menutitle ?>
+    <card class="links">
+      <div class="research-topics">
+        Research topics:<br><br>'.$keywords.'
+      </div>
+      <div class="prof-nav-menu">
+        <ul class="menu">
+          <li id="menu-item-128" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-128"><a href="'.$labwebsite.'">LAB WEBSITE</a></li>
+
+          <?php if ($videoeng != "") { ?>
+              <li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#video">VIDEOS</a></li>
+          <?php } ?>
+
+          <li id="menu-item-134" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#research">RESEARCH</a></li>
+          <li id="menu-item-129" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-129"><a href="https://people.epfl.ch/cgi-bin/people?id='.$sciper.'&op=publications&lang=en&cvlang=en">PUBLICATIONS</a></li>
+          <li id="menu-item-130" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#news">NEWS</a></li>
+          <li id="menu-item-133" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-130"><a href="https://stisrv13.epfl.ch/collaborations/tube_html5.php?sciper='.$sciper.'&showpublications=1&showpatents=1&showexternals=1&showindustry=1">COLLABORATIONS</a></li>
+        </ul>
+      </div><?php # prof-nav-menu ?>
+    </card>
+<?php endif; ?>
+
+
+      </div><?php # column if there is a box of links on the right ?>
+    </div><?php # row if there is a box of links on the right ?>
+  </div><?php #  container if there is a box of links on the right ?>
   <div class="entry-meta">
-    <!---?php epflsti_posted_on(); --->
-  </div><!-- .entry-meta -->
+  </div><?php # .entry-meta ?>
   <footer>
     <?php epflsti_entry_footer(); ?>
   </footer>
-</article><!-- #post-## -->
+</article><?php # #post-## ?>
