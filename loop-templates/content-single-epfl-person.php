@@ -205,7 +205,7 @@ if ($menu) {
       <?php
       if ( get_post_meta( $post->ID, 'publication_link', true) ) { ?>
         <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>">
-        <h2 class=people_titles>Recent Publications</h2>
+        <h2>Recent Publications</h2>
           <div class="sti_content_prof_text">
             <?php
               // get publication through the shortcode
@@ -235,7 +235,7 @@ if ($menu) {
         if ($newslink1 !="") {
           echo '
                 <div class="entry-content card-mainmatter '.$listoflinks_width.'">
-                  <h2 class=people_titles>News</h2>
+                  <h2>News</h2>
                   <div class="sti_content_prof_text">
                     <a name=news></a>
                     <div class="frontrowcontent">';
