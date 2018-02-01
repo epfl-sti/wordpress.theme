@@ -9,7 +9,7 @@
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 		<header class="entry-header">
 
-			<?php the_title( '<div class="sti_content_title">', '</div>' ); ?>
+			<?php the_title( '<div class="sti_content_title epfl-sti-institute-title">', '</div>' ); ?>
 
 		</header><!-- .entry-header -->
 
