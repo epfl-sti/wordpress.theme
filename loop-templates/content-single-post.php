@@ -27,18 +27,30 @@ $rosesarered="<img class='ribbon-red-top' src='/wp-content/themes/epfl-sti/img/s
 <div class=container><?php # row if there is a box of links on the right ?>
   <div class=row><?php #  container if there is a box of links on the right ?>
     <div class="<?php echo $listoflinks_main; ?>"><?php # column if there is a box of links on the right ?>
+      <div class=container><?php #  main container  ?>
+        <div class="row main-matter"><?php #  main row ?>
 
+	  <card class="ribbon-red <?php echo $listoflinks_width; ?>">
+            <?php  // if the choice is made to highlight this box
+	    if ($with_red_ribbon) {
+		echo $rosesarered;
+	    }
+	    ?>
+	    <?php the_title( '<h1>', '</h1>' ); ?>
+	    <main>
+      	     <div class="sti_content_prof_photo">
+	      <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
+	     </div>
+	     <?php the_content(); ?>
+	    </main>
+          </card>
 
-
-	 <div class=container><?php #  main container  ?>
-           <div class=row><?php #  main row ?>
-
-	    <card class="<?php echo $listoflinks_width; ?>">
-                <?php  // if the choice is made to highlight this box
-		if ($with_red_ribbon) {
-			echo $rosesarered;
-		}
-		?>
+	  <?php   
+	  // succeeding boxes currently take the_content() too
+          ?>
+	
+	
+	  <card class="<?php echo $listoflinks_width; ?>">
 		<?php the_title( '<h1>', '</h1>' ); ?>
 			<div class="entry-body">
       			      <div class="sti_content_prof_photo">
@@ -46,37 +58,21 @@ $rosesarered="<img class='ribbon-red-top' src='/wp-content/themes/epfl-sti/img/s
 			      </div><?php #  col   ?>
 				<?php the_content(); ?>
 			</div><?php #  entry-body  ?>
-  	    </div><?php #  .entry-content  ?>
 
-		<?php   
-		 // succeeding boxes currently take the_content() too
-                ?>
-	
-	
-	    <card class="<?php echo $listoflinks_width; ?>">
-		<?php the_title( '<h1>', '</h1>' ); ?>
-			<div class="entry-body">
-      			      <div class="sti_content_prof_photo">
-				<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
-			      </div><?php #  col   ?>
-				<?php the_content(); ?>
-			</div><?php #  entry-body  ?>
+  	  </card>
 
-  	    </div><?php #  .entry-content  ?>
-
-	 </div><?php #  main row ?>
-	</div><?php #  main container ?>
-
-     </div><?php # column in case there is a list of links on the right ?>
+	</div><?php #  main row ?>
+      </div><?php #  main container ?>
+    </div><?php # column if there is a box of links on the right ?>
 
 
-		<?php if ($menu):
+    <?php if ($menu):
 
- $listoflinks_main=" col-md-8 content-area";
- $listoflinks_width=" width-main-listoflinks";
- $listoflinks_menu=" sti_righthand_menu col-md-4";
+    $listoflinks_main=" col-md-8 content-area";
+    $listoflinks_width=" width-main-listoflinks";
+    $listoflinks_menu=" sti_righthand_menu col-md-4";
 
-                ?>
+    ?>
      <aside class="col-md-4">
       <card class="first frontrowmarker">
        <header>
@@ -97,16 +93,15 @@ $rosesarered="<img class='ribbon-red-top' src='/wp-content/themes/epfl-sti/img/s
         </ul>
       </card>
      </aside>
-		<?php endif; ?>
+    <?php endif;  # menu ?>
 
 
 
-  </div><?php # column if there is a box of links on the right ?>
- </div><?php # row if there is a box of links on the right ?>
-</div><?php #  container if there is a box of links on the right ?>
+  </div><?php #  container if there is a box of links on the right ?>
+</div><?php # row if there is a box of links on the right ?>
 		<card class="meta">
 
-		 <p><?php # -?php epflsti_posted_on(); - ?></p>
+		 <p><?php epflsti_posted_on(); ?></p>
 
 		</div>
 	<footer>

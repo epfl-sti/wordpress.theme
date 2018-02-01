@@ -58,16 +58,22 @@ aside card {
   @include media-breakpoint-up(lg) {
     width: 340px;
   }
-}
 
-/**
- * The header card of the side matter
- */
-aside card.first {
-  background-color: white;
-  padding: 12px 5px;
-  font: 15px verdana;
-  font-weight: bold;
+  /**
+   * The header card of the side matter
+   */
+  &.first {
+    background-color: white;
+    padding: 12px 5px;
+    h2 {
+      font: 15px verdana;
+      font-weight: bold;
+      color: black;
+      abbr {
+        color: $theRed;
+      }
+    }
+  }
 }
 
 /**
