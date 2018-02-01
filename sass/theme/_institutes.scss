@@ -40,5 +40,25 @@ the school and the institute level.
 }
 
 .epfl-sti-institute-title {
- color: red;
+ margin-bottom: 0px;
+ color: #444;
+ background-color: #e0e0e0;
+ border-top: white 1px solid;
+ border-bottom: #c11100 8px solid;
+ padding: 15px 15px 15px 25px;
+ text-transform: uppercase;
 }
+
+.epfl-sti-institute-content {
+ padding: 25px 40px 15px 40px;
+ background-color: #f0f0f0;
+ line-height: 30px;
+ color: #3c3c3c;
+}
+
+.epfl-sti-institute-imageframe {
+ padding: 4px;
+ background-color: white;
+ border: #ccc 1px solid;
+}
+

@@ -9,12 +9,12 @@
 <article id="post-<?php the_ID(); ?>">
 		<header class="entry-header">
 
-			<?php the_title( '<div class="sti_content_title">', '</div>' ); ?>
+			<?php the_title( '<div class="sti_content_title epfl-sti-institute-title">', '</div>' ); ?>
 
 		</header><!-- .entry-header -->
 
-		<div class="entry-content">
-                   <div class="sti_content_prof_photo">
+		<div class="entry-content epfl-sti-institute-content">
+                   <div class="sti_content_prof_photo epfl-sti-institute-imageframe">
                       <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
                   </div><?php # prof_photo ?>
 
