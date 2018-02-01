@@ -204,9 +204,9 @@ if ($menu) {
 
       <?php
       if ( get_post_meta( $post->ID, 'publication_link', true) ) { ?>
-        <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>">
+        <div class="entry-content card-mainmatter card-prof-publications <?php echo $listoflinks_width; ?>">
         <h2>Recent Publications</h2>
-          <div class="sti_content_prof_text">
+          <div class="card-body">
             <?php
               // get publication through the shortcode
               $tmp = do_shortcode( '[infoscience url=' . get_post_meta( $post->ID, 'publication_link', true) . ']' );
@@ -234,9 +234,9 @@ if ($menu) {
       <?php
         if ($newslink1 !="") {
           echo '
-                <div class="entry-content card-mainmatter '.$listoflinks_width.'">
+                <div class="entry-content card-mainmatter card-prof-news '.$listoflinks_width.'">
                   <h2>News</h2>
-                  <div class="sti_content_prof_text">
+                  <div class="card-body">
                     <a name=news></a>
                     <div class="frontrowcontent">';
         }

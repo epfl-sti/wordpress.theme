@@ -65,10 +65,7 @@
   }
 }
 
-
-// TODO: rename all below
-
-.sti_content_prof_text {
+.card-body {
  min-width: 300px;
  max-width: 690px;
  float:left;
@@ -76,6 +73,8 @@
  clear: none;
  padding-left: 20px;
 }
+
+// TODO: rename all below
 
 .sti_content_prof_photo {
  float: left;
