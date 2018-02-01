@@ -28,9 +28,9 @@
 
 		</div><!-- .entry-content -->
 
-		<footer class="entry-footer">
+		<footer>
 
 			<?php edit_post_link( __( 'Edit', 'epflsti' ), '<span class="edit-link">', '</span>' ); ?>
 
-		</footer><!-- .entry-footer -->
+		</footer>
 </article><!-- #post-## -->

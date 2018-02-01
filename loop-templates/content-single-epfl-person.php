@@ -155,7 +155,7 @@ if ($menu) {
           <?php  // the choice is made to highlight this box
             echo $rosesarered;
           ?>
-          <?php the_title( '<h1 class="entry-title">'.$officialtitle, '</h1>' ); ?>
+          <?php the_title( '<h1>'.$officialtitle, '</h1>' ); ?>
             <div class="entry-body">
               <div class="sti_content_prof_photo">
                 <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
@@ -172,7 +172,7 @@ if ($menu) {
           // succeeding boxes currently take the_content() too
         ?>
         <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>">
-          <h2 class="entry-title">Contact</h2>
+          <h2>Contact</h2>
           <h5><br><?php echo "$firstname $surname"; ?></h5>
           <div class="container">
             <div class="row entry-body">
@@ -198,7 +198,7 @@ if ($menu) {
       ?>
 
         <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>"><a name=research></a>
-          <h2 class="entry-title">Research Area</h2><br />
+          <h2>Research Area</h2><br />
           <?php echo $research; ?>
         </div><!-- .entry-content -->
 
@@ -275,7 +275,7 @@ if ($menu) {
   <div class="entry-meta">
     <!---?php epflsti_posted_on(); --->
   </div><!-- .entry-meta -->
-  <footer class="entry-footer">
+  <footer>
     <?php epflsti_entry_footer(); ?>
-  </footer><!-- .entry-footer -->
+  </footer>
 </article><!-- #post-## -->

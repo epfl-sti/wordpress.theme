@@ -68,7 +68,7 @@ if ($menu) {
 			echo $rosesarered;
 		}
 		?>
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+		<?php the_title( '<h1>', '</h1>' ); ?>
 			<div class="entry-body">
       			      <div class="sti_content_prof_photo">
 				<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
@@ -83,7 +83,7 @@ if ($menu) {
 	
 	
 	    <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+		<?php the_title( '<h1>', '</h1>' ); ?>
 			<div class="entry-body">
       			      <div class="sti_content_prof_photo">
 				<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
@@ -115,10 +115,10 @@ if ($menu) {
 			<!---?php epflsti_posted_on(); --->
 
 		</div><!-- .entry-meta -->
-	<footer class="entry-footer">
+	<footer>
 
 		<?php epflsti_entry_footer(); ?>
 
-	</footer><!-- .entry-footer -->
+	</footer>
 
 </article><!-- #post-## -->

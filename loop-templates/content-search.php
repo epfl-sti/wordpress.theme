@@ -8,9 +8,9 @@
 ?>
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
-	<header class="entry-header">
+	<header>
 
-		<?php the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ),
+		<?php the_title( sprintf( '<h2><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ),
 		'</a></h2>' ); ?>
 
 		<?php if ( 'post' == get_post_type() ) : ?>
@@ -23,7 +23,7 @@
 
 		<?php endif; ?>
 
-	</header><!-- .entry-header -->
+	</header>
 
 	<div class="entry-summary">
 
@@ -31,10 +31,10 @@
 
 	</div><!-- .entry-summary -->
 
-	<footer class="entry-footer">
+	<footer>
 
 		<?php epflsti_entry_footer(); ?>
 
-	</footer><!-- .entry-footer -->
+	</footer>
 
 </article><!-- #post-## -->
