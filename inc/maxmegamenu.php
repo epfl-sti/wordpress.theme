@@ -78,6 +78,10 @@ function megamenu_setup_theme ($themes) {
     'menu_item_background_hover_to'   => '#eee',
     'menu_item_link_color'            => '#555',
     'menu_item_link_color_hover'      => '#555'
+
+    /* We do not use a custom_css. Rather, we have a set of
+     * rules for the megamenu in ../sass/themes/_maxmegamenu.scss, which
+     * are processed along with the other stylesheets. */
   );
   return $themes;
 }

@@ -1,10 +1,5 @@
 /**
  * Megamenu style
- *
- * This file is *not* processed by gulp. Instead, the Max Megamenu
- * plug-in includes a SASS compiler written in PHP. Still, "gulp
- * browser-sync" will cooperate with devsupport/reload-caches.php to
- * handle changes to this file like it does any other.
  */
 
 @mixin maxmegamenu-mobile {
@@ -23,12 +18,12 @@
 /* We make sure to use the same selector hierarchy as
  * wp-content/plugins/megamenu/megamenu.scss, except with a leading
  * "megamenu" added on top so that we win according to the CSS
- * priority rules. */
-megamenu div.mega-menu-wrap {  /* i.e. #mega-menu-wrap-primary */
+ * selectivity rules. */
+megamenu div.mega-menu-wrap {
   /** Push menu onto new line **/
   clear: both;
 
-  ul.mega-menu {         /* i.e. #mega-menu-primary */
+  ul.mega-menu {
     /* We don\'t want a teramenu: */
     max-width: 800px;
     /* Keep it centered (despite not occupying the full width): */
