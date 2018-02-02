@@ -41,14 +41,14 @@ class FrontRowInstitute extends \WP_Widget
     <div class="container">
       <div class="row no-gutters">
         <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
-          <div class="text-white frontrowtitle">
-            <?php echo ___('RESEARCH'); ?><br /><span class="text-danger"><?php echo ___('NEWS'); ?></span>
+          <div class="text-white frontrowtitle epfl-sti-institute-frontrow-header">
+            <?php echo ___('NEWS'); ?><br />
           </div>
           <?php
             $actu_sti_research_url = 'https://actu.epfl.ch/api/v1/channels/10/news/?format=json&lang='.$cl.'&category=3&faculty=3&themes=4';
             $actu_sti_research = get_news_from_actu($actu_sti_research_url);
             foreach ($actu_sti_research as $actu) {
-                if ($x<3) {
+                if ($x<2) {
                     echo '<div class="frontrownews zoomy" style="background-image:url(' . $actu->visual_url . ');">';
                     echo '  <a class="whitelink" href="' . get_actu_link($actu->title) . '">';
                     echo '    <div class="frontrownewstitle">';
@@ -61,8 +61,8 @@ class FrontRowInstitute extends \WP_Widget
             } ?>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
-          <div class="text-white frontrowtitle">
-            <?php echo ___('SCHOOL OF'); ?><br /><span class="text-danger"><?php echo ___('ENGINEERING'); ?></span>
+          <div class="text-white frontrowtitle epfl-sti-institute-frontrow-header">
+            <?php echo ___('FACULTY'); ?><br />
           </div>
             <?php wp_nav_menu(array(
                 'theme_location' => 'front-row-school-menu',
@@ -71,8 +71,8 @@ class FrontRowInstitute extends \WP_Widget
         </div>
         <div class="w-100 d-none d-md-block d-lg-none"></div>
         <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
-          <div class="text-white frontrowtitle">
-            <?php echo ___('INSTITUTES'); ?><br /><span class="text-danger">&amp;&nbsp;<?php echo ___('CENTRES'); ?></span>
+          <div class="text-white frontrowtitle epfl-sti-institute-frontrow-header">
+            <?php echo ___('INFO'); ?><br />
           </div>
           <?php wp_nav_menu(array(
               'theme_location' => 'front-row-centres-menu',
@@ -80,12 +80,12 @@ class FrontRowInstitute extends \WP_Widget
           )); ?>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
-          <div class="text-white frontrowtitle">
-            <?php echo ___('UPCOMING'); ?><br /><span class="text-danger"><?php echo ___('EVENTS'); ?></span>
+          <div class="text-white frontrowtitle epfl-sti-institute-frontrow-header">
+            <?php echo ___('EVENTS'); ?><br />
           </div>
           <div class="container">
             <?php
-              $events = get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=4);
+              $events = get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=2);
               $max_len = 52;
               foreach ($events as $event) { ?>
                 <div class="row frontrow_event">
