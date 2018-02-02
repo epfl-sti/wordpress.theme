@@ -1,0 +1,9 @@
+.zoomy {
+  background-position: center;
+  transition: all .4s ease-in-out;
+  background-size: 100%;
+
+  &:hover {
+    background-size: 130%;
+  }
+}

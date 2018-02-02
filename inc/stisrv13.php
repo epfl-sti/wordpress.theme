@@ -22,10 +22,8 @@ function _stisrv13_metadata ($person_obj) {
 }
 
 add_filter('epfl_person_bio', function($biography, $person_obj) {
+    if ($biography) { return $biography; }
     $s13 = _stisrv13_metadata($person_obj);
-    if ($s13 && $s13->bio) {
-        return $s13->bio;
-    } else {
-        return $biography;
-    }
+    if ($s13 && $s13->bio) { return $s13->bio; }
+    return $biography;  // I.e. nothing
 }, 10, 3);

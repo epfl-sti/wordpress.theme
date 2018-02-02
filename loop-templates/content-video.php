@@ -7,6 +7,6 @@
  * https://sti-test.epfl.ch/fr/category/temoignages-detudiants/ shows these.
  */
 
-the_title( '<h1 class="entry-title">', '</h1>' );
+the_title( '<h1>', '</h1>' );
 the_content();
 

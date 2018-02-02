@@ -49,7 +49,7 @@ class FrontRow extends \WP_Widget
             $actu_sti_research = get_news_from_actu($actu_sti_research_url);
             foreach ($actu_sti_research as $actu) {
                 if ($x<3) {
-                    echo '<div class="frontrownews" style="background-image:url(' . $actu->visual_url . ');">';
+                    echo '<div class="frontrownews zoomy" style="background-image:url(' . $actu->visual_url . ');">';
                     echo '  <a class="whitelink" href="' . get_actu_link($actu->title) . '">';
                     echo '    <div class="frontrownewstitle">';
                     echo         $actu->title;

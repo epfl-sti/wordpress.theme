@@ -1,0 +1,173 @@
+/**
+ * Styling "cards"-based pages (e.g. people)
+ *
+ * We propose a number of card styles, some for the main matter (big
+ * col-md-8) and some for the side matter ("nav bar" which never navs —
+ * Prof. Sayed wants doesn't want any nav devices besides the megamenu)
+ *
+ * How to use:
+ *
+ * - For a "simple" card just go
+ *
+ *    <card>
+ *       <p>Hello, world!</p>
+ *    </card>
+ *   
+ *
+ *   Discussion: a "simple" card is one that has a <p> directly below
+ *   <card> as the first child element. (It may have more <p>s after
+ *   that, but no <div>s or other children elements or it is no longer
+ *   a "simple" card.)
+ *   
+ * - For a card that consists of a menu, do this:
+ *
+ *    <card>
+ *       <ul>Menu
+ *         <li>Something</li>>
+ *       </ul>
+ *    </card>
+ * 
+ * - For a card with all bells and whistles, go
+ *
+ *   <card>
+ *     <header>
+ *       <h1>Prof. Tournesol</h1>
+ *     </header>
+ *     <main>
+ *     </main>
+ *   </card>
+ *
+ * - If your card goes into the side matter, it should be inside an <aside> e.g.
+ *
+ *   <aside>
+ *     <card>[...]
+ *     </card>
+ *   </aside>
+ */
+
+card {
+  display: block;
+}
+
+aside card {
+  @include media-breakpoint-down(lg) {
+    width: 100%;
+  }
+
+  @include media-breakpoint-up(lg) {
+    width: 340px;
+  }
+
+  /**
+   * The header card of the side matter
+   */
+  &.first {
+    background-color: white;
+    padding: 12px 5px;
+    h2 {
+      font: 15px verdana;
+      font-weight: bold;
+      color: black;
+      abbr {
+        color: $theRed;
+      }
+    }
+  }
+}
+
+/**
+ * A card on black background for displaying *outgoing* links (e.g. Prof's website etc.)
+ */
+aside card.links {
+ color: white;
+ background-image: url('../img/src/charcoal.gif');
+ font-size: 13px;
+ padding: 20px 20px 50px 20px;
+}
+
+card .mini-news {
+ height: 145px;
+ width: 203px;
+ background-size: 110%;
+ float:left;
+ display: inline;
+ clear: none;
+ margin-right: 20px;
+ margin-top: 20px;
+ border-bottom: #cc161d 4px solid;
+}
+
+/**
+ * Cards in the main column
+ */
+.main-matter > card {
+  padding: 30px;
+  float: left;
+  width: 100%;
+  background-color: white;
+  margin-bottom: 30px;
+  position: relative;
+
+  .text-column {
+    margin-right: 40px;
+  }
+}
+
+.main-matter > card main {
+ min-width: 300px;
+ max-width: 690px;
+ float:left;
+ display: inline;
+ clear: none;
+ padding-left: 20px;
+}
+
+/**
+ * Extra-important cards are bracketed with little red ribbons
+ * on two opposite corners
+ */
+card.ribbon-red {
+  position: relative;
+
+  // TODO: Turn these into pseudo-elements.
+  .ribbon-red-top {
+    position: absolute;
+    top:-12px;
+    right: -8px;
+  }
+
+  .ribbon-red-bottom {
+    position: absolute;
+    bottom:-12px;
+    left: -6px;
+  }
+}
+
+// TODO: rename all below
+
+.sti_content_prof_photo {
+ float: left;
+ display: inline;
+ clear: none;
+ margin-right: 20px;
+ max-width: 310px;
+}
+
+.sti_people_menu_image {
+ width: 100%;
+}
+
+.sti_people_menu_black {
+ color: #444;
+}
+
+.peoplenewstitle {
+ width: 203px;
+ height: 61px;
+ position: relative;
+ top: 81px;
+ background: rgb(42,41,46);
+ background: rgba(0,0,0,0.7);
+ padding: 8px;
+}
+

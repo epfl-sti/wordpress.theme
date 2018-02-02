@@ -2,6 +2,7 @@
 @import "theme/bootstrap_variables";
 @import "theme/megamenu_variables";
 @import "theme/carousel_variables";
+@import "theme/cards_variables";
 @import "theme/footer_variables";
 @import "theme/sti_variables";
 
@@ -9,14 +10,17 @@
 @import "understrap/understrap";// <-------- Loads the Understrap defaults. Just a few classes to incorporate BS in WP
 
 @import "theme/actu";
+@import "theme/animations";
 @import "theme/carousel";
 @import "theme/contact-form7"; // Contact Form 7 - Bootstrap 4 support
+@import "theme/cards";
 @import "theme/calendar_icons";
 @import "theme/header";
 @import "theme/navmenus";
 @import "theme/frontrow";
 @import "theme/whitenews";
 @import "theme/maincontent";
+@import "theme/pages";
 @import "theme/institutes";
 @import "theme/footer";
 
