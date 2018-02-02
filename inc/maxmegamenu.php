@@ -83,10 +83,6 @@ function megamenu_setup_theme ($themes) {
 }
 add_filter("megamenu_themes", "\\EPFL\\STI\\megamenu_setup_theme");
 
-// add_filter("megamenu_toggle_bar_content", function() {
-//      return "ZZZ";
-// });
-
 add_filter("megamenu_scss_import_paths", function ($paths) {
     array_push($paths, get_stylesheet_directory() . "/sass");
     return $paths;
