@@ -1,2 +1,11 @@
-/* Keep this in sync with ../../inc/maxmegamenu.php: */
-$responsive_breakpoint: 600px;
+// This must be the same value as the 'responsive_breakpoint' key in
+// megamenu_setup_theme, and it depends on how wide the megamenu is
+// (as we want it to fit on one line)
+$maxmegamenu-toosmall: 770px ;
+
+$megamenu-max-widths: (
+  sm: (map-get($container-max-widths, sm) - $grid-gutter-width),
+  md: (map-get($container-max-widths, md) - $grid-gutter-width),
+  lg: (map-get($container-max-widths, lg) - $grid-gutter-width),
+  xl: (map-get($container-max-widths, xl) - $grid-gutter-width)
+)

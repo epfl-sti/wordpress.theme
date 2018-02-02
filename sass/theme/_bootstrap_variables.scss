@@ -5,6 +5,14 @@ $body-bg: #ccc;
 // Links made by Bootstrap itself, e.g. the burger menu
 $link-color: black;
 
+$grid-gutter-width: 15px;  // This is the default value, but we need it
+                           // for _maxmegamenu_variables.scss
+
 $container-max-widths: (
+  // These are the default values of Bootstrap
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  // This one has been tweaked.
   xl: 1340px
 )

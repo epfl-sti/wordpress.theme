@@ -33,8 +33,9 @@ function megamenu_setup_theme ($themes) {
     'z_index'                           => '10',
     'panel_second_level_text_transform' => 'uppercase',
     'mobile_menu_item_link_text_align'  => 'left',
-    /* Keep this in sync with ../sass/theme/_maxmegamenu_variables.scss: */
-    'responsive_breakpoint'             => '600px',
+    /* Keep this in sync with $megamenu-toosmall in
+     * ../sass/theme/_maxmegamenu_variables.scss: */
+    'responsive_breakpoint'             => '770px',
 
     /* Putting back the arrows (or lack thereof) as they were before */
     'arrow_up'    => 'disabled',

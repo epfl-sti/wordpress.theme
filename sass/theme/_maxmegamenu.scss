@@ -3,13 +3,13 @@
  */
 
 @mixin maxmegamenu-mobile {
-    @media only screen and (max-width : $responsive_breakpoint) {
+    @media only screen and (max-width : $maxmegamenu-toosmall) {
         @content;
     }
 }
 
 @mixin maxmegamenu-desktop {
-    @media only screen and (min-width : $responsive_breakpoint + 1) {
+    @media only screen and (min-width : $maxmegamenu-toosmall + 1) {
         @content;
     }
 }
@@ -24,8 +24,11 @@ megamenu div.mega-menu-wrap {
   clear: both;
 
   ul.mega-menu {
-    /* We don\'t want a teramenu: */
-    max-width: 800px;
+    /* Synchronize the size of the megamenu with that of a full-width, no-gutters
+     * Bootstrap-ified widget such as the front row */
+    @include make-container();
+    @include make-container-max-widths($megamenu-max-widths);
+
     /* Keep it centered (despite not occupying the full width): */
     margin: 0 auto;
 
