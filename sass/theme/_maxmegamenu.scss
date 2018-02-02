@@ -65,6 +65,56 @@ megamenu div.mega-menu-wrap {
     > li.mega-menu-megamenu {
       > ul.mega-sub-menu {   // The pop-up white area
         background-color: white;
+
+        /* Some of the sections below have a commented-out !important rule as
+         * a debugging aid. To debug the selectors, uncomment the rule
+         * and check that you see the goudy colors appear exactly
+         * where they are supposed to. If the selector is just right,
+         * they should work *without* their !important. */
+
+        /* columns in standard layout */
+        >li.mega-menu-item {
+          // border: 1px solid red !important;
+        }
+
+        /* columns in "experimental" grid layout */
+        > li.mega-menu-row > ul.mega-sub-menu > li.mega-menu-column {
+          // border: 1px solid red !important;
+        }
+
+        /* All elementary menu entries (cells in a row in a column) */
+        li.mega-menu-item li.mega-menu-item {
+          // background-color: red !important; border: 1px solid black !important;
+          padding: 8pt 0pt;
+        }
+
+
+        /* All submenu titles inside a megamenu pop-up */
+        > li.mega-menu-item > a.mega-menu-link,
+        li.mega-menu-column > ul.mega-sub-menu > li.mega-menu-item > a.mega-menu-link {
+          // color: pink !important;
+          color: black;
+          font-size: 12pt;
+        }
+
+        /* All "real" links (excluding titles of <ul>'s), using sufficiently
+         * strong selectors */
+        > li.mega-menu-item li.mega-menu-item,
+        li.mega-menu-column > ul.mega-sub-menu > li.mega-menu-item li.mega-menu-item {
+          > a.mega-menu-link {
+            // color: pink !important;
+            color: 888;
+            font-size: 10pt;
+
+            text-decoration: none;
+            &:visited {
+              color: #555;
+            }
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
       }
     }
   }

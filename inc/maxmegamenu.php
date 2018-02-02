@@ -31,7 +31,6 @@ function megamenu_setup_theme ($themes) {
     'menu_item_align'                   => 'center',
     'menu_item_highlight_current'       => 'off',
     'z_index'                           => '10',
-    'panel_second_level_text_transform' => 'uppercase',
     'mobile_menu_item_link_text_align'  => 'left',
     /* Keep this in sync with $megamenu-toosmall in
      * ../sass/theme/_maxmegamenu_variables.scss: */
@@ -45,6 +44,7 @@ function megamenu_setup_theme ($themes) {
 
     /* Cut back on the plug-in's micromanagement of dimensions, fonts
      * and colors: */
+    'panel_second_level_text_transform'        => 'inherit',
     'panel_second_level_font'                  => 'inherit',
     'panel_second_level_font_size'             => 'inherit',
     'panel_second_level_font_weight'           => 'inherit',
