@@ -37,16 +37,17 @@ megamenu #{$wrap} {  /* i.e. #mega-menu-wrap-primary */
           padding-left: 20px;
         }
         text-transform: uppercase;
-        &.mega-toggle-on > a:before {
-          content: '';
-          position: absolute;
-          top:   -200px;
-          left: 0px;
-          height: 200px;
-          width: 100%;
-          background-color: #eee;
-          z-index: -1;
-        }
+      }
+      // Gray tabs dropping a shadow against the topbar on hover
+      &.mega-toggle-on > a:before {
+        content: '';
+        position: absolute;
+        top:   -200px;
+        left: 0px;
+        height: 200px;
+        width: 100%;
+        background-color: #eee;
+        z-index: -1;
       }
     }
 
