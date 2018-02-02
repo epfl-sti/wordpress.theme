@@ -52,7 +52,6 @@ card {
 aside card {
   @include media-breakpoint-down(lg) {
     width: 100%;
-    min-width: 350px;
   }
 
   @include media-breakpoint-up(lg) {

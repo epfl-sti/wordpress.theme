@@ -118,7 +118,7 @@ $publicationlink4="https://infoscience.epfl.ch/record/232383/files/A%20Distribut
 $publicationrecord4="https://infoscience.epfl.ch/record/232383?ln=en";
 
 ?>
-<div class="container-fluid"><?php # row if there is a box of links on the right ?>
+<div class="container"><?php # row if there is a box of links on the right ?>
   <div class=row><?php #  container if there is a box of links on the right ?>
     <div class="<?php echo $listoflinks_main; ?>"><?php # column if there is a box of links on the right ?>
       <div class="container"><?php # main container ?>
