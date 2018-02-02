@@ -7,21 +7,34 @@
  * handle changes to this file like it does any other.
  */
 
-/* We make sure to use the exact same selector hierarchy as
+@mixin maxmegamenu-mobile {
+    @media only screen and (max-width : $responsive_breakpoint) {
+        @content;
+    }
+}
+
+@mixin maxmegamenu-desktop {
+    @media only screen and (min-width : $responsive_breakpoint + 1) {
+        @content;
+    }
+}
+
+
+/* We make sure to use the same selector hierarchy as
  * wp-content/plugins/megamenu/megamenu.scss, except with a leading
  * "megamenu" added on top so that we win according to the CSS
  * priority rules. */
-megamenu #{$wrap} {  /* i.e. #mega-menu-wrap-primary */
+megamenu div.mega-menu-wrap {  /* i.e. #mega-menu-wrap-primary */
   /** Push menu onto new line **/
   clear: both;
 
-  #{$menu} {         /* i.e. #mega-menu-primary */
+  ul.mega-menu {         /* i.e. #mega-menu-primary */
     /* We don\'t want a teramenu: */
     max-width: 800px;
     /* Keep it centered (despite not occupying the full width): */
     margin: 0 auto;
 
-    @include mobile {
+    @include maxmegamenu-mobile {
       border: 1px solid black;
     }
 
@@ -30,7 +43,7 @@ megamenu #{$wrap} {  /* i.e. #mega-menu-wrap-primary */
         color: black;
         font: 13pt \"Open Sans Regular\", sans-serif;
         padding: 6pt;
-        @include desktop {
+        @include maxmegamenu-desktop {
           background-image: url(/wp-content/themes/epfl-sti/img/src/sideshadow.gif);
           background-repeat: no-repeat;
           background-position-x: -10px;

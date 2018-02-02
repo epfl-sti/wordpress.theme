@@ -33,6 +33,8 @@ function megamenu_setup_theme ($themes) {
     'z_index'                           => '10',
     'panel_second_level_text_transform' => 'uppercase',
     'mobile_menu_item_link_text_align'  => 'left',
+    /* Keep this in sync with ../sass/theme/_maxmegamenu_variables.scss: */
+    'responsive_breakpoint'             => '600px',
 
     /* Putting back the arrows (or lack thereof) as they were before */
     'arrow_up'    => 'disabled',
@@ -75,13 +77,18 @@ function megamenu_setup_theme ($themes) {
     'menu_item_background_hover_from' => '#eee',
     'menu_item_background_hover_to'   => '#eee',
     'menu_item_link_color'            => '#555',
-    'menu_item_link_color_hover'      => '#555',
-
-    'custom_css' => '@import "maxmegamenu";'  // i.e. ../sass/maxmegamenu.scss; see below
+    'menu_item_link_color_hover'      => '#555'
   );
   return $themes;
 }
 add_filter("megamenu_themes", "\\EPFL\\STI\\megamenu_setup_theme");
+
+/* Downgrade all CSS ID selectors to classes, so as to win the specificity
+ * wars with SCSS code that can be known at compile time. */
+add_filter("megamenu_scss_wrap_selector",
+           function() { return "div.mega-menu-wrap"; });
+add_filter("megamenu_scss_menu_selector",
+           function() { return "ul.mega-menu"; });
 
 add_filter("megamenu_scss_import_paths", function ($paths) {
     array_push($paths, get_stylesheet_directory() . "/sass");

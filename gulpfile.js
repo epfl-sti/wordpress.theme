@@ -150,8 +150,7 @@ gulp.task('watch', ['default'], function () {
                 'newsletter-theme/**/*.scss'],
                ['admin-scripts']);
     gulp.watch('./img/src/**', ['imagemin'])
-    gulp.watch(['inc/maxmegamenu.php', 'sass/maxmegamenu.scss'],
-               ['clear-caches']);
+    gulp.watch(['inc/maxmegamenu.php'], ['clear-caches']);
 });
 
 // Run:
