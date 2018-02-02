@@ -132,11 +132,14 @@ foreach ($news_raw as $piece) {
            <h5><br><?php echo "$firstname $surname"; ?></h5>
            <div class="container">
             <div class="row entry-body">
-              <div class="col-xs-6 text-column">
-                <?php echo "Office: <a href=https://maps.epfl.ch/?q=$office>$office</a><br><a href=mailto:$epflname@epfl.ch>$epflname@epfl.ch</a><br><a href=https://people.epfl.ch/$epflname>https://people.epfl.ch/$epflname</a><br>Tel: <a href=\"tel:$phone\">$phone</a><br><br>"; ?>
+              <div class="col-md-4">
+                <?php echo 'Office: <a href="https://maps.epfl.ch/?q=' . $office . '">$office</a><br><a href="mailto:' . $epflname . '@epfl.ch>' . $epflname . '@epfl.ch</a><br><a href="https://people.epfl.ch/' . $epflname . '">https://people.epfl.ch/' . $epflname . '</a><br>Tel: <a href="tel:+' . $phone . '">' . $phone . '</a><br><br>'; ?>
               </div>
-              <div class="col-xs-6 text-column">
+              <div class="col-md-3">
                 <?php echo "$labname<br> $office<br> Station 11<br> 1015 Lausanne<br> Switzerland"; ?>
+              </div>
+              <div class="col-md-5 embed-responsive embed-responsive-4by3">
+                <iframe class="embed-responsive-item" src="https://plan.epfl.ch/iframe/?map_zoom=12&q=<?php echo $person->get_sciper(); ?>" ></iframe>
               </div>
             </div>
            </div>
