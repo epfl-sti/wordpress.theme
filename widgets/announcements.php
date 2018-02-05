@@ -40,7 +40,9 @@ class Announcements extends \WP_Widget
 	    <?php $inst=get_institute(); ?>
 <?php 
 
-if ($cl != "en") {
+if ($cl === "en") {
+ $lang = "eng";
+} else {
  $lang="fra";
 }
 
