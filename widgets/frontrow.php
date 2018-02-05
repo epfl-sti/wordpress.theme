@@ -143,7 +143,8 @@ class FrontRow extends \WP_Widget
     }
 
     public function get_actu_research_url ()
-    { 
+    {
+        $cl = get_current_language();
         return 'https://actu.epfl.ch/api/v1/channels/10/news/?format=json&lang='.$cl.'&category=3&faculty=3&themes=4';
     }
 
