@@ -18,20 +18,114 @@ use function EPFL\STI\get_events_from_memento;
 use function EPFL\STI\get_news_from_actu;
 use function EPFL\STI\get_actu_link;
 use function EPFL\STI\get_current_language;
+use function EPFL\STI\get_institute;
 
 class FrontRow extends \WP_Widget
 {
-  public function __construct()
-  {
-    parent::__construct(
-      'EPFL_STI_Theme_Widget_FrontRow', // unique id
-      ___('EPFL STI Front Row'), // widget title
-      // additional parameters
-      array(
-        'description' => ___('Shows a blackboard of quick links and useful information')
-      )
-    );
-  }
+    public function __construct()
+    {
+        parent::__construct(
+            'EPFL_STI_Theme_Widget_FrontRow', // unique id
+            ___('EPFL STI Front Row'), // widget title
+            // additional parameters
+            array(
+                'description' => ___('Shows a blackboard of quick links and useful information')
+            )
+        );
+        $this->institute = get_institute();
+    }
+
+    public function render_header_1 ()
+    {
+        if ($this->institute) {
+           ?>
+	  <div class="text-white frontrowtitle epfl-sti-institute-frontrow-header">
+            <?php echo sprintf(___('%s NEWS'), strtoupper($this->institute)); ?><br />
+          </div>
+           <?php
+        } else {
+           ?>
+          <div class="text-white frontrowtitle">
+            <?php echo ___('RESEARCH'); ?><br /><span class="text-danger"><?php echo ___('NEWS'); ?></span>
+          </div>
+           <?php
+        }
+    }
+
+    public function render_header_2 ()
+    {
+        if ($this->institute) {
+          ?>
+          <div class="text-white frontrowtitle epfl-sti-institute-frontrow-header">
+            <?php echo ___('FACULTY'); ?><br />
+          </div>
+          <?php
+        } else {
+          ?>
+          <div class="text-white frontrowtitle">
+            <?php echo ___('SCHOOL OF'); ?><br /><span class="text-danger"><?php echo ___('ENGINEERING'); ?></span>
+          </div>
+          <?php
+        }
+    }
+
+    public function render_header_3 ()
+    {
+        if ($this->institute) {
+            ?>
+            <div class="text-white frontrowtitle epfl-sti-institute-frontrow-header">
+              <?php echo ___('INFO'); ?><br />
+            </div>
+            <?php
+        } else {
+            ?>
+            <div class="text-white frontrowtitle">
+              <?php echo ___('INSTITUTES'); ?><br /><span class="text-danger">&amp;&nbsp;<?php echo ___('CENTRES'); ?></span>
+            </div>
+            <?php
+        }
+    }
+
+    public function render_header_4 ()
+    {
+        if ($this->institute) {
+            ?>
+            <div class="text-white frontrowtitle epfl-sti-institute-frontrow-header">
+              <?php echo ___('EVENTS'); ?><br />
+            </div>
+            <?php
+        } else {
+            ?>
+            <div class="text-white frontrowtitle">
+              <?php echo ___('UPCOMING'); ?><br /><span class="text-danger"><?php echo ___('EVENTS'); ?></span>
+            </div>
+            <?php
+        }
+    }
+
+    public function get_max_actu_count ()
+    {
+        if ($this->institute) {
+            return 3;
+        } else {
+            return 4;
+        }
+    }
+
+    public function get_actu_research_url ()
+    { 
+        return 'https://actu.epfl.ch/api/v1/channels/10/news/?format=json&lang='.$cl.'&category=3&faculty=3&themes=4';
+    }
+
+    public function get_events_from_memento ()
+    {
+        if ($this->institute) {
+            return get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=2);
+    
+        } else {
+            return get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=4);
+        }
+    }
 
   public function widget($args, $config)
   {
@@ -41,14 +135,11 @@ class FrontRow extends \WP_Widget
     <div class="frontrow container">
       <div class="row no-gutters">
         <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
-          <div class="text-white frontrowtitle">
-            <?php echo ___('RESEARCH'); ?><br /><span class="text-danger"><?php echo ___('NEWS'); ?></span>
-          </div>
+         <?php $this->render_header_1(); ?>
           <?php
-            $actu_sti_research_url = 'https://actu.epfl.ch/api/v1/channels/10/news/?format=json&lang='.$cl.'&category=3&faculty=3&themes=4';
-            $actu_sti_research = get_news_from_actu($actu_sti_research_url);
+            $actu_sti_research = get_news_from_actu($this->get_actu_research_url());
             foreach ($actu_sti_research as $actu) {
-                if ($x<3) {
+                if ($x<=$this->get_max_actu_count()) {
                     echo '<div class="frontrownews zoomy" style="background-image:url(' . $actu->visual_url . ');">';
                     echo '  <a class="whitelink" href="' . get_actu_link($actu->title) . '">';
                     echo '    <div class="frontrownewstitle">';
@@ -61,9 +152,7 @@ class FrontRow extends \WP_Widget
             } ?>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
-          <div class="text-white frontrowtitle">
-            <?php echo ___('SCHOOL OF'); ?><br /><span class="text-danger"><?php echo ___('ENGINEERING'); ?></span>
-          </div>
+          <?php $this->render_header_2(); ?>
             <?php wp_nav_menu(array(
                 'theme_location' => 'front-row-school-menu',
                 'container_class' => 'menu-front-row  menu-schools'
@@ -71,21 +160,17 @@ class FrontRow extends \WP_Widget
         </div>
         <div class="w-100 d-none d-md-block d-lg-none"></div>
         <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
-          <div class="text-white frontrowtitle">
-            <?php echo ___('INSTITUTES'); ?><br /><span class="text-danger">&amp;&nbsp;<?php echo ___('CENTRES'); ?></span>
-          </div>
+          <?php $this->render_header_3(); ?>
           <?php wp_nav_menu(array(
               'theme_location' => 'front-row-centres-menu',
               'container_class' => 'menu-front-row menu-centres'
           )); ?>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
-          <div class="text-white frontrowtitle">
-            <?php echo ___('UPCOMING'); ?><br /><span class="text-danger"><?php echo ___('EVENTS'); ?></span>
-          </div>
+          <?php $this->render_header_4(); ?>
           <div class="container">
             <?php
-              $events = get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=4);
+              $events = $this->get_events_from_memento();
               $max_len = 52;
               foreach ($events as $event) { ?>
                 <div class="row frontrow_event">
