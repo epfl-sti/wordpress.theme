@@ -5,6 +5,9 @@
  * @package epflsti
  */
 
+require_once(dirname(dirname(__FILE__)) . "/inc/i18n.php");
+use function \EPFL\STI\Theme\___;
+
 require get_template_directory() . '/inc/theme-settings.php';
 
 // Set the content width based on the theme's design and stylesheet.
@@ -42,16 +45,26 @@ if ( ! function_exists( 'epflsti_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'primary' => __( 'Primary Menu', 'epflsti' ),
-			'langmenu' => __( 'Lang Menu', 'epflsti' ),
-			'institute-menu-igm' => __( 'IGM Nav Menu', 'epflsti' ),
-			'institute-menu-ibi' => __( 'IBI Nav Menu', 'epflsti' ),
-			'institute-menu-imt' => __( 'IMT Nav Menu', 'epflsti' ),
-			'institute-menu-imx' => __( 'IMX Nav Menu', 'epflsti' ),
-			'institute-menu-iel' => __( 'IEL Nav Menu', 'epflsti' ),
-			'front-row-school-menu' => __( 'Front Row School Menu', 'epflsti' ),
-			'front-row-centres-menu' => __( 'Front Row Centres Menu', 'epflsti' ),
-			'footnote' => __( 'Footnote', 'epflsti' ),
+			'primary'                    => ___( 'Primary Menu'),
+			'primary-igm'                => ___( 'Primary Menu for IGM'),
+			'primary-ibi'                => ___( 'Primary Menu for IBI'),
+			'primary-imt'                => ___( 'Primary Menu for IMT'),
+			'primary-imx'                => ___( 'Primary Menu for IMX'),
+			'primary-iel'                => ___( 'Primary Menu for IEL'),
+			'langmenu'                   => ___( 'Lang Menu'),
+			'front-row-school-menu'      => ___( 'Front Row School Menu'),
+			'front-row-centres-menu'     => ___( 'Front Row Centres Menu'),
+			'front-row-igm-faculty-menu' => ___( 'Front Row IGM Faculty Menu'),
+			'front-row-ibi-faculty-menu' => ___( 'Front Row IBI Faculty Menu'),
+			'front-row-imt-faculty-menu' => ___( 'Front Row IMT Faculty Menu'),
+			'front-row-imx-faculty-menu' => ___( 'Front Row IMX Faculty Menu'),
+			'front-row-iel-faculty-menu' => ___( 'Front Row IEL Faculty Menu'),
+			'front-row-igm-info-menu'    => ___( 'Front Row IGM Info Menu'),
+			'front-row-ibi-info-menu'    => ___( 'Front Row IBI Info Menu'),
+			'front-row-imt-info-menu'    => ___( 'Front Row IMT Info Menu'),
+			'front-row-imx-info-menu'    => ___( 'Front Row IMX Info Menu'),
+			'front-row-iel-info-menu'    => ___( 'Front Row IEL Info Menu'),
+			'footnote'                   => ___( 'Footnote'),
 		) );
 
 		/*

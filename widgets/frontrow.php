@@ -103,6 +103,36 @@ class FrontRow extends \WP_Widget
         }
     }
 
+    public function render_menu_2 ()
+    {
+        if ($this->institute) {
+            wp_nav_menu(array(
+                'theme_location' => sprintf('front-row-%s-faculty-menu', $this->institute),
+                'container_class' => sprintf('menu-front-row menu-institute-faculty menu-%s', $this->institute)
+            ));
+        } else {
+            wp_nav_menu(array(
+                'theme_location' => 'front-row-school-menu',
+                'container_class' => 'menu-front-row  menu-schools'
+            ));
+        }
+    }
+
+    public function render_menu_3 ()
+    {
+        if ($this->institute) {
+            wp_nav_menu(array(
+                'theme_location' => sprintf('front-row-%s-info-menu', $this->institute),
+                'container_class' => sprintf('menu-front-row menu-institute-info menu-%s', $this->institute)
+            ));
+        } else {
+            wp_nav_menu(array(
+                'theme_location' => 'front-row-centres-menu',
+                'container_class' => 'menu-front-row menu-centres'
+            ));
+        }
+    }
+
     public function get_max_actu_count ()
     {
         if ($this->institute) {
@@ -152,19 +182,17 @@ class FrontRow extends \WP_Widget
             } ?>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
-          <?php $this->render_header_2(); ?>
-            <?php wp_nav_menu(array(
-                'theme_location' => 'front-row-school-menu',
-                'container_class' => 'menu-front-row  menu-schools'
-            )); ?>
+          <?php
+              $this->render_header_2();
+              $this->render_menu_2();
+          ?>
         </div>
         <div class="w-100 d-none d-md-block d-lg-none"></div>
         <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
-          <?php $this->render_header_3(); ?>
-          <?php wp_nav_menu(array(
-              'theme_location' => 'front-row-centres-menu',
-              'container_class' => 'menu-front-row menu-centres'
-          )); ?>
+          <?php
+              $this->render_header_3();
+              $this->render_menu_3();
+          ?>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
           <?php $this->render_header_4(); ?>

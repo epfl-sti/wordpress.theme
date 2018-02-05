@@ -7,8 +7,18 @@
  * @package epflsti
  */
 
-use function EPFL\STI\{ get_current_language };
+require_once(__DIR__.'/inc/epfl.php');
+use function EPFL\STI\{ get_current_language, get_institute };
+
 $cl = get_current_language();
+
+$institute = get_institute();
+
+if ($institute) {
+    $nav_menu_slug = "primary-$institute";
+} else {
+    $nav_menu_slug = 'primary';
+}
 
 ?>
 <!DOCTYPE html>
@@ -60,7 +70,7 @@ $cl = get_current_language();
  </topbar>
  <megamenu>
   <?php wp_nav_menu( array(
-      'theme_location'  => 'primary',
+      'theme_location'  => $nav_menu_slug,
   )); ?>
  </megamenu>
 </div>
