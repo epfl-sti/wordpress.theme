@@ -141,7 +141,7 @@ function get_actu_link($title) {
 // To return the current institute's acronym. Used to load the relevant menu.
 // https://regexr.com/3j35i
 function get_institute() {
-  $url = get_permalink();
+  $url = $_SERVER['REQUEST_URI'];
   $path = parse_url($url, PHP_URL_PATH);
   $re = '/\/institute?s\/([^\/]*)/';
   preg_match_all($re, $path, $matches, PREG_SET_ORDER, 0);
