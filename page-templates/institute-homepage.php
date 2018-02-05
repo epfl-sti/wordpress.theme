@@ -21,13 +21,16 @@ use function \EPFL\STI\get_institute;
 		<div class="container">
 
 			<div class="row">
+		<?php dynamic_sidebar( get_institute() . '-homepage' ); ?>
 
-				<div class="col-md-9 content-area" id="primary">
+				<?php dynamic_sidebar( 'right' ); ?>
 
-					<main class="site-main" id="main" role="main">
+				<div class="col-md-12" id="primary">
+
+					<main class="" id="main" role="main">
 
 						<?php while ( have_posts() ) : the_post(); ?>
-							<?php get_template_part( 'loop-templates/content', 'page' ); ?>
+							<?php get_template_part( 'loop-templates/content', 'institute-page' ); ?>
 							<?php
 							// If comments are open or we have at least one comment, load up the comment template.
 							if ( comments_open() || get_comments_number() ) :
@@ -40,32 +43,11 @@ use function \EPFL\STI\get_institute;
 
 				</div><!-- #primary -->
 
-				<?php dynamic_sidebar( 'right' ); ?>
-
-				<!-- NAV MENU START -->
-				<div class="institute-righthand-menu col-md-3">
-					<div class="institute-righthand-menu-title">
-						<?php global $post; ?>
-						<a class="institute-righthand-menu-title-link" href="#"><?php echo strtoupper( get_institute() ); ?></a>
-					</div>
-					<div class="institute-righthand-menu-list-container">
-						<?php wp_nav_menu( array(
-																			'theme_location' => 'institute-menu-'.get_institute(),
-																			'container_class' => sprintf(
-																					'institute-nav-menu %s%s',
-																					get_institute(),
-																					function_exists('pll_current_language') ?
-																						' lang-' . pll_current_language() : '')
-																	) ); ?>
-					</div>
-				</div><!-- .sti_righthand_menu -->
-				<!-- NAV MENU END -->
 
 			</div><!-- .row -->
 
 		</div><!-- .container -->
 
-		<?php dynamic_sidebar( get_institute() . '-homepage' ); ?>
 
 	</div><!-- Container end -->
 

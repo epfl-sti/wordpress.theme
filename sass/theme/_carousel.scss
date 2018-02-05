@@ -5,11 +5,15 @@
   }
 }
 
+.carousel-institute {
+ padding-bottom: 0px;
+}
+
 .carousel.slide {
     background-position: center top;
     width: 100%;
     overflow: hidden;
-    margin-bottom: 20pt;
+    margin-bottom: 0pt;
 }
 
 .carousel-item {
@@ -59,6 +63,12 @@
                 font-size: 1.5em;
             }
         }
+    }
+}
+
+.institute-homepage-buttons {
+    @media screen and (min-width: $carousel-controls-toosmall) {
+        top: ($sti-institute-carousel-button-distancefromtop + 10%) !important;
     }
 }
 
@@ -114,4 +124,19 @@
 
 #carousel {
   max-height: $carousel-container-max-height;
+}
+
+.carousel-institute-dimensions {
+  max-height: $carousel-institute-container-max-height;
+  height: $carousel-institute-container-height;
+}
+
+.carousel-institute-headline {
+  background-color: black;
+  margin: 0 !important;
+  text-align: left;
+  bottom: 0px;
+  width: 100%;
+  padding: 10px 0 0 15px;
+  text-transform: uppercase;
 }

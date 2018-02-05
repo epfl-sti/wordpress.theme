@@ -8,8 +8,8 @@ the school and the institute level.
 */
 
 .institute-homepage-widget {
-  margin-top: 3em;
-  margin-bottom: 3em;
+  margin-top: 0em;
+  margin-bottom: 2em;
 }
 
 .institute-righthand-menu {
@@ -37,4 +37,41 @@ the school and the institute level.
     border-bottom: #111 1px solid;
     height: auto;
   }
+}
+
+.epfl-sti-institute-title {
+ margin-bottom: 0px;
+ color: #444;
+ background-color: #e0e0e0;
+ border-top: white 1px solid;
+ border-bottom: #c11100 8px solid;
+ padding: 15px 15px 15px 25px;
+ text-transform: uppercase;
+}
+
+.epfl-sti-institute-content {
+ padding: 25px 40px 15px 40px;
+ background-color: #f0f0f0;
+ line-height: 30px;
+ color: #3c3c3c;
+}
+
+.epfl-sti-institute-imageframe {
+ padding: 4px;
+ background-color: white;
+ border: #ccc 1px solid;
+}
+
+.epfl-sti-institute-frontrow-header {
+ text-align: center;
+ border-bottom: #c11100 8px solid;
+ border-left: #272727 1px solid;
+ border-right: #272727 1px solid;
+ height: 65px;
+ font-size: 28px;
+}
+
+.epfl-sti-listbox {
+  display: inline-block;
+  margin-bottom: 20px; 
 }

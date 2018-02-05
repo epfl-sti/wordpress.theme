@@ -7,14 +7,14 @@
 
 ?>
 <article id="post-<?php the_ID(); ?>">
-		<header >
+		<header class="entry-header">
 
-			<?php the_title( '<div class="sti_content_title">', '</div>' ); ?>
+			<?php the_title( '<div class="sti_content_title epfl-sti-institute-title">', '</div>' ); ?>
 
-		</header>
+		</header><!-- .entry-header -->
 
-		<div class="entry-content">
-                   <div class="sti_content_prof_photo">
+		<div class="entry-content epfl-sti-institute-content">
+                   <div class="sti_content_prof_photo epfl-sti-institute-imageframe">
                       <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
                   </div><?php # prof_photo ?>
 
@@ -30,9 +30,9 @@
 
 		</div><!-- .entry-content -->
 
-		<footer>
+		<footer class="entry-footer">
 
 			<?php edit_post_link( __( 'Edit', 'epflsti' ), '<span class="edit-link">', '</span>' ); ?>
 
-		</footer>
+		</footer><!-- .entry-footer -->
 </article><!-- #post-## -->
