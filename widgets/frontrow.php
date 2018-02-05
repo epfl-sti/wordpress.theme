@@ -10,10 +10,10 @@ if (! class_exists('WP_Widget')) {
   die('Access denied.');
 }
 
-require_once(dirname(dirname(__FILE__)) . "/inc/i18n.php");
+require_once(dirname(__DIR__) . "/inc/i18n.php");
 use function \EPFL\STI\Theme\___;
 
-require_once(dirname(dirname(__FILE__)) . "/inc/epfl.php");
+require_once(dirname(__DIR__) . "/inc/epfl.php");
 use function EPFL\STI\get_events_from_memento;
 use function EPFL\STI\get_news_from_actu;
 use function EPFL\STI\get_actu_link;
