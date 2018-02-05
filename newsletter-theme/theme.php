@@ -452,7 +452,7 @@ function render_in_the_media_table ($media_list)
             $authors = $epfl_post->get_authors();
             if ($authors) {
               $labname = sprintf(___("%s's lab"), $authors[0]->get_full_name());
-              $laburl = $authors[0]->get_lab_website_url();
+              $laburl = $authors[0]->get_lab()->get_website_url();
               echo "<br>";
               printf('<a href="%s">%s</a>', $laburl, $labname);
           ?>

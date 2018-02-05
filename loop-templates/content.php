@@ -26,7 +26,7 @@
 
 	<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
 
-	<div class="entry-content">
+	<div>
 
 		<?php
 		the_excerpt();
@@ -39,7 +39,7 @@
 		) );
 		?>
 
-	</div><!-- .entry-content -->
+	</div>
 
 	<footer>
 
