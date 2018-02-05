@@ -101,22 +101,6 @@ foreach ($news_raw as $piece) {
     }
 }
 
-$publicationtext1="C. Aprile, A. Cevrero, P. A. Francese, C. Menolfi and M. Braendli et al. An Eight lanes 7Gb/s/pin Source Synchronous Single-Ended RX with Equalization and Far-End Crosstalk Cancellation for Backplane Channels, in IEEE Journal of Solid State Circuits, vol. PP, num. 99, p. 1-12, 2018";
-$publicationlink1="https://infoscience.epfl.ch/record/233712/files/08246724.pdf?version=1";
-$publicationrecord1="https://infoscience.epfl.ch/record/233712?ln=en";
-
-$publicationtext2="S. Mitrovic, I. Bogunovic, A. Norouzi Fard, J. Tarnawski and V. Cevher. Streaming Robust Submodular Maximization: A Partitioned Thresholding Approach. Conference on Neural Information Processing Systems (NIPS), Long Beach, 2017";
-$publicationlink2="https://infoscience.epfl.ch/record/232540/files";
-$publicationrecord2="https://infoscience.epfl.ch/record/232540?ln=en";
-
-$publicationtext3="A. Alacaoglu, Q. Tran-Dinh, O. Fercoq and V. Cevher. Smooth Primal-Dual Coordinate Descent Algorithms for Nonsmooth Convex Optimization. 31st Conference on Neural Information Processing Systems (NIPS 2017), Long Beach, CA, USA, 2017";
-$publicationlink3="https://infoscience.epfl.ch/record/232391/files/SMOOTH-CD_MAIN.pdf?version=1";
-$publicationrecord3="https://infoscience.epfl.ch/record/232391?ln=en";
-
-$publicationtext4="I. Bogunovic, S. Mitrovic, J. Scarlett and V. Cevher. A Distributed Algorithm for Partitioned Robust Submodular Maximization. IEEE International Workshop on Computational Advances in Multi-Sensor Adaptive Processing (CAMSAP), 2017";
-$publicationlink4="https://infoscience.epfl.ch/record/232383/files/A%20Distributed%20Algorithm%20for%20Partitioned%20Robust%20Submodular%20Maximization.pdf?version=1";
-$publicationrecord4="https://infoscience.epfl.ch/record/232383?ln=en";
-
 ?>
 <div class="container"><?php # row if there is a box of links on the right ?>
   <div class=row><?php #  container if there is a box of links on the right ?>
@@ -148,11 +132,14 @@ $publicationrecord4="https://infoscience.epfl.ch/record/232383?ln=en";
            <h5><br><?php echo "$firstname $surname"; ?></h5>
            <div class="container">
             <div class="row entry-body">
-              <div class="col-xs-6 text-column">
-                <?php echo "Office: <a href=https://maps.epfl.ch/?q=$office>$office</a><br><a href=mailto:$epflname@epfl.ch>$epflname@epfl.ch</a><br><a href=https://people.epfl.ch/$epflname>https://people.epfl.ch/$epflname</a><br>Tel: <a href=\"tel:$phone\">$phone</a><br><br>"; ?>
+              <div class="col-md-4">
+                <?php echo 'Office: <a href="https://maps.epfl.ch/?q=' . $office . '">' . $office . '</a><br><a href="mailto:' . $epflname . '@epfl.ch>' . $epflname . '@epfl.ch</a><br><a href="https://people.epfl.ch/' . $epflname . '">https://people.epfl.ch/' . $epflname . '</a><br>Tel: <a href="tel:+' . $phone . '">' . $phone . '</a><br><br>'; ?>
               </div>
-              <div class="col-xs-6 text-column">
+              <div class="col-md-3">
                 <?php echo "$labname<br> $office<br> Station 11<br> 1015 Lausanne<br> Switzerland"; ?>
+              </div>
+              <div class="col-md-5 embed-responsive embed-responsive-4by3">
+                <iframe class="embed-responsive-item" src="https://plan.epfl.ch/iframe/?map_zoom=12&q=<?php echo $person->get_sciper(); ?>" ></iframe>
               </div>
             </div>
            </div>
