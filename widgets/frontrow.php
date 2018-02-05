@@ -171,7 +171,7 @@ class FrontRow extends \WP_Widget
             foreach ($actu_sti_research as $actu) {
                 if ($x<=$this->get_max_actu_count()) {
                     echo '<div class="frontrownews zoomy" style="background-image:url(' . $actu->visual_url . ');">';
-                    echo '  <a class="whitelink" href="' . get_actu_link($actu->title) . '">';
+                    echo '  <a class="whitelink" href="' . $actu->news_url . '">';
                     echo '    <div class="frontrownewstitle">';
                     echo         $actu->title;
                     echo '    </div>';
