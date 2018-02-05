@@ -18,6 +18,7 @@ use function EPFL\STI\get_events_from_memento;
 use function EPFL\STI\get_news_from_actu;
 use function EPFL\STI\get_actu_link;
 use function EPFL\STI\get_current_language;
+use function \EPFL\STI\get_institute;
 
 class FrontRowInstitute extends \WP_Widget
 {
@@ -41,8 +42,9 @@ class FrontRowInstitute extends \WP_Widget
     <div class="container">
       <div class="row no-gutters">
         <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
-          <div class="text-white frontrowtitle epfl-sti-institute-frontrow-header">
-            <?php echo ___('NEWS'); ?><br />
+	  <div class="text-white frontrowtitle epfl-sti-institute-frontrow-header">
+	    <?php $inst=get_institute(); ?>
+            <?php echo sprintf(___('%s NEWS'), strtoupper($inst)); ?><br />
           </div>
           <?php
             $actu_sti_research_url = 'https://actu.epfl.ch/api/v1/channels/10/news/?format=json&lang='.$cl.'&category=3&faculty=3&themes=4';
