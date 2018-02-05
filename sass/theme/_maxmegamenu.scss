@@ -85,7 +85,7 @@ megamenu div.mega-menu-wrap {
         /* All elementary menu entries (cells in a row in a column) */
         li.mega-menu-item li.mega-menu-item {
           // background-color: red !important; border: 1px solid black !important;
-          padding: 8pt 0pt;
+          padding-bottom: 12pt;
         }
 
 
@@ -95,6 +95,7 @@ megamenu div.mega-menu-wrap {
           // color: pink !important;
           color: black;
           font-size: 12pt;
+          padding-bottom: 12pt;
         }
 
         /* All "real" links (excluding titles of <ul>'s), using sufficiently
