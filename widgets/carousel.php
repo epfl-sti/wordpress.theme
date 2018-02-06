@@ -12,10 +12,10 @@ if (! class_exists('WP_Widget')) {
     die( 'Access denied.' );
 }
 
-require_once(dirname(dirname(__FILE__)) . "/inc/i18n.php");
+require_once(dirname(__DIR__) . "/inc/i18n.php");
 use function \EPFL\STI\Theme\___;
 
-require_once(dirname(__FILE__) . "/category-chooser.inc");
+require_once(__DIR__ . "/category-chooser.inc");
 
 class Carousel extends \WP_Widget
 {
@@ -98,7 +98,7 @@ class Carousel extends \WP_Widget
                                 $config["category"]);
     }
 
-	public function update( $new_config, $old_config ) {
+    public function update( $new_config, $old_config ) {
         $config = $old_config;
         $config["category"] = $new_config["category"];
         return $config;

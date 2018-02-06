@@ -1,5 +1,7 @@
 <?php
 
+namespace EPFL\STI\Theme\Widgets;
+
 function render_category_chooser ($id, $name, $current_value)
 {
         echo "<select id=\"$id\" name=\"$name\">\n";

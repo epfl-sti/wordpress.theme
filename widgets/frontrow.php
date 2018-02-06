@@ -1,7 +1,7 @@
 <?php
 
 /**
- * "Front row" thing on the homepage, immediately after the carousel
+ * "Front row" thing on the homepage and institute pages (after the carousel)
  */
 
 namespace EPFL\STI\Theme\Widgets;
