@@ -62,6 +62,12 @@ megamenu div.mega-menu-wrap {
       }
     }
 
+    > li.mega-current-menu-item {
+      > a.mega-menu-link {  // Top-level headers, always visible
+        color: $theRed;
+      }
+    }
+
     > li.mega-menu-megamenu {
       > ul.mega-sub-menu {   // The pop-up white area
         background-color: white;

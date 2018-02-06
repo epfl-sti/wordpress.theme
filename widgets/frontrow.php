@@ -19,6 +19,7 @@ use function EPFL\STI\get_news_from_actu;
 use function EPFL\STI\get_actu_link;
 use function EPFL\STI\get_current_language;
 use function EPFL\STI\get_institute;
+use function EPFL\STI\get_institute_name;
 
 class FrontRow extends \WP_Widget
 {
@@ -143,7 +144,8 @@ class FrontRow extends \WP_Widget
     }
 
     public function get_actu_research_url ()
-    { 
+    {
+        $cl = get_current_language();
         return 'https://actu.epfl.ch/api/v1/channels/10/news/?format=json&lang='.$cl.'&category=3&faculty=3&themes=4';
     }
 
@@ -151,7 +153,7 @@ class FrontRow extends \WP_Widget
     {
         if ($this->institute) {
             return get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=2);
-    
+
         } else {
             return get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=4);
         }
@@ -171,7 +173,7 @@ class FrontRow extends \WP_Widget
             foreach ($actu_sti_research as $actu) {
                 if ($x<=$this->get_max_actu_count()) {
                     echo '<div class="frontrownews zoomy" style="background-image:url(' . $actu->visual_url . ');">';
-                    echo '  <a class="whitelink" href="' . get_actu_link($actu->title) . '">';
+                    echo '  <a class="whitelink" href="' . $actu->news_url . '">';
                     echo '    <div class="frontrownewstitle">';
                     echo         $actu->title;
                     echo '    </div>';
