@@ -19,6 +19,7 @@ use function EPFL\STI\get_news_from_actu;
 use function EPFL\STI\get_actu_link;
 use function EPFL\STI\get_current_language;
 use function EPFL\STI\get_institute;
+use function EPFL\STI\get_institute_name;
 
 class FrontRow extends \WP_Widget
 {
@@ -152,7 +153,7 @@ class FrontRow extends \WP_Widget
     {
         if ($this->institute) {
             return get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=2);
-    
+
         } else {
             return get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=4);
         }

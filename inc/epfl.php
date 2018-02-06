@@ -133,3 +133,15 @@ function get_institute() {
   preg_match_all($re, $path, $matches, PREG_SET_ORDER, 0);
   return $matches[0][1];
 }
+
+const INSTITUTES = array(
+  "igm" => array("en" => "Mechanical Engineering", "fr" => "Génie Mécanique"),
+  "ibi" => array("en" => "Bioengineering", "fr" => "Bioingénierie"),
+  "imt" => array("en" => "Microengineering", "fr" => "Microtechnique"),
+  "imx" => array("en" => "Materials Science and Engineering", "fr" => "Matériaux"),
+  "iel" => array("en" => "Electrical Engineering", "fr" => "Génie Électrique et Électronique"),
+);
+function get_institute_name($institute_acronym, $lang) {
+  $lang = get_current_language();
+  return INSTITUTES[$institute_acronym][$lang];
+}
