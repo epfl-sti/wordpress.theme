@@ -29,8 +29,9 @@ class TextOfPage extends \WP_Widget {
         );
     }
 
-    public function widget ()
+    public function widget ($args, $config)
     {
+        echo $args['before_widget'];
         ?>
            <div class="col-md-12" id="primary">
 	    <main class="" id="main" role="main">
@@ -42,6 +43,7 @@ class TextOfPage extends \WP_Widget {
 	    </main>
 	   </div>
         <?php
+        echo $args['after_widget'];
     }
 
     public function get_loop_template_name ()
