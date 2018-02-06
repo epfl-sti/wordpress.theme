@@ -62,8 +62,9 @@ megamenu div.mega-menu-wrap {
       }
     }
 
-    > li.mega-current-menu-item {
-      > a.mega-menu-link {  // Top-level headers, always visible
+    > li.mega-current-page-ancestor,
+      li.mega-current-menu-ancestor, li.mega-current_page_ancestor {
+      > a.mega-menu-link  {  // Top-level headers, always visible
         color: $theRed;
       }
     }
