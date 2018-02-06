@@ -16,6 +16,8 @@ if (! class_exists('WP_Widget')) {
 require_once(dirname(__DIR__) . "/inc/i18n.php");
 use function \EPFL\STI\Theme\___;
 
+require_once(__DIR__ . "/loop-template-chooser.inc");
+
 class TextOfPage extends \WP_Widget {
     public function __construct()
     {
@@ -29,24 +31,37 @@ class TextOfPage extends \WP_Widget {
         );
     }
 
-    public function widget ()
+    public function widget ($args, $config)
     {
+        echo $args['before_widget'];
         ?>
            <div class="col-md-12" id="primary">
 	    <main class="" id="main" role="main">
 	     <?php while ( have_posts() ) {
                  the_post();
 	         get_template_part('loop-templates/content',
-                                   $this->get_loop_template_name());
+                                   $config['page_template']);
              } ?>
 	    </main>
 	   </div>
         <?php
+        echo $args['after_widget'];
     }
 
-    public function get_loop_template_name ()
+    public function form ($config)
     {
-        return 'institute-homepage'; // TODO: Make this cleverer, configurable, or both
+        $field_id   = $this->get_field_id('page_template');
+        $field_name = $this->get_field_name('page_template');
+
+        printf('<label for="%s">%s</label>', $field_id, ___("Loop template to use:"));
+        render_loop_template_chooser($field_id, $field_name,
+                                     $config["page_template"]);
+    }
+
+    public function update( $new_config, $old_config ) {
+        $config = $old_config;
+        $config["page_template"] = $new_config["page_template"];
+        return $config;
     }
 }
 

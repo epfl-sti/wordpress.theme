@@ -10,11 +10,11 @@ if (! class_exists('WP_Widget')) {
     die( 'Access denied.' );
 }
 
-require_once(dirname(dirname(__FILE__)) . "/inc/i18n.php");
+require_once(dirname(__DIR__) . "/inc/i18n.php");
 use function \EPFL\STI\Theme\___;
 use function \EPFL\STI\Theme\__x;
 
-require_once(dirname(__FILE__) . "/category-chooser.inc");
+require_once(__DIR__ . "/category-chooser.inc");
 
 class WhiteNews extends \WP_Widget
 {
