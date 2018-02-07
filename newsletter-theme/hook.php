@@ -181,7 +181,7 @@ class NewsletterHook
      */
     static function serve_composer_app ()
     {
-        if ($_GET["epflsti"] !== "emails-vue-editor") return;
+        if ( !isset($_GET["epflsti"])  || $_GET["epflsti"] !== "emails-vue-editor") return;
         if (!current_user_can('manage_categories')) {
             die('Not enough privileges');
         }
