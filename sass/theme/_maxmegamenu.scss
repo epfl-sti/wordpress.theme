@@ -122,6 +122,11 @@ megamenu div.mega-menu-wrap {
               text-decoration: underline;
             }
           }
+          &.mega-current_page_item {
+            > a.mega-menu-link {
+              color: red;
+            }
+          }
         }
       }
     }
