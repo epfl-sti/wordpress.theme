@@ -63,7 +63,7 @@ class Contact extends \WP_Widget
     ?>
     <div class="widget epfl-sti-social">
       <div itemscope itemtype="https://schema.org/ContactPoint">
-        <h1><?php echo $before_title . $title . $after_title; ?></h1>
+        <?php echo $before_title . $title . $after_title; ?>
         <address>
           <div itemscope itemtype="schema.org/PostalAddress">
             <strong><span property="name"><?php echo ___('School of Engineering'); ?></span></strong><br />
