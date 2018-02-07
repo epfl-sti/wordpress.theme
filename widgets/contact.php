@@ -2,6 +2,12 @@
 
 /**
  * Show snail-mail contact info.
+ * Example:
+ *   School of Engineering   // name
+ *   Dean's Office           // contactType
+ *   EPFL - ELB 11           // streetAddress
+ *   Station 11              // postOfficeBoxNumber
+ *   CH-1015 Lausanne        // addressCountry - postalCode addressLocality
  */
 
 namespace EPFL\STI\Theme\Widgets;
@@ -16,6 +22,17 @@ use function \EPFL\STI\Theme\__x;
 
 class Contact extends \WP_Widget
 {
+
+  CONST FIELDS = array( "title",
+                        "name",
+                        "contactType",
+                        "streetAddress",
+                        "postOfficeBoxNumber",
+                        "addressCountry",
+                        "postalCode",
+                        "addressLocality"
+                      );
+
   public function __construct()
   {
     parent::__construct(
@@ -30,18 +47,34 @@ class Contact extends \WP_Widget
   // The widget form (for the backend )
   function form($instance) {
     // Check values
-    if( $instance) {
-      $title = esc_attr($instance['title']);
+    if ( $instance ) {
+      foreach(self::FIELDS as $field) {
+        $$field = esc_attr($instance[$field]);
+      }
     } else {
-      $title = '';
+      foreach(self::FIELDS as $field) {
+        $$field = '';
+      }
     }
-    print vsprintf("<p><label for=\"%s\">%s<input class=\"widefat\" id=\"%s\" name=\"%s\" type=\"text\" value=\"%s\" /></label></p>",
+    $this->render_form_entry('title', $title, 'Title:', 'e.g. "Contact"');
+    $this->render_form_entry('name', $name, 'Name:', 'e.g. "School of Engineering"');
+    $this->render_form_entry('contactType', $contactType, 'Type:', 'e.g. "Dean\'s office"');
+    $this->render_form_entry('streetAddress', $streetAddress, 'Address:', 'e.g. "EPFL - ELB 11"');
+    $this->render_form_entry('postOfficeBoxNumber', $postOfficeBoxNumber, 'PO Box:', 'e.g. "Station 11"');
+    $this->render_form_entry('addressCountry', $addressCountry, 'Country Code:', 'e.g. "CH"');
+    $this->render_form_entry('postalCode', $postalCode, 'ZIP Code:', 'e.g. "1015"');
+    $this->render_form_entry('addressLocality', $addressLocality, 'Locality:', 'e.g. "Lausanne"');
+  }
+
+  private function render_form_entry ($nid, $value, $text, $help=null) {
+    print vsprintf("<p><label for=\"%s\">%s<input class=\"widefat\" id=\"%s\" name=\"%s\" type=\"text\" value=\"%s\" /></label><br><small>%s</small></p>",
                     array(
-                      $this->get_field_id('title'),
-                      __x('Title:', 'epfl_sti'),
-                      $this->get_field_id('title'),
-                      $this->get_field_name('title'),
-                      $title)
+                      $this->get_field_id($nid),
+                      __x($text, 'epfl_sti'),
+                      $this->get_field_id($nid),
+                      $this->get_field_name($nid),
+                      $value,
+                      __x($help, 'epfl_sti'))
                     );
   }
 
@@ -49,7 +82,9 @@ class Contact extends \WP_Widget
   public function update( $new_instance, $old_instance )
   {
     $instance = $old_instance;
-    $instance['title'] = isset( $new_instance['title'] ) ? wp_strip_all_tags( $new_instance['title'] ) : '';
+    foreach(self::FIELDS as $field) {
+      $instance[$field] = isset( $new_instance[$field] ) ? wp_strip_all_tags( $new_instance[$field] ) : '';
+    }
     return $instance;
   }
 
@@ -57,20 +92,21 @@ class Contact extends \WP_Widget
   public function widget( $args, $instance )
   {
     extract( $args );
-    $title = isset( $instance['title'] ) ? apply_filters( 'widget_title', $instance['title'] ) : '';
-
+    foreach(self::FIELDS as $field) {
+      $$field = isset( $instance[$field] ) ? apply_filters( 'widget_text', $instance[$field] ) : '';
+    }
     echo $args['before_widget'];
     ?>
-    <div class="widget epfl-sti-social">
+    <div class="widget epfl-sti-contact">
       <div itemscope itemtype="https://schema.org/ContactPoint">
         <?php echo $before_title . $title . $after_title; ?>
         <address>
           <div itemscope itemtype="schema.org/PostalAddress">
-            <strong><span property="name"><?php echo ___('School of Engineering'); ?></span></strong><br />
-            <span itemprop="contactType"><?php echo ___('Dean\'s Office'); ?></span><br />
-            <span itemprop="streetAddress"><?php echo ___('EPFL - ELB 11'); ?></span><br />
-            <span itemprop="postOfficeBoxNumber">Station 11</span><br />
-            <span itemprop="addressCountry">CH</span>-<span itemprop="postalCode">1015</span> <span itemprop="addressLocality">Lausanne</span><br />
+            <strong><span property="name"><?php echo $name; ?></span></strong><br />
+            <span itemprop="contactType"><?php echo $contactType; ?></span><br />
+            <span itemprop="streetAddress"><?php echo $streetAddress; ?></span><br />
+            <span itemprop="postOfficeBoxNumber"><?php echo $postOfficeBoxNumber; ?></span><br />
+            <span itemprop="addressCountry"><?php echo $addressCountry; ?></span>-<span itemprop="postalCode"><?php echo $postalCode; ?></span> <span itemprop="addressLocality"><?php echo $addressLocality; ?></span><br />
           </div>
         </address>
       </div>
