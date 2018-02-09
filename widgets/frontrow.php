@@ -41,7 +41,7 @@ class FrontRow extends \WP_Widget
         if ($this->institute) {
            ?>
 	  <div class="text-white frontrowtitle epfl-sti-institute-frontrow-header">
-            <?php echo sprintf(___('%s NEWS'), strtoupper($this->institute)); ?><br />
+            <?php echo ___('NEWS'); ?><br />
           </div>
            <?php
         } else {
