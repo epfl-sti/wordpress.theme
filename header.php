@@ -54,7 +54,13 @@ if ($institute) {
   </div>
   <?php if ( ! has_custom_logo() ) { ?>
    <div id="epfl-logo"><a href="https://www.epfl.ch"> <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a></div>
-   <a id="sti-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>"> <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.png" /></a>
+   <div id="sti-logo">
+    <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+     <span class="firstline">School of</span>
+     <br>
+     <span class="secondline">Engineering</span>
+    </a>
+   </div>
   <?php } else {
       the_custom_logo();
   } ?>
