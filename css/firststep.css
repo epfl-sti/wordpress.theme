@@ -8,11 +8,6 @@ body {
 }
 
 @font-face {
-  font-family: 'Open Sans Regular';
-  src: url('../fonts/OpenSans-regular.woff');
-}
-
-@font-face {
   font-family: 'Gotham Narrow Bold';
   src: url('../fonts/GothamNarrow-Bold.woff');
 }
