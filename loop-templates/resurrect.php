@@ -16,8 +16,8 @@
 
 <?php
 
-$menu=1;
-$highlight=1;
+$menu=0;
+$highlight=0;
 
 $rosesarered="<img class='ribbon-red-top' src='/wp-content/themes/epfl-sti/img/src/topright.png'>
 <img class='ribbon-red-bottom' src='/wp-content/themes/epfl-sti/img/src/bottomleft.png'>";
@@ -82,16 +82,6 @@ if ($menu) {
                 ?>
 	
 	
-	    <div class="entry-content card-mainmatter <?php echo $listoflinks_width; ?>">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-			<div class="entry-body">
-      			      <div class="sti_content_prof_photo">
-				<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
-			      </div><!-- col  -->
-				<?php the_content(); ?>
-			</div><!-- entry-body -->
-
-  	    </div><!-- .entry-content -->
 
 	 </div><!-- main row-->
 	</div><!-- main container-->

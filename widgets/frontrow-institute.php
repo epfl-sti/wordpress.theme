@@ -18,7 +18,7 @@ use function EPFL\STI\get_events_from_memento;
 use function EPFL\STI\get_news_from_actu;
 use function EPFL\STI\get_actu_link;
 use function EPFL\STI\get_current_language;
-use function \EPFL\STI\get_institute;
+use function EPFL\STI\get_institute;
 
 class FrontRowInstitute extends \WP_Widget
 {
