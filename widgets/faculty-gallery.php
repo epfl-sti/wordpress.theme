@@ -196,7 +196,7 @@ $(function() {
   public function update( $new_config, $old_config )
   {
     $config = $old_config;
-    $config["institute"] = $new_config["institute"];
+    $config["institute"] = wp_strip_all_tags( $new_config["institute"] );
     return $config;
   }
 
