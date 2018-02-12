@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: epfl-sti-theme\n"
 "Report-Msgid-Bugs-To: stiitweb@groupes.epfl.ch\n"
 "POT-Creation-Date: 2018-01-11 14:45+0100\n"
-"PO-Revision-Date: 2018-02-12 16:45+0100\n"
+"PO-Revision-Date: 2018-02-12 17:06+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -63,6 +63,7 @@ msgstr ""
 #: ../newsletter-theme/inc/newsletter_state.php:129
 #: ../newsletter-theme/inc/newsletter_state.php:243
 #: ../newsletter-theme/inc/newsletter_section_categories.inc:18
+#: ../widgets/frontrow.php:45
 msgid "News"
 msgstr ""
 
@@ -85,13 +86,13 @@ msgstr ""
 
 #. unique id
 #: ../widgets/frontrow.php:30 ../widgets/frontrow.php:28
-#: ../widgets/frontrow.php:29
-#, fuzzy
+#: ../widgets/frontrow.php:29 ../widgets/frontrow.php:31
 msgid "EPFL STI Front Row"
 msgstr ""
 
 #: ../widgets/frontrow.php:33 ../widgets/frontrow.php:31
 #: ../widgets/announcements.php:29 ../widgets/frontrow.php:32
+#: ../widgets/frontrow.php:34
 msgid "Shows a blackboard of quick links and useful information"
 msgstr ""
 
@@ -189,19 +190,24 @@ msgid "ENGINEERING"
 msgstr ""
 
 #: ../widgets/frontrow.php:71 ../widgets/frontrow.php:83
+#: ../widgets/frontrow.php:87
 msgid "INSTITUTES"
 msgstr ""
 
 #: ../widgets/frontrow.php:71 ../widgets/frontrow.php:83
+#: ../widgets/frontrow.php:87
 msgid "CENTRES"
 msgstr ""
 
 #: ../widgets/frontrow.php:77 ../widgets/frontrow.php:100
+#: ../widgets/frontrow.php:104
 msgid "UPCOMING"
 msgstr ""
 
 #: ../widgets/frontrow.php:77 ../newsletter-theme/theme.php:317
 #: ../widgets/frontrow.php:94 ../widgets/frontrow.php:100
+#: ../widgets/frontrow.php:98 ../widgets/frontrow.php:104
+#: ../widgets/frontrow.php:99
 msgid "EVENTS"
 msgstr ""
 
@@ -369,11 +375,11 @@ msgstr ""
 msgid "Institute:"
 msgstr ""
 
-#: ../widgets/frontrow.php:60
+#: ../widgets/frontrow.php:60 ../widgets/frontrow.php:63
 msgid "FACULTY"
 msgstr ""
 
-#: ../widgets/frontrow.php:77
+#: ../widgets/frontrow.php:77 ../widgets/frontrow.php:81
 msgid "INFO"
 msgstr ""
 
@@ -453,3 +459,23 @@ msgstr ""
 #: ../inc/epfl.php:172
 msgid "School of _Engineering"
 msgstr "Sciences et Techniques _de l'Ingénieur"
+
+#: ../widgets/frontrow.php:49
+msgid "Research _News"
+msgstr "Actualités — _Recherche"
+
+#: ../widgets/frontrow.php:63
+msgid "Faculty"
+msgstr "Corps professoral"
+
+#: ../widgets/frontrow.php:81
+msgid "Info"
+msgstr "Infos"
+
+#: ../widgets/frontrow.php:85
+msgid "Institutes &amp; _Centres"
+msgstr "Instituts &amp; _Centres"
+
+#: ../widgets/frontrow.php:103
+msgid "Upcoming _Events"
+msgstr "Prochains _Événements"

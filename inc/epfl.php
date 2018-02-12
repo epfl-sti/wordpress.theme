@@ -169,15 +169,15 @@ function get_school_name_parts ()
     # Note to translators: the underscore indicates where to split
     # when displaying in a multiline setting (e.g. in the page
     # header)
-    return _split_on_underscore(___("School of _Engineering"));
+    return split_on_underscore(___("School of _Engineering"));
 }
 
-function _split_on_underscore ($name)
+function split_on_underscore ($name)
 {
     $matched = array();
     if (preg_match('@^(.*?)_(.*)$@', $name, $matched)) {
         return array($matched[1], $matched[2]);
     } else {
-        throw new Error("Cannot find name parts in $name");
+        throw new \Error("Cannot find name parts in $name");
     }
 }

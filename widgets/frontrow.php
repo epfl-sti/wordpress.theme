@@ -19,6 +19,8 @@ use function EPFL\STI\get_news_from_actu;
 use function EPFL\STI\get_actu_link;
 use function EPFL\STI\get_current_language;
 use function EPFL\STI\get_institute;
+use function EPFL\STI\get_school_name_parts;
+use function EPFL\STI\split_on_underscore;
 
 class FrontRow extends \WP_Widget
 {
@@ -40,13 +42,14 @@ class FrontRow extends \WP_Widget
         if ($this->institute) {
            ?>
 	  <div class="text-white frontrowtitle epfl-sti-institute-frontrow-header">
-            <?php echo ___('NEWS'); ?><br />
+            <?php echo ___('News'); ?><br />
           </div>
            <?php
         } else {
+            list($firstline, $secondline) = split_on_underscore(___("Research _News"));
            ?>
           <div class="text-white frontrowtitle">
-            <?php echo ___('RESEARCH'); ?><br /><span class="text-danger"><?php echo ___('NEWS'); ?></span>
+           <span class="firstline"><?php echo $firstline; ?></span><br /><span class="secondline"><?php echo $secondline; ?></span>
           </div>
            <?php
         }
@@ -57,13 +60,14 @@ class FrontRow extends \WP_Widget
         if ($this->institute) {
           ?>
           <div class="text-white frontrowtitle epfl-sti-institute-frontrow-header">
-            <?php echo ___('FACULTY'); ?><br />
+            <?php echo ___('Faculty'); ?><br />
           </div>
           <?php
         } else {
+            list($firstline, $secondline) = get_school_name_parts();
           ?>
           <div class="text-white frontrowtitle">
-            <?php echo ___('SCHOOL OF'); ?><br /><span class="text-danger"><?php echo ___('ENGINEERING'); ?></span>
+           <span class="firstline"><?php echo $firstline; ?></span><br /><span class="secondline"><?php echo $secondline; ?></span>
           </div>
           <?php
         }
@@ -74,14 +78,15 @@ class FrontRow extends \WP_Widget
         if ($this->institute) {
             ?>
             <div class="text-white frontrowtitle epfl-sti-institute-frontrow-header">
-              <?php echo ___('INFO'); ?><br />
+              <?php echo ___('Info'); ?><br />
             </div>
             <?php
         } else {
+            list($firstline, $secondline) = split_on_underscore(___("Institutes &amp; _Centres"));
             ?>
-            <div class="text-white frontrowtitle">
-              <?php echo ___('INSTITUTES'); ?><br /><span class="text-danger">&amp;&nbsp;<?php echo ___('CENTRES'); ?></span>
-            </div>
+             <div class="text-white frontrowtitle">
+              <span class="firstline"><?php echo $firstline; ?></span><br /><span class="secondline"><?php echo $secondline; ?></span>
+             </div>
             <?php
         }
     }
@@ -95,10 +100,11 @@ class FrontRow extends \WP_Widget
             </div>
             <?php
         } else {
+            list($firstline, $secondline) = split_on_underscore(___("Upcoming _Events"));
             ?>
-            <div class="text-white frontrowtitle">
-              <?php echo ___('UPCOMING'); ?><br /><span class="text-danger"><?php echo ___('EVENTS'); ?></span>
-            </div>
+             <div class="text-white frontrowtitle">
+              <span class="firstline"><?php echo $firstline; ?></span><br /><span class="secondline"><?php echo $secondline; ?></span>
+             </div>
             <?php
         }
     }
