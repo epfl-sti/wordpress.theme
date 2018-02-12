@@ -20,13 +20,13 @@ class WhiteNews extends \WP_Widget
 {
     public function __construct ()
     {
-		parent::__construct(
-			'EPFL_STI_Theme_Widget_WhiteNews', // unique id
-			___('EPFL STI White News Row'), // widget title
-			// additional parameters
-			array(
-				'description' => ___( 'Shows rows of collages of news on white background' )
-			)
+        parent::__construct(
+            'EPFL_STI_Theme_Widget_WhiteNews', // unique id
+            ___('EPFL STI White News Row'), // widget title
+            // additional parameters
+            array(
+                'description' => ___( 'Shows rows of collages of news on white background' )
+            )
         );
     }
 
