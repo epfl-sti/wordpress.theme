@@ -190,7 +190,7 @@ $(function() {
     $title_name = $this->get_field_name('institute');
     printf("<label for=\"%s\">%s</label>", $title_id,
            __x('Institute:', 'faculty-gallery wp-admin'));
-    printf("<input type=\"text\" id=\"$title_id\" name=\"$title_name\" value=\"%s\">", esc_html($config["title"]));
+    printf("<input type=\"text\" id=\"$title_id\" name=\"$title_name\" value=\"%s\">", esc_html($config["institute"]));
   }
 
   public function update( $new_config, $old_config )
