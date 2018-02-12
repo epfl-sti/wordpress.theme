@@ -2,16 +2,6 @@ body {
   background-color: #ccc !important;
 }
 
-@font-face {
-  font-family: 'Junction Regular';
-  src: url('../fonts/Junction-regular.woff');
-}
-
-@font-face {
-  font-family: 'Gotham Narrow Bold';
-  src: url('../fonts/GothamNarrow-Bold.woff');
-}
-
 .whitebg {
   background-color: white;
 }
