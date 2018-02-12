@@ -160,7 +160,7 @@ class Institute {
             "imx" => ___("Materials _Science"),
             "iel" => ___("Electrical _Engineering"),
         );
-        return _split_on_underscore($all_names[$this->_code]);
+        return split_on_underscore($all_names[$this->_code]);
     }
 }
 
