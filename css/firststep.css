@@ -27,28 +27,6 @@ body {
  padding-top: 20px;
 }
 
-.eventsplus {
-  width: 16px;
-  height: 16px;
-  background-color: #000;
-  float: right;
-  display: block;
-  font: 14px verdana;
-}
-
-.eventspluslink {
-  color: #fff;
-  text-decoration: none;
-  position: relative;
-  top: -3px;
-  left: 3px;
-}
-
-.eventspluslink:hover {
-  color: #cc161d;
-  text-decoration: none;
-}
-
 .whitenewsmore {
   position: absolute;
   bottom: 10px;
@@ -63,10 +41,6 @@ body {
 
 .whitelink:hover {
   color: #cccccc;
-  text-decoration: none;
-}
-
-#mobile_header {
   text-decoration: none;
 }
 
