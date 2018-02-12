@@ -38,7 +38,7 @@ class FacultyGallery extends \WP_Widget
     }
 
     ?>
-    <directory>
+    <directory class="container">
 <script type="text/javascript">
 var PO=0;
 var PA=0;
@@ -158,30 +158,39 @@ $(function() {
 <style type="text/css">
 </style>
 
-<div class="sti-faculty-sort">
- <div class="buttons">
-  <a href="#" onClick="javascript:return resetDirectoryForm();" id="all"><?php echo ___("All Faculty"); ?></a><br><br>
-  <!---a href=# onClick='alert(PO + " " + PA + " " + PATT + " " + PT + " " + MER + " " + IBI2 + " " + IEL + " " + IGM + " " + IMX + " " + IMT);'>report</a--->
- </div>
- <div class="buttons">
+<div class="sti-faculty-sort row buttons">
+ <div class="col-md-3">
+  <a href="#" onClick="javascript:return resetDirectoryForm();" id="all"><?php echo ___("All Faculty"); ?></a>
+  </div>
+  <div class="col-md-3">
   <a href="#" onClick="javascript:return toggle(this);" id="PO"><?php    echo __x("Full Professors",      "faculty gallery widget");?></a>
   <a href="#" onClick="javascript:return toggle(this);" id="PA"><?php    echo __x("Associate Professors", "faculty gallery widget");?></a>
+  </div>
+  <div class="col-md-3">
   <a href="#" onClick="javascript:return toggle(this);" id="PATT"><?php  echo __x("Assistant Professors", "faculty gallery widget");?></a>
   <a href="#" onClick="javascript:return toggle(this);" id="PT"><?php    echo __x("Adjunct Professors",   "faculty gallery widget");?></a>
+  </div>
+  <div class="col-md-3">
   <a href="#" onClick="javascript:return toggle(this);" id="MER"><?php   echo __x("Senior Scientists",    "faculty gallery widget");?></a>
+  </div>
  </div>
 <?php if (! $institute): ?>
- <div class="buttons">
-  <a href="#" onClick="javascript:return toggle(this);" id="IBI2"><?php  echo __x("Bioengineering",         "faculty gallery widget");?></a>
-  <a href="#" onClick="javascript:return toggle(this);" id="IEL"><?php   echo __x("Electrical Engineering", "faculty gallery widget");?></a>
-  <a href="#" onClick="javascript:return toggle(this);" id="IMX"><?php   echo __x("Materials Science",      "faculty gallery widget");?></a>
-  <a href="#" onClick="javascript:return toggle(this);" id="IGM"><?php   echo __x("Mechanical Engineering", "faculty gallery widget");?></a>
-  <a href="#" onClick="javascript:return toggle(this);" id="IMT"><?php   echo __x("Microengineering",       "faculty gallery widget");?></a>
+ <div class="sti-faculty-sort row buttons">
+  <div class="col-md-3">
+   <a href="#" onClick="javascript:return toggle(this);" id="IBI2"><?php  echo __x("Bioengineering",         "faculty gallery widget");?></a>
+   <a href="#" onClick="javascript:return toggle(this);" id="IEL"><?php   echo __x("Electrical Engineering", "faculty gallery widget");?></a>
+  </div>
+  <div class="col-md-3">
+   <a href="#" onClick="javascript:return toggle(this);" id="IMX"><?php   echo __x("Materials Science",      "faculty gallery widget");?></a>
+   <a href="#" onClick="javascript:return toggle(this);" id="IGM"><?php   echo __x("Mechanical Engineering", "faculty gallery widget");?></a>
+  </div>
+  <div class="col-md-3">
+   <a href="#" onClick="javascript:return toggle(this);" id="IMT"><?php   echo __x("Microengineering",       "faculty gallery widget");?></a>
+  </div>
  </div>
 <?php endif; ?>
-</div>
 
-<div id="<?php echo $div_id; ?>" style='padding: 15px 0px 0px 25px; display: inline-block; background-color:white;'>&nbsp;</div>
+<div id="<?php echo $div_id; ?>" class="row results">&nbsp;</div>
 
 </directory>
 <?php
