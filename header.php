@@ -57,7 +57,7 @@ if ($institute) {
    <div id="sti-logo">
     <?php if ($institute) {
       list($firstline, $secondline) = $institute->get_name_parts();
-      $url = home_url('/' + $institute->get_code());
+      $url = home_url('/' . $institute->get_code());
     } else {
       list($firstline, $secondline) = get_school_name_parts();
       $url = home_url('/');
