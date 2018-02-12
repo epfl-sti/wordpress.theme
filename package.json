@@ -37,6 +37,7 @@
     "bootstrap-vue": "^1.4.1",
     "cookieconsent": "^3.0.4",
     "core-js": "^2.5.3",
+    "cytoscape": "^2.7.16",
     "dragula": "^3.7.2",
     "ionicons": "^3.0.0",
     "jquery": "3.3.1",
