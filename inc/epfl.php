@@ -148,7 +148,7 @@ class Institute {
         return $this->_code;
     }
 
-    function get_name_parts ($language_hint)
+    function get_name_parts ()
     {
         $all_names = array(
             # Note to translators: the underscore indicates where to split
