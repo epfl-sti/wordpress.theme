@@ -160,23 +160,23 @@ $(function() {
 
 <div class="sti-faculty-sort">
  <div class="buttons">
-  <a class="blacklink" href="#" onClick="javascript:return resetDirectoryForm();" id=all class="sti_sort_button">All Faculty</a><br><br>
+  <a href="#" onClick="javascript:return resetDirectoryForm();" id="all"><?php echo ___("All Faculty"); ?></a><br><br>
   <!---a href=# onClick='alert(PO + " " + PA + " " + PATT + " " + PT + " " + MER + " " + IBI2 + " " + IEL + " " + IGM + " " + IMX + " " + IMT);'>report</a--->
  </div>
- <div class="sti_sort_box">
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=PO>Full Professors</a>
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=PA>Associate Professors</a>
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=PATT>Assistant Professors</a>
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=PT>Adjunct Professors</a>
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=MER>Senior Scientists</a>
+ <div class="buttons">
+  <a href="#" onClick="javascript:return toggle(this);" id="PO"><?php    echo __x("Full Professors",      "faculty gallery widget");?></a>
+  <a href="#" onClick="javascript:return toggle(this);" id="PA"><?php    echo __x("Associate Professors", "faculty gallery widget");?></a>
+  <a href="#" onClick="javascript:return toggle(this);" id="PATT"><?php  echo __x("Assistant Professors", "faculty gallery widget");?></a>
+  <a href="#" onClick="javascript:return toggle(this);" id="PT"><?php    echo __x("Adjunct Professors",   "faculty gallery widget");?></a>
+  <a href="#" onClick="javascript:return toggle(this);" id="MER"><?php   echo __x("Senior Scientists",    "faculty gallery widget");?></a>
  </div>
 <?php if (! $institute): ?>
- <div class="sti_sort_box">
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IBI2>Bioengineering</a>
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IEL>Electrical Engineering</a>
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IMX>Materials Science</a>
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IGM>Mechanical Engineering</a>
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IMT>Microengineering</a>
+ <div class="buttons">
+  <a href="#" onClick="javascript:return toggle(this);" id="IBI2"><?php  echo __x("Bioengineering",         "faculty gallery widget");?></a>
+  <a href="#" onClick="javascript:return toggle(this);" id="IEL"><?php   echo __x("Electrical Engineering", "faculty gallery widget");?></a>
+  <a href="#" onClick="javascript:return toggle(this);" id="IMX"><?php   echo __x("Materials Science",      "faculty gallery widget");?></a>
+  <a href="#" onClick="javascript:return toggle(this);" id="IGM"><?php   echo __x("Mechanical Engineering", "faculty gallery widget");?></a>
+  <a href="#" onClick="javascript:return toggle(this);" id="IMT"><?php   echo __x("Microengineering",       "faculty gallery widget");?></a>
  </div>
 <?php endif; ?>
 </div>
