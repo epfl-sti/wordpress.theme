@@ -23,7 +23,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
 
 					<?php while ( have_posts() ) : the_post(); ?>
 
-						<?php get_template_part( 'loop-templates/content', sprintf('header-%s', get_institute()) ); ?>
+						<?php get_template_part( 'loop-templates/content', sprintf('header-%s', get_institute()->get_code()) ); ?>
 
 						<?php
 						// If comments are open or we have at least one comment, load up the comment template.

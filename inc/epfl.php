@@ -131,7 +131,19 @@ function get_institute() {
   $path = parse_url($url, PHP_URL_PATH);
   $re = '/\/institute?s\/([^\/]*)/';
   preg_match_all($re, $path, $matches, PREG_SET_ORDER, 0);
-  return isset($matches[0][1]) ? $matches[0][1] : '' ;
+  return isset($matches[0][1]) ? new Institute($matches[0][1]) : null;
+}
+
+class Institute {
+    function __construct ($institute_code)
+    {
+        $this->_code = $institute_code;
+    }
+
+    function get_code ()
+    {
+        return $this->_code;
+    }
 }
 
 const INSTITUTES = array(

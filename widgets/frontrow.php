@@ -19,7 +19,6 @@ use function EPFL\STI\get_news_from_actu;
 use function EPFL\STI\get_actu_link;
 use function EPFL\STI\get_current_language;
 use function EPFL\STI\get_institute;
-use function EPFL\STI\get_institute_name;
 
 class FrontRow extends \WP_Widget
 {
@@ -108,8 +107,8 @@ class FrontRow extends \WP_Widget
     {
         if ($this->institute) {
             wp_nav_menu(array(
-                'theme_location' => sprintf('front-row-%s-faculty-menu', $this->institute),
-                'container_class' => sprintf('menu-front-row menu-institute-faculty menu-%s', $this->institute)
+                'theme_location' => sprintf('front-row-%s-faculty-menu', $this->institute->get_code()),
+                'container_class' => sprintf('menu-front-row menu-institute-faculty menu-%s', $this->institute->get_code())
             ));
         } else {
             wp_nav_menu(array(
@@ -123,8 +122,8 @@ class FrontRow extends \WP_Widget
     {
         if ($this->institute) {
             wp_nav_menu(array(
-                'theme_location' => sprintf('front-row-%s-info-menu', $this->institute),
-                'container_class' => sprintf('menu-front-row menu-institute-info menu-%s', $this->institute)
+                'theme_location' => sprintf('front-row-%s-info-menu', $this->institute->get_code()),
+                'container_class' => sprintf('menu-front-row menu-institute-info menu-%s', $this->institute->get_code())
             ));
         } else {
             wp_nav_menu(array(

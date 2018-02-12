@@ -37,7 +37,7 @@ class Announcements extends \WP_Widget
     $cl = get_current_language();
     ?>
     <div class="container">
-	    <?php $inst=get_institute(); ?>
+	    <?php $inst_code=get_institute()->get_code(); ?>
 <?php 
 
 if ($cl === "en") {
@@ -46,7 +46,7 @@ if ($cl === "en") {
  $lang="fra";
 }
 
-$incoming_json=file_get_contents("https://stisrv13.epfl.ch/cgi-bin/newtowncrier.cgi?lang=$lang&inst=$inst&ayearagoplease=1");
+$incoming_json=file_get_contents("https://stisrv13.epfl.ch/cgi-bin/newtowncrier.cgi?lang=$lang&inst=$inst_code&ayearagoplease=1");
 $incoming=json_decode($incoming_json);
 $output=$incoming->announcements;
 echo $output; 

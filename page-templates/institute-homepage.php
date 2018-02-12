@@ -21,7 +21,7 @@ use function \EPFL\STI\get_institute;
 		<div class="container">
 
 			<div class="row">
-		<?php dynamic_sidebar( get_institute() . '-homepage' ); ?>
+		<?php dynamic_sidebar( get_institute()->get_code() . '-homepage' ); ?>
 
 				<?php dynamic_sidebar( 'right' ); ?>
 

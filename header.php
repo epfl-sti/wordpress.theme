@@ -15,7 +15,7 @@ $cl = get_current_language();
 $institute = get_institute();
 
 if ($institute) {
-    $nav_menu_slug = "primary-$institute";
+    $nav_menu_slug = "primary-" . $institute->get_code();
 } else {
     $nav_menu_slug = 'primary';
 }
