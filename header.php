@@ -8,7 +8,7 @@
  */
 
 require_once(__DIR__.'/inc/epfl.php');
-use function EPFL\STI\{ get_current_language, get_institute };
+use function EPFL\STI\{ get_current_language, get_institute, get_school_name_parts };
 
 $cl = get_current_language();
 
@@ -55,10 +55,18 @@ if ($institute) {
   <?php if ( ! has_custom_logo() ) { ?>
    <div id="epfl-logo"><a href="https://www.epfl.ch"> <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a></div>
    <div id="sti-logo">
-    <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
-     <span class="firstline">School of</span>
+    <?php if ($institute) {
+      list($firstline, $secondline) = $institute->get_name_parts();
+      $url = home_url('/' + $institute->get_code());
+    } else {
+      list($firstline, $secondline) = get_school_name_parts();
+      $url = home_url('/');
+    }
+    ?>
+    <a href="<?php echo esc_url($url); ?>">
+     <span class="firstline"><?php echo $firstline ?></span>
      <br>
-     <span class="secondline">Engineering</span>
+     <span class="secondline"><?php echo $secondline ?></span>
     </a>
    </div>
   <?php } else {

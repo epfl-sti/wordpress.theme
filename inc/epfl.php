@@ -5,6 +5,9 @@
 
 namespace EPFL\STI;
 
+require_once(__DIR__ . "/i18n.php");
+use function \EPFL\STI\Theme\___;
+
 /**
  * @return The name of the directory the epfl-sti theme is installed at.
  */
@@ -144,16 +147,37 @@ class Institute {
     {
         return $this->_code;
     }
+
+    function get_name_parts ($language_hint)
+    {
+        $all_names = array(
+            # Note to translators: the underscore indicates where to split
+            # when displaying in a multiline setting (e.g. in the page
+            # header)
+            "igm" => ___("Mechanical _Engineering"),
+            "ibi" => ___("Bio_engineering"),
+            "imt" => ___("Micro_engineering"),
+            "imx" => ___("Materials _Science"),
+            "iel" => ___("Electrical _Engineering"),
+        );
+        return _split_on_underscore($all_names[$this->_code]);
+    }
 }
 
-const INSTITUTES = array(
-  "igm" => array("en" => "Mechanical Engineering", "fr" => "Génie Mécanique"),
-  "ibi" => array("en" => "Bioengineering", "fr" => "Bioingénierie"),
-  "imt" => array("en" => "Microengineering", "fr" => "Microtechnique"),
-  "imx" => array("en" => "Materials Science and Engineering", "fr" => "Matériaux"),
-  "iel" => array("en" => "Electrical Engineering", "fr" => "Génie Électrique et Électronique"),
-);
-function get_institute_name($institute_acronym, $lang) {
-  $lang = get_current_language();
-  return INSTITUTES[$institute_acronym][$lang];
+function get_school_name_parts ()
+{
+    # Note to translators: the underscore indicates where to split
+    # when displaying in a multiline setting (e.g. in the page
+    # header)
+    return _split_on_underscore(___("School of _Engineering"));
+}
+
+function _split_on_underscore ($name)
+{
+    $matched = array();
+    if (preg_match('@^(.*?)_(.*)$@', $name, $matched)) {
+        return array($matched[1], $matched[2]);
+    } else {
+        throw new Error("Cannot find name parts in $name");
+    }
 }

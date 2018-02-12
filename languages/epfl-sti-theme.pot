@@ -392,6 +392,36 @@ msgid ""
 "newsletter"
 msgstr ""
 
+#. Note to translators: the underscore indicates where to split
+#. when displaying in a multiline setting (e.g. in the page
+#. header)
+#: ../inc/epfl.php:157
+msgid "Mechanical _Engineering"
+msgstr ""
+
+#: ../inc/epfl.php:158
+msgid "Bio_engineering"
+msgstr ""
+
+#: ../inc/epfl.php:159
+msgid "Micro_engineering"
+msgstr ""
+
+#: ../inc/epfl.php:160
+msgid "Materials _Science"
+msgstr ""
+
+#: ../inc/epfl.php:161
+msgid "Electrical _Engineering"
+msgstr ""
+
 #: ../newsletter-theme/inc/newsletter_section_categories.inc:130
 msgid "Newsletter Section"
+msgstr ""
+
+#. Note to translators: the underscore indicates where to split
+#. when displaying in a multiline setting (e.g. in the page
+#. header)
+#: ../inc/epfl.php:172
+msgid "School of _Engineering"
 msgstr ""

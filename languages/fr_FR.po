@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: epfl-sti-theme\n"
 "Report-Msgid-Bugs-To: stiitweb@groupes.epfl.ch\n"
-"POT-Creation-Date: 2018-01-03 22:46+0100\n"
-"PO-Revision-Date: 2018-01-03 23:13+0100\n"
+"POT-Creation-Date: 2018-01-11 14:45+0100\n"
+"PO-Revision-Date: 2018-02-12 16:45+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -60,30 +60,42 @@ msgid "INNOVATION"
 msgstr ""
 
 #: ../newsletter-theme/inc/newsletter.php:56
+#: ../newsletter-theme/inc/newsletter_state.php:129
+#: ../newsletter-theme/inc/newsletter_state.php:243
+#: ../newsletter-theme/inc/newsletter_section_categories.inc:18
 msgid "News"
 msgstr ""
 
 #: ../newsletter-theme/inc/newsletter.php:61
+#: ../newsletter-theme/inc/newsletter_state.php:141
+#: ../newsletter-theme/inc/newsletter_state.php:276
 msgid "Upcoming events"
 msgstr ""
 
 #: ../newsletter-theme/inc/newsletter.php:66
+#: ../newsletter-theme/inc/newsletter_state.php:148
+#: ../newsletter-theme/inc/newsletter_state.php:292
 msgid "Faculty positions"
 msgstr ""
 
-#: ../widgets/carousel.php:27
+#: ../widgets/carousel.php:27 ../widgets/carousel.php:29
+#: ../widgets/carousel-institute.php:29
 msgid "Rotates a selection of news with a big picture"
 msgstr ""
 
-#: ../widgets/frontrow.php:30
+#. unique id
+#: ../widgets/frontrow.php:30 ../widgets/frontrow.php:28
+#: ../widgets/frontrow.php:29
 #, fuzzy
 msgid "EPFL STI Front Row"
-msgstr "EPFL STI"
+msgstr ""
 
-#: ../widgets/frontrow.php:33
+#: ../widgets/frontrow.php:33 ../widgets/frontrow.php:31
+#: ../widgets/announcements.php:29 ../widgets/frontrow.php:32
 msgid "Shows a blackboard of quick links and useful information"
 msgstr ""
 
+#. unique id
 #: ../widgets/overlay-calendar.php:26
 msgid "EPFL STI Overlay Events Calendar"
 msgstr ""
@@ -94,19 +106,20 @@ msgid ""
 "top of the carousel. (Must come immediately before it in the widget lineup.)"
 msgstr ""
 
-#: ../widgets/white-news.php:26
+#. unique id
+#: ../widgets/white-news.php:26 ../widgets/white-news.php:25
 msgid "EPFL STI White News Row"
 msgstr ""
 
-#: ../widgets/white-news.php:29
+#: ../widgets/white-news.php:29 ../widgets/white-news.php:28
 msgid "Shows rows of collages of news on white background"
 msgstr ""
 
-#: ../widgets/white-news.php:39
+#: ../widgets/white-news.php:39 ../widgets/white-news.php:38
 msgid "Title:"
 msgstr ""
 
-#: ../widgets/white-news.php:46
+#: ../widgets/white-news.php:46 ../widgets/white-news.php:45
 msgid "CSS class:"
 msgstr ""
 
@@ -114,542 +127,329 @@ msgstr ""
 msgid "URLs to fetch:"
 msgstr ""
 
-#~ msgid "Search Results for: %s"
-#~ msgstr "Résultats de la recherche pour: %s"
-
-#~ msgid "Skip to content"
-#~ msgstr "Aller au contenu"
-
-#~ msgid "Oops! That page can&rsquo;t be found."
-#~ msgstr "Oups! La page n'a pu être trouvée."
-
-#~ msgid ""
-#~ "It looks like nothing was found at this location. Maybe try one of the "
-#~ "links below or a search?"
-#~ msgstr ""
-#~ "Il semble qu'il n'y ait rien à cet adresse. Essayez peut-être une "
-#~ "recherche ou l'un des liens ci-dessous ?"
-
-#~ msgid "Most Used Categories"
-#~ msgstr "Catégories les plus utilisées"
-
-#~ msgid "Try looking in the monthly archives. %1$s"
-#~ msgstr "Jetez un œil dans les archives mensuelles. %1$s"
-
-#~ msgid "About:"
-#~ msgstr "A propos:"
-
-#~ msgid "Website"
-#~ msgstr "Site web"
-
-#~ msgid "Profile"
-#~ msgstr "Profil"
-
-#~ msgid "Posts by"
-#~ msgstr "Publié par"
-
-#~ msgid "in"
-#~ msgstr "dans"
-
-#~ msgctxt "comments title"
-#~ msgid "One thought on &ldquo;%2$s&rdquo;"
-#~ msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
-#~ msgstr[0] "Une réflexion sur &ldquo;%2$s&rdquo;"
-#~ msgstr[1] "%1$s réflexions sur &ldquo;%2$s&rdquo;"
-
-#~ msgid "Comment navigation"
-#~ msgstr "Naviguer dans les commentaires"
-
-#~ msgid "&larr; Older Comments"
-#~ msgstr "&larr; Commentaire moins récent"
-
-#~ msgid "Newer Comments &rarr;"
-#~ msgstr "Commentaire plus récent &rarr;"
-
-#~ msgid "Comments are closed."
-#~ msgstr "Les commentaires sont fermés."
-
-#~ msgid "http://wordpress.org/"
-#~ msgstr "http://wordpress.org/"
-
-#~ msgid "Proudly powered by %s"
-#~ msgstr "Propulsé par %s"
-
-#~ msgid "Theme: %1$s by %2$s."
-#~ msgstr "Thème: %1$s par %2$s."
-
-#~ msgid "Version: %1$s"
-#~ msgstr "Version: %1$s"
-
-#~ msgid "Search"
-#~ msgstr "Rechercher"
-
-#~ msgid "Search &hellip;"
-#~ msgstr "Recherche &hellip;"
-
-#~ msgid "Pages:"
-#~ msgstr "Pages: "
-
-#~ msgid "Edit"
-#~ msgstr "Editer"
-
-#~ msgid "Nothing Found"
-#~ msgstr "Non trouvé"
-
-#~ msgid ""
-#~ "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
-#~ msgstr ""
-#~ "Prêt à publier votre premier article ? <a href=\"%1$s\">Démarrer ici</a>."
-
-#~ msgid ""
-#~ "Sorry, but nothing matched your search terms. Please try again with some "
-#~ "different keywords."
-#~ msgstr ""
-#~ "Désolé, rien ne correspond à votre recherche. Veuillez réessayez avec "
-#~ "d'autres termes."
-
-#~ msgid ""
-#~ "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
-#~ "searching can help."
-#~ msgstr "Il semble que nous ne puissions trouver ce que vous recherchez."
-
-#~ msgid "Blank Page Template"
-#~ msgstr "Modèle sans formattage"
-
-#~ msgid "Left and Right Sidebar Layout"
-#~ msgstr "Colonnes à gauche et à droite"
-
-#~ msgid "Empty Page Template"
-#~ msgstr "Modèle de page vide"
-
-#~ msgid "Full Width Page"
-#~ msgstr "Page pleine largeur"
-
-#~ msgid "Left Sidebar Layout"
-#~ msgstr "Colonne à gauche"
-
-#~ msgid "Vertical One Page"
-#~ msgstr "Page verticale unique"
-
-#~ msgid " Edited %4$s"
-#~ msgstr " modifié le %4$s"
-
-#~ msgctxt "post date"
-#~ msgid "Posted on %s"
-#~ msgstr "Publié le %s"
-
-#~ msgctxt "post author"
-#~ msgid "by %s"
-#~ msgstr "par %s"
-
-#~ msgid ", "
-#~ msgstr ","
-
-# dans une catégorie
-#~ msgid "Posted in %1$s"
-#~ msgstr "Publié dans %1$s"
-
-#~ msgid "Tagged %1$s"
-#~ msgstr "Taggé %1$s"
-
-#~ msgid "Leave a comment"
-#~ msgstr "Réagir"
-
-#~ msgid "1 Comment"
-#~ msgstr "1 Commentaire"
-
-#~ msgid "% Comments"
-#~ msgstr "% Commentaires"
-
-#~ msgid "Edit %s"
-#~ msgstr "Editer %s"
-
-#~ msgid "Post navigation"
-#~ msgstr "Navigation"
-
-#~ msgctxt "Previous post link"
-#~ msgid "<i class=\"fa fa-angle-left\"></i>&nbsp;%title"
-#~ msgstr "<i class=\"fa fa-angle-left\"></i>&nbsp;%title"
-
-#~ msgctxt "Next post link"
-#~ msgid "%title&nbsp;<i class=\"fa fa-angle-right\"></i>"
-#~ msgstr "%title&nbsp;<i class=\"fa fa-angle-right\"></i>"
-
-#~ msgid "Primary Menu"
-#~ msgstr "Menu principal"
-
-#~ msgid "Read More..."
-#~ msgstr "Lire la suite..."
-
-#~ msgid "Right Sidebar"
-#~ msgstr "Colonne droite"
-
-#~ msgid "Left Sidebar"
-#~ msgstr "Colonne gauche"
-
-#~ msgid "Hero Slider"
-#~ msgstr "Héro dynamique"
-
-#~ msgid "Hero Static"
-#~ msgstr "Héro statique"
-
-#~ msgid "Footer Full"
-#~ msgstr "Pied pleine page"
-
-#~ msgid "Name"
-#~ msgstr "Nom"
-
-#~ msgid "Email"
-#~ msgstr "Courriel"
-
-#~ msgctxt "noun"
-#~ msgid "Comment"
-#~ msgstr "Commentaire"
-
-#~ msgid "Slider Settings"
-#~ msgstr "Paramètres du Slider"
-
-#~ msgid "Number of slides displaying at once"
-#~ msgstr "Nombre de slides à afficher "
-
-#~ msgid "Slider Time (in ms)"
-#~ msgstr "Temps d'exposition (en ms)"
-
-#~ msgid "Loop Slider Content"
-#~ msgstr "Boucle sur le contenu du Slider"
-
-#~ msgid "Theme Layout Settings"
-#~ msgstr "Paramètres du layout"
-
-#~ msgid "Container width and sidebar defaults"
-#~ msgstr "Paramètrage du conteneur"
-
-#~ msgid "Container Width"
-#~ msgstr "Largeur du conteneur"
-
-#~ msgid "Choose between Bootstrap's container and container-fluid"
-#~ msgstr "Choisir entre le conteneur Bootstrap ou 'container-fluid'"
-
-#~ msgid "Fixed width container"
-#~ msgstr "Conteneur de largeur fixe"
-
-#~ msgid "Full width container"
-#~ msgstr "Conteneur de pleine largeur"
-
-#~ msgid "Sidebar Positioning"
-#~ msgstr "Positionnement des sidebars"
-
-#~ msgid "Set sidebar's position. Can either be: right, left, both or none"
-#~ msgstr "Positionner la sidebar : à gauche, à droite, des 2 côtés, ou aucune"
-
-#~ msgid "Right sidebar"
-#~ msgstr "Sidebar à droite"
-
-#~ msgid "Left sidebar"
-#~ msgstr "Sidebar à gauche"
-
-#~ msgid "Left & Right sidebars"
-#~ msgstr "Sidebar gauche et droite"
-
-#~ msgid "No sidebar"
-#~ msgstr "Pas de sidebar"
-
-#~ msgid "Posts Index Style"
-#~ msgstr "Style de la liste d'articles"
-
-#~ msgid "Choose how to display latest posts"
-#~ msgstr "Comment afficher les posts récents"
-
-#~ msgid "Default"
-#~ msgstr "Défaut"
-
-#~ msgid "Masonry"
-#~ msgstr "Masonry"
-
-#~ msgid "Grid"
-#~ msgstr "Grille"
-
-#~ msgid "Grid Post Columns"
-#~ msgstr "Grille en colonne"
-
-#~ msgid "Choose how many columns to use"
-#~ msgstr "Combien de colonnes"
-
-#~ msgid "Proceed to Checkout"
-#~ msgstr "Finaliser la commande"
-
-#~ msgid "Remove this item"
-#~ msgstr "Enlever cet article"
-
-#~ msgid "No products in the cart."
-#~ msgstr "Le panier est vide"
-
-#~ msgid "Subtotal"
-#~ msgstr "Sous-total"
-
-#~ msgid "View Cart"
-#~ msgstr "Voir le panier"
-
-#~ msgid "Checkout"
-#~ msgstr "Commander"
-
-#~ msgid "Your cart is currently empty."
-#~ msgstr "Votre panier est vide."
-
-#~ msgid "Return To Shop"
-#~ msgstr "Poursuivre ses achats"
-
-#~ msgid "Product"
-#~ msgstr "Produit"
-
-#~ msgid "Price"
-#~ msgstr "Prix"
-
-#~ msgid "Quantity"
-#~ msgstr "Quantité"
-
-#~ msgid "Total"
-#~ msgstr "Total"
-
-#~ msgid "Available on backorder"
-#~ msgstr "Disponible sur commande"
-
-#~ msgid "Coupon:"
-#~ msgstr "Promotion:"
-
-#~ msgid "Coupon code"
-#~ msgstr "Code promotionnel"
-
-#~ msgid "Apply Coupon"
-#~ msgstr "Appliquer la promotion"
-
-#~ msgid "Update Cart"
-#~ msgstr "Rafraîchir le panier"
-
-#~ msgid ""
-#~ "Sorry, it seems that there are no available payment methods for your "
-#~ "state. Please contact us if you require assistance or wish to make "
-#~ "alternate arrangements."
-#~ msgstr ""
-#~ "Il semblerait qu'il n'y ait pas de moyen de paiement disponible pour "
-#~ "votre pays. Contactez-nous si vous avez besoin d'aide ou si vous "
-#~ "souhaitez un autre arrangement."
-
-#~ msgid "Please fill in your details above to see available payment methods."
-#~ msgstr ""
-#~ "Veuillez entrer vos coordonnées ci-dessus pour voir les modes de paiement "
-#~ "disponibles."
-
-#~ msgid ""
-#~ "Since your browser does not support JavaScript, or it is disabled, please "
-#~ "ensure you click the <em>Update Totals</em> button before placing your "
-#~ "order. You may be charged more than the amount stated above if you fail "
-#~ "to do so."
-#~ msgstr ""
-#~ "Votre navigateur ne prend pas en charge JavaScript, veuillez cliquer sur "
-#~ "le bouton <em>Rafraîchir les totaux</ em> avant de passer votre commande. "
-#~ "Vous pourriez sinon être facturé plus que le montant indiqué ci-dessus."
-
-#~ msgid "Update totals"
-#~ msgstr "Rafraîchir le total"
-
-#~ msgid "Qty"
-#~ msgstr "Qté"
-
-#~ msgid "Totals"
-#~ msgstr "Totaux"
-
-#~ msgid ""
-#~ "Sorry, it seems that there are no available payment methods for your "
-#~ "location. Please contact us if you require assistance or wish to make "
-#~ "alternate arrangements."
-#~ msgstr ""
-#~ "Il semblerait qu'il n'existe pas de méthodes de paiement disponibles pour "
-#~ "votre pays. Veuillez nous contacter si vous avez besoin d'aide ou si vous "
-#~ "souhaitez prendre d'autres dispositions."
-
-#~ msgid "Have a coupon?"
-#~ msgstr "Avez-vous un code promotionnel ?"
-
-#~ msgid "Click here to enter your code"
-#~ msgstr "Entrez ici votre code de promotion"
-
-#~ msgid "Username or email"
-#~ msgstr "Nom d'utilisateur ou courriel"
-
-#~ msgid "Password"
-#~ msgstr "Mot de passe"
-
-#~ msgid "Login"
-#~ msgstr "Se connecter"
-
-#~ msgid "Remember me"
-#~ msgstr "Se souvenir de moi"
-
-#~ msgid "Lost your password?"
-#~ msgstr "Perdu votre mot de passe ?"
-
-#~ msgctxt "Product quantity input tooltip"
-#~ msgid "Qty"
-#~ msgstr "Qté"
-
-#~ msgid ""
-#~ "Lost your password? Please enter your username or email address. You will "
-#~ "receive a link to create a new password via email."
-#~ msgstr ""
-#~ "Vous avez perdu votre mot de passe ? Entrez ici votre nom d'utilisateur "
-#~ "ou votre adresse de courriel. Vous allez recevoir par mail un lien pour "
-#~ "renouveler votre mot de passe."
-
-#~ msgid "Reset Password"
-#~ msgstr "Réinitialiser le mot de passe"
-
-#~ msgid "Username or email address"
-#~ msgstr "Nom d'utilisateur ou adresse courriel"
-
-#~ msgid "Register"
-#~ msgstr "S'enregistrer"
-
-#~ msgid "Username"
-#~ msgstr "Nom d'utilisateur"
-
-#~ msgid "Email address"
-#~ msgstr "Adresse courriel"
-
-#~ msgid "Anti-spam"
-#~ msgstr "Anti-spam"
-
-#~ msgid "First name"
-#~ msgstr "Prénom"
-
-#~ msgid "Last name"
-#~ msgstr "Nom"
-
-#~ msgid "Password Change"
-#~ msgstr "Changer de mot de passe"
-
-#~ msgid "Current Password (leave blank to leave unchanged)"
-#~ msgstr "Mot de passe actuel (laisser vide pour ne rien changer)"
-
-#~ msgid "New Password (leave blank to leave unchanged)"
-#~ msgstr "Nouveau mot de passe (laisser vide pour ne rien changer)"
-
-#~ msgid "Confirm New Password"
-#~ msgstr "Confirmer le nouveau mot de passe"
-
-#~ msgid "Save changes"
-#~ msgstr "Sauver les changements"
-
-#~ msgid "Order"
-#~ msgstr "Commande"
-
-#~ msgid "Date"
-#~ msgstr "Date"
-
-#~ msgid "Status"
-#~ msgstr "Statut"
-
-#~ msgid "Recent Orders"
-#~ msgstr "Dernières commandes"
-
-#~ msgctxt "hash before order number"
-#~ msgid "#"
-#~ msgstr "#"
-
-#~ msgid "%s for %s item"
-#~ msgid_plural "%s for %s items"
-#~ msgstr[0] "%s pour %s article"
-#~ msgstr[1] "%s pour %s articles"
-
-#~ msgid "Pay"
-#~ msgstr "Payer"
-
-#~ msgid "View"
-#~ msgstr "Voir"
-
-#~ msgid "Cancel"
-#~ msgstr "Annuler"
-
-#~ msgid "Previous"
-#~ msgstr "Précédent"
-
-#~ msgid "Next"
-#~ msgstr "Prochain"
-
-#~ msgid "Go Shop"
-#~ msgstr "Poursuivre les achats"
-
-#~ msgid "No order has been made yet."
-#~ msgstr "Il n'y a pas encore de commande."
-
-#~ msgid "Billing Address"
-#~ msgstr "Adresse de facturation"
-
-#~ msgid "Shipping Address"
-#~ msgstr "Adresse d'expédition"
-
-#~ msgid "Save Address"
-#~ msgstr "Sauver l'adresse"
-
-#~ msgid "Enter a new password below."
-#~ msgstr "Entrer un nouveau mot de passe ci-dessous."
-
-#~ msgid "New password"
-#~ msgstr "Nouveau mot de passe"
-
-#~ msgid "Re-enter new password"
-#~ msgstr "Saisir à nouveau le mot de passe "
-
-#~ msgid "Save"
-#~ msgstr "Sauver"
-
-#~ msgid "&infin;"
-#~ msgstr "&infin;"
-
-#~ msgid "Never"
-#~ msgstr "Jamais"
-
-#~ msgid "Download"
-#~ msgstr "Télécharger"
-
-#~ msgid "No downloads available yet."
-#~ msgstr "Téléchargements encore indisponibles."
-
-#~ msgid ""
-#~ "Combination of Automattic´s _s theme and Bootstrap 4. Made as a solid "
-#~ "starting point for your next theme project and WordPress website. Use it "
-#~ "as starter theme or as a parent theme. It is up to you. Including Font "
-#~ "Awesome support, built-in widget slider and much more you need for basic "
-#~ "websites. IMPORTANT: All developer dependencies are not bundled with this "
-#~ "install file. Just download the .zip, extract it and run \"npm install\" "
-#~ "and \"gulp copy-assets\" inside the extracted /epflsti folder."
-#~ msgstr ""
-#~ "Une combinaison du thème _s d'Automattic et de Bootstrap 4. Un excellent "
-#~ "point de départ pour votre prochain projet de thème et de site Web de "
-#~ "WordPress. Utilisez-le comme thème de démarrage ou comme thème parent. A "
-#~ "vous de décider. Inclus Font-Awesome, des widgets intégrés et tout ce "
-#~ "dont vous avez besoin pour votre site. IMPORTANT: les dépendances des "
-#~ "développeurs ne sont pas livrées avec ce fichier d'installation. Il "
-#~ "suffit de télécharger le fichier .zip, de l'extraire et d'exécuter \"npm "
-#~ "install\" et \"gulp copy-assets\" dans le dossier extract / epflsti."
-
-#~ msgid "http://sti.epfl.ch"
-#~ msgstr "http://sti.epfl.ch"
-
-#~ msgid "Holger Koenemann"
-#~ msgstr "Holger Koenemann"
-
-#~ msgid "http://www.holgerkoenemann.de"
-#~ msgstr "http://www.holgerkoenemann.de"
-
-#~ msgid "Sidebar"
-#~ msgstr "Sidebar"
-
-#~ msgid ""
-#~ "Combination of Automattic´s _s theme and Bootstrap 4. Made as a solid "
-#~ "starting point for your next theme project and WordPress website. Use it "
-#~ "as starter theme or as parent theme. It is up to you."
-#~ msgstr ""
-#~ "Une combinaison du thème _s  (Automattic) et de Bootstrap 4. Un solide "
-#~ "point de départ pour tout vos projets de site et de thèmes WordPress. A "
-#~ "utiliser comme thème de départ ou comme thème parent."
+#: ../inc/widgets.php:56 ../inc/widgets.php:54
+msgid "Home page"
+msgstr ""
+
+#: ../inc/widgets.php:69
+#, php-format
+msgid "%s home page"
+msgstr ""
+
+#: ../inc/widgets.php:72 ../inc/widgets.php:73
+#, php-format
+msgid "Widget area shown on the %s home page"
+msgstr ""
+
+#: ../newsletter-theme/inc/newsletter_state.php:161
+#: ../newsletter-theme/inc/newsletter_state.php:299
+msgid "In the media"
+msgstr ""
+
+#: ../widgets/google-map.php:24
+msgid "Show a Google Map with pins for all the EPFL STI sites"
+msgstr ""
+
+#: ../widgets/contact-and-social.php:24
+msgid "Show snail-mail contact info and some social buttons"
+msgstr ""
+
+#: ../widgets/contact-and-social.php:35
+msgid "CONTACT"
+msgstr ""
+
+#: ../widgets/contact-and-social.php:38
+#, fuzzy
+msgid "School of Engineering"
+msgstr "Faculté des Sciences et Techniques de l'Ingénieur"
+
+#: ../widgets/contact-and-social.php:39
+msgid "Dean's Office"
+msgstr ""
+
+#: ../widgets/contact-and-social.php:40
+msgid "EPFL - ELB 11"
+msgstr ""
+
+#: ../widgets/frontrow.php:45 ../widgets/frontrow.php:49
+msgid "RESEARCH"
+msgstr ""
+
+#: ../widgets/frontrow.php:45 ../widgets/frontrow.php:43
+#: ../widgets/frontrow.php:49
+msgid "NEWS"
+msgstr ""
+
+#: ../widgets/frontrow.php:65 ../widgets/frontrow.php:66
+msgid "SCHOOL OF"
+msgstr ""
+
+#: ../widgets/frontrow.php:65 ../widgets/frontrow.php:66
+msgid "ENGINEERING"
+msgstr ""
+
+#: ../widgets/frontrow.php:71 ../widgets/frontrow.php:83
+msgid "INSTITUTES"
+msgstr ""
+
+#: ../widgets/frontrow.php:71 ../widgets/frontrow.php:83
+msgid "CENTRES"
+msgstr ""
+
+#: ../widgets/frontrow.php:77 ../widgets/frontrow.php:100
+msgid "UPCOMING"
+msgstr ""
+
+#: ../widgets/frontrow.php:77 ../newsletter-theme/theme.php:317
+#: ../widgets/frontrow.php:94 ../widgets/frontrow.php:100
+msgid "EVENTS"
+msgstr ""
+
+#: ../widgets/white-news.php:52
+msgid "Category:"
+msgstr ""
+
+#: ../widgets/white-news.php:60
+msgid "Max news count:"
+msgstr ""
+
+#: ../widgets/subscribe-newsletter.php:24
+msgid ""
+"Shows an input form to subscribe to the EPFL-STI newsletter through e-mail"
+msgstr ""
+
+#: ../inc/epfl.php:154
+msgid "Mechanical Engineering"
+msgstr "Génie Mécanique"
+
+#: ../inc/setup.php:48
+msgid "Primary Menu"
+msgstr ""
+
+#: ../inc/setup.php:49
+msgid "Primary Menu for IGM"
+msgstr ""
+
+#: ../inc/setup.php:50
+msgid "Primary Menu for IBI"
+msgstr ""
+
+#: ../inc/setup.php:51
+msgid "Primary Menu for IMT"
+msgstr ""
+
+#: ../inc/setup.php:52
+msgid "Primary Menu for IMX"
+msgstr ""
+
+#: ../inc/setup.php:53
+msgid "Primary Menu for IEL"
+msgstr ""
+
+#: ../inc/setup.php:54
+msgid "Lang Menu"
+msgstr ""
+
+#: ../inc/setup.php:55
+msgid "Front Row School Menu"
+msgstr ""
+
+#: ../inc/setup.php:56
+msgid "Front Row Centres Menu"
+msgstr ""
+
+#: ../inc/setup.php:57
+msgid "Front Row IGM Faculty Menu"
+msgstr ""
+
+#: ../inc/setup.php:58
+msgid "Front Row IBI Faculty Menu"
+msgstr ""
+
+#: ../inc/setup.php:59
+msgid "Front Row IMT Faculty Menu"
+msgstr ""
+
+#: ../inc/setup.php:60
+msgid "Front Row IMX Faculty Menu"
+msgstr ""
+
+#: ../inc/setup.php:61
+msgid "Front Row IEL Faculty Menu"
+msgstr ""
+
+#: ../inc/setup.php:62
+msgid "Front Row IGM Info Menu"
+msgstr ""
+
+#: ../inc/setup.php:63
+msgid "Front Row IBI Info Menu"
+msgstr ""
+
+#: ../inc/setup.php:64
+msgid "Front Row IMT Info Menu"
+msgstr ""
+
+#: ../inc/setup.php:65
+msgid "Front Row IMX Info Menu"
+msgstr ""
+
+#: ../inc/setup.php:66
+msgid "Front Row IEL Info Menu"
+msgstr ""
+
+#: ../inc/setup.php:67
+msgid "Footnote"
+msgstr ""
+
+#: ../newsletter-theme/theme.php:287
+msgid "OPEN POSITIONS"
+msgstr ""
+
+#: ../newsletter-theme/theme.php:291
+msgid "No faculty positions yet."
+msgstr ""
+
+#: ../newsletter-theme/theme.php:321
+msgid "No events yet."
+msgstr ""
+
+#: ../newsletter-theme/theme.php:356
+msgid "SwissTech Convention Center"
+msgstr ""
+
+#: ../newsletter-theme/theme.php:359
+msgid "Rolex Learning Center"
+msgstr ""
+
+#: ../newsletter-theme/theme.php:361
+msgid "Microcity Neuchâtel"
+msgstr ""
+
+#: ../newsletter-theme/theme.php:363
+msgid "EPFL campus"
+msgstr ""
+
+#: ../newsletter-theme/theme.php:413
+msgid "IN THE MEDIA"
+msgstr ""
+
+#: ../newsletter-theme/theme.php:417
+msgid "No media excerpts yet."
+msgstr ""
+
+#: ../newsletter-theme/theme.php:430
+msgid "Y-m-d"
+msgstr ""
+
+#: ../newsletter-theme/theme.php:454
+#, php-format
+msgid "%s's lab"
+msgstr ""
+
+#. unique id
+#: ../widgets/announcements.php:26
+msgid "EPFL STI Announcements"
+msgstr ""
+
+#: ../widgets/contact.php:42
+msgid "Show snail-mail contact info"
+msgstr ""
+
+#. unique id
+#: ../widgets/faculty-gallery.php:23
+msgid "EPFL Faculty Gallery"
+msgstr ""
+
+#: ../widgets/faculty-gallery.php:26
+msgid "Shows mugshots of faculty members"
+msgstr ""
+
+#: ../widgets/faculty-gallery.php:192
+msgid "Institute:"
+msgstr ""
+
+#: ../widgets/frontrow.php:60
+msgid "FACULTY"
+msgstr ""
+
+#: ../widgets/frontrow.php:77
+msgid "INFO"
+msgstr ""
+
+#: ../widgets/social.php:28
+msgid "Show some social buttons"
+msgstr ""
+
+#. unique id
+#: ../widgets/text-of-page.php:26
+msgid "Text of the page"
+msgstr ""
+
+#: ../widgets/text-of-page.php:29
+msgid "Shows the normal text of that page (title and content)"
+msgstr ""
+
+#: ../widgets/text-of-page.php:56
+msgid "Loop template to use:"
+msgstr ""
+
+#: ../newsletter-theme/inc/newsletter_section_categories.inc:19
+msgid "Events"
+msgstr ""
+
+#: ../newsletter-theme/inc/newsletter_section_categories.inc:20
+msgid "In The Media"
+msgstr ""
+
+#: ../newsletter-theme/inc/newsletter_section_categories.inc:21
+msgid "Faculty Positions"
+msgstr ""
+
+#: ../newsletter-theme/inc/newsletter_section_categories.inc:47
+msgid "(Not set)"
+msgstr ""
+
+#: ../newsletter-theme/inc/newsletter_section_categories.inc:102
+msgid "Newsletter section:"
+msgstr ""
+
+#: ../newsletter-theme/inc/newsletter_section_categories.inc:112
+msgid ""
+"Posts that belong to this category may be inserted into that section of the "
+"newsletter"
+msgstr ""
+
+#. Note to translators: the underscore indicates where to split
+#. when displaying in a multiline setting (e.g. in the page
+#. header)
+#: ../inc/epfl.php:157
+msgid "Mechanical _Engineering"
+msgstr "Génie _Mécanique"
+
+#: ../inc/epfl.php:158
+msgid "Bio_engineering"
+msgstr "Bio_ingénierie"
+
+#: ../inc/epfl.php:159
+msgid "Micro_engineering"
+msgstr "Micro_technique"
+
+#: ../inc/epfl.php:160
+msgid "Materials _Science"
+msgstr "Génie des _matériaux"
+
+#: ../inc/epfl.php:161
+msgid "Electrical _Engineering"
+msgstr "Génie _Électrique"
+
+#: ../newsletter-theme/inc/newsletter_section_categories.inc:130
+msgid "Newsletter Section"
+msgstr ""
+
+#. Note to translators: the underscore indicates where to split
+#. when displaying in a multiline setting (e.g. in the page
+#. header)
+#: ../inc/epfl.php:172
+msgid "School of _Engineering"
+msgstr "Sciences et Techniques _de l'Ingénieur"
