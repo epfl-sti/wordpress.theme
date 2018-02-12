@@ -63,20 +63,20 @@ function findString(tstring,text) {
     }
     else{
         return true;
-    } 
+    }
 }
 
 function _doPrintOuter(people_listing, lang) {
   var img_dir="https://stisrv13.epfl.ch/profs/img/";
   var test="";
-  
+
   var count=0;
   var result=0;
   for(var x=0; x < people_listing.length; x++) {
    if (people_listing[x]) {
-   
-    //(findString(people_listing[x].title,'PATT') 
-    
+
+    //(findString(people_listing[x].title,'PATT')
+
 	result++;
 	test+="<div style='width:140px; height:285px; float:left; display: inline; clear: none; background-color:#eee; margin: 5px; padding:10px' class='' valign=top>";
 	test+=people_listing[x].link + "<img width='118' border='0' src='";
@@ -85,11 +85,11 @@ function _doPrintOuter(people_listing, lang) {
 	test+="</a>\n\ <div style='width: 110px; font-size:10px'>\n\ ";
 	test+="<a href=" + people_listing[x].labwebsite + ">" + people_listing[x].mylabname + "</a></div></div>";
         count++;
-      
+
    }
   }
   if (count==0) {
-   test+= "<span style='width:82px' class=pandalink><a style='color:white' href=#>THERE ARE NO PROFESSORS IN THIS CATEGORY</a></span>"; 
+   test+= "<span style='width:82px' class=pandalink><a style='color:white' href=#>THERE ARE NO PROFESSORS IN THIS CATEGORY</a></span>";
   }
   document.getElementById('<?php echo $div_id; ?>').innerHTML = test;
 }
@@ -165,7 +165,7 @@ $(function() {
   <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=PATT>Assistant Professors</a>
   <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=PT>Adjunct Professors</a>
   <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=MER>Senior Scientists</a>
- </div> 
+ </div>
 <?php if (! $institute): ?>
  <div class="sti_sort_box">
   <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IBI2>Bioengineering</a>
@@ -190,13 +190,13 @@ $(function() {
     $title_name = $this->get_field_name('institute');
     printf("<label for=\"%s\">%s</label>", $title_id,
            __x('Institute:', 'faculty-gallery wp-admin'));
-    printf("<input type=\"text\" id=\"$title_id\" name=\"$title_name\" value=\"%s\">", esc_html($config["title"]));
+    printf("<input type=\"text\" id=\"$title_id\" name=\"$title_name\" value=\"%s\">", esc_html($config["institute"]));
   }
 
   public function update( $new_config, $old_config )
   {
     $config = $old_config;
-    $config["institute"] = $new_config["institute"];
+    $config["institute"] = wp_strip_all_tags( $new_config["institute"] );
     return $config;
   }
 
