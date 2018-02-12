@@ -54,22 +54,35 @@ if ($institute) {
   </div>
   <?php if ( ! has_custom_logo() ) { ?>
    <div id="epfl-logo"><a href="https://www.epfl.ch"> <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a></div>
-   <div id="sti-logo">
-    <?php if ($institute) {
-      list($firstline, $secondline) = $institute->get_name_parts();
-      $url = home_url('/' . $institute->get_code());
+   <div id="sti-mini-nav">
+    <?php
+    list($firstline_school, $secondline_school) = get_school_name_parts();
+    if ($institute) {
+        list($firstline, $secondline) = $institute->get_name_parts();
+        $url = home_url('/' . $institute->get_code());
+        ?>
+         <span class="sti-breadcrumb"><a href="/"><span class="firstline"><?php echo $firstline_school ?></span> <span class="secondline"><?php echo $secondline_school ?></span></a>&nbsp;&gt;</span>
+         <br>
+         <a class="text-logo" href="<?php echo esc_url($url); ?>">
+          <span class="firstline"><?php echo $firstline ?></span>
+          <br>
+          <span class="secondline"><?php echo $secondline ?></span>
+         </a>
+        <?php
     } else {
-      list($firstline, $secondline) = get_school_name_parts();
-      $url = home_url('/');
+        $url = home_url('/');
+        ?>
+         <a class="text-logo" href="<?php echo esc_url($url); ?>">
+          <span class="firstline"><?php echo $firstline_school ?></span>
+          <br>
+          <span class="secondline"><?php echo $secondline_school ?></span>
+         </a>
+        <?php
     }
     ?>
-    <a href="<?php echo esc_url($url); ?>">
-     <span class="firstline"><?php echo $firstline ?></span>
-     <br>
-     <span class="secondline"><?php echo $secondline ?></span>
-    </a>
    </div>
-  <?php } else {
+  <?php
+  } else {
       the_custom_logo();
   } ?>
 
