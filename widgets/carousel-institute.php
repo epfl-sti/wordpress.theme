@@ -21,15 +21,15 @@ class CarouselInstitute extends \WP_Widget
 {
     public function __construct()
     {
-		parent::__construct(
-			'EPFL_STI_Theme_Widget_Carousel_Institute', // unique id
-			'EPFL STI Institute News Carousel', // widget title
-			// additional parameters
-			array(
-				'description' => ___( 'Rotates a selection of news with a big picture' )
-			)
+        parent::__construct(
+            'EPFL_STI_Theme_Widget_Carousel_Institute', // unique id
+            'EPFL STI Institute News Carousel',         // widget title
+            // additional parameters
+            array(
+                'description' => ___( 'Rotates a selection of news with a big picture' )
+            )
         );
-	}
+    }
 
     function render_carousel_items ()
     {
@@ -42,54 +42,22 @@ class CarouselInstitute extends \WP_Widget
                 $link = get_the_permalink();
                 global $post;
                 $subtitle = function_exists("get_the_subtitle") ? get_the_subtitle($post, "", "", false) : null;
-    ?>
-    <div class="carousel-item">
-      <div>
-        <?php the_post_thumbnail("full"); ?>
-        <div class="legend institute-homepage-buttons carousel-institute-headline">
-
-  <!--h1-->
-
-  <a href="
-
-<?php echo $link; ?>
-
-  ">
-
-<?php the_title(); ?>
-
-  </a>
-
-  <!--/h1-->
-
-<?php if ($subtitle) : ?>
-
-	  <!--h2-->
-
-	  <a href="
-
-	<?php echo $link; ?>
-
-	  ">
-
-	<?php echo $subtitle; ?>
-
-	  </a>
-
-          <!--/h2-->
-
-<?php endif; ?>
-
-
-	</div>
-      </div>
-    </div>
-                <?php
+            ?>
+                <div class="carousel-item">
+                    <div>
+                    <?php the_post_thumbnail("full"); ?>
+                        <div class="legend institute-homepage-buttons carousel-institute-headline">
+                            <a href="<?php echo $link; ?>"><?php the_title(); ?></a>
+                            <?php if ($subtitle) : ?>
+                                <a href="<?php echo $link; ?>"><?php echo $subtitle; ?></a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            <?php
             }
         }
         wp_reset_postdata();
-    ?>
-    <?php
     }
 
     public function widget ($args, $config)
@@ -101,22 +69,22 @@ class CarouselInstitute extends \WP_Widget
             return;
         }
         echo $args['before_widget'];
-    ?>
-<div id="container-carousel ">
- <div id="carousel" class="carousel slide carousel-institute-dimensions" data-ride="carousel">
-    <?php $this->render_carousel_items(); ?>
- </div>
- <?php # The wave must be outside the carousel, so as not to be clipped. ?>
- <a class="sti-carousel-button prev institute-homepage-buttons" href="#carousel" role="button" data-slide="prev">
-  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-  <span class="sr-only">Previous</span>
- </a>
- <a class="sti-carousel-button next institute-homepage-buttons" href="#carousel" role="button" data-slide="next">
-  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-  <span class="sr-only">Next</span>
- </a>
-</div>
-   <?php
+        ?>
+        <div id="container-carousel ">
+            <div id="carousel" class="carousel slide carousel-institute-dimensions" data-ride="carousel">
+                <?php $this->render_carousel_items(); ?>
+            </div>
+            <?php # The wave must be outside the carousel, so as not to be clipped. ?>
+            <a class="sti-carousel-button prev institute-homepage-buttons" href="#carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="sti-carousel-button next institute-homepage-buttons" href="#carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <?php
         echo $args['after_widget'];
     }
 
@@ -127,7 +95,7 @@ class CarouselInstitute extends \WP_Widget
                                 $config["category"]);
     }
 
-	public function update( $new_config, $old_config ) {
+    public function update( $new_config, $old_config ) {
         $config = $old_config;
         $config["category"] = $new_config["category"];
         return $config;
