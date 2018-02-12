@@ -20,13 +20,13 @@ class WhiteNews extends \WP_Widget
 {
     public function __construct ()
     {
-		parent::__construct(
-			'EPFL_STI_Theme_Widget_WhiteNews', // unique id
-			___('EPFL STI White News Row'), // widget title
-			// additional parameters
-			array(
-				'description' => ___( 'Shows rows of collages of news on white background' )
-			)
+        parent::__construct(
+            'EPFL_STI_Theme_Widget_WhiteNews', // unique id
+            ___('EPFL STI White News Row'), // widget title
+            // additional parameters
+            array(
+                'description' => ___( 'Shows rows of collages of news on white background' )
+            )
         );
     }
 
@@ -85,46 +85,51 @@ class WhiteNews extends \WP_Widget
         $has_custom_template = locate_template("loop-templates/white-news");
 
         echo $args['before_widget'];
-?>
-<center>
- <div class="secondaryrow whitebg">
-  <div class="secondarytitle"><?php echo esc_html(__x($config["title"], "white-news" )); ?></div>
-   <?php
-        foreach ($newsitems as $the_post) {
-            global $post; $post = $the_post; setup_postdata($post);
-            if ($has_custom_template) {
-                get_template("loop-templates/white-news");
-            } else {
-                ?>
-<div class="secondarycontainer <?php echo $config["cssclass"]; ?>">
-  <a class="secondarylink" href="<?php echo get_the_permalink(); ?>">
-    <div>
-      <div class="wp-post-image-container">
-        <?php
-        if (get_post_meta($the_post->ID)["news_has_video"][0] === "True") {
-          echo '<object class="epfl-actu-video-in-new" data="https://www.youtube.com/embed/'.get_post_meta($the_post->ID)["youtube_id"][0].'"></object>';
-        } else {
-          the_post_thumbnail("full");
-        }
         ?>
-      </div>
-      <img style="position: absolute; top:-11px; right: -10px;" src="/wp-content/themes/epfl-sti/img/src/topright.png">
-      <img style="position: absolute; top:153px; right: 295px;" src="/wp-content/themes/epfl-sti/img/src/bottomleft.png">
-    </div>
-  </a>
-  <div class="secondarycontent">
-  <a href="<?php echo get_the_permalink(); ?>"><?php the_title(); ?></a>
-  <br />
-   <a href="#"><img class="whitenewsmore" src="/wp-content/themes/epfl-sti/img/src/yetmore.png" align="right"></a>
-  </div>
-</div>
-                <?php
-            }
-        }  // foreach ($newsitems as $the_post)
-   ?>
- </div>
-</center>
-<?php
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="secondaryrow whitebg">
+                <div class="secondarytitle"><?php echo esc_html(__x($config["title"], "white-news" )); ?></div>
+                    <?php
+                    foreach ($newsitems as $the_post) {
+                        global $post; $post = $the_post; setup_postdata($post);
+                        if ($has_custom_template) {
+                            get_template("loop-templates/white-news");
+                        } else {
+                        ?>
+                            <div class="secondarycontainer <?php echo $config["cssclass"]; ?>">
+                                <a class="secondarylink" href="<?php echo get_the_permalink(); ?>">
+                                    <div>
+                                        <div class="wp-post-image-container">
+                                        <?php
+                                            if (get_post_meta($the_post->ID)["news_has_video"][0] === "True") {
+                                                echo '<object class="epfl-actu-video-in-new" data="https://www.youtube.com/embed/'.get_post_meta($the_post->ID)["youtube_id"][0].'"></object>';
+                                            } else {
+                                                the_post_thumbnail("full");
+                                            }
+                                        ?>
+                                        </div>
+                                        <img style="position: absolute; top:-11px; right: -10px;" src="/wp-content/themes/epfl-sti/img/src/topright.png">
+                                        <img style="position: absolute; top:153px; right: 295px;" src="/wp-content/themes/epfl-sti/img/src/bottomleft.png">
+                                    </div>
+                                </a>
+                                <div class="secondarycontent">
+                                    <a href="<?php echo get_the_permalink(); ?>">
+                                        <?php the_title(); ?>
+                                    </a>
+                                    <br />
+                                    <a href="#">
+                                        <img class="whitenewsmore" src="/wp-content/themes/epfl-sti/img/src/yetmore.png" align="right">
+                                    </a>
+                                </div>
+                            </div>
+                        <?php
+                        }
+                    }  // foreach ($newsitems as $the_post)
+                    ?>
+                </div>
+            </div>
+        </div>
+    <?php
         echo $args['after_widget'];
     }  // public function widget
 }  // class WhiteNews
