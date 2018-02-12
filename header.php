@@ -37,7 +37,7 @@ if ($institute) {
     <!-- CSS -->
     <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/normalize.css">
     <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/ionicons.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="theme-epfl-sti/node_modules/npm-font-open-sans/open-sans.css">
     <link href='<?php echo get_stylesheet_directory_uri(); ?>/css/firststep.css' rel='stylesheet' type='text/css'>
     <!-- end custom -->
 
@@ -53,8 +53,14 @@ if ($institute) {
    <ul class="epflstilangmenu"><?php if (function_exists('pll_the_languages')) { pll_the_languages(); } ?></ul>
   </div>
   <?php if ( ! has_custom_logo() ) { ?>
-   <div id="epfl_logo"><a href="https://www.epfl.ch"> <img width=174 src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a></div>
-   <a id="sti_logo" href="<?php echo esc_url( home_url( '/' ) ); ?>"> <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/sti.png" /></a>
+   <div id="epfl-logo"><a href="https://www.epfl.ch"> <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a></div>
+   <div id="sti-logo">
+    <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+     <span class="firstline">School of</span>
+     <br>
+     <span class="secondline">Engineering</span>
+    </a>
+   </div>
   <?php } else {
       the_custom_logo();
   } ?>

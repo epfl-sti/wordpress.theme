@@ -39,7 +39,7 @@ megamenu div.mega-menu-wrap {
     > li.mega-menu-item {
       > a.mega-menu-link {  // Top-level headers, always visible
         color: black;
-        font: 13pt \"Open Sans Regular\", sans-serif;
+        font: 13pt "Open Sans", sans-serif;
         padding: 6pt;
         @include maxmegamenu-desktop {
           background-image: url(/wp-content/themes/epfl-sti/img/src/sideshadow.gif);

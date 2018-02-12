@@ -52,7 +52,7 @@ topbar .language {
   float:right;
 }
 
-#epfl_logo {
+#epfl-logo {
   height: 100%;
   background-color: white;
   float: left;
@@ -60,7 +60,6 @@ topbar .language {
   img {
     display: block;
     float: left;
-    width: 174px;
     // border-top: 15px;
     // border-left: 10px;
     // border-style: solid white;
@@ -68,14 +67,22 @@ topbar .language {
   }
 }
 
-#sti_logo {
+#sti-logo {
   display: block;
+  margin-top: 30pt;
+  margin-left: 8pt;
   float: left;
-  img {
-    width: 23%;
-    max-width: 249px;
-    min-width: 190px;
-    margin: 15px 16px 0 0;
+  font: 21pt "Open Sans";
+  text-transform: uppercase;
+  line-height: 1;
+  a, a:hover, a:visited, a:focus {
+    text-decoration: none;
+  }
+  .firstline {
+    font-weight: 600;
+  }
+  .secondline {
+    color: $theRed;
   }
 }
 

@@ -36,7 +36,11 @@ function serve_file($path_relative)
         die();
     }
 
-    $type = mime_content_type($path);
+    if (preg_match('@[.]css$@', $path_relative)) {
+        $type = "text/css";
+    } else {
+        $type = mime_content_type($path);
+    }
     http_response_code(200);
     header("Content-Type: " . $type);
     readfile($path);
