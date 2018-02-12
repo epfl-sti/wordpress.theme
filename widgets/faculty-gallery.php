@@ -95,19 +95,20 @@ function _doPrintOuter(people_listing, lang) {
 }
 
 function resetDirectoryForm() {
-    $(".sti_faculty_sort a").data("active", false);
-    $(".sti_faculty_sort a#all").data("active", true);
+    $(".sti-faculty-sort a").data("active", false);
+    $(".sti-faculty-sort a#all").data("active", true);
     redraw();
     return false;  // For the onClick() handler to suppress the event
 }
 
 function redraw () {
     var $institute = <?php echo ($institute ? "\"$institute\"" : undefined); ?>;
-    $(".sti_faculty_sort a").map(function (unused_index, e) {
-        $(e).removeClass('blacklinkinverted');
-        $(e).removeClass('blacklink');
-        var activeClass = $(e).data("active") ? 'blacklinkinverted' : 'blacklink';
-        $(e).addClass(activeClass);
+    $(".sti-faculty-sort a").map(function (unused_index, e) {
+        if ($(e).data("active")) {
+            $(e).addClass('sti-toggled');
+        } else {
+            $(e).removeClass('sti-toggled');
+        }
     })
 
     function anchor2cgiparam (id) {
@@ -140,7 +141,7 @@ function redraw () {
 }
 
 function toggle (this_link) {
-    $(".sti_faculty_sort a#all").data("active", false);
+    $(".sti-faculty-sort a#all").data("active", false);
     var oldState = $(this_link).data("active");
     $(this_link).data("active", ! oldState);
     redraw();
@@ -154,8 +155,11 @@ $(function() {
 
 </script>
 
-<div class="sti_faculty_sort">
- <div class="sti_sort_box">
+<style type="text/css">
+</style>
+
+<div class="sti-faculty-sort">
+ <div class="buttons">
   <a class="blacklink" href="#" onClick="javascript:return resetDirectoryForm();" id=all class="sti_sort_button">All Faculty</a><br><br>
   <!---a href=# onClick='alert(PO + " " + PA + " " + PATT + " " + PT + " " + MER + " " + IBI2 + " " + IEL + " " + IGM + " " + IMX + " " + IMT);'>report</a--->
  </div>
