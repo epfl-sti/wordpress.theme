@@ -47,3 +47,4 @@ $container = get_theme_mod( 'epflsti_container_type' );
 </div><!-- Wrapper end -->
 
 <?php get_footer(); ?>
+<!-- template: fullwithpage.php -->

@@ -30,4 +30,5 @@
 <?php endwhile; // end of the loop. ?>
 <?php wp_footer(); ?>
 </body>
+<!-- template: blank.php -->
 </html>
