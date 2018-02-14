@@ -158,7 +158,7 @@ $(function() {
 <style type="text/css">
 </style>
 
-<div class="sti-faculty-sort row buttons">
+<div class="sti-faculty-sort row no-gutters buttons">
  <div class="col-md-3">
   <a href="#" onClick="javascript:return resetDirectoryForm();" id="all"><?php echo ___("All Faculty"); ?></a>
   </div>
@@ -175,7 +175,7 @@ $(function() {
   </div>
  </div>
 <?php if (! $institute): ?>
- <div class="sti-faculty-sort row buttons">
+ <div class="sti-faculty-sort row no-gutters buttons">
   <div class="col-md-3">
    <a href="#" onClick="javascript:return toggle(this);" id="IBI2"><?php  echo __x("Bioengineering",         "faculty gallery widget");?></a>
    <a href="#" onClick="javascript:return toggle(this);" id="IEL"><?php   echo __x("Electrical Engineering", "faculty gallery widget");?></a>
