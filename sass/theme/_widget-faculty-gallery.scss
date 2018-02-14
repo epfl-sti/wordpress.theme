@@ -1,0 +1,41 @@
+directory {
+
+  .sti-faculty-sort {
+    margin-bottom: 15px;
+    background-color: white;
+
+    a, a:visited {
+      color: #333;
+      text-decoration: none;
+      background-color: #eee;
+      margin: 8px ;
+      padding: 5px 15px;
+      width: 90%;
+      display: inline-block;
+    }
+
+    a:hover {
+      color: white;
+      text-decoration: none;
+      background-color: #444;
+    }
+
+    a.sti-toggled, a.sti-toggled:visited {
+      color: white;
+      text-decoration: none;
+      background-color: #333;
+    }
+
+    a.sti-toggled:hover {
+      text-decoration: none;
+    }
+  }
+
+  .results {
+    padding: 15px 0px 0px 25px;
+    display: block;
+    width: 100%;
+    background-color:white;
+    overflow: hidden;  // Contain floats
+  }
+}

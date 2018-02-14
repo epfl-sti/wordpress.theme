@@ -38,7 +38,7 @@ class FacultyGallery extends \WP_Widget
     }
 
     ?>
-    <directory>
+    <directory class="container">
 <script type="text/javascript">
 var PO=0;
 var PA=0;
@@ -95,19 +95,20 @@ function _doPrintOuter(people_listing, lang) {
 }
 
 function resetDirectoryForm() {
-    $(".sti_faculty_sort a").data("active", false);
-    $(".sti_faculty_sort a#all").data("active", true);
+    $(".sti-faculty-sort a").data("active", false);
+    $(".sti-faculty-sort a#all").data("active", true);
     redraw();
     return false;  // For the onClick() handler to suppress the event
 }
 
 function redraw () {
     var $institute = <?php echo ($institute ? "\"$institute\"" : undefined); ?>;
-    $(".sti_faculty_sort a").map(function (unused_index, e) {
-        $(e).removeClass('blacklinkinverted');
-        $(e).removeClass('blacklink');
-        var activeClass = $(e).data("active") ? 'blacklinkinverted' : 'blacklink';
-        $(e).addClass(activeClass);
+    $(".sti-faculty-sort a").map(function (unused_index, e) {
+        if ($(e).data("active")) {
+            $(e).addClass('sti-toggled');
+        } else {
+            $(e).removeClass('sti-toggled');
+        }
     })
 
     function anchor2cgiparam (id) {
@@ -140,7 +141,7 @@ function redraw () {
 }
 
 function toggle (this_link) {
-    $(".sti_faculty_sort a#all").data("active", false);
+    $(".sti-faculty-sort a#all").data("active", false);
     var oldState = $(this_link).data("active");
     $(this_link).data("active", ! oldState);
     redraw();
@@ -154,30 +155,42 @@ $(function() {
 
 </script>
 
-<div class="sti_faculty_sort">
- <div class="sti_sort_box">
-  <a class="blacklink" href="#" onClick="javascript:return resetDirectoryForm();" id=all class="sti_sort_button">All Faculty</a><br><br>
-  <!---a href=# onClick='alert(PO + " " + PA + " " + PATT + " " + PT + " " + MER + " " + IBI2 + " " + IEL + " " + IGM + " " + IMX + " " + IMT);'>report</a--->
- </div>
- <div class="sti_sort_box">
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=PO>Full Professors</a>
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=PA>Associate Professors</a>
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=PATT>Assistant Professors</a>
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=PT>Adjunct Professors</a>
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=MER>Senior Scientists</a>
+<style type="text/css">
+</style>
+
+<div class="sti-faculty-sort row buttons">
+ <div class="col-md-3">
+  <a href="#" onClick="javascript:return resetDirectoryForm();" id="all"><?php echo ___("All Faculty"); ?></a>
+  </div>
+  <div class="col-md-3">
+  <a href="#" onClick="javascript:return toggle(this);" id="PO"><?php    echo __x("Full Professors",      "faculty gallery widget");?></a>
+  <a href="#" onClick="javascript:return toggle(this);" id="PA"><?php    echo __x("Associate Professors", "faculty gallery widget");?></a>
+  </div>
+  <div class="col-md-3">
+  <a href="#" onClick="javascript:return toggle(this);" id="PATT"><?php  echo __x("Assistant Professors", "faculty gallery widget");?></a>
+  <a href="#" onClick="javascript:return toggle(this);" id="PT"><?php    echo __x("Adjunct Professors",   "faculty gallery widget");?></a>
+  </div>
+  <div class="col-md-3">
+  <a href="#" onClick="javascript:return toggle(this);" id="MER"><?php   echo __x("Senior Scientists",    "faculty gallery widget");?></a>
+  </div>
  </div>
 <?php if (! $institute): ?>
- <div class="sti_sort_box">
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IBI2>Bioengineering</a>
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IEL>Electrical Engineering</a>
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IMX>Materials Science</a>
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IGM>Mechanical Engineering</a>
-  <a class="blacklink" href="#" onClick="javascript:return toggle(this);" id=IMT>Microengineering</a>
+ <div class="sti-faculty-sort row buttons">
+  <div class="col-md-3">
+   <a href="#" onClick="javascript:return toggle(this);" id="IBI2"><?php  echo __x("Bioengineering",         "faculty gallery widget");?></a>
+   <a href="#" onClick="javascript:return toggle(this);" id="IEL"><?php   echo __x("Electrical Engineering", "faculty gallery widget");?></a>
+  </div>
+  <div class="col-md-3">
+   <a href="#" onClick="javascript:return toggle(this);" id="IMX"><?php   echo __x("Materials Science",      "faculty gallery widget");?></a>
+   <a href="#" onClick="javascript:return toggle(this);" id="IGM"><?php   echo __x("Mechanical Engineering", "faculty gallery widget");?></a>
+  </div>
+  <div class="col-md-3">
+   <a href="#" onClick="javascript:return toggle(this);" id="IMT"><?php   echo __x("Microengineering",       "faculty gallery widget");?></a>
+  </div>
  </div>
 <?php endif; ?>
-</div>
 
-<div id="<?php echo $div_id; ?>" style='padding: 15px 0px 0px 25px; display: inline-block; background-color:white;'>&nbsp;</div>
+<div id="<?php echo $div_id; ?>" class="row results">&nbsp;</div>
 
 </directory>
 <?php
@@ -196,7 +209,7 @@ $(function() {
   public function update( $new_config, $old_config )
   {
     $config = $old_config;
-    $config["institute"] = wp_strip_all_tags( $new_config["institute"] );
+    $config["institute"] = wp_strip_all_tags(strtoupper($new_config["institute"]));
     return $config;
   }
 
