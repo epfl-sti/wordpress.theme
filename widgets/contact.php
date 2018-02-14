@@ -26,6 +26,8 @@ class Contact extends \WP_Widget
   CONST FIELDS = array( "title",
                         "name",
                         "contactType",
+                        "email",
+                        "telephone",
                         "streetAddress",
                         "postOfficeBoxNumber",
                         "addressCountry",
@@ -59,6 +61,8 @@ class Contact extends \WP_Widget
     $this->render_form_entry('title', $title, 'Title:', 'e.g. "Contact"');
     $this->render_form_entry('name', $name, 'Name:', 'e.g. "School of Engineering"');
     $this->render_form_entry('contactType', $contactType, 'Type:', 'e.g. "Dean\'s office"');
+    $this->render_form_entry('email', $email, 'Email:', 'e.g. "dean.sti@epfl.ch"');
+    $this->render_form_entry('telephone', $telephone, 'Phone:', 'e.g. "+41 21 69 36961"');
     $this->render_form_entry('streetAddress', $streetAddress, 'Address:', 'e.g. "EPFL - ELB 11"');
     $this->render_form_entry('postOfficeBoxNumber', $postOfficeBoxNumber, 'PO Box:', 'e.g. "Station 11"');
     $this->render_form_entry('addressCountry', $addressCountry, 'Country Code:', 'e.g. "CH"');
@@ -104,6 +108,8 @@ class Contact extends \WP_Widget
           <div itemscope itemtype="schema.org/PostalAddress">
             <strong><span property="name"><?php echo $name; ?></span></strong><br />
             <span itemprop="contactType"><?php echo $contactType; ?></span><br />
+            <span itemprop="email"><?php echo $email; ?></span><br />
+            <span itemprop="telephone"><?php echo $telephone; ?></span><br />
             <span itemprop="streetAddress"><?php echo $streetAddress; ?></span><br />
             <span itemprop="postOfficeBoxNumber"><?php echo $postOfficeBoxNumber; ?></span><br />
             <span itemprop="addressCountry"><?php echo $addressCountry; ?></span>-<span itemprop="postalCode"><?php echo $postalCode; ?></span> <span itemprop="addressLocality"><?php echo $addressLocality; ?></span><br />
