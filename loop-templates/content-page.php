@@ -13,11 +13,11 @@
 
 		</header>
 
-		<div>
-                   <div class="sti_content_prof_photo">
-                      <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
-                  </div><?php # prof_photo ?>
+		<div class="whitebg">
 
+			<div class="sti_content_prof_photo">
+				<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
+			</div><?php # prof_photo ?>
 
 			<?php the_content(); ?>
 

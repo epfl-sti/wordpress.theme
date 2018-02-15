@@ -35,3 +35,4 @@ use function \EPFL\STI\get_institute;
 </div><!-- Wrapper end -->
 
 <?php get_footer(); ?>
+<!-- template: institute-homepage.php -->

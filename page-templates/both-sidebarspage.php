@@ -47,7 +47,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
 			</div><!-- #primary -->
 
 			<?php dynamic_sidebar( 'right' ); ?>
-			
+
 		</div><!-- .row -->
 
 	</div><!-- Container end -->
@@ -55,3 +55,4 @@ $container = get_theme_mod( 'epflsti_container_type' );
 </div><!-- Wrapper end -->
 
 <?php get_footer(); ?>
+<!-- template: both-sidebarspage.php -->
