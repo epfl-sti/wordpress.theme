@@ -53,7 +53,7 @@ if ($institute) {
    <ul class="epflstilangmenu"><?php if (function_exists('pll_the_languages')) { pll_the_languages(); } ?></ul>
   </div>
   <?php if ( ! has_custom_logo() ) { ?>
-   <div id="epfl-logo"><a href="https://www.epfl.ch"> <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/src/epfl.gif" /></a></div>
+   <div id="epfl-logo"><a href="https://www.epfl.ch"> <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/epfl.gif" /></a></div>
    <div id="sti-mini-nav">
     <?php
     list($firstline_school, $secondline_school) = get_school_name_parts();
