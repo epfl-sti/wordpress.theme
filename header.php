@@ -48,7 +48,7 @@ if ($institute) {
 
 <body <?php body_class(); ?>>
 
-<div id="header" class="container-fluid">
+<div id="header" class="container-fluid px-0">
  <topbar<?php echo $topbar_class; ?>>
   <div class="language">
    <?php // This uses polylang. Change the language full name to get the FR / EN (https://polylang.pro/doc/configure-the-languages/#full-name) ?>
