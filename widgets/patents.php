@@ -17,16 +17,16 @@ require_once(dirname(dirname(__FILE__)) . "/inc/epfl.php");
 use function EPFL\STI\get_current_language;
 use function EPFL\STI\get_institute;
 
-class MasterThesisPosters extends \WP_Widget
+class Patents extends \WP_Widget
 {
   public function __construct()
   {
     parent::__construct(
-      'EPFL_STI_MasterThesisPosters', // unique id
-      ___('EPFL STI Master Thesis Posters'), // widget title
+      'EPFL_STI_Patents', // unique id
+      ___('EPFL STI Patents'), // widget title
       // additional parameters
       array(
-        'description' => ___('Shows a list of preview images and links to Completed Master Theses - can send values for: searchcluster, institute, year')
+        'description' => ___('Shows a list of images, info  and links for patents published by Faculty members - must send limit (how many to display), can send institute, year, searchcluster (keyword)')
       )
     );
   }
@@ -39,8 +39,9 @@ class MasterThesisPosters extends \WP_Widget
     <div class="container">
 	    <?php $inst_code=get_institute()->get_code(); ?>
 <?php 
+$limit=10; # needs to be an option
 
-$incoming_json=file_get_contents("https://stisrv13.epfl.ch/collaborations/clusters/mastersthesisposters.php");
+$incoming_json=file_get_contents("https://stisrv13.epfl.ch/collaborations/clusters/patents.php?limit=$limit");
 
 $incoming=json_decode($incoming_json);
 
@@ -58,4 +59,4 @@ echo "</table>";
   }  // public function widget
 }
 
-register_widget(MasterThesisPosters::class);
+register_widget(Patents::class);
