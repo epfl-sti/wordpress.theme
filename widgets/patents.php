@@ -45,8 +45,10 @@ $incoming_json=file_get_contents("https://stisrv13.epfl.ch/collaborations/cluste
 $incoming=json_decode($incoming_json);
 
 echo "<table>";
-foreach ($incoming as $thesis) {
- echo "<tr><td valign=top><a href=https://stisrv13.epfl.ch/masters/img/$thesis->master_id.pdf><img width=180 src='https://stisrv13.epfl.ch/masters/img/$thesis->master_id.png'> </a></td><td valign=top><a href=https://stisrv13.epfl.ch/masters/img/$thesis->master_id.pdf>".$thesis->title."</a><br>$thesis->firstname $thesis->surname<br>$thesis->description</td></tr>"; 
+foreach ($incoming as $patent) {
+
+ echo "<table><td valign=top><div id='idshot$patent->patentsid'><img src=https://stisrv13.epfl.ch/profs/img/$patent->imagelink></div></td><td valign=top><a href=$patent->link target=_BLANK title=\"$patent->countryname patent\">$patent->title</a><br>$patent->authors<br>$patent->applicant ($patent->published)<br><a href=$patent->link target=_BLANK title=\"$patent->countryname patent\"><img src=https://stisrv13.epfl.ch/img/$patent->country.gif alt=\"$patent->countryname patent\"></a>$patent->bunting<br><br></td></table>"; 
+
 }
 echo "</table>";
 ?>
