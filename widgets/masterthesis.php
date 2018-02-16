@@ -37,7 +37,6 @@ class MasterThesisPosters extends \WP_Widget
     $cl = get_current_language();
     ?>
     <div class="container">
-	    <?php $inst_code=get_institute()->get_code(); ?>
 <?php 
 
 $incoming_json=file_get_contents("https://stisrv13.epfl.ch/collaborations/clusters/mastersthesisposters.php");
