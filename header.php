@@ -16,8 +16,10 @@ $institute = get_institute();
 
 if ($institute) {
     $nav_menu_slug = "primary-" . $institute->get_code();
+    $topbar_class = sprintf(' class="topbar-%s"', $institute->get_code());
 } else {
     $nav_menu_slug = 'primary';
+    $topbar_class = '';
 }
 
 ?>
@@ -47,7 +49,7 @@ if ($institute) {
 <body <?php body_class(); ?>>
 
 <div id="header" class="container-fluid">
- <topbar>
+ <topbar<?php echo $topbar_class; ?>>
   <div class="language">
    <?php // This uses polylang. Change the language full name to get the FR / EN (https://polylang.pro/doc/configure-the-languages/#full-name) ?>
    <ul class="epflstilangmenu"><?php if (function_exists('pll_the_languages')) { pll_the_languages(); } ?></ul>

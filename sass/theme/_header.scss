@@ -42,10 +42,28 @@ topbar {
   width: 100%;
   overflow: hidden;  // https://stackoverflow.com/a/5369963/435004
   z-index: -5;
-  // This magic URL is served thanks to ../../inc/serve-assets.php
-  background-image: url(theme-epfl-sti/assets/lozenges.png);
   background-position: top right;
   background-repeat: no-repeat;
+}
+
+// These magic URLs are served thanks to ../../inc/serve-assets.php
+topbar {
+  background-image: url(theme-epfl-sti/assets/lozenges.png);
+  &.topbar-igm {
+    background-image: url(theme-epfl-sti/assets/igm-navbar.png);
+  }
+  &.topbar-iel {
+    background-image: url(theme-epfl-sti/assets/iel-navbar.png);
+  }
+  &.topbar-imx {
+    background-image: url(theme-epfl-sti/assets/imx-navbar.png);
+  }
+  &.topbar-imt {
+    background-image: url(theme-epfl-sti/assets/imt-navbar.png);
+  }
+  &.topbar-ibi {
+    background-image: url(theme-epfl-sti/assets/ibi-navbar.png);
+  }
 }
 
 topbar .language {
