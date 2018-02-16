@@ -45,7 +45,11 @@ $incoming=json_decode($incoming_json);
 
 echo "<table>";
 foreach ($incoming as $thesis) {
- echo "<tr><td valign=top><a href=https://stisrv13.epfl.ch/masters/img/$thesis->master_id.pdf><img width=180 src='https://stisrv13.epfl.ch/masters/img/$thesis->master_id.png'> </a></td><td valign=top><a href=https://stisrv13.epfl.ch/masters/img/$thesis->master_id.pdf>".$thesis->title."</a><br>$thesis->firstname $thesis->surname<br>$thesis->description</td></tr>"; 
+    printf('<tr><td valign=top><a href="https://stisrv13.epfl.ch/masters/img/%s.pdf"><img width=180 src="https://stisrv13.epfl.ch/masters/img/%s.png"> </a></td><td valign="top"><a href="https://stisrv13.epfl.ch/masters/img/%s.pdf">%s</a><br>%s %s<br></td></tr>',
+           $thesis->master_id, $thesis->master_id, $thesis->master_id,
+           $thesis->title,
+           $thesis->firstname, $thesis->surname,
+           $thesis->description);
 }
 echo "</table>";
 ?>

@@ -37,7 +37,6 @@ class Patents extends \WP_Widget
     $cl = get_current_language();
     ?>
     <div class="container">
-	    <?php $inst_code=get_institute()->get_code(); ?>
 <?php 
 $limit=10; # needs to be an option
 
