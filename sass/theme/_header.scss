@@ -16,27 +16,6 @@
   border-bottom: #cb161d 3px solid;
 }
 
-/**
- * Polylang languages menu
- */
-.lang-item {
-  display: inline;
-}
-
-.lang-item-first:after {
-  content: " /";
-}
-
-.lang-item a {
-  color: #23282D;
-  text-decoration: none;
-}
-
-.lang-item.current-lang a {
-  color: $theRed;
-  pointer-events: none;
-}
-
 topbar {
   display: block;
   width: 100%;
@@ -64,10 +43,6 @@ topbar {
   &.topbar-ibi {
     background-image: url(theme-epfl-sti/assets/ibi-navbar.png);
   }
-}
-
-topbar .language {
-  float:right;
 }
 
 #epfl-logo {
@@ -111,10 +86,41 @@ topbar .language {
   }
 }
 
-
 /**
  * Search box
  */
 .searchbox {
   float:right;
+}
+
+
+/**
+ * Polylang languages menu
+ */
+topbar .language {
+  float:right;
+  background-color: rgba(255,255,255,0.5);
+
+  ul {
+    padding: 0 8pt;
+    margin: 0;
+  }
+
+  .lang-item {
+    display: inline;
+  }
+
+  .lang-item-first:after {
+    content: " /";
+  }
+
+  .lang-item a {
+    color: #23282D;
+    text-decoration: none;
+  }
+
+  .lang-item.current-lang a {
+    color: $theRed;
+    pointer-events: none;
+  }
 }
