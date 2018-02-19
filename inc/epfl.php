@@ -137,8 +137,6 @@ function get_institute ()
   $path = parse_url($url, PHP_URL_PATH);
   $re = '/\/institute?s\/([^\/]*)/';
   preg_match_all($re, $path, $matches, PREG_SET_ORDER, 0);
-  error_log(var_export($matches[0][1], true));
-  error_log(var_export(isset($matches[0][1]), true));
   return isset($matches[0][1]) ? new Institute($matches[0][1]) : null;
 }
 
