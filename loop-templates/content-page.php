@@ -6,17 +6,17 @@
  */
 
 ?>
-<article id="post-<?php the_ID(); ?>">
+<article id="post-<?php the_ID(); ?>" >
 		<header >
 
 			<?php the_title( '<div class="sti_content_title">', '</div>' ); ?>
 
 		</header>
 
-		<div class="whitebg">
+		<div class="article-content whitebg" style="min-height:350px">
 
-			<div class="sti_content_prof_photo">
-				<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
+			<div class="sti_content_prof_photo" >
+				<?php echo get_the_post_thumbnail( $post->ID, 'medium', array( 'class' => 'img-responsive' ) ); ?>
 			</div><?php # prof_photo ?>
 
 			<?php the_content(); ?>
