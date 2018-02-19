@@ -75,6 +75,20 @@ add_action('widgets_init', function () {
           'after_widget'  => '</div>',
           'before_title'  => '',
           'after_title'   => '',
+        )
+      );
+    register_sidebar(
+      array(
+        'name'          => sprintf(
+            __x('%s Footer Left', 'Institute footer left'),
+            $institute_name
+        ),
+        'id'            => "${institute_code}-footer-left",
+        'description'   => sprintf(___('Widget area shown on the %s footer left '), $institute_name),
+        'before_widget' => '<div id="%1$s" class="">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h3 class="widget-title">',
+        'after_title'   => '</h3>',
       )
     );
   }

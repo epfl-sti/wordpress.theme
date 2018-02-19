@@ -7,13 +7,21 @@
  *
  * @package epflsti
  */
-
+require_once(dirname(__FILE__).'/inc/epfl.php');
+use function \EPFL\STI\get_institute;
 ?>
   <div class="footer">
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <?php dynamic_sidebar( 'footer-left' ); ?>
+          <?php
+          $institute_code = is_object(get_institute()) ? get_institute()->get_code() : '';
+          if ( is_active_sidebar( $institute_code . '-footer-left' ) ) {
+            dynamic_sidebar( $institute_code . '-footer-left' );
+          } else {
+            dynamic_sidebar( 'footer-left' );
+          }
+          ?>
         </div>
         <div class="col-md-6 d-none d-md-block">
           <?php dynamic_sidebar( 'footer-middle' ); ?>
