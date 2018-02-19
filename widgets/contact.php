@@ -8,6 +8,8 @@
  *   EPFL - ELB 11           // streetAddress
  *   Station 11              // postOfficeBoxNumber
  *   CH-1015 Lausanne        // addressCountry - postalCode addressLocality
+ *   dean.sti@epfl.ch        // email
+ *   +41 21 6936961          // telephone
  */
 
 namespace EPFL\STI\Theme\Widgets;
@@ -95,26 +97,38 @@ class Contact extends \WP_Widget
   // Display the widget
   public function widget( $args, $instance )
   {
-    $title = isset( $instance["title"] ) ? apply_filters( 'widget_text', $instance["title"] ) : '';
-    $name  = isset( $instance["name"] )  ? apply_filters( 'widget_text', $instance["name"] )  : '';
+    foreach(self::FIELDS as $field) {
+      $$field = isset( $instance[$field] ) ? apply_filters( 'widget_text', $instance[$field] ) : '';
+    }
     echo $args['before_widget'];
     ?>
     <div class="widget epfl-sti-contact">
       <div itemscope itemtype="https://schema.org/ContactPoint">
-        <?php echo $args["before_title"] . $title . $args["after_title"]; ?>
+        <?php if ($title) { echo $args["before_title"] . $title . $args["after_title"] ; } ?>
         <address>
           <div itemscope itemtype="schema.org/PostalAddress">
           <?php if ($name): ?>
             <strong><span property="name"><?php echo $name; ?></span></strong><br />
-          <?php endif;
-            foreach(self::FIELDS as $field) {
-                if ($field === "name" or $field === "title") { continue; }
-                $fieldval = isset( $instance[$field] ) ? apply_filters( 'widget_text', $instance[$field] ) : '';
-                if ($fieldval) {
-                    printf("<span itemprop=\"%s\">%s</span><br />\n", $field, $fieldval);
-                }
-            }
-          ?>
+          <?php endif; ?>
+          <?php if ($contactType): ?>
+            <span property="contactType"><?php echo $contactType; ?></span><br />
+          <?php endif; ?>
+          <?php if ($streetAddress): ?>
+            <span property="streetAddress"><?php echo $streetAddress; ?></span><br />
+          <?php endif; ?>
+          <?php if ($postOfficeBoxNumber): ?>
+            <span property="postOfficeBoxNumber"><?php echo $postOfficeBoxNumber; ?></span><br />
+          <?php endif; ?>
+          <?php if ($addressLocality): ?>
+            <?php if ($addressLocality): ?><span itemprop="addressCountry"><?php echo $addressCountry; ?></span>-<?php endif; ?><span itemprop="postalCode"><?php echo $postalCode; ?></span>
+            <span itemprop="addressLocality"><?php echo $addressLocality; ?></span><br />
+          <?php endif; ?>
+          <?php if ($email): ?>
+            <span property="email">&#128231; <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></span><br />
+          <?php endif; ?>
+          <?php if ($telephone): ?>
+            <span property="telephone">&#128222; <a href="tel:<?php echo $telephone; ?>"><?php echo $telephone; ?></a></span><br />
+          <?php endif; ?>
           </div>
         </address>
       </div>
