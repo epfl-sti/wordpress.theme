@@ -13,7 +13,7 @@
 
 		</header>
 
-		<div class="article-content whitebg" style="min-height:350px">
+		<div class="article-content whitebg">
 
 			<div class="sti_content_prof_photo" >
 				<?php echo get_the_post_thumbnail( $post->ID, 'medium', array( 'class' => 'img-responsive' ) ); ?>
