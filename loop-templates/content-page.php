@@ -16,7 +16,10 @@
 		<div class="article-content whitebg">
 
 			<div class="sti_content_prof_photo" >
-				<?php echo get_the_post_thumbnail( $post->ID, 'medium', array( 'class' => 'img-responsive' ) ); ?>
+				<figure>
+					<?php echo get_the_post_thumbnail( $post->ID, 'medium', array( 'class' => 'img-responsive' ) ); ?>
+					<figcaption><?php echo the_post_thumbnail_caption( $post->ID ); ?></figcaption>
+				</figure>
 			</div><?php # prof_photo ?>
 
 			<?php the_content(); ?>
