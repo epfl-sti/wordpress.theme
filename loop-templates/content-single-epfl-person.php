@@ -136,11 +136,31 @@ foreach ($news_raw as $piece) {
            </div>
           </card>
           <?php endif; # card of videos ?>
+
+          <?php if ($news): ?>
+          <card class="prof-news <?php echo $listoflinks_width; ?>">
+            <header>
+              <a name="news"></a>
+              <h2>News</h2>
+            </header>
+            <main class="frontrowcontent">
+            <?php foreach ($news as $piece): ?>
+              <div class="mini-news zoomy" style="background-image:url('<?php echo $piece["image"]; ?>');">
+                <div class=peoplenewstitle>
+                  <a class=whitelink href=<?php echo $piece["link"]; ?>><?php echo $piece["title"]; ?></a>
+                </div>
+              </div>
+            <?php endforeach; ?>
+            </main>
+          </card>
+          <?php endif; ?>
+
+          <?php # Research Aera ?>
           <card class="<?php echo $listoflinks_width; ?>"><a name=research></a>
-           <header>
-            <h2>Research Area</h2>
-           </header>
-           <main><?php echo $research; ?></main>
+            <header>
+              <h2>Research Area</h2>
+            </header>
+             <main><?php echo $research; ?></main>
           </card>
 
           <?php if ( get_post_meta( $post->ID, 'publication_link', true) ): ?>
@@ -172,44 +192,31 @@ foreach ($news_raw as $piece) {
           </card>
           <?php endif; ?>
 
-          <?php if ($news): ?>
-          <card class="prof-news <?php echo $listoflinks_width; ?>">
-           <header>
-            <a name="news"></a>
-            <h2>News</h2>
-           </header>
-           <main class="frontrowcontent">
-            <?php foreach ($news as $piece): ?>
-             <div class="mini-news zoomy" style="background-image:url('<?php echo $piece["image"]; ?>');">
-              <div class=peoplenewstitle><a class=whitelink href=<?php echo $piece["link"]; ?>><?php echo $piece["title"]; ?></a>
+          <?php # Contact ?>
+          <card class="<?php echo $listoflinks_width; ?>">
+            <h2>Contact</h2>
+            <h5><br><?php echo "$firstname $surname"; ?></h5>
+            <div class="container">
+              <div class="row entry-body">
+                <div class="col-md-4">
+                  <?php echo 'Office: <a href="https://maps.epfl.ch/?q=' . $office . '">' . $office . '</a><br><a href="mailto:' . $epflname . '@epfl.ch>' . $epflname . '@epfl.ch</a><br><a href="https://people.epfl.ch/' . $epflname . '">https://people.epfl.ch/' . $epflname . '</a><br>Tel: <a href="tel:+' . $phone . '">' . $phone . '</a><br><br>'; ?>
+                </div>
+                <div class="col-md-3">
+                  <?php echo "$labname<br> $office<br> Station 11<br> 1015 Lausanne<br> Switzerland"; ?>
+                </div>
+                <div class="col-md-5 embed-responsive embed-responsive-4by3">
+                  <iframe class="embed-responsive-item" src="https://plan.epfl.ch/iframe/?map_zoom=12&q=<?php echo $person->get_sciper(); ?>" ></iframe>
+                </div>
               </div>
-             </div>
-            <?php endforeach; ?>
-           </main>
+            </div>
           </card>
-          <?php endif; ?>
+
         </div><?php # main row ?>
       </div><?php #  main container ?>
     </div><?php # column in case there is a list of links on the right ?>
 
 
-    <card class="<?php echo $listoflinks_width; ?>">
-      <h2>Contact</h2>
-      <h5><br><?php echo "$firstname $surname"; ?></h5>
-      <div class="container">
-        <div class="row entry-body">
-          <div class="col-md-4">
-            <?php echo 'Office: <a href="https://maps.epfl.ch/?q=' . $office . '">' . $office . '</a><br><a href="mailto:' . $epflname . '@epfl.ch>' . $epflname . '@epfl.ch</a><br><a href="https://people.epfl.ch/' . $epflname . '">https://people.epfl.ch/' . $epflname . '</a><br>Tel: <a href="tel:+' . $phone . '">' . $phone . '</a><br><br>'; ?>
-          </div>
-          <div class="col-md-3">
-            <?php echo "$labname<br> $office<br> Station 11<br> 1015 Lausanne<br> Switzerland"; ?>
-          </div>
-          <div class="col-md-5 embed-responsive embed-responsive-4by3">
-            <iframe class="embed-responsive-item" src="https://plan.epfl.ch/iframe/?map_zoom=12&q=<?php echo $person->get_sciper(); ?>" ></iframe>
-          </div>
-        </div>
-      </div>
-    </card>
+
 
     <?php
     // this box is a list of links
