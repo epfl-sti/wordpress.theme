@@ -110,7 +110,7 @@ foreach ($news_raw as $piece) {
           <card class="ribbon-red <?php echo $listoflinks_width; ?>">
            <?php if ($with_red_ribbon): ?>
             <header>
-             <img class="ribbon-red-top" src="/wp-content/themes/epfl-sti/img/src/topright.png"> 
+             <img class="ribbon-red-top" src="/wp-content/themes/epfl-sti/img/src/topright.png">
              <img class="ribbon-red-bottom" src="/wp-content/themes/epfl-sti/img/src/bottomleft.png">
             </header>
            <?php endif;  ?>
@@ -126,23 +126,6 @@ foreach ($news_raw as $piece) {
               echo "</biography>\n";
             ?>
            </main>
-          </card>
-          <card class="<?php echo $listoflinks_width; ?>">
-           <h2>Contact</h2>
-           <h5><br><?php echo "$firstname $surname"; ?></h5>
-           <div class="container">
-            <div class="row entry-body">
-              <div class="col-md-4">
-                <?php echo 'Office: <a href="https://maps.epfl.ch/?q=' . $office . '">' . $office . '</a><br><a href="mailto:' . $epflname . '@epfl.ch>' . $epflname . '@epfl.ch</a><br><a href="https://people.epfl.ch/' . $epflname . '">https://people.epfl.ch/' . $epflname . '</a><br>Tel: <a href="tel:+' . $phone . '">' . $phone . '</a><br><br>'; ?>
-              </div>
-              <div class="col-md-3">
-                <?php echo "$labname<br> $office<br> Station 11<br> 1015 Lausanne<br> Switzerland"; ?>
-              </div>
-              <div class="col-md-5 embed-responsive embed-responsive-4by3">
-                <iframe class="embed-responsive-item" src="https://plan.epfl.ch/iframe/?map_zoom=12&q=<?php echo $person->get_sciper(); ?>" ></iframe>
-              </div>
-            </div>
-           </div>
           </card>
 
           <?php if ($videoeng != ""): ?>
@@ -208,6 +191,25 @@ foreach ($news_raw as $piece) {
         </div><?php # main row ?>
       </div><?php #  main container ?>
     </div><?php # column in case there is a list of links on the right ?>
+
+
+    <card class="<?php echo $listoflinks_width; ?>">
+      <h2>Contact</h2>
+      <h5><br><?php echo "$firstname $surname"; ?></h5>
+      <div class="container">
+        <div class="row entry-body">
+          <div class="col-md-4">
+            <?php echo 'Office: <a href="https://maps.epfl.ch/?q=' . $office . '">' . $office . '</a><br><a href="mailto:' . $epflname . '@epfl.ch>' . $epflname . '@epfl.ch</a><br><a href="https://people.epfl.ch/' . $epflname . '">https://people.epfl.ch/' . $epflname . '</a><br>Tel: <a href="tel:+' . $phone . '">' . $phone . '</a><br><br>'; ?>
+          </div>
+          <div class="col-md-3">
+            <?php echo "$labname<br> $office<br> Station 11<br> 1015 Lausanne<br> Switzerland"; ?>
+          </div>
+          <div class="col-md-5 embed-responsive embed-responsive-4by3">
+            <iframe class="embed-responsive-item" src="https://plan.epfl.ch/iframe/?map_zoom=12&q=<?php echo $person->get_sciper(); ?>" ></iframe>
+          </div>
+        </div>
+      </div>
+    </card>
 
     <?php
     // this box is a list of links
