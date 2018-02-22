@@ -4,5 +4,4 @@ $('a:not(' +
   '[href^="https://sti-test.epfl"], ' +
   '[href^="https://sti-dev.epfl"], ' +
   '[href^="https://localhost"], ' +
-  '[href^="\#"], ' +
-')').attr({target: "_blank"});
+  '[href^="\#"])').attr({target: "_blank"});
