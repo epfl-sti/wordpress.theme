@@ -44,6 +44,7 @@ if (class_exists('\\EPFL\\WS\\Persons\\Person')) {
     global $post;
     $person = Person::get($post);
     $biography = $person->get_bio();
+    $officialtitle = $person->get_title()->as_short_greeting();
 } else {
     error_log("Class not exists");
 }
