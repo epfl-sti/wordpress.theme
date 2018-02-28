@@ -102,7 +102,7 @@ foreach ($news_raw as $piece) {
              <img class="ribbon-red-bottom" src="/wp-content/themes/epfl-sti/img/src/bottomleft.png">
             </header>
            <?php endif;  ?>
-           <?php the_title( '<h1>'.$officialtitle, '</h1>' ); ?>
+           <?php the_title( '<h1>' . $officialtitle . '</h1>' ); ?>
            <main>
             <div class="sti_content_prof_photo">
              <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
