@@ -8,8 +8,8 @@
 ?>
 <article id="post-<?php the_ID(); ?>" >
 		<header >
-
-			<?php the_title( '<div class="sti_content_title">', '</div>' ); ?>
+			<div class="sti_textured_header_top"></div>
+			<?php the_title( '<div class="sti_textured_header">', '</div>' ); ?>
 
 		</header>
 
