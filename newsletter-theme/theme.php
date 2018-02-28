@@ -456,12 +456,10 @@ function render_in_the_media_table ($media_list)
               $laburl = $authors[0]->get_lab()->get_website_url();
               echo "<br>";
               printf('<a href="%s">%s</a>', $laburl, $labname);
-          ?>
+            }
+        ?>
          </td>
         </tr>
-        <?php
-            }  // end if ($authors)
-        ?>
         <tr>
          <td class="divider">
           <media-item-handle :post-id="<?php echo get_the_id(); ?>"></media-item-handle>
