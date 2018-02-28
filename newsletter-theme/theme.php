@@ -371,7 +371,7 @@ function render_events_table ($events)
 ?>
  <tr>
   <td>
-   <table>
+   <table style="width: 100%;">
     <tr>
      <td class="event title" colspan=2>
       <a href="<?php echo $link; ?>"><?php echo $title; ?></a>
@@ -441,7 +441,7 @@ function render_in_the_media_table ($media_list)
     ?>
      <tr>
       <td>
-       <table>
+       <table style="width: 100%;">
         <tr>
          <td class="title">
           <a href="<?php echo $link; ?>"><?php echo "$article"; ?></a>
