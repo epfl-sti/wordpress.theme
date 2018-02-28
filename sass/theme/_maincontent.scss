@@ -10,23 +10,3 @@ article.type-page {
 a > i:hover {
   color: $theRed;
 }
-
-.sti_textured_header {
- background-color: #e4e4e4;
- color: #000;
- font: 2em 'Open Sans';
- width: 100%;
- padding: 25px 30px 28px 30px;
- margin-bottom: 10px;
- background-image: url(../img/src/textured_header.png);
- background-position: right;
- background-size: 60% 140%;
- background-repeat: no-repeat;
- border-bottom: solid 3px #b2b0b0;
-}
-
-.sti_textured_header_top {
- height: 11px;
- width:100%;
- background-image: url(../img/src/textured_header_top.png);
-}
