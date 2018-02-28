@@ -1,7 +1,7 @@
 /**
  * Style for pages (not posts)
  */
-.sti_content_title {
+.sti_content_title { /* superceded by sti_textured_header */
   background-color: black;
   color: white;
   font: 26px 'Open Sans';
@@ -14,3 +14,36 @@
   padding: 15px;
   min-height:350px;
 }
+
+.sti_decanat_desc {
+ padding: 10px;
+ background-color: #f2f2f2;
+}
+
+.sti_decanat_portrait {
+ border: solid 1px #bbb;
+ background-color:white;
+ width: 100%;
+ padding: 8px 8px 0px 8px;
+}
+
+.sti_decanat_name {
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+.sti_decanat_box {
+ margin: 20px;
+ padding:0px;
+}
+
+.sti_decanat_grey {
+ background-color:#e0e0e0;
+ padding:0px;
+}
+
+.sti_decanat_buttons {
+ float:right;
+}
+
+
