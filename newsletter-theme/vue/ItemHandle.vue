@@ -114,6 +114,16 @@ let ItemHandleBase = {
     },
     doDelete () {
       let parentTr = $(this.$el).closest('tr')
+      while (! parentTr.closest('table').attr('id')) {
+        let grandparentTr = parentTr.closest('table').closest('tr')
+        if (grandparentTr) {
+          parentTr = grandparentTr
+        } else {
+          console.log("Deleting at wrong spot... Meaningful <table>s should all have an ID.");
+          break
+        }
+      }
+      let parentTable = $(this.$el).closest('table[id]')
       this.$destroy()
       parentTr.remove()
       GlobalBus.$emit("dom_reordered")
