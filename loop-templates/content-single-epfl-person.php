@@ -187,7 +187,10 @@ foreach ($news_raw as $piece) {
             <div class="container">
               <div class="row entry-body">
                 <div class="col-md-4">
-                  <?php echo 'Office: <a href="https://maps.epfl.ch/?q=' . $office . '">' . $office . '</a><br><a href="mailto:' . $epflname . '@epfl.ch>' . $epflname . '@epfl.ch</a><br><a href="https://people.epfl.ch/' . $epflname . '">https://people.epfl.ch/' . $epflname . '</a><br>Tel: <a href="tel:+' . $phone . '">' . $phone . '</a><br><br>'; ?>
+                  <?php echo 'Office: <a href="https://maps.epfl.ch/?q=' . $office . '">' . $office . '</a>'; ?><br />
+                  <?php echo '<a href="mailto:' . $epflname . '@epfl.ch">' . $epflname . '@epfl.ch</a>'; ?><br />
+                  <?php echo '<a href="https://people.epfl.ch/' . $epflname . '">https://people.epfl.ch/' . $epflname . '</a>'; ?><br />
+                  <?php echo 'Tel: <a href="tel:+' . $phone . '">' . $phone . '</a>'; ?><br />
                 </div>
                 <div class="col-md-3">
                   <?php echo "<b>$labname</b><br> $office<br> Station 11<br> 1015 Lausanne<br> Switzerland"; ?>
