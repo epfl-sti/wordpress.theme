@@ -38,7 +38,7 @@ use function \EPFL\STI\get_institute;
 $phonenumber="021 693 2222";
 $email="ali.sayed@epfl.ch";
 $office="B4102";
-$sciper="";
+$sciper="283344";
 $firstname="Ali";
 $lastname="Sayed";
 $epflname=str_replace('@epfl.ch', '', $email);
@@ -69,7 +69,7 @@ $desc="Prof. Sayed is world-renowned for his pioneering research on adaptive fil
      <td width=29><a title="phone: <?php echo $phonenumber; ?> " href="tel:<?php echo $phonenumber; ?>"><img onmouseover="this.src='/wp-content/themes/epfl-sti/img/src/phone_on.png';" onmouseout="this.src='/wp-content/themes/epfl-sti/img/src/phone_off.png';" src=/wp-content/themes/epfl-sti/img/src/phone_off.png></a></td>
      <td><a title="email: <?php echo $email; ?>" href="mailto:<?php echo $email; ?>"><img onmouseover="this.src='/wp-content/themes/epfl-sti/img/src/mail_on.png';" onmouseout="this.src='/wp-content/themes/epfl-sti/img/src/mail_off.png';" src=/wp-content/themes/epfl-sti/img/src/mail_off.png></a></td>
      <td><a title="office: <?php echo $office; ?>" href="http://plan.epfl.ch/?room=<?php echo $office; ?>"><img onmouseover="this.src='/wp-content/themes/epfl-sti/img/src/office_on.png';" onmouseout="this.src='/wp-content/themes/epfl-sti/img/src/office_off.png';" src=/wp-content/themes/epfl-sti/img/src/office_off.png></a></td>
-     <td><a title='more about <?php echo "$firstname $lastname;" ?>' href="http://people.epfl.ch/<?php echo $sciper;?>"><img onmouseover="this.src='/wp-content/themes/epfl-sti/img/src/people_on.png';" onmouseout="this.src='/wp-content/themes/epfl-sti/img/src/people_off.png';" src=/wp-content/themes/epfl-sti/img/src/people_off.png></a></td>
+     <td><a title='more about <?php echo "$firstname $lastname;" ?>' href="/epfl-person/<?php echo $sciper;?>"><img onmouseover="this.src='/wp-content/themes/epfl-sti/img/src/people_on.png';" onmouseout="this.src='/wp-content/themes/epfl-sti/img/src/people_off.png';" src=/wp-content/themes/epfl-sti/img/src/people_off.png></a></td>
     </table>
    </div> <!-- buttons -->
   </td></table>
