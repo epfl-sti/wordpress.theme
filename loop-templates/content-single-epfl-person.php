@@ -91,10 +91,10 @@ foreach ($news_raw as $piece) {
 
 ?>
 <div class="container"><?php # row if there is a box of links on the right ?>
-  <div class=row><?php #  container if there is a box of links on the right ?>
+  <div class=row><?php # container if there is a box of links on the right ?>
     <div class="<?php echo $listoflinks_main; ?>"><?php # column if there is a box of links on the right ?>
       <div class="container"><?php # main container ?>
-        <div class="row main-matter"><?php #  main row ?>
+        <div class="row main-matter"><?php # main row ?>
           <card class="ribbon-red <?php echo $listoflinks_width; ?>">
            <?php if ($with_red_ribbon): ?>
             <header>
@@ -200,7 +200,7 @@ foreach ($news_raw as $piece) {
           </card>
 
         </div><?php # main row ?>
-      </div><?php #  main container ?>
+      </div><?php # main container ?>
     </div><?php # column in case there is a list of links on the right ?>
 
 
