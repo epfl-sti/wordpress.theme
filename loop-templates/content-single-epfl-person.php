@@ -64,21 +64,8 @@ else if ($position == 'PATT') { $officialtitle='Prof. '; $position='Tenure Track
 else if ($position == 'PT') { $officialtitle='Prof. '; $position='Adjunct Professor'; }
 else if ($position == 'MER') {$officialtitle='Dr. '; $position='Senior Scientist'; }
 else {$officialtitle=$position; }
-
 //the rest must come from other sources
 
-$epfl_positions="
-<br>
-Associate Professor:<br><br>
-<ul>
-  <li>Laboratory for Information and Inference Systems
-  <li>Institute of Electrical Engineering
-  <li>School of Engineering
-</ul>
-<ul>
-  <li>EDEE - Doctoral Program in Electrical Engineering
-</ul>
-";
 
 $news_raw = array(
     array("title" => $incoming->newstitle1,
