@@ -371,7 +371,7 @@ function render_events_table ($events)
 ?>
  <tr>
   <td>
-   <table>
+   <table style="width: 100%;">
     <tr>
      <td class="event title" colspan=2>
       <a href="<?php echo $link; ?>"><?php echo $title; ?></a>
@@ -388,10 +388,11 @@ function render_events_table ($events)
       <?php echo $venue; ?>
       <br>
       <a href="<?php echo $ical_link; ?>">Add to calendar</a>
-      <event-handle :post-id="<?php echo get_the_id(); ?>"></event-handle>
      </td>
     </tr>
-    <tr><td colspan="2" class="divider">&nbsp;</td></tr>
+    <tr><td colspan="2" class="divider">
+           <event-handle :post-id="<?php echo get_the_id(); ?>"></event-handle>
+           &nbsp;</td></tr>
    </table>
   </td>
  </tr>
@@ -440,7 +441,7 @@ function render_in_the_media_table ($media_list)
     ?>
      <tr>
       <td>
-       <table>
+       <table style="width: 100%;">
         <tr>
          <td class="title">
           <a href="<?php echo $link; ?>"><?php echo "$article"; ?></a>
@@ -455,15 +456,14 @@ function render_in_the_media_table ($media_list)
               $laburl = $authors[0]->get_lab()->get_website_url();
               echo "<br>";
               printf('<a href="%s">%s</a>', $laburl, $labname);
-          ?>
-           <media-item-handle :post-id="<?php echo get_the_id(); ?>"></media-item-handle>
+            }
+        ?>
          </td>
         </tr>
-        <?php
-            }  // end if ($authors)
-        ?>
         <tr>
-         <td class="divider">&nbsp;</td>
+         <td class="divider">
+          <media-item-handle :post-id="<?php echo get_the_id(); ?>"></media-item-handle>
+          &nbsp;</td>
         </tr>
        </table>
       </td>
