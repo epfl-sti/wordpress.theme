@@ -17,6 +17,63 @@
 
 .sti_title_red {
   color: red;
+} 
+
+.sti_centres_link:hover {
+  text-decoration:none;
+}
+
+#robotics { background-image: url('/wp-content/uploads/2018/01/nccr-robotics.png'); }
+#marvel { background-image: url('/wp-content/uploads/2018/03/marvel.png'); }
+#furies { background-image: url('/wp-content/uploads/2018/01/sccer.png'); }
+#nanotera { background-image: url('/wp-content/uploads/2018/01/nano.png'); }
+#space { background-image: url('/wp-content/uploads/2018/01/space.jpg'); }
+#m2c { background-image: url('/wp-content/uploads/2018/01/m2c.png'); }
+#ccmx{ background-image: url('/wp-content/uploads/2018/01/ccmx.png'); }
+#energy { background-image: url('/wp-content/uploads/2018/01/cen.png'); }
+#acces { background-image: url('/wp-content/uploads/2018/01/ACCES.jpg'); }
+#si { background-image: url('/wp-content/uploads/2018/01/si.jpg'); }
+#cnp { background-image: url('/wp-content/uploads/2018/01/neuroprothese.jpg'); }
+#cnu { background-image: url('/wp-content/uploads/2018/01/cnu.png'); }
+#cmi { background-image: url('/wp-content/uploads/2018/01/micronano.jpg'); }
+#cime { background-image: url('/wp-content/uploads/2018/01/microscopy.jpg'); }
+#ateliers { background-image: url('/wp-content/uploads/2018/01/ateliers.png'); }
+#mhmc { background-image: url('/wp-content/uploads/2018/01/mhmc.png'); }
+
+.sti_centres_header {
+  border: solid 1px black;
+  border-bottom: solid 0px black;
+  padding: 10px;
+  font: 22px calibri, verdana, sans-serif;
+  width: 220px;
+}
+
+.sti_centres_banner {
+  height: 7px;
+  width: 220px;
+  background-image: url('../assets/textured_header_top.png');
+  background-position: center bottom;
+}
+
+.sti_centres_image {
+  background-image: url('/wp-content/uploads/2018/01/nccr-robotics.png');
+  background-size: 100% auto;
+  background-position: center bottom;
+  height: 138px;
+  width: 220px;
+  display: block;
+}
+
+.sti_centres_national {
+  padding: 10px 20px 15px 10px;
+  background-color: #eee;
+  height: 80px;
+  width: 220px;
+  font: 16px calibri, verdana, sans-serif;
+}
+
+.sti_centres_research {
+  background-color: #ddd;
 }
 
 .sti_textured_header {
@@ -26,7 +83,6 @@
   width: 100%;
   padding: 25px 30px 28px 30px;
   margin-bottom: 10px;
-  background-image: url('../assets/textured_header.png');
   background-position: right;
   background-size: 60% 140%;
   background-repeat: no-repeat;
