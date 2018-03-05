@@ -43,8 +43,10 @@
 .sti_centres_header {
   border: solid 1px black;
   border-bottom: solid 0px black;
+  background-color: #303030;
   padding: 10px;
   font: 22px calibri, verdana, sans-serif;
+  color: white;
   width: 220px;
 }
 
@@ -62,6 +64,8 @@
   height: 138px;
   width: 220px;
   display: block;
+  border-left: solid 1px #b2b2b0;
+  border-right: solid 1px #b2b2b0;
 }
 
 .sti_centres_national {
@@ -70,6 +74,9 @@
   height: 80px;
   width: 220px;
   font: 16px calibri, verdana, sans-serif;
+  border-left: solid 1px #b2b2b0;
+  border-right: solid 1px #b2b2b0;
+  border-bottom: solid 1px #b2b2b0;
 }
 
 .sti_centres_research {
