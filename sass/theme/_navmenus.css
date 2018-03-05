@@ -66,3 +66,7 @@
     padding: 0.5em 0 0.5em 0.5em;
   }
 }
+.m_gris {
+  background-image: url('theme-epfl-sti/assets/bgris.jpg');
+  height: 27px;
+  border-bottom: #000 1px solid;
