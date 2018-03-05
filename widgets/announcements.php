@@ -35,26 +35,22 @@ class Announcements extends \WP_Widget
   {
     echo $args['before_widget'];
     $cl = get_current_language();
-    ?>
-    <div class="container">
-	    <?php $inst_code=get_institute()->get_code(); ?>
-<?php 
+    echo "<div class=\"container\">";
 
-if ($cl === "en") {
- $lang = "eng";
-} else {
- $lang="fra";
-}
+    if (get_institute() === null) {
+      $inst_code = '';
+    } else {
+      $inst_code = get_institute()->get_code();
+    }
 
-$incoming_json=file_get_contents("https://stisrv13.epfl.ch/cgi-bin/newtowncrier.cgi?lang=$lang&inst=$inst_code&ayearagoplease=1");
-$incoming=json_decode($incoming_json);
-$output=$incoming->announcements;
-echo $output; 
-?>
+    $lang = ($cl == "en") ? "eng" : "fra";
 
-
-    </div>
-    <?php
+    $incoming_url = "https://stisrv13.epfl.ch/cgi-bin/newtowncrier.cgi?lang=" . $lang . "&inst=" . $inst_code . "&ayearagoplease=1";
+    echo "<!--  Announcement url = " . $incoming_url . " -->";
+    $incoming_json = file_get_contents($incoming_url);
+    $incoming = json_decode(utf8_encode($incoming_json), true);
+    echo $incoming["announcements"];
+    echo "</div>";
     echo $args['after_widget'];
   }  // public function widget
 }
