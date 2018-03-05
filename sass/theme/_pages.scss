@@ -1,6 +1,7 @@
 /**
  * Style for pages (not posts)
  */
+$borderGrayBox: #b2b0b0;
 .sti_content_title { /* superceded by sti_textured_header */
   background-color: black;
   color: white;
@@ -16,8 +17,8 @@
 }
 
 .sti_title_red {
-  color: red;
-} 
+  color: $theRed;
+}
 
 .sti_title_spacer {
   padding: 10px;
@@ -69,8 +70,8 @@
   height: 138px;
   width: 220px;
   display: block;
-  border-left: solid 1px #b2b2b0;
-  border-right: solid 1px #b2b2b0;
+  border-left: 1px solid #b2b2b0;
+  border-right: 1px solid #b2b2b0;
 }
 
 .sti_centres_national {
@@ -79,9 +80,9 @@
   height: 80px;
   width: 220px;
   font: 16px calibri, verdana, sans-serif;
-  border-left: solid 1px #b2b2b0;
-  border-right: solid 1px #b2b2b0;
-  border-bottom: solid 1px #b2b2b0;
+  border-left: 1px solid #b2b2b0;
+  border-right: 1px solid #b2b2b0;
+  border-bottom: 1px solid #b2b2b0;
 }
 
 .sti_centres_research {
@@ -94,18 +95,19 @@
   font: 2em 'Open Sans';
   width: 100%;
   padding: 25px 30px 28px 30px;
-  margin-bottom: 10px;
   background-image: url('../assets/textured_header.png');
   background-position: right;
   background-size: 60% 140%;
   background-repeat: no-repeat;
-  border-bottom: solid 3px #b2b0b0;
+  border-left: solid 1px $borderGrayBox;
+  border-right: solid 1px $borderGrayBox;
 }
 
 .sti_textured_header_top {
   height: 11px;
   width:100%;
   background-image: url('../assets/textured_header_top.png');
+  border: 1px solid $borderGrayBox;
 }
 
 .sti_caption {
@@ -200,3 +202,28 @@
   color: #c91a25;
 }
 
+
+.whitebg {
+  background-color: white;
+  border: 1px solid $borderGrayBox;
+}
+
+.educationbg {
+  background-color: #f5f5f5;
+}
+
+.researchbg {
+  background-color: #ddd;
+}
+
+.innovationbg {
+  background-color: #bbb;
+}
+
+
+.article-content {
+  img {
+    border: 1px solid $borderGrayBox;
+    padding: 5px;
+  }
+}
