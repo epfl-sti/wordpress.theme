@@ -13,7 +13,7 @@
 
 		</header>
 
-		<div class="article-content whitebg">
+		<div class="article-content page-whitebg">
 
 			<?php if (has_post_thumbnail($post)): ?>
 			<div class="sti_content_prof_photo" >
