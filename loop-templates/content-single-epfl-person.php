@@ -44,6 +44,7 @@ if (class_exists('\\EPFL\\WS\\Persons\\Person')) {
     global $post;
     $person = Person::get($post);
     $biography = $person->get_bio();
+    $officialtitle = $person->get_title()->as_short_greeting();
 } else {
     error_log("Class not exists");
 }
@@ -63,21 +64,8 @@ else if ($position == 'PATT') { $officialtitle='Prof. '; $position='Tenure Track
 else if ($position == 'PT') { $officialtitle='Prof. '; $position='Adjunct Professor'; }
 else if ($position == 'MER') {$officialtitle='Dr. '; $position='Senior Scientist'; }
 else {$officialtitle=$position; }
-
 //the rest must come from other sources
 
-$epfl_positions="
-<br>
-Associate Professor:<br><br>
-<ul>
-  <li>Laboratory for Information and Inference Systems
-  <li>Institute of Electrical Engineering
-  <li>School of Engineering
-</ul>
-<ul>
-  <li>EDEE - Doctoral Program in Electrical Engineering
-</ul>
-";
 
 $news_raw = array(
     array("title" => $incoming->newstitle1,
@@ -103,10 +91,10 @@ foreach ($news_raw as $piece) {
 
 ?>
 <div class="container"><?php # row if there is a box of links on the right ?>
-  <div class=row><?php #  container if there is a box of links on the right ?>
+  <div class=row><?php # container if there is a box of links on the right ?>
     <div class="<?php echo $listoflinks_main; ?>"><?php # column if there is a box of links on the right ?>
       <div class="container"><?php # main container ?>
-        <div class="row main-matter"><?php #  main row ?>
+        <div class="row main-matter"><?php # main row ?>
           <card class="ribbon-red <?php echo $listoflinks_width; ?>">
            <?php if ($with_red_ribbon): ?>
             <header>
@@ -114,7 +102,7 @@ foreach ($news_raw as $piece) {
              <img class="ribbon-red-bottom" src="/wp-content/themes/epfl-sti/img/src/bottomleft.png">
             </header>
            <?php endif;  ?>
-           <?php the_title( '<h1>'.$officialtitle, '</h1>' ); ?>
+           <?php the_title( '<h1>' . $officialtitle . '</h1>' ); ?>
            <main>
             <div class="sti_content_prof_photo">
              <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
@@ -199,10 +187,13 @@ foreach ($news_raw as $piece) {
             <div class="container">
               <div class="row entry-body">
                 <div class="col-md-4">
-                  <?php echo 'Office: <a href="https://maps.epfl.ch/?q=' . $office . '">' . $office . '</a><br><a href="mailto:' . $epflname . '@epfl.ch>' . $epflname . '@epfl.ch</a><br><a href="https://people.epfl.ch/' . $epflname . '">https://people.epfl.ch/' . $epflname . '</a><br>Tel: <a href="tel:+' . $phone . '">' . $phone . '</a><br><br>'; ?>
+                  <?php echo 'Office: <a href="https://maps.epfl.ch/?q=' . $office . '">' . $office . '</a>'; ?><br />
+                  <?php echo '<a href="mailto:' . $epflname . '@epfl.ch">' . $epflname . '@epfl.ch</a>'; ?><br />
+                  <?php echo '<a href="https://people.epfl.ch/' . $epflname . '">https://people.epfl.ch/' . $epflname . '</a>'; ?><br />
+                  <?php echo 'Tel: <a href="tel:+' . $phone . '">' . $phone . '</a>'; ?><br />
                 </div>
                 <div class="col-md-3">
-                  <?php echo "$labname<br> $office<br> Station 11<br> 1015 Lausanne<br> Switzerland"; ?>
+                  <?php echo "<b>$labname</b><br> $office<br> Station 11<br> 1015 Lausanne<br> Switzerland"; ?>
                 </div>
                 <div class="col-md-5 embed-responsive embed-responsive-4by3">
                   <iframe class="embed-responsive-item" src="https://plan.epfl.ch/iframe/?map_zoom=12&q=<?php echo $person->get_sciper(); ?>" ></iframe>
@@ -212,7 +203,7 @@ foreach ($news_raw as $piece) {
           </card>
 
         </div><?php # main row ?>
-      </div><?php #  main container ?>
+      </div><?php # main container ?>
     </div><?php # column in case there is a list of links on the right ?>
 
 

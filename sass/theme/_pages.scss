@@ -1,7 +1,7 @@
 /**
  * Style for pages (not posts)
  */
-.sti_content_title {
+.sti_content_title { /* superceded by sti_textured_header */
   background-color: black;
   color: white;
   font: 26px 'Open Sans';
@@ -95,6 +95,7 @@
   width: 100%;
   padding: 25px 30px 28px 30px;
   margin-bottom: 10px;
+  background-image: url('../assets/textured_header.png');
   background-position: right;
   background-size: 60% 140%;
   background-repeat: no-repeat;
