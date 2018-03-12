@@ -78,18 +78,18 @@ function _doPrintOuter(people_listing, lang) {
     //(findString(people_listing[x].title,'PATT')
 
 	result++;
-	test+="<div style='width:140px; height:285px; float:left; display: inline; clear: none; background-color:#eee; margin: 5px; padding:10px' class='' valign=top>";
-	test+=people_listing[x].link + "<img width='118' border='0' src='";
+	test+="<div class='col-8 col-lg-2'> <div class='card-deck'> <div class='box_id card faculty-titre-card'> ";
+	test+=people_listing[x].link + "<img class='faculty-img' src='";
 	test+=img_dir+people_listing[x].image + "' title='" + people_listing[x].firstname + " " + people_listing[x].lastname;
-	test+="'/></a>\n\ <br>\n" + people_listing[x].link + people_listing[x].lastname + "<br>" + people_listing[x].firstname;
-	test+="</a>\n\ <div style='width: 110px; font-size:10px'>\n\ ";
-	test+="<a href=" + people_listing[x].labwebsite + ">" + people_listing[x].mylabname + "</a></div></div>";
+	test+="'/></a>\n\ <div class='faculty-rouge'></div><div class='faculty-titre-id'><h4>\n" + people_listing[x].link + people_listing[x].lastname + " " +  people_listing[x].firstname + "</h4>";
+	test+="</a> \n\ ";
+	test+="<a href=" + people_listing[x].labwebsite + "><div class='faculty-lab'>" + people_listing[x].mylabname + "</div></a></div></div></div></div>";
         count++;
 
    }
   }
   if (count==0) {
-   test+= "<span style='width:82px' class=pandalink><a style='color:white' href=#>THERE ARE NO PROFESSORS IN THIS CATEGORY</a></span>";
+   test+= "<span><a style='color:white' href=#>THERE ARE NO PROFESSORS IN THIS CATEGORY</a></span>";
   }
   document.getElementById('<?php echo $div_id; ?>').innerHTML = test;
 }
@@ -189,8 +189,15 @@ $(function() {
   </div>
  </div>
 <?php endif; ?>
+</div>
+    <div class="container">
+      <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-3 col-md-9">
 
-<div id="<?php echo $div_id; ?>" class="row results">&nbsp;</div>
+          <div class="row">
+
+	<div id="<?php echo $div_id; ?>" class="row entry-body results ">&nbsp;</div>
+</div></div></div></div>
 
 </directory>
 <?php
