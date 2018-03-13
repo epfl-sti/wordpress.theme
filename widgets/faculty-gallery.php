@@ -38,7 +38,7 @@ class FacultyGallery extends \WP_Widget
     }
 
     ?>
-    <directory class="container">
+<directory class="container">
 <script type="text/javascript">
 var PO=0;
 var PA=0;
@@ -66,6 +66,32 @@ function findString(tstring,text) {
     }
 }
 
+function _templateCard(person) {
+     var _h = function(s, person) {
+         // Poor man's handlebars
+         return s.replace(/{{person.([a-zA-Z_]+)}}/g,
+                          function(unused, k) {return person[k]});
+
+     };
+
+     var html = "<div class=\"faculty-titre-card col-6 col-md-4 col-lg-3 col-xl-2\">\n";
+
+     person = JSON.parse(JSON.stringify(person));  // Unalias
+     person["fullname"] = person.firstname + " " + person.lastname;
+
+     html += person.link + _h(
+             " <img class=\"faculty-img\" src=\"https://stisrv13.epfl.ch/profs/img/{{person.image}}\" title=\"{{person.fullname}}\"></a>\n", person);
+     html += " <div class=\"faculty-rouge\"></div>\n";
+     html += _h(
+             " <div class=\"faculty-titre-id\"><h4>{{person.link}}{{person.lastname}} {{person.firstname}}</a></h4>\n", person);
+
+     html += _h(
+             "  <a class=\"faculty-lab\" href=\"{{person.labwebsite}}\">{{person.mylabname}}</a>\n", person);
+     html +=  " </div>\n"; // id="faculty-titre-id"
+     html +=  "</div>\n";  // class="faculty-titre-card" etc.
+     return html;
+}
+
 function _doPrintOuter(people_listing, lang) {
   var img_dir="https://stisrv13.epfl.ch/profs/img/";
   var test="";
@@ -75,17 +101,9 @@ function _doPrintOuter(people_listing, lang) {
   for(var x=0; x < people_listing.length; x++) {
    if (people_listing[x]) {
 
-    //(findString(people_listing[x].title,'PATT')
-
 	result++;
-	test+="<div class='col-8 col-lg-2'> <div class='card-deck'> <div class='box_id card faculty-titre-card'> ";
-	test+=people_listing[x].link + "<img class='faculty-img' src='";
-	test+=img_dir+people_listing[x].image + "' title='" + people_listing[x].firstname + " " + people_listing[x].lastname;
-	test+="'/></a>\n\ <div class='faculty-rouge'></div><div class='faculty-titre-id'><h4>\n" + people_listing[x].link + people_listing[x].lastname + " " +  people_listing[x].firstname + "</h4>";
-	test+="</a> \n\ ";
-	test+="<a href=" + people_listing[x].labwebsite + "><div class='faculty-lab'>" + people_listing[x].mylabname + "</div></a></div></div></div></div>";
         count++;
-
+        test += _templateCard(people_listing[x]);
    }
   }
   if (count==0) {
@@ -192,12 +210,10 @@ $(function() {
 </div>
     <div class="container">
       <div class="row row-offcanvas row-offcanvas-right">
-        <div class="col-3 col-md-9">
-
-          <div class="row">
-
-	<div id="<?php echo $div_id; ?>" class="row entry-body results ">&nbsp;</div>
-</div></div></div></div>
+        <div class="sti-faculty-trombinoscope col-12 col-md-9">
+          <div class="row" id="<?php echo $div_id; ?>">&nbsp;</div>
+        </div>
+      </div>
 
 </directory>
 <?php

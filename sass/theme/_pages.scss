@@ -5,13 +5,16 @@ $borderGrayBox: #b2b0b0;
 
 .faculty-titre-card {
   margin-bottom: 20px !important;
+  line-height: 1;
 }
 
 .faculty-titre-id {
   width: 100%;
   background-color: #e0e0e0;
   border-top: 1px solid #fff;
-  height: 80px;
+  height: 8rem;
+  padding: 1rem;
+  hyphens: auto;
  }
 
 .faculty-rouge {
@@ -32,14 +35,13 @@ $borderGrayBox: #b2b0b0;
 .faculty-titre-id>h4 {
   font-weight: bold;
   margin: 0;
-  padding: 5px 5px 0px 10px;
+  padding-bottom: 10px;
   font-family: arial;
   font-size:12px;
   text-align: left;
 }
 
 .faculty-lab {
-  padding: 0 0 10px 10px;
   font-size:10px;
   text-align: left;
 }
