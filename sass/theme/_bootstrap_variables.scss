@@ -2,8 +2,7 @@
 // To overwrite a Bootstrap variable you don´t have to touch the Bootstrap folder. 
 // Just copy a variable from /sass/bootstrap/_variables.scss, paste it here and edit the value.
 $body-bg: #ccc;
-// Links made by Bootstrap itself, e.g. the burger menu
-$link-color: black;
+$link-color: blue;
 
 $grid-gutter-width: 15px;  // This is the default value, but we need it
                            // for _maxmegamenu_variables.scss
