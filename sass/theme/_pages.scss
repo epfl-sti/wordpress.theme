@@ -2,6 +2,114 @@
  * Style for pages (not posts)
  */
 
+.box_news{
+  width:100%;
+  float:left;
+  background-color:#f2f2f2;
+  border: 1px solid #b4b2b2;
+  margin-bottom: 20px;
+  }
+.gris_news{
+  width:100%;
+  height:2px;
+  background-color:#e0e0e0;
+  border-top: 1px solid #fff;  
+  }
+.rouge{
+  width:100%;
+  height:6px;
+  background-color:#c91a25;
+  border-top: 1px solid #626161;
+  border-bottom: 1px solid #626161;
+  }
+.img_news{
+  border: 1px solid #b4b2b2; 
+  padding:3px; 
+  background-color:#fff;
+  margin: 0px 0px 0px 15px;
+  float: right;
+  }
+.titre_news{
+  background-color:#ccc;
+  padding:0px 5px 5px 5px;
+  font-weight: bold;
+  }
+.contenu_news{
+  text-align: justify;
+  width:100%;
+  float:right;
+  background-color:#e7e7e7;
+  padding: 15px;
+  }
+ 
+span_news{
+  vertical-align: top;
+  text-align : justify;
+  }
+  
+a {
+  color: inherit;
+  text-decoration: none;
+
+}
+
+ a:hover {
+  color: #000;
+  text-decoration: none;
+
+}
+
+ a > .box_news:hover > .titre_news{
+  color: #c91a25;
+}
+
+
+ a > .box_news:hover  > .contenu_news{
+  background-color: #ccc;
+}
+
+/*------------------------------------*/
+
+.box_education {
+  background-color: #f2f2f2;
+  border: 1px solid #b4b2b2;
+  margin: 7px;
+  border-radius: 0;
+}
+
+.titre_education {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-top: 1px solid #fff;
+}
+
+
+.img_education {
+  width: 100%;
+  border-radius: 0;
+
+}
+
+.titre_education>h4 {
+  margin: 0;
+  padding: 5px 5px 5px 10px;
+  font-family: arial;
+  font-size:16px;
+  text-transform: uppercase;
+  text-align: left;
+  border-bottom: 1px solid #b4b2b2;
+}
+ a > .box_education:hover > .titre_education{
+  color: #c91a25;
+}
+
+/*------------------------------------*/
+
+
+
+
+
+    
 .faculty-titre-card {
   margin-bottom: 20px !important; 
 }
