@@ -96,13 +96,13 @@ foreach ($news_raw as $piece) {
       <div class="container"><?php # main container ?>
         <div class="row main-matter"><?php # main row ?>
           <card class="ribbon-red <?php echo $listoflinks_width; ?>">
-           <?php if ($with_red_ribbon): ?>
             <header>
+           <?php if ($with_red_ribbon): ?>
              <img class="ribbon-red-top" src="/wp-content/themes/epfl-sti/img/src/topright.png">
              <img class="ribbon-red-bottom" src="/wp-content/themes/epfl-sti/img/src/bottomleft.png">
-            </header>
            <?php endif;  ?>
-           <?php the_title( '<h1>' . $officialtitle . '</h1>' ); ?>
+           <?php the_title( '<h1>' . $officialtitle, '</h1>' ); ?>
+            </header>
            <main>
             <div class="sti_content_prof_photo">
              <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
