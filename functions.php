@@ -98,6 +98,11 @@ require_once get_template_directory() . '/inc/editor.php';
 require_once get_template_directory() . '/inc/epfl.php';
 
 /**
+ * Set up theming for the epfl-ws shortcodes
+ */
+require_once get_template_directory() . '/inc/epfl-ws-shortcodes.php';
+
+/**
  * Work with the historical STI database.
  */
 require_once get_template_directory() . '/inc/stisrv13.php';
