@@ -71,3 +71,31 @@ add_filter("epfl_shortcode_memento_list_html", function ($events) {
     $memento .= "</div></div>\n";  # actu_news_box and actu_news_contenu
     return $memento;
 });
+
+function title2anchor ($title)
+{
+    $unwanted_array = array(    'Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
+                                'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U',
+                                'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss', 'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c',
+                                'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o',
+                                'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y' );
+    $anchor = strtr( $title, $unwanted_array );
+    $anchor = str_replace(" ", "-", $anchor);
+    $anchor = str_replace("'", "-", $anchor);
+    $anchor = strtolower($anchor);
+    $anchor = substr($anchor, 0, 50);
+    return $anchor;
+}
+
+add_filter("epfl_shortcode_actu_list_html_item", function ($item) {
+        return " <a href='https://actu.epfl.ch/news/" . title2anchor($item->title) . "'>
+       <div class='actu_news_box'>
+        <div class='actu_gris_news'></div>
+        <div class='actu_titre_news'>".strtoupper($item->title)."</div>
+        <div class='actu_news_body'>
+         <img class='actu_img_news' src='".$item->visual_url."' width='170' height='100'>
+         <span>".$item->subtitle."</span>
+        </div>
+       </div>
+      </a>";
+});
