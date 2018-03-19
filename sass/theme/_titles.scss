@@ -1,0 +1,20 @@
+header.sti-textured {
+  width:100%;
+  background-image: url('theme-epfl-sti/assets/textured_header.png');
+  background-color: #e4e4e4;
+  background-position: right;
+  background-size: 60% 140%;
+  background-repeat: no-repeat;
+  border: 1px solid $borderGrayBox;
+
+  h1 {
+    display: block;
+    color: #000;
+    font: 2em 'Open Sans';
+    width: 100%;
+    padding: 25px 30px 28px 30px;
+    background-image: url('theme-epfl-sti/assets/textured_header_top.png');
+    background-position: top;
+    background-repeat: repeat-x;
+  }
+}

@@ -7,10 +7,8 @@
 
 ?>
 <article id="post-<?php the_ID(); ?>" >
-		<header >
-			<div class="sti_textured_header_top"></div>
-			<?php the_title( '<div class="sti_textured_header">', '</div>' ); ?>
-
+		<header class="sti-textured">
+			<?php the_title( '<h1>', '</h1>' ); ?>
 		</header>
 
 		<div class="article-content page-whitebg">

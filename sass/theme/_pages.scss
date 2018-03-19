@@ -1,7 +1,6 @@
 /**
  * Style for pages (not posts)
  */
-$borderGrayBox: #b2b0b0;
 
 .actu_news_box{
   width:100%;
@@ -201,15 +200,6 @@ a > .actu_news_box:hover  > .actu_news_body{
   text-align: left;
 }
 
-.sti_content_title { /* superceded by sti_textured_header */
-  background-color: black;
-  color: white;
-  font: 26px 'Open Sans';
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
 .article-content {
   padding: 15px;
   min-height:350px;
@@ -286,27 +276,6 @@ a > .actu_news_box:hover  > .actu_news_body{
 
 .sti_centres_research {
   background-color: #ddd;
-}
-
-.sti_textured_header {
-  background-color: #e4e4e4;
-  color: #000;
-  font: 2em 'Open Sans';
-  width: 100%;
-  padding: 25px 30px 28px 30px;
-  background-image: url('../assets/textured_header.png');
-  background-position: right;
-  background-size: 60% 140%;
-  background-repeat: no-repeat;
-  border-left: solid 1px $borderGrayBox;
-  border-right: solid 1px $borderGrayBox;
-}
-
-.sti_textured_header_top {
-  height: 11px;
-  width:100%;
-  background-image: url('../assets/textured_header_top.png');
-  border: 1px solid $borderGrayBox;
 }
 
 .sti_caption {
