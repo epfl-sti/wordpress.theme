@@ -178,17 +178,28 @@ abstract class PostQuery
         if ($query && $query["s"]) {
             $criteria["s"] = $query["s"];
         }
-        $language_hint = null;
-        if (function_exists("pll_current_language")) {
-            $criteria["tax_query"] = array(
-                array(
-                    'taxonomy' => 'language',
-                    'field'    => 'slug',
-                    'terms'    => \pll_current_language()
-                )
-            );
+
+        $posts = get_posts($criteria);
+
+        if (! (function_exists("pll_current_language") &&
+               function_exists("pll_get_post"))) {
+            return $posts;
         }
-        return get_posts($criteria);
+
+        $posts_of_the_right_language = array();
+        $posts_of_the_wrong_language = array();
+        $this_language = \pll_current_language();
+        foreach ($posts as $post) {
+            $translated_post = \pll_get_post($post->ID, $this_language);
+            if ($translated_post && $translated_post->ID != $post->ID) {
+                array_push($posts_of_the_wrong_language, $post);
+            } else {
+                array_push($posts_of_the_right_language, $post);
+            }
+        }
+
+        return array_merge($posts_of_the_right_language,
+                           $posts_of_the_wrong_language);
     }
 
     static function ajax_search ($query)
