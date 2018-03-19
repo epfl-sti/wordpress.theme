@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     die( 'Access denied.' );
 }
 
-add_filter("epfl_shortcode_memento_list_html", function ($events) {
+add_filter("epfl_shortcode_memento_list_html", function ($unused_html, $events) {
         $memento.="
      <div class='actu_news_box'>
       <div class='actu_news_contenu'>";
@@ -70,7 +70,7 @@ add_filter("epfl_shortcode_memento_list_html", function ($events) {
     }
     $memento .= "</div></div>\n";  # actu_news_box and actu_news_contenu
     return $memento;
-});
+}, 10, 2);
 
 function title2anchor ($title)
 {
@@ -87,9 +87,9 @@ function title2anchor ($title)
     return $anchor;
 }
 
-add_filter("epfl_shortcode_actu_list_html_item", function ($item) {
+add_filter("epfl_shortcode_actu_list_html_item", function ($unused_html, $unused_shortcode_attrs, $item) {
         return " <a href='https://actu.epfl.ch/news/" . title2anchor($item->title) . "'>
-       <div class='actu_news_box'>
+       <div class='actu_news_box sti-themed'>
         <div class='actu_gris_news'></div>
         <div class='actu_titre_news'>".strtoupper($item->title)."</div>
         <div class='actu_news_body'>
@@ -98,4 +98,4 @@ add_filter("epfl_shortcode_actu_list_html_item", function ($item) {
         </div>
        </div>
       </a>";
-});
+}, 10, 3);
