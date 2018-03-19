@@ -35,8 +35,8 @@ function get_newsletter_posts ($theme_options)
 
 class NewsletterDraftState
 {
-    // 72 hours is enough to leave a draft to dry over a week-end.
-    const TIMEOUT_SECS = 72 * 3600;
+    // 10 days before draft states expire
+    const TIMEOUT_SECS = 240 * 3600;
 
     private $saved_state;
 
