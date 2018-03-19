@@ -88,14 +88,16 @@ function title2anchor ($title)
 }
 
 add_filter("epfl_shortcode_actu_list_html_item", function ($unused_html, $unused_shortcode_attrs, $item) {
-        return " <a href='https://actu.epfl.ch/news/" . title2anchor($item->title) . "'>
-       <div class='actu_news_box sti-themed'>
-        <div class='actu_gris_news'></div>
-        <div class='actu_titre_news'>".strtoupper($item->title)."</div>
-        <div class='actu_news_body'>
-         <img class='actu_img_news' src='".$item->visual_url."' width='170' height='100'>
+        $link_to_article = "<a href=\"https://actu.epfl.ch/news/" . title2anchor($item->title) . "\">";
+       return "<div class=\"actu_news_box\">
+        <div class=\"actu_gris_news\"></div>
+        <div class=\"actu_titre_news\">$link_to_article".strtoupper($item->title)."</a></div>
+        <div class=\"actu_news_body\">
+         <img class=\"actu_img_news\" src=\"".$item->visual_url."\" width=\"170\" height=\"100\">
          <span>".$item->subtitle."</span>
         </div>
-       </div>
-      </a>";
+       </div>";
 }, 10, 3);
+
+add_filter("epfl_shortcode_actu_list_html_start", function () { return ""; });
+add_filter("epfl_shortcode_actu_list_html_end",   function () { return ""; });
