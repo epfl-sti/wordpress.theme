@@ -13,109 +13,116 @@
 /**
  * Theme setup and custom theme supports.
  */
-require_once get_template_directory() . '/inc/setup.php';
+require_once __DIR__ . '/inc/setup.php';
 
 /**
  * Register widgets.
  *
  * @link http://codex.wordpress.org/Function_Reference/register_sidebar
  */
-require_once get_template_directory() . '/inc/widgets.php';
+require_once __DIR__ . '/inc/widgets.php';
 
 /**
  * Load functions to secure your WP install.
  */
-require_once get_template_directory() . '/inc/security.php';
+require_once __DIR__ . '/inc/security.php';
 
 /**
  * Enqueue scripts and styles.
  */
-require_once get_template_directory() . '/inc/enqueue.php';
+require_once __DIR__ . '/inc/enqueue.php';
 
 /**
  * Custom template tags for this theme.
  */
-require_once get_template_directory() . '/inc/template-tags.php';
+require_once __DIR__ . '/inc/template-tags.php';
 
 /**
  * Custom post metadata and its rendering.
  */
-require_once get_template_directory() . '/inc/metadata.php';
+require_once __DIR__ . '/inc/metadata.php';
 
 /**
  * Custom pagination layout.
  */
-require_once get_template_directory() . '/inc/pagination.php';
+require_once __DIR__ . '/inc/pagination.php';
 
 /**
  * Well-known URLs for this theme's assets
  */
-require_once get_template_directory() . '/inc/serve-assets.php';
+require_once __DIR__ . '/inc/serve-assets.php';
 
 /**
  * Custom functions that act independently of the theme templates.
  */
-require_once get_template_directory() . '/inc/extras.php';
+require_once __DIR__ . '/inc/extras.php';
 
 /**
  * Customizer additions.
  */
-require_once get_template_directory() . '/inc/customizer.php';
+require_once __DIR__ . '/inc/customizer.php';
 
 /**
  * Custom Comments file.
  */
-require_once get_template_directory() . '/inc/custom-comments.php';
+require_once __DIR__ . '/inc/custom-comments.php';
 
 /**
  * Customization of the allowed HTML5 elements
  */
-require_once get_template_directory() . '/inc/html5-tags.php';
+require_once __DIR__ . '/inc/html5-tags.php';
 
 /**
  * Load Jetpack compatibility file.
  */
-require_once get_template_directory() . '/inc/jetpack.php';
+require_once __DIR__ . '/inc/jetpack.php';
 
 /**
  * Load custom WordPress nav walker.
  */
-require_once get_template_directory() . '/inc/bootstrap-wp-navwalker.php';
+require_once __DIR__ . '/inc/bootstrap-wp-navwalker.php';
 
 /**
  * Load WooCommerce functions.
  */
-require_once get_template_directory() . '/inc/woocommerce.php';
+require_once __DIR__ . '/inc/woocommerce.php';
 
 /**
  * Load Editor functions.
  */
-require_once get_template_directory() . '/inc/editor.php';
+require_once __DIR__ . '/inc/editor.php';
 
 /**
  * Work with EPFL environment.
  */
-require_once get_template_directory() . '/inc/epfl.php';
+require_once __DIR__ . '/inc/epfl.php';
 
 /**
  * Set up theming for the epfl-ws shortcodes
  */
-require_once get_template_directory() . '/inc/epfl-ws-shortcodes.php';
+require_once __DIR__ . '/inc/epfl-ws-shortcodes.php';
 
 /**
  * Work with the historical STI database.
  */
-require_once get_template_directory() . '/inc/stisrv13.php';
+require_once __DIR__ . '/inc/stisrv13.php';
 
 /**
  * Newsletter theme.
  */
-require_once get_template_directory() . '/newsletter-theme/hook.php';
+require_once __DIR__ . '/newsletter-theme/hook.php';
 
 /**
  * Max Mega Menu theme.
  */
-require_once get_template_directory() . '/inc/maxmegamenu.php';
+require_once __DIR__ . '/inc/maxmegamenu.php';
+
+/**
+ * wp-admin customization
+ */
+if (is_admin()) {
+    require_once __DIR__ . '/inc/wp-admin.php';
+}
 
 /**
  * Enable shortcodes in text widgets.
