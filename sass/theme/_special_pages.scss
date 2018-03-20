@@ -1,0 +1,37 @@
+/**
+ * Styles for one-of-a-kind pages
+ */
+
+/**
+ * Themes page
+ */
+
+.themes-gris {
+  width:100%;
+  height:2px;
+  background-color:#e0e0e0;
+  border-top: 1px solid #fff;
+  }
+.themes-img {
+  border: 1px solid #b4b2b2;
+  padding:3px;
+  background-color:#fff;
+  margin: 0px 0px 0px 15px;
+  float: right;
+  }
+.themes-titre {
+  background-color:#ccc;
+  padding:0px 5px 5px 5px;
+  font-weight: bold;
+}
+.themes-contenu {
+  text-align: justify;
+  width:100%;
+  float:right;
+  background-color:#e7e7e7;
+  padding: 15px;
+}
+.themes-span {
+  vertical-align: top;
+  text-align : justify;
+}
