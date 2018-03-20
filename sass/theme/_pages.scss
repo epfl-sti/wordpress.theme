@@ -1,116 +1,6 @@
 /**
- * Style for pages (not posts)
+ * Style for inner pages (and posts - But not homepages)
  */
-
-.actu_news_box{
-  width:100%;
-  float:left;
-  background-color:#f2f2f2;
-  border: 1px solid #b4b2b2;
-  margin-bottom: 20px;
-}
-.actu_news_contenu{
-  width:100%;
-  float:left;
-  background-color:#f2f2f2;
-  padding: 15px;
-}
-.actu_gris_news{
-  width:100%;
-  height:2px;
-  background-color:#e0e0e0;
-  border-top: 1px solid #fff;
-}
-.actu_titre_news{
-  background-color:#ccc;
-  padding:0px 5px 5px 5px;
-  font-weight: bold;
-}
-.actu_img_news{
-  border: 1px solid #b4b2b2;
-  padding:3px;
-  background-color:#fff;
-  margin-right: 10px;
-  float: left;
-}
-.actu_news_body{
-  width:100%;
-  float:left;
-  background-color:#e7e7e7;
-  padding: 15px;
-}
-.actu_news_body > span{
-  vertical-align: top;
-}
-.actu_news_contenu > a {
-  color: inherit;
-  text-decoration: none;
-}
-.actu_news_contenu > a:hover {
-  font-weight: bold;
-  color: #000;
-  text-decoration: none;
-}
-a > .actu_news_box:hover > .actu_titre_news {
-  color: #e22;
-}
-a > .actu_news_box:hover  > .actu_news_body{
-  background-color: #ccc;
-}
-
-.box_news{
-  width:100%;
-  float:left;
-  background-color:#f2f2f2;
-  border: 1px solid #b4b2b2;
-  margin-bottom: 20px;
-  }
-.gris_news{
-  width:100%;
-  height:2px;
-  background-color:#e0e0e0;
-  border-top: 1px solid #fff;
-  }
-.rouge{
-  width:100%;
-  height:6px;
-  background-color:#c91a25;
-  border-top: 1px solid #626161;
-  border-bottom: 1px solid #626161;
-  }
-.img_news{
-  border: 1px solid #b4b2b2;
-  padding:3px;
-  background-color:#fff;
-  margin: 0px 0px 0px 15px;
-  float: right;
-  }
-.titre_news{
-  background-color:#ccc;
-  padding:0px 5px 5px 5px;
-  font-weight: bold;
-  }
-.contenu_news{
-  text-align: justify;
-  width:100%;
-  float:right;
-  background-color:#e7e7e7;
-  padding: 15px;
-  }
-
-.span_news{
-  vertical-align: top;
-  text-align : justify;
-  }
-
-.box_news:hover > .titre_news{
-  color: #c91a25;
-}
-
-
-.box_news:hover  > .contenu_news{
-  background-color: #ccc;
-}
 
 /*------------------------------------*/
 
@@ -148,11 +38,6 @@ a > .actu_news_box:hover  > .actu_news_body{
 }
 
 /*------------------------------------*/
-
-
-
-
-
 
 .faculty-titre-card {
   margin-bottom: 20px !important;

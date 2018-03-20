@@ -10,11 +10,22 @@ header.sti-textured {
   h1 {
     display: block;
     color: #000;
-    font: 2em 'Open Sans';
     width: 100%;
     padding: 25px 30px 28px 30px;
     background-image: url('theme-epfl-sti/assets/textured_header_top.png');
     background-position: top;
     background-repeat: repeat-x;
+  }
+}
+
+header.sti-textured h1 {
+  font: 2em 'Open Sans';
+}
+
+header.sti-textured h1,
+.fullwidth-list-item h2 {
+  a {
+    color: inherit;
+    font-weight: inherit;
   }
 }

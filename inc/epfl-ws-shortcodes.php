@@ -10,67 +10,63 @@ if ( ! defined( 'ABSPATH' ) ) {
     die( 'Access denied.' );
 }
 
-add_filter("epfl_shortcode_memento_list_html", function ($unused_html, $events) {
-        $memento.="
-     <div class='actu_news_box'>
-      <div class='actu_news_contenu'>";
-    foreach ($events as $item) {
-      $startdate=$item->event_start_date;
-      $enddate=$item->event_end_date;
-      if ($startdate == $enddate) {
-       $enddate="";
-      }
-      else {
-       $enddate=date("l, jS F ", strtotime($enddate));
-      }
-      $startdate=date("l, jS F", strtotime($startdate));
-      $starttime=$item->event_start_time;
-      $endtime=$item->event_end_time;
-      $starttime=date("H:i", strtotime($starttime));
-      $endtime=date("H:i", strtotime($endtime));
-      if ($starttime == "00:00") {
-       $starttime="";
-      }
-      if ($endtime == "00:00") {
-       $endtime="";
-      }
+add_filter(
+    "epfl_shortcode_memento_list_html_item",
+    function ($unused_html, $unused_shortcode_attrs, $item) {
+        $startdate = $item->event_start_date;
+        $enddate = $item->event_end_date;
+        if ($startdate == $enddate) {
+            $enddate = "";
+        } else {
+            $enddate = date("l, jS F ", strtotime($enddate));
+        }
+        $startdate = date("l, jS F", strtotime($startdate));
+        $starttime = $item->event_start_time;
+        $endtime = $item->event_end_time;
+        $starttime = date("H:i", strtotime($starttime));
+        $endtime = date("H:i", strtotime($endtime));
+        if ($starttime == "00:00") {
+            $starttime = "";
+        }
+        if ($endtime == "00:00") {
+            $endtime = "";
+        }
 
-      $outlinkstartdate=str_replace("-","",$item->event_start_date);
-      $outlinkenddate=str_replace(":","",$item->event_end_date);
+        $outlinkstartdate = str_replace("-","",$item->event_start_date);
+        $outlinkenddate = str_replace(":","",$item->event_end_date);
 
-      $outlinkendtime=str_replace(":","",$item->event_end_time);
-      if (empty($outlinkendtime)) {
-       $outlinkendtime="000000";
-      }
-      $outlinkstarttime=str_replace(":","",$item->event_start_time);
-      if (empty($outlinkstarttime)) {
-       $outlinkstarttime="000000";
-      }
-      $outlinktitle=str_replace(" ","%20",$item->title);
+        $outlinkendtime = str_replace(":","",$item->event_end_time);
+        if (empty($outlinkendtime)) {
+            $outlinkendtime = "000000";
+        }
+        $outlinkstarttime = str_replace(":","",$item->event_start_time);
+        if (empty($outlinkstarttime)) {
+            $outlinkstarttime = "000000";
+        }
+        $outlinktitle = str_replace(" ","%20",$item->title);
 
-      $outlink="https://stisrv13.epfl.ch/outlink.php?enddate=$outlinkenddate"."T$outlinkendtime&datestring=$outlinkstartdate"."T$outlinkstarttime&speaker=&title=$outlinktitle&room=";
+        $outlink = "https://stisrv13.epfl.ch/outlink.php?enddate=$outlinkenddate"."T$outlinkendtime&datestring=$outlinkstartdate"."T$outlinkstarttime&speaker=&title=$outlinktitle&room=";
 
-      $description = str_replace("<strong>", "", $item->description);
-      $description = str_replace("</strong>", "", $description);
+        $description = str_replace("<strong>", "", $item->description);
+        $description = str_replace("</strong>", "", $description);
 
-      $memento .= '<div class="actu_news_box" id="' . $item->id . '">';
-      $memento .= '<div class="actu_titre_news"><a href="' . $item->absolute_slug . '">' . $item->title . '</a></div>';
-      $memento .= '<div class="container">';
-      $memento .= '<div class="row entry-body">';
-      $memento .= '<div class="col-md-2"><a href="' . $item->absolute_slug . '"><img class=actu_img_news src="' . $item->event_visual_absolute_url . '" title="' . $item->image_description . '"></a>';
-      $memento .= $startdate . ' ' . ($starttime ? $starttime : "") ;
-      if ($enddate) {
-        $memento .= '<br>to<br>' . $enddate . ' ' . ($endtime ? $endtime : "") ;
-      }
-      $memento .= '<br><a title="add to calendar" href='.$outlink.'><img src=https://stisrv13.epfl.ch/newsdesk/images/2018-03-15calendar.gif alt="add to calendar"></a> <br><br> </div>';
-      $memento .= '<div class="col-md-10">' . $description.'<a href="' . $item->absolute_slug . '">Read more</a> <br><br></div>';
-      $memento .= "</div>\n";  # row
-      $memento .= "</div>\n";  # container
-      $memento .= "</div>\n";  # actu_news_box
-    }
-    $memento .= "</div></div>\n";  # actu_news_box and actu_news_contenu
-    return $memento;
-}, 10, 2);
+        $memento .= '<div class="fullwidth-list-item" id="' . $item->id . '">';
+        $memento .= '<h2><a href="' . $item->absolute_slug . '">' . $item->title . '</a></h2>';
+        $memento .= '<div class="container">';
+        $memento .= '<div class="row entry-body">';
+        $memento .= '<div class="col-md-2 memento-details"><a href="' . $item->absolute_slug . '"><img src="' . $item->event_visual_absolute_url . '" title="' . $item->image_description . '"></a>';
+        $memento .= $startdate . ' ' . ($starttime ? $starttime : "") ;
+        if ($enddate) {
+            $memento .= '<br>to<br>' . $enddate . ' ' . ($endtime ? $endtime : "") ;
+        }
+        $memento .= '<br><a title="add to calendar" href='.$outlink.'><img src=https://stisrv13.epfl.ch/newsdesk/images/2018-03-15calendar.gif alt="add to calendar"></a> <br><br> </div>';
+        $memento .= '<div class="col-md-10">' . $description.'<a href="' . $item->absolute_slug . '">Read more</a> <br><br></div>';
+        $memento .= "</div>\n";  # row
+        $memento .= "</div>\n";  # container
+        $memento .= "</div>\n";  # fullwidth-list-item
+
+        return $memento;
+    }, 10, 3);
 
 function title2anchor ($title)
 {
@@ -89,15 +85,12 @@ function title2anchor ($title)
 
 add_filter("epfl_shortcode_actu_list_html_item", function ($unused_html, $unused_shortcode_attrs, $item) {
         $link_to_article = "<a href=\"https://actu.epfl.ch/news/" . title2anchor($item->title) . "\">";
-       return "<div class=\"actu_news_box\">
-        <div class=\"actu_gris_news\"></div>
-        <div class=\"actu_titre_news\">$link_to_article".strtoupper($item->title)."</a></div>
-        <div class=\"actu_news_body\">
-         <img class=\"actu_img_news\" src=\"".$item->visual_url."\" width=\"170\" height=\"100\">
+       return "<div class=\"fullwidth-list-item\">
+        <h2>$link_to_article".strtoupper($item->title)."</a></h2>
+        <div class=\"actu-details\">
+         <img src=\"".$item->visual_url."\" width=\"170\" height=\"100\">
          <span>".$item->subtitle."</span>
         </div>
        </div>";
 }, 10, 3);
 
-add_filter("epfl_shortcode_actu_list_html_start", function () { return ""; });
-add_filter("epfl_shortcode_actu_list_html_end",   function () { return ""; });

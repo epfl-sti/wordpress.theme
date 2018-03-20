@@ -1,0 +1,65 @@
+/**
+ * Style for pages that consist of a list of results
+ */
+
+$list-item-hover-bgcolor: #ddd;
+
+/**
+ * Outermost box below the title
+ */
+.epfl-shortcode-list {
+  width: 100%;
+  float: left;
+  background-color: #f2f2f2;
+  border: 1px solid #b4b2b2;
+  padding: 15px;
+}
+
+/**
+ * List entries
+ */
+.fullwidth-list-item {
+  width:100%;
+  float:left;
+  background-color:#f2f2f2;
+  border: 1px solid #b4b2b2;
+  margin-bottom: 20px;
+
+  h2 {
+    background-color: #c0c0c0;
+    font-weight: bold;
+    font-family: $font-family-base;
+    font-size:   $font-size-base;
+    padding: 0.5em;
+  }
+
+  &:hover {
+    background-color: $list-item-hover-bgcolor;
+    > h2 {
+      color: $theRed;
+      > a {
+        color: b$theRed;
+      }
+    }
+  }
+}
+
+.fullwidth-list-item .sti-memento-body {
+  width:100%;
+  float:left;
+  background-color:#e7e7e7;
+  padding: 15px;
+
+  > span {
+    vertical-align: top;
+  }
+}
+
+.actu-details img,
+.memento-details img {
+  border: 1px solid #b4b2b2;
+  padding:3px;
+  background-color:#fff;
+  margin-right: 10px;
+  float: left;
+}
