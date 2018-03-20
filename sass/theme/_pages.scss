@@ -181,10 +181,13 @@ a > .actu_news_box:hover  > .actu_news_body{
 
 /*------------------------------------*/
 
-
-
-
-
+.titretheme>h4 {
+  font-weight: bold;
+  font-size:17px;
+  border-bottom: 2px solid #d1131c;
+  background-position: right;
+}
+/*------------------------------------*/
 
 .faculty-titre-card {
   margin-bottom: 20px !important;
