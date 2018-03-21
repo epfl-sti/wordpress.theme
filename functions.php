@@ -98,7 +98,7 @@ require_once __DIR__ . '/inc/woocommerce.php';
 require_once __DIR__ . '/inc/editor.php';
 
 /**
- * Work with EPFL environment.
+ * Work with EPFL environment and the epfl-ws plugin.
  */
 require_once __DIR__ . '/inc/epfl.php';
 

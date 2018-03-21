@@ -184,3 +184,13 @@ function split_on_underscore ($name)
         throw new \Error("Cannot find name parts in $name");
     }
 }
+
+/**
+ * Scrape images for labs out of stisrv13
+ */
+add_action("epfl_ws_sync_lab", function ($lab) {
+   // Return if $lab already has a featured image
+   // Look up lab owner
+   // Look up its image on stisrv13
+   // Apply https://wordpress.stackexchange.com/a/41300/132235
+});
