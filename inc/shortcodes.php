@@ -28,7 +28,7 @@ add_shortcode("lab-card", function ($attrs, $content) {
             if ($attrs["href"] && ! $content_has_link) {
                 $content = "<a href=\"". $attrs["href"] . "\">$content</a>";
             }
-            $html .= "<p>$content</p>";
+            $html .= "<p>$content</p >";
         }
     }
     $html .= "\n</card>\n";
