@@ -23,6 +23,11 @@ require_once __DIR__ . '/inc/setup.php';
 require_once __DIR__ . '/inc/widgets.php';
 
 /**
+ * Register shortcodes.
+ */
+require_once __DIR__ . '/inc/shortcodes.php';
+
+/**
  * Load functions to secure your WP install.
  */
 require_once __DIR__ . '/inc/security.php';

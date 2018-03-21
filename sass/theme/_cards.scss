@@ -143,7 +143,91 @@ card.ribbon-red {
   }
 }
 
-// TODO: rename all below
+/**
+ * A card deck made up of cards of the same size
+ *
+ * We eschew the use of Bootstrap 4 card decks here, and go for
+ * straight flex layout instead.
+ */
+card-deck-flex card {
+    > header, > img {
+        display: block;
+    }
+}
+
+$sti-lab-card-width: 220px;
+
+card.sti-lab {
+    width: $sti-lab-card-width;
+    border: 1px solid black;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-bottom: 4px;
+}
+
+card.sti-lab h1,
+div.sti_centres_header {  // OBSOLETE name
+  border: 1px solid black;
+  border-bottom: 0px;
+  background-color: #303030;
+  padding: 10px;
+  font: 22px calibri, verdana, sans-serif;
+  color: white;
+}
+card.sti-lab h1 {
+    margin: 0px;
+}
+div.sti_centres_header {  // OBSOLETE name
+  width: $sti-lab-card-width;
+}
+
+card.sti-lab > header > h1 {
+    border-bottom: 4px solid $theRed;
+}
+.sti_centres_banner {  // OBSOLETE element for the red border at bottom
+  height: 7px;
+  width: $sti-lab-card-width;
+  background-image: url('theme-epfl-sti/assets/textured_header_top.png');
+  background-position: center bottom;
+}
+
+card.sti-lab > img,
+card.sti-lab > a > img {
+  height: 138px;
+  width: $sti-lab-card-width;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sti_centres_image {  // OBSOLETE, use an img in a card.sti-lab
+  height: 138px;
+  width: $sti-lab-card-width;
+  display: block;
+  border-left: 1px solid #b2b2b0;
+  border-right: 1px solid #b2b2b0;
+}
+
+card.sti-lab > p {
+  padding: 10px 20px 15px 10px;
+  background-color: #eee;
+  height: 80px;
+  font: 16px calibri, verdana, sans-serif;
+}
+card.sti-lab > p:last-child {
+  margin-bottom: 0px;
+}
+.sti_centres_national {  // OBSOLETE
+  padding: 10px 20px 15px 10px;
+  background-color: #eee;
+  height: 80px;
+  width: $sti-lab-card-width;
+  font: 16px calibri, verdana, sans-serif;
+  border-left: 1px solid #b2b2b0;
+  border-right: 1px solid #b2b2b0;
+  border-bottom: 1px solid #b2b2b0;
+}
+
+// TODO: rename/reorganize all below
 
 .sti_content_prof_photo {
  float: left;

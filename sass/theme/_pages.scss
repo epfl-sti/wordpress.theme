@@ -103,13 +103,14 @@
   text-decoration:none;
 }
 
-#robotics { background-image: url('/wp-content/uploads/2018/01/nccr-robotics.png'); }
-#marvel { background-image: url('/wp-content/uploads/2018/01/marvel.png'); }
-#furies { background-image: url('/wp-content/uploads/2018/01/sccer.png'); }
-#nanotera { background-image: url('/wp-content/uploads/2018/01/nano.png'); }
-#space { background-image: url('/wp-content/uploads/2018/01/space.jpg'); }
-#m2c { background-image: url('/wp-content/uploads/2018/01/m2c.png'); }
-#ccmx{ background-image: url('/wp-content/uploads/2018/01/ccmx.png'); }
+// This is all OBSOLETE
+.sti_centres_image#robotics { background-image: url('/wp-content/uploads/2018/01/nccr-robotics.png'); }
+.sti_centres_image#marvel { background-image: url('/wp-content/uploads/2018/01/marvel.png'); }
+.sti_centres_image#furies { background-image: url('/wp-content/uploads/2018/01/sccer.png'); }
+.sti_centres_image#nanotera { background-image: url('/wp-content/uploads/2018/01/nano.png'); }
+.sti_centres_image#space { background-image: url('/wp-content/uploads/2018/01/space.jpg'); }
+.sti_centres_image#m2c { background-image: url('/wp-content/uploads/2018/01/m2c.png'); }
+.sti_centres_image#ccmx{ background-image: url('/wp-content/uploads/2018/01/ccmx.png'); }
 #energy { background-image: url('/wp-content/uploads/2018/01/cen.png'); }
 #acces { background-image: url('/wp-content/uploads/2018/01/ACCES.jpg'); }
 #si { background-image: url('/wp-content/uploads/2018/01/si.jpg'); }
@@ -119,45 +120,6 @@
 #cime { background-image: url('/wp-content/uploads/2018/01/microscopy.jpg'); }
 #ateliers { background-image: url('/wp-content/uploads/2018/01/ateliers.png'); }
 #mhmc { background-image: url('/wp-content/uploads/2018/01/mhmc.png'); }
-
-.sti_centres_header {
-  border: solid 1px black;
-  border-bottom: solid 0px black;
-  background-color: #303030;
-  padding: 10px;
-  font: 22px calibri, verdana, sans-serif;
-  color: white;
-  width: 220px;
-}
-
-.sti_centres_banner {
-  height: 7px;
-  width: 220px;
-  background-image: url('../assets/textured_header_top.png');
-  background-position: center bottom;
-}
-
-.sti_centres_image {
-  background-image: url('/wp-content/uploads/2018/01/nccr-robotics.png');
-  background-size: 100% auto;
-  background-position: center bottom;
-  height: 138px;
-  width: 220px;
-  display: block;
-  border-left: 1px solid #b2b2b0;
-  border-right: 1px solid #b2b2b0;
-}
-
-.sti_centres_national {
-  padding: 10px 20px 15px 10px;
-  background-color: #eee;
-  height: 80px;
-  width: 220px;
-  font: 16px calibri, verdana, sans-serif;
-  border-left: 1px solid #b2b2b0;
-  border-right: 1px solid #b2b2b0;
-  border-bottom: 1px solid #b2b2b0;
-}
 
 .sti_centres_research {
   background-color: #ddd;
