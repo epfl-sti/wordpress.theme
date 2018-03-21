@@ -20,8 +20,8 @@ add_shortcode("lab-card", function ($attrs, $content) {
         $html .= $img_html;
     }
     if ($content) {
-        $content_has_link = preg_match("<a", $content);
-        $content_has_p = preg_match("^<p>", trim($content));
+        $content_has_link = preg_match("/<a/", $content);
+        $content_has_p = preg_match("/^<p>/", trim($content));
         if ($content_has_p) {
             $html .= $content;
         } else {
