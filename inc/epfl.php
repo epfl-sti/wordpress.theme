@@ -185,12 +185,134 @@ function split_on_underscore ($name)
     }
 }
 
+function get_stisrv13_person ($sciper)
+{
+    return curl_get_json("https://stisrv13.epfl.ch/cgi-bin/whoop/peoplepage.pl?sciper=$sciper");
+}
+
+/**
+ * Scrape additional metadata out of stisrv13
+ */
+add_filter("epfl_person_additional_meta", function ($more_meta, $person) {
+    $incoming = get_stisrv13_person($person->get_sciper());
+    if (! $incoming->position) return;
+
+    if (! $person->get_bio()) {
+        $person->set_bio($incoming->bio);
+    }
+
+    if ($incoming->phone) {  $person->set_phone($incoming->phone); }
+    if ($incoming->office) { $person->set_room($incoming->office); }
+
+    $more_meta["stisrv13_id"] = $incoming->id;
+
+    $news_raw = array(
+        array("title" => $incoming->newstitle1,
+              "link"  => $incoming->newslink1,
+              "image" => $incoming->newsimage1),
+        array("title" => $incoming->newstitle2,
+              "link"  => $incoming->newslink2,
+              "image" => $incoming->newsimage2),
+        array("title" => $incoming->newstitle3,
+              "link"  => $incoming->newslink3,
+              "image" => $incoming->newsimage3),
+        array("title" => $incoming->newstitle4,
+              "link"  => $incoming->newslink4,
+              "image" => $incoming->newsimage4)
+    );
+
+    $news = [];
+    foreach ($news_raw as $piece) {
+        if ($piece["title"]) {
+            array_push($news, $piece);
+        }
+    }
+    $more_meta["stisrv13_news_json"] = json_encode($news);
+    $more_meta["stisrv13_data_json"] = json_encode($incoming);
+
+    error_log("epfl_person_additional_meta => " . var_export($more_meta, true));  // XXX
+    return $more_meta;
+}, 10, 2);
+
 /**
  * Scrape images for labs out of stisrv13
  */
-add_action("epfl_ws_sync_lab", function ($lab) {
-   // Return if $lab already has a featured image
-   // Look up lab owner
-   // Look up its image on stisrv13
-   // Apply https://wordpress.stackexchange.com/a/41300/132235
-});
+add_filter("epfl_lab_additional_meta", function ($more_meta, $lab) {
+    if (has_post_thumbnail($lab->wp_post())) { return; }
+    $mgr = $lab->get_lab_manager();
+    if (! $mgr) return;
+
+    $incoming = get_stisrv13_person($mgr->get_sciper());
+    $id = $incoming->id;
+    if (! $id) return;
+
+    download_featured_image(
+        $lab->wp_post(),
+        "https://stisrv13.epfl.ch/brochure/img/$id/research.png",
+        array("basename" => $incoming->labname . ".png")
+    );
+    error_log("epfl_lab_additional_meta => " . var_export($more_meta, true));  // XXX
+    return $more_meta;
+}, 10, 2);
+
+
+class DownloadError extends \Exception
+{
+    function __construct($message) {
+        parent::__construct("$message - " . var_export(error_get_last(), true));
+    }
+}
+
+function download_featured_image($wp_post, $image_url, $opts)
+{
+    // Inspired from https://wordpress.stackexchange.com/a/41300/132235
+    $image_bytes = file_get_contents($image_url);
+    if (! $image_bytes) {
+        throw new DownloadError("Unable to download $image_url");
+    }
+
+    $upload_dir = wp_upload_dir();
+    $basename = $opts["basename"];
+    $target_path = $upload_dir['path'] . '/epfl-sti-auto/';
+    if(wp_mkdir_p($target_path))  {
+        $file = $target_path . '/' . $basename;
+    } else {
+        $file = $upload_dir['basedir'] . '/' . $basename;
+    }
+    if (false === file_put_contents($file, $image_bytes)) {
+        @unlink($file);
+        throw new DownloadError("Unable to create $file from $url");
+    }
+
+    $wp_filetype = wp_check_filetype($basename, null);
+    if (! $wp_filetype['type']) {
+        @unlink($file);
+        throw new DownloadError("Cannot guess file type of $basename");
+    }
+    $attachment = array(
+        'post_mime_type' => $wp_filetype['type'],
+        'post_title' => sanitize_file_name($basename),
+        'post_content' => '',
+        'post_status' => 'inherit'
+    );
+    $post_id = $wp_post->ID;
+    $attach_id = wp_insert_attachment($attachment, $file, $post_id);
+    if (! $attach_id) {
+        @unlink($file);
+        throw new DownloadError("wp_insert_attachment failed for $image_url -> $file");
+    }
+    require_once(ABSPATH . 'wp-admin/includes/image.php');
+    $attach_data = wp_generate_attachment_metadata($attach_id, $file);
+    if (! ($attach_data && $attach_data["file"])) {
+        @unlink($file);
+        throw new DownloadError("wp_generate_attachment_metadata failed for $image_url -> $file -> $attach_id");
+    }
+    if (! wp_update_attachment_metadata($attach_id, $attach_data)) {
+        @unlink($file);
+        throw new DownloadError("wp_update_attachment_metadata failed for $image_url -> $file -> $attach_id");
+    }
+    if (! set_post_thumbnail($post_id, $attach_id)) {
+        @unlink($file);
+        throw new DownloadError("set_post_thumbnail failed for $image_url -> $file -> $attach_id");
+    }
+}

@@ -18,36 +18,44 @@ if ($with_menu) {
 
 use \EPFL\WS\Persons\Person;
 
-// TODO: we should eliminate more and more of this, and move it into accessors
-// of the Person instance, below
-$incoming_json=file_get_contents('https://stisrv13.epfl.ch/cgi-bin/whoop/peoplepage.pl?sciper='.$post->post_name);
-$incoming=json_decode($incoming_json);
-$labname=$incoming->labname;
-$mylabname=$incoming->mylabname;
-$labwebsite=$incoming->labwebsite;
-$keywords=$incoming->keywords;
-$biography=$incoming->bio;
-$research=$incoming->interests;
-$position=$incoming->position;
-$id=$incoming->id;
-$surname=$incoming->surname;
-$firstname=$incoming->firstname;
-$epflname=$incoming->epflname;
-$phone=$incoming->phone;
-$office=$incoming->office;
-$sciper=$incoming->sciper;
-$videoeng=$incoming->videoeng;
-$news=$incoming->news;
-$labimage="https://stisrv13.epfl.ch/brochure/img/$id/research.png";
-
 if (class_exists('\\EPFL\\WS\\Persons\\Person')) {
     global $post;
     $person = Person::get($post);
     $biography = $person->get_bio();
     $officialtitle = $person->get_title()->as_short_greeting();
+    $sciper = $person->get_sciper();
+    $phone  = $person->get_phone();
+    $office = $person->get_room();
 } else {
     error_log("Class not exists");
+    die();
 }
+
+$lab = $person->get_lab();
+if ($lab) {
+    $mgr = $lab->get_lab_manager();
+    if ($mgr && $mgr->ID === $person->ID) {
+        $labwebsite = $lab->get_website_url();
+        $labname    = $lab->get_abbrev();
+        $mylabame   = $lab->get_name();
+        
+    }
+}
+
+// For the foreseeable future, this data only exists within the School
+// of Engineering.  (See inc/epfl.php for how it gets scraped.)
+$stisrv13data = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_data_json", true));
+$keywords = $stisrv13data->keywords;
+$research = $stisrv13data->interests;
+$videoeng = $stisrv13data->videoeng;
+$news     = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_news_json"));
+
+// TODO: The following should be obtained from the Person and their
+// Title instead.
+$position=$stisrv13data->position;
+$surname=$stisrv13data->surname;
+$firstname=$stisrv13data->firstname;
+$epflname=$stisrv13data->epflname;
 
 ?>
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
@@ -64,30 +72,8 @@ else if ($position == 'PATT') { $officialtitle='Prof. '; $position='Tenure Track
 else if ($position == 'PT') { $officialtitle='Prof. '; $position='Adjunct Professor'; }
 else if ($position == 'MER') {$officialtitle='Dr. '; $position='Senior Scientist'; }
 else {$officialtitle=$position; }
-//the rest must come from other sources
 
 
-$news_raw = array(
-    array("title" => $incoming->newstitle1,
-          "link"  => $incoming->newslink1,
-          "image" => $incoming->newsimage1),
-    array("title" => $incoming->newstitle2,
-          "link"  => $incoming->newslink2,
-          "image" => $incoming->newsimage2),
-    array("title" => $incoming->newstitle3,
-          "link"  => $incoming->newslink3,
-          "image" => $incoming->newsimage3),
-    array("title" => $incoming->newstitle4,
-          "link"  => $incoming->newslink4,
-          "image" => $incoming->newsimage4)
-);
-
-$news = [];
-foreach ($news_raw as $piece) {
-    if ($piece["title"]) {
-        array_push($news, $piece);
-    }
-}
 
 ?>
 <div class="container"><?php # row if there is a box of links on the right ?>
@@ -219,7 +205,7 @@ foreach ($news_raw as $piece) {
         <h2 class="sti_people_menu_black"><abbr><?php echo $labname; ?></abbr> <?php echo $mylabname; ?></span>
         </h2>
        </header>
-       <img src="<?php echo $labimage; ?>" class="sti_people_menu_image">
+       <?php if ($labimage) { ?><img src="<?php echo $labimage; ?>" class="sti_people_menu_image"><?php } ?>
       </card>
       <card class="links">
        <div class="research-topics">
