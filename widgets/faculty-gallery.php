@@ -161,21 +161,24 @@ function redraw () {
 });
 }
 
-function toggle (this_link_or_input) {
+function toggle ($link) {
     $(".sti-faculty-sort a#all").data("active", false);
-    this_link = $(this_link_or_input).closest("a");
-    var oldState = $(this_link).data("active");
-    $(this_link).data("active", ! oldState);
-    $(this_link).children("input").prop("checked", ! oldState);
+    var oldState = $link.data("active");
+    $link.data("active", ! oldState);
+    $(function() {  // Poor man's nextTick()
+        $link.children("input").prop("checked", ! oldState);
+    });
     redraw();
-    return false;  // For the onClick() handler to suppress the event
 }
-
 
 $(function() {
     $("#all").data("active", true);
-    $("input").on("click", function() {
-        return false;  // Do not do the usual thing
+    $("input, a.togglable").on("click", function(event) {
+        this_link = $(this).closest("a");
+        console.log(this_link);
+        toggle(this_link);
+        event.preventDefault();
+        event.stopPropagation();
     });
     redraw();
 });
@@ -193,19 +196,19 @@ $(function() {
         <div class="sti-faculty-sort d-none d-md-block col-md-3">
          <div class="toggles-rank">
           <a href="#" onClick="javascript:return resetDirectoryForm();" id="all"><?php echo ___("All Faculty"); ?></a><br><br>
-          <a href="#" onClick="javascript:return toggle(this);" id="PO"><input type=checkbox onClick="javascript:return toggle(this);"> <?php echo __x("Full Professors",      "faculty gallery widget");?>
-          <a href="#" onClick="javascript:return toggle(this);" id="PA"><input type=checkbox onClick="javascript:return toggle(this);"> <?php    echo __x("Associate Professors", "faculty gallery widget");?></a>
-          <a href="#" onClick="javascript:return toggle(this);" id="PATT"><input type=checkbox onClick="javascript:return toggle(this);"> <?php  echo __x("Assistant Professors", "faculty gallery widget");?></a>
-          <a href="#" onClick="javascript:return toggle(this);" id="PT"><input type=checkbox onClick="javascript:return toggle(this);"> <?php    echo __x("Adjunct Professors",   "faculty gallery widget");?></a>
-          <a href="#" onClick="javascript:return toggle(this);" id="MER"><input type=checkbox onClick="javascript:return toggle(this);"> <?php   echo __x("Senior Scientists",    "faculty gallery widget");?></a>
+          <a href="#" class="togglable" id="PO"><input type=checkbox> <?php echo __x("Full Professors",      "faculty gallery widget");?>
+          <a href="#" class="togglable" id="PA"><input type=checkbox> <?php    echo __x("Associate Professors", "faculty gallery widget");?></a>
+          <a href="#" class="togglable" id="PATT"><input type=checkbox> <?php  echo __x("Assistant Professors", "faculty gallery widget");?></a>
+          <a href="#" class="togglable" id="PT"><input type=checkbox> <?php    echo __x("Adjunct Professors",   "faculty gallery widget");?></a>
+          <a href="#" class="togglable" id="MER"><input type=checkbox> <?php   echo __x("Senior Scientists",    "faculty gallery widget");?></a>
          </div><br><br>
        <?php if (! $institute): ?>
          <div class="toggles-institute">
-          <a href="#" onClick="javascript:return toggle(this);" id="IBI2"><input type=checkbox onClick="javascript:return toggle(this);"> <?php  echo __x("Bioengineering",         "faculty gallery widget");?></a>
-          <a href="#" onClick="javascript:return toggle(this);" id="IEL"><input type=checkbox onClick="javascript:return toggle(this);"> <?php   echo __x("Electrical Engineering", "faculty gallery widget");?></a>
-          <a href="#" onClick="javascript:return toggle(this);" id="IMX"><input type=checkbox onClick="javascript:return toggle(this);"> <?php   echo __x("Materials Science",      "faculty gallery widget");?></a>
-          <a href="#" onClick="javascript:return toggle(this);" id="IGM"><input type=checkbox onClick="javascript:return toggle(this);"> <?php   echo __x("Mechanical Engineering", "faculty gallery widget");?></a>
-          <a href="#" onClick="javascript:return toggle(this);" id="IMT"><input type=checkbox onClick="javascript:return toggle(this);"> <?php   echo __x("Microengineering",       "faculty gallery widget");?></a>
+          <a href="#" class="togglable" id="IBI2"><input type=checkbox> <?php  echo __x("Bioengineering",         "faculty gallery widget");?></a>
+          <a href="#" class="togglable" id="IEL"><input type=checkbox> <?php   echo __x("Electrical Engineering", "faculty gallery widget");?></a>
+          <a href="#" class="togglable" id="IMX"><input type=checkbox> <?php   echo __x("Materials Science",      "faculty gallery widget");?></a>
+          <a href="#" class="togglable" id="IGM"><input type=checkbox> <?php   echo __x("Mechanical Engineering", "faculty gallery widget");?></a>
+          <a href="#" class="togglable" id="IMT"><input type=checkbox> <?php   echo __x("Microengineering",       "faculty gallery widget");?></a>
          </div>
        <?php endif; ?>
       </div>
