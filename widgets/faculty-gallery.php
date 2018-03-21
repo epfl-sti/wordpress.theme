@@ -152,7 +152,6 @@ function redraw () {
         IMX = anchor2cgiparam("IMX")
       url = url+"&IBI2="+IBI2+"&IEL="+IEL+"&IGM="+IGM+"&IMT="+IMT+"&IMX="+IMX;
     }
-    console.log(url);
     $.ajax({
         url: url,
         dataType: "json",
@@ -175,7 +174,6 @@ $(function() {
     $("#all").data("active", true);
     $("input, a.togglable").on("click", function(event) {
         this_link = $(this).closest("a");
-        console.log(this_link);
         toggle(this_link);
         event.preventDefault();
         event.stopPropagation();
