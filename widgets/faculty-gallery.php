@@ -115,6 +115,9 @@ function _doPrintOuter(people_listing, lang) {
 function resetDirectoryForm() {
     $(".sti-faculty-sort a").data("active", false);
     $(".sti-faculty-sort a#all").data("active", true);
+    $(".sti-faculty-sort a").children('input').each(function () {
+     $(this).attr('checked', false);
+    });
     redraw();
     return false;  // For the onClick() handler to suppress the event
 }
@@ -162,9 +165,14 @@ function toggle (this_link) {
     $(".sti-faculty-sort a#all").data("active", false);
     var oldState = $(this_link).data("active");
     $(this_link).data("active", ! oldState);
+    $(this_link).children('input').each(function () {
+     var currentState=$(this).attr('checked');
+     $(this).attr('checked', ! currentState);
+    });
     redraw();
     return false;  // For the onClick() handler to suppress the event
 }
+
 
 $(function() {
     $("#all").data("active", true);
@@ -183,20 +191,20 @@ $(function() {
         </div>
         <div class="sti-faculty-sort d-none d-md-block col-md-3">
          <div class="toggles-rank">
-          <a href="#" onClick="javascript:return resetDirectoryForm();" id="all"><?php echo ___("All Faculty"); ?></a>
-          <a href="#" onClick="javascript:return toggle(this);" id="PO"><?php    echo __x("Full Professors",      "faculty gallery widget");?></a>
-          <a href="#" onClick="javascript:return toggle(this);" id="PA"><?php    echo __x("Associate Professors", "faculty gallery widget");?></a>
-          <a href="#" onClick="javascript:return toggle(this);" id="PATT"><?php  echo __x("Assistant Professors", "faculty gallery widget");?></a>
-          <a href="#" onClick="javascript:return toggle(this);" id="PT"><?php    echo __x("Adjunct Professors",   "faculty gallery widget");?></a>
-          <a href="#" onClick="javascript:return toggle(this);" id="MER"><?php   echo __x("Senior Scientists",    "faculty gallery widget");?></a>
-         </div>
+          <a href="#" onClick="javascript:return resetDirectoryForm();" id="all"><?php echo ___("All Faculty"); ?></a><br><br>
+          <a href="#" onClick="javascript:return toggle(this);" id="PO"><input type=checkbox> <?php echo __x("Full Professors",      "faculty gallery widget");?>
+          <a href="#" onClick="javascript:return toggle(this);" id="PA"><input type=checkbox> <?php    echo __x("Associate Professors", "faculty gallery widget");?></a>
+          <a href="#" onClick="javascript:return toggle(this);" id="PATT"><input type=checkbox> <?php  echo __x("Assistant Professors", "faculty gallery widget");?></a>
+          <a href="#" onClick="javascript:return toggle(this);" id="PT"><input type=checkbox> <?php    echo __x("Adjunct Professors",   "faculty gallery widget");?></a>
+          <a href="#" onClick="javascript:return toggle(this);" id="MER"><input type=checkbox> <?php   echo __x("Senior Scientists",    "faculty gallery widget");?></a>
+         </div><br><br>
        <?php if (! $institute): ?>
          <div class="toggles-institute">
-          <a href="#" onClick="javascript:return toggle(this);" id="IBI2"><?php  echo __x("Bioengineering",         "faculty gallery widget");?></a>
-          <a href="#" onClick="javascript:return toggle(this);" id="IEL"><?php   echo __x("Electrical Engineering", "faculty gallery widget");?></a>
-          <a href="#" onClick="javascript:return toggle(this);" id="IMX"><?php   echo __x("Materials Science",      "faculty gallery widget");?></a>
-          <a href="#" onClick="javascript:return toggle(this);" id="IGM"><?php   echo __x("Mechanical Engineering", "faculty gallery widget");?></a>
-          <a href="#" onClick="javascript:return toggle(this);" id="IMT"><?php   echo __x("Microengineering",       "faculty gallery widget");?></a>
+          <a href="#" onClick="javascript:return toggle(this);" id="IBI2"><input type=checkbox> <?php  echo __x("Bioengineering",         "faculty gallery widget");?></a>
+          <a href="#" onClick="javascript:return toggle(this);" id="IEL"><input type=checkbox> <?php   echo __x("Electrical Engineering", "faculty gallery widget");?></a>
+          <a href="#" onClick="javascript:return toggle(this);" id="IMX"><input type=checkbox> <?php   echo __x("Materials Science",      "faculty gallery widget");?></a>
+          <a href="#" onClick="javascript:return toggle(this);" id="IGM"><input type=checkbox> <?php   echo __x("Mechanical Engineering", "faculty gallery widget");?></a>
+          <a href="#" onClick="javascript:return toggle(this);" id="IMT"><input type=checkbox> <?php   echo __x("Microengineering",       "faculty gallery widget");?></a>
          </div>
        <?php endif; ?>
       </div>
