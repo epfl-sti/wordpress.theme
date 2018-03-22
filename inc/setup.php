@@ -131,4 +131,4 @@ if ( ! function_exists( 'custom_excerpt_more' ) ) {
 add_filter( 'excerpt_more', 'custom_excerpt_more' );
 
 // Undo some of the changes in the VPSI mu-plugins
-remove_filter( 'the_content', 'remove_empty_p', 20);
+remove_filter( 'the_content', 'remove_empty_p', 20);  // Munches on </p>'s for no apparent reason
