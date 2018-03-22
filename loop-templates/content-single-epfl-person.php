@@ -158,7 +158,7 @@ $news     = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_news_jso
                 <div class="col-md-4">
                   <?php echo 'Office: <a href="https://maps.epfl.ch/?q=' . $office . '">' . $office . '</a>'; ?><br />
                   <?php echo '<a href="mailto:' . $email . '">' . $email . '</a>'; ?><br />
-                  <?php echo '<a href="' . $profile_url . '">.' . $profile_url . '</a>'; ?><br />
+                  <?php echo '<a href="' . $profile_url . '">' . $profile_url . '</a>'; ?><br />
                   <?php echo 'Tel: <a href="tel:+' . $phone . '">' . $phone . '</a>'; ?><br />
                 </div>
                 <div class="col-md-3">
