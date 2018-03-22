@@ -1,7 +1,7 @@
 /* ------------------------------------------------------------
     Navigation menus (common to front row and institute menus)
    ----------------------------------------------------------- */
-.institute-nav-menu, .prof-nav-menu, .menu-front-row {
+.institute-nav-menu, .person-nav-menu, .menu-front-row {
   list-style-type: none;
   padding: 0px 10px 10px 5px;
   ul {
@@ -30,7 +30,7 @@
 }
 
 /* And now, the differences: */
-.institute-nav-menu, .prof-nav-menu {
+.institute-nav-menu, .person-nav-menu {
   font-size: 11pt;
   ul.menu>li {
     border-bottom: 1.5px solid #2c2b2b;

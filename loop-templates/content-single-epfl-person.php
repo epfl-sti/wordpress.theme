@@ -73,7 +73,7 @@ $news     = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_news_jso
            <?php the_title( '<h1>' . $officialtitle . ' ', '</h1>' ); ?>
             </header>
            <main>
-            <div class="sti_content_prof_photo">
+            <div class="person-photo">
              <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
             </div><?php # prof_photo ?>
             <?php echo "<b>$position</b><br><br>"; ?>
@@ -95,7 +95,7 @@ $news     = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_news_jso
           <?php endif; # card of videos ?>
 
           <?php if ($news): ?>
-          <card class="prof-news <?php echo $listoflinks_width; ?>">
+          <card class="person-news <?php echo $listoflinks_width; ?>">
             <header>
               <a name="news"></a>
               <h2>News</h2>
@@ -103,7 +103,7 @@ $news     = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_news_jso
             <main class="frontrowcontent">
             <?php foreach ($news as $piece): ?>
               <div class="mini-news zoomy" style="background-image:url('<?php echo $piece->image; ?>');">
-                <div class=peoplenewstitle>
+                <div class="person-news-title">
                   <a class=whitelink href=<?php echo $piece->link; ?>><?php echo $piece->title; ?></a>
                 </div>
               </div>
@@ -121,7 +121,7 @@ $news     = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_news_jso
           </card>
 
           <?php if ( get_post_meta( $post->ID, 'publication_link', true) ): ?>
-          <card class="card-prof-publications <?php echo $listoflinks_width; ?>">
+          <card class="card-person-publications <?php echo $listoflinks_width; ?>">
            <header>
             <h2>Recent Publications</h2>
            </header>
@@ -155,11 +155,17 @@ $news     = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_news_jso
             <h5><br><?php echo "$givenname $surname_uc"; ?></h5>
             <div class="container">
               <div class="row entry-body">
-                <div class="col-md-4">
-                  <?php echo 'Office: <a href="https://maps.epfl.ch/?q=' . $office . '">' . $office . '</a>'; ?><br />
-                  <?php echo '<a href="mailto:' . $email . '">' . $email . '</a>'; ?><br />
-                  <?php echo '<a href="' . $profile_url . '">' . $profile_url . '</a>'; ?><br />
-                  <?php echo 'Tel: <a href="tel:+' . $phone . '">' . $phone . '</a>'; ?><br />
+                <div class="person-contact col-md-4">
+                 <p class="office">
+                  <?php echo 'Office: <a class="office" href="https://maps.epfl.ch/?q=' . $office . '">' . $office . '</a>'; ?>
+                 <p class="email">
+                  <?php echo '<a href="mailto:' . $email . '">' . $email . '</a>'; ?></p>
+                 <p class="bottin">
+                  <a href="<?php echo $profile_url; ?>"><?php
+                           $profile_url_splittable = preg_replace("|(/+)|", '$1<wbr>', $profile_url);
+                           echo $profile_url_splittable; ?></a></p>
+                 <p class="telephone">
+                  <?php echo 'Tel: <a href="tel:+' . $phone . '">' . $phone . '</a>'; ?></p>
                 </div>
                 <div class="col-md-3">
                   <?php echo "<b>$labname</b><br> $office<br> Station 11<br> 1015 Lausanne<br> Switzerland"; ?>
@@ -183,18 +189,18 @@ $news     = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_news_jso
     if ($with_menu):
     ?>
      <aside class="col-md-4">
-      <card class="first">
+      <card class="person-lab first">
        <header>
-        <h2 class="sti_people_menu_black"><abbr><?php echo $labname; ?></abbr> <?php echo $mylabname; ?></span>
+        <h2><abbr><?php echo $labname; ?></abbr> <?php echo $mylabname; ?></span>
         </h2>
        </header>
-       <?php if ($labimage) { ?><img src="<?php echo $labimage; ?>" class="sti_people_menu_image"><?php } ?>
+       <?php if ($labimage) { ?><img src="<?php echo $labimage; ?>"><?php } ?>
       </card>
       <card class="links">
        <div class="research-topics">
         Research topics:<br><br><?php echo $keywords; ?>
        </div>
-       <div class="prof-nav-menu">
+       <div class="person-nav-menu">
         <ul class="menu">
          <li id="menu-item-128" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-128"><a href="<?php echo $labwebsite; ?>">LAB WEBSITE</a></li>
 
@@ -207,7 +213,7 @@ $news     = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_news_jso
          <li id="menu-item-130" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#news">NEWS</a></li>
          <li id="menu-item-133" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-130"><a href="https://stisrv13.epfl.ch/collaborations/tube_html5.php?sciper=<?php echo $sciper; ?>&showpublications=1&showpatents=1&showexternals=1&showindustry=1">COLLABORATIONS</a></li>
         </ul>
-       </div><?php # prof-nav-menu ?>
+       </div><?php # person-nav-menu ?>
       </card>
      </aside>
     <?php endif; ?>

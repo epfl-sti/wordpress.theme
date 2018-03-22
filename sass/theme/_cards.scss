@@ -227,9 +227,11 @@ card.sti-lab > p:last-child {
   border-bottom: 1px solid #b2b2b0;
 }
 
-// TODO: rename/reorganize all below
+/**
+ * Style for cards on the "professor" pages
+ */
 
-.sti_content_prof_photo {
+.person-photo {
  float: left;
  display: inline;
  clear: none;
@@ -237,15 +239,15 @@ card.sti-lab > p:last-child {
  max-width: 310px;
 }
 
-.sti_people_menu_image {
- width: 100%;
+.person-contact p {
+    margin: 0px;
+    &.bottin {
+        text-indent: -2em;
+        margin-left: 2em;
+    }
 }
 
-.sti_people_menu_black {
- color: #444;
-}
-
-.peoplenewstitle {
+.person-news-title {
  width: 203px;
  height: 61px;
  position: relative;
@@ -253,5 +255,13 @@ card.sti-lab > p:last-child {
  background: rgb(42,41,46);
  background: rgba(0,0,0,0.7);
  padding: 8px;
+}
+
+card.person-lab h2 {
+ color: #444;
+}
+
+card.person-lab img {
+ width: 100%;
 }
 
