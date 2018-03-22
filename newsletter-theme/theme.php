@@ -19,6 +19,9 @@ use function \EPFL\STI\Theme\__x;
 
 require_once(dirname(__FILE__) . '/inc/newsletter_state.php');
 
+add_theme_support( 'post-thumbnails' );
+set_post_thumbnail_size( 150, 150 );
+
 function has_vue_app ()
 {
     return function_exists("\\EPFL\\STI\\Newsletter\\render_editor_scripts");
