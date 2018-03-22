@@ -22,7 +22,5 @@ add_shortcode("lab-card", function ($attrs, $content) {
         error_log("Result: " . var_export($attrs["lab"], true));  // XXX
     }
     $html = epflsti_lab_card($content, $attrs);
-    # Avoid the Toggle wpautop grim reaper:
-    $html = preg_replace('|</p>|', '</p >', $html);
     return $html;
 });
