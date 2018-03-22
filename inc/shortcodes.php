@@ -28,9 +28,11 @@ add_shortcode("lab-card", function ($attrs, $content) {
             if ($attrs["href"] && ! $content_has_link) {
                 $content = "<a href=\"". $attrs["href"] . "\">$content</a>";
             }
-            $html .= "<p>$content</p >";
+            $html .= "<p>$content</p>";
         }
     }
+    # Avoid the Toggle wpautop grim reaper:
+    $html = preg_replace('|</p>|', '</p >');
     $html .= "\n</card>\n";
     return $html;
 });
