@@ -21,61 +21,44 @@ use \EPFL\WS\Persons\Person;
 if (class_exists('\\EPFL\\WS\\Persons\\Person')) {
     global $post;
     $person = Person::get($post);
-    $biography = $person->get_bio();
-    $officialtitle = $person->get_title()->as_short_greeting();
-    $sciper = $person->get_sciper();
-    $phone  = $person->get_phone();
-    $office = $person->get_room();
 } else {
     error_log("Class not exists");
     die();
 }
 
-$lab = $person->get_lab();
-if ($lab) {
+$givenname     = $person->get_given_name();
+$surname       = $person->get_surname();
+$surname_uc    = strtoupper($surname);
+$email         = $person->get_mail();
+$profile_url   = $person->get_profile_url();
+$biography     = $person->get_bio();
+$officialtitle = $person->get_title()->as_short_greeting();
+$sciper        = $person->get_sciper();
+$phone         = $person->get_phone();
+$office        = $person->get_room();
+$position      = $person->get_title() ? $person->get_title()->localize() : "";
+
+if ($lab = $person->get_lab()) {
     $mgr = $lab->get_lab_manager();
     if ($mgr && $mgr->ID === $person->ID) {
         $labwebsite = $lab->get_website_url();
         $labname    = $lab->get_abbrev();
-        $mylabame   = $lab->get_name();
-        
+        $mylabname  = $lab->get_name();
     }
 }
 
-// For the foreseeable future, this data only exists within the School
-// of Engineering.  (See inc/epfl.php for how it gets scraped.)
+// This data only exists within the School of Engineering. (See inc/epfl.php for how it gets scraped.)
 $stisrv13data = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_data_json", true));
 $keywords = $stisrv13data->keywords;
 $research = $stisrv13data->interests;
 $videoeng = $stisrv13data->videoeng;
 $news     = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_news_json"));
 
-// TODO: The following should be obtained from the Person and their
-// Title instead.
-$position=$stisrv13data->position;
-$surname=$stisrv13data->surname;
-$firstname=$stisrv13data->firstname;
-$epflname=$stisrv13data->epflname;
-
 ?>
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
   <header ></header>
 
-<?php
-
-if ($position == 'PO') { $officialtitle='Prof. ';
-$position='Full Professor'; }
-else if ($position == 'PA') { $officialtitle='Prof. '; $position='Associate Professor'; }
-else if ($position == 'SNF') { $officialtitle='Prof. '; $position='SNF Funded Assistant Professor'; }
-else if ($position == 'PATT') { $officialtitle='Prof. '; $position='Tenure Track Assistant Professor'; }
-else if ($position == 'PT') { $officialtitle='Prof. '; $position='Adjunct Professor'; }
-else if ($position == 'MER') {$officialtitle='Dr. '; $position='Senior Scientist'; }
-else {$officialtitle=$position; }
-
-
-
-?>
 <div class="container">
   <div class=row>
     <div class="<?php echo $listoflinks_main; ?>">
@@ -87,7 +70,7 @@ else {$officialtitle=$position; }
              <img class="ribbon-red-top" src="/wp-content/themes/epfl-sti/img/src/topright.png">
              <img class="ribbon-red-bottom" src="/wp-content/themes/epfl-sti/img/src/bottomleft.png">
            <?php endif;  ?>
-           <?php the_title( '<h1>' . $officialtitle, '</h1>' ); ?>
+           <?php the_title( '<h1>' . $officialtitle . ' ', '</h1>' ); ?>
             </header>
            <main>
             <div class="sti_content_prof_photo">
@@ -169,13 +152,13 @@ else {$officialtitle=$position; }
           <?php # Contact ?>
           <card class="<?php echo $listoflinks_width; ?>">
             <h2>Contact</h2>
-            <h5><br><?php echo "$firstname $surname"; ?></h5>
+            <h5><br><?php echo "$firstname $surname_uc"; ?></h5>
             <div class="container">
               <div class="row entry-body">
                 <div class="col-md-4">
                   <?php echo 'Office: <a href="https://maps.epfl.ch/?q=' . $office . '">' . $office . '</a>'; ?><br />
-                  <?php echo '<a href="mailto:' . $epflname . '@epfl.ch">' . $epflname . '@epfl.ch</a>'; ?><br />
-                  <?php echo '<a href="https://people.epfl.ch/' . $epflname . '">https://people.epfl.ch/' . $epflname . '</a>'; ?><br />
+                  <?php echo '<a href="mailto:' . $email . '">' . $email . '</a>'; ?><br />
+                  <?php echo '<a href="' . $profile_url . '">.' . $profile_url . '</a>'; ?><br />
                   <?php echo 'Tel: <a href="tel:+' . $phone . '">' . $phone . '</a>'; ?><br />
                 </div>
                 <div class="col-md-3">
