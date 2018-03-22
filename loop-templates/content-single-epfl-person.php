@@ -76,9 +76,9 @@ else {$officialtitle=$position; }
 
 
 ?>
-<div class="container"><?php # row if there is a box of links on the right ?>
-  <div class=row><?php # container if there is a box of links on the right ?>
-    <div class="<?php echo $listoflinks_main; ?>"><?php # column if there is a box of links on the right ?>
+<div class="container">
+  <div class=row>
+    <div class="<?php echo $listoflinks_main; ?>">
       <div class="container"><?php # main container ?>
         <div class="row main-matter"><?php # main row ?>
           <card class="ribbon-red <?php echo $listoflinks_width; ?>">

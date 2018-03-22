@@ -230,7 +230,6 @@ add_filter("epfl_person_additional_meta", function ($more_meta, $person) {
     $more_meta["stisrv13_news_json"] = json_encode($news);
     $more_meta["stisrv13_data_json"] = json_encode($incoming);
 
-    error_log("epfl_person_additional_meta => " . var_export($more_meta, true));  // XXX
     return $more_meta;
 }, 10, 2);
 
@@ -251,7 +250,6 @@ add_filter("epfl_lab_additional_meta", function ($more_meta, $lab) {
         "https://stisrv13.epfl.ch/brochure/img/$id/research.png",
         array("basename" => $incoming->labname . ".png")
     );
-    error_log("epfl_lab_additional_meta => " . var_export($more_meta, true));  // XXX
     return $more_meta;
 }, 10, 2);
 
