@@ -152,7 +152,7 @@ $news     = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_news_jso
           <?php # Contact ?>
           <card class="<?php echo $listoflinks_width; ?>">
             <h2>Contact</h2>
-            <h5><br><?php echo "$firstname $surname_uc"; ?></h5>
+            <h5><br><?php echo "$givenname $surname_uc"; ?></h5>
             <div class="container">
               <div class="row entry-body">
                 <div class="col-md-4">
