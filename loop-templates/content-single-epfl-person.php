@@ -43,6 +43,7 @@ if ($lab = $person->get_lab()) {
     if ($mgr && $mgr->ID === $person->ID) {
         $labwebsite = $lab->get_website_url();
         $labname    = $lab->get_abbrev();
+        $labimage   = get_the_post_thumbnail($lab->wp_post());
         $mylabname  = $lab->get_name();
     }
 }
@@ -194,7 +195,7 @@ $news     = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_news_jso
         <h2><abbr><?php echo $labname; ?></abbr> <?php echo $mylabname; ?></span>
         </h2>
        </header>
-       <?php if ($labimage) { ?><img src="<?php echo $labimage; ?>"><?php } ?>
+       <?php if ($labimage) { echo $labimage; } ?>
       </card>
       <card class="links">
        <div class="research-topics">
