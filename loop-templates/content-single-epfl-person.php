@@ -52,7 +52,7 @@ $stisrv13data = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_data
 $keywords = $stisrv13data->keywords;
 $research = $stisrv13data->interests;
 $videoeng = $stisrv13data->videoeng;
-$news     = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_news_json"));
+$news     = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_news_json", true));
 
 ?>
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
@@ -102,9 +102,9 @@ $news     = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_news_jso
             </header>
             <main class="frontrowcontent">
             <?php foreach ($news as $piece): ?>
-              <div class="mini-news zoomy" style="background-image:url('<?php echo $piece["image"]; ?>');">
+              <div class="mini-news zoomy" style="background-image:url('<?php echo $piece->image; ?>');">
                 <div class=peoplenewstitle>
-                  <a class=whitelink href=<?php echo $piece["link"]; ?>><?php echo $piece["title"]; ?></a>
+                  <a class=whitelink href=<?php echo $piece->link; ?>><?php echo $piece->title; ?></a>
                 </div>
               </div>
             <?php endforeach; ?>
