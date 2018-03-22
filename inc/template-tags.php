@@ -96,28 +96,40 @@ add_action( 'save_post',     'epflsti_category_transient_flusher' );
  */
 function epflsti_lab_card ($body, $opts)
 {
-    $html = "<card class=\"sti-lab\">\n";
+    if ($lab = $opts["lab"]) {
+        $title    = $lab->get_abbrev();
+        $link     = $lab->get_website_url();
+        $img_html = get_the_post_thumbnail($lab->wp_post());
+        if (! $body) { $body = $lab->get_name(); }
+    }
+    // If both $opts["lab"] and individual opts are stipulated,
+    // the latter override the former.
+    if ($opts["title"]) { $title = $opts["title"]; }
+    if ($opts["href"])  { $link  = $opts["href"]; }
+    if ($img_href = $opts["img"]) {
+        $img_html = "<img src=\"$img_href\" />";
+    }
 
-    $title = $opts["title"];
+    // Image is clicky iff we have a link.
+    if ($link) {
+        $img_html = "<a href=\"$link\">$img_html</a>";
+    }
+
+    $html = "<card class=\"sti-lab\">\n";
     if ($title) {
         $html .= "<header><h1>$title</h1></header>";
     }
-    $img_href = $opts["img"];
-    if ($img_href) {
-        $img_html = "<img src=\"$img_href\" />";
-        if ($opts["href"]) {
-            $img_html = "<a href=\"". $opts["href"] . "\">$img_html</a>";
-        }
-        $html .= $img_html;
-    }
+    if ($img_html) { $html .= $img_html; }
     if ($body) {
         $body_has_link = preg_match("/<a/", $body);
         $body_has_p = preg_match("/^<p>/", trim($body));
         if ($body_has_p) {
             $html .= $body;
         } else {
-            if ($opts["href"] && ! $body_has_link) {
-                $body = "<a href=\"". $opts["href"] . "\">$body</a>";
+            if ($link && ! $body_has_link) {
+                // Body is only clicky if there aren't any links in it
+                // already.
+                $body = "<a href=\"". $link . "\">$body</a>";
             }
             $html .= "<p>$body</p>";
         }
