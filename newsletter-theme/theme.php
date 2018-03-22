@@ -454,9 +454,9 @@ function render_in_the_media_table ($media_list)
          <td class="details" align=right>
           <?php echo $bibentry;
             $authors = $epfl_post->get_authors();
-            if ($authors) {
-              $labname = sprintf(___("%s's lab"), $authors[0]->get_full_name());
-              $laburl = $authors[0]->get_lab()->get_website_url();
+            foreach ($authors as $author) {
+              $labname = sprintf(___("%s's lab"), $author->get_full_name());
+              $laburl = $author->get_lab()->get_website_url();
               echo "<br>";
               printf('<a href="%s">%s</a>', $laburl, $labname);
             }
