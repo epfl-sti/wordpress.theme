@@ -102,5 +102,4 @@ add_filter("epfl_shortcode_labs_list_html_item", function ($unused_html, $unused
     return "<div class=\"fullwidth-list-item\">
         <h2><a href=\"$website_url\">$name (<span class=\"lab-abbrev\">$abbrev</span>)</a></h2>
        </div>";
-    
 }, 10, 3);

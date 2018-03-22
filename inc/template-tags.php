@@ -7,6 +7,10 @@
  * @package epflsti
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    die( 'Access denied.' );
+}
+
 if ( ! function_exists( 'epflsti_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
@@ -87,3 +91,37 @@ function epflsti_category_transient_flusher() {
 add_action( 'edit_category', 'epflsti_category_transient_flusher' );
 add_action( 'save_post',     'epflsti_category_transient_flusher' );
 
+/**
+ * The template for the [lab-card] shortcode (see shortcodes.php)
+ */
+function epflsti_lab_card ($body, $opts)
+{
+    $html = "<card class=\"sti-lab\">\n";
+
+    $title = $opts["title"];
+    if ($title) {
+        $html .= "<header><h1>$title</h1></header>";
+    }
+    $img_href = $opts["img"];
+    if ($img_href) {
+        $img_html = "<img src=\"$img_href\" />";
+        if ($opts["href"]) {
+            $img_html = "<a href=\"". $opts["href"] . "\">$img_html</a>";
+        }
+        $html .= $img_html;
+    }
+    if ($body) {
+        $body_has_link = preg_match("/<a/", $body);
+        $body_has_p = preg_match("/^<p>/", trim($body));
+        if ($body_has_p) {
+            $html .= $body;
+        } else {
+            if ($opts["href"] && ! $body_has_link) {
+                $body = "<a href=\"". $opts["href"] . "\">$body</a>";
+            }
+            $html .= "<p>$body</p>";
+        }
+    }
+    $html .= "\n</card>\n";
+    return $html;
+}
