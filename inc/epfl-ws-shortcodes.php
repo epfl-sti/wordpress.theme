@@ -90,14 +90,15 @@ function title2anchor ($title)
 }
 
 add_filter("epfl_shortcode_actu_list_html_item", function ($unused_html, $unused_shortcode_attrs, $item) {
-        $link_to_article = "<a href=\"https://actu.epfl.ch/news/" . title2anchor($item->title) . "\">";
-       return "<div class=\"fullwidth-list-item\">
-        <h2>$link_to_article".strtoupper($item->title)."</a></h2>
-        <div class=\"actu-details\">
-         <img src=\"".$item->visual_url."\" width=\"170\" height=\"100\">
-         <span>".$item->subtitle."</span>
-        </div>
-       </div>";
+	$link_to_article = "<a href=\"https://actu.epfl.ch/news/" . title2anchor($item->title) . "\">";
+	$publication_date = date("jS F, Y", strtotime($item->publish_date));
+        return "<div class=\"fullwidth-list-item\">
+         <h2>$link_to_article".strtoupper($item->title)."</a></h2>
+         <div class=\"actu-details\">
+          <img src=\"".$item->visual_url."\" width=\"170\" height=\"100\">
+          <span> ".$item->subtitle."</span>".$publication_date."
+         </div>
+        </div>";
 }, 10, 3);
 
 add_filter("epfl_shortcode_labs_list_html_item", function ($unused_html, $unused_shortcode_attrs, $lab) {
