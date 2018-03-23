@@ -14,8 +14,6 @@ add_filter(
     "epfl_shortcode_memento_list_html_item",
     function ($unused_html, $unused_shortcode_attrs, $item) {
 
-     $target_theme="centre";
-//     if ((strpos($item->event_theme, $target_theme) !== false)) {
         $startdate = $item->event_start_date;
         $enddate = $item->event_end_date;
         if ($startdate == $enddate) {
@@ -72,7 +70,6 @@ add_filter(
         $memento .= "</div>\n";  # container
         $memento .= "</div>\n";  # fullwidth-list-item
 
-//	    $memento .= sprintf("<pre>%s</pre>", htmlentities(var_export($item, true)));
         return $memento;
 //}
     }, 10, 3);
