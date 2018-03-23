@@ -90,8 +90,8 @@ function title2anchor ($title)
 }
 
 add_filter("epfl_shortcode_actu_list_html_item", function ($unused_html, $unused_shortcode_attrs, $item) {
-	$link_to_article = "<a href=\"https://actu.epfl.ch/news/" . title2anchor($item->title) . "\">";
-	$publication_date = date("jS F, Y", strtotime($item->publish_date));
+        $link_to_article = "<a href=\"https://actu.epfl.ch/news/" . title2anchor($item->title) . "\">";
+        $publication_date = date("jS F, Y", strtotime($item->publish_date));
         return "<div class=\"fullwidth-list-item\">
          <h2>$link_to_article".strtoupper($item->title)."</a></h2>
          <div class=\"actu-details\">
