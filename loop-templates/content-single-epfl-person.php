@@ -32,11 +32,13 @@ $surname_uc    = strtoupper($surname);
 $email         = $person->get_mail();
 $profile_url   = $person->get_profile_url();
 $biography     = $person->get_bio();
-$officialtitle = $person->get_title()->as_short_greeting();
 $sciper        = $person->get_sciper();
 $phone         = $person->get_phone();
 $office        = $person->get_room();
-$position      = $person->get_title() ? $person->get_title()->localize() : "";
+if ($title = $person->get_title()) {
+    $officialtitle = $title->as_short_greeting();
+    $position      = $title->localize();
+}
 
 if ($lab = $person->get_lab()) {
     $mgr = $lab->get_lab_manager();
