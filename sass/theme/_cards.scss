@@ -157,10 +157,17 @@ card-deck-flex card {
 
 $sti-lab-card-width: 220px;
 
+// Center the cards:
+.epfl-shortcode-labs {
+    text-align: center;
+}
+card.sti-lab {
+    display: inline-block;
+}
+
 card.sti-lab {
     width: $sti-lab-card-width;
     border: 1px solid black;
-    display: inline-block;
     vertical-align: bottom;
     margin-bottom: 4px;
 }
