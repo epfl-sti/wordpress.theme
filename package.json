@@ -46,7 +46,6 @@
     "normalize.css": "^7.0.0",
     "npm-font-open-sans": "^1.1.0",
     "popper.js": "^1.14.1",
-    "postcss-cssnext": "^3.1.0",
     "select2": "^4.0.6-rc.1",
     "select2-bootstrap4-theme": "^1.0.0",
     "v-autocomplete": "^1.8.2",
