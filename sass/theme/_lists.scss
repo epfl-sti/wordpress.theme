@@ -30,15 +30,22 @@ $list-item-hover-bgcolor: #ddd;
     font-weight: bold;
     font-family: $font-family-base;
     font-size:   $font-size-base;
+    background-color: #e4e4e4;
+    background-position: left;
+    background-size: 40% 140%;
+    background-repeat: no-repeat;
+    background-image: url(theme-epfl-sti/assets/textured_header.png);
     padding: 0.5em;
+    border-bottom: 2px solid #cb161d;
+    border-top: 1px solid white;
   }
 
   &:hover {
     background-color: $list-item-hover-bgcolor;
     > h2 {
-      color: $theRed;
+      color: #757575;
       > a {
-        color: b$theRed;
+        color: b#757575;
       }
     }
   }
@@ -60,6 +67,6 @@ $list-item-hover-bgcolor: #ddd;
   border: 1px solid #b4b2b2;
   padding:3px;
   background-color:#fff;
-  margin-right: 10px;
+  margin: 0px 20px 10px 10px;
   float: left;
 }
