@@ -43,7 +43,7 @@
   margin-bottom: 20px !important;
   line-height: 1;
   min-width: 174px;
-  background-color: #ccc;
+  /*background-color: #ccc;*/
   border: none;
 }
 
@@ -54,6 +54,7 @@
   height: 8rem;
   padding: 1rem;
   hyphens: auto;
+  border: 1px solid #b2b0b0;
  }
 
 .faculty-rouge {
@@ -66,7 +67,7 @@
 
 .faculty-img {
   width: 100%;
-  border: 1px solid #626161;
+  border: 1px solid #b2b0b0;
   background-color: #fff;
   padding: 5px;
 }
