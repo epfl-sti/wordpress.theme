@@ -8,4 +8,6 @@ $megamenu-max-widths: (
   md: (map-get($container-max-widths, md) - $grid-gutter-width),
   lg: (map-get($container-max-widths, lg) - $grid-gutter-width),
   xl: (map-get($container-max-widths, xl) - $grid-gutter-width)
-)
+);
+
+$maxmegamenu-line-sep: 12pt;

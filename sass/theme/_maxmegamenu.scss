@@ -91,7 +91,7 @@ megamenu div.mega-menu-wrap {
         /* All elementary menu entries (cells in a row in a column) */
         li.mega-menu-item li.mega-menu-item {
           // background-color: red !important; border: 1px solid black !important;
-          padding-bottom: 12pt;
+          padding-bottom: $maxmegamenu-line-sep;
         }
 
 
@@ -101,10 +101,10 @@ megamenu div.mega-menu-wrap {
           // color: pink !important;
           color: black;
           font-size: 12pt;
-          padding-bottom: 12pt;
+          padding-bottom: $maxmegamenu-line-sep;
         }
 
-        /* All "real" links (excluding titles of <ul>'s), using sufficiently
+        /* All "real" entries (excluding titles of <ul>'s), using sufficiently
          * strong selectors */
         > li.mega-menu-item li.mega-menu-item,
         li.mega-menu-column > ul.mega-sub-menu > li.mega-menu-item li.mega-menu-item {
@@ -125,6 +125,22 @@ megamenu div.mega-menu-wrap {
             > a.mega-menu-link {
               color: $theRed;
             }
+          }
+
+          /* All fourth-level entries inside a pop-up megamenu (megamenu > column title >
+          * column item > you are here)
+          *
+          * Starting at this nesting depth, we need to start showing structure with
+          * "traditional" typesetting e.g. right indents, bullet points etc.
+          */
+          li.mega-menu-item {
+            // border: 1px solid pink !important;
+            padding: ($maxmegamenu-line-sep / 2);
+          }
+          /* Container for same */
+          &.mega-menu-item-has-children {
+            // border: 1px solid green !important;
+            padding: 0pt 0pt ($maxmegamenu-line-sep / 2) 0pt;
           }
         }
       }

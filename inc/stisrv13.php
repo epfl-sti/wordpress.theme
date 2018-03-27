@@ -10,6 +10,10 @@ if (! defined('ABSPATH')) {
     die('Access denied.');
 }
 
+require_once(__DIR__ . "/i18n.php");
+use function \EPFL\STI\Theme\___;
+
+// TODO: This should be refactored into a post-scrape hook
 function _stisrv13_metadata ($person_obj) {
     if (! $person_obj->_stisrv13_metadata) {
         $incoming_json = @file_get_contents('https://stisrv13.epfl.ch/cgi-bin/whoop/peoplepage.pl?sciper=' . $person_obj->get_sciper());
