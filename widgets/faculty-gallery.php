@@ -80,7 +80,7 @@ function _templateCard(person) {
      person["fullname"] = person.firstname + " " + person.lastname;
 
      html += person.link + _h(
-             " <img class=\"faculty-img\" src=\"https://stisrv13.epfl.ch/profs/img/{{person.image}}\" title=\"{{person.fullname}}\"></a>\n", person);
+             " <img class=\"faculty-img\" src=\"https://people.epfl.ch/cgi-bin/people/getPhoto?id={{person.sciper}}\" title=\"{{person.fullname}}\"></a>\n", person);
      html += " <div class=\"faculty-rouge\"></div>\n";
      html += _h(
              " <div class=\"faculty-titre-id\"><h4>{{person.link}}{{person.lastname}} {{person.firstname}}</a></h4>\n", person);
