@@ -31,3 +31,82 @@ add_filter('epfl_person_bio', function($biography, $person_obj) {
     if ($s13 && $s13->bio) { return $s13->bio; }
     return $biography;  // I.e. nothing
 }, 10, 3);
+
+class Stisrv13AdminMenu
+{
+    const SLUG = 'theme-epfl-sti-stisrv13-menu';
+    const CAPABILITY = 'manage_options';
+
+    static function hook ()
+    {
+        add_action('admin_menu', array(get_called_class(), "setup_admin_menu"));
+    }
+
+    static function setup_admin_menu ()
+    {
+        add_menu_page(
+            /* $page_title     = */ ___("stisrv13 News"),  // Like the first menu entry
+            /* $menu_title     = */ ___('stisrv13 Data'),
+            /* $capability     = */ self::CAPABILITY,
+            /* $menu_slug      = */ self::SLUG,
+            /* $render_func    = */ '',  // There is no main page, instead defer
+                                         // to first submenu page (see below)
+            /* $icon_url       = */ 'dashicons-tickets',
+            /* $position       = */ 51
+        );
+        self::add_submenu_page(
+            self::SLUG,  // Default menu entry
+            ___("News"),
+            ___("stisrv13 News"),
+            array(get_called_class(), "render_stisrv13_news_page"));
+    }
+
+    static function add_submenu_page ($menu_slug, $page_title,
+                                      $menu_title, $callable = '')
+    {
+        add_submenu_page(
+            self::SLUG,
+            $page_title, $menu_title,
+            self::CAPABILITY,
+            $menu_slug, $callable);
+    }
+
+    static private function render_hal ()
+    {
+        echo "<img src=\"https://stisrv13.epfl.ch/img/hal9000.png\">";
+    }
+
+    static function render_stisrv13_news_page ()
+    {
+            	?>
+	<div class="wrap">
+            <?php static::render_hal(); ?>
+            <h2>stisrv13 at your service</h2>
+<p>
+	<label for="upload-news-csv">
+		Upload CSV file:
+	</label>
+	<input type="file" id="upload-news-csv" name="upload-news-csv" value="" />
+	<?php static::render_nonce("upload-news-csv"); ?>
+</p>
+	</div>
+<?php
+    }
+
+    static function render_nonce ($purpose_slug)
+    {
+         wp_nonce_field($purpose_slug, self::SLUG . "_nonce");
+    }
+
+    static function check_nonce ($purpose_slug, $value = null)
+    {
+        if ($value === null) {
+            $value = $_REQUEST[self::SLUG . "_nonce"];
+        }
+        if ( ! wp_verify_nonce($value, $purpose_slug)) {
+            die( '♝ Your nonce is excommunicated ♝' );
+        }
+    }
+}
+
+Stisrv13AdminMenu::hook();
