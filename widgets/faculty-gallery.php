@@ -13,6 +13,7 @@ if (! class_exists('WP_Widget')) {
 require_once(dirname(dirname(__FILE__)) . "/inc/i18n.php");
 use function \EPFL\STI\Theme\___;
 use function \EPFL\STI\Theme\__x;
+use \EPFL\WS\Persons\Person;
 
 class FacultyGallery extends \WP_Widget
 {
@@ -66,21 +67,40 @@ function findString(tstring,text) {
     }
 }
 
-function _templateCard(person) {
-     var _h = function(s, person) {
+function _h(s, person) {
          // Poor man's handlebars
          return s.replace(/{{person.([a-zA-Z_]+)}}/g,
                           function(unused, k) {return person[k]});
 
      };
 
+var _all_persons = {<?php
+   // Thanks to the post_meta cache described e.g. at
+   // http://www.dansmart.co.uk/2016/01/wordpress-post-meta-caching/,
+   // even the naïve implementation below will perform only a constant
+   // number of requests.
+   Person::foreach(function ($person) {
+     $sciper = $person->get_sciper();
+     printf("%d: %s,\n", $sciper, json_encode(array(
+         img    => get_the_post_thumbnail($person->wp_post())
+     )));
+   });
+?> "_last_key_unused": {}};
+
+function img_of_person (person) {
+    var this_person = _all_persons[person.sciper];
+    if (! this_person) return "";
+    return this_person.img;
+}
+
+function _templateCard(person) {
+
      var html = "<div class=\"faculty-titre-card col-6 col-md-4 col-lg-3 col-xl-2\">\n";
 
      person = JSON.parse(JSON.stringify(person));  // Unalias
      person["fullname"] = person.firstname + " " + person.lastname;
 
-     html += person.link + _h(
-             " <img class=\"faculty-img\" src=\"https://people.epfl.ch/cgi-bin/people/getPhoto?id={{person.sciper}}\" title=\"{{person.fullname}}\"></a>\n", person);
+     html += person.link + img_of_person(person) + "</a>\n";
      html += " <div class=\"faculty-rouge\"></div>\n";
      html += _h(
              " <div class=\"faculty-titre-id\"><h4>{{person.link}}{{person.lastname}} {{person.firstname}}</a></h4>\n", person);
