@@ -99,10 +99,10 @@ function _templateCard(person) {
      person = JSON.parse(JSON.stringify(person));  // Unalias
      person["fullname"] = person.firstname + " " + person.lastname;
 
-     html += person.link + img_of_person(person) + "</a>\n";
+     html += "<a href=\"" + person.link + "\">" + img_of_person(person) + "</a>\n";
      html += " <div class=\"faculty-rouge\"></div>\n";
      html += _h(
-             " <div class=\"faculty-titre-id\"><h4>{{person.link}}{{person.lastname}} {{person.firstname}}</a></h4>\n", person);
+             " <div class=\"faculty-titre-id\"><h4><a href=\"{{person.link}}\">{{person.lastname}} {{person.firstname}}</a></h4>\n", person);
 
      html += _h(
              "  <a class=\"faculty-lab\" href=\"{{person.labwebsite}}\">{{person.mylabname}}</a>\n", person);
@@ -121,6 +121,7 @@ function _doPrintOuter(people_listing, lang) {
 
 	result++;
         count++;
+        people_listing[x].link = "/epfl-person/" + people_listing[x].sciper;
         test += _templateCard(people_listing[x]);
    }
   }
