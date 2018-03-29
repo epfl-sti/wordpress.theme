@@ -67,13 +67,6 @@ function findString(tstring,text) {
     }
 }
 
-function _h(s, person) {
-         // Poor man's handlebars
-         return s.replace(/{{person.([a-zA-Z_]+)}}/g,
-                          function(unused, k) {return person[k]});
-
-     };
-
 var _all_persons = {<?php
    // Thanks to the post_meta cache described e.g. at
    // http://www.dansmart.co.uk/2016/01/wordpress-post-meta-caching/,
@@ -94,6 +87,12 @@ function img_of_person (person) {
 }
 
 function _templateCard(person) {
+    function _h(s, person) {
+         // Poor man's handlebars
+         return s.replace(/{{person.([a-zA-Z_]+)}}/g,
+                          function(unused, k) {return person[k]});
+
+    }
 
      var html = "<div class=\"faculty-titre-card col-6 col-md-4 col-lg-3 col-xl-2\">\n";
 
