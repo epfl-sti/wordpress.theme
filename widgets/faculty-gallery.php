@@ -113,7 +113,6 @@ function _templateCard(person) {
 }
 
 function _doPrintOuter(people_listing, lang) {
-  var img_dir="https://stisrv13.epfl.ch/profs/img/";
   var test="";
 
   var count=0;
@@ -251,7 +250,6 @@ $(function() {
     $config["institute"] = wp_strip_all_tags(strtoupper($new_config["institute"]));
     return $config;
   }
-
 }
 
 register_widget(FacultyGallery::class);
