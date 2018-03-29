@@ -78,7 +78,7 @@ var _all_persons = {<?php
    // Thanks to the post_meta cache described e.g. at
    // http://www.dansmart.co.uk/2016/01/wordpress-post-meta-caching/,
    // even the naïve implementation below will perform only a constant
-   // number of requests.
+   // number of database requests.
    Person::foreach(function ($person) {
      $sciper = $person->get_sciper();
      printf("%d: %s,\n", $sciper, json_encode(array(
