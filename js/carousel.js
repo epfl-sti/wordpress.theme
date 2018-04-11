@@ -1,12 +1,15 @@
-jQuery(function carousel_init($) {
+jQuery(function ($) {
     $( ".carousel-item" ).first().addClass( "active" );
+
     // https://codepen.io/andrearufo/pen/rVWpyE
-    $("#sti-homecarousel").swipe({
-        swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
-
-            if (direction == 'left') $(this).carousel('next');
-            if (direction == 'right') $(this).carousel('prev');
-
+    $(".carousel.slide").swipe({
+        swipeLeft: function() {
+            console.log("Swipe left");
+            $(this).carousel('next');
+        },
+        swipeRight: function() {
+            console.log("Swipe right");
+            $(this).carousel('prev');
         },
         allowPageScroll:"vertical"
     });
