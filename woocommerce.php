@@ -23,9 +23,6 @@ $sidebar_pos = get_theme_mod( 'epflsti_sidebar_position' );
 
 		<div class="row">
 
-			<!-- Do the left sidebar check -->
-			<?php get_template_part( 'global-templates/left-sidebar-check', 'none' ); ?>
-
 			<main class="site-main" id="main">
 
 			<?php 
@@ -53,13 +50,6 @@ $sidebar_pos = get_theme_mod( 'epflsti_sidebar_position' );
 			</main><!-- #main -->
 
 		</div><!-- #primary -->
-
-		<!-- Do the right sidebar check -->
-		<?php if ( 'right' === $sidebar_pos || 'both' === $sidebar_pos ) : ?>
-
-			<?php dynamic_sidebar( 'right' ); ?>
-
-		<?php endif; ?>
 
 	</div><!-- .row -->
 

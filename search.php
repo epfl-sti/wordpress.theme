@@ -17,9 +17,6 @@ $sidebar_pos = get_theme_mod( 'epflsti_sidebar_position' );
 
 		<div class="row">
 
-			<!-- Do the left sidebar check and opens the primary div -->
-			<?php get_template_part( 'global-templates/left-sidebar-check', 'none' ); ?>
-
 			<main class="site-main" id="main">
 
 				<?php if ( have_posts() ) : ?>
@@ -59,13 +56,6 @@ $sidebar_pos = get_theme_mod( 'epflsti_sidebar_position' );
 			<?php epflsti_pagination(); ?>
 
 		</div><!-- #primary -->
-
-		<!-- Do the right sidebar check -->
-		<?php if ( 'right' === $sidebar_pos || 'both' === $sidebar_pos ) : ?>
-
-			<?php dynamic_sidebar( 'right' ); ?>
-
-		<?php endif; ?>
 
 	</div><!-- .row -->
 
