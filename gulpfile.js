@@ -223,20 +223,20 @@ gulp.task('scripts', function() {
 
 // Run:
 // gulp admin-scripts
-// Render all Vue and JS files files for the admin pages into
+// Browserify all Vue and JS files files for the admin pages into
 // assets/admin-theme{,.min}.js and assets/admin-theme{,.min}.css
 gulp.task('admin-scripts', function() {
-    const js_sources = gulp.src([
-        // Source just the entry point; Browserify will chase dependencies
-        // by itself (bypassing the Gulp pipeline)
-        './newsletter-theme/composer.js'
+    const vue_entrypoints = gulp.src([
+        // Browserify will chase dependencies by itself
+        // (on-filesystem, bypassing the Gulp pipeline)
+        './newsletter-theme/newsletter-composer.js'
     ]);
 
     const sass_sources = gulp.src([
         './newsletter-theme/composer.scss'
     ]);
 
-    const js_pipeline = js_sources
+    const vue_pipeline = vue_entrypoints
         .pipe(bro({  // Bro is a modern wrapper for browserify
             debug: true,  // Produce a sourcemap
             cacheFile: "assets/browserify-cache.json",
@@ -255,7 +255,6 @@ gulp.task('admin-scripts', function() {
                 'unassertify'
             ]
         }))
-        .pipe(rename("newsletter-composer.js"))
         .pipe(assetsDest())  // Save non-minified, then continue
         /* Source maps cause the Chrome debugger to reveal all source
          * files in their pristine splendor, *provided* it doesn't
@@ -272,7 +271,7 @@ gulp.task('admin-scripts', function() {
         .pipe(processSASS())
         .pipe(assetsDest());
 
-    return merge2(js_pipeline, css_pipeline)
+    return merge2(vue_pipeline, css_pipeline)
         .pipe(browserSync.stream());
 });
 
