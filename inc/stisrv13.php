@@ -12,6 +12,7 @@ if (! defined('ABSPATH')) {
 
 require_once(__DIR__ . "/i18n.php");
 use function \EPFL\STI\Theme\___;
+use function \EPFL\STI\Theme\__x;
 
 // TODO: This should be refactored into a post-scrape hook
 function _stisrv13_metadata ($person_obj) {
@@ -82,13 +83,15 @@ class Stisrv13AdminMenu
 	<div class="wrap">
             <?php static::render_hal(); ?>
             <h2>stisrv13 at your service</h2>
-<p>
+            <form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" enctype="multipart/form-data">
+             <input type="hidden" name="action" value="<?php echo Stisrv13UploadArticlesController::SLUG; ?>">
 	<label for="upload-news-csv">
 		Upload CSV file:
 	</label>
 	<input type="file" id="upload-news-csv" name="upload-news-csv" value="" />
 	<?php static::render_nonce("upload-news-csv"); ?>
-</p>
+        <button type="submit"><?php echo ___("Submit", "stisrv13 csv"); ?></button>
+        </form>
 	</div>
 <?php
     }
@@ -161,3 +164,32 @@ add_filter("epfl_lab_additional_meta", function ($more_meta, $lab) {
 
 
 Stisrv13AdminMenu::hook();
+
+class Stisrv13UploadArticlesController
+{
+    const SLUG = "stisrv13_upload_articles";
+
+    function hook ()
+    {
+        $slug = self::SLUG;
+        add_action("admin_post_$slug",
+                   array(get_called_class(), "handle_upload_csv"));
+    }
+
+    function handle_upload_csv ()
+    {
+        printf("<pre>%s</pre>", var_export($_FILES, true));  // XXX
+    }
+
+    private function _csv2assoc ($lines_array)
+    {
+        $csv = array_map('str_getcsv', $lines_array);
+        array_walk($csv, function(&$a) use ($csv) {
+            $a = array_combine($csv[0], $a);
+        });
+        array_shift($csv); # remove column header
+        return $a;
+    }
+}
+
+Stisrv13UploadArticlesController::hook();
