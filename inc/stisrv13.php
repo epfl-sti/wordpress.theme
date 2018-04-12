@@ -109,4 +109,73 @@ class Stisrv13AdminMenu
     }
 }
 
+function get_stisrv13_person ($sciper)
+{
+    return curl_get_json("https://stisrv13.epfl.ch/cgi-bin/whoop/peoplepage.pl?sciper=$sciper");
+}
+
+/**
+ * Scrape additional metadata out of stisrv13
+ */
+add_filter("epfl_person_additional_meta", function ($more_meta, $person) {
+    $incoming = get_stisrv13_person($person->get_sciper());
+    if (! $incoming->position) return;
+
+    if (! $person->get_bio()) {
+        $person->set_bio($incoming->bio);
+    }
+
+    if ($incoming->phone) {  $person->set_phone($incoming->phone); }
+    if ($incoming->office) { $person->set_room($incoming->office); }
+
+    $more_meta["stisrv13_id"] = $incoming->id;
+
+    $news_raw = array(
+        array("title" => $incoming->newstitle1,
+              "link"  => $incoming->newslink1,
+              "image" => $incoming->newsimage1),
+        array("title" => $incoming->newstitle2,
+              "link"  => $incoming->newslink2,
+              "image" => $incoming->newsimage2),
+        array("title" => $incoming->newstitle3,
+              "link"  => $incoming->newslink3,
+              "image" => $incoming->newsimage3),
+        array("title" => $incoming->newstitle4,
+              "link"  => $incoming->newslink4,
+              "image" => $incoming->newsimage4)
+    );
+
+    $news = [];
+    foreach ($news_raw as $piece) {
+        if ($piece["title"]) {
+            array_push($news, $piece);
+        }
+    }
+    $more_meta["stisrv13_news_json"] = json_encode($news);
+    $more_meta["stisrv13_data_json"] = json_encode($incoming);
+
+    return $more_meta;
+}, 10, 2);
+
+/**
+ * Scrape images for labs out of stisrv13
+ */
+add_filter("epfl_lab_additional_meta", function ($more_meta, $lab) {
+    if (has_post_thumbnail($lab->wp_post())) { return; }
+    $mgr = $lab->get_lab_manager();
+    if (! $mgr) return;
+
+    $incoming = get_stisrv13_person($mgr->get_sciper());
+    $id = $incoming->id;
+    if (! $id) return;
+
+    download_featured_image(
+        $lab->wp_post(),
+        "https://stisrv13.epfl.ch/brochure/img/$id/research.png",
+        array("basename" => $incoming->labname . ".png")
+    );
+    return $more_meta;
+}, 10, 2);
+
+
 Stisrv13AdminMenu::hook();

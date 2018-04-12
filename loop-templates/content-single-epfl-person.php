@@ -50,7 +50,7 @@ if ($lab = $person->get_lab()) {
     }
 }
 
-// This data only exists within the School of Engineering. (See inc/epfl.php for how it gets scraped.)
+// This data only exists within the School of Engineering. (See ../inc/stisrv13.php for how it gets scraped.)
 $stisrv13data = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_data_json", true));
 $keywords = $stisrv13data->keywords;
 $research = $stisrv13data->interests;
