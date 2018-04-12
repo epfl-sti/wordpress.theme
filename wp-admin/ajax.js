@@ -18,13 +18,25 @@ function _parse_opts(action, url_or_opts, data) {
     return [ action, opts, data ]
 }
 
-function WPajax(/*action, url_or_opts?, data */) {
+/**
+ * @constructor
+ *
+ * @param {Object} opts - The options for this WPajax call
+ * @param {string} opts.ajaxurl
+ * @param {string} opts.nonce
+ */
+function WPajax(opts) {
+    let { ajaxurl, nonce } = opts
+    _.extend(this, { ajaxurl, nonce })
+}
+
+WPajax.prototype.request = function(/* action, url_or_opts?, data */) {
     const [ action, opts, data ] = _parse_opts.apply({}, arguments)
-    var url = window.epflsti_newsletter_composer.ajaxurl;
+    var url = this.ajaxurl
     url = url + ((url.indexOf("?") !== -1) ? "&" : "?")
         + "action=" + action
         // See docstring of script_pass_params() in ../hook.php for explanations
-        + "&_ajax_nonce=" + window.epflsti_newsletter_composer.nonce;
+        + "&_ajax_nonce=" + this.nonce
     var ajax = jQuery.ajax(
         _.extend(
             {
@@ -41,12 +53,12 @@ function WPajax(/*action, url_or_opts?, data */) {
 
 export default WPajax
 
-WPajax.get = function(/* action, url_or_opts?, data */) {
+WPajax.prototype.get = function(/* action, url_or_opts?, data */) {
     const [ action, opts, data ] = _parse_opts.apply({}, arguments);
-    return WPajax(action, _.extend({type: "GET"}, opts), data);
+    return this.request(action, _.extend({type: "GET"}, opts), data);
 }
 
-WPajax.post = function(/* action, url_or_opts?, data */) {
+WPajax.prototype.post = function(/* action, url_or_opts?, data */) {
     const [ action, opts, data ] = _parse_opts.apply({}, arguments);
-    return WPajax(_.extend({type: "POST"}, opts), data);
+    return this.request(_.extend({type: "POST"}, opts), data);
 }

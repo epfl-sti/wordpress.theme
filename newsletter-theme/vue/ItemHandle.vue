@@ -54,7 +54,7 @@ import Vue from 'vue'
 import select2 from "./Select2.vue"
 import highlightKeywordHTML from "../inc/highlight.js"
 import GlobalBus from "./GlobalBus.js"
-import WPajax from "../inc/ajax.js"
+import WPajax from "../../wp-admin/ajax.js"
 
 /**
  * The "base class"
@@ -93,7 +93,8 @@ let ItemHandleBase = {
       vm.search = {}
       vm.status = null
 
-      WPajax("epfl_sti_newsletter_" + vm.modelMoniker + "_search", { s: term })
+      let ajax = new WPajax(window.epflsti_newsletter_composer)
+      ajax.request("epfl_sti_newsletter_" + vm.modelMoniker + "_search", { s: term })
       .then(response => {
         vm.search.items             = response.searchResults
         vm.search.pll_the_languages = response.pll_the_languages

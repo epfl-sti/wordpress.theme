@@ -147,7 +147,8 @@ gulp.task('watch', ['default'], function () {
     gulp.watch(['./sass/theme.scss', './sass/*/**/*', ], ['sass']);
     gulp.watch(['js/**/*.js'], ['scripts']);
     gulp.watch(['newsletter-theme/**/*.js', 'newsletter-theme/**/*.vue',
-                'newsletter-theme/**/*.scss'],
+                'newsletter-theme/**/*.scss',
+                'wp-admin/**/*.js',],
                ['admin-scripts']);
     gulp.watch('./img/src/**', ['imagemin'])
     gulp.watch(['inc/maxmegamenu.php'], ['clear-caches']);

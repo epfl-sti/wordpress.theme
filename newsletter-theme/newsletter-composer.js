@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Composer from "./vue/Composer.vue"
 import Loading from "./vue/Loading.vue"
 import GlobalBus from "./vue/GlobalBus.js"
-import WPajax from "./inc/ajax.js"
+import WPajax from "../wp-admin/ajax.js"
 import _ from 'lodash'
 
 // Make all <b-foo> elements available everywhere:
@@ -18,7 +18,8 @@ $(($) => {
   let composer = new Vue(Composer)
   GlobalBus.$on("must_save", function(state) {
     let loading = new Vue(Loading).$mount($('<div />').appendTo('body')[0])
-    WPajax("epfl_sti_newsletter_draft_save", state)
+    let ajax = new WPajax(window.epflsti_newsletter_composer)
+    ajax.request("epfl_sti_newsletter_draft_save", state)
       .then(response => {
         location.reload()
       })
