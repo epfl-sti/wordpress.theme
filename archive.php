@@ -3,6 +3,10 @@
  * The template for displaying "archive" pages (i.e. category or
  * taxonomy tables of contents).
  *
+ * "Archives" are more like (quite inflexible) views for the WP_Query
+ * functionality. For instance, the /category/faculty-positions/ URL
+ * will be served by this file.
+ *
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
  * @package epflsti

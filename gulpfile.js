@@ -206,7 +206,8 @@ gulp.task('imagemin', function(){
 
 // Run:
 // gulp scripts
-// Concat all JS files into assets/theme{,.min}.js
+// Concat and uglify all user-visible JS files into assets/theme{,.min}.js
+// (no transpiling)
 gulp.task('scripts', function() {
     return gulp.src([
         'node_modules/popper.js/dist/umd/popper.js',  // Bootstrap dependency, must come before it
