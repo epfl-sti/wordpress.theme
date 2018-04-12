@@ -130,28 +130,10 @@ add_filter("epfl_person_additional_meta", function ($more_meta, $person) {
 
     $more_meta["stisrv13_id"] = $incoming->id;
 
-    $news_raw = array(
-        array("title" => $incoming->newstitle1,
-              "link"  => $incoming->newslink1,
-              "image" => $incoming->newsimage1),
-        array("title" => $incoming->newstitle2,
-              "link"  => $incoming->newslink2,
-              "image" => $incoming->newsimage2),
-        array("title" => $incoming->newstitle3,
-              "link"  => $incoming->newslink3,
-              "image" => $incoming->newsimage3),
-        array("title" => $incoming->newstitle4,
-              "link"  => $incoming->newslink4,
-              "image" => $incoming->newsimage4)
-    );
-
-    $news = [];
-    foreach ($news_raw as $piece) {
-        if ($piece["title"]) {
-            array_push($news, $piece);
-        }
-    }
-    $more_meta["stisrv13_news_json"] = json_encode($news);
+    $more_meta["stisrv13_news_json"] = json_encode($incoming->news);
+    $more_meta["stisrv13_news_rssids_json"] = json_encode(array_map(
+        function($news) { return 0 + $news->rssid; },
+        array_values($incoming->news)));
     $more_meta["stisrv13_data_json"] = json_encode($incoming);
 
     return $more_meta;
