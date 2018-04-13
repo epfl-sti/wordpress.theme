@@ -2,17 +2,20 @@
  * Style for the "white news" widget
  */
 
-.secondarytitle {
-  font: 26px 'Open Sans';
-  padding: 2px 5px 0px 12px
-}
-
-.secondaryrow {
-  text-align: left;
-  display: inline-block;
-  margin-top: 20px;
-  padding: 15px;
-  max-width: 1080px;
+.whitenews {
+  margin: 10pt 0pt;
+  .container {
+    max-width: 1090px;
+    padding: 15px;
+    background-color: white;
+    h1 {
+      display: block;
+      clear: both;
+      font: 26px 'Open Sans';
+      margin: 0;
+      padding: 2px 5px 0px 12px;
+    }
+  }
 }
 
 .secondarycontainer {

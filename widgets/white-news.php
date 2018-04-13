@@ -86,9 +86,10 @@ class WhiteNews extends \WP_Widget
 
         echo $args['before_widget'];
         ?>
-        <div class="row h-100 justify-content-center align-items-center">
-            <div class="secondaryrow whitebg">
-                <div class="secondarytitle"><?php echo esc_html(__x($config["title"], "white-news" )); ?></div>
+        <div class="whitenews h-100 align-items-center">
+         <div class="container">
+            <h1><?php echo esc_html(__x($config["title"], "white-news" )); ?></h1>
+            <div class="row">
                     <?php
                     foreach ($newsitems as $the_post) {
                         global $post; $post = $the_post; setup_postdata($post);
@@ -128,6 +129,7 @@ class WhiteNews extends \WP_Widget
                     ?>
                 </div>
             </div>
+          </div>
         </div>
     <?php
         echo $args['after_widget'];
