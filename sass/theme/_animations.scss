@@ -7,3 +7,14 @@
     background-size: 130%;
   }
 }
+
+/* not news carousel, image slideshow */
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  width: 90%;
+  margin: auto;
+}
+.carousel-control {
+  	  width: 5%;
+}
