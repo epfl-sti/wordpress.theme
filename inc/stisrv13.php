@@ -195,6 +195,7 @@ class Stisrv13UploadArticlesController
         $filename = $_FILES[self::SLUG]['tmp_name'];
         if (! $filename) return;
 
+        set_time_limit(600);
         static::check_nonce();
 
         $payload = json_decode(file_get_contents($filename));
