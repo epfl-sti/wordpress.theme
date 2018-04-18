@@ -83,32 +83,9 @@ class Stisrv13AdminMenu
 	<div class="wrap">
             <?php static::render_hal(); ?>
             <h2>stisrv13 at your service</h2>
-            <form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" enctype="multipart/form-data">
-             <input type="hidden" name="action" value="<?php echo Stisrv13UploadArticlesController::SLUG; ?>">
-	<label for="upload-news-csv">
-		Upload CSV file:
-	</label>
-	<input type="file" id="upload-news-csv" name="upload-news-csv" value="" />
-	<?php static::render_nonce("upload-news-csv"); ?>
-        <button type="submit"><?php echo ___("Submit", "stisrv13 csv"); ?></button>
-        </form>
+            <?php Stisrv13UploadArticlesController::render_form() ?>
 	</div>
 <?php
-    }
-
-    static function render_nonce ($purpose_slug)
-    {
-         wp_nonce_field($purpose_slug, self::SLUG . "_nonce");
-    }
-
-    static function check_nonce ($purpose_slug, $value = null)
-    {
-        if ($value === null) {
-            $value = $_REQUEST[self::SLUG . "_nonce"];
-        }
-        if ( ! wp_verify_nonce($value, $purpose_slug)) {
-            die( '♝ Your nonce is excommunicated ♝' );
-        }
     }
 }
 
@@ -173,22 +150,45 @@ class Stisrv13UploadArticlesController
     {
         $slug = self::SLUG;
         add_action("admin_post_$slug",
-                   array(get_called_class(), "handle_upload_csv"));
+                   array(get_called_class(), "handle_upload_yaml"));
     }
 
-    function handle_upload_csv ()
+    function render_form ()
     {
-        printf("<pre>%s</pre>", var_export($_FILES, true));  // XXX
+        $slug = self::SLUG;
+        ?>
+            <form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" enctype="multipart/form-data">
+             <input type="hidden" name="action" value="<?php echo Stisrv13UploadArticlesController::SLUG; ?>">
+	<label for="upload-news-yaml">
+		Upload YAML file:
+	</label>
+	<input type="file" id="upload-news-yaml" name="<?php echo $slug ?>" value="" />
+	<?php static::render_nonce(); ?>
+        <button type="submit"><?php echo ___("Submit", "stisrv13 yaml"); ?></button>
+        </form>
+        <?php
     }
 
-    private function _csv2assoc ($lines_array)
+    function handle_upload_yaml ()
     {
-        $csv = array_map('str_getcsv', $lines_array);
-        array_walk($csv, function(&$a) use ($csv) {
-            $a = array_combine($csv[0], $a);
-        });
-        array_shift($csv); # remove column header
-        return $a;
+        static::check_nonce();
+        $filename = $_FILES[self::SLUG]['tmp_name'];
+        printf("<pre>%s</pre>", var_export(stat($filename)));  // XXX
+    }
+
+    static function render_nonce ()
+    {
+         wp_nonce_field(self::SLUG, self::SLUG . "_nonce");
+    }
+
+    static function check_nonce ($value = null)
+    {
+        if ($value === null) {
+            $value = $_REQUEST[self::SLUG . "_nonce"];
+        }
+        if ( ! wp_verify_nonce($value, self::SLUG)) {
+            die( '♝ Your nonce is excommunicated ($value) ♝' );
+        }
     }
 }
 
