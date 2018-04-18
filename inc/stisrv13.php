@@ -201,7 +201,7 @@ class Stisrv13UploadArticlesController
         $payload = json_decode(file_get_contents($filename));
 
         foreach ($payload->articles as $article) {
-            Stisrv13Article::get_or_create($article->rss_id, $article->lang)->update($article);
+            Stisrv13Article::sync($article);
         }
         if (Stisrv13Article::$missing_categories) {
             foreach (Stisrv13Article::$missing_categories as $category_slug) {
@@ -272,8 +272,10 @@ class Stisrv13Article extends Post
 
     const RSS_ID_META = "stisrv13_rss_id";
 
-    function get_or_create ($rss_id, $lang)
+    static function sync ($json)
     {
+        $rss_id = $json->rss_id;
+        $lang   = $json->lang;
         if (! $rss_id) {
             throw new Exception("No rss_id! ($rss_id)");
         }
@@ -291,25 +293,26 @@ class Stisrv13Article extends Post
             throw new DuplicateStisrv13ArticleException(
                 "Found " . sizeof($results) . " results for RSS ID $rss_id and language $lang");
         } elseif (sizeof($results) == 1) {
-            return static::get($results[0]);
+            $that = static::get($results[0]);
+        } else {
+            $id_or_error = wp_insert_post(
+                array(
+                    "post_type"   => "post",
+                    'post_title'    => $json->title,  # Get the slug right the first time
+                    'post_content'  => $json->body    # Still, some articles have no title
+                ),
+                /* $wp_error = */ true);
+            if (is_wp_error($id_or_error)) {
+                $error = $id_or_error;
+                throw new Error("Unable to create new post for (rss_id=$rss_id, lang=$lang): " . $error->get_error_message());
+            } else {
+                $that = static::get($id_or_error);
+                pll_set_post_language($that->ID, $lang);
+            }
         }
 
-        $id_or_error = wp_insert_post(
-            array(
-                "post_type"   => "post",
-                "post_title"  => "🚧 Empty stisrv13 post 🚧",
-                "post_status" => "publish",
-                "meta_input"  => array(self::RSS_ID_META => $rss_id)),
-            /* $wp_error = */ true);
-        if (is_wp_error($id_or_error)) {
-            $error = $id_or_error;
-            throw new Error("Unable to create new post: " . $error->get_error_message());
-        }
-
-        $id = $id_or_error;
-        pll_set_post_language($id, $lang);
-
-        return static::get($id);
+        $that->_update($json);
+        return $that;
     }
 
     function get_rss_id ()
@@ -323,7 +326,7 @@ class Stisrv13Article extends Post
     }
 
     static $missing_categories;
-    function update ($json)
+    function _update ($json)
     {
         $update_data = array(
             'ID'            => $this->ID,
