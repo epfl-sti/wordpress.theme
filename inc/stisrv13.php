@@ -150,7 +150,7 @@ class Stisrv13UploadArticlesController
     {
         $slug = self::SLUG;
         add_action("admin_post_$slug",
-                   array(get_called_class(), "handle_upload_yaml"));
+                   array(get_called_class(), "handle_upload_json"));
     }
 
     function render_form ()
@@ -159,21 +159,21 @@ class Stisrv13UploadArticlesController
         ?>
             <form action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="post" enctype="multipart/form-data">
              <input type="hidden" name="action" value="<?php echo Stisrv13UploadArticlesController::SLUG; ?>">
-	<label for="upload-news-yaml">
-		Upload YAML file:
+	<label for="upload-news-json">
+		Upload JSON file:
 	</label>
-	<input type="file" id="upload-news-yaml" name="<?php echo $slug ?>" value="" />
+	<input type="file" id="upload-news-json" name="<?php echo $slug ?>" value="" />
 	<?php static::render_nonce(); ?>
-        <button type="submit"><?php echo ___("Submit", "stisrv13 yaml"); ?></button>
+        <button type="submit"><?php echo ___("Submit", "stisrv13 JSON"); ?></button>
         </form>
         <?php
     }
 
-    function handle_upload_yaml ()
+    function handle_upload_json ()
     {
         static::check_nonce();
-        $filename = $_FILES[self::SLUG]['tmp_name'];
-        printf("<pre>%s</pre>", var_export(stat($filename)));  // XXX
+        $articles = json_decode(file_get_contents($_FILES[self::SLUG]['tmp_name']));
+        echo count($articles) . " articles in JSON";  // XXX
     }
 
     static function render_nonce ()
