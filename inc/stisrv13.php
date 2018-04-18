@@ -14,6 +14,20 @@ require_once(__DIR__ . "/i18n.php");
 use function \EPFL\STI\Theme\___;
 use function \EPFL\STI\Theme\__x;
 
+use \Exception;
+use \Error;
+
+use \WP_Query;
+use \WP_User_Query;
+
+/* The following creates unwanted coupling with the EPFL-WS plugin. It is also
+ * temporary, as the entire process of importing stisrv13 articles becomes dead
+ * code as soon as it has succeeded once. I'm lazy that way.
+ */
+require_once(__DIR__ . "/../../../plugins/epfl-ws/inc/base-classes.inc");
+use \EPFL\WS\Base\Post;
+
+
 // TODO: This should be refactored into a post-scrape hook
 function _stisrv13_metadata ($person_obj) {
     if (! $person_obj->_stisrv13_metadata) {
@@ -87,6 +101,11 @@ class Stisrv13AdminMenu
 	</div>
 <?php
     }
+
+    static function get_upload_page_url ()
+    {
+        return admin_url('admin.php?page=' . self::SLUG);
+    }
 }
 
 function get_stisrv13_person ($sciper)
@@ -151,6 +170,8 @@ class Stisrv13UploadArticlesController
         $slug = self::SLUG;
         add_action("admin_post_$slug",
                    array(get_called_class(), "handle_upload_json"));
+        add_action('admin_notices',
+                   array(get_called_class(), '_render_admin_errors'));
     }
 
     function render_form ()
@@ -171,9 +192,52 @@ class Stisrv13UploadArticlesController
 
     function handle_upload_json ()
     {
+        $filename = $_FILES[self::SLUG]['tmp_name'];
+        if (! $filename) return;
+
         static::check_nonce();
-        $articles = json_decode(file_get_contents($_FILES[self::SLUG]['tmp_name']));
-        echo count($articles) . " articles in JSON";  // XXX
+
+        $payload = json_decode(file_get_contents($filename));
+
+        foreach ($payload->articles as $article) {
+            Stisrv13Article::get_or_create($article->rss_id, $article->lang)->update($article);
+        }
+        if (Stisrv13Article::$missing_categories) {
+            foreach (Stisrv13Article::$missing_categories as $category_slug) {
+                static::admin_error(sprintf(___("Category not found (by slug): %s, ignored"), $category_slug));
+            }
+        }
+        wp_redirect(Stisrv13AdminMenu::get_upload_page_url());
+    }
+
+    static function admin_error ($text)
+    {
+        $key = static::_get_error_transient_key();
+        $error = get_transient($key);
+        if (! $error) {
+            $error = $text;
+        } else {
+            $error = $error . "<br/>" . $text;
+        }
+        set_transient($key, $error, 45);  // Seconds before it self-destructs
+    }
+
+    static function _get_error_transient_key ()
+    {
+        return "stisrv13-import-errors-" . wp_get_current_user()->user_login;
+    }
+
+    static function _render_admin_errors ()
+    {
+        $key = static::_get_error_transient_key();
+        if ($error = get_transient($key)) {
+            delete_transient($key);
+            ?>
+            <div class="notice notice-error is-dismissible">
+            <p><?php echo $error; ?></p>
+            </div>
+            <?php
+        }
     }
 
     static function render_nonce ()
@@ -191,5 +255,122 @@ class Stisrv13UploadArticlesController
         }
     }
 }
+
+/**
+ * Model class for articles
+ */
+class DuplicateStisrv13ArticleException extends Exception {}
+class Stisrv13ImportError extends Exception {}
+
+class Stisrv13Article extends Post
+{
+    function _belongs ()
+    {
+        return $this->get_rss_id() !== null;
+    }
+
+    const RSS_ID_META = "stisrv13_rss_id";
+
+    function get_or_create ($rss_id, $lang)
+    {
+        if (! $rss_id) {
+            throw new Exception("No rss_id! ($rss_id)");
+        }
+        
+        $search_query = new WP_Query(array(
+           'post_type'  => 'post',
+           'lang'       => $lang,
+           'meta_query' => array(array(
+               'key'     => self::RSS_ID_META,
+               'value'   => $rss_id,
+               'compare' => '='
+            ))));
+        $results = $search_query->get_posts();
+        if (sizeof($results) > 1) {
+            throw new DuplicateStisrv13ArticleException(
+                "Found " . sizeof($results) . " results for RSS ID $rss_id and language $lang");
+        } elseif (sizeof($results) == 1) {
+            return static::get($results[0]);
+        }
+
+        $id_or_error = wp_insert_post(
+            array(
+                "post_type"   => "post",
+                "post_title"  => "🚧 Empty stisrv13 post 🚧",
+                "post_status" => "publish",
+                "meta_input"  => array(self::RSS_ID_META => $rss_id)),
+            /* $wp_error = */ true);
+        if (is_wp_error($id_or_error)) {
+            $error = $id_or_error;
+            throw new Error("Unable to create new post: " . $error->get_error_message());
+        }
+
+        $id = $id_or_error;
+        pll_set_post_language($id, $lang);
+
+        return static::get($id);
+    }
+
+    function get_rss_id ()
+    {
+        return get_post_meta($this->ID, self::RSS_ID_META, true);
+    }
+
+    function get_language ()
+    {
+        return pll_get_post_language($this->ID);
+    }
+
+    static $missing_categories;
+    function update ($json)
+    {
+        $update_data = array(
+            'ID'            => $this->ID,
+            'post_title'    => $json->title,
+            'post_content'  => $json->body,
+            'post_date'     => $this->_mysql_time($json->pubdate),
+            'post_date_gmt' => $this->_mysql_time($json->pubdate, true),
+        );
+
+        if ($author_login = $json->webmaster_author) {
+            $user_query = new WP_User_Query(array('user_login' => $ $author_login));
+            $authors = $user_query->get_results();
+            if (count($authors) === 1) {
+                $update_data['post_author'] = $authors->ID;
+            }
+        }
+
+        wp_update_post($update_data);
+
+        $categories = array();
+        if ($json->categories) {
+            foreach ($json->categories as $category_slug) {
+                $category = get_category_by_slug($category_slug);
+                if ($category) {
+                    array_push($categories, $category->term_id);
+                } else {
+                    if (! self::$missing_categories) self::$missing_categories = array();
+                    if (false === array_search($category_slug, self::$missing_categories)) {
+                        error_log("Unknown category: $category_slug");
+                        array_push(self::$missing_categories, $category_slug);
+                    }
+                }
+            }
+        }
+        wp_set_post_categories($this->ID, $categories, false);
+    }
+
+    /**
+     * Like `current_time('mysql')`, except not on the current time
+     */
+    function _mysql_time ($timestamp, $is_gmt = false)
+    {
+        if ($is_gmt) {
+            $timestamp += get_option( 'gmt_offset' ) * HOUR_IN_SECONDS;
+        }
+        return gmdate('Y-m-d H:i:s', $timestamp);
+    }
+}
+
 
 Stisrv13UploadArticlesController::hook();
