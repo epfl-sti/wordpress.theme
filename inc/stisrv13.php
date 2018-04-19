@@ -339,11 +339,14 @@ class Stisrv13Article extends Post
             'post_date_gmt' => $this->_mysql_time($json->pubdate, true),
         );
 
+        # Author
         if ($author_login = $json->webmaster_author) {
-            $user_query = new WP_User_Query(array('user_login' => $ $author_login));
+            $user_query = new WP_User_Query(array(
+                search_columns => array('user_login'),
+                search         => $author_login));
             $authors = $user_query->get_results();
             if (count($authors) === 1) {
-                $update_data['post_author'] = $authors->ID;
+                $update_data['post_author'] = $authors[0]->ID;
             }
         }
 
