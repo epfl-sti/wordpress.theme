@@ -297,10 +297,13 @@ class Stisrv13Article extends Post
         } else {
             $id_or_error = wp_insert_post(
                 array(
-                    "post_type"   => "post",
-                    'post_title'    => $json->title,  # Get the slug right the first time
-                    'post_content'  => $json->body    # Still, some articles have no title
-                ),
+                    "post_type"    => "post",
+                    'post_title'   => $json->title,  # Get the slug right the first time
+                    'post_content' => $json->body,   # Still, some articles have no title
+                    'post_status' => 'publish',
+                    'meta_input'   => array(
+                        self::RSS_ID_META => $rss_id
+                    )),
                 /* $wp_error = */ true);
             if (is_wp_error($id_or_error)) {
                 $error = $id_or_error;
