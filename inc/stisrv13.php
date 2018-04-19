@@ -171,7 +171,7 @@ class Stisrv13UploadArticlesController
         add_action("admin_post_$slug",
                    array(get_called_class(), "handle_upload_json"));
         add_action('admin_notices',
-                   array(get_called_class(), '_render_admin_errors'));
+                   array(get_called_class(), '_render_admin_notices'));
     }
 
     function render_form ()
@@ -205,15 +205,17 @@ class Stisrv13UploadArticlesController
         }
         if (Stisrv13Article::$missing_categories) {
             foreach (Stisrv13Article::$missing_categories as $category_slug) {
-                static::admin_error(sprintf(___("Category not found (by slug): %s, ignored"), $category_slug));
+                static::admin_notice("error", sprintf(___("Category not found (by slug): %s, ignored"), $category_slug));
             }
         }
+        static::admin_notice("success", "JSON ingestion successful");
+        error_log("stisrv13.php: JSON ingestion successful");
         wp_redirect(Stisrv13AdminMenu::get_upload_page_url());
     }
 
-    static function admin_error ($text)
+    static function admin_notice ($level, $text)
     {
-        $key = static::_get_error_transient_key();
+        $key = static::_get_error_transient_key($color);
         $error = get_transient($key);
         if (! $error) {
             $error = $text;
@@ -223,21 +225,23 @@ class Stisrv13UploadArticlesController
         set_transient($key, $error, 45);  // Seconds before it self-destructs
     }
 
-    static function _get_error_transient_key ()
+    static function _get_error_transient_key ($level)
     {
-        return "stisrv13-import-errors-" . wp_get_current_user()->user_login;
+        return "stisrv13-import-$level-" . wp_get_current_user()->user_login;
     }
 
-    static function _render_admin_errors ()
+    static function _render_admin_notices ()
     {
-        $key = static::_get_error_transient_key();
-        if ($error = get_transient($key)) {
-            delete_transient($key);
-            ?>
-            <div class="notice notice-error is-dismissible">
-            <p><?php echo $error; ?></p>
-            </div>
-            <?php
+        foreach (array("error", "info", "warning", "success") as $level) {
+            $key = static::_get_error_transient_key($level);
+            if ($error = get_transient($key)) {
+                delete_transient($key);
+                ?>
+                <div class="notice notice-<?php echo $level; ?> is-dismissible">
+                <p><?php echo $error; ?></p>
+                </div>
+                <?php
+            }
         }
     }
 
