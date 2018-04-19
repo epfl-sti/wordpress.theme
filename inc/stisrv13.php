@@ -276,14 +276,7 @@ class Stisrv13Article extends Post
 
     const RSS_ID_META = "stisrv13_rss_id";
 
-    static function sync ($json)
-    {
-        $rss_id = $json->rss_id;
-        $lang   = $json->lang;
-        if (! $rss_id) {
-            throw new Exception("No rss_id! ($rss_id)");
-        }
-        
+    static function get_by_rss_id_and_lang ($rss_id, $lang) {
         $search_query = new WP_Query(array(
            'post_type'  => 'post',
            'lang'       => $lang,
@@ -293,12 +286,26 @@ class Stisrv13Article extends Post
                'compare' => '='
             ))));
         $results = $search_query->get_posts();
-        if (sizeof($results) > 1) {
+        if (! $results) {
+            return;
+        } elseif (sizeof($results) > 1) {
             throw new DuplicateStisrv13ArticleException(
                 "Found " . sizeof($results) . " results for RSS ID $rss_id and language $lang");
-        } elseif (sizeof($results) == 1) {
-            $that = static::get($results[0]);
         } else {
+            return static::get($results[0]);
+        }
+    }
+
+    static function sync ($json)
+    {
+        $rss_id = $json->rss_id;
+        $lang   = $json->lang;
+        if (! $rss_id) {
+            throw new Exception("No rss_id! ($rss_id)");
+        }
+
+        $that = static::get_by_rss_id_and_lang($rss_id, $lang);
+        if (! $that) {
             $id_or_error = wp_insert_post(
                 array(
                     "post_type"    => "post",
@@ -312,10 +319,9 @@ class Stisrv13Article extends Post
             if (is_wp_error($id_or_error)) {
                 $error = $id_or_error;
                 throw new Error("Unable to create new post for (rss_id=$rss_id, lang=$lang): " . $error->get_error_message());
-            } else {
-                $that = static::get($id_or_error);
-                pll_set_post_language($that->ID, $lang);
             }
+            $that = static::get($id_or_error);
+            pll_set_post_language($that->ID, $lang);
         }
 
         $that->_update($json);
@@ -333,8 +339,13 @@ class Stisrv13Article extends Post
     }
 
     static $missing_categories;
+    /**
+     * Extract all the information out of $json for this stisrv13 article, which
+     * already exists in-database, using the WordPress API.
+     */
     function _update ($json)
     {
+        # Basics
         $update_data = array(
             'ID'            => $this->ID,
             'post_title'    => $json->title,
@@ -356,6 +367,7 @@ class Stisrv13Article extends Post
 
         wp_update_post($update_data);
 
+        # Categories
         $categories = array();
         if ($json->categories) {
             foreach ($json->categories as $category_slug) {
@@ -372,6 +384,18 @@ class Stisrv13Article extends Post
             }
         }
         wp_set_post_categories($this->ID, $categories, false);
+
+        # Link between translations
+        $rss_id       = $json->rss_id;
+        $lang         = $json->lang;
+        $other_lang   = ($lang == "fr") ? "en" : "fr";
+        $other_translation = static::get_by_rss_id_and_lang($rss_id, $other_lang);
+        if ($other_translation) {
+            pll_save_post_translations(array(
+                $lang       => $this->ID,
+                $other_lang => $other_translation->ID
+            ));
+        }
     }
 
     /**
