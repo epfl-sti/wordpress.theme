@@ -27,33 +27,34 @@ $sidebar_pos = get_theme_mod( 'epflsti_sidebar_position' );
 
 			<div class="row">
 
+				<div class="col-md-12 content-area" id="primary">
 
-				<main class="site-main" id="main">
+					<main class="site-main" id="main">
 
-					<?php while ( have_posts() ) : the_post(); ?>
+						<?php while ( have_posts() ) : the_post(); ?>
 
-						<?php get_template_part( 'loop-templates/content', 'page' ); ?>
+							<?php get_template_part( 'loop-templates/content', 'page' ); ?>
 
-						<?php
-						// If comments are open or we have at least one comment, load up the comment template.
-						if ( comments_open() || get_comments_number() ) :
-							comments_template();
-						endif;
-						?>
+							<?php
+							// If comments are open or we have at least one comment, load up the comment template.
+							if ( comments_open() || get_comments_number() ) :
+								comments_template();
+							endif;
+							?>
 
-					<?php endwhile; // end of the loop. ?>
+						<?php endwhile; // end of the loop. ?>
 
-				</main><!-- #main -->
+					</main><!-- #main -->
 
-			</div><!-- #primary -->
+				</div><!-- #primary -->
+
+			</div><!-- .row -->
 
 		<?php if ( esc_attr($container) == "container-fluid" ) : ?>
 		</div>
 		<?php endif; ?>
 
-	</div><!-- .row -->
-
-</div><!-- Container end -->
+	</div><!-- #content -->
 
 </div><!-- Wrapper end -->
 
