@@ -415,7 +415,11 @@ class Stisrv13Article extends Post
         $rss_id     = $json->rss_id;
         $images_dir = static::get_images_dir();
         $our_image  = "$images_dir/$rss_id";
-        if (! file_exists($our_image)) { return; }
+        $this->_debug("_update_featured_image($rss_id) from $our_image ...");
+        if (! file_exists($our_image)) {
+            $this->_debug("... $our_image does not exist");
+            return;
+        }
 
         $file_struct = $this->_mock_file_structure($our_image);
         if (! $file_struct) return;  // ->_mock_file_structure() will have complained already
@@ -469,6 +473,21 @@ class Stisrv13Article extends Post
     function get_images_dir ()
     {
         return WP_CONTENT_DIR . "/sideloads/stisrv13";
+    }
+
+    function _debug ($msg)
+    {
+        return;  // Comment out this line to get debugging going
+        if (! (is_string($msg) || is_numeric($msg))) {
+            $msg = var_export($msg, true);
+        }
+        error_log($this->_get_moniker() . ": " . $msg);
+    }
+
+    function _get_moniker ()
+    {
+        return sprintf("%s<rss_id=%d lang=%s>",
+                       get_called_class(), $this->get_rss_id(), $this->get_language());
     }
 }
 
