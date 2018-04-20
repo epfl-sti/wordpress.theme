@@ -370,7 +370,7 @@ class Stisrv13Article extends Post
 
         $this->_update_categories($json);
         $this->_link_translations($json);
-        $this->_update_featured_image($json);
+        $this->_add_featured_image($json);
     }
 
     function _update_categories ($json)
@@ -407,20 +407,47 @@ class Stisrv13Article extends Post
         }
     }
 
+    /**
+     * Add a featured image if this stisrv13 article in this language
+     * doesn't already have one.
+     *
+     * Image files are expected to be found in WP_CONTENT_DIR .
+     *
+     */
 
-    function _update_featured_image ($json)
+    function _add_featured_image ($json)
     {
         if (get_post_thumbnail_id($this->ID)) return;
 
         $rss_id     = $json->rss_id;
         $images_dir = static::get_images_dir();
-        $our_image  = "$images_dir/$rss_id";
-        $this->_debug("_update_featured_image($rss_id) from $our_image ...");
-        if (! file_exists($our_image)) {
-            $this->_debug("... $our_image does not exist");
+
+        // If image is already ingested (typically, on behalf of the
+        // post in the other language), re-use it
+        $q = new WP_Query(array(
+            'post_type'   => 'attachment',
+            'post_status' => 'any',
+            'meta_query'  => array(array(
+                'key'     => self::RSS_ID_META,
+                'value'   => $rss_id,
+                'compare' => '='
+            ))));
+        $results = $q->get_posts();
+        if (sizeof($results) > 1) {
+            throw new DuplicateStisrv13ImageException(
+                "Found " . sizeof($results) . " images with RSS ID $rss_id");
+        } elseif (sizeof($results) === 1) {
+            $this->_debug("Re-using image " . $results[0]->ID);
+            set_post_thumbnail($this->ID, $results[0]->ID);
             return;
         }
 
+        $our_image  = "$images_dir/$rss_id.png";
+        if (! file_exists($our_image)) {
+            $this->_debug("_update_featured_image($rss_id): $our_image does not exist");
+            return;
+        }
+        $this->_debug("_update_featured_image($rss_id) with $our_image");
         $file_struct = $this->_mock_file_structure($our_image);
         if (! $file_struct) return;  // ->_mock_file_structure() will have complained already
 
@@ -429,13 +456,23 @@ class Stisrv13Article extends Post
             error_log("Unable to read image metadata out of $our_image");
             return;
         }
-        wp_handle_sideload($file_struct, $this->ID,
-                           array(
-                               'post_mime_type' => $mimetype,
-                               'post_status'    => 'inherit',
-                               'meta_input'   => array(
-                                   self::RSS_ID_META => $rss_id
-                               )));
+        $result = media_handle_sideload(
+            $file_struct,
+            $this->ID,  // The media will have $this as its post_parent, which
+                        // looks nice in the wp-admin media list view.  There appears
+                        // to be no referential integrity trouble, even if one trashes
+                        // $this.
+            $json->covershot_alt,
+            array(
+                'post_status'    => 'inherit',
+                'meta_input'   => array(
+                    self::RSS_ID_META => $rss_id
+                )));
+        if (is_integer($result)) {
+            set_post_thumbnail($this->ID, $result);
+        } else {
+            throw new \Error($result["error"]);
+        }
     }
 
     function _mock_file_structure ($path) {
