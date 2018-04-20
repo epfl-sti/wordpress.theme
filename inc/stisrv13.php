@@ -265,6 +265,7 @@ class Stisrv13UploadArticlesController
  * Model class for articles
  */
 class DuplicateStisrv13ArticleException extends Exception {}
+class DuplicateStisrv13ImageException extends Exception {}
 class Stisrv13ImportError extends Exception {}
 
 class Stisrv13Article extends Post
@@ -367,7 +368,13 @@ class Stisrv13Article extends Post
 
         wp_update_post($update_data);
 
-        # Categories
+        $this->_update_categories($json);
+        $this->_link_translations($json);
+        $this->_update_featured_image($json);
+    }
+
+    function _update_categories ($json)
+    {
         $categories = array();
         if ($json->categories) {
             foreach ($json->categories as $category_slug) {
@@ -384,8 +391,10 @@ class Stisrv13Article extends Post
             }
         }
         wp_set_post_categories($this->ID, $categories, false);
+    }
 
-        # Link between translations
+    function _link_translations ($json)
+    {
         $rss_id       = $json->rss_id;
         $lang         = $json->lang;
         $other_lang   = ($lang == "fr") ? "en" : "fr";
@@ -398,6 +407,54 @@ class Stisrv13Article extends Post
         }
     }
 
+
+    function _update_featured_image ($json)
+    {
+        if (get_post_thumbnail_id($this->ID)) return;
+
+        $rss_id     = $json->rss_id;
+        $images_dir = static::get_images_dir();
+        $our_image  = "$images_dir/$rss_id";
+        if (! file_exists($our_image)) { return; }
+
+        $file_struct = $this->_mock_file_structure($our_image);
+        if (! $file_struct) return;  // ->_mock_file_structure() will have complained already
+
+        $image_meta = wp_read_image_metadata($our_image);
+        if ($image_meta === false) {
+            error_log("Unable to read image metadata out of $our_image");
+            return;
+        }
+        wp_handle_sideload($file_struct, $this->ID,
+                           array(
+                               'post_mime_type' => $mimetype,
+                               'post_status'    => 'inherit',
+                               'meta_input'   => array(
+                                   self::RSS_ID_META => $rss_id
+                               )));
+    }
+
+    function _mock_file_structure ($path) {
+        // https://stackoverflow.com/q/21462093/435004 FWIW
+        $stat = @stat($path);
+        if (! stat) {
+            error_log("Unable to stat($path): " . var_export(error_get_last(), true));
+            return;
+        }
+        $mimetype = mime_content_type ($path);
+        if (! $mimetype) {
+            error_log("Unable to determine MIME type of $path");
+            return;
+        }
+        return array(
+            'name'     => basename($path),
+            'tmp_name' => $path,
+            'type'     => $mimetype,
+            'error'    => 0,
+            'size'     => $stat['size']
+        );
+    }
+
     /**
      * Like `current_time('mysql')`, except not on the current time
      */
@@ -407,6 +464,11 @@ class Stisrv13Article extends Post
             $timestamp += get_option( 'gmt_offset' ) * HOUR_IN_SECONDS;
         }
         return gmdate('Y-m-d H:i:s', $timestamp);
+    }
+
+    function get_images_dir ()
+    {
+        return WP_CONTENT_DIR . "/sideloads/stisrv13";
     }
 }
 
