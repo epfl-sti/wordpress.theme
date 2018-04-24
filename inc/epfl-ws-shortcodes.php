@@ -96,10 +96,10 @@ add_filter("epfl_shortcode_actu_list_html_item", function ($unused_html, $unused
         $link_to_article = "<a href=\"https://actu.epfl.ch/news/" . title2anchor($item->title) . "\">";
         $publication_date = date("jS F, Y", strtotime($item->publish_date));
         return "<div class=\"fullwidth-list-item\">
-         <h2>$link_to_article".strtoupper($item->title)."</a></h2>
+         <h2>$link_to_article".strtoupper($item->title)."</a><span style=\"float:right; font-weight: normal;\">" . $publication_date . "</span></h2>
          <div class=\"actu-details\">
           <img src=\"".$item->visual_url."\" width=\"170\" height=\"100\">
-          <span> ".$item->subtitle."</span>".$publication_date."
+          <span> ".$item->subtitle."</span>
          </div>
         </div>";
 }, 10, 3);
