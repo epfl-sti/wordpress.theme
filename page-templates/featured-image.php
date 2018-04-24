@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Welcome from the Director
+ * Template Name: Featured image
  *
  * Page template for page with featured image in a responsive way
  *    - Use the featured image
@@ -10,14 +10,14 @@
  * @package epflsti
  */
 
- get_header();
+get_header();
 
- $container   = get_theme_mod( 'epflsti_container_type' );
- $sidebar_pos = get_theme_mod( 'epflsti_sidebar_position' );
+$container   = get_theme_mod( 'epflsti_container_type' );
+$sidebar_pos = get_theme_mod( 'epflsti_sidebar_position' );
 
- ?>
+?>
 
- <div class="wrapper" id="page-wrapper">
+<div class="wrapper" id="page-wrapper">
 
 	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
 
@@ -43,11 +43,12 @@
 
 										<div class="container">
 											<div class="row">
+
 												<?php if (has_post_thumbnail($post)): ?>
 													<div class="col-md-3 col-xl-3">
-														<div class="sti_decanat_portrait" style="border:solid 1px #bbb;padding: 10px;">
+														<div class="sti_featured_image">
 															<?php echo get_the_post_thumbnail( $post->ID, 'large', array( 'class' => 'img-responsive mx-auto d-block', 'style' => 'padding-bottom: 10px;' ) ); ?>
-															<div class="sti_caption text-center" style="border:solid 1px #bbb;padding: 10px;">
+															<div class="sti_featured_image_caption text-center">
 																<?php echo "<b>" . get_the_post_thumbnail_caption( $post->ID ) . "</b>"; ?>
 																<?php
 																	$thumbnail_image_data = get_posts(array('p' => get_post_thumbnail_id($post->ID), 'post_type' => 'attachment'))[0];
@@ -58,7 +59,6 @@
 															</div>
 														</div>
 													</div>
-
 												<?php endif; ?>
 
 												<?php if (has_post_thumbnail($post)): ?>
@@ -88,20 +88,20 @@
 									</footer>
 							</article><!-- #post-## -->
 
- 						<?php endwhile; // end of the loop. ?>
+						<?php endwhile; // end of the loop. ?>
 
- 					</main><!-- #main -->
+					</main><!-- #main -->
 
- 				</div><!-- #primary -->
+				</div><!-- #primary -->
 
- 			</div><!-- .row -->
+			</div><!-- .row -->
 
- 		<?php if ( esc_attr($container) == "container-fluid" ) : ?>
- 		</div>
- 		<?php endif; ?>
+		<?php if ( esc_attr($container) == "container-fluid" ) : ?>
+		</div>
+		<?php endif; ?>
 
- 	</div><!-- #content -->
+	</div><!-- #content -->
 
- </div><!-- Wrapper end -->
+</div><!-- Wrapper end -->
 
- <?php get_footer(); ?>
+<?php get_footer(); ?>
