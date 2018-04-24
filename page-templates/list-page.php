@@ -23,6 +23,8 @@ $container = get_theme_mod( 'epflsti_container_type' );
    </main>
   </div>
  </div>
+ <footer>
+   <?php edit_post_link( __( 'Edit', 'epflsti' ), '<span class="edit-link">', '</span>' ); ?>
+ </footer>
 </div>
-
 <?php get_footer(); ?>
