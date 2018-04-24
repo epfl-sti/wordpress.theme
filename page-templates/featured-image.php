@@ -47,16 +47,23 @@ $sidebar_pos = get_theme_mod( 'epflsti_sidebar_position' );
 												<?php if (has_post_thumbnail($post)): ?>
 													<div class="col-md-3 col-xl-3">
 														<div class="sti_featured_image">
-															<?php echo get_the_post_thumbnail( $post->ID, 'large', array( 'class' => 'img-responsive mx-auto d-block', 'style' => 'padding-bottom: 10px;' ) ); ?>
-															<div class="sti_featured_image_caption text-center">
-																<?php echo "<b>" . get_the_post_thumbnail_caption( $post->ID ) . "</b>"; ?>
-																<?php
-																	$thumbnail_image_data = get_posts(array('p' => get_post_thumbnail_id($post->ID), 'post_type' => 'attachment'))[0];
-																	if ($thumbnail_image_data->post_content != '') {
-																		echo "<br />" . $thumbnail_image_data->post_content;
+															<?php
+															echo get_the_post_thumbnail( $post->ID, 'large', array( 'class' => 'img-responsive mx-auto d-block', 'style' => 'padding-bottom: 10px;' ) );
+																$thumbnail_image_data = get_posts(array('p' => get_post_thumbnail_id($post->ID), 'post_type' => 'attachment'))[0];
+																if (get_the_post_thumbnail_caption( $post->ID ) || $thumbnail_image_data->post_content != '') {
+																	echo '<div class="sti_featured_image_caption text-center">';
+																	if (get_the_post_thumbnail_caption( $post->ID )) {
+																		echo "<b>" . get_the_post_thumbnail_caption( $post->ID ) . "</b>";
 																	}
+																	if ($thumbnail_image_data->post_content != '') {
+																		if (get_the_post_thumbnail_caption( $post->ID )) {
+																			echo "<br />";
+																		}
+																		echo $thumbnail_image_data->post_content;
+																	}
+																	echo '</div>';
+																}
 																?>
-															</div>
 														</div>
 													</div>
 												<?php endif; ?>
