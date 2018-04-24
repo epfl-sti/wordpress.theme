@@ -75,21 +75,34 @@ add_filter(
 
     }, 10, 3);
 
+
+function renderAuthors($authors_array) {
+    return implode(', ', array_map( function($ary){ return $ary->first_name . ' ' . $ary->last_name; }, $authors_array));
+}
+
 add_filter("epfl_shortcode_actu_list_html_item", function ($unused_html, $unused_shortcode_attrs, $item) {
 
+    //print "<pre>";var_dump($item); print "</pre>";
+    //var_dump($item->authors);
+
     $publication_date = date("jS F, Y", strtotime($item->publish_date));
+
     return "<div class=\"fullwidth-list-item\" id=\"" . $item->id . "\">
-      <h2><a href=\"" . $item->news_url . "\">" . strtoupper($item->title) . "</a><span class=\"top-right\">$publication_date</span></h2>
+      <h2><a href=\"" . $item->news_url . "\">" . strtoupper($item->title) . "</a><span class=\"top-right\"> $publication_date</span></h2>
       <div class=\"container\">
         <div class=\"row entry-body\">
           <div class=\"col-md-2\">
             <div class=\"text-center actu-details\">
-              <a href=\"" . $item->news_url . "\"><img src=\"" . $item->visual_url . "\" title=\"" . $item->image_description . "\" /></a>
+              <a href=\"" . $item->news_url . "\"><img src=\"" . $item->visual_url . "\" title=\"" . $item->visual_description . "\" /></a>
             </div>
           </div>
           <div class=\"col-md-10 actu-item-content\">
             " . $item->subtitle . "
+            <div class=\"actu-authors text-right font-italic\">
+            " . renderAuthors($item->authors) . "
+            </div>
             <span class=\"float-right\"><a href=\"" . $item->news_url . "\">Read more</a></span>
+            <!-- <a href=\"#\" title=\"Channel: " . $item->channel->name  . ", Category: " . $item->category->en_label . "\"><i class=\"fas fa-tags\"></i></a> -->
           </div>
         </div>
       </div>
