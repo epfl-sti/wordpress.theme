@@ -62,6 +62,15 @@ $list-item-hover-bgcolor: #ddd;
   }
 }
 
+.fullwidth-list-item span.top-right {
+  float:right;
+  font-weight:normal;
+
+  > a {
+    font-weight:normal;
+  }
+}
+
 .actu-details img,
 .memento-details img {
   border: 1px solid #b4b2b2;

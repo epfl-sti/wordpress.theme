@@ -59,7 +59,7 @@ add_filter(
         $description = str_replace("</strong>", "", $description);
 
         $memento .= '<div class="fullwidth-list-item" id="' . $item->id . '">';
-        $memento .= '<h2><a href="' . $item->absolute_slug . '">' . $item->title . '</a></h2>';
+        $memento .= '<h2><a href="' . $item->absolute_slug . '">' . $item->title . '</a><span class="top-right"><a href="https://memento.epfl.ch/event/export/' . $item->translation_id . '" title="Add to calendar"><i class="fas fa-calendar-alt"></i></a><span></h2>';
         $memento .= '<div class="container">';
         $memento .= '<div class="row entry-body">';
         $memento .= '<div class="col-md-2 memento-details"><a href="' . $item->absolute_slug . '"><img width=200 src="' . $item->event_visual_absolute_url . '" title="' . $item->image_description . '"></a><br><a title="add to calendar" href='.$outlink.'>';
@@ -96,7 +96,7 @@ add_filter("epfl_shortcode_actu_list_html_item", function ($unused_html, $unused
         $link_to_article = "<a href=\"https://actu.epfl.ch/news/" . title2anchor($item->title) . "\">";
         $publication_date = date("jS F, Y", strtotime($item->publish_date));
         return "<div class=\"fullwidth-list-item\">
-         <h2>$link_to_article".strtoupper($item->title)."</a><span style=\"float:right; font-weight: normal;\">" . $publication_date . "</span></h2>
+         <h2>$link_to_article".strtoupper($item->title)."</a><span class=\"top-right\">" . $publication_date . "</span></h2>
          <div class=\"actu-details\">
           <img src=\"".$item->visual_url."\" width=\"170\" height=\"100\">
           <span> ".$item->subtitle."</span>
