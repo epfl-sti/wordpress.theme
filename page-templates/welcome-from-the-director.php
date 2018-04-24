@@ -1,7 +1,11 @@
 <?php
-/* Template Name: Welcome from the Director */
 /**
- * Partial template for content in page.php
+ * Template Name: Welcome from the Director
+ *
+ * Page template for page with featured image in a responsive way
+ *    - Use the featured image
+ *    - Use the featured image's caption
+ *    - Use the featured image's description
  *
  * @package epflsti
  */
@@ -41,9 +45,9 @@
 											<div class="row">
 												<?php if (has_post_thumbnail($post)): ?>
 													<div class="col-md-3 col-xl-3">
-														<div class="sti_decanat_portrait">
-															<?php echo get_the_post_thumbnail( $post->ID, 'medium', array( 'class' => 'img-responsive mx-auto d-block', 'style' => '' ) ); ?>
-															<div class="sti_caption text-center" style="border-left: solid 1px #bbb;border-right: solid 1px #bbb;border-bottom: solid 1px #bbb;padding: 10px;">
+														<div class="sti_decanat_portrait" style="border:solid 1px #bbb;padding: 10px;">
+															<?php echo get_the_post_thumbnail( $post->ID, 'large', array( 'class' => 'img-responsive mx-auto d-block', 'style' => 'padding-bottom: 10px;' ) ); ?>
+															<div class="sti_caption text-center" style="border:solid 1px #bbb;padding: 10px;">
 																<?php echo "<b>" . get_the_post_thumbnail_caption( $post->ID ) . "</b>"; ?>
 																<?php
 																	$thumbnail_image_data = get_posts(array('p' => get_post_thumbnail_id($post->ID), 'post_type' => 'attachment'))[0];
