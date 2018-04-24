@@ -36,45 +36,43 @@ add_filter(
             $endtime = "";
         }
 
-        $outlinkstartdate = str_replace("-","",$item->event_start_date);
-        $outlinkenddate = str_replace(":","",$item->event_end_date);
-
-        $outlinkendtime = str_replace(":","",$item->event_end_time);
-        if (empty($outlinkendtime)) {
-            $outlinkendtime = "000000";
-        }
-        $outlinkstarttime = str_replace(":","",$item->event_start_time);
-        if (empty($outlinkstarttime)) {
-            $outlinkstarttime = "000000";
-        }
-        $outlinktitle = str_replace(" ","%20",$item->title);
-
-	$outlink = "https://stisrv13.epfl.ch/outlink.php?enddate=$outlinkenddate"."T$outlinkendtime&datestring=$outlinkstartdate"."T$outlinkstarttime&speaker=&title=$outlinktitle&room=";
-	$roomlink=$item->event_place_and_room;
-	if ($item->event_url_place_and_room != "") {
-         $roomlink="<a href=$item->event_url_place_and_room>$roomlink <img width=58 src=http://www.iconarchive.com/download/i103443/paomedia/small-n-flat/map-marker.ico></a>";
-	}
-
         $description = str_replace("<strong>", "", $item->description);
         $description = str_replace("</strong>", "", $description);
 
         $memento .= '<div class="fullwidth-list-item" id="' . $item->id . '">';
-        $memento .= '<h2><a href="' . $item->absolute_slug . '">' . $item->title . '</a><span class="top-right"><a href="https://memento.epfl.ch/event/export/' . $item->translation_id . '" title="Add to calendar"><i class="fas fa-calendar-alt"></i></a><span></h2>';
-        $memento .= '<div class="container">';
-        $memento .= '<div class="row entry-body">';
-        $memento .= '<div class="col-md-2 memento-details"><a href="' . $item->absolute_slug . '"><img width=200 src="' . $item->event_visual_absolute_url . '" title="' . $item->image_description . '"></a><br><a title="add to calendar" href='.$outlink.'>';
-        $memento .= $startdate . '<br>' . ($starttime ? $starttime : "") ;
+        $memento .= '  <h2><a href="' . $item->absolute_slug . '">' . $item->title . '</a><span class="top-right"><a href="https://memento.epfl.ch/event/export/' . $item->translation_id . '" title="Add to calendar"><i class="fas fa-calendar-alt"></i></a><span></h2>';
+        $memento .= '  <div class="container">';
+        $memento .= '    <div class="row entry-body">';
+        $memento .= '      <div class="col-md-2 memento-details">';
+        $memento .= '        <div class="text-center">';
+        $memento .= '          <a href="' . $item->absolute_slug . '"><img src="' . $item->event_visual_absolute_url . '" title="' . $item->image_description . '"></a>';
+        $memento .= '        </div>';
+        $memento .= '        <div class="memento-date">';
+        $memento .= '          <a href="https://memento.epfl.ch/event/export/' . $item->translation_id . '" title="Add to calendar" class="font-weight-normal"><i class="fas fa-calendar-alt"></i>&nbsp;';
+        $memento .= '        ' . $startdate . ($starttime ? ', ' . $starttime : '') ;
         if ($enddate) {
-            $memento .= 'to ' . $enddate . ' ' . ($endtime ? $endtime : "") ;
+            $memento .= 'to ' . $enddate . ($endtime ? ', ' . $endtime : '') ;
+        } else {
+            $memento .= ($endtime ? ' - ' . $endtime : '') ;
         }
-        $memento .= '<img src=https://stisrv13.epfl.ch/newsdesk/images/2018-03-15calendar.gif alt="add to calendar"></a> <br><br> <br>'.$roomlink.'</div>';
-        $memento .= '<div class="col-md-10">'.$item->event_speaker."<br><br>". $description.'<a href="' . $item->absolute_slug . '">Read more</a> <br><br></div>';
-        $memento .= "</div>\n";  # row
-        $memento .= "</div>\n";  # container
-        $memento .= "</div>\n";  # fullwidth-list-item
+        $memento .= '          </a>';
+        $memento .= '        </div>';
+        $memento .= '        <div class="memento-room">';
+        $memento .= '          <a href="' . $item->event_url_place_and_room . '" class="text-uppercase font-weight-normal"><i class="fas fa-map-marker-alt"></i> ' . $item->event_place_and_room . '</a>';
+        $memento .= '        </div>';
+        $memento .= '        <br />'; # Displayed in mobile only - comfortable space to read.
+        $memento .= '      </div>';
+        $memento .= '      <div class="col-md-10">';
+        $memento .= '     ' . ($item->event_speaker) ? $item->event_speaker . '<br /><br />' : '';
+        $memento .= '     ' . $description;
+        $memento .= '        <br /><span class="float-right"><a href="' . $item->absolute_slug . '">Read more</a></span>';
+        $memento .= '      </div>';
+        $memento .= '    </div>';  # row
+        $memento .= '  </div>';  # container
+        $memento .= '</div>';  # fullwidth-list-item
 
         return $memento;
-//}
+
     }, 10, 3);
 
 function title2anchor ($title)
