@@ -369,6 +369,7 @@ class Stisrv13Article extends Post
         wp_update_post($update_data);
 
         $this->_update_categories($json);
+        $this->_update_tags($json);
         $this->_link_translations($json);
         $this->_add_featured_image($json);
     }
@@ -391,6 +392,13 @@ class Stisrv13Article extends Post
             }
         }
         wp_set_post_categories($this->ID, $categories, false);
+    }
+
+    function _update_tags ($json)
+    {
+        if ($json->tags) {
+            wp_set_post_terms($this->ID, $json->tags);
+        }
     }
 
     function _link_translations ($json)
@@ -475,7 +483,8 @@ class Stisrv13Article extends Post
         }
     }
 
-    function _mock_file_structure ($path) {
+    function _mock_file_structure ($path)
+    {
         // https://stackoverflow.com/q/21462093/435004 FWIW
         $stat = @stat($path);
         if (! stat) {
