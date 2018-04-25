@@ -27,6 +27,9 @@ use \WP_User_Query;
 require_once(__DIR__ . "/../../../plugins/epfl-ws/inc/base-classes.inc");
 use \EPFL\WS\Base\Post;
 
+function debug ($msg) {
+    // error_log($msg);
+}
 
 // TODO: This should be refactored into a post-scrape hook
 function _stisrv13_metadata ($person_obj) {
@@ -278,14 +281,24 @@ class Stisrv13Article extends Post
     const RSS_ID_META = "stisrv13_rss_id";
 
     static function get_by_rss_id_and_lang ($rss_id, $lang) {
-        $search_query = new WP_Query(array(
+        $query_params = array(
            'post_type'  => 'post',
-           'lang'       => $lang,
            'meta_query' => array(array(
                'key'     => self::RSS_ID_META,
                'value'   => $rss_id,
                'compare' => '='
-            ))));
+            )));
+        if (function_exists('pll_get_post_language')) {
+            $query_params['lang'] = $lang;
+        } else {
+            array_push($query_params['meta_query'], array(
+                'key'     => 'language',
+                'value'   => $lang,
+                'compare' => '='
+            ));
+        }
+
+        $search_query = new WP_Query($query_params);
         $results = $search_query->get_posts();
         if (! $results) {
             return;
@@ -314,7 +327,8 @@ class Stisrv13Article extends Post
                     'post_content' => $json->body,   # Still, some articles have no title
                     'post_status' => 'publish',
                     'meta_input'   => array(
-                        self::RSS_ID_META => $rss_id
+                        self::RSS_ID_META => $rss_id,
+                        'language'        => $lang
                     )),
                 /* $wp_error = */ true);
             if (is_wp_error($id_or_error)) {
@@ -322,7 +336,9 @@ class Stisrv13Article extends Post
                 throw new Error("Unable to create new post for (rss_id=$rss_id, lang=$lang): " . $error->get_error_message());
             }
             $that = static::get($id_or_error);
-            pll_set_post_language($that->ID, $lang);
+            if (function_exists('pll_set_post_language')) {
+                pll_set_post_language($that->ID, $lang);
+            }
         }
 
         $that->_update($json);
@@ -396,13 +412,17 @@ class Stisrv13Article extends Post
 
     function _update_tags ($json)
     {
-        if ($json->tags) {
-            wp_set_post_terms($this->ID, $json->tags);
+        if (! $json->tags) return;
+        // wp_set_post_terms() auto-creates tags *in the default language only.*
+        foreach ($json->tags as $tag_name) {
+            ensure_tag_exists_in_languages($tag_name, array("fr", "en"));
         }
+        wp_set_post_terms($this->ID, $json->tags);
     }
 
     function _link_translations ($json)
     {
+        if (! function_exists('pll_save_post_translations')) return;
         $rss_id       = $json->rss_id;
         $lang         = $json->lang;
         $other_lang   = ($lang == "fr") ? "en" : "fr";
@@ -510,6 +530,7 @@ class Stisrv13Article extends Post
      */
     function _mysql_time ($timestamp, $is_gmt = false)
     {
+        if (! is_integer($timestamp)) $timestamp->zoinx();  // XXX
         if ($is_gmt) {
             $timestamp += get_option( 'gmt_offset' ) * HOUR_IN_SECONDS;
         }
@@ -535,6 +556,53 @@ class Stisrv13Article extends Post
         return sprintf("%s<rss_id=%d lang=%s>",
                        get_called_class(), $this->get_rss_id(), $this->get_language());
     }
+}
+
+function ensure_tag_exists_in_languages ($tag_name, $languages)
+{
+    foreach (array('pll_get_term_language', 'pll_set_term_language',
+                   'pll_save_term_translations') as $functionname) {
+        if (! function_exists($functionname)) {
+            # Still ensure that the term exists in English
+            wp_insert_term(
+                $tag_name, 'post_tag',
+                array('slug' => sanitize_title($tag_name) . "-en"));
+            return;
+        }
+    }
+
+    $terms = array();
+    foreach (get_terms(array(
+        'taxonomy'   => 'post_tag',
+        'name'       => $tag_name,
+        'hide_empty' => false
+    )) as $term) {
+        $term_id = $term->term_id;
+        $lang = pll_get_term_language($term_id);
+        if ((! $lang) && preg_match('/-en$/', $term->slug)) {
+            # Assume it was created as part of the no-Polylang code above
+            pll_set_term_language($term_id, "en");
+            $lang = "en";
+        }
+        debug("Found term ID $term_id of language $lang for $tag_name");
+        $terms[$lang] = $term_id;
+    }
+    debug("$tag_name has " . count($terms) . " pre-existing translations: " . var_export($terms, true));
+    foreach ($languages as $lang) {
+        if ($terms[$lang]) continue;
+        $term_or_error = wp_insert_term(
+            $tag_name, 'post_tag',
+            array('slug' => sanitize_title($tag_name) . "-" . $lang));
+        if (is_wp_error($term_or_error)) {
+            // All you wanted to know about WP_Error, but were afraid to ask,
+            // is at https://wordpress.stackexchange.com/a/11143/132235
+            throw new Exception($term_or_error->get_error_message());
+        }
+        $term_id = (int) $term_or_error["term_id"];
+        pll_set_term_language($term_id, $lang);
+        $terms[$lang] = $term_id;
+    }
+    pll_save_term_translations($terms);
 }
 
 
