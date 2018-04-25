@@ -34,17 +34,23 @@
   margin: 20px;
 }
 
+/* Featured image */
+.sti_featured_image {
+  border: solid 1px #bbb;
+  padding: 10px;
+  background-color:white;
+  width: 100%;
+}
+.sti_featured_image_caption {
+  border:solid 1px #bbb;
+  padding: 10px;
+  background-color:#e0e0e0;
+}
+
 /* STI dean's office page */
 .sti_decanat_desc {
  padding: 10px;
  background-color: #f2f2f2;
-}
-
-.sti_decanat_portrait {
- border: solid 1px #bbb;
- background-color:white;
- width: 100%;
- padding: 8px 8px 0px 8px;
 }
 
 .sti_decanat_name {

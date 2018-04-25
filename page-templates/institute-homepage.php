@@ -21,7 +21,8 @@ use function \EPFL\STI\get_institute;
 		<div class="container">
 
 			<div class="row">
-		<?php dynamic_sidebar( get_institute()->get_code() . '-homepage' ); ?>
+
+				<?php dynamic_sidebar( get_institute()->get_code() . '-homepage' ); ?>
 
 				<?php dynamic_sidebar( 'right' ); ?>
 
@@ -29,6 +30,9 @@ use function \EPFL\STI\get_institute;
 
 		</div><!-- .container -->
 
+		<footer>
+			<?php edit_post_link( __( 'Edit', 'epflsti' ), '<span class="edit-link">', '</span>' ); ?>
+		</footer>
 
 	</div><!-- Container end -->
 

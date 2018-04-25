@@ -62,11 +62,19 @@ $list-item-hover-bgcolor: #ddd;
   }
 }
 
+.fullwidth-list-item span.top-right {
+  float:right;
+  font-weight:normal;
+
+  > a {
+    font-weight:normal;
+  }
+}
+
 .actu-details img,
 .memento-details img {
   border: 1px solid #b4b2b2;
   padding:3px;
   background-color:#fff;
-  margin: 0px 20px 10px 10px;
-  float: left;
+  margin-bottom: 10px;
 }
