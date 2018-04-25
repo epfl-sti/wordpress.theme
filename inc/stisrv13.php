@@ -448,6 +448,10 @@ class Stisrv13Article extends Stisrv13Base
         return $this->get_rss_id() !== null;
     }
 
+    function _get_other_translation ($lang) {
+        return static::get_by_rss_id_and_lang($this->get_rss_id(), $lang);
+    }
+
     const RSS_ID_META = "stisrv13_rss_id";
 
     static function get_unique ($json)
