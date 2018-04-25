@@ -211,6 +211,9 @@ class Stisrv13UploadArticlesController
                 static::admin_notice("error", sprintf(___("Category not found (by slug): %s, ignored"), $category_slug));
             }
         }
+        foreach ($payload->videos as $video) {
+            Stisrv13Video::sync($video);
+        }
         static::admin_notice("success", "JSON ingestion successful");
         error_log("stisrv13.php: JSON ingestion successful");
         wp_redirect(Stisrv13AdminMenu::get_upload_page_url());
@@ -271,40 +274,16 @@ class DuplicateStisrv13ArticleException extends Exception {}
 class DuplicateStisrv13ImageException extends Exception {}
 class Stisrv13ImportError extends Exception {}
 
-class Stisrv13Article extends Post
+abstract class Stisrv13Base extends Post
 {
-    function _belongs ()
+    static function _single_instance($wp_query)
     {
-        return $this->get_rss_id() !== null;
-    }
-
-    const RSS_ID_META = "stisrv13_rss_id";
-
-    static function get_by_rss_id_and_lang ($rss_id, $lang) {
-        $query_params = array(
-           'post_type'  => 'post',
-           'meta_query' => array(array(
-               'key'     => self::RSS_ID_META,
-               'value'   => $rss_id,
-               'compare' => '='
-            )));
-        if (function_exists('pll_get_post_language')) {
-            $query_params['lang'] = $lang;
-        } else {
-            array_push($query_params['meta_query'], array(
-                'key'     => 'language',
-                'value'   => $lang,
-                'compare' => '='
-            ));
-        }
-
-        $search_query = new WP_Query($query_params);
-        $results = $search_query->get_posts();
+        $results = $wp_query->get_posts();
         if (! $results) {
             return;
         } elseif (sizeof($results) > 1) {
             throw new DuplicateStisrv13ArticleException(
-                "Found " . sizeof($results) . " results for RSS ID $rss_id and language $lang");
+                "Found " . sizeof($results) . " results for query " . var_export($wp_query->query, true));
         } else {
             return static::get($results[0]);
         }
@@ -312,31 +291,18 @@ class Stisrv13Article extends Post
 
     static function sync ($json)
     {
-        $rss_id = $json->rss_id;
-        $lang   = $json->lang;
-        if (! $rss_id) {
-            throw new Exception("No rss_id! ($rss_id)");
-        }
 
-        $that = static::get_by_rss_id_and_lang($rss_id, $lang);
+        $that = static::get_unique($json);
         if (! $that) {
-            $id_or_error = wp_insert_post(
-                array(
-                    "post_type"    => "post",
-                    'post_title'   => $json->title,  # Get the slug right the first time
-                    'post_content' => $json->body,   # Still, some articles have no title
-                    'post_status' => 'publish',
-                    'meta_input'   => array(
-                        self::RSS_ID_META => $rss_id,
-                        'language'        => $lang
-                    )),
-                /* $wp_error = */ true);
+            $id_or_error = static::_insert_unique($json);
             if (is_wp_error($id_or_error)) {
                 $error = $id_or_error;
                 throw new Error("Unable to create new post for (rss_id=$rss_id, lang=$lang): " . $error->get_error_message());
             }
             $that = static::get($id_or_error);
-            if (function_exists('pll_set_post_language')) {
+
+            $lang = $json->lang;
+            if ($lang && function_exists('pll_set_post_language')) {
                 pll_set_post_language($that->ID, $lang);
             }
         }
@@ -345,15 +311,18 @@ class Stisrv13Article extends Post
         return $that;
     }
 
-    function get_rss_id ()
-    {
-        return get_post_meta($this->ID, self::RSS_ID_META, true);
-    }
-
     function get_language ()
     {
-        return pll_get_post_language($this->ID);
+        if (function_exists("pll_get_post_language")) {
+            return pll_get_post_language($this->ID);
+        } else {
+            return get_post_meta($this->ID, "language", true);
+        }
     }
+
+    static abstract function get_unique ($json);
+    static abstract function _insert_unique ($json);
+    abstract function _get_other_translation ($lang);
 
     static $missing_categories;
     /**
@@ -366,9 +335,7 @@ class Stisrv13Article extends Post
         $update_data = array(
             'ID'            => $this->ID,
             'post_title'    => $json->title,
-            'post_content'  => $json->body,
-            'post_date'     => $this->_mysql_time($json->pubdate),
-            'post_date_gmt' => $this->_mysql_time($json->pubdate, true),
+            'post_content'  => $this->_extract_body($json),
         );
 
         # Author
@@ -387,7 +354,6 @@ class Stisrv13Article extends Post
         $this->_update_categories($json);
         $this->_update_tags($json);
         $this->_link_translations($json);
-        $this->_add_featured_image($json);
     }
 
     function _update_categories ($json)
@@ -426,12 +392,115 @@ class Stisrv13Article extends Post
         $rss_id       = $json->rss_id;
         $lang         = $json->lang;
         $other_lang   = ($lang == "fr") ? "en" : "fr";
-        $other_translation = static::get_by_rss_id_and_lang($rss_id, $other_lang);
+        $other_translation = $this->_get_other_translation($other_lang);
         if ($other_translation) {
             pll_save_post_translations(array(
                 $lang       => $this->ID,
                 $other_lang => $other_translation->ID
             ));
+        }
+    }
+
+    function _update_post ($update_struct)
+    {
+        $update_struct['ID'] = $this->ID;
+        $status = wp_update_post($update_struct);
+        if (is_wp_error($status)) {
+                throw new Error("Unable to update post ID " . $this->ID . ": " . $status->get_error_message());
+        }
+    }
+
+    function _update_meta ($meta)
+    {
+        $this->_update_post(array('meta_input' => $meta));
+    }
+
+    function _decorate_with_lang ($query_params, $lang)
+    {
+        if (function_exists('pll_get_post_language')) {
+            $query_params['lang'] = $lang;
+        } else {
+            array_push($query_params['meta_query'], array(
+                'key'     => 'language',
+                'value'   => $lang,
+                'compare' => '='
+            ));
+        }
+        return $query_params;
+    }
+
+    protected function _extract_body ($json)
+    {
+        return $json->body;
+    }
+
+    function _get_moniker ()
+    {
+        return sprintf("%s<rss_id=%d lang=%s>",
+                       get_called_class(), $this->get_rss_id(), $this->get_language());
+    }
+}
+
+class Stisrv13Article extends Stisrv13Base
+{
+    function _belongs ()
+    {
+        return $this->get_rss_id() !== null;
+    }
+
+    const RSS_ID_META = "stisrv13_rss_id";
+
+    static function get_unique ($json)
+    {
+        $rss_id = $json->rss_id;
+        if (! $rss_id) {
+            throw new Exception("No rss_id! ($rss_id)");
+        }
+        return static::get_by_rss_id_and_lang($json->rss_id, $json->lang);
+    }
+
+    static function get_by_rss_id_and_lang ($rss_id, $lang)
+    {
+        $query_params = array(
+           'post_type'  => 'post',
+           'meta_query' => array(array(
+               'key'     => self::RSS_ID_META,
+               'value'   => $rss_id,
+               'compare' => '='
+            )));
+
+        $query_params = static::_decorate_with_lang($query_params, $lang);
+        return static::_single_instance(new WP_Query($query_params));
+    }
+
+    static function _insert_unique ($json)
+    {
+        return wp_insert_post(
+                array(
+                    "post_type"    => "post",
+                    'post_title'   => $json->title,  # Get the slug right the first time
+                    'post_content' => $json->body,   # Still, some articles have no title
+                    'post_status'  => 'publish',
+                    'meta_input'   => array(
+                        self::RSS_ID_META => $json->rss_id,
+                        'language'        => $json->lang
+                    )),
+                /* $wp_error = */ true);
+    }
+
+    function get_rss_id ()
+    {
+        return get_post_meta($this->ID, self::RSS_ID_META, true);
+    }
+
+    function _update ($json)
+    {
+        parent::_update($json);
+        $this->_add_featured_image($json);
+        if ($json->pubdate) {
+            $this->_update_post(array(
+                'post_date'     => $this->_mysql_time($json->pubdate),
+                'post_date_gmt' => $this->_mysql_time($json->pubdate, true)));
         }
     }
 
@@ -550,12 +619,6 @@ class Stisrv13Article extends Post
         }
         error_log($this->_get_moniker() . ": " . $msg);
     }
-
-    function _get_moniker ()
-    {
-        return sprintf("%s<rss_id=%d lang=%s>",
-                       get_called_class(), $this->get_rss_id(), $this->get_language());
-    }
 }
 
 function ensure_tag_exists_in_languages ($tag_name, $languages)
@@ -605,5 +668,69 @@ function ensure_tag_exists_in_languages ($tag_name, $languages)
     pll_save_term_translations($terms);
 }
 
+class Stisrv13Video extends Stisrv13Base
+{
+    function _belongs ()
+    {
+        return $this->get_youtube_id() !== null;
+    }
+
+    function _get_other_translation ($lang) {
+        return static::get_by_youtube_id_and_lang($this->get_youtube_id(), $lang);
+    }
+
+    const YOUTUBE_ID_META = "youtube_id";
+
+    function get_youtube_id ()
+    {
+        return get_post_meta($this->ID, self::YOUTUBE_ID_META, true);
+    }
+
+    protected function _extract_body ($json)
+    {
+        return sprintf("https://www.youtube.com/watch?v=%s&rel=0\n\n",
+                       $json->youtube_id) . parent::_extract_body($json);
+    }
+
+    static function get_unique ($json) {
+        $youtube_id = $json->youtube_id;
+        if (! $youtube_id) {
+            throw new Exception("No youtube_id! ($youtube_id)");
+        }
+        return static::get_by_youtube_id_and_lang($youtube_id, $json->lang);
+    }
+
+    static function get_by_youtube_id_and_lang ($youtube_id, $lang = null) {
+        $query_params = array(
+           'post_type'  => 'post',
+           'meta_query' => array(array(
+               'key'     => self::YOUTUBE_ID_META,
+               'value'   => $youtube_id,
+               'compare' => '='
+            )));
+        if ($lang) {
+            $query_params = static::_decorate_with_lang($query_params, $lang);
+        }
+        return static::_single_instance(new WP_Query($query_params));
+    }
+
+    static function _insert_unique ($json)
+    {
+        $insert_post_args = array(
+            'post_type'    => 'post',
+            'post_title'   => $json->title,  # Get the slug right the first time
+            'post_status' => 'publish',
+            'meta_input'   => array(
+                self::YOUTUBE_ID_META => $json->youtube_id
+            ));
+        if ($json->body) {
+            $insert_post_args['post_content'] = $json->body;
+        }
+        if ($json->lang) {
+            $insert_post_args['meta_input']['language'] = $json->lang;
+        }
+        return wp_insert_post($insert_post_args, /* $wp_error = */ true);
+    }
+}
 
 Stisrv13UploadArticlesController::hook();
