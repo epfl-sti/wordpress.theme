@@ -455,7 +455,7 @@ function render_in_the_media_table ($media_list)
           <?php echo $bibentry;
             $authors = $epfl_post->get_authors();
             foreach ($authors as $author) {
-              if ($author->is_lab_owner()) {
+              if ($author->is_head_of_unit()) {
                   $labname = sprintf(___("%s's lab"), $author->get_full_name());
               } else {
                   $labname = $author->get_full_name();
