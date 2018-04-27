@@ -212,7 +212,12 @@ class Stisrv13UploadArticlesController
             }
         }
         foreach ($payload->videos as $video) {
-            Stisrv13Video::sync($video);
+            try {
+                Stisrv13Video::sync($video);
+            } catch (Stisrv13ImportError $e) {
+                error_log($e->getMessage() . " " . $e->getTraceAsString());
+                continue;
+            }
         }
         static::admin_notice("success", "JSON ingestion successful");
         error_log("stisrv13.php: JSON ingestion successful");
@@ -267,12 +272,14 @@ class Stisrv13UploadArticlesController
     }
 }
 
+Stisrv13UploadArticlesController::hook();
+
 /**
  * Model class for articles
  */
-class DuplicateStisrv13ArticleException extends Exception {}
-class DuplicateStisrv13ImageException extends Exception {}
 class Stisrv13ImportError extends Exception {}
+class DuplicateStisrv13ArticleException extends Stisrv13ImportError {}
+class DuplicateStisrv13ImageException extends Stisrv13ImportError {}
 
 abstract class Stisrv13Base extends Post
 {
@@ -737,4 +744,3 @@ class Stisrv13Video extends Stisrv13Base
     }
 }
 
-Stisrv13UploadArticlesController::hook();
