@@ -204,6 +204,7 @@ class Stisrv13UploadArticlesController
         $payload = json_decode(file_get_contents($filename));
 
         foreach ($payload->articles as $article) {
+            error_log("Ingesting article " . $article->import_id);
             Stisrv13Article::sync($article);
         }
         if (Stisrv13Article::$missing_categories) {
@@ -213,6 +214,7 @@ class Stisrv13UploadArticlesController
         }
         foreach ($payload->videos as $video) {
             try {
+                error_log("Ingesting video " . $video->import_id);
                 Stisrv13Video::sync($video);
             } catch (Stisrv13ImportError $e) {
                 error_log($e->getMessage() . " " . $e->getTraceAsString());
@@ -283,6 +285,13 @@ class DuplicateStisrv13ImageException extends Stisrv13ImportError {}
 
 abstract class Stisrv13Base extends Post
 {
+    const IMPORT_ID_META = "stisrv13_import_id";
+
+    function get_import_id ()
+    {
+        return get_post_meta($this->ID, self::IMPORT_ID_META, true);
+    }
+
     static function _single_instance($wp_query)
     {
         $results = $wp_query->get_posts();
@@ -299,24 +308,38 @@ abstract class Stisrv13Base extends Post
 
     static function sync ($json)
     {
-
-        $that = static::get_unique($json);
+        $that = static::get_by_import_id_and_lang($json->import_id, $json->lang);
         if (! $that) {
             $id_or_error = static::_insert_unique($json);
-            if (is_wp_error($id_or_error)) {
-                $error = $id_or_error;
-                throw new Error("Unable to create new post for (rss_id=$rss_id, lang=$lang): " . $error->get_error_message());
-            }
             $that = static::get($id_or_error);
-
-            $lang = $json->lang;
-            if ($lang && function_exists('pll_set_post_language')) {
-                pll_set_post_language($that->ID, $lang);
-            }
         }
 
         $that->_update($json);
         return $that;
+    }
+
+    static function _insert_unique ($json)
+    {
+        $id_or_error = wp_insert_post(
+            array(
+                "post_type"    => "post",
+                'post_title'   => $json->title,  # Get the slug right the first time
+                'post_content' => static::_extract_body($json),  # Is NOT NULL in-database
+                'post_status'  => 'publish',
+                'meta_input'   => array(
+                    self::IMPORT_ID_META => $json->import_id,
+                    'language'        => $json->lang
+                )));
+        if (is_wp_error($id_or_error)) {
+            $error = $id_or_error;
+            throw new Error(sprintf("Unable to create new post for (import_id=%s, lang=%s): %s", $json->import_id, $json->lang, $error->get_error_message()));
+        }
+        $id = $id_or_error;
+        $lang = $json->lang;
+        if ($lang && function_exists('pll_set_post_language')) {
+            pll_set_post_language($id, $lang);
+        }
+        return $id;
     }
 
     function get_language ()
@@ -327,10 +350,6 @@ abstract class Stisrv13Base extends Post
             return get_post_meta($this->ID, "language", true);
         }
     }
-
-    static abstract function get_unique ($json);
-    static abstract function _insert_unique ($json);
-    abstract function _get_other_translation ($lang);
 
     static $missing_categories;
     /**
@@ -355,6 +374,11 @@ abstract class Stisrv13Base extends Post
             if (count($authors) === 1) {
                 $update_data['post_author'] = $authors[0]->ID;
             }
+        }
+
+        if ($json->pubdate) {
+            $update_data['post_date']     = $this->_mysql_time($json->pubdate);
+            $update_data['post_date_gmt'] = $this->_mysql_time($json->pubdate, true);
         }
 
         wp_update_post($update_data);
@@ -397,10 +421,11 @@ abstract class Stisrv13Base extends Post
     function _link_translations ($json)
     {
         if (! function_exists('pll_save_post_translations')) return;
-        $rss_id       = $json->rss_id;
+        $import_id    = $json->import_id;
         $lang         = $json->lang;
+        if (! $lang) return;
         $other_lang   = ($lang == "fr") ? "en" : "fr";
-        $other_translation = $this->_get_other_translation($other_lang);
+        $other_translation = static::get_by_import_id_and_lang($import_id, $other_lang);
         if ($other_translation) {
             pll_save_post_translations(array(
                 $lang       => $this->ID,
@@ -437,15 +462,42 @@ abstract class Stisrv13Base extends Post
         return $query_params;
     }
 
-    protected function _extract_body ($json)
+    protected static function _extract_body ($json)
     {
         return $json->body;
     }
 
     function _get_moniker ()
     {
-        return sprintf("%s<rss_id=%d lang=%s>",
-                       get_called_class(), $this->get_rss_id(), $this->get_language());
+        return sprintf("%s<import_id=%d lang=%s>",
+                       get_called_class(), $this->get_import_id(), $this->get_language());
+    }
+
+    static function get_by_import_id_and_lang ($import_id, $lang = null)
+    {
+        $query_params = array(
+           'post_type'  => 'post',
+           'meta_query' => array(array(
+               'key'     => self::IMPORT_ID_META,
+               'value'   => $import_id,
+               'compare' => '='
+            )));
+
+        if ($lang) {
+            $query_params = static::_decorate_with_lang($query_params, $lang);
+        }
+        return static::_single_instance(new WP_Query($query_params));
+    }
+
+    /**
+     * Like `current_time('mysql')`, except not on the current time
+     */
+    function _mysql_time ($timestamp, $is_gmt = false)
+    {
+        if ($is_gmt) {
+            $timestamp += get_option( 'gmt_offset' ) * HOUR_IN_SECONDS;
+        }
+        return gmdate('Y-m-d H:i:s', $timestamp);
     }
 }
 
@@ -453,67 +505,13 @@ class Stisrv13Article extends Stisrv13Base
 {
     function _belongs ()
     {
-        return $this->get_rss_id() !== null;
-    }
-
-    function _get_other_translation ($lang) {
-        return static::get_by_rss_id_and_lang($this->get_rss_id(), $lang);
-    }
-
-    const RSS_ID_META = "stisrv13_rss_id";
-
-    static function get_unique ($json)
-    {
-        $rss_id = $json->rss_id;
-        if (! $rss_id) {
-            throw new Exception("No rss_id! ($rss_id)");
-        }
-        return static::get_by_rss_id_and_lang($json->rss_id, $json->lang);
-    }
-
-    static function get_by_rss_id_and_lang ($rss_id, $lang)
-    {
-        $query_params = array(
-           'post_type'  => 'post',
-           'meta_query' => array(array(
-               'key'     => self::RSS_ID_META,
-               'value'   => $rss_id,
-               'compare' => '='
-            )));
-
-        $query_params = static::_decorate_with_lang($query_params, $lang);
-        return static::_single_instance(new WP_Query($query_params));
-    }
-
-    static function _insert_unique ($json)
-    {
-        return wp_insert_post(
-                array(
-                    "post_type"    => "post",
-                    'post_title'   => $json->title,  # Get the slug right the first time
-                    'post_content' => $json->body,   # Still, some articles have no title
-                    'post_status'  => 'publish',
-                    'meta_input'   => array(
-                        self::RSS_ID_META => $json->rss_id,
-                        'language'        => $json->lang
-                    )),
-                /* $wp_error = */ true);
-    }
-
-    function get_rss_id ()
-    {
-        return get_post_meta($this->ID, self::RSS_ID_META, true);
+        return $this->get_import_id() !== null;
     }
 
     function _update ($json)
     {
         parent::_update($json);
         $this->_add_featured_image($json);
-        if ($json->pubdate) {
-            $this->_update_post(array(
-                'post_date'     => $this->_mysql_time($json->pubdate),
-                'post_date_gmt' => $this->_mysql_time($json->pubdate, true)));
-        }
     }
 
     /**
@@ -528,7 +526,7 @@ class Stisrv13Article extends Stisrv13Base
     {
         if (get_post_thumbnail_id($this->ID)) return;
 
-        $rss_id     = $json->rss_id;
+        $import_id     = $json->import_id;
         $images_dir = static::get_images_dir();
 
         // If image is already ingested (typically, on behalf of the
@@ -537,26 +535,26 @@ class Stisrv13Article extends Stisrv13Base
             'post_type'   => 'attachment',
             'post_status' => 'any',
             'meta_query'  => array(array(
-                'key'     => self::RSS_ID_META,
-                'value'   => $rss_id,
+                'key'     => self::IMPORT_ID_META,
+                'value'   => $import_id,
                 'compare' => '='
             ))));
         $results = $q->get_posts();
         if (sizeof($results) > 1) {
             throw new DuplicateStisrv13ImageException(
-                "Found " . sizeof($results) . " images with RSS ID $rss_id");
+                "Found " . sizeof($results) . " images with RSS ID $import_id");
         } elseif (sizeof($results) === 1) {
             $this->_debug("Re-using image " . $results[0]->ID);
             set_post_thumbnail($this->ID, $results[0]->ID);
             return;
         }
 
-        $our_image  = "$images_dir/$rss_id.png";
+        $our_image  = "$images_dir/$import_id.png";
         if (! file_exists($our_image)) {
-            $this->_debug("_update_featured_image($rss_id): $our_image does not exist");
+            $this->_debug("_update_featured_image($import_id): $our_image does not exist");
             return;
         }
-        $this->_debug("_update_featured_image($rss_id) with $our_image");
+        $this->_debug("_update_featured_image($import_id) with $our_image");
         $file_struct = $this->_mock_file_structure($our_image);
         if (! $file_struct) return;  // ->_mock_file_structure() will have complained already
 
@@ -575,7 +573,7 @@ class Stisrv13Article extends Stisrv13Base
             array(
                 'post_status'    => 'inherit',
                 'meta_input'   => array(
-                    self::RSS_ID_META => $rss_id
+                    self::IMPORT_ID_META => $import_id
                 )));
         if (is_integer($result)) {
             set_post_thumbnail($this->ID, $result);
@@ -604,17 +602,6 @@ class Stisrv13Article extends Stisrv13Base
             'error'    => 0,
             'size'     => $stat['size']
         );
-    }
-
-    /**
-     * Like `current_time('mysql')`, except not on the current time
-     */
-    function _mysql_time ($timestamp, $is_gmt = false)
-    {
-        if ($is_gmt) {
-            $timestamp += get_option( 'gmt_offset' ) * HOUR_IN_SECONDS;
-        }
-        return gmdate('Y-m-d H:i:s', $timestamp);
     }
 
     function get_images_dir ()
@@ -681,15 +668,6 @@ function ensure_tag_exists_in_languages ($tag_name, $languages)
 
 class Stisrv13Video extends Stisrv13Base
 {
-    function _belongs ()
-    {
-        return $this->get_youtube_id() !== null;
-    }
-
-    function _get_other_translation ($lang) {
-        return static::get_by_youtube_id_and_lang($this->get_youtube_id(), $lang);
-    }
-
     const YOUTUBE_ID_META = "youtube_id";
 
     function get_youtube_id ()
@@ -697,55 +675,21 @@ class Stisrv13Video extends Stisrv13Base
         return get_post_meta($this->ID, self::YOUTUBE_ID_META, true);
     }
 
-    protected function _extract_body ($json)
+    function _belongs ()
+    {
+        return $this->get_youtube_id() !== null;
+    }
+
+    protected static function _extract_body ($json)
     {
         return sprintf("https://www.youtube.com/watch?v=%s&rel=0\n\n",
                        $json->youtube_id) . parent::_extract_body($json);
     }
 
-    static function get_unique ($json) {
-        $youtube_id = $json->youtube_id;
-        if (! $youtube_id) {
-            throw new Exception("No youtube_id! ($youtube_id)");
-        }
-        return static::get_by_youtube_id_and_lang($youtube_id, $json->lang);
-    }
-
-    static function get_by_youtube_id_and_lang ($youtube_id, $lang = null) {
-        $query_params = array(
-           'post_type'  => 'post',
-           'meta_query' => array(array(
-               'key'     => self::YOUTUBE_ID_META,
-               'value'   => $youtube_id,
-               'compare' => '='
-            )));
-        if ($lang) {
-            $query_params = static::_decorate_with_lang($query_params, $lang);
-        }
-        return static::_single_instance(new WP_Query($query_params));
-    }
-
-    static function _insert_unique ($json)
-    {
-        $insert_post_args = array(
-            'post_type'    => 'post',
-            'post_title'   => $json->title,  # Get the slug right the first time
-            'post_status' => 'publish',
-            'meta_input'   => array(
-                self::YOUTUBE_ID_META => $json->youtube_id
-            ));
-        if ($json->body) {
-            $insert_post_args['post_content'] = $json->body;
-        }
-        if ($json->lang) {
-            $insert_post_args['meta_input']['language'] = $json->lang;
-        }
-        return wp_insert_post($insert_post_args, /* $wp_error = */ true);
-    }
-
     function _update ($json)
     {
         parent::_update($json);
+        $this->_update_meta(array(self::YOUTUBE_ID_META => $json->youtube_id));
         set_post_format($this->ID, 'video');
     }
 }
