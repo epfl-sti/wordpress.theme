@@ -282,8 +282,9 @@ abstract class Stisrv13Base extends Post
         if (! $results) {
             return;
         } elseif (sizeof($results) > 1) {
+            $ids = array_map(function($r) { return $r->ID; }, $results);
             throw new DuplicateStisrv13ArticleException(
-                "Found " . sizeof($results) . " results for query " . var_export($wp_query->query, true));
+                "Found " . sizeof($ids) . " results (" . implode(", ", $ids) . ") for query " . var_export($wp_query->query, true));
         } else {
             return static::get($results[0]);
         }
