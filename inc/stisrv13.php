@@ -603,7 +603,6 @@ class Stisrv13Article extends Stisrv13Base
      */
     function _mysql_time ($timestamp, $is_gmt = false)
     {
-        if (! is_integer($timestamp)) $timestamp->zoinx();  // XXX
         if ($is_gmt) {
             $timestamp += get_option( 'gmt_offset' ) * HOUR_IN_SECONDS;
         }
