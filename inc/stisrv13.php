@@ -742,5 +742,10 @@ class Stisrv13Video extends Stisrv13Base
         }
         return wp_insert_post($insert_post_args, /* $wp_error = */ true);
     }
-}
 
+    function _update ($json)
+    {
+        parent::_update($json);
+        set_post_format($this->ID, 'video');
+    }
+}
