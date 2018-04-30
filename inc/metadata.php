@@ -1,21 +1,12 @@
 <?php // -*- web-mode-code-indent-offset: 4; -*-
 
 /**
- * Manage post metadata using so-called "custom fields."
+ * Manage post metadata using so-called "custom fields" and tags.
  *
  * Custom fields are available in the wp-admin "Add New Post"
  * and "Edit Post" screens under "Screen Options" near the top.
- * The following custom fields are given a meaning in the EPFL-STI
- * theme:
  *
- * - external_url  The URL to be used as a permalink for this post
- *
- * - epfl_author   The SCIPER number of the person who did the work.
- *                 Can be repeated multiple times
- *
- * - published_in  The locale-native name of the publication this post
- *                 appeared in, as a string
- *                 appeared in, as a string
+ * @see "sti-test.epfl.ch User Manual", https://docs.google.com/document/d/1pqJBH9qj6plmFdK604ssMsX7vCyQlpyq9t26zw3opzk/edit#
  */
 
 namespace EPFL\STI;
@@ -27,8 +18,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 class EPFLPost
 {
     const EXTERNAL_URL_SLUG  = "external_url";
-
-    const AUTHOR_SLUG        = "epfl_work_by";
 
     const PUBLISHED_IN_SLUG  = "epfl_media_publication_name";
 
@@ -52,14 +41,27 @@ class EPFLPost
         return $this->_wp_post;
     }
 
-    function get_authors ()
+    const OBSOLETE_AUTHOR_META        = "epfl_work_by";
+
+    function get_attribution ()
     {
         if (! class_exists('\\EPFL\\WS\\Persons\\Person')) { return []; }
 
+        $author_scipers = [];
+        if ($author_list_from_meta = get_post_meta($this->ID, self::OBSOLETE_AUTHOR_META)) {
+            $author_scipers =  $author_list_from_meta;
+        } else {
+            foreach (wp_get_post_terms($this->ID, 'post_tag', array('fields' => 'names'))
+                as $post_tag) {
+                $matched = array();
+                if (preg_match('/^ATTRIBUTION=(SCIPER:|sciper:|)(\d+)$/', $post_tag, $matched)) {
+                    array_push($author_scipers, $matched[1]);
+                }
+            }
+        }
         $authors = [];
-        foreach (get_post_meta($this->ID, self::AUTHOR_SLUG)
-            as $sciper_text) {
-            $author = \EPFL\WS\Persons\Person::find_by_sciper((int) $sciper_text);
+        foreach ($author_scipers as $sciper) {
+            $author = \EPFL\WS\Persons\Person::find_by_sciper((int) $sciper);
             if ($author) { array_push($authors, $author); }
         }
         return $authors;

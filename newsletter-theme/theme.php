@@ -453,7 +453,7 @@ function render_in_the_media_table ($media_list)
         <tr>
          <td class="details" align=right>
           <?php echo $bibentry;
-            $authors = $epfl_post->get_authors();
+            $authors = $epfl_post->get_attribution();
             foreach ($authors as $author) {
               if ($author->is_head_of_unit()) {
                   $labname = sprintf(___("%s's lab"), $author->get_full_name());
