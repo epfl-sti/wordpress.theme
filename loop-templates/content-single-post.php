@@ -44,23 +44,6 @@ $rosesarered="<img class='ribbon-red-top' src='/wp-content/themes/epfl-sti/img/s
 	     <?php the_content(); ?>
 	    </main>
           </card>
-
-	  <?php   
-	  // succeeding boxes currently take the_content() too
-          ?>
-	
-	
-	  <card class="<?php echo $listoflinks_width; ?>">
-		<?php the_title( '<h1>', '</h1>' ); ?>
-			<div class="entry-body">
-      			      <div class="sti_content_prof_photo">
-				<?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
-			      </div><?php #  col   ?>
-				<?php the_content(); ?>
-			</div><?php #  entry-body  ?>
-
-  	  </card>
-
 	</div><?php #  main row ?>
       </div><?php #  main container ?>
     </div><?php # column if there is a box of links on the right ?>
