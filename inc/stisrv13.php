@@ -28,7 +28,7 @@ require_once(__DIR__ . "/../../../plugins/epfl-ws/inc/base-classes.inc");
 use \EPFL\WS\Base\Post;
 
 function debug ($msg) {
-    // error_log($msg);
+    error_log($msg);
 }
 
 // TODO: This should be refactored into a post-scrape hook
@@ -200,7 +200,8 @@ function get_stisrv13_person ($sciper)
  * Scrape additional metadata out of stisrv13
  */
 add_filter("epfl_person_additional_meta", function ($more_meta, $person) {
-    $incoming = get_stisrv13_person($person->get_sciper());
+    $sciper = $person->get_sciper();
+    $incoming = get_stisrv13_person($sciper);
     if (! $incoming->position) return;
 
     if (! $person->get_bio()) {
@@ -212,11 +213,30 @@ add_filter("epfl_person_additional_meta", function ($more_meta, $person) {
 
     $more_meta["stisrv13_id"] = $incoming->id;
 
-    $more_meta["stisrv13_news_json"] = json_encode($incoming->news);
-    $more_meta["stisrv13_news_rssids_json"] = json_encode(array_map(
-        function($news) { return 0 + $news->rssid; },
-        array_values($incoming->news)));
-    $more_meta["stisrv13_data_json"] = json_encode($incoming);
+    $more_meta["stisrv13_news_json"] = json_encode($incoming->news);  // OBSOLESCENT
+    foreach ($incoming->news as $article) {
+        if (! ($rss_id = $article->rssid)) continue;
+        $q = new \WP_Query(array('meta_query' => array(array(
+			'key'     => Stisrv13Base::IMPORT_ID_META,
+			'value'   => "rss-$rss_id",
+			'compare' => '=',
+		))));
+        while ( $q->have_posts() ) {
+            $q->the_post();
+            $tag = sprintf('ATTRIBUTION=SCIPER:%d', $sciper);
+            ensure_tag_exists_in_languages($tag, array("fr", "en"));
+            debug("Tagging " . $q->post->ID . " (imported as $rss_id) with $tag");
+            wp_set_post_terms($q->post->ID, $tag, 'post_tag', /* $append = */ true);
+        }
+    }
+
+    $more_meta["stisrv13_data_json"]      = json_encode($incoming);  // OBSOLESCENT
+    if (! $person->get_research_keywords) {
+        $more_meta["research_keywords"]       = $incoming->keywords;
+    }
+    if (! $person->get_research_interests) {
+        $more_meta["research_interests_html"] = $incoming->interests;
+    }
 
     return $more_meta;
 }, 10, 2);
