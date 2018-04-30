@@ -28,7 +28,7 @@ require_once(__DIR__ . "/../../../plugins/epfl-ws/inc/base-classes.inc");
 use \EPFL\WS\Base\Post;
 
 function debug ($msg) {
-    error_log($msg);
+    // error_log($msg);
 }
 
 // TODO: This should be refactored into a post-scrape hook
