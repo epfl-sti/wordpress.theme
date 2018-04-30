@@ -231,11 +231,11 @@ add_filter("epfl_person_additional_meta", function ($more_meta, $person) {
     }
 
     $more_meta["stisrv13_data_json"]      = json_encode($incoming);  // OBSOLESCENT
-    if (! $person->get_research_keywords) {
+    if (! $person->get_research_keywords()) {
         $more_meta["research_keywords"]       = $incoming->keywords;
     }
-    if (! $person->get_research_interests) {
-        $more_meta["research_interests_html"] = $incoming->interests;
+    if (! $person->get_research_interests()) {
+        $person->set_research_interests($incoming->interests);
     }
 
     return $more_meta;
