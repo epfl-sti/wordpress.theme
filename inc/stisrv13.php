@@ -101,6 +101,7 @@ class Stisrv13AdminMenu
             <?php static::render_hal(); ?>
             <h2>stisrv13 at your service</h2>
             <?php Stisrv13UploadArticlesController::render_form() ?>
+            <a href="<?php echo Stisrv13PageTableJSON::get_action_uri(); ?>"><?php echo ___("Imported articles permalink table (JSON)"); ?></a>
 	</div>
 <?php
     }
@@ -110,6 +111,85 @@ class Stisrv13AdminMenu
         return admin_url('admin.php?page=' . self::SLUG);
     }
 }
+
+abstract class JSONDownloadHelperBase
+{
+    static function hook ()
+    {
+        // See bottom of /wp-admin/admin.php
+        add_action('admin_action_' . static::action_slug(),
+                   array(get_called_class(), "handle_GET"));
+    }
+    static function action_slug ()
+    {
+        return Stisrv13AdminMenu::SLUG . "-json-" . static::SLUG;
+    }
+
+    const DEFAULT_FILENAME = null;  // For overriding by subclasses
+
+    /**
+     * @return e.g. "/wp-admin/admin.php/whatever.json?action=theme-epfl-sti-stisrv13-menu-csv-page-table"
+     */
+    static function get_action_uri ($desired_filename)
+    {
+        if ((! $desired_filename) && static::DEFAULT_FILENAME) {
+            $desired_filename = static::DEFAULT_FILENAME;
+        }
+        if ($desired_filename && substr( $string_n, 0, 1 ) != "/") {
+            $desired_filename = "/$desired_filename";
+        }
+        return "/wp-admin/admin.php$desired_filename?action=" . static::action_slug();
+    }
+
+    static function handle_GET ()
+    {
+        http_response_code(200);
+        header("Content-Type: text/json");
+        print json_encode(static::get_payload());
+        die();
+    }
+
+    static abstract function get_payload();
+}
+
+/**
+ * Export the mapping from (import ID, language) pairs to permalinks as JSON.
+ *
+ * This mapping is a necessary input for a third-party Perl / whatever
+ * script to construct a redirect table, e.g. for the Redirection
+ * plugin.
+ */
+class Stisrv13PageTableJSON extends JSONDownloadHelperBase
+{
+    const SLUG = "page-table";
+
+    const DEFAULT_FILENAME = "imported-permalinks.json";
+
+    static function get_payload ()
+    {
+        $payload = array();
+        $q = new WP_Query(array(
+            "post_type"      => "post",
+            "posts_per_page" => -1));
+        while ($q->have_posts()) {
+            $q->the_post();
+            $post = $q->post;
+            $import_id = get_post_meta($post->ID, Stisrv13Base::IMPORT_ID_META, true);
+            if (! $import_id) continue;
+
+            $lang = get_post_meta($post->ID, "language", true);
+
+            array_push($payload, array(
+                'import_id' => $import_id,
+                'lang'      => $lang,
+                'permalink' => get_the_permalink($post),
+                'title'     => get_the_title($post)));
+        }
+        return $payload;
+    }
+}
+
+Stisrv13PageTableJSON::hook();
 
 function get_stisrv13_person ($sciper)
 {
