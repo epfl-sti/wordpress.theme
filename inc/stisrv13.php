@@ -223,7 +223,7 @@ add_filter("epfl_person_additional_meta", function ($more_meta, $person) {
 		))));
         while ( $q->have_posts() ) {
             $q->the_post();
-            $tag = sprintf('ATTRIBUTION=SCIPER:%d', $sciper);
+            $tag = sprintf('MENTIONED=SCIPER:%d', $sciper);
             ensure_tag_exists_in_languages($tag, array("fr", "en"));
             debug("Tagging " . $q->post->ID . " (imported as $rss_id) with $tag");
             wp_set_post_terms($q->post->ID, $tag, 'post_tag', /* $append = */ true);
