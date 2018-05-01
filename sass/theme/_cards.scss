@@ -167,9 +167,9 @@ card.sti-lab {
 
 card.sti-lab {
     width: $sti-lab-card-width;
-    border: 1px solid black;
+    border: 1px solid #ccc;
     vertical-align: bottom;
-    margin-bottom: 4px;
+    margin: 18px;
 }
 
 card.sti-lab h1,
@@ -216,9 +216,10 @@ card.sti-lab > a > img {
 
 card.sti-lab > p {
   padding: 10px 20px 15px 10px;
-  background-color: #eee;
+  background-color: #fff;
   height: 80px;
   font: 16px calibri, verdana, sans-serif;
+  border-top: 1px solid #ccc;
 }
 card.sti-lab > p:last-child {
   margin-bottom: 0px;
