@@ -55,7 +55,7 @@ class EPFLPost
                 as $post_tag) {
                 $matched = array();
                 if (preg_match('/^ATTRIBUTION=(SCIPER:|sciper:|)(\d+)$/', $post_tag, $matched)) {
-                    array_push($author_scipers, $matched[1]);
+                    array_push($author_scipers, $matched[2]);
                 }
             }
         }
