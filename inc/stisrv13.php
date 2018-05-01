@@ -314,11 +314,9 @@ class Stisrv13UploadArticlesController
         }
         foreach ($payload->videos as $video) {
             try {
-                error_log("Ingesting video " . $video->import_id);
                 Stisrv13Video::sync($video);
             } catch (Stisrv13ImportError $e) {
                 error_log($e->getMessage() . " " . $e->getTraceAsString());
-                continue;
             }
         }
         static::admin_notice("success", "JSON ingestion successful");
@@ -658,11 +656,6 @@ class Stisrv13Article extends Stisrv13Base
         $file_struct = $this->_mock_file_structure($our_image);
         if (! $file_struct) return;  // ->_mock_file_structure() will have complained already
 
-        $image_meta = wp_read_image_metadata($our_image);
-        if ($image_meta === false) {
-            error_log("Unable to read image metadata out of $our_image");
-            return;
-        }
         $result = media_handle_sideload(
             $file_struct,
             $this->ID,  // The media will have $this as its post_parent, which
