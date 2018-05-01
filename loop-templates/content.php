@@ -1,6 +1,6 @@
 <?php
 /**
- * Post rendering content according to caller of get_template_part.
+ * Render content as part of a list (e.g. category page, search results)
  *
  * @package epflsti
  */
@@ -18,7 +18,7 @@
 
 			<card class="meta">
 				<?php epflsti_posted_on(); ?>
-			</div>
+			</card>
 
 		<?php endif; ?>
 
