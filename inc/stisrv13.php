@@ -613,13 +613,26 @@ class Stisrv13Article extends Stisrv13Base
     }
 
     /**
-     * Add a featured image if this stisrv13 article in this language
+     * Add a featured ("covershot") image if this stisrv13 article in this language
      * doesn't already have one.
      *
-     * Image files are expected to be found in WP_CONTENT_DIR .
+     * Image files are expected to be found in {@see get_images_dir}.
+     * They will be consumed, i.e. moved out of this directory and
+     * into WordPress' "wp-content/uploads", once this function returns.
      *
+     * The image is assumed to be used by this article only (and
+     * possibly its translations), and it will therefore be made an
+     * attachment of this post object in the WordPress sense. This
+     * means that either the WordPress article represented by this
+     * instance, or one of its translations (which one exactly is left
+     * unspecified) will show up under column "Uploaded to" in the
+     * list view of the Media library in wp-admin/. This doesn't cause
+     * a referential integrity issue i.e. deleting the article an
+     * image is attached to, doesn't delete the attachment and doesn't
+     * deprive the other translations of the article from their
+     * featured image (even though in that case, nothing would appear
+     * in column "Uploaded to")
      */
-
     function _add_featured_image ($json)
     {
         if (get_post_thumbnail_id($this->ID)) return;
@@ -661,7 +674,7 @@ class Stisrv13Article extends Stisrv13Base
             $this->ID,  // The media will have $this as its post_parent, which
                         // looks nice in the wp-admin media list view.  There appears
                         // to be no referential integrity trouble, even if one trashes
-                        // $this.
+                        // $this (see discussion in docstring).
             $json->covershot_alt,
             array(
                 'post_status'    => 'inherit',
