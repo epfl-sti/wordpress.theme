@@ -68,7 +68,7 @@ foreach ($related_results as $related_result) {
         $youtube_id = get_post_meta($related_result->ID, "youtube_id", true);
     } else {
         array_push($news, array(
-            'image' => get_the_post_thumbnail_url($related_result),  // TODO: Won't work with epfl-actu - Need to change the template below to do things the WP way
+            'image' => get_the_post_thumbnail($related_result),
             'url'   => get_the_permalink($related_result),
             'title' => $related_result->post_title));
     }
@@ -123,8 +123,17 @@ foreach ($related_results as $related_result) {
             </header>
             <main class="frontrowcontent">
             <?php foreach ($news as $piece): ?>
-              <div class="mini-news zoomy" style="background-image:url('<?php echo $piece["image"]; ?>');">
-                <div class="person-news-title">
+              <div class="mini-news">
+               <div class="mini-news-image zoomy">
+                <?php # The span is for https://stackoverflow.com/a/7310398/435004
+                      # (Search for that URL in the SASS files for the other
+                      # half of the trick)
+                      # Be careful to put everything on one line — We don't want
+                      # a significant (non-zero-width) space between the <span> and
+                      # the WordPress-generated <img> ?>
+                <span></span><?php echo $piece["image"]; ?>
+               </div>
+                <div class="mini-news-title">
                   <a class=whitelink href=<?php echo $piece["url"]; ?>><?php echo $piece["title"]; ?></a>
                 </div>
               </div>

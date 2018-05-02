@@ -1,10 +1,23 @@
+/**
+ * Set class="zoomy" on a div to zoom-on-hover the image inside.
+ *
+ * Works for both background images and <img> tags
+ */
+
+.zoomy, .zoomy img {
+  transition: all .4s ease-in-out;
+}
+
 .zoomy {
   background-position: center;
-  transition: all .4s ease-in-out;
   background-size: 100%;
 
   &:hover {
     background-size: 130%;
+  }
+
+  img:hover {
+    transform: scale(1.3);
   }
 }
 

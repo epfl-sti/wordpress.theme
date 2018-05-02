@@ -86,16 +86,50 @@ aside card.links {
 }
 
 card .mini-news {
- height: 145px;
- width: 203px;
- background-size: 110%;
- float:left;
- display: inline;
- clear: none;
- margin-right: 20px;
- margin-top: 20px;
- border-bottom: #cc161d 4px solid;
+  $mini-news-image-height:   145px;
+  $mini-news-caption-height: 65px;
+  $mini-news-width:          203px;
+  height: ($mini-news-image-height + $mini-news-caption-height);
+  width: $mini-news-width;
+  overflow: hidden;
+
+  div.mini-news-image {
+    width: $mini-news-width;
+    height: $mini-news-image-height;
+
+    img {
+      width: $mini-news-width;
+    }
+    // https://stackoverflow.com/a/7310398/435004: the DOM has
+    // a <span> immediately followed by <img>, and (this is important)
+    // without any whitespace in between.
+    span {
+      height: 100%;
+    }
+    span, img {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  
+  float:left;
+  display: inline;
+  clear: none;
+  margin-right: 20px;
+  margin-top: 20px;
+
+  div.mini-news-title {
+    position: relative;  // Just so that the background color renders "above" the <img>
+    width: $mini-news-width;
+    height: $mini-news-caption-height;
+    background: rgb(42,41,46);
+    background: rgba(0,0,0,0.7);
+    padding: 8px;
+    overflow: hidden;
+    border-bottom: #cc161d 4px solid;
+  }
 }
+
 
 /**
  * Cards in the main column
@@ -253,16 +287,6 @@ card.sti-lab > p:last-child {
         text-indent: -2em;
         margin-left: 2em;
     }
-}
-
-.person-news-title {
- width: 203px;
- height: 61px;
- position: relative;
- top: 81px;
- background: rgb(42,41,46);
- background: rgba(0,0,0,0.7);
- padding: 8px;
 }
 
 card.person-lab h2 {
