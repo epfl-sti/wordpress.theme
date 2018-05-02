@@ -35,10 +35,4 @@
 
 	</div>
 
-	<footer>
-
-		<?php epflsti_entry_footer(); ?>
-
-	</footer>
-
 </article><!-- #post-## -->

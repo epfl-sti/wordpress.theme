@@ -250,7 +250,4 @@ foreach ($related_results as $related_result) {
 
   </div><?php # row if there is a box of links on the right ?>
 </div><?php #  container if there is a box of links on the right ?>
-<footer>
- <?php epflsti_entry_footer(); ?>
-</footer>
 </article>
