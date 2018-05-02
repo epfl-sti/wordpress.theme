@@ -50,12 +50,30 @@ if ($lab = $person->get_lab()) {
     }
 }
 
-// This data only exists within the School of Engineering. (See ../inc/stisrv13.php for how it gets scraped.)
-$stisrv13data = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_data_json", true));
-$keywords = $stisrv13data->keywords;
-$research = $stisrv13data->interests;
-$videoeng = $stisrv13data->videoeng;
-$news     = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_news_json", true));
+$keywords = $person->get_research_keywords();
+$research = $person->get_research_interests();
+
+$related_results = array();
+foreach (array($person->attributions(), $person->mentioned()) as $related) {
+    $related_results = array_merge($related_results, $related->get_posts(
+        function_exists('pll_current_language') ?
+        array('lang' => pll_current_language()) :
+        null));
+}
+
+$news = array();
+
+foreach ($related_results as $related_result) {
+    if (get_post_format($related_result) === 'video') {
+        $youtube_id = get_post_meta($related_result->ID, "youtube_id", true);
+    } else {
+        array_push($news, array(
+            'image' => get_the_post_thumbnail_url($related_result),  // TODO: Won't work with epfl-actu - Need to change the template below to do things the WP way
+            'url'   => get_the_permalink($related_result),
+            'title' => $related_result->post_title));
+    }
+}
+
 
 ?>
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
@@ -88,11 +106,11 @@ $news     = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_news_jso
            </main>
           </card>
 
-          <?php if ($videoeng != ""): ?>
+          <?php if ($youtube_id): ?>
           <card class="<?php echo $listoflinks_width; ?>">
            <a name=video></a>
            <div style="margin: 20px 0px 40px 0px; float:left; width:100%; height:285px; ">
-            <iframe src="https://www.youtube.com/embed/<?php echo $videoeng; ?>?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="100%" height="280" frameborder="0"></iframe>
+            <iframe src="https://www.youtube.com/embed/<?php echo $youtube_id; ?>?enablejsapi=1&amp;autoplay=0&amp;rel=0" allowscriptaccess="always" allowfullscreen="" width="100%" height="280" frameborder="0"></iframe>
            </div>
           </card>
           <?php endif; # card of videos ?>
@@ -105,9 +123,9 @@ $news     = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_news_jso
             </header>
             <main class="frontrowcontent">
             <?php foreach ($news as $piece): ?>
-              <div class="mini-news zoomy" style="background-image:url('<?php echo $piece->image; ?>');">
+              <div class="mini-news zoomy" style="background-image:url('<?php echo $piece["image"]; ?>');">
                 <div class="person-news-title">
-                  <a class=whitelink href=<?php echo $piece->link; ?>><?php echo $piece->title; ?></a>
+                  <a class=whitelink href=<?php echo $piece["url"]; ?>><?php echo $piece["title"]; ?></a>
                 </div>
               </div>
             <?php endforeach; ?>
@@ -207,7 +225,7 @@ $news     = json_decode(get_post_meta($person->wp_post()->ID, "stisrv13_news_jso
         <ul class="menu">
          <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="<?php echo $labwebsite; ?>">LAB WEBSITE</a></li>
 
-         <?php if ($videoeng != "") { ?>
+         <?php if ($youtube_id) { ?>
           <li id="menu-item" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#video">VIDEOS</a></li>
          <?php } ?>
 
