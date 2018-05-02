@@ -299,6 +299,7 @@ class Stisrv13UploadArticlesController
         if (! $filename) return;
 
         set_time_limit(600);
+        ini_set('memory_limit','512M');
         static::check_nonce();
 
         $payload = json_decode(file_get_contents($filename));
