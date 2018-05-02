@@ -319,6 +319,13 @@ class Stisrv13UploadArticlesController
                 error_log($e->getMessage() . " " . $e->getTraceAsString());
             }
         }
+        foreach ($payload->stock_images as $image) {
+            try {
+                Stisrv13StockImage::sync($image);
+            } catch (Stisrv13ImportError $e) {
+                error_log($e->getMessage() . " " . $e->getTraceAsString());
+            }
+        }
         static::admin_notice("success", "JSON ingestion successful");
         error_log("stisrv13.php: JSON ingestion successful");
         wp_redirect(Stisrv13AdminMenu::get_upload_page_url());
@@ -597,6 +604,11 @@ abstract class Stisrv13Base extends Post
         }
         return gmdate('Y-m-d H:i:s', $timestamp);
     }
+
+   static function get_images_dir ()
+    {
+        return WP_CONTENT_DIR . "/sideloads/stisrv13";
+    }
 }
 
 class Stisrv13Article extends Stisrv13Base
@@ -642,21 +654,9 @@ class Stisrv13Article extends Stisrv13Base
 
         // If image is already ingested (typically, on behalf of the
         // post in the other language), re-use it
-        $q = new WP_Query(array(
-            'post_type'   => 'attachment',
-            'post_status' => 'any',
-            'meta_query'  => array(array(
-                'key'     => self::IMPORT_ID_META,
-                'value'   => $import_id,
-                'compare' => '='
-            ))));
-        $results = $q->get_posts();
-        if (sizeof($results) > 1) {
-            throw new DuplicateStisrv13ImageException(
-                "Found " . sizeof($results) . " images with RSS ID $import_id");
-        } elseif (sizeof($results) === 1) {
-            $this->_debug("Re-using image " . $results[0]->ID);
-            set_post_thumbnail($this->ID, $results[0]->ID);
+        if ($existing = find_attachment_by_meta(self::IMPORT_ID_META, $import_id)) {
+            $this->_debug("Re-using image " . $existing->ID);
+            set_post_thumbnail($this->ID, $existing->ID);
             return;
         }
 
@@ -666,8 +666,8 @@ class Stisrv13Article extends Stisrv13Base
             return;
         }
         $this->_debug("_update_featured_image($import_id) with $our_image");
-        $file_struct = $this->_mock_file_structure($our_image);
-        if (! $file_struct) return;  // ->_mock_file_structure() will have complained already
+        $file_struct = make_mock_file_structure($our_image);
+        if (! $file_struct) return;  //make_mock_file_structure() will have complained already
 
         $result = media_handle_sideload(
             $file_struct,
@@ -688,33 +688,6 @@ class Stisrv13Article extends Stisrv13Base
         }
     }
 
-    function _mock_file_structure ($path)
-    {
-        // https://stackoverflow.com/q/21462093/435004 FWIW
-        $stat = @stat($path);
-        if (! stat) {
-            error_log("Unable to stat($path): " . var_export(error_get_last(), true));
-            return;
-        }
-        $mimetype = mime_content_type ($path);
-        if (! $mimetype) {
-            error_log("Unable to determine MIME type of $path");
-            return;
-        }
-        return array(
-            'name'     => basename($path),
-            'tmp_name' => $path,
-            'type'     => $mimetype,
-            'error'    => 0,
-            'size'     => $stat['size']
-        );
-    }
-
-    function get_images_dir ()
-    {
-        return WP_CONTENT_DIR . "/sideloads/stisrv13";
-    }
-
     function _debug ($msg)
     {
         return;  // Comment out this line to get debugging going
@@ -724,6 +697,29 @@ class Stisrv13Article extends Stisrv13Base
         error_log($this->_get_moniker() . ": " . $msg);
     }
 }
+
+function make_mock_file_structure ($path)
+{
+    // https://stackoverflow.com/q/21462093/435004 FWIW
+    $stat = @stat($path);
+    if (! stat) {
+        error_log("Unable to stat($path): " . var_export(error_get_last(), true));
+        return;
+    }
+    $mimetype = mime_content_type ($path);
+    if (! $mimetype) {
+        error_log("Unable to determine MIME type of $path");
+        return;
+    }
+    return array(
+        'name'     => basename($path),
+        'tmp_name' => $path,
+        'type'     => $mimetype,
+        'error'    => 0,
+        'size'     => $stat['size']
+    );
+}
+
 
 function ensure_tag_exists_in_languages ($tag_name, $languages)
 {
@@ -772,6 +768,23 @@ function ensure_tag_exists_in_languages ($tag_name, $languages)
     pll_save_term_translations($terms);
 }
 
+function find_attachment_by_meta ($meta_key, $meta_value)
+{
+    $results = (new WP_Query())->query(array(
+        'post_type'   => 'attachment',
+        'post_status' => 'any',
+        'meta_query'  => array(array(
+            'key'     => $meta_key,
+            'value'   => $meta_value,
+            'compare' => '='
+        ))));
+    if (sizeof($results) > 1) {
+        throw new DuplicateStisrv13ImageException(
+            "Found " . sizeof($results) . " images with RSS ID $import_id");
+    }
+    return $results[0];
+}
+
 class Stisrv13Video extends Stisrv13Base
 {
     const YOUTUBE_ID_META = "youtube_id";
@@ -797,5 +810,93 @@ class Stisrv13Video extends Stisrv13Base
         parent::_update($json);
         $this->_update_meta(array(self::YOUTUBE_ID_META => $json->youtube_id));
         set_post_format($this->ID, 'video');
+    }
+}
+
+class Stisrv13StockImage
+{
+    const STISRV13_URL_META = "stisrv13_url";
+
+    static function sync ($json)
+    {
+        $class = get_called_class();
+        (new $class($json))->_sync();
+    }
+
+    function __construct ($json)
+    {
+        $this->url        = $json->url;
+        $this->article_id = $json->article_id;
+        $this->filename   = $json->filename;
+        $this->desc       = $json->desc;
+
+        if (! ($this->url && $this->article_id && $this->filename)) {
+            throw new Stisrv13ImportError("Malformed JSON: " . var_export($json, true));
+        }
+    }
+
+    function moniker ()
+    {
+        return sprintf("<Stisrv13StockImage url=%s for_article=%s>",
+                       $this->url, $this->article_id);
+    }
+
+    function _sync ()
+    {
+        // If image is already ingested (typically, on behalf of the
+        // post in the other language), re-use it
+        if ($existing = find_attachment_by_meta(self::STISRV13_URL_META, $this->url)) {
+            $this->_debug("Re-using image " . $existing->ID);
+            $thumbnail_id = $existing->ID;
+        } else {
+            $thumbnail_id = $this->_do_import(
+                Stisrv13Base::get_images_dir() . "/" . $this->filename);
+        }
+
+        $q = new WP_Query();
+        foreach ($q->query(array(
+            'post_type'   => 'post',
+            'post_status' => 'any',
+            'meta_query'  => array(array(
+                'key'     => Stisrv13Base::IMPORT_ID_META,
+                'value'   => $this->article_id,
+                'compare' => '='
+            )))) as $post) {
+            set_post_thumbnail($post, $thumbnail_id);
+        }
+    }
+
+    function _do_import ($path)
+    {
+        $this->_debug("_do_import($path)");
+        if (! ($file_struct = make_mock_file_structure($path))) {
+            throw new Stisrv13ImportError(sprintf(
+                "%s something is wrong with %s", $this->moniker(), $path));
+        }
+
+        $result = media_handle_sideload(
+            $file_struct,
+            0,  // By design, stock images don't get attached
+            $this->desc,
+            array(
+                    'post_status'    => 'inherit',
+                    'meta_input'   => array(
+                        self::STISRV13_URL_META      => $this->url,
+                        Stisrv13Base::IMPORT_ID_META => $this->article_id
+                    )));
+        if (is_integer($result)) {
+            return $result;
+        } else {
+            throw new \Error($result["error"]);
+        }
+    }
+
+    function _debug ($msg)
+    {
+#        return;  // Comment out this line to get debugging going
+        if (! (is_string($msg) || is_numeric($msg))) {
+            $msg = var_export($msg, true);
+        }
+        error_log($this->moniker() . ": " . $msg);
     }
 }
