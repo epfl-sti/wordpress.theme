@@ -104,7 +104,8 @@
     display: block;
     max-width: 100%;
     position: absolute;
-    bottom: 0;
+    bottom: -1px;  // Better bite 1px off the front row, than show
+                   // a fractional pixel of the image behind the wave
     left: 50%;
     transform: translateX(-50%);
   }
