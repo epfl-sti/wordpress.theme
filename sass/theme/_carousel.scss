@@ -129,3 +129,21 @@
   padding: 10px 0 0 15px;
   text-transform: uppercase;
 }
+
+/*************************************************************************/
+/* We want the red wave below carousel legends (but above carousel pics) */
+#container-carousel {
+  z-index: 0;  // Create a stacking context - The other ingredient,
+               // position:relative is at the top of this file
+}
+
+.carousel-item {
+  // Why indeed? It spuriously creates a stacking context, z-index disturbance
+  // (https://stackoverflow.com/questions/42176398/why-does-carousel-item-in-bootstrap-use-perspective-1000)
+  perspective: inherit;
+
+  div.legend {
+    // Again, position:absolute is set at the top of this file
+    z-index: 5;  // Any positive value would do the trick
+  }
+}
