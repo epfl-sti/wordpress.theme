@@ -4,21 +4,21 @@
 $carousel-control-prev-icon-bg: url("../img/src/left.png");
 $carousel-control-next-icon-bg: url("../img/src/right.png");
 
+// Vertical alignment in the carousel
+// All units must be in percent (as we do server-side
+// arithmetic with them)
 $sti-carousel-button-distancefromtop: 20%;
+$sti-carousel-button-legend-margin: 15%;
 $sti-institute-carousel-button-distancefromtop: 40%;
 // This variable is for the Bootstrap carousel that we use:
 $carousel-control-icon-width: 32px;
 $sti-carousel-button-distancefromleftright: 25px;
 
-$sti-carousel-sm-legend-margin: 290px;
+$sti-carousel-sm-legend-margin: 190px;
 $sti-carousel-sm-legend-margin-small: 170px;
 
 $carousel-controls-toosmall: 350px;
-$carousel-headline-toosmall: 800px;
-$carousel-container-max-height: 600px;
+$carousel-container-max-height: 400px;
 
 $carousel-institute-container-max-height: 360px;
 $carousel-institute-container-height: 360px;
-
-$redwave-toosmall: 540px;
-$redwave-toolarge: 1800px;

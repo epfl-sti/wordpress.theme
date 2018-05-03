@@ -1,8 +1,5 @@
 #container-carousel {
   position: relative;  // To anchor the position:absolute elements below
-  @media screen and (min-width: $redwave-toosmall) {
-    padding-bottom: 20pt;
-  }
 }
 
 .carousel-institute {
@@ -29,9 +26,7 @@
 
         text-align: left;  // Countermand parent
 
-        @media screen and (min-width: $carousel-controls-toosmall) {
-          top: ($sti-carousel-button-distancefromtop + 10%);
-        }
+        top: ($sti-carousel-button-distancefromtop + $sti-carousel-button-legend-margin);
 
         font-family: 'Open Sans', sans-serif;
         color: white;
@@ -101,10 +96,6 @@
 }
 
 #redwave {
-  @media screen and (min-width: $redwave-toosmall) and (max-width: $redwave-toolarge - 1) {
-    visibility: visible;
-  } // otherwise:
-  visibility: hidden;
   pointer-events: none;  // Can click through the wave
 
   height: 0px;
