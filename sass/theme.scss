@@ -10,6 +10,7 @@
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 @import "understrap/understrap";// <-------- Loads the Understrap defaults. Just a few classes to incorporate BS in WP
 
+@import "theme/body";
 @import "theme/header";
 @import "theme/maxmegamenu";
 @import "theme/navmenus";

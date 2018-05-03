@@ -1,8 +1,5 @@
 #container-carousel {
   position: relative;  // To anchor the position:absolute elements below
-  @media screen and (min-width: $redwave-toosmall) {
-    padding-bottom: 20pt;
-  }
 }
 
 .carousel-institute {
@@ -28,14 +25,8 @@
         margin: 0pt 20pt 0pt 20pt;
 
         text-align: left;  // Countermand parent
-        top: $sti-carousel-sm-legend-margin !important;
 
-        @media screen and (max-width: $carousel-headline-toosmall - 1) {
-          top: $sti-carousel-sm-legend-margin-small !important;
-        }
-        @media screen and (min-width: $carousel-controls-toosmall) {
-          top: ($sti-carousel-button-distancefromtop + 10%);
-        }
+        top: ($sti-carousel-button-distancefromtop + $sti-carousel-button-legend-margin);
 
         font-family: 'Open Sans', sans-serif;
         color: white;
@@ -105,10 +96,6 @@
 }
 
 #redwave {
-  @media screen and (min-width: $redwave-toosmall) and (max-width: $redwave-toolarge - 1) {
-    visibility: visible;
-  } // otherwise:
-  visibility: hidden;
   pointer-events: none;  // Can click through the wave
 
   height: 0px;
@@ -117,7 +104,8 @@
     display: block;
     max-width: 100%;
     position: absolute;
-    bottom: 0;
+    bottom: -1px;  // Better bite 1px off the front row, than show
+                   // a fractional pixel of the image behind the wave
     left: 50%;
     transform: translateX(-50%);
   }
@@ -140,4 +128,22 @@
   width: 100%;
   padding: 10px 0 0 15px;
   text-transform: uppercase;
+}
+
+/*************************************************************************/
+/* We want the red wave below carousel legends (but above carousel pics) */
+#container-carousel {
+  z-index: 0;  // Create a stacking context - The other ingredient,
+               // position:relative is at the top of this file
+}
+
+.carousel-item {
+  // Why indeed? It spuriously creates a stacking context, z-index disturbance
+  // (https://stackoverflow.com/questions/42176398/why-does-carousel-item-in-bootstrap-use-perspective-1000)
+  perspective: inherit;
+
+  div.legend {
+    // Again, position:absolute is set at the top of this file
+    z-index: 5;  // Any positive value would do the trick
+  }
 }

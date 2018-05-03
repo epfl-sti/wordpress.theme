@@ -33,8 +33,8 @@
 .institute-nav-menu, .person-nav-menu {
   font-size: 11pt;
   ul.menu>li {
-    border-bottom: 1.5px solid #2c2b2b;
-    border-top: 1.5px solid #3e3e3e;
+    border-bottom: 1px solid #2c2b2b;
+    border-top: 1px solid #3e3e3e;
     padding: 7px 7px 7px 15px;
   }
   ul.sub-menu {

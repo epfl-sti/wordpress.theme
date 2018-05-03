@@ -57,12 +57,13 @@ topbar {
     // border-left: 10px;
     // border-style: solid white;
     margin: 15px 0 0 10px;
+    width: 130px;
   }
 }
 
 #sti-mini-nav {
   display: block;
-  margin-top: 20pt;
+  margin-top: 15pt;
   margin-left: 8pt;
   float: left;
   font: "Open Sans";
@@ -76,8 +77,8 @@ topbar {
 
   .text-logo {
     display: block;
-    margin-top: 10pt;
-    font-size: 21pt;
+    margin-top: 5pt;
+    font-size: 12pt;
   }
   .firstline {
     font-weight: 600;
