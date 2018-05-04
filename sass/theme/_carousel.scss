@@ -140,10 +140,19 @@
 .carousel-item {
   // Why indeed? It spuriously creates a stacking context, z-index disturbance
   // (https://stackoverflow.com/questions/42176398/why-does-carousel-item-in-bootstrap-use-perspective-1000)
-  perspective: inherit;
+  perspective: none;
 
   div.legend {
     // Again, position:absolute is set at the top of this file
     z-index: 5;  // Any positive value would do the trick
   }
+}
+
+// Work around https://github.com/twbs/bootstrap/pull/26452
+.carousel-item {
+  transition: none;
+}
+
+.carousel-item-left,.carousel-item-right {
+   @include transition($carousel-transition);
 }
