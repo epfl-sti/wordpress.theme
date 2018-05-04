@@ -108,7 +108,8 @@ time.icon:hover {
 // Set the "box" of each events
 
 .frontrow_event {
-  border-bottom: 1.5px solid #2c2b2b;
+  border-bottom: 1px solid #2c2b2b;
+  border-top: 1px solid #3e3e3e;
   padding-bottom: 0.1em;
 
   .frontrow_event_text {
