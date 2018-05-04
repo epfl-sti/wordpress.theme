@@ -1,11 +1,13 @@
 /**
- * Largeur fixe et centrage pour toutes les pages et toute la page
+ * Rendering the top-level HTML elements: <html> and <body>
  */
 
+html {
+  background-image: url('theme-epfl-sti/assets/Nasty-Fabric-Grey-Seamless-Patterns-For-Website-Background.jpg');
+}
 body {
-  background-color: #ccc !important;
-  max-width: 1170px;  /* bien, mais pas top */
+  background-color: #ccc;
+  max-width: 1170px;  /* Could use the Bootstrap breaks here */
   border: 1px solid #7d7a7a;
   margin: auto;
-  background-image: url('http://www.designbolts.com/wp-content/uploads/2013/02/Nasty-Fabric-Grey-Seamless-Patterns-For-Website-Background.jpg');
 }
