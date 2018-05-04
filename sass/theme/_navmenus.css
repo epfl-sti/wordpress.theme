@@ -23,6 +23,7 @@
   }
   a {
     text-decoration: none;
+    font-weight: normal;
   }
   .current_page_item a {
     text-decoration: underline;
@@ -61,8 +62,8 @@
     padding-top: 1em;
   }
   ul.sub-menu>li {
-    border-bottom: 1.5px solid #2c2b2b;
-    border-top: 1.5px solid #3e3e3e;
+    border-bottom: 1px solid #2c2b2b;
+    border-top: 1px solid #3e3e3e;
     padding: 0.5em 0 0.5em 0.5em;
   }
 }
