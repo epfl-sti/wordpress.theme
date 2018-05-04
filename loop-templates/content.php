@@ -25,11 +25,11 @@
    <div class='col-md-4'>
  	$imagestring
    </div>
-   <div class='col-md-8 sti-funkynewsbox'>";
+   <div class='col-md-8'>";
  }
  else {
   $newsoutput="
-   <div class='col-md-12 sti-funkynewsbox'>";
+   <div class='col-md-12'>";
  }
 ?>
 
