@@ -58,12 +58,6 @@
     }
 }
 
-.institute-homepage-buttons {
-    @media screen and (min-width: $carousel-controls-toosmall) {
-        top: ($sti-institute-carousel-button-distancefromtop + 10%) !important;
-    }
-}
-
 .sti-carousel-button {
     position: absolute;
     top: $sti-carousel-button-distancefromtop;
@@ -115,9 +109,13 @@
   max-height: $carousel-container-max-height;
 }
 
-.carousel-institute-dimensions {
+.carousel.carousel-institute .carousel-item {
   max-height: $carousel-institute-container-max-height;
-  height: $carousel-institute-container-height;
+  div.legend {
+    top: $carousel-institute-legend-position-top;
+    overflow: hidden;
+    padding-bottom: 200pt;
+  }
 }
 
 .carousel-institute-headline {

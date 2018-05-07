@@ -46,7 +46,7 @@ class CarouselInstitute extends \WP_Widget
                 <div class="carousel-item">
                     <div>
                     <?php the_post_thumbnail("full"); ?>
-                        <div class="legend institute-homepage-buttons carousel-institute-headline">
+                        <div class="legend carousel-institute-headline">
                             <a href="<?php echo $link; ?>"><?php the_title(); ?></a>
                             <?php if ($subtitle) : ?>
                                 <a href="<?php echo $link; ?>"><?php echo $subtitle; ?></a>
@@ -70,16 +70,15 @@ class CarouselInstitute extends \WP_Widget
         }
         echo $args['before_widget'];
         ?>
-        <div id="container-carousel ">
-            <div id="carousel" class="carousel slide carousel-institute-dimensions" data-ride="carousel">
+        <div id="container-carousel">
+            <div id="carousel" class="carousel slide carousel-institute" data-ride="carousel">
                 <?php $this->render_carousel_items(); ?>
             </div>
-            <?php # The wave must be outside the carousel, so as not to be clipped. ?>
-            <a class="sti-carousel-button prev institute-homepage-buttons" href="#carousel" role="button" data-slide="prev">
+            <a class="sti-carousel-button prev" href="#carousel" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
             </a>
-            <a class="sti-carousel-button next institute-homepage-buttons" href="#carousel" role="button" data-slide="next">
+            <a class="sti-carousel-button next" href="#carousel" role="button" data-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
