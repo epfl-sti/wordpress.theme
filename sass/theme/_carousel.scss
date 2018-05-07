@@ -130,29 +130,62 @@
   text-transform: uppercase;
 }
 
-/*************************************************************************/
-/* We want the red wave below carousel legends (but above carousel pics) */
+/**************************************************************************/
+/* We want the red wave below carousel legends (but above carousel pics), */
+/* including during carousel transitions                                  */
+/**************************************************************************/
 #container-carousel {
   z-index: 0;  // Create a stacking context - The other ingredient,
                // position:relative is at the top of this file
 }
 
+.carousel-item div.legend {
+    // Again, position:absolute is set at the top of this file
+    z-index: 5;  // Any positive value would do the trick - Perhaps
+                 // surprisingly, #redwave doesn't have a z-index value
+                 // and doesn't need one
+}
+
+// Undo Bootstrap's transform-based carousel as it breaks z-index i.e.
+// the text would flow under the red wave while it slides. See also
+// _bootstrap_variables.scss
+.carousel-item-next.carousel-item-left,
+.carousel-item-prev.carousel-item-right,
+.carousel-item-next, .carousel-item-prev,
+.active.carousel-item-right, .active.carousel-item-left {
+  transform: none;
+}
 .carousel-item {
-  // Why indeed? It spuriously creates a stacking context, z-index disturbance
+  // Why indeed?
   // (https://stackoverflow.com/questions/42176398/why-does-carousel-item-in-bootstrap-use-perspective-1000)
   perspective: none;
-
-  div.legend {
-    // Again, position:absolute is set at the top of this file
-    z-index: 5;  // Any positive value would do the trick
-  }
 }
 
 // Work around https://github.com/twbs/bootstrap/pull/26452
 .carousel-item {
   transition: none;
 }
-
 .carousel-item-left,.carousel-item-right {
-   @include transition($carousel-transition);
+   @include transition($carousel-transition);  // From _bootstrap_variables.scss
+}
+
+// Set up our own, margin-left-based carousel transitions
+// (See also _bootstrap_variables.scss)
+// A next (or prev) item appears... (was display: none before; is
+// display: block now)
+.carousel-item-next { margin-left: 100%; }
+.carousel-item-prev { margin-left: -100%; }
+// ... and is promptly brought into the spotlight (see ../js/carousel.js
+// for the hack that makes this happen)
+.carousel-item-next.ready-set-go,
+.carousel-item-prev.ready-set-go, {
+  margin-left: 0%;
+}
+
+// Exiting stage left (or right)
+.active.carousel-item-left {
+  margin-left: -100%;
+}
+.active.carousel-item-right {
+  margin-left: 100%;
 }

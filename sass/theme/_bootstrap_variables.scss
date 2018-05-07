@@ -14,4 +14,10 @@ $container-max-widths: (
   lg: 960px,
   // This one has been tweaked.
   xl: 1340px
-)
+);
+
+// Bootstrap's default transition uses translations, which break
+// z-index. Replace them with a margin-left based translation
+$carousel-transition: margin-left 0.6s ease;
+// See more in _carousel.scss
+
