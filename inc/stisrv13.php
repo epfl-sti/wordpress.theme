@@ -753,13 +753,16 @@ function ensure_tag_exists_in_languages ($tag_name, $languages)
     debug("$tag_name has " . count($terms) . " pre-existing translations: " . var_export($terms, true));
     foreach ($languages as $lang) {
         if ($terms[$lang]) continue;
+        $slug = sanitize_title($tag_name) . "-" . $lang);
         $term_or_error = wp_insert_term(
             $tag_name, 'post_tag',
-            array('slug' => sanitize_title($tag_name) . "-" . $lang));
+            array('slug' => $slug);
         if (is_wp_error($term_or_error)) {
             // All you wanted to know about WP_Error, but were afraid to ask,
             // is at https://wordpress.stackexchange.com/a/11143/132235
-            throw new Exception($term_or_error->get_error_message());
+            throw new Exception(sprintf(
+                "%s (slug %s): %s",
+                $tag_name, $slug, $term_or_error->get_error_message()));
         }
         $term_id = (int) $term_or_error["term_id"];
         pll_set_term_language($term_id, $lang);
