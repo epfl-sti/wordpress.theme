@@ -12,7 +12,7 @@ Events:
           pageno). Note that this is an advanced feature, as the event
           fires for every single search action (typing or scrolling to
           the end in the case of "infinite search"); consider using
-          single_search instead
+          singlesearch instead
 
 - singlesearch: The user is requesting a new search (by typing or
                 scrolling to the end of an "infinite search") and no
@@ -233,9 +233,9 @@ export default {
 
       let hadSearch = !! this.search
 
-      // Listeners to the "search" event always get to
-      // know that the user is typing (or scrolling). It is up to
-      // them to manage cancellations, concurrent searches etc.
+      // Listeners to the "search" event always get told that the user
+      // is typing (or scrolling). It is up to them to manage
+      // cancellations, concurrent searches etc.
       this.$emit("search", term, page)
 
       if (! (hadSearch && ! this.status)) {
@@ -268,7 +268,7 @@ export default {
     /**
      * When parent component sets search, and sets status to null,
      * it means that an asynchronous search has started. If we knew
-     * how, we would update the display here.
+     * how, we would update the select2 built-in status message here.
      */
     search (newVal, oldVal) {
     },
