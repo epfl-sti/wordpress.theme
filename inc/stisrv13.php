@@ -753,7 +753,7 @@ function ensure_tag_exists_in_languages ($tag_name, $languages)
     debug("$tag_name has " . count($terms) . " pre-existing translations: " . var_export($terms, true));
     foreach ($languages as $lang) {
         if ($terms[$lang]) continue;
-        $slug = sanitize_title($tag_name) . "-" . $lang);
+        $slug = sanitize_title($tag_name) . "-" . $lang;
         $term_or_error = wp_insert_term(
             $tag_name, 'post_tag',
             array('slug' => $slug);
