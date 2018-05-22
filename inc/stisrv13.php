@@ -756,7 +756,7 @@ function ensure_tag_exists_in_languages ($tag_name, $languages)
         $slug = sanitize_title($tag_name) . "-" . $lang;
         $term_or_error = wp_insert_term(
             $tag_name, 'post_tag',
-            array('slug' => $slug);
+            array('slug' => $slug));
         if (is_wp_error($term_or_error)) {
             // All you wanted to know about WP_Error, but were afraid to ask,
             // is at https://wordpress.stackexchange.com/a/11143/132235
