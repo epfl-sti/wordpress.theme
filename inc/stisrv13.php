@@ -723,8 +723,8 @@ function make_mock_file_structure ($path)
 
 function ensure_tag_exists_in_languages ($tag_name, $languages)
 {
-    foreach (array('pll_get_term_language', 'pll_set_term_language',
-                   'pll_save_term_translations') as $functionname) {
+    foreach (array('pll_set_term_language', 'pll_save_term_translations')
+             as $functionname) {
         if (! function_exists($functionname)) {
             # Still ensure that the term exists in English
             wp_insert_term(
@@ -735,36 +735,25 @@ function ensure_tag_exists_in_languages ($tag_name, $languages)
     }
 
     $terms = array();
-    foreach (get_terms(array(
-        'taxonomy'   => 'post_tag',
-        'name'       => $tag_name,
-        'hide_empty' => false
-    )) as $term) {
-        $term_id = $term->term_id;
-        $lang = pll_get_term_language($term_id);
-        if ((! $lang) && preg_match('/-en$/', $term->slug)) {
-            # Assume it was created as part of the no-Polylang code above
-            pll_set_term_language($term_id, "en");
-            $lang = "en";
-        }
-        debug("Found term ID $term_id of language $lang for $tag_name");
-        $terms[$lang] = $term_id;
-    }
-    debug("$tag_name has " . count($terms) . " pre-existing translations: " . var_export($terms, true));
     foreach ($languages as $lang) {
-        if ($terms[$lang]) continue;
         $slug = sanitize_title($tag_name) . "-" . $lang;
-        $term_or_error = wp_insert_term(
-            $tag_name, 'post_tag',
-            array('slug' => $slug));
-        if (is_wp_error($term_or_error)) {
-            // All you wanted to know about WP_Error, but were afraid to ask,
-            // is at https://wordpress.stackexchange.com/a/11143/132235
-            throw new Exception(sprintf(
-                "%s (slug %s): %s",
-                $tag_name, $slug, $term_or_error->get_error_message()));
+
+        if ($already_exists = get_term_by('slug', $slug, 'post_tag')) {
+            $term_id = $already_exists->term_id;
+        } else {
+            $term_or_error = wp_insert_term(
+                $tag_name, 'post_tag',
+                array('slug' => $slug));
+            if (is_wp_error($term_or_error)) {
+                // All you wanted to know about WP_Error, but were afraid to ask,
+                // is at https://wordpress.stackexchange.com/a/11143/132235
+                throw new Exception(sprintf(
+                    "%s (slug %s): %s",
+                    $tag_name, $slug, $term_or_error->get_error_message()));
+            } else {
+                $term_id = (int) $term_or_error["term_id"];
+            }
         }
-        $term_id = (int) $term_or_error["term_id"];
         pll_set_term_language($term_id, $lang);
         $terms[$lang] = $term_id;
     }
