@@ -140,3 +140,17 @@ function epflsti_lab_card ($body, $opts)
     $html .= "\n</card>\n";
     return $html;
 }
+
+function epflsti_render_featured_image ($extra_css_classes = "")
+{
+    global $post;
+    if (! has_post_thumbnail($post)) return;
+?>
+			<div class="<?php echo $extra_css_classes ?>" >
+				<figure>
+					<?php echo get_the_post_thumbnail( $post->ID, 'medium', array( 'class' => 'img-responsive' ) ); ?>
+					<figcaption><?php echo the_post_thumbnail_caption( $post->ID ); ?></figcaption>
+				</figure>
+			</div>
+<?php
+}

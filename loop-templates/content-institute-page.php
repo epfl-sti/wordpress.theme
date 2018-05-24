@@ -14,14 +14,9 @@
 		</header>
 
 		<div class="epfl-sti-institute-content">
-                   <div class="sti_content_prof_photo epfl-sti-institute-imageframe">
-                      <?php echo get_the_post_thumbnail( $post->ID, 'large' ); ?>
-                  </div><?php # prof_photo ?>
-
-
-			<?php the_content(); ?>
-
 			<?php
+                        epflsti_render_featured_image("epfl-sti-institute-imageframe");
+                        the_content();
 			wp_link_pages( array(
 				'before' => '<div class="page-links">' . __( 'Pages:', 'epflsti' ),
 				'after'  => '</div>',
