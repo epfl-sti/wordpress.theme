@@ -84,6 +84,12 @@ function have_cluster_news ()
 {
     return _have_cluster_items(array(
         "post_type" => array("epfl-actu", "post"),
+        "tax_query" => array(array(
+            'taxonomy' => 'post_format',
+            'operator' => 'NOT IN',
+            'field'    => 'slug',
+            'terms'    => array( 'post-format-video' )
+        ))
     ));
 }
 
@@ -107,7 +113,6 @@ function have_cluster_media ()
         "post_type" => "post",
         "tax_query" => array(array(
             'taxonomy' => 'post_format',
-            'operator' => 'NOT IN',
             'field'    => 'slug',
             'terms'    => array( 'post-format-video' )
         ))
