@@ -26,25 +26,6 @@ function _get_term_by_slug ($slug)
     // Caution: this assumes that all relevant post types have
     // Polylang turned on.
     return get_term_by('slug', $slug, 'post_tag');
-
-    // We can't just
-    //
-    //   return get_term_by('slug', $slug, 'post_tag');
-    //
-    // because Polylang insists (through request filtering) that tags
-    // fetched in this way have the current language. The thing is,
-    // when one creates-as-one-types a tag from a Post or Person etc
-    // wp-admin edit page, Polylang will not attach a language to it.
-    // We want to make such language-neutral tags Just Work™, not
-    // force the user to come around and Polylangify them.
-    $term_array = get_terms(array(
-        'get'             => 'all',
-        'taxonomy'        => 'post_tag',
-        'slug'            => $slug,
-        'suppress_filter' => true,
-        // Rein in Polylang request filtering
-        'lang'            => false
-    ));
 }
 
 function _get_cluster_tag ()
