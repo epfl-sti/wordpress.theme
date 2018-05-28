@@ -47,8 +47,8 @@ $fa-font-path: 'theme-epfl-sti/node_modules/@fortawesome/fontawesome-free-webfon
 @import "../node_modules/@fortawesome/fontawesome-free-webfonts/scss/fa-brands";
 
 // Cookies Consent (https://github.com/insites/cookieconsent)
-@import "../node_modules/cookieconsent/src/styles/base";
-@import "../node_modules/cookieconsent/src/styles/animation";
-@import "../node_modules/cookieconsent/src/styles/layout";
-@import "../node_modules/cookieconsent/src/styles/media";
-@import "../node_modules/cookieconsent/src/styles/themes/classic";
+@import url("../node_modules/cookieconsent/src/styles/base.css");
+@import url("../node_modules/cookieconsent/src/styles/animation.css");
+@import url("../node_modules/cookieconsent/src/styles/layout.css");
+@import url("../node_modules/cookieconsent/src/styles/media.css");
+@import url("../node_modules/cookieconsent/src/styles/themes/classic.css");
