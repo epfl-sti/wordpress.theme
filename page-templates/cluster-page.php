@@ -23,6 +23,10 @@ function debug ($message)
 function _get_term_by_slug ($slug)
 {
     if (! $slug) return null;
+    // Caution: this assumes that all relevant post types have
+    // Polylang turned on.
+    return get_term_by('slug', $slug, 'post_tag');
+
     // We can't just
     //
     //   return get_term_by('slug', $slug, 'post_tag');
@@ -41,25 +45,6 @@ function _get_term_by_slug ($slug)
         // Rein in Polylang request filtering
         'lang'            => false
     ));
-
-    if (count($term_array) > 1) {
-        error_log('Found ' . count($term_array) . ' terms for slug ' . $slug);
-    }
-
-    if (! ($term = $term_array[0])) return null;
-
-    // Still, for those tags that have been Polylangified indeed, we
-    // want automagic translation to occur:
-    if (! (function_exists('pll_get_term_translations') &&
-           function_exists('pll_get_current_language')  &&
-           $translations = pll_get_term_translations($term->term_id))) {
-        return $term;
-    }
-    if ($translated = $translations[pll_get_current_language()]) {
-        return $translated;
-    } else {
-        return $term;
-    }
 }
 
 function _get_cluster_tag ()
@@ -95,12 +80,9 @@ function _wpquery ($additional_wp_query_params)
 
 function _have_cluster_items ($additional_wp_query_params)
 {
-    $q = _wpquery($additional_wp_query_params);
-
-    global $epflsti_cluster_items;
-    $epflsti_cluster_items = $q->get_posts();
-    debug("\$epflsti_cluster_items has " . count($epflsti_cluster_items) . " items");
-    return (count($epflsti_cluster_items) > 0);
+    global $epflsti_cluster_page_subquery;
+    $epflsti_cluster_page_subquery = _wpquery($additional_wp_query_params);
+    return $epflsti_cluster_page_subquery->have_posts();
 }
 
 function have_cluster_people ()
@@ -120,7 +102,7 @@ function have_cluster_labs ()
 function have_cluster_news ()
 {
     return _have_cluster_items(array(
-        "post_type" => array("epfl-actu", "post")
+        "post_type" => array("epfl-actu", "post"),
     ));
 }
 
@@ -142,17 +124,32 @@ function have_cluster_media ()
 {
     return _have_cluster_items(array(
         "post_type" => "post",
-        "tax_query" => array(
+        "tax_query" => array(array(
             'taxonomy' => 'post_format',
+            'operator' => 'NOT IN',
             'field'    => 'slug',
             'terms'    => array( 'post-format-video' )
-        )
+        ))
     ));
 }
 
-function render_cluster_items ()
+function next_item ()
 {
-  ?><img src="https://www.codeschool.com/assets/custom/geocities/underconstruction-72327f17c652569bab9a33536622841bf905d145ee673a3e9d065fae9cabfe4f.gif"><?php
+    global $epflsti_cluster_page_subquery;
+
+    if (! $epflsti_cluster_page_subquery) return false;
+
+    if (! $epflsti_cluster_page_subquery->have_posts()) {
+        $epflsti_cluster_page_subquery = null;
+        return false;
+    }
+
+    global $post;
+
+    $epflsti_cluster_page_subquery->setup_postdata(
+        $post = $epflsti_cluster_page_subquery->next_post());
+
+    return true;
 }
 
 ###############################################################################
@@ -180,33 +177,45 @@ get_header();
 
                  <?php if(have_cluster_people()): ?>
                   <h2>People</h2>
-                  <?php render_cluster_items();  ?>
-                 <?php endif; ?>
+                  <?php while (next_item()) {
+                      get_template_part('loop-templates/content', 'search');
+                  }
+                  endif; ?>
 
                  <?php if(have_cluster_labs()): ?>
                   <h2>Labs</h2>
-                  <?php render_cluster_items();  ?>
-                 <?php endif; ?>
+                  <?php while (next_item()) {
+                      get_template_part('loop-templates/content', 'search');
+                  }
+                  endif; ?>
 
                  <?php if(have_cluster_news()): ?>
                   <h2>News</h2>
-                  <?php render_cluster_items();  ?>
-                 <?php endif; ?>
+                  <?php while (next_item()) {
+                      get_template_part('loop-templates/content', 'search');
+                  }
+                  endif; ?>
 
                  <?php if(have_cluster_events()): ?>
                   <h2>Events</h2>
-                  <?php render_cluster_items();  ?>
-                 <?php endif; ?>
+                  <?php while (next_item()) {
+                      get_template_part('loop-templates/content', 'search');
+                  }
+                  endif; ?>
 
                  <?php if(have_cluster_courses()): ?>
                   <h2>Courses</h2>
-                  <?php render_cluster_items();  ?>
-                 <?php endif; ?>
+                  <?php while (next_item()) {
+                      get_template_part('loop-templates/content', 'search');
+                  }
+                  endif; ?>
 
                  <?php if(have_cluster_media()): ?>
                   <h2>Media</h2>
-                  <?php render_cluster_items();  ?>
-                 <?php endif; ?>
+                  <?php while (next_item()) {
+                      get_template_part('loop-templates/content', 'search');
+                  }
+                  endif; ?>
 
 		</div>
 	    <?php endwhile; # The Loop ?>
