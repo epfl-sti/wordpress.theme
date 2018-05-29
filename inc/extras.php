@@ -75,3 +75,18 @@ if ( ! function_exists( 'change_logo_class' ) ) {
 	}
 }
 
+// Ensure that all (new) tags get a Polylang language.
+//
+// Things really don't work well when creating untranslated tags (on
+// untranslated post types) with the create-a-tag-as-you-type
+// functionality (i.e. just making up tag names using the
+// right-hand-side meta box): such tags don't have a Polylang language
+// and cannot be re-used from a translatable post type (e.g., post).
+// Instead, the naïve use case creates a translated tag anew with the
+// same name and different slugs - and it's just very confusing to the
+// user.
+add_action('pll_save_term', function($term_id, $taxonomy, $translations) {
+    if ($taxonomy === 'post_tag' && ! count($translations)) {
+        pll_set_term_language($term_id, pll_default_language());
+    }
+}, 10, 3);
