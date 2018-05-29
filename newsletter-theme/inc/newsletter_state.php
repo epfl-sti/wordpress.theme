@@ -36,7 +36,7 @@ function get_newsletter_posts ($theme_options)
 class NewsletterDraftState
 {
     // 20 days before draft states expire
-    const TIMEOUT_SECS = 20 * 24 * 3600;
+    const TIMEOUT_SECS = 40 * 24 * 3600;
 
     private $saved_state;
 
