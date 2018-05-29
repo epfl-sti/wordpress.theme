@@ -15,6 +15,9 @@ namespace EPFL\STI\ClusterPage;
 
 const CLUSTER_TAG_SLUG_META = "cluster_tag_slug";
 
+require_once(__DIR__ . "/../../../plugins/epfl-ws/Lab.php");
+use \EPFL\WS\Labs\Lab;
+
 function debug ($message)
 {
     // error_log($message);
@@ -26,6 +29,25 @@ function _get_term_by_slug ($slug)
     // Caution: this assumes that all relevant post types have
     // Polylang turned on.
     return get_term_by('slug', $slug, 'post_tag');
+
+    // We can't just
+    //
+    //   return get_term_by('slug', $slug, 'post_tag');
+    //
+    // because Polylang insists (through request filtering) that tags
+    // fetched in this way have the current language. The thing is,
+    // when one creates-as-one-types a tag from a Post or Person etc
+    // wp-admin edit page, Polylang will not attach a language to it.
+    // We want to make such language-neutral tags Just Work™, not
+    // force the user to come around and Polylangify them.
+    $term_array = get_terms(array(
+        'get'             => 'all',
+        'taxonomy'        => 'post_tag',
+        'slug'            => $slug,
+        'suppress_filter' => true,
+        // Rein in Polylang request filtering
+        'lang'            => false
+    ));
 }
 
 function _get_cluster_tag ()
@@ -84,12 +106,6 @@ function have_cluster_news ()
 {
     return _have_cluster_items(array(
         "post_type" => array("epfl-actu", "post"),
-        "tax_query" => array(array(
-            'taxonomy' => 'post_format',
-            'operator' => 'NOT IN',
-            'field'    => 'slug',
-            'terms'    => array( 'post-format-video' )
-        ))
     ));
 }
 
@@ -113,6 +129,7 @@ function have_cluster_media ()
         "post_type" => "post",
         "tax_query" => array(array(
             'taxonomy' => 'post_format',
+            'operator' => 'NOT IN',
             'field'    => 'slug',
             'terms'    => array( 'post-format-video' )
         ))
@@ -169,9 +186,11 @@ get_header();
                   endif; ?>
 
                  <?php if(have_cluster_labs()): ?>
+                <?php ?>
                   <h2>Labs</h2>
                   <?php while (next_item()) {
-                      get_template_part('loop-templates/content', 'search');
+                      $currentLab = Lab::get($post);
+                      echo epflsti_lab_card('', array("lab" => $currentLab));
                   }
                   endif; ?>
 
