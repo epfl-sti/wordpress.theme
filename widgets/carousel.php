@@ -47,8 +47,8 @@ class Carousel extends \WP_Widget
       <div>
         <?php the_post_thumbnail("full"); ?>
         <div class="legend">
-                <h1><a href="<?php echo $link; ?>"><?php the_title(); ?></a></h1>
-                <?php if ($subtitle) : ?><h2><a href="<?php echo $link; ?>"><?php echo $subtitle; ?></a></h2><?php endif; ?>
+                <h1><a href="<?php echo $link; ?>"><?php echo esc_html(get_the_title()); ?></a></h1>
+                <?php if ($subtitle) : ?><h2><a href="<?php echo $link; ?>"><?php echo esc_html($subtitle); ?></a></h2><?php endif; ?>
         </div>
       </div>
     </div>
