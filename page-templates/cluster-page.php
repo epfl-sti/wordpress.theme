@@ -162,72 +162,71 @@ get_header();
 ?>
 
 <article id="post-<?php the_ID(); ?>" class="cluster-page">
-		<header class="sti-textured">
-			<?php the_title( '<h1>', '</h1>' ); ?>
-		</header>
+    <header class="sti-textured">
+        <?php the_title( '<h1>', '</h1>' ); ?>
+    </header>
 
-	    <?php while (have_posts()): the_post(); # The Loop ?>
-		<div class="article-content page-whitebg">
+    <?php while (have_posts()): the_post(); # The Loop ?>
+        <div class="article-content page-whitebg">
+        <?php
+            epflsti_render_featured_image();
+            the_content();
+            wp_link_pages( array(
+                'before' => '<div class="page-links">' . __( 'Pages:', 'epflsti' ),
+                'after'  => '</div>',
+                )
+            );
+            ?>
 
-			<?php
-                          epflsti_render_featured_image();
-                        the_content();
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'epflsti' ),
-				'after'  => '</div>',
-			) );
-			?>
+        <?php if(have_cluster_people()): ?>
+            <h2>People</h2>
+            <?php while (next_item()) {
+                get_template_part('loop-templates/content', 'search');
+            }
+        endif; ?>
 
-                 <?php if(have_cluster_people()): ?>
-                  <h2>People</h2>
-                  <?php while (next_item()) {
-                      get_template_part('loop-templates/content', 'search');
-                  }
-                  endif; ?>
+        <?php if(have_cluster_labs()): ?>
+            <h2>Labs</h2>
+            <?php while (next_item()) {
+                $currentLab = Lab::get($post);
+                echo epflsti_lab_card('', array("lab" => $currentLab));
+                }
+        endif; ?>
 
-                 <?php if(have_cluster_labs()): ?>
-                <?php ?>
-                  <h2>Labs</h2>
-                  <?php while (next_item()) {
-                      $currentLab = Lab::get($post);
-                      echo epflsti_lab_card('', array("lab" => $currentLab));
-                  }
-                  endif; ?>
+        <?php if(have_cluster_news()): ?>
+            <h2>News</h2>
+            <?php while (next_item()) {
+                get_template_part('loop-templates/content', 'search');
+            }
+        endif; ?>
 
-                 <?php if(have_cluster_news()): ?>
-                  <h2>News</h2>
-                  <?php while (next_item()) {
-                      get_template_part('loop-templates/content', 'search');
-                  }
-                  endif; ?>
+        <?php if(have_cluster_events()): ?>
+            <h2>Events</h2>
+            <?php while (next_item()) {
+                get_template_part('loop-templates/content', 'search');
+            }
+        endif; ?>
 
-                 <?php if(have_cluster_events()): ?>
-                  <h2>Events</h2>
-                  <?php while (next_item()) {
-                      get_template_part('loop-templates/content', 'search');
-                  }
-                  endif; ?>
+        <?php if(have_cluster_courses()): ?>
+            <h2>Courses</h2>
+            <?php while (next_item()) {
+                get_template_part('loop-templates/content', 'search');
+            }
+        endif; ?>
 
-                 <?php if(have_cluster_courses()): ?>
-                  <h2>Courses</h2>
-                  <?php while (next_item()) {
-                      get_template_part('loop-templates/content', 'search');
-                  }
-                  endif; ?>
+        <?php if(have_cluster_media()): ?>
+            <h2>Media</h2>
+            <?php while (next_item()) {
+                get_template_part('loop-templates/content', 'search');
+            }
+        endif; ?>
 
-                 <?php if(have_cluster_media()): ?>
-                  <h2>Media</h2>
-                  <?php while (next_item()) {
-                      get_template_part('loop-templates/content', 'search');
-                  }
-                  endif; ?>
+        </div>
+    <?php endwhile; # The Loop ?>
 
-		</div>
-	    <?php endwhile; # The Loop ?>
-
-		<footer>
-			<?php edit_post_link( __( 'Edit', 'epflsti' ), '<span class="edit-link">', '</span>' ); ?>
-		</footer>
+    <footer>
+        <?php edit_post_link( __( 'Edit', 'epflsti' ), '<span class="edit-link">', '</span>' ); ?>
+    </footer>
 </article><!-- #post-## -->
 
 <?php get_footer(); ?>
