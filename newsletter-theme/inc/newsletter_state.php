@@ -151,13 +151,9 @@ abstract class PostQuery
      */
     protected function _get_posts_by_query ($query)
     {
-        $language_hint = null;
-        if (function_exists("pll_current_language")) {
-            $language_hint = \pll_current_language();
-        }
         $categories = array_map(
             function($cat) { return $cat->ID(); },
-            NewsletterSectionCategory::find_all(static::KIND, $language_hint));
+            NewsletterSectionCategory::find_all(static::KIND));
         if (! count($categories)) return;
 
         $criteria = array("category__in" => $categories);
@@ -174,6 +170,7 @@ abstract class PostQuery
         $criteria = array();
         $criteria['post_type'] = $post_type;
         $criteria['posts_per_page'] = $count;
+        $criteria['lang'] = '';
 
         if ($query && $query["s"]) {
             $criteria["s"] = $query["s"];
