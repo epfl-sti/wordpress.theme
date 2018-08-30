@@ -178,25 +178,11 @@ abstract class PostQuery
 
         $posts = get_posts($criteria);
 
-        if (! (function_exists("pll_current_language") &&
-               function_exists("pll_get_post"))) {
-            return $posts;
-        }
+        usort($posts, function($a, $b) {
+            return ($b->ID <=> $a->ID);
+        });
 
-        $posts_of_the_right_language = array();
-        $posts_of_the_wrong_language = array();
-        $this_language = \pll_current_language();
-        foreach ($posts as $post) {
-            $translated_post = \pll_get_post($post->ID, $this_language);
-            if ($translated_post && $translated_post->ID != $post->ID) {
-                array_push($posts_of_the_wrong_language, $post);
-            } else {
-                array_push($posts_of_the_right_language, $post);
-            }
-        }
-
-        return array_merge($posts_of_the_right_language,
-                           $posts_of_the_wrong_language);
+        return $posts;
     }
 
     static function ajax_search ($query)
@@ -252,11 +238,15 @@ class NewsQuery extends PostQuery
 
     protected function _get_posts_by_query ($query)
     {
-        return array_merge(
+        $all_posts = array_merge(
             parent::_get_posts_by_query($query),
             $this->_get_posts_by_post_type("epfl-actu", $query));
         // Note that the behavior degrades nicely if the epfl-ws
         // plugin is not active.
+        usort($all_posts, function($a, $b) {
+            return ($b->ID <=> $a->ID);
+        });
+        return $all_posts;
     }
 
     protected function _post2result ($post)
