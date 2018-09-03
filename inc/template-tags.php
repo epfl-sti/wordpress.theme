@@ -141,6 +141,54 @@ function epflsti_lab_card ($body, $opts)
     return $html;
 }
 
+/**
+ * The template for the [person-card] shortcode (see shortcodes.php)
+ */
+function epflsti_person_card ($body, $opts)
+{
+    if ($person = $opts["person"]) {
+			//var_dump($person);
+        $title    = $person->get_full_name();
+        $link     = $person->get_profile_url();
+        $img_html = "<img src=\"".$person->get_image_url()."\" />";
+        //if (! $body) { $body = $person->get_full_name(); }
+    }
+    // If both $opts["lab"] and individual opts are stipulated,
+    // the latter override the former.
+    //if ($opts["title"]) { $title = $opts["title"]; }
+    if ($opts["href"])  { $link  = $opts["href"]; }
+    if ($img_href = $opts["img"]) {
+        $img_html = "<img src=\"$img_href\" />";
+    }
+
+    // Image is clicky iff we have a link.
+    if ($link) {
+        $img_html = "<a href=\"$link\">$img_html</a>";
+    }
+
+    $html = "<card class=\"sti-lab\">\n";
+    if ($title) {
+        $html .= "<header><h1>$title</h1></header>";
+    }
+    if ($img_html) { $html .= $img_html; }
+    if ($body) {
+        $body_has_link = preg_match("/<a/", $body);
+        $body_has_p = preg_match("/^<p>/", trim($body));
+        if ($body_has_p) {
+            $html .= $body;
+        } else {
+            if ($link && ! $body_has_link) {
+                // Body is only clicky if there aren't any links in it
+                // already.
+                $body = "<a href=\"". $link . "\">$body</a>";
+            }
+            $html .= "<p>$body</p>";
+        }
+    }
+    $html .= "\n</card>\n";
+    return $html;
+}
+
 function epflsti_render_featured_image ($extra_css_classes = "")
 {
     global $post;

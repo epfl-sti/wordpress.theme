@@ -18,9 +18,12 @@ const CLUSTER_TAG_SLUG_META = "cluster_tag_slug";
 require_once(__DIR__ . "/../../../plugins/epfl-ws/Lab.php");
 use \EPFL\WS\Labs\Lab;
 
+require_once(__DIR__ . "/../../../plugins/epfl-ws/Person.php");
+use \EPFL\WS\Persons\Person;
+
 function debug ($message)
 {
-    // error_log($message);
+    error_log($message);
 }
 
 function _get_term_by_slug ($slug)
@@ -181,7 +184,9 @@ get_header();
         <?php if(have_cluster_people()): ?>
             <h2>People</h2>
             <?php while (next_item()) {
-                get_template_part('loop-templates/content', 'search');
+                $currentPerson = Person::get($post);
+                //var_dump($currentPerson);
+                echo epflsti_person_card('',  array("person" => $currentPerson));
             }
         endif; ?>
 
