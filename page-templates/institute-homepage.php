@@ -13,7 +13,7 @@ $container = get_theme_mod( 'epflsti_container_type' );
 require_once(dirname(__FILE__).'/../inc/epfl.php');
 use function \EPFL\STI\get_institute;
 ?>
-
+<!-- epflsti:page-templates/institute-homepage.php -->
 <div class="wrapper" id="page-wrapper">
 
 	<div class="<?php echo esc_attr( $container ); ?>" id="content">

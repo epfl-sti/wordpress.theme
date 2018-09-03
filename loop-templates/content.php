@@ -6,7 +6,7 @@
  */
 
 ?>
-
+<!-- epflsti:loop-templates/content.php -->
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
 <div class="titretromb titretheme whitebg" style="background-color:#fff; border: solid 1px #ccc;">

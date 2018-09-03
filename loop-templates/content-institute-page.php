@@ -6,6 +6,7 @@
  */
 
 ?>
+<!-- epflsti:loop-templates/content-institute-page.php -->
 <article id="post-<?php the_ID(); ?>">
 		<header>
 

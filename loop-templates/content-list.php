@@ -6,6 +6,7 @@
  * @package epflsti
  */
 ?>
+<!-- epflsti:loop-templates/content-list.php -->
 <header class="sti-textured">
   <?php the_title( '<h1>', '</h1>' ); ?>
 </header>

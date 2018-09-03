@@ -21,7 +21,7 @@ $events_label_plural   = tribe_get_event_label_plural();
 $event_id = get_the_ID();
 
 ?>
-
+<!-- epflsti:tribe-events/single-event.php -->
 <div id="tribe-events-content" class="tribe-events-single">
 
 	<p class="tribe-events-back">

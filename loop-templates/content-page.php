@@ -6,6 +6,7 @@
  */
 
 ?>
+<!-- epflsti:loop-templates/content-page.php -->
 <article id="post-<?php the_ID(); ?>" >
 		<header class="sti-textured">
 			<?php the_title( '<h1>', '</h1>' ); ?>

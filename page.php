@@ -16,7 +16,7 @@ $container   = get_theme_mod( 'epflsti_container_type' );
 $sidebar_pos = get_theme_mod( 'epflsti_sidebar_position' );
 
 ?>
-
+<!-- epflsti:page.php -->
 <div class="wrapper" id="page-wrapper">
 
 	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">

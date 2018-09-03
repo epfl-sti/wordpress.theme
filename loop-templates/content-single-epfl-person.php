@@ -76,6 +76,7 @@ foreach ($related_results as $related_result) {
 
 
 ?>
+<!-- epflsti:loop-templates/content-single-epfl-person.php -->
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 
   <header ></header>

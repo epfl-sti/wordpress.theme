@@ -5,8 +5,8 @@
  * @package epflsti
  */
 
+echo "<!-- epflsti:single.php -->";
 get_header();
-
 ?><div class="wrapper" id="single-wrapper"><?php 
 
 while ( have_posts() ) {
