@@ -42,7 +42,7 @@ function epflsti_pagination() {
 		$links[] = $paged + 1;
 	}
 
-	echo '<nav aria-label="Page navigation"><ul class="pagination ">' . "\n";
+	echo '<nav aria-label="Page navigation"><ul class="pagination justify-content-end ">' . "\n";
 
 	/**    Link to first page, plus ellipses if necessary */
 	if ( ! in_array( 1, $links ) ) {
