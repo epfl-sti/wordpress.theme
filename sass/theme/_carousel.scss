@@ -26,7 +26,8 @@
 
         text-align: left;  // Countermand parent
 
-        top: ($sti-carousel-button-distancefromtop + $sti-carousel-button-legend-margin);
+        top: ($sti-carousel-button-distancefromtop + $sti-carousel-button-legend-margin + 5);
+        width: 60%;
 
         font-family: 'Open Sans', sans-serif;
         color: white;
