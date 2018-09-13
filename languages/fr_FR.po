@@ -616,4 +616,8 @@ msgstr ""
 
 #: ../widgets/frontrow.php:67
 msgid "About the _School"
-msgstr "A propos de la _factulé"
+msgstr "A propos de la _Faculté"
+
+#: ../widgets/frontrow.php:49
+msgid "Some _Highlights"
+msgstr "Quelques _Highlights"

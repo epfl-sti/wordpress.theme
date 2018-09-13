@@ -46,7 +46,7 @@ class FrontRow extends \WP_Widget
           </div>
            <?php
         } else {
-            list($firstline, $secondline) = split_on_underscore(___("Research _News"));
+            list($firstline, $secondline) = split_on_underscore(___("Some _Highlights"));
            ?>
           <div class="text-white frontrowtitle">
            <span class="firstline"><?php echo $firstline; ?></span><br /><span class="secondline"><?php echo $secondline; ?></span>
