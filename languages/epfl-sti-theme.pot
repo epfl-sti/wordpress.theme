@@ -33,23 +33,27 @@ msgctxt "white-news"
 msgid "INNOVATION"
 msgstr ""
 
+#. Default menu entry
 #: ../newsletter-theme/inc/newsletter.php:56
 #: ../newsletter-theme/inc/newsletter_state.php:129
 #: ../newsletter-theme/inc/newsletter_state.php:243
 #: ../newsletter-theme/inc/newsletter_section_categories.inc:18
-#: ../widgets/frontrow.php:45
+#: ../widgets/frontrow.php:45 ../inc/stisrv13.php:76
+#: ../newsletter-theme/inc/newsletter_state.php:237
 msgid "News"
 msgstr ""
 
 #: ../newsletter-theme/inc/newsletter.php:61
 #: ../newsletter-theme/inc/newsletter_state.php:141
 #: ../newsletter-theme/inc/newsletter_state.php:276
+#: ../newsletter-theme/inc/newsletter_state.php:274
 msgid "Upcoming events"
 msgstr ""
 
 #: ../newsletter-theme/inc/newsletter.php:66
 #: ../newsletter-theme/inc/newsletter_state.php:148
 #: ../newsletter-theme/inc/newsletter_state.php:292
+#: ../newsletter-theme/inc/newsletter_state.php:290
 msgid "Faculty positions"
 msgstr ""
 
@@ -118,6 +122,7 @@ msgstr ""
 
 #: ../newsletter-theme/inc/newsletter_state.php:161
 #: ../newsletter-theme/inc/newsletter_state.php:299
+#: ../newsletter-theme/inc/newsletter_state.php:297
 msgid "In the media"
 msgstr ""
 
@@ -180,7 +185,7 @@ msgstr ""
 #: ../widgets/frontrow.php:77 ../newsletter-theme/theme.php:317
 #: ../widgets/frontrow.php:94 ../widgets/frontrow.php:100
 #: ../widgets/frontrow.php:98 ../widgets/frontrow.php:104
-#: ../widgets/frontrow.php:99
+#: ../widgets/frontrow.php:99 ../newsletter-theme/theme.php:320
 msgid "EVENTS"
 msgstr ""
 
@@ -197,7 +202,7 @@ msgid ""
 "Shows an input form to subscribe to the EPFL-STI newsletter through e-mail"
 msgstr ""
 
-#: ../inc/epfl.php:154
+#: ../inc/epfl.php:154 ../widgets/faculty-gallery.php:227
 msgid "Mechanical Engineering"
 msgstr ""
 
@@ -281,47 +286,47 @@ msgstr ""
 msgid "Footnote"
 msgstr ""
 
-#: ../newsletter-theme/theme.php:287
+#: ../newsletter-theme/theme.php:287 ../newsletter-theme/theme.php:290
 msgid "OPEN POSITIONS"
 msgstr ""
 
-#: ../newsletter-theme/theme.php:291
+#: ../newsletter-theme/theme.php:291 ../newsletter-theme/theme.php:294
 msgid "No faculty positions yet."
 msgstr ""
 
-#: ../newsletter-theme/theme.php:321
+#: ../newsletter-theme/theme.php:321 ../newsletter-theme/theme.php:324
 msgid "No events yet."
 msgstr ""
 
-#: ../newsletter-theme/theme.php:356
+#: ../newsletter-theme/theme.php:356 ../newsletter-theme/theme.php:359
 msgid "SwissTech Convention Center"
 msgstr ""
 
-#: ../newsletter-theme/theme.php:359
+#: ../newsletter-theme/theme.php:359 ../newsletter-theme/theme.php:362
 msgid "Rolex Learning Center"
 msgstr ""
 
-#: ../newsletter-theme/theme.php:361
+#: ../newsletter-theme/theme.php:361 ../newsletter-theme/theme.php:364
 msgid "Microcity Neuchâtel"
 msgstr ""
 
-#: ../newsletter-theme/theme.php:363
+#: ../newsletter-theme/theme.php:363 ../newsletter-theme/theme.php:366
 msgid "EPFL campus"
 msgstr ""
 
-#: ../newsletter-theme/theme.php:413
+#: ../newsletter-theme/theme.php:413 ../newsletter-theme/theme.php:417
 msgid "IN THE MEDIA"
 msgstr ""
 
-#: ../newsletter-theme/theme.php:417
+#: ../newsletter-theme/theme.php:417 ../newsletter-theme/theme.php:421
 msgid "No media excerpts yet."
 msgstr ""
 
-#: ../newsletter-theme/theme.php:430
+#: ../newsletter-theme/theme.php:430 ../newsletter-theme/theme.php:434
 msgid "Y-m-d"
 msgstr ""
 
-#: ../newsletter-theme/theme.php:454
+#: ../newsletter-theme/theme.php:454 ../newsletter-theme/theme.php:459
 #, php-format
 msgid "%s's lab"
 msgstr ""
@@ -331,20 +336,20 @@ msgstr ""
 msgid "EPFL STI Announcements"
 msgstr ""
 
-#: ../widgets/contact.php:42
+#: ../widgets/contact.php:42 ../widgets/contact.php:46
 msgid "Show snail-mail contact info"
 msgstr ""
 
 #. unique id
-#: ../widgets/faculty-gallery.php:23
+#: ../widgets/faculty-gallery.php:23 ../widgets/faculty-gallery.php:24
 msgid "EPFL Faculty Gallery"
 msgstr ""
 
-#: ../widgets/faculty-gallery.php:26
+#: ../widgets/faculty-gallery.php:26 ../widgets/faculty-gallery.php:27
 msgid "Shows mugshots of faculty members"
 msgstr ""
 
-#: ../widgets/faculty-gallery.php:192
+#: ../widgets/faculty-gallery.php:192 ../widgets/faculty-gallery.php:243
 msgid "Institute:"
 msgstr ""
 
@@ -402,23 +407,23 @@ msgstr ""
 #. Note to translators: the underscore indicates where to split
 #. when displaying in a multiline setting (e.g. in the page
 #. header)
-#: ../inc/epfl.php:157
+#: ../inc/epfl.php:157 ../inc/epfl.php:160
 msgid "Mechanical _Engineering"
 msgstr ""
 
-#: ../inc/epfl.php:158
+#: ../inc/epfl.php:158 ../inc/epfl.php:161
 msgid "Bio_engineering"
 msgstr ""
 
-#: ../inc/epfl.php:159
+#: ../inc/epfl.php:159 ../inc/epfl.php:162
 msgid "Micro_engineering"
 msgstr ""
 
-#: ../inc/epfl.php:160
+#: ../inc/epfl.php:160 ../inc/epfl.php:163
 msgid "Materials _Science"
 msgstr ""
 
-#: ../inc/epfl.php:161
+#: ../inc/epfl.php:161 ../inc/epfl.php:164
 msgid "Electrical _Engineering"
 msgstr ""
 
@@ -429,7 +434,7 @@ msgstr ""
 #. Note to translators: the underscore indicates where to split
 #. when displaying in a multiline setting (e.g. in the page
 #. header)
-#: ../inc/epfl.php:172
+#: ../inc/epfl.php:172 ../inc/epfl.php:175
 msgid "School of _Engineering"
 msgstr ""
 
@@ -451,4 +456,132 @@ msgstr ""
 
 #: ../widgets/frontrow.php:103
 msgid "Upcoming _Events"
+msgstr ""
+
+#: ../inc/wp-admin.php:79
+msgid "Page Template"
+msgstr ""
+
+#. $page_title     =
+#: ../inc/stisrv13.php:65 ../inc/stisrv13.php:77
+msgid "stisrv13 News"
+msgstr ""
+
+#. Like the first menu entry
+#. $menu_title     =
+#: ../inc/stisrv13.php:66
+msgid "stisrv13 Data"
+msgstr ""
+
+#: ../inc/stisrv13.php:103
+msgid "Imported articles permalink table (JSON)"
+msgstr ""
+
+#: ../inc/stisrv13.php:290
+msgid "Submit"
+msgstr ""
+
+#: ../inc/stisrv13.php:312
+#, php-format
+msgid "Category not found (by slug): %s, ignored"
+msgstr ""
+
+#: ../inc/widgets.php:83
+#, php-format
+msgid "%s Footer Left"
+msgstr ""
+
+#: ../inc/widgets.php:87
+#, php-format
+msgid "Widget area shown on the %s footer left "
+msgstr ""
+
+#: ../widgets/faculty-gallery.php:215
+msgid "All Faculty"
+msgstr ""
+
+#: ../widgets/faculty-gallery.php:216
+msgid "Full Professors"
+msgstr ""
+
+#: ../widgets/faculty-gallery.php:217
+msgid "Associate Professors"
+msgstr ""
+
+#: ../widgets/faculty-gallery.php:218
+msgid "Assistant Professors"
+msgstr ""
+
+#: ../widgets/faculty-gallery.php:219
+msgid "Adjunct Professors"
+msgstr ""
+
+#: ../widgets/faculty-gallery.php:220
+msgid "Senior Scientists"
+msgstr ""
+
+#: ../widgets/faculty-gallery.php:224
+msgid "Bioengineering"
+msgstr ""
+
+#: ../widgets/faculty-gallery.php:225
+msgid "Electrical Engineering"
+msgstr ""
+
+#: ../widgets/faculty-gallery.php:226
+msgid "Materials Science"
+msgstr ""
+
+#: ../widgets/faculty-gallery.php:228
+msgid "Microengineering"
+msgstr ""
+
+#: ../widgets/all-clusters.php:23
+msgid "A Cytoscape circle of clusters"
+msgstr ""
+
+#. unique id
+#: ../widgets/white-news-condensed.php:30
+msgid "EPFL STI White News Condensed Row"
+msgstr ""
+
+#: ../widgets/white-news-condensed.php:33
+msgid "Shows a single row of news on white background"
+msgstr ""
+
+#: ../widgets/white-news-condensed.php:44
+#, php-format
+msgid "Title for card #%d:"
+msgstr ""
+
+#: ../widgets/white-news-condensed.php:48
+#, php-format
+msgid "Category for card #%d:"
+msgstr ""
+
+#. unique id
+#: ../widgets/patents.php:26
+msgid "EPFL STI Patents"
+msgstr ""
+
+#: ../widgets/patents.php:29
+msgid ""
+"Shows a list of images, info  and links for patents published by Faculty "
+"members - must send limit (how many to display), can send institute, year, "
+"searchcluster (keyword)"
+msgstr ""
+
+#. unique id
+#: ../widgets/masterthesis.php:26
+msgid "EPFL STI Master Thesis Posters"
+msgstr ""
+
+#: ../widgets/masterthesis.php:29
+msgid ""
+"Shows a list of preview images and links to Completed Master Theses - can "
+"send values for: searchcluster, institute, year"
+msgstr ""
+
+#: ../widgets/frontrow.php:67
+msgid "About the _School"
 msgstr ""

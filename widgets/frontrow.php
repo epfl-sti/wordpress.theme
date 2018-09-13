@@ -64,7 +64,7 @@ class FrontRow extends \WP_Widget
           </div>
           <?php
         } else {
-            list($firstline, $secondline) = get_school_name_parts();
+            list($firstline, $secondline) = split_on_underscore(___("About the _School"));
           ?>
           <div class="text-white frontrowtitle">
            <span class="firstline"><?php echo $firstline; ?></span><br /><span class="secondline"><?php echo $secondline; ?></span>
