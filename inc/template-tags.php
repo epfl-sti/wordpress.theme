@@ -121,6 +121,9 @@ function epflsti_lab_card ($body, $opts)
     $html = "<card class=\"sti-lab\">\n";
     if ($title) {
         $html .= "<header><h1>$title</h1></header>";
+    } else {
+      # TODO: put this in scss
+      $html .= "<header style=\"border-bottom: 4px solid #cc161d;\"></header>";
     }
     if ($img_html) { $html .= $img_html; }
     if ($body) {
