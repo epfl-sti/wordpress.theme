@@ -122,8 +122,8 @@ function epflsti_lab_card ($body, $opts)
     if ($title) {
         $html .= "<header><h1>$title</h1></header>";
     } else {
-      # TODO: put this in scss
-      $html .= "<header style=\"border-bottom: 4px solid #cc161d;\"></header>";
+        // Allow to get the red top border without a title, see _cards.scss "card.sti-lab > header"
+        $html .= "<header></header>";
     }
     if ($img_html) { $html .= $img_html; }
     if ($body) {

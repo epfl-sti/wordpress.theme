@@ -222,9 +222,10 @@ div.sti_centres_header {  // OBSOLETE name
   width: $sti-lab-card-width;
 }
 
-card.sti-lab > header > h1 {
-    border-bottom: 4px solid $theRed;
+card.sti-lab > header {
+  border-bottom: 4px solid $theRed;
 }
+
 .sti_centres_banner {  // OBSOLETE element for the red border at bottom
   height: 7px;
   width: $sti-lab-card-width;
