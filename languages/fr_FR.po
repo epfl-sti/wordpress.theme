@@ -230,6 +230,7 @@ msgid ""
 msgstr ""
 
 #: ../inc/epfl.php:154 ../widgets/faculty-gallery.php:227
+#: ../widgets/faculty-gallery.php:228
 msgid "Mechanical Engineering"
 msgstr "Génie Mécanique"
 
@@ -377,6 +378,7 @@ msgid "Shows mugshots of faculty members"
 msgstr ""
 
 #: ../widgets/faculty-gallery.php:192 ../widgets/faculty-gallery.php:243
+#: ../widgets/faculty-gallery.php:245
 msgid "Institute:"
 msgstr ""
 
@@ -523,50 +525,45 @@ msgstr ""
 msgid "Widget area shown on the %s footer left "
 msgstr ""
 
-#: ../widgets/faculty-gallery.php:215
-#, fuzzy
+#: ../widgets/faculty-gallery.php:215 ../widgets/faculty-gallery.php:212
 msgid "All Faculty"
-msgstr "Corps professoral"
+msgstr "Corps Professoral"
 
-#: ../widgets/faculty-gallery.php:216
+#: ../widgets/faculty-gallery.php:216 ../widgets/faculty-gallery.php:215
 msgid "Full Professors"
-msgstr ""
+msgstr "Professeurs ordinaires"
 
-#: ../widgets/faculty-gallery.php:217
+#: ../widgets/faculty-gallery.php:217 ../widgets/faculty-gallery.php:216
 msgid "Associate Professors"
-msgstr ""
+msgstr "Professeurs associés"
 
-#: ../widgets/faculty-gallery.php:218
+#: ../widgets/faculty-gallery.php:218 ../widgets/faculty-gallery.php:217
 msgid "Assistant Professors"
-msgstr ""
+msgstr "Professeurs assistants tenure track"
 
-#: ../widgets/faculty-gallery.php:219
+#: ../widgets/faculty-gallery.php:219 ../widgets/faculty-gallery.php:218
 msgid "Adjunct Professors"
-msgstr ""
+msgstr "Professeurs titulaires"
 
-#: ../widgets/faculty-gallery.php:220
+#: ../widgets/faculty-gallery.php:220 ../widgets/faculty-gallery.php:219
 msgid "Senior Scientists"
-msgstr ""
+msgstr "Maître d’enseignement et de recherche"
 
-#: ../widgets/faculty-gallery.php:224
-#, fuzzy
+#: ../widgets/faculty-gallery.php:224 ../widgets/faculty-gallery.php:225
 msgid "Bioengineering"
-msgstr "Bio_ingénierie"
+msgstr "Bio ingénierie"
 
-#: ../widgets/faculty-gallery.php:225
-#, fuzzy
+#: ../widgets/faculty-gallery.php:225 ../widgets/faculty-gallery.php:226
 msgid "Electrical Engineering"
-msgstr "Génie _Électrique"
+msgstr "Génie Électrique"
 
-#: ../widgets/faculty-gallery.php:226
-#, fuzzy
+#: ../widgets/faculty-gallery.php:226 ../widgets/faculty-gallery.php:227
 msgid "Materials Science"
-msgstr "Génie des _matériaux"
+msgstr "Génie des matériaux"
 
-#: ../widgets/faculty-gallery.php:228
-#, fuzzy
+#: ../widgets/faculty-gallery.php:228 ../widgets/faculty-gallery.php:229
 msgid "Microengineering"
-msgstr "Micro_technique"
+msgstr "Micro technique"
 
 #: ../widgets/all-clusters.php:23
 msgid "A Cytoscape circle of clusters"

@@ -202,34 +202,36 @@ $(function() {
 
 </script>
 
-<style type="text/css">
-</style>
-
-    <div class="container">
-      <div class="row row-offcanvas row-offcanvas-right">
-        <div class="sti-faculty-trombinoscope col-12 col-md-9">
-          <div class="row" id="<?php echo $div_id; ?>">&nbsp;</div>
+  <div class="container">
+    <div class="row row-offcanvas row-offcanvas-right">
+      <div class="sti-faculty-trombinoscope col-12 col-md-9">
+        <div class="row" id="<?php echo $div_id; ?>">&nbsp;</div>
+      </div>
+      <div class="sti-faculty-sort d-none d-md-block col-md-3">
+        <div class="toggles-rank">
+          <a href="#" onClick="javascript:return resetDirectoryForm();" id="all"><?php echo ___("All Faculty"); ?></a>
+          <br />
+          <br />
+          <a href="#" class="togglable" id="PO"><input type="checkbox"> <?php echo ___("Full Professors"); ?></a>
+          <a href="#" class="togglable" id="PA"><input type="checkbox"> <?php echo ___("Associate Professors"); ?></a>
+          <a href="#" class="togglable" id="PATT"><input type="checkbox"> <?php echo ___("Assistant Professors"); ?></a>
+          <a href="#" class="togglable" id="PT"><input type="checkbox"> <?php echo ___("Adjunct Professors"); ?></a>
+          <a href="#" class="togglable" id="MER"><input type="checkbox"> <?php echo ___("Senior Scientists"); ?></a>
         </div>
-        <div class="sti-faculty-sort d-none d-md-block col-md-3">
-         <div class="toggles-rank">
-          <a href="#" onClick="javascript:return resetDirectoryForm();" id="all"><?php echo ___("All Faculty"); ?></a><br><br>
-          <a href="#" class="togglable" id="PO"><input type=checkbox> <?php echo __x("Full Professors",      "faculty gallery widget");?>
-          <a href="#" class="togglable" id="PA"><input type=checkbox> <?php    echo __x("Associate Professors", "faculty gallery widget");?></a>
-          <a href="#" class="togglable" id="PATT"><input type=checkbox> <?php  echo __x("Assistant Professors", "faculty gallery widget");?></a>
-          <a href="#" class="togglable" id="PT"><input type=checkbox> <?php    echo __x("Adjunct Professors",   "faculty gallery widget");?></a>
-          <a href="#" class="togglable" id="MER"><input type=checkbox> <?php   echo __x("Senior Scientists",    "faculty gallery widget");?></a>
-         </div><br><br>
-       <?php if (! $institute): ?>
-         <div class="toggles-institute">
-          <a href="#" class="togglable" id="IBI2"><input type=checkbox> <?php  echo __x("Bioengineering",         "faculty gallery widget");?></a>
-          <a href="#" class="togglable" id="IEL"><input type=checkbox> <?php   echo __x("Electrical Engineering", "faculty gallery widget");?></a>
-          <a href="#" class="togglable" id="IMX"><input type=checkbox> <?php   echo __x("Materials Science",      "faculty gallery widget");?></a>
-          <a href="#" class="togglable" id="IGM"><input type=checkbox> <?php   echo __x("Mechanical Engineering", "faculty gallery widget");?></a>
-          <a href="#" class="togglable" id="IMT"><input type=checkbox> <?php   echo __x("Microengineering",       "faculty gallery widget");?></a>
-         </div>
-       <?php endif; ?>
+        <br />
+        <br />
+        <?php if (! $institute): ?>
+        <div class="toggles-institute">
+          <a href="#" class="togglable" id="IBI2"><input type="checkbox"> <?php echo ___("Bioengineering"); ?></a>
+          <a href="#" class="togglable" id="IEL"><input type="checkbox"> <?php echo ___("Electrical Engineering"); ?></a>
+          <a href="#" class="togglable" id="IMX"><input type="checkbox"> <?php echo ___("Materials Science"); ?></a>
+          <a href="#" class="togglable" id="IGM"><input type="checkbox"> <?php echo ___("Mechanical Engineering"); ?></a>
+          <a href="#" class="togglable" id="IMT"><input type="checkbox"> <?php echo ___("Microengineering"); ?></a>
+        </div>
+        <?php endif; ?>
       </div>
     </div>
+  </div>
 </directory>
 <?php
 
