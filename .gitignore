@@ -28,3 +28,6 @@ npm-debug.log
 
 # Created by Gulp
 assets/
+
+# Translation files
+languages/*.po~
