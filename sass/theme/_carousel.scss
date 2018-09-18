@@ -88,8 +88,8 @@
 
 #redwave {
   pointer-events: none;  // Can click through the wave
-
-  height: 0px;
+  height: 3px;
+  margin-top: 5px;
 
   img {
     display: block;
