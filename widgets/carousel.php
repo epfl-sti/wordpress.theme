@@ -76,7 +76,7 @@ class Carousel extends \WP_Widget
  </div>
  <?php # The wave must be outside the carousel, so as not to be clipped. ?>
  <div id="redwave">
-  <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/waving.png">
+  <img src="<?php echo get_stylesheet_directory_uri(); ?>/img/waving3.png">
  </div>
  <a class="sti-carousel-button prev" href="#carousel" role="button" data-slide="prev">
   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
