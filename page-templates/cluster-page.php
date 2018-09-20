@@ -37,7 +37,7 @@ function _get_term_by_slug ($slug)
     if (! $slug) return null;
     // Caution: this assumes that all relevant post types have
     // Polylang turned on.
-    return get_term_by('slug', $slug, 'post_tag');
+    #return get_term_by('slug', $slug, 'post_tag');
 
     // We can't just
     //
@@ -58,6 +58,8 @@ function _get_term_by_slug ($slug)
         //'lang'            => \EPFL\STI::get_current_language()
         'lang'            => get_current_language()
     ));
+    // get_terms() can return more that a item (https://developer.wordpress.org/reference/functions/get_terms/)
+    return (isset($term_array[0]->term_id)) ? $term_array[0] : $term_array;
 }
 
 function _get_cluster_tag ()
