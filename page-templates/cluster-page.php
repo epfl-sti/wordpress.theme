@@ -81,6 +81,7 @@ function _wpquery ($additional_wp_query_params)
         // https://wordpress.stackexchange.com/a/140727/132235
         return new \WP_Query(array('post__in' => array(0)));
     }
+    // debug ("Cluser tag: " . var_export($cluster_tag, true));
     $query_params = array_merge(
         array(
             "tag_id"         => $cluster_tag->term_id,
