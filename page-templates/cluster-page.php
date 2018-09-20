@@ -15,6 +15,9 @@ namespace EPFL\STI\ClusterPage;
 
 const CLUSTER_TAG_SLUG_META = "cluster_tag_slug";
 
+require_once(dirname(__DIR__) . "/inc/i18n.php");
+use function \EPFL\STI\Theme\___;
+
 require_once(__DIR__ . "/../../../plugins/epfl-ws/Lab.php");
 use \EPFL\WS\Labs\Lab;
 
@@ -181,8 +184,8 @@ get_header();
             );
             ?>
 
-        <?php if(have_cluster_people()): ?>
-            <h2>People</h2>
+        <?php if (have_cluster_people()): ?>
+            <h2><?= ___("People related to this cluster", "epfl-sti-cluster-page"); ?></h2>
             <?php while (next_item()) {
                 $currentPerson = Person::get($post);
                 //var_dump($currentPerson);
@@ -190,37 +193,37 @@ get_header();
             }
         endif; ?>
 
-        <?php if(have_cluster_labs()): ?>
-            <h2>Labs</h2>
+        <?php if (have_cluster_labs()): ?>
+            <h2><?= ___("Units related to this cluster", "epfl-sti-cluster-page"); ?></h2>
             <?php while (next_item()) {
                 $currentLab = Lab::get($post);
                 echo epflsti_lab_card('', array("lab" => $currentLab));
                 }
         endif; ?>
 
-        <?php if(have_cluster_news()): ?>
-            <h2>News</h2>
+        <?php if (have_cluster_news()): ?>
+            <h2><?= ___("News related to this cluster", "epfl-sti-cluster-page"); ?></h2>
             <?php while (next_item()) {
                 get_template_part('loop-templates/content', 'search');
             }
         endif; ?>
 
-        <?php if(have_cluster_events()): ?>
-            <h2>Events</h2>
+        <?php if (have_cluster_events()): ?>
+            <h2><?= ___("Events related to this cluster", "epfl-sti-cluster-page"); ?></h2>
             <?php while (next_item()) {
                 get_template_part('loop-templates/content', 'search');
             }
         endif; ?>
 
-        <?php if(have_cluster_courses()): ?>
-            <h2>Courses</h2>
+        <?php if (have_cluster_courses()): ?>
+            <h2><?= ___("Courses related to this cluster", "epfl-sti-cluster-page"); ?></h2>
             <?php while (next_item()) {
                 get_template_part('loop-templates/content', 'search');
             }
         endif; ?>
 
-        <?php if(have_cluster_media()): ?>
-            <h2>Media</h2>
+        <?php if (have_cluster_media()): ?>
+            <h2><?= ___("Media related to this cluster", "epfl-sti-cluster-page"); ?></h2>
             <?php while (next_item()) {
                 get_template_part('loop-templates/content', 'search');
             }
