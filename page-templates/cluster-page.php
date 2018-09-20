@@ -175,7 +175,15 @@ get_header();
 
 <article id="post-<?php the_ID(); ?>" class="cluster-page">
     <header class="sti-textured">
-        <?php the_title( '<h1>', '</h1>' ); ?>
+        <?php
+        // If the tag name is set (+ the according custom field "cluster_tag_slug")
+        // we display it as the title. Otherwise, let's use the default WP one.
+        if (_get_cluster_tag()->name):
+            echo "<h1>" . _get_cluster_tag()->name . " #cluster</h1>";
+        else:
+            echo the_title( '<h1>', '</h1>' );
+        endif;
+        ?>
     </header>
 
     <?php while (have_posts()): the_post(); # The Loop ?>
