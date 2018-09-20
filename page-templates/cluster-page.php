@@ -18,6 +18,9 @@ const CLUSTER_TAG_SLUG_META = "cluster_tag_slug";
 require_once(dirname(__DIR__) . "/inc/i18n.php");
 use function \EPFL\STI\Theme\___;
 
+require_once(__DIR__ . "/../inc/epfl.php");
+use function \EPFL\STI\get_current_language;
+
 require_once(__DIR__ . "/../../../plugins/epfl-ws/Lab.php");
 use \EPFL\WS\Labs\Lab;
 
@@ -52,7 +55,8 @@ function _get_term_by_slug ($slug)
         'slug'            => $slug,
         'suppress_filter' => true,
         // Rein in Polylang request filtering
-        'lang'            => false
+        //'lang'            => \EPFL\STI::get_current_language()
+        'lang'            => get_current_language()
     ));
 }
 
