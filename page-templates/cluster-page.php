@@ -138,8 +138,12 @@ function have_cluster_courses ()
 
 function have_cluster_media ()
 {
+    // We have to define *media*: attachement are not taggable while not attached 
+    // to a relevant post or page. See https://wordpress.stackexchange.com/questions/104024/how-to-fetch-all-videos-in-custom-page-which-uploaded-in-wp-admin-media-in-wor
+    // Up to now, let's say there is no media returned  here....
+    return false;
     return _have_cluster_items(array(
-        "post_type" => "post",
+        "post_type" => "attachment", //"post",
         "tax_query" => array(array(
             'taxonomy' => 'post_format',
             'operator' => 'NOT IN',
