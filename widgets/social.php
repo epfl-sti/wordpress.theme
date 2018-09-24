@@ -35,12 +35,11 @@ class Social extends \WP_Widget
     echo $args['before_widget']; ?>
     <div class="widget epfl-sti-social">
       <div itemscope itemtype="https://schema.org/ContactPoint">
-        <a href="mailto:secretariat.sti@epfl.ch" class="epfl-sti-social-item" target="_blank" title="email: STI Secretary Officel"><i class="fas fa-2x fa-envelope-square"></i></a>
-        <a href="https://twitter.com/epfl_sti" class="epfl-sti-social-item" target="_blank" title="EPFL STI Twitter"><i class="fab fa-2x fa-twitter-square"></i></a>
-        <a href="https://plus.google.com/epfl_sti" class="epfl-sti-social-item" target="_blank" title="EPFL STI Google plus"><i class="fab fa-2x fa-google-plus-square"></i></a>
-        <a href="https://instagram.com/epfl_sti" class="epfl-sti-social-item" target="_blank" title="EPFL STI Instagram"><i class="fab fa-2x fa-instagram"></i></a>
-        <a href="https://facebook.com/epfl_sti" class="epfl-sti-social-item" target="_blank" title="EPFL STI Facebook"><i class="fab fa-2x fa-facebook-square"></i></a>
-        <a href="https://youtube.com/epfl_sti" class="epfl-sti-social-item" target="_blank" title="EPFL STI Youtube"><i class="fab fa-2x fa-youtube"></i></a>
+        <a href="mailto:dean.sti@epfl.ch" class="epfl-sti-social-item" target="_blank" title="email: STI Secretary Officel"><i class="fas fa-2x fa-envelope-square"></i></a>
+        <a href="https://twitter.com/EPFLEngineering" class="epfl-sti-social-item" target="_blank" title="EPFL STI Twitter"><i class="fab fa-2x fa-twitter-square"></i></a>
+        <a href="https://www.instagram.com/epflengineering" class="epfl-sti-social-item" target="_blank" title="EPFL STI Instagram"><i class="fab fa-2x fa-instagram"></i></a>
+        <a href="https://www.facebook.com/EPFLSchoolofengineering/" class="epfl-sti-social-item" target="_blank" title="EPFL STI Facebook"><i class="fab fa-2x fa-facebook-square"></i></a>
+        <a href="https://www.youtube.com/channel/UClRvvRv3MFaLbvoV8TlbClQ" class="epfl-sti-social-item" target="_blank" title="EPFL STI Youtube"><i class="fab fa-2x fa-youtube"></i></a>
       </div>
     </div>
     <?php
