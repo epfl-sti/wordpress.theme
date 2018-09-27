@@ -198,10 +198,6 @@ class FrontRow extends \WP_Widget
     <div class="frontrow container">
       <div class="row no-gutters">
         <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
-            <!--
-            NBO2018
-            <?php $this->getActuFromPost(); ?>
-            -->
          <?php $this->render_header_1(); ?>
           <?php
             $this->getActuFromPost(215, $this->get_max_actu_count());
