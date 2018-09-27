@@ -169,13 +169,6 @@ class FrontRow extends \WP_Widget
     public function getActuFromPost($category_ID=215, $limit=3) {
         GLOBAL $post;
 
-        // We assume you have polylang, otherwise you will get the lang linked 
-        // to the category ID.
-        if (function_exists('pll_get_term')) {
-            // https://stackoverflow.com/questions/44672543/get-posts-by-category-and-language-using-polylang
-            //get_current_language()
-            //pll_get_term($category_ID, $slug);
-        }
         $args = array(
                 'post_type' => 'epfl-actu',
                 'orderby' => 'post_date',
