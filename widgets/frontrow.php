@@ -163,6 +163,39 @@ class FrontRow extends \WP_Widget
             return get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=4);
         }
     }
+    // TODO
+    /* Here we want to get X cutom_post_type "actu" in the wanted category (WP_CATEGORY_POST_ACTU) */
+    public function getActuFromPost($category_ID=215, $limit=3) {
+
+        // We assume you have polylang, otherwise you will get the lang linked 
+        // to the category ID.
+        if (function_exists('pll_get_term')) {
+            // https://stackoverflow.com/questions/44672543/get-posts-by-category-and-language-using-polylang
+            //get_current_language()
+            //pll_get_term($category_ID, $slug);
+        }
+        $args = array(
+                'post_type' => 'epfl-actu',
+                'orderby' => 'post_date',
+                'order' => 'DESC',
+                'cat' => $category_ID,
+                //'post_limits' => $limit,
+                'posts_per_page' => $limit
+        );
+        GLOBAL $post;
+        $the_query = new \WP_Query($args);
+        if($the_query->have_posts()):
+            while($the_query->have_posts()): $the_query->the_post();
+                echo "\t<div class=\"frontrownews zoomy\" style=\"background-image:url('" . get_post_meta( $post->ID, 'epfl_external_thumbnail', true ) . "');\">\n";
+                echo "\t\t<a class=\"whitelink\" href=\"" . get_post_meta( $post->ID, 'absolute_slug', true ) . "\">\n";
+                echo "\t\t\t<div class=\"frontrownewstitle\">\n";
+                echo "\t\t\t\t" . the_title() . "\n";
+                echo "\t\t\t</div>\n";
+                echo "\t\t</a>\n";
+                echo "\t</div>\n";
+            endwhile;
+        endif;
+    }
 
   public function widget($args, $config)
   {
@@ -172,21 +205,27 @@ class FrontRow extends \WP_Widget
     <div class="frontrow container">
       <div class="row no-gutters">
         <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
+            <!--
+            NBO2018
+            <?php $this->getActuFromPost(); ?>
+            -->
          <?php $this->render_header_1(); ?>
           <?php
-            $actu_sti_research = get_news_from_actu($this->get_actu_research_url());
-            foreach ($actu_sti_research as $actu) {
-                if ($x<=$this->get_max_actu_count()) {
-                    echo '<div class="frontrownews zoomy" style="background-image:url(' . $actu->visual_url . ');">';
-                    echo '  <a class="whitelink" href="' . $actu->news_url . '">';
-                    echo '    <div class="frontrownewstitle">';
-                    echo         $actu->title;
-                    echo '    </div>';
-                    echo '  </a>';
-                    echo '</div>';
-                }
-                $x++;
-            } ?>
+            $this->getActuFromPost(215, $this->get_max_actu_count());
+            // $actu_sti_research = get_news_from_actu($this->get_actu_research_url());
+            // foreach ($actu_sti_research as $actu) {
+            //     if ($x<=$this->get_max_actu_count()) {
+            //         echo '<div class="frontrownews zoomy" style="background-image:url(' . $actu->visual_url . ');">'."\n";
+            //         echo '  <a class="whitelink" href="' . $actu->news_url . '">'."\n";
+            //         echo '    <div class="frontrownewstitle">'."\n";
+            //         echo         $actu->title;
+            //         echo '    </div>'."\n";
+            //         echo '  </a>'."\n";
+            //         echo '</div>'."\n";
+            //     }
+            //     $x++;
+            // }
+          ?>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
           <?php
