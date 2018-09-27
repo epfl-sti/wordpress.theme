@@ -141,11 +141,12 @@ class FrontRow extends \WP_Widget
 
     public function get_max_actu_count ()
     {
-        if ($this->institute) {
-            return 3;
-        } else {
-            return 4;
-        }
+        return 3;
+        // if ($this->institute) {
+        //     return 3;
+        // } else {
+        //     return 4;
+        // }
     }
 
     public function get_actu_research_url ()
