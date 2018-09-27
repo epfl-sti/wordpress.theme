@@ -164,7 +164,7 @@ class FrontRow extends \WP_Widget
             return get_events_from_memento($url='https://memento.epfl.ch/api/jahia/mementos/sti/events/en/?category=CONF&format=json', $limit=4);
         }
     }
-    // TODO
+
     /* Here we want to get X cutom_post_type "actu" in the wanted category (WP_CATEGORY_POST_ACTU) */
     public function getActuFromPost($category_ID=215, $limit=3) {
         GLOBAL $post;
@@ -179,6 +179,7 @@ class FrontRow extends \WP_Widget
         $the_query = new \WP_Query($args);
         if($the_query->have_posts()):
             while($the_query->have_posts()): $the_query->the_post();
+            // TODO; for now we are getting the image from actu in its thumbnail for, but it would bbe better to get it in a bigger way
                 echo "\t<div class=\"frontrownews zoomy\" style=\"background-image:url('" . get_post_meta( $post->ID, 'epfl_external_thumbnail', true ) . "');\">\n";
                 echo "\t\t<a class=\"whitelink\" href=\"" . get_post_meta( $post->ID, 'absolute_slug', true ) . "\">\n";
                 echo "\t\t\t<div class=\"frontrownewstitle\">\n";
