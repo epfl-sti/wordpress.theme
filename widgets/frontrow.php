@@ -200,20 +200,7 @@ class FrontRow extends \WP_Widget
         <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
          <?php $this->render_header_1(); ?>
           <?php
-            $this->getActuFromPost(215, $this->get_max_actu_count());
-            // $actu_sti_research = get_news_from_actu($this->get_actu_research_url());
-            // foreach ($actu_sti_research as $actu) {
-            //     if ($x<=$this->get_max_actu_count()) {
-            //         echo '<div class="frontrownews zoomy" style="background-image:url(' . $actu->visual_url . ');">'."\n";
-            //         echo '  <a class="whitelink" href="' . $actu->news_url . '">'."\n";
-            //         echo '    <div class="frontrownewstitle">'."\n";
-            //         echo         $actu->title;
-            //         echo '    </div>'."\n";
-            //         echo '  </a>'."\n";
-            //         echo '</div>'."\n";
-            //     }
-            //     $x++;
-            // }
+            $this->getActuFromPost($config['cat'], $this->get_max_actu_count());
           ?>
         </div>
         <div class="col-xl-3 col-lg-3 col-md-6 frontrowcol">
@@ -274,6 +261,42 @@ class FrontRow extends \WP_Widget
     <?php
     echo $args['after_widget'];
   }  // public function widget
+  
+    /**
+     * Outputs the options form on admin
+     *
+     * @param array $instance The widget options
+     */
+    public function form( $instance ) {
+        ?>
+        <p>
+            <label for="<?php echo esc_attr( $this->get_field_id( 'cat' ) ); ?>"><?php esc_attr_e( 'Actu category:', 'text_domain' ); ?></label> 
+            <?php wp_dropdown_categories( array(
+                      'show_option_none' => __( 'Select category', 'textdomain' ), 
+                      'name' => $this->get_field_name( 'cat' ),
+                      'selected' => $instance['cat']
+                      ) 
+                  ); 
+            ?>
+        </p>
+        <?php
+    }
+
+    /**
+     * Processing widget options on save
+     *
+     * @param array $new_instance The new options
+     * @param array $old_instance The previous options
+     *
+     * @return array
+     */
+    public function update( $new_instance, $old_instance ) {
+        // processes widget options to be saved
+        $instance = array();
+        $instance['cat'] = ( ! empty( $new_instance['cat'] ) ) ? sanitize_text_field( $new_instance['cat'] ) : '';
+
+        return $instance;    
+    }
 }
 
 register_widget(FrontRow::class);
