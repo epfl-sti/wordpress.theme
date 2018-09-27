@@ -170,12 +170,11 @@ class FrontRow extends \WP_Widget
         GLOBAL $post;
 
         $args = array(
-                'post_type' => 'epfl-actu',
-                'orderby' => 'post_date',
-                'order' => 'DESC',
-                'cat' => $category_ID,
-                //'post_limits' => $limit,
-                'posts_per_page' => $limit
+            'post_type' => 'epfl-actu',
+            'orderby' => 'post_date',
+            'order' => 'DESC',
+            'cat' => $category_ID,
+            'posts_per_page' => $limit
         );
         $the_query = new \WP_Query($args);
         if($the_query->have_posts()):
