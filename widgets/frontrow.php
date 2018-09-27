@@ -174,8 +174,15 @@ class FrontRow extends \WP_Widget
         $the_query = new \WP_Query($args);
         if($the_query->have_posts()):
             while($the_query->have_posts()): $the_query->the_post();
-                // TODO; for now we are getting the image from actu in its thumbnail for, but it would bbe better to get it in a bigger way
-                echo "\t<div class=\"frontrownews zoomy\" style=\"background-image:url('" . get_post_meta( $post->ID, 'epfl_external_thumbnail', true ) . "');\">\n";
+                // → https://actu.epfl.ch/image/67650/324x182.jpg instead of https://actu.epfl.ch/image/67650/160x90.jpg. the_post_thumbnail("full") is too big
+                //echo "\t<div class=\"frontrownews zoomy\" style=\"background-image:url('" . get_post_meta( $post->ID, 'epfl_external_thumbnail', true ) . "');\">\n";
+                //echo "\t<div class=\"frontrownews zoomy\" style=\"background-image:url('" . the_post_thumbnail("full") . "');\">\n";
+                // json_bkp -> "news_visual_absolute_url":"https://actu.epfl.ch/image/63237/324x182.jpg",
+                // So, the json_bkp is malformatted and there no way to get the news_visual_absolute_url.
+                // Let's do it the ugly way for now:
+                $ext_thumb = get_post_meta( $post->ID, 'epfl_external_thumbnail', true );
+                $img_url = substr($ext_thumb, 0, strrpos($ext_thumb, '/')+1) . "324x182.jpg";
+                echo "\t<div class=\"frontrownews zoomy\" style=\"background-image:url('" . $img_url . "');\">\n";
                 echo "\t\t<a class=\"whitelink\" href=\"" . get_post_meta( $post->ID, 'absolute_slug', true ) . "\">\n";
                 echo "\t\t\t<div class=\"frontrownewstitle\">\n";
                 echo "\t\t\t\t" . the_title() . "\n";
