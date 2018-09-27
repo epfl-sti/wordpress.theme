@@ -167,6 +167,7 @@ class FrontRow extends \WP_Widget
     // TODO
     /* Here we want to get X cutom_post_type "actu" in the wanted category (WP_CATEGORY_POST_ACTU) */
     public function getActuFromPost($category_ID=215, $limit=3) {
+        GLOBAL $post;
 
         // We assume you have polylang, otherwise you will get the lang linked 
         // to the category ID.
@@ -183,7 +184,6 @@ class FrontRow extends \WP_Widget
                 //'post_limits' => $limit,
                 'posts_per_page' => $limit
         );
-        GLOBAL $post;
         $the_query = new \WP_Query($args);
         if($the_query->have_posts()):
             while($the_query->have_posts()): $the_query->the_post();
