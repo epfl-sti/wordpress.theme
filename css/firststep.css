@@ -1,23 +1,3 @@
-a {
-  font-weight: bold;
-}
-
-body {
-  background-color: #ccc !important;
-}
-
-.educationbg {
-  background-color: #f5f5f5;
-}
-
-.researchbg {
-  background-color: #ddd;
-}
-
-.innovationbg {
-  background-color: #bbb;
-}
-
 .width-main-listoflinks {
  max-width: 1200px;
 }
@@ -25,23 +5,6 @@ body {
 .entry-body {
  padding-left: 10px;
  padding-top: 10px;
-}
-
-.whitenewsmore {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-}
-
-.whitelink, .whitelink:visited {
-  color: #fff;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.whitelink:hover {
-  color: #cccccc;
-  text-decoration: none;
 }
 
 div.news {

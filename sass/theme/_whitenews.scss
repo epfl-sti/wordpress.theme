@@ -15,6 +15,29 @@
       margin: 0;
       padding: 2px 5px 0px 12px;
     }
+    .educationbg {
+      background-color: #f5f5f5;
+    }
+    .researchbg {
+      background-color: #ddd;
+    }
+    .innovationbg {
+      background-color: #bbb;
+    }
+    .whitenewsmore {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+    .whitelink, .whitelink:visited {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .whitelink:hover {
+      color: #cccccc;
+      text-decoration: none;
+    }
   }
 
   .secondarycontainer {
