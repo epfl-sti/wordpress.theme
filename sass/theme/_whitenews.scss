@@ -5,7 +5,7 @@
 .whitenews {
   margin: 10pt 0pt;
   .container {
-    max-width: 1090px;
+    max-width: 1152px;    /* was max-width: 1090px;*/
     padding: 15px;
     background-color: white;
     h1 {
@@ -33,7 +33,7 @@
     width: 320px;
     height: 400px;
     position: relative;
-    margin: 15px;
+    margin: 27px; /* was margin: 15px; */
     border: black 1px solid;
     >a:first-child>div {
       width: 318px;

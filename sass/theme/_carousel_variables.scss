@@ -18,7 +18,7 @@ $sti-carousel-sm-legend-margin: 190px;
 $sti-carousel-sm-legend-margin-small: 170px;
 
 $carousel-controls-toosmall: 350px;
-$carousel-container-max-height: 400px;
+$carousel-container-max-height: 100%; /* was $carousel-container-max-height: 400px; */
 
 $carousel-institute-container-max-height: 360px;
 $carousel-institute-legend-position-top: 65%;

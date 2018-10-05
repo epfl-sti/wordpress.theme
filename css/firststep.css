@@ -21,28 +21,3 @@ div.news {
   top: 240px;
   z-index: 4;
 }
-
-.whitenews .container {
-    max-width: 1152px;
-}
-
-.whitenews .secondarycontainer {
-
-    margin: 27px;
-}
-
-
-.footer {
-
-    margin-top: 0px;
-}
-
-input {
-    font-size: 12px;
-    border-radius: 5px;
-    width: 150px;
-    height: 25px;
-}
-#carousel {
-    max-height: 100%;
-}
