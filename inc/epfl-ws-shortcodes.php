@@ -98,11 +98,11 @@ add_filter("epfl_shortcode_actu_list_html_item", function ($unused_html, $unused
           </div>
           <div class=\"col-md-10 actu-item-content\">
             " . $item->subtitle . "
-            <div class=\"actu-authors text-right font-italic\">
+            <!-- <div class=\"actu-authors text-right font-italic\">
             " . renderAuthors($item->authors) . "
             </div>
             <span class=\"float-right\"><a href=\"" . $item->news_url . "\">Read more</a></span>
-            <!-- <a href=\"#\" title=\"Channel: " . $item->channel->name  . ", Category: " . $item->category->en_label . "\"><i class=\"fas fa-tags\"></i></a> -->
+            <a href=\"#\" title=\"Channel: " . $item->channel->name  . ", Category: " . $item->category->en_label . "\"><i class=\"fas fa-tags\"></i></a> -->
           </div>
         </div>
       </div>
