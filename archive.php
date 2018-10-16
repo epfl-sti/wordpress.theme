@@ -20,55 +20,61 @@ $container   = get_theme_mod( 'epflsti_container_type' );
 $sidebar_pos = get_theme_mod( 'epflsti_sidebar_position' );
 ?>
 <!-- epflsti:archive.php -->
+<div class="container wrapper" id="archive-wrapper">
 
-<div class="wrapper" id="archive-wrapper">
-
-	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">
-
-		<div class="row">
-
-			<main class="site-main" id="main">
+	<div class="row">
+		<div class="col-md-12">
+			<main class="list-main" id="list-main" role="main">
 
 				<?php if ( have_posts() ) : ?>
 
-					<header class="page-header">
+					<header class="sti-textured page-header">
 						<?php
 						the_archive_title( '<h1 class="page-title">', '</h1>' );
-						the_archive_description( '<div class="taxonomy-description">', '</div>' );
 						?>
 					</header><!-- .page-header -->
-
-					<?php /* Start the Loop */ ?>
-					<?php while ( have_posts() ) : the_post(); ?>
-
+					
+					<div class="epfl-shortcode-list epfl-shortcode-actu has-results">
 						<?php
-
-						/*
-						 * Include the Post-Format-specific template for the content.
-						 * If you want to override this in a child theme, then include a file
-						 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-						 */
-						get_template_part( 'loop-templates/content', get_post_format() );
+							the_archive_description( '<div class="taxonomy-description"><p class="archive-description">', '</p></div>' );
 						?>
 
-					<?php endwhile; ?>
+						<?php /* Start the Loop */ ?>
+						<?php while ( have_posts() ) : the_post(); ?>
+
+							<?php
+							/*
+							 * Include the Post-Format-specific template for the content.
+							 * If you want to override this in a child theme, then include a file
+							 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+							 */
+							 echo "<!-- TEMPLATE ARCHIVE POST FORMAT: " . get_post_format() . "-->";
+							//get_template_part( 'loop-templates/content', get_post_format() );
+
+							//get_template_part( 'loop-templates/content', get_post_format() );
+							get_template_part( 'loop-templates/content', 'archive' );
+							?>
+
+						<?php endwhile; ?>
+					</div>
 
 				<?php else : ?>
 
+					<!-- TEMPLATE ARCHIVE POST FORMAT:  none -->
 					<?php get_template_part( 'loop-templates/content', 'none' ); ?>
 
 				<?php endif; ?>
 
 			</main><!-- #main -->
 
-			<!-- The pagination component -->
+		</div> <!-- col-md -->
+		
+		<!-- The pagination component -->
+		<div class="col-md-12">
 			<?php epflsti_pagination(); ?>
+		</div>
 
-		</div><!-- #primary -->
-
-	</div> <!-- .row -->
-
-</div><!-- Container end -->
+	</div><!-- .row -->
 
 </div><!-- Wrapper end -->
 
