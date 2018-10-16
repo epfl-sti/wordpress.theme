@@ -61,4 +61,4 @@
 
 	</footer>
 
-</article><!-- #post-## -->
+</article><!-- end of epflsti:loop-templates/content.php -->

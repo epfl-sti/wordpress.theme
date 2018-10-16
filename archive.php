@@ -19,6 +19,7 @@ get_header();
 $container   = get_theme_mod( 'epflsti_container_type' );
 $sidebar_pos = get_theme_mod( 'epflsti_sidebar_position' );
 ?>
+<!-- epflsti:archive.php -->
 
 <div class="wrapper" id="archive-wrapper">
 

@@ -10,6 +10,7 @@
 require_once(dirname(__FILE__).'/inc/epfl.php');
 use function \EPFL\STI\get_institute;
 ?>
+  <!-- epflsti:footer.php -->
   <div class="footer">
     <div class="container">
       <div class="row">

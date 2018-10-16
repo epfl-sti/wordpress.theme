@@ -12,7 +12,7 @@ $container   = get_theme_mod( 'epflsti_container_type' );
 $sidebar_pos = get_theme_mod( 'epflsti_sidebar_position' );
 ?>
 
-
+<!-- epflsti:author.php -->
 <div class="wrapper" id="author-wrapper">
 
 	<div class="<?php echo esc_attr( $container ); ?>" id="content" tabindex="-1">

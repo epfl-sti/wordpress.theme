@@ -17,7 +17,7 @@ if ( post_password_required() ) {
 	return;
 }
 ?>
-
+<!-- epflsti:comments.php -->
 <div class="comments-area" id="comments">
 
 	<?php // You can start editing here -- including this comment! ?>
