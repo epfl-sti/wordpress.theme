@@ -124,7 +124,7 @@ class Contact extends \WP_Widget
             <span itemprop="addressLocality"><?php echo $addressLocality; ?></span><br />
           <?php endif; ?>
           <?php if ($email): ?>
-            <span property="email">&#128231; <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></span><br />
+            <span property="email">&#9993; <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></span><br />
           <?php endif; ?>
           <?php if ($telephone): ?>
             <span property="telephone">&#128222; <a href="tel:<?php echo $telephone; ?>"><?php echo $telephone; ?></a></span><br />
