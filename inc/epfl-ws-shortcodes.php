@@ -88,7 +88,7 @@ add_filter("epfl_shortcode_actu_list_html_item", function ($unused_html, $unused
     $publication_date = date("jS F, Y", strtotime($item->publish_date));
 
     return "<div class=\"fullwidth-list-item\" id=\"" . $item->id . "\">
-      <h2><a href=\"" . $item->news_url . "\" title=\"". $item->news_url ."\">" . strtoupper($item->title) . "</a><span class=\"top-right actu-pub-date\"> $publication_date</span></h2>
+      <h2><a href=\"" . $item->news_url . "\" title=\"". $item->news_url ."\">" . $item->title . "</a><span class=\"top-right actu-pub-date\"> $publication_date</span></h2>
       <div class=\"container\">
         <div class=\"row entry-body\">
           <div class=\"col-md-2\">
