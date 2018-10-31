@@ -454,7 +454,7 @@ msgstr "Génie des _matériaux"
 
 #: ../inc/epfl.php:161 ../inc/epfl.php:164
 msgid "Electrical _Engineering"
-msgstr "Génie _Électrique"
+msgstr "Génie _Électrique & Électronique"
 
 #: ../newsletter-theme/inc/newsletter_section_categories.inc:130
 msgid "Newsletter Section"
