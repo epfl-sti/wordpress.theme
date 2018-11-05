@@ -125,8 +125,8 @@ class Contact extends \WP_Widget
           <?php endif; ?>
           <?php if ($email): ?>
           <?php // See https://www.compart.com/en/unicode/search?q=envelop#characters 
-                // for others options: e.g. &#128231; or &#9993; ?>
-            <span property="email">&#128386; <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></span><br />
+                // for others options: e.g. &#128231; or &#9993; &#128386;?>
+            <span property="email">&#128231; <a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></span><br />
           <?php endif; ?>
           <?php if ($telephone): ?>
             <span property="telephone">&#128222; <a href="tel:<?php echo $telephone; ?>"><?php echo $telephone; ?></a></span><br />
