@@ -53,7 +53,7 @@ class WhiteNewsBase extends \WP_Widget
                     <?php the_title(); ?>
                 </a>
                 <br />
-                <a href="#">
+                <a href="<?php echo get_the_permalink(); ?>">
                     <img class="whitenewsmore" src="/wp-content/themes/epfl-sti/img/src/yetmore.png" align="right">
                 </a>
             </div>
