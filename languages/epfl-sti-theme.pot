@@ -422,9 +422,10 @@ msgid "Micro_engineering"
 msgstr ""
 
 #: ../inc/epfl.php:160 ../inc/epfl.php:163
-msgid "Materials _Science"
+msgid "Materials Science _and Engineering"
 msgstr ""
 
+#. was Materials _Science
 #: ../inc/epfl.php:161 ../inc/epfl.php:164
 msgid "Electrical _Engineering"
 msgstr ""

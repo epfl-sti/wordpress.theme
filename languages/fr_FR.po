@@ -449,9 +449,10 @@ msgid "Micro_engineering"
 msgstr "Micro_technique"
 
 #: ../inc/epfl.php:160 ../inc/epfl.php:163
-msgid "Materials _Science"
-msgstr "Génie des _matériaux"
+msgid "Materials Science _and Engineering"
+msgstr "Science et _génie des matériaux"
 
+#. was Materials _Science
 #: ../inc/epfl.php:161 ../inc/epfl.php:164
 msgid "Electrical _Engineering"
 msgstr "Génie _Électrique & Électronique"

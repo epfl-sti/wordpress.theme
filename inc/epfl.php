@@ -160,7 +160,7 @@ class Institute {
             "igm" => ___("Mechanical _Engineering"),
             "ibi" => ___("Bio_engineering"),
             "imt" => ___("Micro_engineering"),
-            "imx" => ___("Materials _Science"),
+            "imx" => ___("Materials Science _and Engineering"), // was Materials _Science
             "iel" => ___("Electrical _Engineering"),
         );
         return split_on_underscore($all_names[$this->_code]);
