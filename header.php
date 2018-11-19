@@ -63,22 +63,22 @@ if ($institute) {
         list($firstline, $secondline) = $institute->get_name_parts();
         $url = home_url('/' . $institute->get_code());
         ?>
-         <span class="sti-breadcrumb"><a href="/"><span class="firstline"><?php echo $firstline_school ?></span> <span class="secondline"><?php echo $secondline_school ?></span></a>&nbsp;&gt;</span>
-         <br>
-         <a class="text-logo" href="<?php echo esc_url($url); ?>">
+        <span class="sti-breadcrumb"><a href="<?php echo $homelink; ?>"><span class="firstline"><?php echo $firstline_school ?></span> <span class="secondline"><?php echo $secondline_school ?></span></a>&nbsp;&gt;</span>
+        <br />
+        <a class="text-logo" href="<?php echo esc_url($url); ?>">
           <span class="firstline"><?php echo $firstline ?></span>
-          <br>
+          <br />
           <span class="secondline"><?php echo $secondline ?></span>
-         </a>
+        </a>
         <?php
       } else {
         $url = home_url('/');
         ?>
         <a class="text-logo" href="<?php echo $homelink; ?>">
           <span class="firstline"><?php echo $firstline_school ?></span>
-          <br>
+          <br />
           <span class="secondline"><?php echo $secondline_school ?></span>
-         </a>
+        </a>
         <?php
       }
       ?>
