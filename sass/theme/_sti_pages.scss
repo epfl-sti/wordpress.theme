@@ -78,6 +78,14 @@
  float:right;
 }
 
+/* Fix some issues (#101) with juxtaposeJS */
+div.jx-image.jx-right div.jx-label {
+  z-index:5;
+}
+div.jx-image.jx-left div.jx-label {
+  z-index:5;
+}
+
 /* Themes page */
 
 .titretheme>h4 {
