@@ -152,3 +152,16 @@ megamenu div.mega-menu-wrap {
     font-size: 28pt;
   }
 }
+
+
+/* https://wordpress.org/support/topic/not-to-show-hand-on-non-clickable-menu-item/ */
+/* This is how one can display a mouse 
+   cursor instead of a hand in the mega-menu:
+   First, edit the menu, open the mega-menu option,
+   and go to settings to enable the menu item settings
+   called "Disable Link". Then, the following code will 
+   make the mouse pointer displayed for it.
+*/
+.mega-disable-link > a.mega-menu-link {
+  cursor: default !important;
+}
