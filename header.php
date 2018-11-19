@@ -11,7 +11,7 @@ require_once(__DIR__.'/inc/epfl.php');
 use function EPFL\STI\{ get_current_language, get_institute, get_school_name_parts };
 
 $cl = get_current_language();
-
+$homelink = ($cl == 'fr') ? '/fr/' : '/';
 $institute = get_institute();
 
 if ($institute) {
@@ -74,7 +74,7 @@ if ($institute) {
       } else {
         $url = home_url('/');
         ?>
-         <a class="text-logo" href="<?php echo esc_url($url); ?>">
+        <a class="text-logo" href="<?php echo $homelink; ?>">
           <span class="firstline"><?php echo $firstline_school ?></span>
           <br>
           <span class="secondline"><?php echo $secondline_school ?></span>
