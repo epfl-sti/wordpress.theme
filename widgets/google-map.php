@@ -32,7 +32,7 @@ class GoogleMap extends \WP_Widget
 ?>
     <script src="<?= get_template_directory_uri() . '/js/google-maps.js' ?>"></script>
     <div id="googlemap"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-KB1byyUR6AEWVI1B8cdGFIDI1v8g8YY&libraries=places&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCID6xvAJxu1kpOxoYpH9F5ZUBjK2xD39c&libraries=places&callback=initMap" async defer></script>
 <?php
     echo $args['after_widget'];
   }  // public function Widget
