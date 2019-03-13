@@ -288,7 +288,8 @@ gulp.task('copy-assets', function() {
         'jquery/dist/*.js',
         'jquery-touchswipe/jquery.touchSwipe*.js',
         'normalize.css/*.css',
-        'ionicons/dist/css/ionicons.min.css*'
+        'ionicons/dist/css/ionicons.min.css*',
+	'@fortawesome/fontawesome-free-webfonts/webfonts/fa-solid-900.*'
     ];
     return gulp.src(npm_goodies.map((path) => './node_modules/' + path))
         .pipe(assetsDest())
