@@ -54,8 +54,40 @@ if ($institute) {
      <?php // This uses polylang. Change the language full name to get the FR / EN (https://polylang.pro/doc/configure-the-languages/#full-name) ?>
      <ul class="epflstilangmenu"><?php if (function_exists('pll_the_languages')) { pll_the_languages(); } ?></ul>
     </div>
-    <?php if ( ! has_custom_logo() ) { ?>
-     <div id="epfl-logo"><a href="https://www.epfl.ch"> <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/epfl.gif" /></a></div>
+    <?php
+    if ( ! has_custom_logo() ) {
+
+	// Timed embargo
+        $timezone = new DateTimeZone('Europe/Zurich');
+        $embargo_limit = new DateTime('18.03.2019 15:45'); // don't forget to create the timestamp as UTC
+        $embargo_limit->setTimezone($timezone);
+        $current_time = new DateTime();
+        $current_time->setTimezone($timezone);
+        $past_embargo = ($current_time > $embargo_limit);
+
+        // Magic cookie to allow testing
+        $magic_cookie_set = FALSE;
+        if (isset($_COOKIE['GiveMeAGlanceAtTheFuture']) and $_COOKIE['GiveMeAGlanceAtTheFuture']=='42'){
+          $magic_cookie_set = TRUE;
+        }
+
+        $display_new_logo = FALSE;
+        if ($past_embargo or $magic_cookie_set){
+          $display_new_logo = TRUE;
+        }
+        if ($display_new_logo) {
+    ?>
+          <div id="epfl-logo"><a href="https://www.epfl.ch"> <img data-version="new" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/5e5cbb72-0837-464a-bf7b-3b8be74d5901.gif" /></a></div>
+    <?php
+        }
+        else {
+    ?>
+          <div id="epfl-logo"><a href="https://www.epfl.ch"> <img data-version="old" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/epfl.gif" /></a></div>
+    <?php
+        }
+    ?>
+
+
      <div id="sti-mini-nav">
       <?php
       list($firstline_school, $secondline_school) = get_school_name_parts();
