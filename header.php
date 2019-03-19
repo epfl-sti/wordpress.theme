@@ -35,6 +35,27 @@ if ($institute) {
   <link rel="profile" href="http://gmpg.org/xfn/11">
   <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
+  <!-- Favicon -->
+  <link rel="manifest" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/favicons/site.webmanifest" />
+	<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/favicons/favicon.ico">
+	<link rel="apple-touch-icon-precomposed" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/favicons/favicon-152.png">
+	<link rel="icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/favicons/favicon-16.png" sizes="16x16">
+	<link rel="icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/favicons/favicon-32.png" sizes="32x32">
+	<link rel="icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/favicons/favicon-57.png" sizes="57x57">
+	<link rel="icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/favicons/favicon-76.png" sizes="76x76">
+	<link rel="icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/favicons/favicon-96.png" sizes="96x96">
+	<link rel="icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/favicons/favicon-120.png" sizes="120x120">
+	<link rel="icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/favicons/favicon-128.png" sizes="128x128">
+	<link rel="icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/favicons/favicon-152.png" sizes="152x152">
+	<link rel="icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/favicons/favicon-180.png" sizes="180x180">
+	<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/favicons/android-chrome-192x192.png" sizes="192x192">
+	<link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/favicons/android-chrome-512x512.png" sizes="512x512">
+	<link rel="icon" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/favicons/favicon-228.png" sizes="228x228">
+	<link rel="apple-touch-icon" type="image/png" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/favicons/apple-touch-icon.png">
+
+	<meta name="application-name" content="Name">
+	<meta name="msapplication-tooltip" content="Tooltip">
+	<meta name="msapplication-config" content="<?php echo get_stylesheet_directory_uri(); ?>/assets/favicons/browserconfig.xml">
   <!-- Custom -->
   <!-- CSS -->
   <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/normalize.css">
