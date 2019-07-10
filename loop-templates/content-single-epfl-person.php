@@ -204,7 +204,11 @@ foreach ($related_results as $related_result) {
                   <?php echo "<b>$pa_unit</b><br />$pa_office<br />$pa_station<br />$pa_postcode"; ?>
                 </div>
                 <div class="col-md-5 embed-responsive embed-responsive-4by3">
-                  <iframe class="embed-responsive-item" src="https://plan.epfl.ch/iframe/?map_zoom=12&q=<?php echo $person->get_sciper(); ?>" ></iframe>
+                  <?php if ($office != '') { ?>
+                    <!-- <iframe class="embed-responsive-item" src="https://plan.epfl.ch/iframe/?map_zoom=12&q=<?php echo $person->get_sciper(); ?>" ></iframe> -->
+                    <iframe class="embed-responsive-item" src="https://plan.epfl.ch/iframe/?map_zoom=12&room==<?php echo $office; ?>" ></iframe>
+                  <?php
+                  }  ?>
                 </div>
               </div>
             </div>
