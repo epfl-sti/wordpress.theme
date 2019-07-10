@@ -198,7 +198,12 @@ foreach ($related_results as $related_result) {
                            $profile_url_splittable = preg_replace("|(/+)|", '$1<wbr>', $profile_url);
                            echo $profile_url_splittable; ?></a></p>
                  <p class="telephone">
-                  <?php echo 'Tel: <a href="tel:+' . $phone . '">+' . $phone . '</a>'; ?></p>
+                  <?php
+                  if ($phone != '') {
+                    echo 'Tel: <a href="tel:+' . $phone . '">+' . $phone . '</a>';
+                  }
+                  ?>
+                </p>
                 </div>
                 <div class="col-md-3">
                   <?php echo "<b>$pa_unit</b><br />$pa_office<br />$pa_station<br />$pa_postcode"; ?>
