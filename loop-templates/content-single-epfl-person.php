@@ -35,6 +35,8 @@ $biography     = $person->get_bio();
 $sciper        = $person->get_sciper();
 $phone         = $person->get_phone();
 $office        = $person->get_room();
+list($pa_unit, $pa_office, $pa_station, $pa_postcode) = explode("$", $person->get_postaladdress());
+
 if ($title = $person->get_title()) {
     $officialtitle = $title->as_short_greeting();
     $position      = $title->localize();
@@ -188,7 +190,7 @@ foreach ($related_results as $related_result) {
               <div class="row entry-body">
                 <div class="person-contact col-md-4">
                  <p class="office">
-                  <?php echo 'Office: <a class="office" href="https://maps.epfl.ch/?q=' . $office . '">' . $office . '</a>'; ?>
+                  <?php echo 'Office: <a class="office" href="https://plan.epfl.ch/?q=' . $office . '">' . $office . '</a>'; ?>
                  <p class="email">
                   <?php echo '<a href="mailto:' . $email . '">' . $email . '</a>'; ?></p>
                  <p class="bottin">
@@ -196,13 +198,22 @@ foreach ($related_results as $related_result) {
                            $profile_url_splittable = preg_replace("|(/+)|", '$1<wbr>', $profile_url);
                            echo $profile_url_splittable; ?></a></p>
                  <p class="telephone">
-                  <?php echo 'Tel: <a href="tel:+' . $phone . '">' . $phone . '</a>'; ?></p>
+                  <?php
+                  if ($phone != '') {
+                    echo 'Tel: <a href="tel:+' . $phone . '">+' . $phone . '</a>';
+                  }
+                  ?>
+                </p>
                 </div>
                 <div class="col-md-3">
-                  <?php echo "<b>$labname</b><br> $office<br> Station 11<br> 1015 Lausanne<br> Switzerland"; ?>
+                  <?php echo "<b>$pa_unit</b><br />$pa_office<br />$pa_station<br />$pa_postcode"; ?>
                 </div>
                 <div class="col-md-5 embed-responsive embed-responsive-4by3">
-                  <iframe class="embed-responsive-item" src="https://plan.epfl.ch/iframe/?map_zoom=12&q=<?php echo $person->get_sciper(); ?>" ></iframe>
+                  <?php if ($office != '') { ?>
+                    <!-- <iframe class="embed-responsive-item" src="https://plan.epfl.ch/iframe/?map_zoom=12&q=<?php echo $person->get_sciper(); ?>" ></iframe> -->
+                    <iframe class="embed-responsive-item" src="https://plan.epfl.ch/iframe/?map_zoom=12&room==<?php echo $office; ?>" ></iframe>
+                  <?php
+                  }  ?>
                 </div>
               </div>
             </div>
