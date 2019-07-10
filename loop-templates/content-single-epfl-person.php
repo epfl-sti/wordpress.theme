@@ -190,7 +190,7 @@ foreach ($related_results as $related_result) {
               <div class="row entry-body">
                 <div class="person-contact col-md-4">
                  <p class="office">
-                  <?php echo 'Office: <a class="office" href="https://maps.epfl.ch/?q=' . $office . '">' . $office . '</a>'; ?>
+                  <?php echo 'Office: <a class="office" href="https://plan.epfl.ch/?q=' . $office . '">' . $office . '</a>'; ?>
                  <p class="email">
                   <?php echo '<a href="mailto:' . $email . '">' . $email . '</a>'; ?></p>
                  <p class="bottin">
