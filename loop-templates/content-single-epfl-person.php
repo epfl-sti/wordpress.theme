@@ -167,13 +167,8 @@ foreach ($related_results as $related_result) {
               $dom->loadHTML('<?xml encoding="utf-8" ?>' . $tmp);
               // let's use XPath
               $finder = new DomXPath($dom);
-              // set the limit
-              $limit = 10; $cnt = 0;
-              // and remove unwanted elements
-              foreach($finder->query("//*[contains(@class, 'infoscience_record')]") as $elm ) {
-                if ($cnt >= $limit)
-                  $elm->parentNode->removeChild($elm);
-                $cnt++;
+              foreach($finder->query("(//*[contains(@class, 'infoscience_record')])[10]/following-sibling::*") as $elm) {
+                $elm->parentNode->removeChild($elm);
               }
               // finally, echo
               echo $dom->saveHTML($dom->documentElement);
