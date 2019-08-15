@@ -240,7 +240,11 @@ foreach ($related_results as $related_result) {
        <div class="person-nav-menu">
         <ul class="menu">
          <li class="menu-item menu-item-type-custom menu-item-object-custom"><a href="<?php echo $labwebsite; ?>">LAB WEBSITE</a></li>
-
+        <script>
+          console.log('lab url: <?php echo $labwebsite; ?>');
+          console.log('lab url: <?php echo $labname; ?>');
+          console.log('lab url: <?php echo $mylabname; ?>');
+        </script>
          <?php if ($youtube_id) { ?>
           <li id="menu-item" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-131"><a href="#video">VIDEOS</a></li>
          <?php } ?>
