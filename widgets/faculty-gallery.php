@@ -121,7 +121,7 @@ function _doPrintOuter(people_listing, lang) {
 
 	result++;
         count++;
-        people_listing[x].link = "/epfl-person/" + people_listing[x].sciper;
+        people_listing[x].link = "https://people.epfl.ch/" + people_listing[x].sciper;
         test += _templateCard(people_listing[x]);
    }
   }
