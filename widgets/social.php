@@ -35,7 +35,7 @@ class Social extends \WP_Widget
     echo $args['before_widget']; ?>
     <div class="widget epfl-sti-social">
       <div itemscope itemtype="https://schema.org/ContactPoint">
-        <a href="mailto:dean.sti@epfl.ch" class="epfl-sti-social-item" target="_blank" title="email: STI Secretary Officel"><i class="fas fa-2x fa-envelope-square"></i></a>
+        <!-- <a href="mailto:dean.sti@epfl.ch" class="epfl-sti-social-item" target="_blank" title="email: STI Secretary Officel"><i class="fas fa-2x fa-envelope-square"></i></a>-->
         <a href="https://twitter.com/EPFLEngineering" class="epfl-sti-social-item" target="_blank" title="EPFL STI Twitter"><i class="fab fa-2x fa-twitter-square"></i></a>
         <a href="https://www.instagram.com/epflengineering" class="epfl-sti-social-item" target="_blank" title="EPFL STI Instagram"><i class="fab fa-2x fa-instagram"></i></a>
         <a href="https://www.facebook.com/EPFLSchoolofengineering/" class="epfl-sti-social-item" target="_blank" title="EPFL STI Facebook"><i class="fab fa-2x fa-facebook-square"></i></a>
