@@ -28,7 +28,7 @@ if (class_exists('\\EPFL\\WS\\Persons\\Person')) {
 
 $givenname     = $person->get_given_name();
 $surname       = $person->get_surname();
-$surname_uc    = strtoupper($surname);
+$surname_uc    = mb_strtoupper($surname, 'UTF-8');
 $email         = $person->get_mail();
 $profile_url   = $person->get_profile_url();
 $biography     = $person->get_bio();
