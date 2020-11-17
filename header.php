@@ -63,6 +63,18 @@ if ($institute) {
   <link rel="stylesheet" type="text/css" href="theme-epfl-sti/node_modules/npm-font-open-sans/open-sans.css">
   <link href='<?php echo get_stylesheet_directory_uri(); ?>/css/firststep.css' rel='stylesheet' type='text/css'>
   <!-- end custom -->
+  <?php
+    if ( get_post_type() == 'epfl-person' ) {?>
+    <script>
+      var path = document.location.pathname
+      if (path.indexOf('/epfl-person/') > -1) {
+        var id = path.replace('/epfl-person/', '').replace('/', '')
+        document.location = 'https://people.epfl.ch/' + id
+      }
+    </script>
+  <?php
+    }
+  ?>
 
   <?php wp_head(); ?>
 </head>
