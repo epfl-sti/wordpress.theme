@@ -237,10 +237,7 @@ function download_featured_image($wp_post, $image_url, $opts)
         @unlink($file);
         throw new DownloadError("wp_generate_attachment_metadata failed for $image_url -> $file -> $attach_id");
     }
-    if (! wp_update_attachment_metadata($attach_id, $attach_data)) {
-        @unlink($file);
-        throw new DownloadError("wp_update_attachment_metadata failed for $image_url -> $file -> $attach_id");
-    }
+    wp_update_attachment_metadata($attach_id, $attach_data);  // Can return FALSE if no change
     if (! set_post_thumbnail($post_id, $attach_id)) {
         @unlink($file);
         throw new DownloadError("set_post_thumbnail failed for $image_url -> $file -> $attach_id");
