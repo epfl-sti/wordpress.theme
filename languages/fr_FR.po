@@ -554,6 +554,10 @@ msgstr "Maître d’enseignement et de recherche"
 msgid "Bioengineering"
 msgstr "Bioingénierie"
 
+#: ../widgets/faculty-gallery.php:224 ../widgets/faculty-gallery.php:237
+msgid "Electrical and Micro Engineering"
+msgstr "Génie Électrique, Électronique et Microtechnique"
+
 #: ../widgets/faculty-gallery.php:225 ../widgets/faculty-gallery.php:226
 msgid "Electrical Engineering"
 msgstr "Génie Électrique et Électronique"
