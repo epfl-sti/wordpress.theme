@@ -93,10 +93,9 @@ $sidebar_pos = get_theme_mod( 'epflsti_sidebar_position' );
 												<a href="/the-school/">EPFL School of Engineering</a>, its 
 												<a href="/research/faculty-members/">faculty members</a>, 
 												the five institutes (<a href="https://bioengineering.epfl.ch/">Bioengineering</a>, 
-												<a href="/research/institutes/iel/">Electrical Engineering</a>, 
-												<a href="/research/institutes/imx/">Materials Science & Engineering</a>, 
-												<a href="/research/institutes/igm/">Mechanical Engineering</a> & 
-												<a href="/research/institutes/imt/">Microengineering</a>), 
+												<a href="/research/institutes/iem/">Electrical & Micro Engineering</a>, 
+												<a href="/research/institutes/imx/">Materials Science & Engineering</a> &
+												<a href="/research/institutes/igm/">Mechanical Engineering</a> 
 												the <a href="/news">latest news</a> or the <a href="/themes/">themes</a> we cover.
 											</p>
 
