@@ -60,7 +60,7 @@ if ($institute) {
   <!-- CSS -->
   <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/normalize.css">
   <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri(); ?>/assets/ionicons.min.css">
-  <link rel="stylesheet" type="text/css" href="theme-epfl-sti/node_modules/npm-font-open-sans/open-sans.css">
+  <link rel="stylesheet" type="text/css" href="wp-content/themes/theme-epfl-sti/node_modules/npm-font-open-sans/open-sans.css">
   <link href='<?php echo get_stylesheet_directory_uri(); ?>/css/firststep.css' rel='stylesheet' type='text/css'>
   <!-- end custom -->
   <?php

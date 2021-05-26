@@ -41,7 +41,7 @@
 // can't use get_theme_relative_uri() and friends. See
 // ../inc/serve-assets.php to find out how this magical URL is being
 // served.
-$fa-font-path: 'theme-epfl-sti/node_modules/@fortawesome/fontawesome-free-webfonts/webfonts';
+$fa-font-path: './';
 
 @import "../node_modules/@fortawesome/fontawesome-free-webfonts/scss/fontawesome";
 @import "../node_modules/@fortawesome/fontawesome-free-webfonts/scss/fa-regular";
