@@ -430,6 +430,10 @@ msgstr ""
 msgid "Electrical _Engineering"
 msgstr ""
 
+#: ../inc/epfl.php:165 ../inc/epfl.php:165
+msgid "Electrical and Micro _Engineering"
+msgstr ""
+
 #: ../newsletter-theme/inc/newsletter_section_categories.inc:130
 msgid "Newsletter Section"
 msgstr ""
@@ -525,6 +529,10 @@ msgstr ""
 
 #: ../widgets/faculty-gallery.php:224 ../widgets/faculty-gallery.php:225
 msgid "Bioengineering"
+msgstr ""
+
+#: ../widgets/faculty-gallery.php:224 ../widgets/faculty-gallery.php:237
+msgid "Electrical and Micro Engineering"
 msgstr ""
 
 #: ../widgets/faculty-gallery.php:225 ../widgets/faculty-gallery.php:226
