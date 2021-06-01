@@ -39,20 +39,21 @@ class FacultyGallery extends \WP_Widget
     }
 
     ?>
+
 <directory class="container">
 <script type="text/javascript">
-var PO=0;
-var PA=0;
-var PATT=0;
-var PT=0;
-var MER=0;
-var IBI2=0;
-var IEL=0;
-var IGM=0;
-var IMT=0;
-var IMX=0;
+var PO = 0;
+var PA = 0;
+var PATT = 0;
+var PT = 0;
+var MER = 0;
+var IBI2 = 0;
+var IGM = 0;
+var IMX = 0;
+// New Institute (IEL + IMT)
+var IEM = 0;
 
-function findString(tstring,text) {
+function findString(tstring, text) {
     // Replaces text with by in string
     var strLength = tstring.length, txtLength = text.length;
     if ((strLength == 0) || (txtLength == 0)){
@@ -165,11 +166,10 @@ function redraw () {
       url = url + "&" + $institute + "=1";
     } else {
       var IBI2 = anchor2cgiparam("IBI2"),
-        IEL = anchor2cgiparam("IEL"),
+        IEM = anchor2cgiparam("IEM"),
         IGM = anchor2cgiparam("IGM"),
-        IMT = anchor2cgiparam("IMT"),
         IMX = anchor2cgiparam("IMX")
-      url = url+"&IBI2="+IBI2+"&IEL="+IEL+"&IGM="+IGM+"&IMT="+IMT+"&IMX="+IMX;
+      url = url+"&IBI2="+IBI2+"&IEM="+IEM+"&IGM="+IGM+"&IMX="+IMX;
     }
     $.ajax({
         url: url,
@@ -202,6 +202,17 @@ $(function() {
 
 </script>
 
+<style>
+  .chkBox {
+    float: left;
+    margin-top: 0.4rem;
+  }
+  .chkBox-label {
+    margin-left: 1.2rem;
+    display: block;
+  }
+</style>
+
   <div class="container">
     <div class="row row-offcanvas row-offcanvas-right">
       <div class="sti-faculty-trombinoscope col-12 col-md-9">
@@ -212,21 +223,20 @@ $(function() {
           <a href="#" onClick="javascript:return resetDirectoryForm();" id="all"><?php echo ___("All Faculty"); ?></a>
           <br />
           <br />
-          <a href="#" class="togglable" id="PO"><input type="checkbox"> <?php echo ___("Full Professors"); ?></a>
-          <a href="#" class="togglable" id="PA"><input type="checkbox"> <?php echo ___("Associate Professors"); ?></a>
-          <a href="#" class="togglable" id="PATT"><input type="checkbox"> <?php echo ___("Assistant Professors"); ?></a>
-          <a href="#" class="togglable" id="PT"><input type="checkbox"> <?php echo ___("Adjunct Professors"); ?></a>
-          <a href="#" class="togglable" id="MER"><input type="checkbox"> <?php echo ___("Senior Scientists"); ?></a>
+          <a href="#" class="togglable" id="PO"><input type="checkbox" class="chkBox"><span class="chkBox-label"> <?php echo ___("Full Professors"); ?> </span></a>
+          <a href="#" class="togglable" id="PA"><input type="checkbox" class="chkBox"><span class="chkBox-label"> <?php echo ___("Associate Professors"); ?> </span></a>
+          <a href="#" class="togglable" id="PATT"><input type="checkbox"class="chkBox"> <span class="chkBox-label"> <?php echo ___("Assistant Professors"); ?> </span></a>
+          <a href="#" class="togglable" id="PT"><input type="checkbox" class="chkBox"> <span class="chkBox-label"> <?php echo ___("Adjunct Professors"); ?> </span></a>
+          <a href="#" class="togglable" id="MER"><input type="checkbox"class="chkBox" > <span class="chkBox-label"> <?php echo ___("Senior Scientists"); ?> </span></a>
         </div>
         <br />
         <br />
         <?php if (! $institute): ?>
         <div class="toggles-institute">
-          <a href="#" class="togglable" id="IBI2"><input type="checkbox"> <?php echo ___("Bioengineering"); ?></a>
-          <a href="#" class="togglable" id="IEL"><input type="checkbox"> <?php echo ___("Electrical Engineering"); ?></a>
-          <a href="#" class="togglable" id="IMX"><input type="checkbox"> <?php echo ___("Materials Science"); ?></a>
-          <a href="#" class="togglable" id="IGM"><input type="checkbox"> <?php echo ___("Mechanical Engineering"); ?></a>
-          <a href="#" class="togglable" id="IMT"><input type="checkbox"> <?php echo ___("Microengineering"); ?></a>
+          <a href="#" class="togglable" id="IBI2"><input type="checkbox" class="chkBox"><span class="chkBox-label"> <?php echo ___("Bioengineering"); ?> </span></a>
+          <a href="#" class="togglable" id="IEM"><input type="checkbox" class="chkBox"><span class="chkBox-label"> <?php echo ___("Electrical and Micro Engineering"); ?> </span></a>
+          <a href="#" class="togglable" id="IMX"><input type="checkbox" class="chkBox"><span class="chkBox-label"> <?php echo ___("Materials Science"); ?> </span></a>
+          <a href="#" class="togglable" id="IGM"><input type="checkbox" class="chkBox"><span class="chkBox-label"> <?php echo ___("Mechanical Engineering"); ?> </span></a>
         </div>
         <?php endif; ?>
       </div>

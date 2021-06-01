@@ -452,6 +452,10 @@ msgstr "Micro_technique"
 msgid "Materials Science _and Engineering"
 msgstr "Science et _génie des matériaux"
 
+#: ../inc/epfl.php:165 ../inc/epfl.php:165
+msgid "Electrical and Micro _Engineering"
+msgstr "Génie Électrique _et Microtechnique"
+
 #. was Materials _Science
 #: ../inc/epfl.php:161 ../inc/epfl.php:164
 msgid "Electrical _Engineering"
@@ -553,6 +557,10 @@ msgstr "Maître d’enseignement et de recherche"
 #: ../widgets/faculty-gallery.php:224 ../widgets/faculty-gallery.php:225
 msgid "Bioengineering"
 msgstr "Bioingénierie"
+
+#: ../widgets/faculty-gallery.php:224 ../widgets/faculty-gallery.php:237
+msgid "Electrical and Micro Engineering"
+msgstr "Génie Électrique, Électronique et Microtechnique"
 
 #: ../widgets/faculty-gallery.php:225 ../widgets/faculty-gallery.php:226
 msgid "Electrical Engineering"
