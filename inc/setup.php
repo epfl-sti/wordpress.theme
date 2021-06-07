@@ -51,6 +51,7 @@ if ( ! function_exists( 'epflsti_setup' ) ) :
 			'primary-imt'                => ___( 'Primary Menu for IMT'),
 			'primary-imx'                => ___( 'Primary Menu for IMX'),
 			'primary-iel'                => ___( 'Primary Menu for IEL'),
+			'primary-iem'                => ___( 'Primary Menu for IEM'),
 			'langmenu'                   => ___( 'Lang Menu'),
 			'front-row-school-menu'      => ___( 'Front Row School Menu'),
 			'front-row-centres-menu'     => ___( 'Front Row Centres Menu'),
@@ -59,11 +60,13 @@ if ( ! function_exists( 'epflsti_setup' ) ) :
 			'front-row-imt-faculty-menu' => ___( 'Front Row IMT Faculty Menu'),
 			'front-row-imx-faculty-menu' => ___( 'Front Row IMX Faculty Menu'),
 			'front-row-iel-faculty-menu' => ___( 'Front Row IEL Faculty Menu'),
+			'front-row-iem-faculty-menu' => ___( 'Front Row IEM Faculty Menu'),
 			'front-row-igm-info-menu'    => ___( 'Front Row IGM Info Menu'),
 			'front-row-ibi-info-menu'    => ___( 'Front Row IBI Info Menu'),
 			'front-row-imt-info-menu'    => ___( 'Front Row IMT Info Menu'),
 			'front-row-imx-info-menu'    => ___( 'Front Row IMX Info Menu'),
 			'front-row-iel-info-menu'    => ___( 'Front Row IEL Info Menu'),
+			'front-row-iem-info-menu'    => ___( 'Front Row IEM Info Menu'),
 			'footnote'                   => ___( 'Footnote'),
 		) );
 
