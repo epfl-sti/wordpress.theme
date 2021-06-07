@@ -21,8 +21,15 @@ use function \EPFL\STI\get_institute;
 		<div class="container">
 
 			<div class="row">
-
-				<?php dynamic_sidebar( get_institute()->get_code() . '-homepage' ); ?>
+				<?php
+					// HACK: quick and dirty way to manage iel being renamed as iem
+					$institute = get_institute()->get_code();
+					if ($institute == "iem") {
+							$institute  = "iel";
+					}
+                            
+				?>
+				<?php dynamic_sidebar( $institute . '-homepage' ); ?>
 
 				<?php dynamic_sidebar( 'right' ); ?>
 
