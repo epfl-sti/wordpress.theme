@@ -61,7 +61,7 @@ add_action('widgets_init', function () {
     )
   );
 
-  foreach (["iel", "igm", "ibi", "imt", "imx"] as $institute_code) {
+  foreach (["iem", "iel", "igm", "ibi", "imt", "imx"] as $institute_code) {
       $institute_name = strtoupper($institute_code);
       register_sidebar(
         array(
